@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: oracle/host-configuration/windows.html 
+keywords: oracle, database, ontap, windows 
+summary: Microsoft Windowsを使用したONTAP上のOracle 
+---
+= Microsoft Windows の場合
+:allow-uri-read: 
+
+
+[role="lead"]
+Microsoft Windows OSに固有の構成に関するトピック。
+
+
+
+== NFS
+
+Oracleでは、Direct NFSクライアントでのMicrosoft Windowsの使用がサポートされています。この機能は、複数の環境にわたるファイルの表示、ボリュームの動的なサイズ変更、安価なIPプロトコルの活用など、NFSの管理上のメリットをもたらします。DNFSを使用してMicrosoft Windowsにデータベースをインストールおよび設定する方法については、Oracleの公式ドキュメントを参照してください。特別なベストプラクティスはありません。
+
+
+
+== SAN
+
+圧縮効率を最適化するには、NTFSファイルシステムで8K以上の割り当て単位を使用するようにしてください。一般にデフォルトである4Kの割り当て単位を使用すると、圧縮効率が低下します。

@@ -1,0 +1,34 @@
+---
+section: mssql
+title: Microsoft SQL Server の場合
+entries:
+- title: 概要
+  url: "/mssql/overview.html"
+- title: ワークロード
+  url: "/mssql/workloads.html"
+- title: ONTAP構成
+  url: "/postgres/ontap.html"
+- title: データベース設定
+  entries:
+  - title: 共有インスタンスと専用インスタンス
+    url: "/mssql/shared-vs-dedicated.html"
+  - title: CPU構成
+    url: "/mssql/CPUConfiguration.html"
+  - title: メモリ構成
+    url: "/mssql/Memoryconfiguration.html"
+- title: ストレージ構成
+  entries:
+  - title: データベースファイルとファイルグループ
+    url: "/mssql/files-and-filegroups.html"
+  - title: tempdbフアイル
+    url: "/mssql/tempdb.html"
+  - title: ストレージに関する考慮事項
+    url: "/mssql/Storage-considerations.html"
+  - title: ストレージ効率
+    url: "/mssql/storage-efficiency.html"
+- title: データ保護
+  url: "/mssql/data-protection.html"
+- title: ディザスタリカバリ
+  url: "/mssql/SQL-disaster-recovery.html"
+- title: データセキュリティ
+  url: "/mssql/data-security.html"

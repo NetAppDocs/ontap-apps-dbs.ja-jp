@@ -1,0 +1,50 @@
+---
+section: mysql
+title: MySQL
+entries:
+- title: 概要
+  url: "/mysql/overview.html"
+- title: ONTAP構成
+  url: "/mysql/ontap.html"
+- title: データベース設定
+  entries:
+  - title: ファイル構造
+    url: "/mysql/file-structure.html"
+  - title: 設定の概要
+    url: "/mysql/configuration.html"
+  - title: innodb_log_file_size
+    url: "/mysql/innodb_log_file_size.html"
+  - title: innodb_flush_log_at_trx_commit
+    url: "/mysql/innodb_flush_log_at_trx_commit.html"
+  - title: innodb_doublewrite
+    url: "/mysql/innodb_doublewrite.html"
+  - title: innodb_buffer_pool_size
+    url: "/mysql/innodb_buffer_pool_size.html"
+  - title: innodb_flush_method
+    url: "/mysql/innodb_flush_method.html"
+  - title: innodb_io_capacity
+    url: "/mysql/innodb_io_capacity.html"
+  - title: innodb_lru_scan_depth
+    url: "/mysql/innodb_lru_scan_depth.html"
+  - title: open_file_limits
+    url: "/mysql/open_file_limits.html"
+- title: ホストの設定
+  entries:
+  - title: コンテナ化
+    url: "/mysql/containers.html"
+  - title: スロットテーブル
+    url: "/mysql/slot-tables.html"
+  - title: I/Oスケジューラ
+    url: "/mysql/schedulers.html"
+  - title: ファイル記述子
+    url: "/mysql/file-descriptors.html"
+- title: ストレージ構成
+  entries:
+  - title: 一般的なストレージ構成
+    url: "/mysql/storage.html"
+  - title: NFS経由のMySQL
+    url: "/mysql/mysql-over-nfs.html"
+  - title: SAN経由のMySQL
+    url: "/mysql/mysql-over-san.html"
+  - title: FabricPoolを使用したMySQLの階層化
+    url: "/mysql/tiering.html"

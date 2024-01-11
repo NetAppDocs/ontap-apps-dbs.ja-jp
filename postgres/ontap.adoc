@@ -1,0 +1,16 @@
+---
+sidebar: sidebar 
+permalink: postgres/ontap.html 
+keywords: MS-SQL,mssql,SQL Server,TR-4590 
+summary: ONTAPの設定 
+---
+= ONTAP構成
+:allow-uri-read: 
+
+
+[role="lead"]
+ONTAPは、アプリケーションとデータベースのワークロード向けに設計された多くの機能を提供します。
+
+データ保護機能、Storage Efficiencyに関する推奨事項、ディザスタリカバリオプションなど、ONTAPの重要な機能の概要を確認できます。 link:../common/overview.html["こちらをご覧ください。"]
+
+この情報は、ONTAPストレージシステムでアプリケーション環境を適切に設計および管理するために重要です。

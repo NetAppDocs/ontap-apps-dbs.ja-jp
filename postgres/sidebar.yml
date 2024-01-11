@@ -1,0 +1,32 @@
+---
+section: postgres
+title: PostgreSQL
+entries:
+- title: 概要
+  url: "/postgres/overview.html"
+- title: ONTAP構成
+  url: "/postgres/ontap.html"
+- title: データベース設定
+  entries:
+  - title: アーキテクチャ
+    url: "/postgres/architecture.html"
+  - title: 初期化
+    url: "/postgres/initialization.html"
+  - title: 設定
+    url: "/postgres/db-config.html"
+  - title: 表領域
+    url: "/postgres/tablespaces.html"
+- title: ストレージ構成
+  entries:
+  - title: ファイルシステム構成
+    url: "/postgres/filesystems.html"
+  - title: 階層化
+    url: "/postgres/tiering.html"
+- title: データ保護
+  entries:
+  - title: 標準搭載のデータ保護
+    url: "/postgres/native-dp.html"
+  - title: Snapshotテクノロジ
+    url: "/postgres/snapshot-dp.html"
+  - title: データ保護ソフトウェア
+    url: "/postgres/snapcenter-dp.html"

@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: mssql/SQL-disaster-recovery.html 
+keywords: MS-SQL,mssql,SQL Server, disaster recovery, snapmirror 
+summary: ONTAP上のMicrosoft SQL Server 
+---
+= Microsoft SQL Serverのディザスタリカバリ
+:allow-uri-read: 
+
+
+[role="lead"]
+NetAppは、ハードウェア、ソフトウェア、またはサイトに障害が発生した場合にデータの可用性を高めるためのさまざまなアプローチを提供します。
+
+NetAppは、MetroCluster、SnapMirrorビジネス継続性（SM-BC）、SnapMirrorなどのテクノロジを提供しています。これらの機能について説明しています。 link:../common/overview-dr.html["こちらをご覧ください"]。
+
+
+
+== NetApp SnapMirror
+
+NetApp SnapMirrorテクノロジは、LANおよびWAN経由でデータをミラーリングまたはレプリケートするための、高速で柔軟なエンタープライズ解決策を提供します。SnapMirrorテクノロジでは、初回のベース転送後に変更された4KBのデータブロックのみがデスティネーションに転送されるため、必要なネットワーク帯域幅が大幅に削減されます。SnapMirrorは、設定されたレプリケーション更新間隔に基づいて、ボリュームレベルの非同期レプリケーションを提供します。
+SnapMirror for SQL Serverの推奨事項は次のとおりです。
+
+* CIFSを使用する場合は、デスティネーションSVMがソースSVMと同じActive Directoryドメインのメンバーである必要があります。これにより、NASファイルに格納されているアクセス制御リスト（ACL）が災害からのリカバリ時に破損しないようになります。
+* ソースボリューム名と同じデスティネーションボリューム名を使用する必要はありませんが、デスティネーションボリュームをデスティネーションにマウントするプロセスを管理しやすくすることができます。CIFSを使用する場合は、デスティネーションNASネームスペースをソースネームスペースとパスおよびディレクトリ構造で同一にする必要があります。
+* 整合性を確保するために、コントローラからのSnapMirror更新のスケジュールを設定しないでください。ただし、フルバックアップまたはログバックアップの完了後にSnapCenterからのSnapMirror更新を有効にしてSnapMirrorを更新してください。
+* SQL Serverデータを含むボリュームをクラスタ内の複数のノードに分散して、すべてのクラスタノードでSnapMirrorレプリケーションアクティビティを共有できるようにします。この分散により、ノードリソースの使用が最適化されます。
+
+
+SnapMirrorの詳細については、を参照してください。 link:https://www.netapp.com/us/media/tr-4015.pdf["TR-4015：『SnapMirrorの設定およびベストプラクティスガイド- ONTAP 9』"^]。

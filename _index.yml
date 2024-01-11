@@ -1,0 +1,46 @@
+---
+indexpage:
+  lead: ONTAPは、多くのエンタープライズアプリケーションやデータベーステクノロジのデータ管理とデータ保護の基盤です。以降のページでは、ONTAPとエンタープライズアプリケーションおよびインフラのベストプラクティスと実装手順について説明します。
+  tiles:
+  - title: Microsoft SQL Server の場合
+    links:
+    - title: ONTAP上のMicrosoft SQL Server
+      url: "/mssql/overview.html"
+    - title: Microsoft SQL Serverストレージに関する考慮事項
+      url: "/mssql/Storage-considerations.html"
+    - title: Microsoft SQL Serverのデータ保護
+      url: "/mssql/Data-protection.html"
+    - title: Microsoft SQL Serverのディザスタリカバリ
+      url: "/mssql/SQL-disaster-recovery.html"
+  - title: オープンソースデータベース
+    links:
+    - title: ONTAP上のMariaDBとMySQL
+      url: "/mysql/overview.html"
+    - title: ONTAP上のPostgreSQL
+      url: "/postgres/overview.html"
+  - title: Oracle データベース
+    links:
+    - title: ONTAP上のOracle
+      url: "/oracle/overview.html"
+    - title: Oracleのデータ保護
+      url: "/oracle/dp/oracle-data-protection-introduction.html"
+    - title: Oracleのディザスタリカバリ
+      url: "/oracle/dr/oracle-dr-overview.html"
+    - title: Oracleへの移行
+      url: "/oracle/migration/oracle-migration-overview.html"
+  - title: SAP HANA のサポート
+    links:
+    - title: SAP ソリューション
+      url: https://docs.netapp.com/us-en/netapp-solutions-sap/index.html
+    - title: SAP HANAとAFFおよびFC
+      url: https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_fc_introduction.html
+    - title: AFFとNFSを使用したSAP HANA
+      url: https://docs.netapp.com/us-en/netapp-solutions-sap/bp/saphana_aff_nfs_introduction.html
+  - title: VMware
+    links:
+    - title: ONTAP を使用した VMware vSphere
+      url: "/vmware/vsphere/overview.html"
+    - title: ONTAPを備えた仮想ボリューム（VVOL）
+      url: "/vmware/vvols/overview.html"
+    - title: VMware Site Recovery ManagerとONTAP
+      url: "/vmware/srm/overview.html"

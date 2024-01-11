@@ -1,0 +1,198 @@
+---
+section: oracle
+title: Oracle データベース
+entries:
+- title: 概要
+  url: "/oracle/overview.html"
+- title: ONTAP構成
+  entries:
+  - title: RAID の場合
+    url: "/oracle/ontap-configuration/raid-oracle.html"
+  - title: 容量制限
+    url: "/oracle/ontap-configuration/oracle-capacity-limits.html"
+  - title: Storage Virtual Machineの略
+    url: "/oracle/ontap-configuration/oracle-svm.html"
+  - title: サービス品質（ QoS ）
+    url: "/oracle/ontap-configuration/oracle-qos.html"
+  - title: 効率性
+    url: "/oracle/ontap-configuration/oracle-efficiency.html"
+  - title: シンプロビジョニング
+    url: "/oracle/ontap-configuration/oracle-thin-provisioning.html"
+  - title: フェイルオーバーとスイッチオーバー
+    url: "/oracle/ontap-configuration/oracle-and-ontap-failover.html"
+- title: データベース設定
+  entries:
+  - title: データファイルとRedoブロックのサイズ
+    url: "/oracle/oracle-configuration/oracle-block-sizes.html"
+  - title: db_file_multiblock_read_count
+    url: "/oracle/oracle-configuration/mbr.html"
+  - title: ファイルシステムオプション
+    url: "/oracle/oracle-configuration/filesystemio_options.html"
+  - title: Oracle RAC
+    url: "/oracle/oracle-configuration/rac.html"
+- title: ホストの設定
+  entries:
+  - title: AIX の場合
+    url: "/oracle/host-configuration/aix.html"
+  - title: HP-UX
+    url: "/oracle/host-configuration/hp-ux.html"
+  - title: Linux の場合
+    url: "/oracle/host-configuration/linux.html"
+  - title: ASMlibおよびAFDを使用したLinux
+    url: "/oracle/host-configuration/asmlib-afd.html"
+  - title: Microsoft Windows の場合
+    url: "/oracle/host-configuration/windows.html"
+  - title: Solaris の場合
+    url: "/oracle/host-configuration/solaris.html"
+- title: ネットワーク構成：
+  entries:
+  - title: 論理インターフェイス
+    url: "/oracle/network-configuration/oracle-lif.html"
+  - title: イーサネット構成
+    url: "/oracle/network-configuration/oracle-ethernet.html"
+  - title: FC SAN構成
+    url: "/oracle/network-configuration/oracle-fc.html"
+- title: ストレージ構成
+  entries:
+  - title: FC SAN
+    entries:
+    - title: LUNアライメント
+      url: "/oracle/storage-configuration/oracle-lun-alignment.html"
+    - title: LUNの数とサイズ
+      url: "/oracle/storage-configuration/oracle-lun-sizing.html"
+    - title: LUNのサイズ変更
+      url: "/oracle/storage-configuration/oracle-lun-resizing.html"
+    - title: LVMストライピング
+      url: "/oracle/storage-configuration/oracle-lvm-striping.html"
+  - title: NFS
+    entries:
+    - title: 設定
+      url: "/oracle/storage-configuration/oracle-nfs-configuration.html"
+    - title: Oracle Direct NFS （ dNFS ）
+      url: "/oracle/storage-configuration/oracle-direct-nfs.html"
+    - title: NFSのリースとロック
+      url: "/oracle/storage-configuration/oracle-leases-and-locks.html"
+    - title: NFSキャッシング
+      url: "/oracle/storage-configuration/oracle-nfs-caching.html"
+    - title: NFSテンソウサイス
+      url: "/oracle/storage-configuration/oracle-nfs-transfer-sizes.html"
+  - title: OracleとNVFAIL
+    url: "/oracle/dp/oracle_and_nvfail.html"
+  - title: ASM再生ユーティリティ
+    url: "/oracle/storage-configuration/asmru.html"
+- title: 仮想化
+  url: "/oracle/virtualization/intro.html"
+- title: 階層化
+  entries:
+  - title: 概要
+    url: "/oracle/tiering/oracle-tiering-overview.html"
+  - title: 階層化ポリシー
+    entries:
+    - title: オブジェクトストアへのデータの送信
+      url: "/oracle/tiering/oracle-tiering-policies.html"
+    - title: オブジェクトストアからのデータの読み出し
+      url: "/oracle/tiering/oracle-retrieval-policies.html"
+  - title: 階層化戦略
+    entries:
+    - title: ファイル全体
+      url: "/oracle/tiering/oracle-whole-file-tiering.html"
+    - title: 部分ファイル
+      url: "/oracle/tiering/oracle-partial-file-tiering.html"
+    - title: ファイルを選択します
+      url: "/oracle/tiering/oracle-partial-file-tiering.html"
+    - title: Snapshot
+      url: "/oracle/tiering/snapshots.html"
+    - title: バックアップ
+      url: "/oracle/tiering/oracle-backup-tiering.html"
+  - title: オブジェクトストアへのアクセスの中断
+    url: "/oracle/tiering/oracle-object-store-access-interruptions.html"
+- title: Oracleのデータ保護
+  entries:
+  - title: 概要
+    url: "/oracle/dp/oracle-data-protection-introduction.html"
+  - title: RPO、TRO、SLA
+    url: "/oracle/dp/oracle-data-protection-slas.html"
+  - title: データの可用性
+    url: "/oracle/dp/oracle-data-availability.html"
+  - title: データ整合性
+    url: "/oracle/dp/oracle-data-integrity.html"
+  - title: バックアップとリカバリの基本
+    entries:
+    - title: Snapshot
+      url: "/oracle/dp/snapshots.html"
+    - title: SnapRestore
+      url: "/oracle/dp/snaprestore.html"
+    - title: Snapshotベースのオンラインバックアップ
+      url: "/oracle/dp/oracle-online-backups.html"
+    - title: ストレージSnapshotで最適化されたバックアップ
+      url: "/oracle/dp/oracle-storage-snapshot-optimized-backups.html"
+    - title: SnapCenterおよびその他のツール
+      url: "/oracle/dp/oracle-backup-tools.html"
+- title: Oracleのディザスタリカバリ
+  entries:
+  - title: 概要
+    url: "/oracle/dr/oracle-dr-overview.html"
+  - title: MetroCluster
+    entries:
+    - title: 物理アーキテクチャ
+      url: "/oracle/dr/metrocluster/oracle-physical-metrocluster.html"
+    - title: 論理アーキテクチャ
+      url: "/oracle/dr/metrocluster/oracle-logical-metrocluster.html"
+    - title: SyncMirror
+      url: "/oracle/dr/metrocluster/oracle-and-syncmirror.html"
+    - title: Oracleフェイルオーバー
+      url: "/oracle/dr/metrocluster/oracle-failover-on-metrocluster.html"
+    - title: NVFail
+      url: "/oracle/dr/metrocluster/oracle-nvfail.html"
+    - title: MetroCluster上の単一インスタンス
+      url: "/oracle/dr/metrocluster/mcc-si.html"
+    - title: MetroCluster上のOracle RAC
+      url: "/oracle/dr/metrocluster/mcc-rac.html"
+  - title: SnapMirror によるビジネス継続性
+    entries:
+    - title: アーキテクチャ
+      url: "/oracle/dr/smbc/oracle-smbc-architecture.html"
+    - title: フェイルオーバー
+      url: "/oracle/dr/smbc/oracle-smbc-failover.html"
+    - title: SM-BCの単一インスタンス
+      url: "/oracle/dr/smbc/smbc-si.html"
+    - title: SM-BC上のOracle RAC
+      url: "/oracle/dr/smbc/smbc-rac.html"
+    - title: 障害シナリオ
+      url: "/oracle/dr/smbc/oracle-smbc-failure-scenarios.html"
+- title: Oracleデータベースの移行
+  entries:
+  - title: 概要
+    url: "/oracle/migration/oracle-migration-overview.html"
+  - title: 計画
+    url: "/oracle/migration/oracle-migration-planning.html"
+  - title: の手順
+    entries:
+    - title: 概要
+      url: "/oracle/migration/oracle-migration-procedures-overview.html"
+    - title: データファイルの移動
+      url: "/oracle/migration/oracle-datafile-move.html"
+    - title: ログ配布
+      url: "/oracle/migration/oracle-log-shipping.html"
+    - title: ホストのデータコピー
+      url: "/oracle/migration/oracle-host-data-copy.html"
+    - title: ForeignLUNImport
+      entries:
+      - title: 計画
+        url: "/oracle/migration/oracle-fli-planning.html"
+      - title: カットオーバー
+        url: "/oracle/migration/oracle-fli-cutover.html"
+      - title: 完了
+        url: "/oracle/migration/oracle-fli-completion.html"
+      - title: プロトコル変更
+        url: "/oracle/migration/oracle-protocol-conversion.html"
+  - title: サンプルスクリプト
+    url: "/oracle/migration/oracle-migration-sample-scripts.html"
+- title: その他の注意事項
+  entries:
+  - title: パフォーマンスの最適化とベンチマーク
+    url: "/oracle/notes/optimization_and_benchmarking.html"
+  - title: フルイNFSロック
+    url: "/oracle/notes/stale_nfs_locks.html"
+  - title: WAFLアライメントの検証
+    url: "/oracle/notes/wafl_alignment_verification.html"

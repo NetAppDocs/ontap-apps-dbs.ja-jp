@@ -1,0 +1,60 @@
+---
+section: vmware
+title: VMware
+entries:
+- title: ONTAP を使用した VMware vSphere
+  entries:
+  - title: 概要
+    url: "/vmware/vsphere/overview.html"
+  - title: ユニファイドストレージ
+    url: "/vmware/vsphere/unified.html"
+  - title: 仮想化ツール
+    url: "/vmware/vsphere/vtools.html"
+  - title: 仮想ボリュームとストレージポリシーベースの管理
+    url: "/vmware/vsphere/vvols_and_spbm.html"
+  - title: データストアおよびプロトコル
+    url: "/vmware/vsphere/datastores.html"
+  - title: ネットワーク構成：
+    url: "/vmware/vsphere/network.html"
+  - title: クローニング
+    url: "/vmware/vsphere/cloning.html"
+  - title: データ保護
+    url: "/vmware/vsphere/dp.html"
+  - title: QoS
+    url: "/vmware/vsphere/qos.html"
+  - title: ストレージポリシーベースの管理
+    url: "/vmware/vsphere/policy-and-vvols.html"
+  - title: VMware Storage Distributed Resource Scheduler の略
+    url: "/vmware/vsphere/sdrs.html"
+  - title: 推奨設定
+    url: "/vmware/vsphere/settings.html"
+- title: ONTAPを備えた仮想ボリューム（VVOL）
+  entries:
+  - title: 概要
+    url: "/vmware/vvols/overview.html"
+  - title: ONTAP でVVOLを使用する
+    url: "/vmware/vvols/ontap.html"
+  - title: VVOLストレージの導入
+    url: "/vmware/vvols/deploy.html"
+  - title: VVOLを保護する
+    url: "/vmware/vvols/protect.html"
+  - title: トラブルシューティング
+    url: "/vmware/vvols/resources.html"
+- title: VMware Site Recovery ManagerとONTAP
+  entries:
+  - title: 概要
+    url: "/vmware/srm/overview.html"
+  - title: 導入のベストプラクティス
+    url: "/vmware/srm/deployment_best_practices.html"
+  - title: 運用上のベストプラクティス
+    url: "/vmware/srm/operational_best_practices.html"
+  - title: レプリケーショントポロジ
+    url: "/vmware/srm/replication_topologies.html"
+  - title: VVol レプリケーションを使用する場合の SRM のトラブルシューティング
+    url: "/vmware/srm/appendix_a__troubleshooting_srm_when_using_vvols_replication.html"
+- title: 製品のセキュリティ
+  entries:
+  - title: VMware vSphere 用の ONTAP ツール
+    url: "/vmware/security/tools.html"
+  - title: SnapCenter Plug-in for VMware vSphere
+    url: "/vmware/security/snapcenter.html"

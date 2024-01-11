@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: vmware/links/nva-1132-design.html 
+keywords: design, HCI, computing, vmware, cloud 
+summary: NetApp HCI を使用したVMwareエンドユーザコンピューティングは、仮想デスクトップワークロードをエンタープライズ規模で導入するための、事前検証済みのベストプラクティスデータセンターアーキテクチャです。 
+---
+= NVA-1132-DESIGN：NetApp HCI を使用したVMwareのエンドユーザコンピューティング
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+:firstname: d
+:authorinitials: d
+:author: d
+:authors: d
+:revdate: [.lead]
+
+
+NetApp HCI を使用したVMwareエンドユーザコンピューティングは、仮想デスクトップワークロードをエンタープライズ規模で導入するための、事前検証済みのベストプラクティスデータセンターアーキテクチャです。本ドキュメントでは、信頼性が高くリスクのない方法で本番環境に解決策 を導入するためのアーキテクチャ設計とベストプラクティスについて説明します。
+
+link:https://www.netapp.com/pdf.html?item=/media/7121-nva1132designpdf.pdf["NVA-1132-DESIGN：NetApp HCI を使用したVMwareのエンドユーザコンピューティング"^]
