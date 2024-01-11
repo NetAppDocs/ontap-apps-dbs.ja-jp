@@ -1,0 +1,18 @@
+---
+sidebar: sidebar 
+permalink: mysql/schedulers.html 
+keywords: MySQL,MariaDB,schedulers 
+summary: ONTAPでのMySQLの運用 
+---
+= I/Oスケジューラ
+:allow-uri-read: 
+
+
+[role="lead"]
+Linuxカーネルでは、ブロックデバイスへのI/Oのスケジュール方法を低レベルで制御できます。
+
+Linuxのさまざまなディストリビューションでのデフォルト設定は大きく異なります。MySQLでは、 `NOOP` または `deadline` Linuxでネイティブの非同期I/O（AIO）を使用するI/Oスケジューラ。一般に、NetAppのお客様や社内テストでは、NoOpsの方が効果的です。
+
+MySQLのInnoDBストレージエンジンは、Linux上の非同期I/Oサブシステム（ネイティブAIO）を使用して、データファイルページの先読み要求と書き込み要求を実行します。この動作は、 `innodb_use_native_aio` 設定オプション。デフォルトで有効になっています。ネイティブの一体型I/Oでは、I/OスケジューラのタイプがI/Oパフォーマンスに大きく影響します。ベンチマークを実施して、ワークロードと環境に最適な結果を提供するI/Oスケジューラを特定します。
+
+I/Oスケジューラの設定手順については、該当するLinuxおよびMySQLのドキュメントを参照してください。

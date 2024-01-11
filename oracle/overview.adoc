@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: oracle/overview.html 
+keywords: oracle, database, ontap, TR-3633 
+summary: NetApp ONTAPは、瞬時のバックアップ、リストア、クローニングなどの機能、インライン圧縮、ハードウェアの無停止アップグレードなどの効率化機能、外部ストレージアレイからのLUNインポート機能など、あらゆる機能を標準搭載した強力なデータ管理プラットフォームです。 
+---
+= ONTAP上のOracleデータベース
+:allow-uri-read: 
+
+
+[role="lead"]
+ONTAPはOracleデータベース向けに設計されています。ONTAPは数十年にわたり、リレーショナルデータベースI/O固有の要求に合わせて最適化されてきました。また、Oracleデータベースのニーズに対応するために、さらにはOracle Inc自体の要求にも対応するために、複数のONTAP機能が開発されました。
+
+
+NOTE: 本ドキュメントは、これまでに公開されていたテクニカルレポート_TR-3633：『Oracle databases on ONTAP』、TR-4591：『Oracle data protection：Backup、recovery、replication』、TR-4592：『Oracle on MetroCluster』、TR-4534：『Migration of Oracle Databases to NetApp Storage Systems_
+
+ONTAPがデータベース環境にもたらすさまざまな価値に加えて、データベースのサイズ、パフォーマンス要件、データ保護のニーズなど、ユーザのさまざまな要件もあります。NetAppストレージの既知の導入には、VMware ESXで実行される約6、000個のデータベースの仮想環境から、現在996TBのシングルインスタンスデータウェアハウスまで、あらゆるものが含まれます。そのため、NetAppストレージ上にOracleデータベースを設定する際の明確なベストプラクティスはほとんどありません。
+
+NetAppストレージでOracleデータベースを運用するための要件には、2つの方法があります。まず、明確なベストプラクティスが存在する場合は、具体的に説明します。大まかに、Oracleストレージソリューションの設計者が、それぞれのビジネス要件に基づいて対処しなければならない、設計上のさまざまな考慮事項について説明します。

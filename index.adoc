@@ -2,9 +2,9 @@
 layout: landing-page 
 sidebar: sidebar 
 permalink: index.html 
-summary: 概要。検索結果に使用されます 
+summary: ONTAPとエンタープライズアプリケーション 
 ---
-= をリポジトリ名に置き換えます
+= ONTAPとエンタープライズアプリケーション
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

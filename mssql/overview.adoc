@@ -1,0 +1,37 @@
+---
+sidebar: sidebar 
+permalink: mssql/overview.html 
+keywords: MS-SQL,mssql,SQL Server,TR-4590 
+summary: ONTAP上のMicrosoft SQL Server 
+---
+= Microsoft SQL Serverの概要
+:allow-uri-read: 
+
+
+[role="lead"]
+SQL ServerはMicrosoftのデータプラットフォームの基盤であり、オンプレミスでもクラウドでも、インメモリテクノロジを使用してミッションクリティカルなパフォーマンスを実現し、あらゆるデータの分析を高速化します。
+
+
+NOTE: このドキュメントは、以前に公開されたテクニカルレポート（TR-4590：『Best Practice Guide for Microsoft SQL Server with ONTAP』）に代わるものです。
+
+Microsoft SQL Serverは、ミッションクリティカルなアプリケーションに画期的なパフォーマンス、可用性、管理性を提供することで、以前のリリースで提供されていたミッションクリティカルな機能を基盤としています。ストレージシステムは、SQL Serverデータベースの全体的なパフォーマンスを左右する重要な要素です。NetAppには、SQL Serverデータベースでエンタープライズクラスのパフォーマンスを実現しながら、環境を管理するためのワールドクラスのツールを提供する複数の製品が用意されています。
+
+
+
+== モクテキトモクテキ
+
+このセクションでは、効果的かつ効率的なストレージ導入とエンドツーエンドのデータ保護および保持計画を実現するために、NetApp ONTAPソフトウェアを実行するNetAppストレージシステムにSQL Serverを導入する際のベストプラクティスと設計上の考慮事項について説明します。このガイドの範囲は、SQL Serverの導入時にNetAppがストレージインフラに推奨する設計原則と推奨標準に基づく技術設計ガイドラインに限定されます。エンドツーエンドの実装は、このレポートの範囲外です。
+
+このガイドで説明するベストプラクティスと推奨事項により、SQL ServerアーキテクトやNetAppストレージ管理者は、可用性と管理が容易なSQL Server環境を計画し、厳しいSLAを満たすことができます。NetAppは、読者が以下について実用的な知識を持っていることを前提としています。
+
+* NetApp ONTAPソフトウェア
+* バックアップソフトウェアとしてのNetApp SnapCenterには、次のものが含まれます。
++
+** SnapCenter Plug-in for Microsoft Windows の略
+** SQL Server向けSnapCenterプラグイン
+
+
+* Microsoft SQL Serverのアーキテクチャと管理
+
+
+NetAppスタック全体での設定の互換性については、を参照してください。 link:http://mysupport.netapp.com/NOW/products/interoperability/["ネットアップの Interoperability Matrix Tool （ IMT ）"^]。

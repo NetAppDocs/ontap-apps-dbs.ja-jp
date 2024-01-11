@@ -1,0 +1,73 @@
+---
+sidebar: sidebar 
+permalink: oracle/migration/oracle-fli-completion.html 
+keywords: migration, oracle, FLI 
+summary: FLIカットオーバーの完了- Oracle 
+---
+= FLIの完了- Oracle
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+ホスト側から見ると移行は完了しますが、インポート関係が削除されるまでは外部アレイからI/Oが提供されます。
+
+関係を削除する前に、すべてのLUNの移行プロセスが完了していることを確認する必要があります。
+
+....
+Cluster01::*> lun import show -vserver vserver1 -fields foreign-disk,path,operational-state
+vserver   foreign-disk path              operational-state
+--------- ------------ ----------------- -----------------
+vserver1 800DT$HuVWB/ /vol/new_asm/LUN4 completed
+vserver1 800DT$HuVWBW /vol/new_asm/LUN0 completed
+vserver1 800DT$HuVWBX /vol/new_asm/LUN1 completed
+vserver1 800DT$HuVWBY /vol/new_asm/LUN2 completed
+vserver1 800DT$HuVWBZ /vol/new_asm/LUN3 completed
+vserver1 800DT$HuVWBa /vol/new_asm/LUN5 completed
+vserver1 800DT$HuVWBb /vol/new_asm/LUN6 completed
+vserver1 800DT$HuVWBc /vol/new_asm/LUN7 completed
+vserver1 800DT$HuVWBd /vol/new_asm/LUN8 completed
+vserver1 800DT$HuVWBe /vol/new_asm/LUN9 completed
+vserver1 800DT$HuVWBf /vol/new_lvm/LUN0 completed
+vserver1 800DT$HuVWBg /vol/new_lvm/LUN1 completed
+vserver1 800DT$HuVWBh /vol/new_lvm/LUN2 completed
+vserver1 800DT$HuVWBi /vol/new_lvm/LUN3 completed
+vserver1 800DT$HuVWBj /vol/new_lvm/LUN4 completed
+vserver1 800DT$HuVWBk /vol/new_lvm/LUN5 completed
+vserver1 800DT$HuVWBl /vol/new_lvm/LUN6 completed
+vserver1 800DT$HuVWBm /vol/new_lvm/LUN7 completed
+vserver1 800DT$HuVWBn /vol/new_lvm/LUN8 completed
+vserver1 800DT$HuVWBo /vol/new_lvm/LUN9 completed
+20 entries were displayed.
+....
+
+
+== インポート関係を削除します
+
+移行プロセスが完了したら、移行関係を削除します。I/O処理が完了すると、ONTAP上のドライブからのみI/Oが提供されます。
+
+....
+Cluster01::*> lun import delete -vserver vserver1 -path /vol/new_asm/LUN0
+Cluster01::*> lun import delete -vserver vserver1 -path /vol/new_asm/LUN1
+...
+Cluster01::*> lun import delete -vserver vserver1 -path /vol/new_lvm/LUN8
+Cluster01::*> lun import delete -vserver vserver1 -path /vol/new_lvm/LUN9
+....
+
+
+== 外部LUNの登録解除
+
+最後に、ディスクを変更して `is-foreign` 指定。
+
+....
+Cluster01::*> storage disk modify {-serial-number 800DT$HuVWBW} -is-foreign false
+Cluster01::*> storage disk modify {-serial-number 800DT$HuVWBX} -is-foreign false
+...
+Cluster01::*> storage disk modify {-serial-number 800DT$HuVWBn} -is-foreign false
+Cluster01::*> storage disk modify {-serial-number 800DT$HuVWBo} -is-foreign false
+Cluster01::*>
+....

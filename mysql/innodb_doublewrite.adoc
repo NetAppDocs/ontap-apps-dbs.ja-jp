@@ -1,0 +1,21 @@
+---
+sidebar: sidebar 
+permalink: mysql/innodb_doublewrite.html 
+keywords: MySQL,MariaDB,innodb_doublewrite 
+summary: ONTAPでのMySQLの運用 
+---
+= innodb_doublewrite
+:allow-uri-read: 
+:firstname: [.lead]
+:author: [.lead]
+:authorinitials: [
+:authors: [.lead]
+:revnumber: 
+:revdate: InnoDB stores all data twice
+:revremark: first to the double-write buffer and then to the actual data files.
+
+
+このパラメータは、次のコマンドで無効にできます。 `--skip-innodb_doublewrite` ベンチマークの場合や、データの整合性や障害の可能性よりも最高のパフォーマンスに関心がある場合。InnoDBでは、ダブルライトと呼ばれるファイルフラッシュ技術が使用されています。InnoDBは、ページをデータファイルに書き込む前に、ダブル書き込みバッファと呼ばれる連続領域にページを書き込みます。書き込みとダブル書き込みバッファへのフラッシュが完了すると、InnoDBはページをデータファイル内の適切な位置に書き込みます。ページの書き込み中にオペレーティングシステムまたはmysqldプロセスがクラッシュした場合、InnoDBは後でクラッシュリカバリ中にダブルライトバッファからページの適切なコピーを見つけることができます。
+
+
+TIP: * NetAppでは、ダブル書き込みバッファを無効にすることを推奨しています。ONTAP NVRAMは同じ機能を果たします。ダブルバッファリングは不必要にパフォーマンスを低下させます。

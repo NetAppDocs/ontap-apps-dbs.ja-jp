@@ -1,0 +1,167 @@
+---
+sidebar: sidebar 
+permalink: oracle/migration/oracle-protocol-conversion.html 
+keywords: migration, oracle, FLI 
+summary: FLI移行後のSANプロトコルの変更 
+---
+= FLIプロトコルの変更- Oracle
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./media/
+
+
+[role="lead"]
+LUNへのアクセスに使用するプロトコルの変更は、一般的な要件です。
+
+場合によっては、全体的な戦略の一環としてデータをクラウドに移行することもあります。TCP/IPはクラウドのプロトコルであり、FCからiSCSIに変更することで、さまざまなクラウド環境への移行が容易になります。また、IP SANのコスト削減を活用するためにiSCSIが望ましい場合もあります。移行では、一時的な手段として別のプロトコルが使用されることがあります。たとえば、外部アレイとONTAPベースのLUNを同じHBA上に共存させることができない場合は、iSCSI LUNを使用して古いアレイからデータをコピーできます。その後、古いLUNをシステムから削除したあとにFCに変換し直すことができます。
+
+次の手順はFCからiSCSIへの変換を示していますが、全体的な原則はiSCSIからFCへの逆変換に適用されます。
+
+
+
+== iSCSIイニシエータのインストール
+
+ほとんどのオペレーティングシステムには、デフォルトでソフトウェアiSCSIイニシエータが含まれていますが、含まれていない場合は簡単にインストールできます。
+
+....
+[root@host1 /]# yum install -y iscsi-initiator-utils
+Loaded plugins: langpacks, product-id, search-disabled-repos, subscription-
+              : manager
+Resolving Dependencies
+--> Running transaction check
+---> Package iscsi-initiator-utils.x86_64 0:6.2.0.873-32.el7 will be updated
+--> Processing Dependency: iscsi-initiator-utils = 6.2.0.873-32.el7 for package: iscsi-initiator-utils-iscsiuio-6.2.0.873-32.el7.x86_64
+---> Package iscsi-initiator-utils.x86_64 0:6.2.0.873-32.0.2.el7 will be an update
+--> Running transaction check
+---> Package iscsi-initiator-utils-iscsiuio.x86_64 0:6.2.0.873-32.el7 will be updated
+---> Package iscsi-initiator-utils-iscsiuio.x86_64 0:6.2.0.873-32.0.2.el7 will be an update
+--> Finished Dependency Resolution
+Dependencies Resolved
+=============================================================================
+ Package                        Arch   Version              Repository  Size
+=============================================================================
+Updating:
+ iscsi-initiator-utils          x86_64 6.2.0.873-32.0.2.el7 ol7_latest 416 k
+Updating for dependencies:
+ iscsi-initiator-utils-iscsiuio x86_64 6.2.0.873-32.0.2.el7 ol7_latest  84 k
+Transaction Summary
+=============================================================================
+Upgrade  1 Package (+1 Dependent package)
+Total download size: 501 k
+Downloading packages:
+No Presto metadata available for ol7_latest
+(1/2): iscsi-initiator-utils-6.2.0.873-32.0.2.el7.x86_6 | 416 kB   00:00
+(2/2): iscsi-initiator-utils-iscsiuio-6.2.0.873-32.0.2. |  84 kB   00:00
+-----------------------------------------------------------------------------
+Total                                           2.8 MB/s | 501 kB  00:00Cluster01
+Running transaction check
+Running transaction test
+Transaction test succeeded
+Running transaction
+  Updating   : iscsi-initiator-utils-iscsiuio-6.2.0.873-32.0.2.el7.x86   1/4
+  Updating   : iscsi-initiator-utils-6.2.0.873-32.0.2.el7.x86_64         2/4
+  Cleanup    : iscsi-initiator-utils-iscsiuio-6.2.0.873-32.el7.x86_64    3/4
+  Cleanup    : iscsi-initiator-utils-6.2.0.873-32.el7.x86_64             4/4
+rhel-7-server-eus-rpms/7Server/x86_64/productid       | 1.7 kB     00:00
+rhel-7-server-rpms/7Server/x86_64/productid           | 1.7 kB     00:00
+  Verifying  : iscsi-initiator-utils-6.2.0.873-32.0.2.el7.x86_64         1/4
+  Verifying  : iscsi-initiator-utils-iscsiuio-6.2.0.873-32.0.2.el7.x86   2/4
+  Verifying  : iscsi-initiator-utils-iscsiuio-6.2.0.873-32.el7.x86_64    3/4
+  Verifying  : iscsi-initiator-utils-6.2.0.873-32.el7.x86_64             4/4
+Updated:
+  iscsi-initiator-utils.x86_64 0:6.2.0.873-32.0.2.el7
+Dependency Updated:
+  iscsi-initiator-utils-iscsiuio.x86_64 0:6.2.0.873-32.0.2.el7
+Complete!
+[root@host1 /]#
+....
+
+
+== iSCSIイニシエータ名の識別
+
+インストールプロセス中に一意のiSCSIイニシエータ名が生成されます。Linuxの場合は、 `/etc/iscsi/initiatorname.iscsi` ファイル。この名前は、IP SAN上のホストを識別するために使用されます。
+
+....
+[root@host1 /]# cat /etc/iscsi/initiatorname.iscsi
+InitiatorName=iqn.1992-05.com.redhat:497bd66ca0
+....
+
+
+== 新しいイニシエータグループを作成する
+
+イニシエータグループ（igroup）は、ONTAP LUNマスキングアーキテクチャの一部です。新しく作成したLUNには、ホストに最初にアクセスを許可しないかぎりアクセスできません。そのためには、アクセスが必要なFC WWNまたはiSCSIイニシエータ名のいずれかをリストするigroupを作成します。
+
+この例では、LinuxホストのiSCSIイニシエータを含むigroupを作成しています。
+
+....
+Cluster01::*> igroup create -igroup linuxiscsi -protocol iscsi -ostype linux -initiator iqn.1994-05.com.redhat:497bd66ca0
+....
+
+
+== 環境をシャットダウンする
+
+LUNプロトコルを変更する前に、LUNを完全に休止する必要があります。変換するLUNのいずれかのデータベースをシャットダウンし、ファイルシステムをディスマウントし、ボリュームグループを非アクティブ化する必要があります。ASMを使用する場合は、ASMディスクグループがディスマウントされていることを確認し、すべてのグリッドサービスをシャットダウンします。
+
+
+
+== FCネットワークからのLUNのマッピング解除
+
+LUNが完全に休止されたら、元のFC igroupからマッピングを削除します。
+
+....
+Cluster01::*> lun unmap -vserver vserver1 -path /vol/new_asm/LUN0 -igroup linuxhost
+Cluster01::*> lun unmap -vserver vserver1 -path /vol/new_asm/LUN1 -igroup linuxhost
+...
+Cluster01::*> lun unmap -vserver vserver1 -path /vol/new_lvm/LUN8 -igroup linuxhost
+Cluster01::*> lun unmap -vserver vserver1 -path /vol/new_lvm/LUN9 -igroup linuxhost
+....
+
+
+== IPネットワークへのLUNの再マッピング
+
+新しいiSCSIベースのイニシエータグループに各LUNへのアクセスを許可します。
+
+....
+Cluster01::*> lun map -vserver vserver1 -path /vol/new_asm/LUN0 -igroup linuxiscsi
+Cluster01::*> lun map -vserver vserver1 -path /vol/new_asm/LUN1 -igroup linuxiscsi
+...
+Cluster01::*> lun map -vserver vserver1 -path /vol/new_lvm/LUN8 -igroup linuxiscsi
+Cluster01::*> lun map -vserver vserver1 -path /vol/new_lvm/LUN9 -igroup linuxiscsi
+Cluster01::*>
+....
+
+
+== iSCSIターゲットの検出
+
+iSCSI検出には2つのフェーズがあります。1つ目はターゲットの検出です。これは、LUNの検出とは異なります。。 `iscsiadm` 次のコマンドは、 `-p argument` およびには、iSCSIサービスを提供するすべてのIPアドレスとポートのリストが格納されます。この場合、デフォルトポート3260にiSCSIサービスを持つIPアドレスが4つあります。
+
+
+NOTE: いずれかのターゲットIPアドレスに到達できない場合、このコマンドは完了までに数分かかることがあります。
+
+....
+[root@host1 ~]# iscsiadm -m discovery -t st -p fas8060-iscsi-public1
+10.63.147.197:3260,1033 iqn.1992-08.com.netapp:sn.807615e9ef6111e5a5ae90e2ba5b9464:vs.3
+10.63.147.198:3260,1034 iqn.1992-08.com.netapp:sn.807615e9ef6111e5a5ae90e2ba5b9464:vs.3
+172.20.108.203:3260,1030 iqn.1992-08.com.netapp:sn.807615e9ef6111e5a5ae90e2ba5b9464:vs.3
+172.20.108.202:3260,1029 iqn.1992-08.com.netapp:sn.807615e9ef6111e5a5ae90e2ba5b9464:vs.3
+....
+
+
+== iSCSI LUNの検出
+
+iSCSIターゲットが検出されたら、iSCSIサービスを再起動して使用可能なiSCSI LUNを検出し、マルチパスやASMlibデバイスなどの関連デバイスを構築します。
+
+....
+[root@host1 ~]# service iscsi restart
+Redirecting to /bin/systemctl restart  iscsi.service
+....
+
+
+== 環境の再起動
+
+ボリュームグループの再アクティブ化、ファイルシステムの再マウント、RACサービスの再起動などを実行して、環境を再起動します。予防措置としてNetApp、変換プロセスの完了後にサーバを再起動して、すべての構成ファイルが正しいことと古いデバイスがすべて削除されることを確認することをお勧めします。
+
+注意：ホストを再起動する前に、 `/etc/fstab` 移行されたSANリソースについては、コメントアウトされています。この手順を実行せず、LUNアクセスに問題があると、OSがブートしない可能性があります。この問題はデータに損傷を与えません。ただし、レスキューモードまたは同様のモードで起動して修正するのは非常に不便な場合があります。 `/etc/fstab` OSを起動してトラブルシューティング作業を開始できるようにします。

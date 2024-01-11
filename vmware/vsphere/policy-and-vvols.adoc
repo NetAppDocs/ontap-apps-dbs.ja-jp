@@ -1,0 +1,43 @@
+---
+sidebar: sidebar 
+permalink: vmware/vsphere/policy-and-vvols.html 
+keywords: Data protection, Space reclamation, VM and datastore cloning, Storage efficiency, thin provisioning, QoS, SIOC, Storage Distributed Resource Scheduler, DRS, Active IQ Unified Manager, Encryption 
+summary: SnapCenter では、複数のジョブに適用可能なバックアップポリシーを作成できます。これらのポリシーでは、スケジュール、保持、レプリケーションなどの機能を定義できます。VMwareスナップショットを作成する前にI/Oを休止するハイパーバイザーの機能を活用して、VM整合性スナップショットをオプションで選択できます。 
+---
+= ストレージポリシーベースの管理とVVOL
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ./../media/
+
+
+[role="lead"]
+VMware vSphere APIs for Storage Awareness （ VASA ）を使用すると、ストレージ管理者は、明確に定義された機能を使用してデータストアを簡単に設定でき、 VM 管理者は、相互にやり取りすることなく、いつでも VM をプロビジョニングするためのこれらの機能を使用できます。
+
+このアプローチを見て、仮想化ストレージの運用を合理化し、単純な作業の多くを回避する方法を確認することをお勧めします。
+
+VASA が導入される前は、 VM 管理者が VM ストレージポリシーを定義することもできましたが、適切なデータストアを特定するには、多くの場合、ドキュメントや命名規則を使用する必要がありました。VASA を使用すると、ストレージ管理者は、パフォーマンス、階層化、暗号化、レプリケーションなど、さまざまなストレージ機能を定義できます。1 つのボリュームまたはボリュームセットの一連の機能を、ストレージ機能プロファイル（ SCP ）と呼びます。
+
+SCPでは、VMのデータVVOLに対して最小または最大のQoSがサポートされます。最小 QoS は AFF システムでのみサポートされます。VMware vSphere 用の ONTAP ツールには、 ONTAP システム上の VVOL の VM の詳細なパフォーマンスと論理容量を表示するダッシュボードがあります。
+
+次の図は、 VMware vSphere 9.8 VVol ダッシュボード用の ONTAP ツールを示しています。
+
+image:vsphere_ontap_image7.png["エラー：グラフィックイメージがありません"]
+
+ストレージ機能プロファイルを定義したら、そのプロファイルを使用して要件を定義するストレージポリシーを使用して VM をプロビジョニングできます。vCenter では、 VM ストレージポリシーとデータストアストレージ機能プロファイルのマッピングに基づいて、互換性があるデータストアのリストを選択対象として表示できます。このアプローチは、ストレージポリシーベースの管理と呼ばれます。
+
+VASA は、ストレージを照会して一連のストレージ機能を vCenter に返すためのテクノロジを提供します。VASA ベンダープロバイダは、ストレージシステムの API およびコンストラクトと、 vCenter が認識可能な VMware API との間の変換機能を提供します。ネットアップのVASA Provider for ONTAPは、ONTAP Tools for VMware vSphereアプライアンスVMの一部として提供されます。vCenterプラグインは、VVOLデータストアをプロビジョニングおよび管理するためのインターフェイスと、ストレージ機能プロファイル（SCP）を定義する機能を提供します。
+
+ONTAP は、 VMFS データストアと NFS データストアの両方をサポートしています。SAN データストアで VVOL を使用すると、 VM レベルのきめ細かさなど、 NFS のメリットの一部を活用できます。ここでは考慮すべきベストプラクティスをいくつか示します。また、追加情報はにあります http://www.netapp.com/us/media/tr-4400.pdf["TR-4400"^]：
+
+* VVOL データストアは、複数のクラスタノードにある複数の FlexVol で構成できます。ボリュームごとに機能が異なる場合でも、最もシンプルなアプローチは 1 つのデータストアです。SPBM により、互換性のあるボリュームが VM に使用されています。ただし、すべてのボリュームが 1 つの ONTAP SVM に含まれていて、単一のプロトコルでアクセスできる必要があります。各プロトコルでノードごとに 1 つの LIF で十分です。1 つの VVOL データストアで複数の ONTAP リリースを使用することは避けてください。リリースによってストレージ機能が異なる場合があります。
+* VVol データストアの作成と管理には、 VMware vSphere プラグインの ONTAP ツールを使用します。データストアとそのプロファイルの管理に加え、必要に応じて、 VVOL にアクセスするためのプロトコルエンドポイントが自動的に作成されます。LUN を使用する場合、 LUN PE は 300 以上の LUN ID を使用してマッピングされます。ESXiホストの詳細なシステム設定を確認する `Disk.MaxLUN` 300を超えるLUN ID番号を許可します（デフォルトは1、024）。そのためには、vCenterでESXiホストを選択し、[Configure]タブで `Disk.MaxLUN` をクリックします。
+* VASA Provider 、 vCenter Server （アプライアンスまたは Windows ベース）、または VMware vSphere 用の ONTAP ツールは相互に依存するため、 VVOL データストアにインストールしたり移行したりしないでください。これらのツールは、停電やその他のデータセンターの停止が発生した場合に管理しなくなるためです。
+* VASA Provider VM を定期的にバックアップします。VASA Providerが格納された従来のデータストアのSnapshotを少なくとも1時間ごとに作成してください。VASA Provider の保護とリカバリの詳細については、こちらを参照してください https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/Virtual_Storage_Console_for_VMware_vSphere/Virtual_volumes%3A_Protecting_and_Recovering_the_NetApp_VASA_Provider["こちらの技術情報アーティクル"^]。
+
+
+次の図は、 VVOL のコンポーネントを示しています。
+
+image:vsphere_ontap_image8.png["エラー：グラフィックイメージがありません"]

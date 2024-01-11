@@ -1,0 +1,357 @@
+---
+sidebar: sidebar 
+permalink: oracle/dr/snapmirror/disaster_recovery_with_log_replay.html 
+keywords: oracle, ontap, disaster recovery, log reply, log shipping 
+summary: Oracle on ONTAP DR手順（ログ配布あり） 
+---
+= ログ再生を使用したディザスタリカバリ
+:allow-uri-read: 
+
+
+[role="lead"]
+Oracleデータベースのレプリケーション手順は、基本的にバックアップ手順と同じです。主な要件は、リカバリ可能なバックアップを構成するSnapshotをリモートストレージシステムにレプリケートする必要があることです。
+
+ローカルデータ保護に関するドキュメントで前述したように、ホットバックアッププロセスを使用するか、Snapshotで最適化されたバックアップを利用して、リカバリ可能なバックアップを作成できます。
+
+最も重要な要件は、データファイルを1つ以上の専用ボリュームに分離することです。これらのファイルは、他のファイルタイプによって汚染されていない必要があります。これは、データファイルのレプリケーションが、アーカイブログなどの他のデータタイプのレプリケーションから完全に独立していることを確認するためです。ファイルレイアウトの追加情報の場合、およびストレージレイアウトがスナップショットに適していることを確認するための重要な詳細については、を参照してください。  link:../../dp/oracle-online-backup.html#data-layout["データレイアウト"]。
+
+データファイルが専用ボリュームにカプセル化されているとしたら、次の問題はREDOログ、アーカイブログ、制御ファイルをどのように管理するかです。最も簡単なアプローチは、これらすべてのデータタイプを1つのボリュームに配置することです。その利点は、レプリケートされたREDOログ、アーカイブログ、制御ファイルが完全に同期されることです。不完全リカバリやバックアップ制御ファイルを使用する必要はありませんが、他のリカバリシナリオでバックアップ制御ファイルを作成するスクリプトも作成することを推奨します。
+
+
+
+== 2ボリュームのレイアウト
+
+最も単純なレイアウトを次の図に示します。
+
+これが最も一般的なアプローチです。DBAから見ると、Redoログとアーカイブログのすべてのコピーを同じボリュームに配置するのは珍しいことです。ただし、ファイルとLUNがすべて基盤となる同じドライブセットに配置されている場合、分離によって保護が強化されるわけではありません。
+
+
+
+== 3ボリュームのレイアウト
+
+データ保護に関する懸念や、RedoログのI/Oをコントローラ間で分散する必要があるために、Redoログを分離する必要がある場合があります。その場合、次の図に示す3つのボリュームからなるレイアウトがレプリケーションに使用されますが、不完全リカバリを実行したり、バックアップ制御ファイルに依存したりする必要はありません。
+
+これにより、ソース上の独立したスピンドルとコントローラのセットにまたがるREDOログと制御ファイルのストライピングが可能になります。ただし、アーカイブログ、制御ファイルおよびREDOログのセットは、アーカイブログと同期された状態でレプリケートできます。
+
+このモデルでは、RedoログBボリュームはレプリケートされません。
+
+
+
+== ディザスタリカバリの手順—ホットバックアップ
+
+ホットバックアップを使用してディザスタリカバリを実行するには、次の基本的な手順を使用します。
+
+
+
+=== 前提条件
+
+. Oracleバイナリはディザスタリカバリサーバにインストールされます。
+. データベースインスタンスは、 `/etc/oratab`。
+. 。 `passwd` および `pfile` または `spfile` インスタンスの場合、 `$ORACLE_HOME/dbs` ディレクトリ。。
+
+
+
+
+=== ディザスタリカバリ
+
+. データファイルと共通ログボリュームのミラーを解除します。
+. データファイルボリュームを、データファイルの最新のホットバックアップSnapshotにリストアします。
+. SANを使用する場合は、ボリュームグループをアクティブ化するか、ファイルシステムをマウントします。
+. アーカイブログを目的のポイントまで再生します。
+. 完全なリカバリが必要な場合は、現在のREDOログを再生します。
+
+
+NFSを使用すると、データファイルとログファイル用のNFSファイルシステムをディザスタリカバリサーバにいつでもマウントできるため、手順が大幅に簡易化されます。ミラーが切断されると読み取り/書き込みになります。
+
+
+
+== ディザスタリカバリの手順—スナップショットに最適化されたバックアップ
+
+スナップショット用に最適化されたバックアップからのリカバリは、ホットバックアップリカバリ手順とほぼ同じですが、次の点が異なります。
+
+. データファイルと共通ログボリュームのミラーを解除します。
+. データファイルボリュームを、現在のログボリュームレプリカの前に作成されたSnapshotにリストアします。
+. SANを使用する場合は、ボリュームグループをアクティブ化するか、ファイルシステムをマウントします。
+. アーカイブログを目的のポイントまで再生します。
+. 完全なリカバリが必要な場合は、現在のREDOログを再生します。
+
+
+これらの違いにより、データベースがホットバックアップモードのときにソースでSnapshotが正しく作成されたことを確認する必要がないため、全体的なリカバリ手順が簡易化されます。ディザスタリカバリ手順は、ディザスタリカバリサイトのSnapshotのタイムスタンプに基づいています。スナップショット作成時のデータベースの状態は重要ではありません。
+
+
+
+== ホットバックアップSnapshotによるディザスタリカバリ
+
+これは、ホットバックアップSnapshotのレプリケーションに基づくディザスタリカバリ戦略の一例です。また、シンプルで拡張性に優れたローカルバックアップ戦略の一例としても機能します。
+
+この例のデータベースは、基本的な2ボリュームアーキテクチャに配置されています。 `/oradata` データファイル、および `/oralogs` は、REDOログ、アーカイブログ、および制御ファイルの組み合わせに使用されます。
+
+....
+[root@host1 ~]# ls /ora*
+/oradata:
+dbf
+/oralogs:
+arch  ctrl  redo
+....
+2つのスケジュールが必要です。1つは夜間のデータファイルバックアップ用、もう1つはログファイルバックアップ用です。これらはそれぞれ深夜と15分と呼ばれます。
+
+....
+Cluster01::> job schedule cron show -name midnight|15minutes
+Name                Description
+----------------    -----------------------------------------------------
+15minutes           @:00,:15,:30,:45
+midnight            @0:00
+2 entries were displayed.
+....
+これらのスケジュールは、Snapshotポリシー内で使用されます。 `NTAP-datafile-backups` および `NTAP-log-backups`を参照してください。
+
+....
+Cluster01::> snapshot policy show -vserver vserver1 -policy NTAP-* -fields schedules,counts
+vserver   policy                schedules                    counts
+--------- --------------------- ---------------------------- ------
+vserver1  NTAP-datafile-backups midnight                     60
+vserver1  NTAP-log-backups      15minutes                    72
+2 entries were displayed.
+....
+最後に、これらのSnapshotポリシーがボリュームに適用されます。
+
+....
+Cluster01::> volume show -vserver vserver1 -volume vol_oracle* -fields snapshot-policy
+vserver   volume                 snapshot-policy
+--------- ---------------------- ---------------------
+vserver1  vol_oracle_datafiles   NTAP-datafile-backups
+vserver1  vol_oracle_logs        NTAP-log-backups
+....
+ボリュームのバックアップスケジュールを定義します。データファイルのSnapshotは午前0時に作成され、60日間保持されます。ログボリュームには、15分間隔で作成された72個のSnapshotが含まれています。これにより、最大で18時間がカバーされます。
+
+次に、データファイルのSnapshotの作成時にデータベースがホットバックアップモードになっていることを確認します。そのためには、指定したSIDでバックアップモードを開始および停止するいくつかの基本的な引数を受け入れる小さなスクリプトを使用します。
+
+....
+58 * * * * /snapomatic/current/smatic.db.ctrl --sid NTAP --startbackup
+02 * * * * /snapomatic/current/smatic.db.ctrl --sid NTAP --stopbackup
+....
+この手順では、午前0時のSnapshotを囲む4分間の間に、データベースがホットバックアップモードになります。
+
+ディザスタリカバリサイトへのレプリケーションは次のように設定されます。
+
+....
+Cluster01::> snapmirror show -destination-path drvserver1:dr_oracle* -fields source-path,destination-path,schedule
+source-path                      destination-path                   schedule
+-------------------------------- ---------------------------------- --------
+vserver1:vol_oracle_datafiles    drvserver1:dr_oracle_datafiles     6hours
+vserver1:vol_oracle_logs         drvserver1:dr_oracle_logs          15minutes
+2 entries were displayed.
+....
+ログボリュームのデスティネーションは15分ごとに更新されます。これにより、RPOは約15分になります。正確な更新間隔は、更新中に転送する必要があるデータの合計量によって少し異なります。
+
+データファイルのボリュームデスティネーションは6時間ごとに更新されます。これはRPOやRTOには影響しません。ディザスタリカバリが必要な場合は、まずデータファイルボリュームをホットバックアップSnapshotにリストアします。更新間隔を短くする目的は、このボリュームの転送速度をスムーズにすることです。更新が1日に1回スケジュールされている場合は、その日に蓄積されたすべての変更を一度に転送する必要があります。更新頻度が高くなると、変更は1日のうちに徐 々 にレプリケートされます。
+
+災害が発生した場合は、最初に両方のボリュームのミラーを解除します。
+
+....
+Cluster01::> snapmirror break -destination-path drvserver1:dr_oracle_datafiles -force
+Operation succeeded: snapmirror break for destination "drvserver1:dr_oracle_datafiles".
+Cluster01::> snapmirror break -destination-path drvserver1:dr_oracle_logs -force
+Operation succeeded: snapmirror break for destination "drvserver1:dr_oracle_logs".
+Cluster01::>
+....
+これで'レプリカは読み取り/書き込み可能になります次に、ログボリュームのタイムスタンプを確認します。
+
+....
+Cluster01::> snapmirror show -destination-path drvserver1:dr_oracle_logs -field newest-snapshot-timestamp
+source-path                destination-path             newest-snapshot-timestamp
+-------------------------- ---------------------------- -------------------------
+vserver1:vol_oracle_logs   drvserver1:dr_oracle_logs    03/14 13:30:00
+....
+ログボリュームの最新のコピーは3月14日13：30：00です。
+
+次に、ログボリュームの状態の直前に作成されたホットバックアップSnapshotを特定します。これは、ログ再生プロセスでは、すべてのアーカイブログがホットバックアップモードで作成される必要があるためです。したがって、ログボリュームレプリカはホットバックアップイメージよりも古いものである必要があります。そうしないと、必要なログが含まれません。
+
+....
+Cluster01::> snapshot list -vserver drvserver1 -volume dr_oracle_datafiles -fields create-time -snapshot midnight*
+vserver   volume                    snapshot                   create-time
+--------- ------------------------  -------------------------- ------------------------
+drvserver1 dr_oracle_datafiles      midnight.2017-01-14_0000   Sat Jan 14 00:00:00 2017
+drvserver1 dr_oracle_datafiles      midnight.2017-01-15_0000   Sun Jan 15 00:00:00 2017
+...
+
+drvserver1 dr_oracle_datafiles      midnight.2017-03-12_0000   Sun Mar 12 00:00:00 2017
+drvserver1 dr_oracle_datafiles      midnight.2017-03-13_0000   Mon Mar 13 00:00:00 2017
+drvserver1 dr_oracle_datafiles      midnight.2017-03-14_0000   Tue Mar 14 00:00:00 2017
+60 entries were displayed.
+Cluster01::>
+....
+最後に作成されたSnapshotは `midnight.2017-03-14_0000`。データファイルの最新のホットバックアップイメージで、次のようにリストアされます。
+
+....
+Cluster01::> snapshot restore -vserver drvserver1 -volume dr_oracle_datafiles -snapshot midnight.2017-03-14_0000
+Cluster01::>
+....
+この段階で、データベースをリカバリする準備が整いました。SAN環境の場合は、次の手順として、簡単に自動化できるボリュームグループのアクティブ化とファイルシステムのマウントを行います。この例ではNFSを使用しているため、ファイルシステムはすでにマウントされており、読み取り/書き込み可能になっています。ミラーが破損した瞬間にマウントやアクティブ化を行う必要はありません。
+
+これで、データベースを任意の時点にリカバリすることも、レプリケートされたREDOログのコピーに基づいてデータベースを完全にリカバリすることもできます。この例は、アーカイブログ、制御ファイル、およびREDOログを組み合わせたボリュームの値を示しています。バックアップ制御ファイルやリセットログファイルに依存する必要がないため、リカバリプロセスが大幅に簡易化されます。
+
+....
+[oracle@drhost1 ~]$ sqlplus / as sysdba
+Connected to an idle instance.
+SQL> startup mount;
+ORACLE instance started.
+Total System Global Area 1610612736 bytes
+Fixed Size                  2924928 bytes
+Variable Size            1090522752 bytes
+Database Buffers          503316480 bytes
+Redo Buffers               13848576 bytes
+Database mounted.
+SQL> recover database until cancel;
+ORA-00279: change 1291884 generated at 03/14/2017 12:58:01 needed for thread 1
+ORA-00289: suggestion : /oralogs_nfs/arch/1_34_938169986.dbf
+ORA-00280: change 1291884 for thread 1 is in sequence #34
+Specify log: {<RET>=suggested | filename | AUTO | CANCEL}
+auto
+ORA-00279: change 1296077 generated at 03/14/2017 15:00:44 needed for thread 1
+ORA-00289: suggestion : /oralogs_nfs/arch/1_35_938169986.dbf
+ORA-00280: change 1296077 for thread 1 is in sequence #35
+ORA-00278: log file '/oralogs_nfs/arch/1_34_938169986.dbf' no longer needed for
+this recovery
+...
+ORA-00279: change 1301407 generated at 03/14/2017 15:01:04 needed for thread 1
+ORA-00289: suggestion : /oralogs_nfs/arch/1_40_938169986.dbf
+ORA-00280: change 1301407 for thread 1 is in sequence #40
+ORA-00278: log file '/oralogs_nfs/arch/1_39_938169986.dbf' no longer needed for
+this recovery
+ORA-00279: change 1301418 generated at 03/14/2017 15:01:19 needed for thread 1
+ORA-00289: suggestion : /oralogs_nfs/arch/1_41_938169986.dbf
+ORA-00280: change 1301418 for thread 1 is in sequence #41
+ORA-00278: log file '/oralogs_nfs/arch/1_40_938169986.dbf' no longer needed for
+this recovery
+ORA-00308: cannot open archived log '/oralogs_nfs/arch/1_41_938169986.dbf'
+ORA-17503: ksfdopn:4 Failed to open file /oralogs_nfs/arch/1_41_938169986.dbf
+ORA-17500: ODM err:File does not exist
+SQL> recover database;
+Media recovery complete.
+SQL> alter database open;
+Database altered.
+SQL>
+....
+
+
+== Snapshotに最適化されたバックアップによるディザスタリカバリ
+
+Snapshotで最適化されたバックアップを使用したディザスタリカバリ手順は、ホットバックアップディザスタリカバリ手順とほぼ同じです。ホットバックアップSnapshot手順と同様に、ディザスタリカバリ用にバックアップをレプリケートするローカルバックアップアーキテクチャの拡張機能でもあります。次の例は、詳細な設定とリカバリ手順を示しています。この例では、ホットバックアップとSnapshotで最適化されたバックアップの主な違いも示しています。
+
+この例のデータベースは、基本的な2ボリュームアーキテクチャに配置されています。 `/oradata` データファイルが格納されています。 `/oralogs` は、REDOログ、アーカイブログ、および制御ファイルの組み合わせに使用されます。
+
+....
+ [root@host2 ~]# ls /ora*
+/oradata:
+dbf
+/oralogs:
+arch  ctrl  redo
+....
+2つのスケジュールが必要です。1つは夜間のデータファイルバックアップ用、もう1つはログファイルバックアップ用です。これらはそれぞれ深夜と15分と呼ばれます。
+
+....
+Cluster01::> job schedule cron show -name midnight|15minutes
+Name                Description
+----------------    -----------------------------------------------------
+15minutes           @:00,:15,:30,:45
+midnight            @0:00
+2 entries were displayed.
+....
+これらのスケジュールは、Snapshotポリシー内で使用されます。 `NTAP-datafile-backups` および `NTAP-log-backups`を参照してください。
+
+....
+Cluster01::> snapshot policy show -vserver vserver2  -policy NTAP-* -fields schedules,counts
+vserver   policy                schedules                    counts
+--------- --------------------- ---------------------------- ------
+vserver2  NTAP-datafile-backups midnight                     60
+vserver2  NTAP-log-backups      15minutes                    72
+2 entries were displayed.
+....
+最後に、これらのSnapshotポリシーがボリュームに適用されます。
+
+....
+Cluster01::> volume show -vserver vserver2  -volume vol_oracle* -fields snapshot-policy
+vserver   volume                 snapshot-policy
+--------- ---------------------- ---------------------
+vserver2  vol_oracle_datafiles   NTAP-datafile-backups
+vserver2  vol_oracle_logs        NTAP-log-backups
+....
+これにより、ボリュームの最終的なバックアップスケジュールが制御されます。Snapshotは午前0時に作成され、60日間保持されます。ログボリュームには、15分間隔で作成された72個のSnapshotが含まれており、合計で18時間になります。
+
+ディザスタリカバリサイトへのレプリケーションは次のように設定されます。
+
+....
+Cluster01::> snapmirror show -destination-path drvserver2:dr_oracle* -fields source-path,destination-path,schedule
+source-path                      destination-path                   schedule
+-------------------------------- ---------------------------------- --------
+vserver2:vol_oracle_datafiles    drvserver2:dr_oracle_datafiles     6hours
+vserver2:vol_oracle_logs         drvserver2:dr_oracle_logs          15minutes
+2 entries were displayed.
+....
+ログボリュームのデスティネーションは15分ごとに更新されます。これにより、RPOは約15分になります。正確な更新間隔は、更新中に転送する必要があるデータの合計量によって多少異なります。
+
+データファイルのボリュームデスティネーションは6時間ごとに更新されます。これはRPOやRTOには影響しません。ディザスタリカバリが必要な場合は、まずデータファイルボリュームをホットバックアップSnapshotにリストアする必要があります。更新間隔を短くする目的は、このボリュームの転送速度をスムーズにすることです。更新が1日に1回スケジュールされている場合は、その日に蓄積されたすべての変更を一度に転送する必要があります。更新頻度が高くなると、変更は1日のうちに徐 々 にレプリケートされます。
+
+災害が発生した場合は、最初にすべてのボリュームのミラーを解除します。
+
+....
+Cluster01::> snapmirror break -destination-path drvserver2:dr_oracle_datafiles -force
+Operation succeeded: snapmirror break for destination "drvserver2:dr_oracle_datafiles".
+Cluster01::> snapmirror break -destination-path drvserver2:dr_oracle_logs -force
+Operation succeeded: snapmirror break for destination "drvserver2:dr_oracle_logs".
+Cluster01::>
+....
+これで'レプリカは読み取り/書き込み可能になります次に、ログボリュームのタイムスタンプを確認します。
+
+....
+Cluster01::> snapmirror show -destination-path drvserver2:dr_oracle_logs -field newest-snapshot-timestamp
+source-path                destination-path             newest-snapshot-timestamp
+-------------------------- ---------------------------- -------------------------
+vserver2:vol_oracle_logs   drvserver2:dr_oracle_logs    03/14 13:30:00
+....
+ログボリュームの最新のコピーは3月14日13：30です。次に、ログボリュームの状態の直前に作成されたデータファイルのSnapshotを特定します。これは、ログ再生プロセスでは、Snapshotの直前から目的のリカバリポイントまでのすべてのアーカイブログが必要になるためです。
+
+....
+Cluster01::> snapshot list -vserver drvserver2 -volume dr_oracle_datafiles -fields create-time -snapshot midnight*
+vserver   volume                    snapshot                   create-time
+--------- ------------------------  -------------------------- ------------------------
+drvserver2 dr_oracle_datafiles      midnight.2017-01-14_0000   Sat Jan 14 00:00:00 2017
+drvserver2 dr_oracle_datafiles      midnight.2017-01-15_0000   Sun Jan 15 00:00:00 2017
+...
+
+drvserver2 dr_oracle_datafiles      midnight.2017-03-12_0000   Sun Mar 12 00:00:00 2017
+drvserver2 dr_oracle_datafiles      midnight.2017-03-13_0000   Mon Mar 13 00:00:00 2017
+drvserver2 dr_oracle_datafiles      midnight.2017-03-14_0000   Tue Mar 14 00:00:00 2017
+60 entries were displayed.
+Cluster01::>
+....
+最後に作成されたSnapshotは `midnight.2017-03-14_0000`。このSnapshotをリストアします。
+
+....
+Cluster01::> snapshot restore -vserver drvserver2 -volume dr_oracle_datafiles -snapshot midnight.2017-03-14_0000
+Cluster01::>
+....
+これで、データベースをリカバリする準備が整いました。SAN環境の場合は、ボリュームグループをアクティブ化してファイルシステムをマウントすると、プロセスが簡単に自動化されます。ただし、この例ではNFSを使用しているため、ファイルシステムはすでにマウントされて読み書き可能になり、ミラーが破損した瞬間にマウントやアクティブ化を行う必要はありません。
+
+これで、データベースを任意の時点にリカバリすることも、レプリケートされたREDOログのコピーに基づいてデータベースを完全にリカバリすることもできます。この例は、アーカイブログ、制御ファイル、およびREDOログを組み合わせたボリュームの値を示しています。バックアップ制御ファイルやリセットログファイルに依存する必要がないため、リカバリプロセスが大幅に簡易化されます。
+
+....
+[oracle@drhost2 ~]$ sqlplus / as sysdba
+SQL*Plus: Release 12.1.0.2.0 Production on Wed Mar 15 12:26:51 2017
+Copyright (c) 1982, 2014, Oracle.  All rights reserved.
+Connected to an idle instance.
+SQL> startup mount;
+ORACLE instance started.
+Total System Global Area 1610612736 bytes
+Fixed Size                  2924928 bytes
+Variable Size            1073745536 bytes
+Database Buffers          520093696 bytes
+Redo Buffers               13848576 bytes
+Database mounted.
+SQL> recover automatic;
+Media recovery complete.
+SQL> alter database open;
+Database altered.
+SQL>
+....

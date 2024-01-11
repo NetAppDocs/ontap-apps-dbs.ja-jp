@@ -1,0 +1,12 @@
+---
+sidebar: sidebar 
+permalink: mysql/storage.html 
+keywords: MySQL,MariaDB,schedulers 
+summary: ONTAPでのMySQLの運用 
+---
+= ストレージ構成
+:allow-uri-read: 
+
+
+[role="lead"]
+MySQLデータベース用のストレージの設定の詳細については、を参照してください。 link:../common/storage-configuration/overview.html["ONTAPストレージ構成上のエンタープライズアプリケーション"]
