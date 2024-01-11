@@ -618,7 +618,6 @@
   <block id="2c8c2171fc87c96e58fb40d8714f85cf" category="doc">PostgreSQLアーキテクチャ</block>
   <block id="ee62b4420d426c21a46d892ac084872a" category="paragraph">PostgreSQLは、クライアントとサーバのアーキテクチャに基づいたRDBMSです。PostgreSQLインスタンスはデータベースクラスタと呼ばれ、サーバの集合ではなくデータベースの集合です。</block>
   <block id="89c30c326e106773af32af40255b92a8" category="inline-image-macro">エラー：グラフィックが見つかりません</block>
-  <block id="b481f7d5d88ac812bb1a1d3d939b593b" category="paragraph"><block ref="b481f7d5d88ac812bb1a1d3d939b593b" category="inline-image-macro-rx" type="image"></block></block>
   <block id="54c2dd41fd1ad3efa25e80bee0bae549" category="paragraph">PostgreSQLデータベースには、postmaster、フロントエンド(クライアント)、バックエンドの3つの要素があります。クライアントは、IPプロトコルや接続先データベースなどの情報を含む要求をポストマスターに送信します。postmasterは接続を認証し、さらに通信するためにバックエンドプロセスに渡します。バックエンドプロセスはクエリを実行し、結果を直接フロントエンド（クライアント）に送信します。</block>
   <block id="9f96e07bbaf7c0237047d6d0f95301a8" category="paragraph">PostgreSQLインスタンスは、マルチスレッドモデルではなく、マルチプロセスモデルに基づいています。ジョブごとに複数のプロセスが生成され、各プロセスには独自の機能があります。主なプロセスには、クライアントプロセス、WALライタプロセス、バックグラウンドライタプロセス、およびcheckpointerプロセスが含まれます。</block>
   <block id="6aebf901bd4be26a765c56e4133b3798" category="list-text">クライアント（フォアグラウンド）プロセスがPostgreSQLインスタンスに読み取りまたは書き込み要求を送信しても、データを直接ディスクに読み書きすることはありません。最初に、共有バッファとWAL(Write-Ahead Logging)バッファにデータをバッファします。</block>
@@ -4050,4 +4049,5 @@ SOAP over https 接続に使用されます</block>
   <block id="62a004b95946bb97541afa471dcca73a" category="sidebar">MySQL</block>
   <block id="7f1a6761f7160e33a32105202e47303b" category="sidebar">コンテナ化</block>
   <block id="bc65796c5a1bad360243a1bbe58272c2" category="sidebar">一般的なストレージ構成</block>
+  <block id="d81c587aad705c1101db78ffea8e5bc3" category="paragraph"><block ref="d81c587aad705c1101db78ffea8e5bc3" category="inline-image-macro-rx" type="image"></block></block>
 </blocks>
