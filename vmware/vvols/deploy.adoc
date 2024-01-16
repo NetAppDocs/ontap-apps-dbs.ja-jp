@@ -9,11 +9,13 @@ summary:
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
+:firstname: [.lead]
+:author: [.lead]
+:authorinitials: [
+:authors: [.lead]
+:revdate: There are several steps to creating vVols storage for your VMs.
 
-
-[role="lead"]
-VM用のVVOLストレージを作成するには、いくつかの手順を実行します。
 
 従来のデータストアにONTAP を使用する既存のvSphere環境では、最初の2つの手順は必要ない場合があります。VMFSまたは従来のNFSベースのストレージの管理、自動化、レポート作成に、すでにONTAPツールを使用している場合があります。これらの手順については、次のセクションで詳しく説明します。
 

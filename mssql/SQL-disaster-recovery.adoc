@@ -6,12 +6,11 @@ summary: ONTAP上のMicrosoft SQL Server
 ---
 = Microsoft SQL Serverのディザスタリカバリ
 :allow-uri-read: 
+:imagesdir: ../media/
 
 
 [role="lead"]
 NetAppは、ハードウェア、ソフトウェア、またはサイトに障害が発生した場合にデータの可用性を高めるためのさまざまなアプローチを提供します。
-
-NetAppは、MetroCluster、SnapMirrorビジネス継続性（SM-BC）、SnapMirrorなどのテクノロジを提供しています。これらの機能について説明しています。 link:../common/overview-dr.html["こちらをご覧ください"]。
 
 
 

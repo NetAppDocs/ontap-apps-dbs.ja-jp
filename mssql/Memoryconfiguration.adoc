@@ -10,6 +10,7 @@ summary: ONTAP上のMicrosoft SQL Server
 :author: [.lead]
 :authorinitials: [
 :authors: [.lead]
+:imagesdir: ../media/
 
 
 
@@ -27,7 +28,7 @@ max server memoryオプションは、SQL Serverインスタンスで使用で�
 
 TIP: * NetAppでは、パフォーマンスの問題を回避するために、オペレーティングシステム用に少なくとも4GBから6GBのRAMを残しておくことを推奨しています。
 
-image:./media/max-server-memory.png["エラー：グラフィックイメージがありません"]
+image:mssql-max-server-memory.png["エラー：グラフィックイメージがありません"]
 
 
 
@@ -74,7 +75,7 @@ index create memoryオプションは、通常は変更しないもう1つの高
 
 デフォルトでは、クエリごとの最小メモリ設定では、実行するクエリごとに>または=が1024KBに割り当てられます。SQL Serverがインデックス作成処理に割り当てられるメモリ容量を動的に管理できるようにするには、この設定をデフォルト値の0のままにしておくことを推奨します。ただし、SQL ServerのRAM容量が効率的に実行するために必要な容量を超えている場合は、この設定を大きくすると、一部のクエリのパフォーマンスが向上することがあります。したがって、SQL Server、その他のアプリケーション、またはオペレーティングシステムで使用されていないサーバ上のメモリが使用可能であれば、この設定を大きくすることでSQL Serverの全体的なパフォーマンスを向上させることができます。空きメモリがない場合、この設定を増やすと、全体的なパフォーマンスが低下する可能性があります。
 
-image:./media/min-memory-per-query.png["エラー：グラフィックイメージがありません"]
+image:mssql-min-memory-per-query.png["エラー：グラフィックイメージがありません"]
 
 
 

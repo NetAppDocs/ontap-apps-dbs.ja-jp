@@ -11,7 +11,7 @@ summary: MySQLフアイルノコウソウ
 [role="lead"]
 InnoDBはストレージとMySQLサーバの中間層として機能し、データをドライブに格納します。
 
-image:./media/file-structure1.png["エラー：グラフィックイメージが見つかりません"]
+image:mysql-file-structure1.png["エラー：グラフィックイメージが見つかりません"]
 
 MySQL I/Oは次の2つのタイプに分類されます。
 
@@ -19,7 +19,7 @@ MySQL I/Oは次の2つのタイプに分類されます。
 * シーケンシャルファイルI/O
 
 
-image:./media/file-structure2.png["エラー：グラフィックイメージが見つかりません"]
+image:mysql-file-structure2.png["エラー：グラフィックイメージが見つかりません"]
 
 データファイルはランダムに読み取りおよび上書きされるため、IOPSが高くなります。そのため、SSDストレージを推奨します。
 

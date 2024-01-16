@@ -6,12 +6,11 @@ summary: ONTAP上のMicrosoft SQL Server
 ---
 = CPU構成
 :allow-uri-read: 
-:firstname: [.lead]
-:author: [.lead]
-:authorinitials: [
-:authors: [.lead]
-:revdate: Modifying server and database settings can help achieve better and more efficient database performance.
+:imagesdir: ../media/
 
+
+[role="lead"]
+サーバとデータベースの設定を変更すると、データベースのパフォーマンスが向上し、効率が向上します。
 
 
 
@@ -29,7 +28,7 @@ SQL Serverのライセンスを取得する際には、主に2つの考え方が
 
 === ログエントリは、SQL Serverの起動後に使用されているコアの数を示します。
 
-image:./media/hyperthreading.png["エラー：グラフィックイメージがありません"]
+image:mssql-hyperthreading.png["エラー：グラフィックイメージがありません"]
 
 したがって、すべてのCPUを使用するには、プロセッサ単位のコアライセンスを使用する必要があります。SQL Serverのライセンスの詳細については、を参照してください。 link:https://www.microsoft.com/en-us/sql-server/sql-server-2022-comparison["SQL Server 2022：最新データプラットフォームを実現"^]。
 
@@ -72,7 +71,7 @@ TIP: * NetAppでは、データウェアハウスなどのDSSの場合、この�
 
 より多くのワーカースレッドを使用するようにSQL Serverを設定する必要があるのはいつですか？各スケジューラの平均ワークキューの長さが1を超える場合は、負荷がCPUに制限されていないか、その他の重い待機時間が発生している場合にのみ、システムにスレッドを追加することでメリットが得られます。これらのいずれかが発生している場合、スレッドを追加しても、他のシステムボトルネックを待つことになるため、効果はありません。最大ワーカースレッド数の詳細については、を参照してください。 link:https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-max-worker-threads-server-configuration-option?view=sql-server-ver16&redirectedfrom=MSDN["max worker threadsサーバ設定オプションの設定"^]。
 
-image:./media/max-worker-threads.png["エラー：グラフィックイメージがありません"]
+image:mssql-max-worker-threads.png["エラー：グラフィックイメージがありません"]
 
 
 

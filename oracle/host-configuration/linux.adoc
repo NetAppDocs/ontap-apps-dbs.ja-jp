@@ -13,10 +13,27 @@ Linux OSに固有の設定に関するトピック。
 
 
 
-== スロットテーブル
+== Linux NFSv3 TCPスロットテーブル
 
-LinuxでのNFSパフォーマンスは、というパラメータによって異なります。 `tcp_max_slot_table_entries`。詳細については、 link:../../common/storage-configuration/nfs.html["NFS"] を参照してください。
+TCPスロットテーブルは、NFSv3でホストバスアダプタ（HBA）のキュー深度に相当します。一度に未処理となることのできるNFS処理の数を制御します。デフォルト値は通常16ですが、最適なパフォーマンスを得るには小さすぎます。逆に、新しいLinuxカーネルでTCPスロットテーブルの上限をNFSサーバが要求でいっぱいになるレベルに自動的に引き上げることができるため、問題が発生します。
 
+パフォーマンスを最適化し、パフォーマンスの問題を回避するには、TCPスロットテーブルを制御するカーネルパラメータを調整します。
+
+を実行します `sysctl -a | grep tcp.*.slot_table` コマンドを実行し、次のパラメータを確認します。
+
+....
+# sysctl -a | grep tcp.*.slot_table
+sunrpc.tcp_max_slot_table_entries = 128
+sunrpc.tcp_slot_table_entries = 128
+....
+すべてのLinuxシステムに `sunrpc.tcp_slot_table_entries`ただし、次のようなものがあります。 `sunrpc.tcp_max_slot_table_entries`。どちらも128に設定する必要があります。
+
+|===
+| 注意 
+
+
+| これらのパラメータを設定しないと、パフォーマンスに大きく影響する可能性があります。Linux OSが十分なI/Oを発行していないためにパフォーマンスが制限される場合もあります。一方では、Linux OSが問題で処理できる以上のI/Oを試行すると、I/Oレイテンシが増加します。 
+|===
 
 
 == Linux NFSのマウントオプション

@@ -10,12 +10,13 @@ summary: このページでは、 VMware vSphere 環境に NetApp ONTAP スト�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
+:firstname: [.lead]
+:author: [.lead]
+:authorinitials: [
+:authors: [.lead]
+:revdate: == vSphere datastore and protocol features
 
-
-
-
-== vSphere のデータストアとプロトコルの機能
 
 VMware vSphereとONTAP ソフトウェアを実行しているシステム上のデータストアの接続には、次の7つのプロトコルが使用されます。
 

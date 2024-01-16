@@ -10,7 +10,7 @@ summary: Pracle階層化読み出しポリシー
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

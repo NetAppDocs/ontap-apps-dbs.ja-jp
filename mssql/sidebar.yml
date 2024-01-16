@@ -27,7 +27,7 @@ entries:
   - title: ストレージ効率
     url: "/mssql/storage-efficiency.html"
 - title: データ保護
-  url: "/mssql/data-protection.html"
+  url: "/mssql/sql-data-protection.html"
 - title: ディザスタリカバリ
   url: "/mssql/SQL-disaster-recovery.html"
 - title: データセキュリティ

@@ -10,7 +10,7 @@ summary: Oracleデータベース用のFCネットワーク構成
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

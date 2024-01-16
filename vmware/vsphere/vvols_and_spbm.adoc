@@ -10,7 +10,7 @@ summary: このページでは、 VMware vSphere 環境に NetApp ONTAP スト�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
 
 
 

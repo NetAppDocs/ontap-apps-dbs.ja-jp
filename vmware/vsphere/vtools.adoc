@@ -10,7 +10,7 @@ summary: ONTAP は、仮想化に使用されるすべての主要なストレ�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

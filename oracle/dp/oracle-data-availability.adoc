@@ -10,7 +10,7 @@ summary: Oracle on ONTAPによる可用性の最大化
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

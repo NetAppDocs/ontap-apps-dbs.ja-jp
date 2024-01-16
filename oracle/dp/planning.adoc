@@ -10,7 +10,7 @@ summary: ONTAPのデータ保護戦略
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

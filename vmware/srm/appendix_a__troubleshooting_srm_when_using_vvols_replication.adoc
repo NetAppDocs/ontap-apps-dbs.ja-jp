@@ -10,7 +10,7 @@ summary: SRM で VVOL レプリケーションを使用する場合、 SRA と�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

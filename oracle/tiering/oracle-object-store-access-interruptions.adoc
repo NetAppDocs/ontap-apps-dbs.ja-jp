@@ -10,7 +10,7 @@ summary: オブジェクトストアへのアクセス中断時のデータベ�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: Oracleデータベースの処理が中断されないようにする�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

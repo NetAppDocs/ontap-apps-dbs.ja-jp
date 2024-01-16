@@ -10,7 +10,7 @@ summary: ONTAP では、 Storage Virtual Machine （ SVM ）の概念を採用�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
 
 
 

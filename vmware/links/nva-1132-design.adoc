@@ -10,14 +10,13 @@ summary: NetApp HCI を使用したVMwareエンドユーザコンピューティ
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
-:firstname: d
-:authorinitials: d
-:author: d
-:authors: d
-:revdate: [.lead]
+:imagesdir: ../../media/d
+:firstname: [.lead]
+:author: [.lead]
+:authorinitials: [
+:authors: [.lead]
+:revnumber: 
+:revdate: best-practice data center architecture for deploying virtual desktop workloads at an enterprise scale. This document describes the architectural design and best practices for deploying the solution at production scale in a reliable and risk-free manner.
 
-
-NetApp HCI を使用したVMwareエンドユーザコンピューティングは、仮想デスクトップワークロードをエンタープライズ規模で導入するための、事前検証済みのベストプラクティスデータセンターアーキテクチャです。本ドキュメントでは、信頼性が高くリスクのない方法で本番環境に解決策 を導入するためのアーキテクチャ設計とベストプラクティスについて説明します。
 
 link:https://www.netapp.com/pdf.html?item=/media/7121-nva1132designpdf.pdf["NVA-1132-DESIGN：NetApp HCI を使用したVMwareのエンドユーザコンピューティング"^]

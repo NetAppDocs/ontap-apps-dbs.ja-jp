@@ -10,7 +10,7 @@ summary: Oracleを使用したNFS転送サイズ
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

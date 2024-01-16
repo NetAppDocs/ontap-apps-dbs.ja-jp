@@ -6,6 +6,7 @@ summary: ONTAP上のMicrosoft SQL Server
 ---
 = Microsoft SQL Server共有インスタンスと専用インスタンス
 :allow-uri-read: 
+:imagesdir: ../media/
 
 
 [role="lead"]

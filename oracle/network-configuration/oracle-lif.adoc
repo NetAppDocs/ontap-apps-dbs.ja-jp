@@ -10,7 +10,7 @@ summary: Oracleデータベース向けの論理インターフェイス設計
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

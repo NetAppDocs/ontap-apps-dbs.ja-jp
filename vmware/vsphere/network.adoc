@@ -10,11 +10,13 @@ summary: このページでは、 VMware vSphere 環境に NetApp ONTAP スト�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
+:firstname: [.lead]
+:author: [.lead]
+:authorinitials: [
+:authors: [.lead]
+:revdate: Configuring network settings when using vSphere with systems running ONTAP software is straightforward and similar to other network configuration.
 
-
-[role="lead"]
-ONTAP ソフトウェアを実行しているシステムで vSphere を使用する場合のネットワーク設定の構成は簡単で、他のネットワーク構成と同様です。
 
 考慮すべき点をいくつか挙げます。
 

@@ -10,7 +10,7 @@ summary: QoSによるOracleのパフォーマンス管理
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

@@ -4,8 +4,6 @@ title: MySQL
 entries:
 - title: 概要
   url: "/mysql/overview.html"
-- title: ONTAP構成
-  url: "/mysql/ontap.html"
 - title: データベース設定
   entries:
   - title: ファイル構造
@@ -40,8 +38,6 @@ entries:
     url: "/mysql/file-descriptors.html"
 - title: ストレージ構成
   entries:
-  - title: 一般的なストレージ構成
-    url: "/mysql/storage.html"
   - title: NFS経由のMySQL
     url: "/mysql/mysql-over-nfs.html"
   - title: SAN経由のMySQL

@@ -10,7 +10,7 @@ summary: Oracleデータベースを含むLUNおよびLVMのサイズ変更
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

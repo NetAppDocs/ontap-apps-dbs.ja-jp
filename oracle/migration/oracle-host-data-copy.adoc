@@ -10,7 +10,7 @@ summary: ホスト側のストレージスタックを使用したOracleの移�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

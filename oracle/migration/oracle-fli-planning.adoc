@@ -10,7 +10,7 @@ summary: FLI移行のためのONTAPの準備
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

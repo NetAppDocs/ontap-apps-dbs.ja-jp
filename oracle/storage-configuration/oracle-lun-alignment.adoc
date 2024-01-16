@@ -10,7 +10,7 @@ summary: OracleデータベースとのLUNのアライメント
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]
@@ -22,7 +22,7 @@ ONTAPシステムでは、ストレージは4KB単位で編成されます。デ
 
 Linux環境では、ドライブデバイス全体に論理ボリュームグループを構築します。パーティションが必要な場合は、次のコマンドを実行してアライメントを確認します。 `fdisk –u` 各パーティションの開始が8の倍数であることを確認します。つまり、パーティションは8の倍数の512バイトセクター（4KB）から開始されます。
 
-圧縮ブロックのアライメントに関するセクションも参照してください。 link:/oracle/ontap-configuration/oracle-efficiency.html["効率性"]。8KBの圧縮ブロックの境界でアライメントされたレイアウトも、4KBの境界でアライメントされます。
+圧縮ブロックのアライメントに関するセクションも参照してください。 link:../ontap-configuration/oracle-efficiency.html["効率性"]。8KBの圧縮ブロックの境界でアライメントされたレイアウトも、4KBの境界でアライメントされます。
 
 
 

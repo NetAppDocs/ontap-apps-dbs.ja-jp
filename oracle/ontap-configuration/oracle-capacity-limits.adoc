@@ -10,7 +10,7 @@ summary: データベースとONTAPのストレージ容量と空きスペース
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

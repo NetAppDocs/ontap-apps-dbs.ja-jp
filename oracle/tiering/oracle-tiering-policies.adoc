@@ -10,7 +10,7 @@ summary: Oracleの階層化ポリシー
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

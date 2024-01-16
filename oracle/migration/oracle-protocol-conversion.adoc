@@ -10,7 +10,7 @@ summary: FLI移行後のSANプロトコルの変更
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

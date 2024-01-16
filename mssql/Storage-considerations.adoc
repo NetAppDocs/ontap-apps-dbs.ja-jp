@@ -6,6 +6,7 @@ summary: ONTAP上のMicrosoft SQL Server
 ---
 = Microsoft SQL Serverストレージに関する考慮事項
 :allow-uri-read: 
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: このドキュメントでは、 VMware vSphere 向け ONTAP ツール
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
 
 
 

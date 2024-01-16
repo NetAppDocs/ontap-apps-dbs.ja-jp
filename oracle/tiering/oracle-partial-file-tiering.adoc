@@ -10,7 +10,7 @@ summary: FabricPoolによる部分的なファイル階層化
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

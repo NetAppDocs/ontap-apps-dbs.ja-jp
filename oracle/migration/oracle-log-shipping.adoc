@@ -10,7 +10,7 @@ summary: ログ配布によるOracleの移行
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

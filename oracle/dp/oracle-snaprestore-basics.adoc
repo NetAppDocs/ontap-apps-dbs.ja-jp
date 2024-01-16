@@ -10,7 +10,7 @@ summary: ONTAPでSnapshotコピーからのOracleデータベースの高速リ�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

@@ -10,7 +10,7 @@ summary: 従来の仮想アプライアンスからの移行に対応した ONTA
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
 
 
 [role="lead"]

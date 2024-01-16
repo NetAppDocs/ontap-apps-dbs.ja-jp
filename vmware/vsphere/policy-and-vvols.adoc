@@ -10,7 +10,7 @@ summary: SnapCenter では、複数のジョブに適用可能なバックアッ
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ./../media/
+:imagesdir: ../../media/
 
 
 [role="lead"]
