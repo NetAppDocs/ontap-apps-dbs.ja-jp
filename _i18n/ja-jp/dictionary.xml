@@ -602,10 +602,7 @@
   <block id="8fcd14822a5b94d212898fe3e006526e" category="paragraph">PostgreSQLのすべてのデータベースオブジェクトは、それぞれのOIDによって内部的に管理されます。テーブルとインデックスは、個 々 のOIDによっても管理されます。データベースオブジェクトとそれぞれのOIDとの関係は、オブジェクトのタイプに応じて適切なシステムカタログテーブルに格納されます。たとえば、データベースとヒープテーブルのOIDは、<block ref="d0fcebb608269edbd5d67486884ebed7" prefix=" " category="inline-code"></block> それぞれ`pg_classと`pg_classです。OIDを確認するには、PostgreSQLクライアントでクエリを発行します。</block>
   <block id="d0e97e34fe92edd2facd0f7377b6340b" category="paragraph">各データベースには、1GBに制限された個別のテーブルとインデックスファイルがあります。各テーブルには、それぞれサフィックス付きの2つのファイルが関連付けられています。<block ref="7b9b00c45b01f7b7c6d3a3c8ba2e9275" prefix=" " category="inline-code"></block> および<block ref="a1d869a79e2f43693a6a416fcbdc2724" prefix=" " category="inline-code"></block>。これらは、フリースペースマップおよび可視性マップと呼ばれます。これらのファイルには空きスペース容量に関する情報が格納され、テーブルファイルの各ページに表示されます。インデックスには個 々 の空き領域マップのみがあり、可視性マップはありません。</block>
   <block id="048a7ed79caf84bb5c725efc5f474911" category="paragraph">。<block ref="c28f4f32219f5ff99fb4b116980b8549" prefix=" " category="inline-code"></block> ディレクトリには、先行書き込みログが格納されます。先行書き込みログは、データベースの信頼性とパフォーマンスを向上させるために使用されます。テーブル内の行を更新するたびに、PostgreSQLは先読みログに変更内容を書き込み、その後実際のデータページに変更内容をディスクに書き込みます。。<block ref="f7223cfaa9416056a91e259e326ac5cf" prefix=" " category="inline-code"></block> ディレクトリには通常複数のファイルが含まれていますが、initdbは最初のファイルだけを作成します。必要に応じて追加のファイルが追加されます。各xlogファイルの長さは16MBです。</block>
-  <block id="2bd2440a8b5fed6660918b5f10f685bb" category="doc">ファイルシステム</block>
-  <block id="81d00501c34ba5f161f685a99dce0d13" category="paragraph">PostgreSQLは、NFSまたはSANのファイルシステムでホストできます。</block>
   <block id="789a6c7dd865d16eb1df122bcc5c9a3a" category="admonition">* NetAppでは* NFSv4の機能が必要な場合はNFSv4.1を使用することを推奨します。NFSv4.1では、一部のエッジにおける耐障害性を向上させるために、NFSv4プロトコルの機能がいくつか強化されています。</block>
-  <block id="36772d6dfc6e102eff552ffad6b98690" category="paragraph">NFSファイルシステムのマウントには、次のマウントオプションを使用します。</block>
   <block id="8e86e0aee135afb67c6a1d3d6e0f3306" category="inline-link-macro">NFSテンソウサイス</block>
   <block id="d84b41126744795c4ee82f7b256e7234" category="inline-link-macro">FC SAN</block>
   <block id="2c8c2171fc87c96e58fb40d8714f85cf" category="doc">PostgreSQLアーキテクチャ</block>
@@ -3903,7 +3900,6 @@ SOAP over https 接続に使用されます</block>
   <block id="2d2eef88dbdd0c34bde24e2632d9944f" category="sidebar">SAP HANAとAnyDB</block>
   <block id="399bd1ee587245ecac6f39beaa99886f" category="sidebar">PostgreSQL</block>
   <block id="f4f70727dc34561dfde1a3c529b6205c" category="sidebar">設定</block>
-  <block id="3dd7c32443d5846be0a8fd75cb08b70e" category="sidebar">ファイルシステム構成</block>
   <block id="c476a4701643b158f9f5d57bcc91951d" category="sidebar">Snapshotテクノロジ</block>
   <block id="35084d885dea7b061e6894c1cf3036d9" category="sidebar">ワークロード</block>
   <block id="7d219314ccabde6609510141bb175a6c" category="sidebar">共有インスタンスと専用インスタンス</block>
@@ -4020,4 +4016,19 @@ SOAP over https 接続に使用されます</block>
   <block id="ea9cdfcbfcf1906c15b6779f0f327028" category="sidebar">MySQL用のデータベース設定</block>
   <block id="308f8f580d0248ac023557cfd4b10d83" category="sidebar">MySQL用のホストの設定</block>
   <block id="830f353b3e6055499fac447b16b0c935" category="sidebar">MySQLヨウノストレエシセツテイ</block>
+  <block id="3106f8f17f2974fe05da16fb0cc50505" category="summary">ONTAP上のSANを使用したPostgreSQLデータベース</block>
+  <block id="74cacb0c34a37e2859e3b054938a344d" category="doc">SANファイルシステムを使用するPostgreSQL</block>
+  <block id="1758f5c81d60f1a0ac8600fddc99a919" category="paragraph">SANを使用したPostgreSQLデータベースは、通常xfsファイルシステムでホストされますが、OSベンダーがサポートしていれば他のデータベースも使用できます。</block>
+  <block id="d73e7b56b7baa813a32c521ca074e7c4" category="paragraph">1つのLUNで最大10万IOPSをサポートできますが、I/O負荷の高いデータベースでは、一般にLVMとストライピングを使用する必要があります。</block>
+  <block id="5c24f0d1d447c2dfc01f2f2641e1d56c" category="summary">PostgreSQLデータベースNFSとONTAP</block>
+  <block id="3532099588a13fbccb2af22a75936454" category="doc">NFSファイルシステムを使用したPostgreSQL</block>
+  <block id="f7cc8c4234952826818ad4d0c2050ac9" category="paragraph">PostgreSQLデータベースは、NFSv3またはNFSv4ファイルシステムでホストできます。最適なオプションは、データベース外の要因によって異なります。</block>
+  <block id="1482c42acc1dd31ee8496c71a805e73c" category="paragraph">たとえば、特定のクラスタ環境ではNFSv4のロック動作が推奨されます。（参照： <block ref="bc3a7e667477b8b3590fa1451dcb924c" category="inline-link-macro-rx"></block> 詳細はこちら）</block>
+  <block id="9674525687765646f35916d0e569eda9" category="paragraph">それ以外の場合は、パフォーマンスも含めて、データベース機能はほぼ同一である必要があります。唯一の要件は、<block ref="d64a84456adc959f56de6af685d0dadd" prefix=" " category="inline-code"></block> マウントオプション。これは、ソフトタイムアウトによって回復不能なIOエラーが発生しないようにするために必要です。</block>
+  <block id="0c6430fad6c643c444b5d6d52b18edb4" category="paragraph">NFSv4がプロトコルとして選択されている場合、NetAppではNFSv4.1の使用を推奨します。NFSv4.1では、NFSv4.0よりも耐障害性が向上するように、NFSv4プロトコルの機能がいくつか拡張されています。</block>
+  <block id="248212b04c23627e2719e106224d2eb3" category="paragraph">一般的なデータベースワークロードには、次のマウントオプションを使用します。</block>
+  <block id="6daf9da65c1180ae710d4f437b5e4edc" category="paragraph">大量のシーケンシャルI/Oが予想される場合は、NFS転送サイズを増やすことができます。</block>
+  <block id="9efbdff43e91279291e95690414bec95" category="paragraph">転送サイズをONTAPレベルで拡張すると、次のマウントオプションが使用されます。</block>
+  <block id="395201f6a339cc4cf6b345e0c259f383" category="section-title">NFSv3 TCPスロットテーブル</block>
+  <block id="1f8260aa2c5a5b35bf771c26828d2096" category="paragraph">LinuxでNFSv3を使用する場合は、TCPスロットテーブルを適切に設定することが重要です。</block>
 </blocks>

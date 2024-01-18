@@ -18,8 +18,10 @@ entries:
 - title: ストレージ構成
   pdf-filename: PostgreSQLのストレージ設定
   entries:
-  - title: ファイルシステム構成
-    url: "/postgres/postgres-filesystems.html"
+  - title: NFS
+    url: "/postgres/postgres-nfs-filesystems.html"
+  - title: SAN
+    url: "/postgres/postgres-san-filesystems.html"
 - title: データ保護
   pdf-filename: PostgreSQLのデータ保護
   entries:
