@@ -1,0 +1,36 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-srm-vvol-troubleshooting.html 
+keywords: vmware, site, recovery manager, vsrm, hybrid, cloud, srm, vvols, replication 
+summary: SRM で VVOL レプリケーションを使用する場合、 SRA と従来のデータストアで使用するワークフローは大きく異なります。 
+---
+= VVol レプリケーションを使用する場合の SRM のトラブルシューティング
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+SRM で VVOL レプリケーションを使用する場合、 SRA と従来のデータストアで使用するワークフローは大きく異なります。たとえば、アレイマネージャの概念はありません。そのため、 `discoverarrays` および `discoverdevices` コマンドは表示されません。
+
+トラブルシューティングを行う場合は、以下に示す新しいワークフローについて理解しておくと役立ちます。
+
+. queryReplicationPeer ： 2 つのフォールトドメイン間のレプリケーション契約を検出します。
+. queryFaultDomain ：障害ドメインの階層を検出します。
+. queryReplicationGroup ：ソースドメインまたはターゲットドメインに存在するレプリケーショングループを検出します。
+. syncReplicationGroup ：ソースとターゲット間でデータを同期します。
+. queryPointInTimeReplica ：ターゲット上のポイントインタイムレプリカを検出します。
+. testFailoverReplicationGroupStart ：テストフェイルオーバーを開始します。
+. testFailoverReplicationGroupStop ：テストフェイルオーバーを終了します。
+. promoteReplicationGroup ：テスト中のグループを本番環境に昇格します。
+. prepareFailoverReplicationGroup ：災害復旧の準備をします。
+. FailoverReplicationGroup ：ディザスタリカバリを実行します。
+. revertReplicateGroup ：逆方向のレプリケーションを開始します。
+. queryMatchingContainer: 指定されたポリシーを使用したプロビジョニング要求を満たす可能性のあるコンテナを（ホストまたはレプリケーショングループとともに）検索します。
+. queryResourceMetadata ： VASA Provider からすべてのリソースのメタデータを検出し、リソース利用率を回答として queryMatchingContainer 関数に返すことができます。
+
+
+VVOL レプリケーションの設定時に表示される最も一般的なエラーは、 SnapMirror 関係を検出できないエラーです。これは、ボリュームおよび SnapMirror 関係が ONTAP ツールを対象としたものではないためです。そのため、 SnapMirror 関係が常に完全に初期化されていることを確認し、レプリケートされた VVOL データストアを作成する前に両方のサイトの ONTAP ツールで再検出を実行することを推奨します。

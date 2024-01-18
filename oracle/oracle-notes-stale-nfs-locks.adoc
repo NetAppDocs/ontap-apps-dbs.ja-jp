@@ -1,0 +1,47 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-notes-stale-nfs-locks.html 
+keywords: oracle, database, ontap, stale, nfs, locks 
+summary: Oracleロックと古いNFSv3ロック 
+---
+= 古いNFSv3ロックとOracleデータベース
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+Oracleデータベースサーバがクラッシュすると、再起動時に古いNFSロックで問題が発生する可能性があります。この問題は、サーバの名前解決を注意深く設定することで回避できます。
+
+この問題は、ロックの作成とロックの解除で使用される名前解決方法がわずかに異なるために発生します。Network Lock Manager（NLM；ネットワークロックマネージャ）とNFSクライアントの2つのプロセスが関係しています。NLMでは、 `uname n` ホスト名を確認するには、 `rpc.statd` プロセスの用途 `gethostbyname()`。OSが古いロックを適切に解除するには、これらのホスト名が一致している必要があります。たとえば、ホストで所有されているロックが検索されているとします。 `dbserver5`が、ロックはホストによって次のように登録されています。 `dbserver5.mydomain.org`。状況 `gethostbyname()` と同じ値を返さない `uname –a`をクリックすると、ロック解除プロセスが成功しませんでした。
+
+次のサンプルスクリプトは、名前解決が完全に一貫しているかどうかを検証します。
+
+....
+#! /usr/bin/perl
+$uname=`uname -n`;
+chomp($uname);
+($name, $aliases, $addrtype, $length, @addrs) = gethostbyname $uname;
+print "uname -n yields: $uname\n";
+print "gethostbyname yields: $name\n";
+....
+状況 `gethostbyname` 一致しません `uname`古いロックが使用されている可能性があります。たとえば、次の結果は潜在的な問題を示しています。
+
+....
+uname -n yields: dbserver5
+gethostbyname yields: dbserver5.mydomain.org
+....
+解決策は通常、に表示されるホストの順序を変更することによって検出されます。 `/etc/hosts`。たとえば、hostsファイルに次のエントリが含まれているとします。
+
+....
+10.156.110.201  dbserver5.mydomain.org dbserver5 loghost
+....
+この問題を解決するには、完全修飾ドメイン名と短いホスト名の表示順序を変更します。
+
+....
+10.156.110.201  dbserver5 dbserver5.mydomain.org loghost
+....
+`gethostbyname()` では、shortを返します。 `dbserver5` ホスト名（の出力に一致） `uname`。したがって、ロックはサーバクラッシュ後に自動的にクリアされます。

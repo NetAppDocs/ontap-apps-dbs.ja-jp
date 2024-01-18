@@ -1,0 +1,21 @@
+---
+permalink: oracle/oracle-app-config-mbr.html 
+sidebar: sidebar 
+keywords: oracle, database, ontap, db_file_multiblock_read_count, multiblock 
+summary: Oracleマルチブロック読み取りパラメータ 
+---
+= db_file_multiblock_read_count
+:allow-uri-read: 
+
+
+[role="lead"]
+。 `db_file_multiblock_read_count` パラメータは、シーケンシャルI/OでOracleが単一の処理として読み取るOracleデータベースブロックの最大数を制御します。
+
+ただし、このパラメータは、すべての読み取り処理でOracleが読み取るブロック数には影響しません。また、ランダムI/Oにも影響しません。影響を受けるのはシーケンシャルI/Oのブロックサイズだけです。
+
+Oracleでは、このパラメータを未設定のままにしておくことを推奨しています。これにより、データベースソフトウェアは自動的に最適な値を設定できます。つまり、このパラメータは通常、I/Oサイズが1MBになる値に設定されます。たとえば、8KBブロックの1MB読み取りでは128ブロックを読み取る必要があるため、このパラメータのデフォルト値は128になります。
+
+顧客サイトのNetAppで発生したデータベースパフォーマンスの問題のほとんどには、このパラメータの設定が誤っています。Oracleバージョン8および9では、この値を変更する正当な理由があります。そのため、パラメータが `init.ora` ファイル：データベースがOracle 10以降にアップグレードされたため。従来の設定である8または16をデフォルト値の128と比較すると、シーケンシャルI/Oのパフォーマンスが大幅に低下します。
+
+
+TIP: * NetApp推奨*設定 `db_file_multiblock_read_count` パラメータがに存在していてはなりません。 `init.ora` ファイル。NetAppでは、このパラメータを変更することでパフォーマンスが向上するという状況は発生していませんが、シーケンシャルI/Oのスループットに明らかな影響を及ぼすケースは少なくありません。

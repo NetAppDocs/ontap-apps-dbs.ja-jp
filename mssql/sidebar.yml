@@ -3,32 +3,32 @@ section: mssql
 title: Microsoft SQL Server の場合
 entries:
 - title: 概要
-  url: "/mssql/overview.html"
+  url: "/mssql/mssql-overview.html"
 - title: ワークロード
-  url: "/mssql/workloads.html"
-- title: ONTAP構成
-  url: "/postgres/ontap.html"
+  url: "/mssql/mssql-workloads.html"
 - title: データベース設定
+  pdf-filename: Microsoft SQL Server用のデータベース構成
   entries:
   - title: 共有インスタンスと専用インスタンス
-    url: "/mssql/shared-vs-dedicated.html"
+    url: "/mssql/mssql-shared-vs-dedicated.html"
   - title: CPU構成
-    url: "/mssql/CPUConfiguration.html"
+    url: "/mssql/mssql-cpu-configuration.html"
   - title: メモリ構成
-    url: "/mssql/Memoryconfiguration.html"
+    url: "/mssql/mssql-memory-configuration.html"
 - title: ストレージ構成
+  pdf-filename: Microsoft SQL Server向けのストレージ構成
   entries:
   - title: データベースファイルとファイルグループ
-    url: "/mssql/files-and-filegroups.html"
+    url: "/mssql/mssql-files-and-filegroups.html"
   - title: tempdbフアイル
-    url: "/mssql/tempdb.html"
+    url: "/mssql/mssql-tempdb.html"
   - title: ストレージに関する考慮事項
-    url: "/mssql/Storage-considerations.html"
+    url: "/mssql/mssql-storage-considerations.html"
   - title: ストレージ効率
-    url: "/mssql/storage-efficiency.html"
+    url: "/mssql/mssql-storage-efficiency.html"
 - title: データ保護
-  url: "/mssql/sql-data-protection.html"
+  url: "/mssql/mssql-data-protection.html"
 - title: ディザスタリカバリ
-  url: "/mssql/SQL-disaster-recovery.html"
+  url: "/mssql/mssql-disaster-recovery.html"
 - title: データセキュリティ
-  url: "/mssql/data-security.html"
+  url: "/mssql/mssql-data-security.html"

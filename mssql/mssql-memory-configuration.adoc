@@ -1,0 +1,122 @@
+---
+sidebar: sidebar 
+permalink: mssql/mssql-memory-configuration.html 
+keywords: MS-SQL,mssql,SQL Server 
+summary: ONTAP上のMicrosoft SQL Server 
+---
+= Microsoft SQL Serverのメモリ構成
+:allow-uri-read: 
+:firstname: [.lead]
+:author: [.lead]
+:authorinitials: [
+:authors: [.lead]
+:imagesdir: ../media/
+
+
+
+
+== 最大サーバメモリ
+
+max server memoryオプションは、SQL Serverインスタンスで使用できるメモリの最大容量を設定します。
+
+通常、SQL Serverが実行されている同じサーバで複数のアプリケーションが実行されていて、これらのアプリケーションが正常に機能するのに十分なメモリを確保したい場合に使用されます。
+
+アプリケーションによっては、起動時に使用可能なメモリのみを使用し、必要に応じて要求しないものもあります。ここで、最大サーバメモリ設定が有効になります。
+
+複数のSQL Serverインスタンスを持つSQL Serverクラスタでは、各インスタンスがリソースを競合する可能性があります。SQL Serverインスタンスごとにメモリ制限を設定すると、各インスタンスのパフォーマンスを最大限に高めることができます。
+
+
+TIP: * NetAppでは、パフォーマンスの問題を回避するために、オペレーティングシステム用に少なくとも4GBから6GBのRAMを残しておくことを推奨しています。
+
+image:mssql-max-server-memory.png["エラー：グラフィックイメージがありません"]
+
+
+
+=== SQL Server Management Studioを使用したサーバの最小メモリと最大メモリの調整
+
+SQL Server Management Studioを使用してサーバの最小メモリまたは最大メモリを調整するには、SQL Serverサービスを再起動する必要があります。次のコードを使用して、Transact SQL（T-SQL）を使用してサーバメモリを調整できます。
+
+....
+EXECUTE sp_configure 'show advanced options', 1
+
+GO
+
+EXECUTE sp_configure 'min server memory (MB)', 2048
+
+GO
+
+EXEC sp_configure 'max server memory (MB)', 120832
+
+GO
+
+RECONFIGURE WITH OVERRIDE
+....
+
+
+== 不均一なメモリアクセス
+
+NUMA（Nonuniform Memory Access）は、プロセッサバスの負荷を増やすことなくプロセッサ速度を向上させるメモリアクセス最適化方法です。
+
+SQL ServerがインストールされているサーバでNUMAが構成されている場合、SQL ServerはNUMAを認識し、NUMAハードウェアで優れたパフォーマンスを発揮するため、追加の構成は必要ありません。
+
+
+
+== インデックス作成メモリ
+
+index create memoryオプションは、通常は変更しないもう1つの高度なオプションです。
+
+インデックスを作成するために最初に割り当てられるRAMの最大容量を制御します。このオプションのデフォルト値は0です。これは、SQL Serverによって自動的に管理されることを意味します。ただし、インデックスの作成に問題がある場合は、このオプションの値を増やすことを検討してください。
+
+
+
+== クエリあたりの最小メモリ
+
+クエリを実行すると、SQL Serverは効率的に実行するために最適なメモリ容量を割り当てようとします。
+
+デフォルトでは、クエリごとの最小メモリ設定では、実行するクエリごとに>または=が1024KBに割り当てられます。SQL Serverがインデックス作成処理に割り当てられるメモリ容量を動的に管理できるようにするには、この設定をデフォルト値の0のままにしておくことを推奨します。ただし、SQL ServerのRAM容量が効率的に実行するために必要な容量を超えている場合は、この設定を大きくすると、一部のクエリのパフォーマンスが向上することがあります。したがって、SQL Server、その他のアプリケーション、またはオペレーティングシステムで使用されていないサーバ上のメモリが使用可能であれば、この設定を大きくすることでSQL Serverの全体的なパフォーマンスを向上させることができます。空きメモリがない場合、この設定を増やすと、全体的なパフォーマンスが低下する可能性があります。
+
+image:mssql-min-memory-per-query.png["エラー：グラフィックイメージがありません"]
+
+
+
+== バッファプール拡張
+
+バッファプール拡張機能を使用すると、NVRAM拡張機能とデータベースエンジンのバッファプールをシームレスに統合して、I/Oスループットを大幅に向上させることができます。
+
+バッファプール拡張機能は、すべてのSQL Serverエディションで使用できるわけではありません。64ビットのSQL Server Standard、Business Intelligence、およびEnterpriseエディションでのみ使用できます。
+
+バッファプール拡張機能は、不揮発性ストレージ（通常はSSD）を使用してバッファプールキャッシュを拡張します。この拡張機能により、バッファプールはより大規模なデータベースワーキングセットに対応できるようになり、RAMとSSD間のI/Oのページングが強制され、小さなランダムI/OがメカニカルディスクからSSDに効果的にオフロードされます。SSDのレイテンシが低く、ランダムI/Oのパフォーマンスが向上するため、バッファプールを拡張することでI/Oスループットが大幅に向上します。
+
+バッファプール拡張機能には、次の利点があります。
+
+* ランダムI/Oスループットの向上
+* I/Oレイテンシの低減
+* トランザクションスループットの向上
+* ハイブリッドバッファプールの拡張による読み取りパフォーマンスの向上
+* 既存および将来の低コストメモリを活用できるキャッシュアーキテクチャ
+
+
+[TIP]
+====
+* NetAppでは、バッファプール拡張を次のように設定することを推奨しています。
+
+* バッファプール拡張ターゲットディスクとして使用できるように、SSDベースのLUN（NetApp AFFなど）がSQL Serverホストに提供されていることを確認します。
+* 拡張ファイルのサイズは、バッファプールと同じかそれよりも大きくする必要があります。
+
+
+====
+次に、バッファプール拡張を32GBに設定するT-SQLコマンドの例を示します。
+
+....
+USE master
+
+GO
+
+ALTER SERVER CONFIGURATION
+
+SET BUFFER POOL EXTENSION ON
+
+  (FILENAME = ‘P:\BUFFER POOL EXTENSION\SQLServerCache.BUFFER POOL EXTENSION', SIZE = 32 GB);
+
+GO
+....

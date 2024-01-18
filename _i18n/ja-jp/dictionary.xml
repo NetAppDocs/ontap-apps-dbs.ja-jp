@@ -567,7 +567,6 @@
   <block id="55ca4b30c6f7c3ef975a6d1e1fb222a2" category="inline-link-macro">NetApp整合性グループの概要</block>
   <block id="69dd5879aee425e37fdd5796a8e06a56" category="paragraph">コンシステンシグループの詳細については、を参照してください。 <block ref="112c5744a39904facdbc5fab385d9fe1" category="inline-link-macro-rx"></block>。</block>
   <block id="7e7397a7b79323762c61941fc0e6b5f9" category="doc">データ保護</block>
-  <block id="04e7487d479314b6bdfdca58a245d899" category="paragraph">インデックス保護</block>
   <block id="90b0d8da95f7f5935481bc7e648c111e" category="summary">PostgreSQLテーブルスペース</block>
   <block id="16a49d0bc0249ef3dd42949589a0ed4e" category="doc">表領域</block>
   <block id="d6d544de56c329d9f68bb176c6245e7c" category="paragraph">データベース・クラスタが初期化されると、2つの表領域が自動的に作成されます。</block>
@@ -907,7 +906,6 @@ REDO ログ</block>
   <block id="b88caedbe9708683eed783eb534ae5f6" category="list-text">LUNをパーティショニングし、適切にアライメントされていることを確認します。アライメントを直接テストして確認する方法については、「付録B：WAFLアライメントの検証」を参照してください。</block>
   <block id="a0c1c26e783204cf713b2e1f0823aab3" category="section-title">zpools</block>
   <block id="c81b8fe4a368c32102406e65fc41a227" category="inline-link-macro">LUNの設定</block>
-  <block id="c49c7ca1707a6d27b04d804b2b5dfeb3" category="paragraph">zpoolは、の手順を実行したあとに作成する必要があります。 <block ref="255d6439b7182d422c7625a86084578a" category="inline-link-macro-rx"></block> が実行されます。手順を正しく実行しないと、I/Oのアライメントが原因でパフォーマンスが大幅に低下する可能性があります。ONTAPのパフォーマンスを最適化するには、I/Oがドライブの4Kの境界にアライメントされている必要があります。zpoolに作成されるファイルシステムは、というパラメータで制御される実効ブロックサイズを使用します。<block ref="81df978a8e3da4bee74b135548f390f3" prefix=" " category="inline-code"></block>（コマンドを実行すると表示できます）<block ref="1615297782a0dff59b20451e2ca97ea7" prefix=" " category="inline-code"></block>。</block>
   <block id="869dc3a8daf591c7f33e5bb32a4a63c9" category="paragraph">の値<block ref="81df978a8e3da4bee74b135548f390f3" prefix=" " category="inline-code"></block> デフォルトは9です。これは2^9、つまり512バイトを意味します。最適なパフォーマンスを実現するには、<block ref="81df978a8e3da4bee74b135548f390f3" prefix=" " category="inline-code"></block> 値は12（2^12=4K）である必要があります。この値はzpoolの作成時に設定され、変更することはできません。つまり、<block ref="81df978a8e3da4bee74b135548f390f3" prefix=" " category="inline-code"></block> 12以外の場合は、新しく作成したzpoolにデータをコピーして移行する必要があります。</block>
   <block id="6a00a2262e030c2656588743cb031710" category="paragraph">zpoolを作成したら、の値を確認します。<block ref="81df978a8e3da4bee74b135548f390f3" prefix=" " category="inline-code"></block> 次に進む前に、値が12以外の場合は、LUNが正しく検出されていません。zpoolを削除し、関連するHost Utilitiesのドキュメントに記載された手順をすべて正しく実行したことを確認してから、zpoolを再作成します。</block>
   <block id="15ec722ce3f6694d12f89aeb5b621941" category="section-title">zpoolとSolaris LDOM</block>
@@ -1254,7 +1252,6 @@ REDO ログ</block>
   <block id="931c6f2c99380fbd899e3eaa31e97d98" category="section-title">データサイズ</block>
   <block id="64e4d570abeebacf6bdcb19dfb73fcae" category="paragraph">移動するデータベースのサイズは移行計画に明らかに影響しますが、サイズがカットオーバー時間に必ずしも影響するとは限りません。大量のデータを移行する必要がある場合、主に帯域幅を考慮する必要があります。コピー処理は通常、効率的なシーケンシャルI/Oを使用して実行されます。控えめな見積もりでは、コピー処理に使用できるネットワーク帯域幅の使用率が50%であると想定しています。たとえば、8GBのFCポートでは理論上約800MBpsの転送が可能です。使用率が50%であれば、約400Mbpsの速度でデータベースをコピーできます。そのため、この速度では約7時間で10TBのデータベースをコピーできます。</block>
   <block id="84a80a048e7abc027dd6bdce55fda9d2" category="inline-link-macro">データファイルのオンライン移動</block>
-  <block id="96220ddfb388df1ec5c630828316520f" category="paragraph">長距離の移行では、通常、ログ配布プロセスなど、より創造的なアプローチが必要になります。詳細については、を参照してください。 <block ref="3a18b1903dadc58123e7db364a89a706" category="inline-link-macro-rx"></block>。長距離IPネットワークでは、LANやSANの速度に近い場所で帯域幅が使用されることはほとんどありません。あるケースでは、アーカイブログの生成頻度が非常に高い220TBデータベースの長距離移行をNetAppが支援しました。データ転送のために選択されたアプローチは、可能な限り最大の帯域幅を提供するため、テープの毎日の出荷でした。</block>
   <block id="1c169b76761527b28040655a783e50a2" category="section-title">データベース数</block>
   <block id="da3770c5d6d1215e9f2524b9d7b7c3c5" category="paragraph">多くの場合、大量のデータを移動する際の問題はデータサイズではなく、データベースをサポートする構成の複雑さです。50TBのデータベースを移行する必要があるというだけでは、十分な情報ではありません。1つの50TBのミッションクリティカルなデータベース、4、000個のレガシーデータベースの集まり、または本番環境と非本番環境の混在環境などが考えられます。場合によっては、ほとんどのデータがソースデータベースのクローンで構成されています。これらのクローンは簡単に再作成できるため、マイグレートする必要はありません。特に、新しいアーキテクチャでNetApp FlexCloneボリュームを利用するように設計されている場合は、クローンを簡単に再作成できるためです。</block>
   <block id="a1739e745a7544d2432b2b990a715817" category="paragraph">移行を計画するには、対象となるデータベースの数と、データベースの優先順位を決定する方法を理解しておく必要があります。データベースの数が増えるにつれて、優先される移行オプションはスタック内で徐 々 に低くなる傾向があります。たとえば、RMANを使用して単一のデータベースのコピーを簡単に実行でき、短時間の停止が発生する可能性があります。これはホストレベルのレプリケーションです。</block>
@@ -1268,7 +1265,6 @@ REDO ログ</block>
   <block id="1311d3b592e4da5950e91965dac1d593" category="paragraph">QoS制御、データ再配置、Snapshot、クローニングなどのテクノロジは、ほぼすべての構成で機能します。しかし、利益を最大化するためには、一般的にいくつかの考えが必要です。場合によっては、新しいストレージアレイへの投資を最大限に活用するために、データベースストレージのレイアウトの設計変更が必要になることがあります。ホストベースまたはストレージベースの移行では元のデータレイアウトがレプリケートされるため、このような設計の変更は移行戦略に影響する可能性があります。移行を完了してONTAP向けに最適化されたデータレイアウトを提供するには、追加の手順が必要になる場合があります。に示す手順 <block ref="d4d5600aaaced44e203002ec1910822d" category="inline-link-macro-rx"></block> また、データベースを移行するだけでなく、最小限の労力で最適な最終レイアウトに移行する方法についても説明します。</block>
   <block id="1fd9b0a8321228b5b8ad4be85e71cf64" category="section-title">カットオーバー時間</block>
   <block id="95b9194d9f06f6f70febc87c071f3050" category="paragraph">カットオーバー中のサービス停止の許容最大値を決定する必要があります。移行プロセス全体がシステム停止を引き起こすと想定するのはよくある間違いです。サービスの中断が発生する前に多くのタスクを完了できます。また、多くのオプションを使用すると、システム停止やシステム停止を伴わずに移行を完了できます。カットオーバーの時間は手順によって異なるため、システム停止が避けられない場合でも、許容されるサービス停止の最大値を定義する必要があります手順。</block>
-  <block id="2671d3330eac790e8b14ba2a9cecd70b" category="paragraph">たとえば、10TBのデータベースのコピーには、通常、約7時間かかります。ビジネスニーズが7時間の停止を許容している場合、ファイルのコピーは簡単で安全な移行オプションです。5時間で対応できない場合は、シンプルなログ配布プロセス（ <block ref="d746c73310b8111ae91d5cedb4066344" category="inline-link-macro-rx"></block>最小限の労力でセットアップでき、カットオーバー時間を約15分に短縮できます。この間、データベース管理者はプロセスを完了できます。許容できない時間が15分であった場合は、スクリプトを使用して最終カットオーバープロセスを自動化し、カットオーバー時間をわずか数分に短縮できます。移行はいつでも高速化できますが、そのためには時間と労力がかかります。カットオーバーの所要時間は、ビジネス部門が許容できる範囲で決定する必要があります。</block>
   <block id="9cfeaf56d2fc41c2695a69adf260c3f8" category="section-title">バックアウトパス</block>
   <block id="f493e16f7e2caba820eba88a1c5f82d8" category="paragraph">完全にリスクのない移行はありません。テクノロジが完全に動作していても、ユーザエラーの可能性は常にあります。選択した移行パスに関連するリスクと、失敗した移行の結果を考慮する必要があります。たとえば、Oracle ASMの透過的オンラインストレージ移行機能は、Oracle ASMの主要機能の1つであり、この方法は、最も信頼性の高い方法の1つです。ただし、この方法ではデータが不可逆的にコピーされています。万一ASMで問題が発生した場合、簡単にバックアウトできるパスはありません。唯一の選択肢は、元の環境をリストアするか、ASMを使用して移行を元のLUNに戻すことです。このリスクは、元のストレージ・システムでスナップショット・タイプのバックアップを実行できる場合には、最小限に抑えることができますが、排除することはできません。</block>
   <block id="1886f1ab01daa4511ce537d1af675427" category="section-title">リハーサル</block>
@@ -1566,7 +1562,6 @@ REDO ログ</block>
   <block id="8e3c921431d2b7f66fa0cc85f3ae5c9d" category="paragraph">すべてのインポート関係が確立されたら、LUNをオンラインに戻すことができます。</block>
   <block id="ea382cbfdb353cee0cf25eaae9bba150" category="section-title">イニシエータグループの作成</block>
   <block id="152c4728a5fb152525a639439b9d7cb9" category="inline-link-macro">プロトコル変換</block>
-  <block id="2ba97db75ee4a901edea96edf3d2ddaa" category="paragraph">イニシエータグループ（igroup）は、ONTAP LUNマスキングアーキテクチャの一部です。新しく作成したLUNには、ホストに最初にアクセスを許可しないかぎりアクセスできません。そのためには、アクセスを許可するFC WWNまたはiSCSIイニシエータ名をリストするigroupを作成します。このレポートの作成時点では、FLIはFC LUNでのみサポートされていました。ただし、移行後のiSCSIへの変換は簡単です（を参照）。 <block ref="4f9fd7f3e31161eaca60ca6de385a92c" category="inline-link-macro-rx"></block>。</block>
   <block id="298a1c3c736859f2cfa3cb8eb1f3fdcc" category="paragraph">この例では、ホストのHBAで使用可能な2つのポートに対応する2つのWWNを含むigroupが作成されます。</block>
   <block id="4f6f03762bfcdc7174cdd30240ce45b3" category="section-title">新しいLUNをホストにマッピング</block>
   <block id="c22fee2d07a149be91ae1ae2ada1cb57" category="paragraph">igroupの作成後、LUNは定義したigroupにマッピングされます。これらのLUNは、このigroupに含まれるWWNでのみ使用できます。NetAppでは、移動プロセスのこの段階で、ホストがONTAPにゾーニングされていないことを前提としています。これは重要なことです。ホストが外部アレイと新しいONTAPシステムに同時にゾーニングされていると、各アレイで同じシリアル番号のLUNが検出されるリスクがあるためです。マルチパスの誤動作やデータの破損が発生する可能性があります。</block>
@@ -1750,19 +1745,7 @@ I/Oの中断はありません。</block>
   <block id="bdec122112fe3ad35d588380dc643e48" category="summary">MetroCluster論理アーキテクチャ- Oracle</block>
   <block id="141402e8d9fa946970f252a09a01a462" category="doc">MetroCluster論理アーキテクチャ- Oracle</block>
   <block id="37fa92fc2662529308c62c84eb1b38ea" category="paragraph">MetroCluster環境でOracleデータベースがどのように動作するかを理解するAlsopでは、MetroClusterシステムの論理機能について説明する必要があります。</block>
-  <block id="8b2ad15147d13b66fb05bc4b7f95e653" category="summary">Oracle on MetroCluster - NVFAIL</block>
-  <block id="67be2475945283126e261087dcc833b7" category="doc">MetroClusterとNVFAIL</block>
   <block id="2623b589ddbc1cdb6184ba32aa06e83f" category="inline-link-macro">NVFail</block>
-  <block id="8b048af13e99be5215d8b6ba7542bd1d" category="paragraph">NVFailは、ONTAPの一般的なデータ整合性機能で、データベースワークロードに特に重要です。詳細については、 <block ref="b361c920d00a4a9bf82fc2698602aeab" category="inline-link-macro-rx"></block>。NVFAILに関するMetroCluster固有の考慮事項もあります。</block>
-  <block id="a59556e5d6eba6a88829152216638f70" category="section-title">手動で強制NVFAILを使用した拡張RAC</block>
-  <block id="c8d0ea777fef88ebdbbedcb6a8534001" category="paragraph">拡張RACクラスタでスイッチオーバーを強制的に実行する最も安全なオプションは、<block ref="71e644310ff0f1164d905d6e80174023" prefix=" " category="inline-code"></block> コマンドラインで。このオプションは、キャッシュされたすべてのデータが確実にフラッシュされるようにするための緊急措置として使用できます。災害が発生したサイトにもともと配置されていたストレージリソースをホストが使用している場合、I/Oエラーまたは古いファイルハンドルのいずれかを受信します。 <block ref="a3c6541ac12f1f06a81cc9b03e6bd094" prefix="(" category="inline-code"></block>）エラー。Oracleデータベースがクラッシュし、ファイルシステムが完全にオフラインになるか、読み取り専用モードに切り替わります。</block>
-  <block id="193392122201d82edb280636f4751f06" category="paragraph">スイッチオーバーが完了すると、<block ref="6b0a5ec5ecf08db5d4b32d860214d098" prefix=" " category="inline-code"></block> フラグをクリアし、LUNをオンラインにする必要があります。このアクティビティが完了したら、データベースを再起動できます。これらのタスクを自動化してRTOを短縮できます。</block>
-  <block id="2d77d18df7345b1b12c19fed37f30094" category="section-title">dr-force-nvfailを使用した拡張RAC</block>
-  <block id="ce1c367fd3b2234c847cdcde6df93cf6" category="paragraph">最も安全な設定は、<block ref="a2626552f293b2377efe829e69d14daa" prefix=" " category="inline-code"></block> リモートサイトからアクセスするすべてのボリュームにフラグを設定します。そのため、ボリュームが開始されたときに使用できなくなります。<block ref="6b0a5ec5ecf08db5d4b32d860214d098" prefix=" " category="inline-code"></block> スイッチオーバー中。スイッチオーバーが完了すると、<block ref="6b0a5ec5ecf08db5d4b32d860214d098" prefix=" " category="inline-code"></block> フラグをクリアし、LUNをオンラインにする必要があります。これらのアクティビティが完了したら、データベースを再起動できます。これらのタスクを自動化してRTOを短縮できます。</block>
-  <block id="7227c057accb7ced8902796f7b957b5a" category="paragraph">結果は、<block ref="71e644310ff0f1164d905d6e80174023" prefix=" " category="inline-code"></block> フラグ。ただし、影響を受けるボリュームの数は、古いキャッシュを使用するアプリケーションまたはオペレーティングシステムから保護する必要があるボリュームだけに制限される場合があります。</block>
-  <block id="ae929f778e3706520521bed541a8b46e" category="section-title">dr-force-nvfailを使用しない拡張RAC</block>
-  <block id="91b508022987523900b69bdaf7649555" category="paragraph">を使用しない環境には、次の2つの重要な要件があります。<block ref="a2626552f293b2377efe829e69d14daa" prefix=" " category="inline-code"></block> データベースボリューム：</block>
-  <block id="e6b6543ad688c7163e581e8cc41e14bf" category="list-text">メンテナンスタスクの実行中や、SyncMirrorプレックスまたはNVRAMレプリケーションが同期されていないその他の状態のときは、スイッチオーバーを実行しないでください。最初の要件を満たすには、サイト障害から30秒以内にスイッチオーバーを実行するように設定されたTiebreakerソフトウェアを使用します。これは、サイト障害が検出されてから30秒以内にスイッチオーバーを実行する必要があるという意味ではありません。これは、サイトが動作していることが確認されてから30秒が経過した場合に強制的にスイッチオーバーを実行しても安全ではないことを意味します。</block>
   <block id="6ddd3d6bc3ad92b983699970b1596e0f" category="summary">OracleとMetroCluster</block>
   <block id="c1fac7a72cd91bcd345e567f6d6d93a3" category="doc">MetroClusterでのOracleフェイルオーバー</block>
   <block id="7a60cb119af7ddcdfe38fc872d2027a1" category="paragraph">MetroClusterを使用しても、エンタープライズアプリケーションやデータベースの運用に関するベストプラクティスが追加されたり変更されたりするとは限りません。</block>
@@ -2092,15 +2075,12 @@ I/Oの中断はありません。</block>
   <block id="a5c97d9c3645b9a26e3febeb4bc95e24" category="summary">ONTAPを使用したASM再生ユーティリティ</block>
   <block id="861a5ecc95a8478c750be41bf2ddd6f5" category="doc">ASM再利用ユーティリティとゼロブロック検出</block>
   <block id="8eb703f2756cafd21dbac4f23c0d6416" category="paragraph">インライン圧縮が有効な場合、ONTAPはファイルまたはLUNに書き込まれた初期化済みブロックを効率的に削除します。Oracle ASM Reclamation Utility（ASRU）などのユーティリティは、未使用のASMエクステントにゼロを書き込むことで機能します。</block>
-  <block id="1f65360ea8eb578d0ace3d58c460f3dc" category="paragraph">これにより、ファイルが削除されたあとにDBAがストレージアレイのスペースを再生できるようになります。ONTAPはゼロをインターセプトし、LUNからスペースの割り当てを解除します。ストレージシステム内にデータが書き込まれていないため、再生プロセスは非常に高速です。</block>
   <block id="9de53c14f2bae0c5d4b6e19be495ee94" category="paragraph">データベースに関しては、ASMディスクグループには0が含まれているため、LUNのこれらの領域を読み取ると0のストリームが生成されますが、ONTAPはドライブに0を格納しません。代わりに、メタデータが単純に変更され、LUNの初期化された領域がデータの空として内部的にマークされます。</block>
   <block id="06348c6e795160187e298a91b25a37a3" category="paragraph">同様の理由から、ゼロのブロックは実際にはストレージアレイ内で書き込みとして処理されないため、初期化されたデータを使用したパフォーマンステストは無効です。</block>
   <block id="cee584f1e6223f6dbb73c0d64d599228" category="admonition">ASRUを使用する場合は、Oracleが推奨するすべてのパッチがインストールされていることを確認してください。</block>
   <block id="17ff263bc6eb701aecb8e79f9ef53efd" category="summary">Oracleデータベースを含むLUNおよびLVMのサイズ変更</block>
   <block id="e0327f97ac271a738dd1ac6b182a4369" category="doc">LUNのサイズ変更とLVMベースのサイズ変更</block>
   <block id="ff15e8b125dae74c1231f09380e48886" category="paragraph">SANベースのファイルシステムが容量の上限に達した場合は、次の2つの方法で使用可能なスペースを増やすことができます。</block>
-  <block id="827be6b2fb8e678a5bd56af225ba21d1" category="list-text">LUNのサイズを拡張します。</block>
-  <block id="1948e4ed4d6efa0efb6adb5ab56bfcb2" category="list-text">既存のボリュームグループにLUNを追加し、それに含まれる論理ボリュームを拡張します。</block>
   <block id="4182200437c090276a01ad8ca54076b0" category="summary">Oracleデータベースを保護するためのNVFAILの設定</block>
   <block id="60e002164f8988e984cf4a95b240f19d" category="doc">OracleとNVFAIL</block>
   <block id="370bdf5dd39278264774ea595054e243" category="paragraph">NVFailは、重大なフェイルオーバーシナリオの際に整合性を確保するONTAPの機能です。</block>
@@ -2168,8 +2148,6 @@ I/Oの中断はありません。</block>
   <block id="335a5796fb106a877544d121062534be" category="paragraph">その結果、LUNデバイスパス、ボリュームグループ名、およびその他のデバイスパスがターゲットサーバに認識されます。その後、これらのリソースをシャットダウンし、その後ミラーをリストアできます。その結果、サーバはアプリケーションを迅速にオンラインにできる状態になります。ボリュームグループのアクティブ化、ファイルシステムのマウント、データベースとアプリケーションの起動の手順は簡単に自動化できます。</block>
   <block id="b1a175c5f42da29f6c27f4ea29684b63" category="paragraph">ディザスタリカバリ環境が最新の状態であることを確認する必要があります。たとえば、新しいLUNがソースサーバに追加されることが多いため、ディザスタリカバリプランが想定どおりに機能するように、デスティネーションで新しいLUNを事前に検出しておく必要があります。</block>
   <block id="90426ba53f908049843b3ea392578d04" category="doc">Oracleのディザスタリカバリ</block>
-  <block id="ef09e87f183c8862564ee20992a229af" category="paragraph">NetApp MetroClusterは、ミッションクリティカルなOracleワークロードに可用性とデータ損失ゼロの解決策を提供します。</block>
-  <block id="d93c585474124fbc2aec0fe5ed4c204a" category="paragraph">さらに、MetroClusterなどの統合ソリューションにより、今日の複雑なスケールアウト型Oracleデータベース、アプリケーション、仮想化インフラが簡素化されます。MetroClusterは、複数の外部データ保護製品や戦略を、1つのシンプルな中央集中型ストレージアレイに置き換えます。単一のクラスタストレージシステム内で、統合されたバックアップ、リカバリ、ディザスタリカバリ、高可用性（HA）を実現します。</block>
   <block id="7fe779a487e8f113f1ffdff0fb80353f" category="summary">ONTAPノOracleノセイコウセイクルウフハツクアツフ</block>
   <block id="773f9afa3df0cf82ed853c988183c73f" category="doc">Oracle整合グループのバックアップ</block>
   <block id="5afd3dc3f8d489d47587e10e6663c512" category="paragraph">バックアップを最もシンプルにするには、Oracleデータベース全体を1つのボリュームに配置します。</block>
@@ -2437,7 +2415,6 @@ I/Oの中断はありません。</block>
   <block id="083e9332dc2b6bf064139ac2e670eee9" category="list-text">スナップショットは、スナップショットの時点でデータベースクラッシュ整合性がある必要があります。</block>
   <block id="9dae8634b638a6949dab0f7eaf7988bd" category="list-text">スナップショット内のファイルごとに書き込み順序が保持されます。</block>
   <block id="7bc868657652757ca8505ddcd297456f" category="paragraph">ONTAPおよびNetAppのOracle管理製品は、これらの要件に準拠しています。</block>
-  <block id="9ec85da221bc7f0822b82657e52f4955" category="summary">Oracleテタホコノカイヨウ</block>
   <block id="9e19caeb431a5e29a1a63e3cee4b36c9" category="doc">ONTAPによるOracleデータ保護</block>
   <block id="6f1383567177df0041e76e845c3629f2" category="paragraph">最もミッションクリティカルなデータはデータベースにあります。</block>
   <block id="848aab87f65bfade12f80d4e864ec046" category="paragraph">企業はデータへのアクセスなしでは業務を遂行できず、場合によってはデータによってビジネスが決まることもあります。このようなデータは保護する必要がありますが、データ保護では、使用可能なバックアップを確保するだけでなく、バックアップを安全に保管するだけでなく、迅速かつ確実に実行することも重要です。</block>
@@ -2511,7 +2488,6 @@ I/Oの中断はありません。</block>
   <block id="5df81374c01d1b7c20fe8cb3883117eb" category="section-title">ミスアライメント状態です</block>
   <block id="5ff266dadf965b3c304513f516a13c12" category="paragraph">次の例は、ミスアライメントI/Oを示しています。</block>
   <block id="25be03b87e6a5d8170ce85b16ea506ab" category="list-text">4KBの境界にアライメントされないパーティションを作成します。最新のOSでは、これはデフォルトの動作ではありません。</block>
-  <block id="9879c10d67b41984cae0992340d157f0" category="list-text">パーティションは、デフォルトの32ではなく33セクターオフセットで作成されています。で説明されている手順を繰り返します。 <block ref="9eef0931337736367767200cf12a7482" category="inline-link-macro-rx"></block>。ヒストグラムは次のように表示されます。</block>
   <block id="4adda0e871000c2b13a4faef6ce4e21b" category="paragraph">ミスアライメントは明らかです。I/Oの大部分は* <block ref="66c8d76cad709856ccec680cab8ab35a" prefix="*" category="inline-code"></block> バケット。想定されるオフセットに一致します。パーティションが作成されたときに、最適化されたデフォルトよりも512バイト先のデバイスに移動されました。これは、ヒストグラムが512バイトオフセットされることを意味します。</block>
   <block id="b53cb977228ac351c16dfacc3c427a99" category="paragraph">また、も参照してください<block ref="20e637b3ddd562732de038fba736c7ee" prefix=" " category="inline-code"></block> 統計がゼロ以外の場合は、実行されたI/Oが4KBブロック全体を一杯にしなかったことを意味します。</block>
   <block id="d3d92f87c5235ad11c8bc69e85fb2fd0" category="section-title">Redoロギング</block>
@@ -2906,9 +2882,7 @@ I/Oの中断はありません。</block>
   <block id="049b6d7b78dd8ffebadb5a0be2261637" category="paragraph">* vVolデータストアを作成しています*
 必要なSCPを作成したら、そのSCPを使用してVVOLデータストア（および必要に応じてデータストア用のFlexVol ボリューム）を作成できます。ONTAP データストアを作成するホスト、クラスタ、またはデータセンターを右クリックし、_vVol tools&gt;&gt;_Provision Datastore_を選択します。データストアでサポートするSCPを1つ以上選択し、既存のFlexVol ボリュームから選択するか、データストア用に新しいFlexVol ボリュームをプロビジョニングします。最後に、データストアのデフォルトのSCPを指定します。このSCPは、ポリシーで指定されたSCPが設定されていないVMやスワップVVOL（ハイパフォーマンスなストレージは必要ありません）に使用されます。</block>
   <block id="a4332a81dbc3a9888be608dea640cd3d" category="section-title">仮想マシンストレージポリシーを作成しています</block>
-  <block id="80f789420db66cc767606f2432667d32" category="paragraph">仮想マシンストレージポリシーは、Storage I/O ControlやvSphere Encryptionなどのオプション機能を管理するためにvSphereで使用されます。また、VVOLでも使用され、特定のストレージ機能をVMに適用します。ポリシーを使用して特定のSCPをVMに適用するには、「NetApp.clustered.Data.ONTAP.VP.vVol」ストレージタイプと「ProfileName」ルールを使用します。ONTAP tools VASA Providerでのこの例については、link：ontap.html #ベストプラクティス[NFS v3経由でVVOLを使用するネットワーク設定例]を参照してください。「NetApp.clustered.Data.ONTAP.VP.VASA10」ストレージのルールは、VVOLベース以外のデータストアで使用します。</block>
   <block id="b4f6f65777757af7630fae901718e51e" category="paragraph">以前のリリースも似ていますが、で説明しているように、 <block ref="68072d20e775e4558feadbec7ba8f768" category="inline-xref-macro-rx"></block>オプションは異なります。</block>
-  <block id="136cc0f714cd085d732d263ed60f95b7" category="paragraph">作成したストレージポリシーは、に示すように、新しいVMのプロビジョニング時に使用できます。 <block ref="4ed4bde8f4b7355ad6a00fef761d7ba6" category="inline-link-macro-rx"></block>。VASA Provider 7.2でパフォーマンス管理機能を使用する場合のガイドラインについては、を参照してください。 <block ref="8fdd8868d80d04eecf1b4189862f536c" category="inline-xref-macro-rx"></block>。</block>
   <block id="52896487a6472798e1d6cbc9a95ec51e" category="section-title">ONTAP tools VASA Provider 9.10を使用したVMストレージポリシーの作成</block>
   <block id="c0c5e719ad5439106e5a00588402f206" category="inline-image-macro">「ONTAP tools VASA Provider 9.10を使用したVMストレージポリシーの作成」、300</block>
   <block id="378e30f2a60dc28c4afc9ae4f11a39e1" category="paragraph"><block ref="378e30f2a60dc28c4afc9ae4f11a39e1" category="inline-image-macro-rx" type="image"></block></block>
@@ -3397,7 +3371,6 @@ VAAIを使用しない場合、NFS上のすべてのVMに対してこの設定�
   <block id="bf5169ce5bb544313eaf17435f756da2" category="list-text">* 管理の容易さ。 * SAN プロトコルでは、より多くのスペースが必要な場合、 LUN の拡張、新しいサイズの検出のための再スキャン、ファイルシステムの拡張など、いくつかの手順が必要です。LUN の拡張は可能ですが、 LUN のサイズを縮小することはできず、未使用スペースのリカバリには追加の作業が必要になる場合があります。NFS を使用すると、簡単なサイジングが可能です。このサイズ変更は、ストレージシステムで自動化できます。SAN では、ゲスト OS のトリム / マッピング解除コマンドを使用してスペース再生が可能で、削除されたファイルのスペースをアレイに戻すことができます。NFS データストアでは、このようなスペース再生がより困難になります。</block>
   <block id="530c759326761c6ac026b313985b255f" category="list-text">* ストレージスペースの透過性。 * シンプロビジョニングによって削減効果が即座に現れるため、 NFS 環境では一般にストレージ利用率が見やすくなります。同様に、重複排除とクローニングによる削減効果は、同じデータストア内の他の VM や他のストレージシステムボリュームで即座に利用できます。一般に、 VM の密度は NFS データストア内でも高くなります。管理するデータストアが少ないため、重複排除による削減効果が向上すると同時に管理コストも削減されます。</block>
   <block id="16ee928b12bc598bf52b0f312879ec95" category="section-title">データストアのレイアウト</block>
-  <block id="b9890b64f7b9790ea1e078227efacfa2" category="paragraph">ONTAP ストレージシステムは、 VM および仮想ディスク用のデータストアを柔軟に作成できます。を使用する場合、 ONTAP の多くのベストプラクティスが適用されますが vSphere 用のデータストアをプロビジョニングする VSC （を参照） <block ref="ef37ab860d90e747aecd96bae9ce8d8d" category="inline-link-macro-rx"></block>) 、考慮すべきその他のガイドラインを次に示します。</block>
   <block id="b8c499c7b537f5bd4e51b0a6d6a1e9d0" category="list-text">ONTAP NFS データストアを使用して vSphere を導入することで、高性能でありながら管理が容易な実装を実現でき、ブロックベースのストレージプロトコルでは達成できない VM / データストア比率が提供されます。このアーキテクチャでは、データストア密度を 10 倍に増やすことも可能で、それに伴いデータストアの数は減少します。データストアのサイズを大きくするとストレージ効率が向上し、運用上のメリットが得られますが、ハードウェアリソースのパフォーマンスを最大限に引き出すためには、少なくとも 4 つのデータストア（ FlexVol ボリューム）を使用して 1 つの ONTAP コントローラに VM を格納することを検討してください。また、異なるリカバリポリシーを使用してデータストアを確立することもできます。ビジネスニーズに基づいて、他のバックアップや複製の頻度を高められるものもあります。FlexGroup ボリュームは設計上拡張できるため、複数のデータストアを使用する必要はありません。</block>
   <block id="e15ed0ec7af4278259b7618024b3e7ce" category="list-text">NetAppでは、ほとんどのNFSデータストアにFlexVolボリュームを使用することを推奨しています。ONTAP 9.8以降でFlexGroupは、データストアとしての使用もサポートされており、特定のユースケースでの使用が一般的に推奨されます。qtreeなどのその他のONTAPストレージコンテナは、現在ONTAP Tools for VMware vSphereまたはNetApp SnapCenter Plugin for VMware vSphereでサポートされていないため、一般に推奨されません。とはいえ、1つのボリューム内の複数のqtreeとしてデータストアを導入することは、データストアレベルのクォータやVMファイルクローンのメリットが得られる高度に自動化された環境に役立つ可能性があります。</block>
   <block id="dc4d78be836807b32c7ef7f42028b1ef" category="list-text">FlexVol ボリュームデータストアの適切なサイズは 4~8TB です。このサイズは、パフォーマンス、管理のしやすさ、データ保護のバランスが取れた適切なサイズです。小規模構成から開始して（ 4TB など）、必要に応じてデータストアを拡張します（最大 100TB まで）。小規模なデータストアは、バックアップや災害からのリカバリにかかる時間が短く、クラスタ間で迅速に移動できます。使用済みスペースの変化に応じてボリュームを自動的に拡張または縮小するには、 ONTAP のオートサイズを使用することを検討してください。VMware vSphere データストアプロビジョニングウィザードの ONTAP ツールでは、新しいデータストアに対してデフォルトでオートサイズが使用されます。拡張および縮小のしきい値と最大および最小サイズは、 System Manager またはコマンドラインを使用して追加でカスタマイズできます。</block>
@@ -3406,7 +3379,6 @@ VAAIを使用しない場合、NFS上のすべてのVMに対してこの設定�
   <block id="8c761039ef4dd69451490b849ace1f82" category="list-text">デフラグユーティリティはゲストOS内では使用しないでください。パフォーマンス上のメリットはなく、ストレージ効率とスナップショット容量の使用にも影響します。また、仮想デスクトップのゲスト OS で検索インデックスを無効にすることを検討してください。</block>
   <block id="14abb814748566a24367c4459a54840b" category="list-text">ONTAP は、革新的な Storage Efficiency 機能で業界をリードし、使用可能なディスクスペースを最大限に活用できるようにしています。AFF システムでは、デフォルトのインライン重複排除機能と圧縮機能により、この効率性がさらに向上しています。データはアグリゲート内のすべてのボリュームにわたって重複排除されるため、類似するオペレーティングシステムやアプリケーションを 1 つのデータストア内にまとめて、最大限の削減効果を得る必要はありません。</block>
   <block id="446548f2b1301893641e29657fc7fe53" category="inline-link-macro">ONTAP を基盤にした Oracle データベース</block>
-  <block id="9016fa494b85853dca561abb922d08d1" category="list-text">場合によっては、データストアが不要なこともあります。パフォーマンスと管理性を最大限に高めるためには、データベースや一部のアプリケーションなどの高 I/O アプリケーションにはデータストアを使用しないでください。代わりに、ゲストが管理する NFS や iSCSI ファイルシステムなど、ゲスト所有のファイルシステムや RDM を使用することを検討してください。アプリケーションに関する具体的なガイダンスについては、ご使用のアプリケーションに関するネットアップのテクニカルレポートを参照してください。例： <block ref="30827df672931d7ec1b01fc09c87df4e" category="inline-link-macro-rx"></block> 仮想化に関するセクションと役立つ詳細情報が記載されています。</block>
   <block id="6cda576d2fd323c1a728b7ac67d6034f" category="list-text">第 1 クラスのディスク（または強化された仮想ディスク）を使用すると、 vSphere 6.5 以降を搭載した VM に関係なく、 vCenter で管理されるディスクを使用できます。主に API で管理されますが、 VVol では特に OpenStack ツールや Kubernetes ツールで管理する場合に便利です。ONTAP および VMware vSphere 用の ONTAP ツールでサポートされています。</block>
   <block id="71318121439b39fdf872bb0bd57494f2" category="section-title">データストアと VM 移行</block>
   <block id="e8824ce2062c6d1fc536163f7b8940bd" category="paragraph">別のストレージシステム上の既存のデータストアから ONTAP に VM を移行する際は、いくつか注意しておくべきプラクティスがあります。</block>
@@ -4022,4 +3994,30 @@ SOAP over https 接続に使用されます</block>
   <block id="25cec91f17a8619119f76c8adbace583" category="paragraph">圧縮ブロックのアライメントに関するセクションも参照してください。 <block ref="0faffd62be034c86d531acfee84d252e" category="inline-link-macro-rx"></block>。8KBの圧縮ブロックの境界でアライメントされたレイアウトも、4KBの境界でアライメントされます。</block>
   <block id="38ac6f4e1538397bd4f659237ec03ebf" category="paragraph"><block ref="38ac6f4e1538397bd4f659237ec03ebf" category="inline-image-macro-rx" type="image"></block></block>
   <block id="f01518e5f3b18a9ea241bc63a3475dbd" category="paragraph"><block ref="f01518e5f3b18a9ea241bc63a3475dbd" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="acce752526553bfa73c92799accd9cb8" category="summary">Oracleのデータ保護の概要</block>
+  <block id="deb8cb7644231cae002f5f37c725b86f" category="paragraph">長距離の移行では、通常、ログ配布プロセスなど、より創造的なアプローチが必要になります。詳細については、を参照してください。 <block ref="86efe12ea0d3a769a4b7cfc2b6362f49" category="inline-link-macro-rx"></block>。長距離IPネットワークでは、LANやSANの速度に近い場所で帯域幅が使用されることはほとんどありません。あるケースでは、アーカイブログの生成頻度が非常に高い220TBデータベースの長距離移行をNetAppが支援しました。データ転送のために選択されたアプローチは、可能な限り最大の帯域幅を提供するため、テープの毎日の出荷でした。</block>
+  <block id="055362c7082175c34483772a43b776cf" category="paragraph">たとえば、10TBのデータベースのコピーには、通常、約7時間かかります。ビジネスニーズが7時間の停止を許容している場合、ファイルのコピーは簡単で安全な移行オプションです。5時間で対応できない場合は、シンプルなログ配布プロセス（ <block ref="eee8a7589b6555fc3411165c58a62ca5" category="inline-link-macro-rx"></block>最小限の労力でセットアップでき、カットオーバー時間を約15分に短縮できます。この間、データベース管理者はプロセスを完了できます。許容できない時間が15分であった場合は、スクリプトを使用して最終カットオーバープロセスを自動化し、カットオーバー時間をわずか数分に短縮できます。移行はいつでも高速化できますが、そのためには時間と労力がかかります。カットオーバーの所要時間は、ビジネス部門が許容できる範囲で決定する必要があります。</block>
+  <block id="911e63244fc82405263306a64e535c69" category="paragraph">zpoolは、の手順を実行したあとに作成する必要があります。 <block ref="e8673fdb712a2edcdf56742c7eec0045" category="inline-link-macro-rx"></block> が実行されます。手順を正しく実行しないと、I/Oのアライメントが原因でパフォーマンスが大幅に低下する可能性があります。ONTAPのパフォーマンスを最適化するには、I/Oがドライブの4Kの境界にアライメントされている必要があります。zpoolに作成されるファイルシステムは、というパラメータで制御される実効ブロックサイズを使用します。<block ref="81df978a8e3da4bee74b135548f390f3" prefix=" " category="inline-code"></block>（コマンドを実行すると表示できます）<block ref="1615297782a0dff59b20451e2ca97ea7" prefix=" " category="inline-code"></block>。</block>
+  <block id="b2ca9da17ac7a0807fb313343c1ba9cb" category="list-text">パーティションは、デフォルトの32ではなく33セクターオフセットで作成されています。で説明されている手順を繰り返します。 <block ref="6ba0f94fdd8f9504e3fef5712023fb85" category="inline-link-macro-rx"></block>。ヒストグラムは次のように表示されます。</block>
+  <block id="eb7f9a88026c895932f70c650c364132" category="list-text">LUNのサイズを拡張する</block>
+  <block id="0f11c45e6e7377b9d10a93534d0fa2f3" category="list-text">既存のボリュームグループにLUNを追加し、それに含まれる論理ボリュームを拡張する</block>
+  <block id="e4da750cce448393b2597f8f66086894" category="paragraph">イニシエータグループ（igroup）は、ONTAP LUNマスキングアーキテクチャの一部です。新しく作成したLUNには、ホストに最初にアクセスを許可しないかぎりアクセスできません。そのためには、アクセスを許可するFC WWNまたはiSCSIイニシエータ名をリストするigroupを作成します。このレポートの作成時点では、FLIはFC LUNでのみサポートされていました。ただし、移行後のiSCSIへの変換は簡単です（を参照）。 <block ref="43085dc2a05784d4912331d1ed1db91d" category="inline-link-macro-rx"></block>。</block>
+  <block id="525e71fb331412cd820122c3d51d453c" category="paragraph">これにより、DBAはデータが削除されたあとにストレージアレイのスペースを再生できます。ONTAPはゼロをインターセプトし、LUNからスペースの割り当てを解除します。ストレージシステム内にデータが書き込まれていないため、再生プロセスは非常に高速です。</block>
+  <block id="be17af715060572d2df93d7ffe4ce6dd" category="paragraph">ONTAP ストレージシステムは、 VM および仮想ディスク用のデータストアを柔軟に作成できます。を使用する場合、 ONTAP の多くのベストプラクティスが適用されますが vSphere 用のデータストアをプロビジョニングする VSC （を参照） <block ref="2e24324ebf41be836715e1e0dd648f4f" category="inline-link-macro-rx"></block>) 、考慮すべきその他のガイドラインを次に示します。</block>
+  <block id="141c3dc68be34b8f11c2a120b36a1eb8" category="list-text">場合によっては、データストアが不要なこともあります。パフォーマンスと管理性を最大限に高めるためには、データベースや一部のアプリケーションなどの高 I/O アプリケーションにはデータストアを使用しないでください。代わりに、ゲストが管理する NFS や iSCSI ファイルシステムなど、ゲスト所有のファイルシステムや RDM を使用することを検討してください。アプリケーションに関する具体的なガイダンスについては、ご使用のアプリケーションに関するネットアップのテクニカルレポートを参照してください。例： <block ref="cfa0393f870bc70fd8973ae18376facc" category="inline-link-macro-rx"></block> 仮想化に関するセクションと役立つ詳細情報が記載されています。</block>
+  <block id="3cd9527ff0ddb17e00c08bdb4cd1a776" category="paragraph">仮想マシンストレージポリシーは、Storage I/O ControlやvSphere Encryptionなどのオプション機能を管理するためにvSphereで使用されます。また、VVOLでも使用され、特定のストレージ機能をVMに適用します。ポリシーを使用して特定のSCPをVMに適用するには、「NetApp.clustered.Data.ONTAP.VP.vVol」ストレージタイプと「ProfileName」ルールを使用します。ONTAP tools VASA Providerを使用した場合の例については、link：vmware-vvols-ontap.html #ベストプラクティス[ NFS v3経由のVVOLを使用したネットワーク設定例]を参照してください。「NetApp.clustered.Data.ONTAP.VP.VASA10」ストレージのルールは、VVOLベース以外のデータストアで使用します。</block>
+  <block id="36ad91be49fdde7d3fadeba0fb782510" category="paragraph">作成したストレージポリシーは、に示すように、新しいVMのプロビジョニング時に使用できます。 <block ref="d202b3fe265f968d81802fcec9f3c381" category="inline-link-macro-rx"></block>。VASA Provider 7.2でパフォーマンス管理機能を使用する場合のガイドラインについては、を参照してください。 <block ref="8fdd8868d80d04eecf1b4189862f536c" category="inline-xref-macro-rx"></block>。</block>
+  <block id="14bdf3569ec0024259b2b02c5a668eae" category="paragraph">いつ<block ref="7ccc31934ae8244d8263d3c09bcee186" prefix=" " category="inline-code"></block> イネーブル(デフォルト)では、InnoDBはすべてのデータを2回格納します。最初にダブルライトバッファに格納し、次に実際のデータファイルに格納します。</block>
+  <block id="394ad91b4701dbd32675896bed204755" category="sidebar">PostgreSQLのホスト設定</block>
+  <block id="9852487272d9b2aa9026d0fddc0616fc" category="sidebar">PostgreSQLのストレージ設定</block>
+  <block id="bc237072428e0e4c415160b898946d4c" category="sidebar">PostgreSQLのデータ保護</block>
+  <block id="3423582eed75b4bd6632c18238fd78e4" category="sidebar">Microsoft SQL Server用のデータベース構成</block>
+  <block id="6e97cf67ec5979ab5828852639efa208" category="sidebar">Microsoft SQL Server向けのストレージ構成</block>
+  <block id="5a4517368fb2ab5498fc2108c2ea64c5" category="sidebar">Oracle Database用のデータベース構成</block>
+  <block id="e483c0ecf3a2b1a60f886d4a5ac553ff" category="sidebar">Oracle Database用のホストの設定</block>
+  <block id="06b078afa802a679ad4694d13a8a2495" category="sidebar">Oracle Database用のネットワーク構成</block>
+  <block id="f1991b28c5d48cb53798755acf9dfe62" category="sidebar">Oracle Database用のストレージ構成</block>
+  <block id="ea9cdfcbfcf1906c15b6779f0f327028" category="sidebar">MySQL用のデータベース設定</block>
+  <block id="308f8f580d0248ac023557cfd4b10d83" category="sidebar">MySQL用のホストの設定</block>
+  <block id="830f353b3e6055499fac447b16b0c935" category="sidebar">MySQLヨウノストレエシセツテイ</block>
 </blocks>

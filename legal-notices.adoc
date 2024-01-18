@@ -16,9 +16,6 @@ summary:
 [role="lead"]
 著作権に関する声明、商標、特許などにアクセスできます。
 
-[role="lead"]
-著作権に関する声明、商標、特許などにアクセスできます。
-
 
 
 == 著作権
@@ -55,7 +52,7 @@ link:https://www.netapp.com/company/legal/privacy-policy/["https://www.netapp.co
 
 
 
-=== ONTAP
+== ONTAP
 
 link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2885801["ONTAP 9.13.1に関する注意事項"^]
 link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2884813["ONTAP 9.12.1に関する注意事項"^]
@@ -75,7 +72,7 @@ link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2516795["ONTAP 9.1に
 
 
 
-=== MCC IP向けONTAPメディエーター
+== MCC IP向けONTAPメディエーター
 
 link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2870521["9.9.1 ONTAP Mediator for MCC IPに関する通知"^]
 link:https://library.netapp.com/ecm/ecm_download_file/ECMLP2870521["9.8 ONTAP Mediator for MCC IPに関する通知"^]

@@ -1,0 +1,23 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-dp-consistency-group-backup.html 
+keywords: oracle, data, protection, consistency, group, backup, volume, archive, log, redo, controlfiles 
+summary: ONTAPノOracleノセイコウセイクルウフハツクアツフ 
+---
+= Oracle整合グループのバックアップ
+:allow-uri-read: 
+
+
+[role="lead"]
+バックアップを最もシンプルにするには、Oracleデータベース全体を1つのボリュームに配置します。
+
+データファイル、アーカイブログ、REDOログ、および制御ファイルを1つのSnapshotで保護することは、有効なバックアップ、リストア、およびレプリケーション方法です。  ただし、RPOはバックアップ自体のポイントに制限されます。1時間以上のRPOに適しています。データベースが複数のボリュームにまたがっている場合は、前述のいずれかのツールを使用してcg-snapshotsが必要です。
+
+たとえば、次のSnapshotスケジュールを使用して、データベース全体を1つのボリュームに含めることができます。
+
+* 72時間ごとのスナップショット
+* 30個の夜間Snapshot
+* 12の月次スナップショット
+
+
+これにより、過去72時間の間に1時間のRPOが達成され、さらに夜間および月次バックアップが追加されます。複数のデータベースまたはアプリケーションファイルを1つのボリュームまたはcg-snapshotのセットに含めることもでき、大規模な環境全体で一貫したバックアップを実現できます。

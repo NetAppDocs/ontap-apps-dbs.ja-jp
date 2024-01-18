@@ -1,0 +1,165 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-vsphere-settings.html 
+keywords:  
+summary:  
+---
+= 推奨される ESXi ホストとその他の ONTAP 設定
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ネットアップでは、 ONTAP を使用する際に適切に動作する ESXi ホストのマルチパスと HBA タイムアウトの設定を、テスト結果に基づいて作成しました。これらは、 VMware vSphere 用の ONTAP ツールを使用して簡単に設定できます。サマリダッシュボードで、ホストシステムポートレットの設定の編集をクリックするか、 vCenter でホストを右クリックして、 ONTAP ツール > 推奨値の設定を選択します。9.8 リリースで現在推奨されているホスト設定は次のとおりです。
+
+|===
+
+
+| *ホスト設定* | *ネットアップが推奨する値* | *再起動が必要です* 
+
+
+3+| * ESXi Advanced Configuration * 
+
+
+| VMFS3.HardwareAcceleratedLocking | デフォルトのまま（1） | いいえ 
+
+
+| VMFS3.EnableBlockDelete の 2 つのオプションがあります | デフォルト（0）のままにしますが、必要に応じて変更できます。
+詳細については、を参照してください link:https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2007427["VMware KB 2007427"] | いいえ 
+
+
+| VMFS3.EnableVMFS6Unmap | デフォルトのまま（1）
+詳細については、を参照してください link:https://core.vmware.com/resource/vmware-vsphere-apis-array-integration-vaai#sec9426-sub4["VMware vSphere API：アレイ統合（VAAI）"] | いいえ 
+
+
+3+| * NFS設定* 
+
+
+| Net.TcpipHeapSize の場合 | vSphere 6.0 以降： 32 に設定
+他のすべてのNFS設定の場合は、30に設定されます | はい。 
+
+
+| Net.TcpipHeapMax | vSphere 6.Xのほとんどのリリースでは512 MBに設定されています。
+6.5U3、6.7U3、7.0以降の場合は、1024MBに設定します。 | はい。 
+
+
+| NFS.MaxVolumes の場合 | vSphere 6.0以降：256に設定
+他のすべての NFS 構成では、 64 に設定されます。 | いいえ 
+
+
+| NFS41.MaxVolumes | vSphere 6.0 以降では、 256 に設定されます。 | いいえ 
+
+
+| NFS.MaxQueueDepth^1 ^ | vSphere 6.0以降では、128に設定されます | はい。 
+
+
+| NFS.HeartbeatMaxFailures の略 | すべてのNFS設定について、10に設定されます | いいえ 
+
+
+| nfs.HeartbeatFrequency | すべてのNFS構成で12に設定 | いいえ 
+
+
+| nfs.HeartbeatTimeout | すべてのNFS構成で5に設定されます。 | いいえ 
+
+
+| SunRPC.MaxConnPerIP | vSphere 7.0 以降では 128 に設定されます。 | いいえ 
+
+
+3+| * FC / FCoE 設定 * 
+
+
+| パス選択ポリシー | FC パスの ALUA を使用する場合は、 RR （ラウンドロビン）に設定されます。それ以外の構成では、すべて FIXED に設定されます。
+この値を RR に設定すると、最適化されたすべてのアクティブなパスで負荷を分散できます。
+FIXED は、 ALUA に対応していない従来の構成用の値で、プロキシ I/O を防止できますつまり、Data ONTAP 7-Modeを実行する環境でハイアベイラビリティ（HA）ペアの他方のノードにI/Oが送られないようにすることができます | いいえ 
+
+
+| Disk.QFullSampleSize | すべての構成で 32 に設定されます。
+この値を設定すると、 I/O エラーの防止に役立ちます。 | いいえ 
+
+
+| Disk.qFullThreshold | すべての構成で 8 に設定します。
+この値を設定すると、 I/O エラーの防止に役立ちます。 | いいえ 
+
+
+| Emulex FC HBA タイムアウト | デフォルト値を使用します。 | いいえ 
+
+
+| QLogic FC HBA タイムアウト | デフォルト値を使用します。 | いいえ 
+
+
+3+| * iSCSI 設定 * 
+
+
+| パス選択ポリシー | すべての iSCSI パスで RR （ラウンドロビン）に設定されます。
+この値を RR に設定すると、最適化されたすべてのアクティブなパスで負荷を分散できます。 | いいえ 
+
+
+| Disk.QFullSampleSize | すべての構成で 32 に設定されます。
+この値を設定すると、I/Oエラーの防止に役立ちます | いいえ 
+
+
+| Disk.qFullThreshold | すべての構成で 8 に設定します。
+この値を設定すると、 I/O エラーの防止に役立ちます。 | いいえ 
+|===
+
+NOTE: VMware vSphere ESXi 7.0.1およびVMware vSphere ESXi 7.0.2を使用する場合、1-NFSの高度な設定オプションMaxQueueDepthが想定どおりに機能しないことがあります。参照してください link:https://kb.vmware.com/s/article/86331?lang=en_US["VMware KB 86331"] を参照してください。
+
+ONTAP ツールでは、 ONTAP FlexVol および LUN の作成時に特定のデフォルト設定も指定されます。
+
+|===
+
+
+| * ONTAP ツール* | *デフォルト設定* 
+
+
+| Snapshot リザーブ（ -percent-snapshot-space ） | 0 
+
+
+| フラクショナルリザーブ（ -fractional-reserve ） | 0 
+
+
+| アクセス時間の更新（ -atime-update ） | いいえ 
+
+
+| 最小限の先読み（ -min-readahead ） | いいえ 
+
+
+| スケジュールされたSnapshot | なし 
+
+
+| ストレージ効率 | 有効 
+
+
+| ボリュームギャランティ | なし（シンプロビジョニング） 
+
+
+| ボリュームのオートサイズ | grow_shrink 
+
+
+| LUN のスペースリザベーション | 無効 
+
+
+| LUN スペースの割り当て | 有効 
+|===
+
+
+== ハフオマンスノマルチハスセツテイ
+
+現在使用可能なONTAPツールでは設定されていませんが、NetAppでは次の設定オプションを推奨しています。
+
+* ハイパフォーマンスな環境で、または単一の LUN データストアでパフォーマンスをテストする場合は、ラウンドロビン（ VMW_PSP_RR ）パス選択ポリシー（ PSP ）の負荷分散設定をデフォルトの IOPS 設定 1000 から 1 に変更することを検討します。VMware の技術情報を参照 https://kb.vmware.com/s/article/2069356["2069356"^] 詳細については、
+* vSphere 6.7 Update 1 では、 VMware がラウンドロビン PSP 用に新しいレイテンシの負荷分散メカニズムを導入しました。新しいオプションでは、 I/O に最適なパスを選択する際に、 I/O 帯域幅とパスレイテンシが考慮されます1 つのパスに別のパスよりも多くのネットワークホップがある場合や、 NetApp All SAN Array システムを使用している場合など、パス接続に同等でない環境では、この方法を使用するとメリットが得られます。を参照してください https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-B7AD0CA0-CBE2-4DB4-A22C-AD323226A257.html?hWord=N4IghgNiBcIA4Gc4AIJgC4FMB2BjAniAL5A["パス選択プラグインとポリシー"^] を参照してください。
+
+
+
+
+== その他のドキュメント
+
+vSphere 7を使用するFCPおよびiSCSIの詳細については、を参照してください。 https://docs.netapp.com/us-en/ontap-sanhost/hu_vsphere_7.html["VMware vSphere 7.xとONTAPの併用"^]
+vSphere 8を使用するFCPおよびiSCSIの詳細については、を参照してください。 https://docs.netapp.com/us-en/ontap-sanhost/hu_vsphere_8.html["VMware vSphere 8.xとONTAPの併用"^]
+vSphere 7を使用したNVMe-oFの詳細については、を参照してください。 https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_7.html["NVMe-oFの詳細については、「NVMe-oFホスト構成（ESXi 7.x with ONTAP）」を参照してください。"^]
+vSphere 8を使用したNVMe-oFの詳細については、を参照してください。 https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_8.html["NVMe-oFの詳細については、「NVMe-oFホスト構成（ESXi 8.x with ONTAP）」を参照してください。"^]

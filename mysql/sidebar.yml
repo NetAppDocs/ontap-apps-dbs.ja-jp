@@ -3,44 +3,47 @@ section: mysql
 title: MySQL
 entries:
 - title: 概要
-  url: "/mysql/overview.html"
+  url: "/mysql/mysql-overview.html"
 - title: データベース設定
+  pdf-filename: MySQL用のデータベース設定
   entries:
   - title: ファイル構造
-    url: "/mysql/file-structure.html"
+    url: "/mysql/mysql-file-structure.html"
   - title: 設定の概要
-    url: "/mysql/configuration.html"
+    url: "/mysql/mysql-configuration.html"
   - title: innodb_log_file_size
-    url: "/mysql/innodb_log_file_size.html"
+    url: "/mysql/mysql-innodb_log_file_size.html"
   - title: innodb_flush_log_at_trx_commit
-    url: "/mysql/innodb_flush_log_at_trx_commit.html"
+    url: "/mysql/mysql-innodb_flush_log_at_trx_commit.html"
   - title: innodb_doublewrite
-    url: "/mysql/innodb_doublewrite.html"
+    url: "/mysql/mysql-innodb_doublewrite.html"
   - title: innodb_buffer_pool_size
-    url: "/mysql/innodb_buffer_pool_size.html"
+    url: "/mysql/mysql-innodb_buffer_pool_size.html"
   - title: innodb_flush_method
-    url: "/mysql/innodb_flush_method.html"
+    url: "/mysql/mysql-innodb_flush_method.html"
   - title: innodb_io_capacity
-    url: "/mysql/innodb_io_capacity.html"
+    url: "/mysql/mysql-innodb_io_capacity.html"
   - title: innodb_lru_scan_depth
-    url: "/mysql/innodb_lru_scan_depth.html"
+    url: "/mysql/mysql-innodb_lru_scan_depth.html"
   - title: open_file_limits
-    url: "/mysql/open_file_limits.html"
+    url: "/mysql/mysql-open_file_limits.html"
 - title: ホストの設定
+  pdf-filename: MySQL用のホストの設定
   entries:
   - title: コンテナ化
-    url: "/mysql/containers.html"
+    url: "/mysql/mysql-containers.html"
   - title: スロットテーブル
-    url: "/mysql/slot-tables.html"
+    url: "/mysql/mysql-slot-tables.html"
   - title: I/Oスケジューラ
-    url: "/mysql/schedulers.html"
+    url: "/mysql/mysql-schedulers.html"
   - title: ファイル記述子
-    url: "/mysql/file-descriptors.html"
+    url: "/mysql/mysql-file-descriptors.html"
 - title: ストレージ構成
+  pdf-filename: MySQLヨウノストレエシセツテイ
   entries:
   - title: NFS経由のMySQL
-    url: "/mysql/mysql-over-nfs.html"
+    url: "/mysql/mysql-mysql-over-nfs.html"
   - title: SAN経由のMySQL
-    url: "/mysql/mysql-over-san.html"
+    url: "/mysql/mysql-mysql-over-san.html"
   - title: FabricPoolを使用したMySQLの階層化
-    url: "/mysql/tiering.html"
+    url: "/mysql/mysql-tiering.html"

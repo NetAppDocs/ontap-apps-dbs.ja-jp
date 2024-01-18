@@ -1,33 +1,37 @@
 ---
 indexpage:
+  title: ONTAPとエンタープライズアプリケーション
+  summary: ONTAPは、多くのエンタープライズアプリケーションやデータベーステクノロジのデータ管理とデータ保護の基盤です。以降のページでは、ONTAPとエンタープライズアプリケーションおよびインフラのベストプラクティスと実装手順について説明します。
+  keywords: Oracle, SAP, HANA, SAP HANA, MSSQL, SQL Server, Postgres, postgresql,
+    mysql, mariadb
   lead: ONTAPは、多くのエンタープライズアプリケーションやデータベーステクノロジのデータ管理とデータ保護の基盤です。以降のページでは、ONTAPとエンタープライズアプリケーションおよびインフラのベストプラクティスと実装手順について説明します。
   tiles:
   - title: Microsoft SQL Server の場合
     links:
     - title: ONTAP上のMicrosoft SQL Server
-      url: "/mssql/overview.html"
+      url: "/mssql/mssql-overview.html"
     - title: Microsoft SQL Serverストレージに関する考慮事項
-      url: "/mssql/Storage-considerations.html"
+      url: "/mssql/mssql-storage-considerations.html"
     - title: Microsoft SQL Serverのデータ保護
-      url: "/mssql/Data-protection.html"
+      url: "/mssql/mssql-data-protection.html"
     - title: Microsoft SQL Serverのディザスタリカバリ
-      url: "/mssql/SQL-disaster-recovery.html"
+      url: "/mssql/mssql-disaster-recovery.html"
   - title: オープンソースデータベース
     links:
     - title: ONTAP上のMariaDBとMySQL
-      url: "/mysql/overview.html"
+      url: "/mysql/mysql-overview.html"
     - title: ONTAP上のPostgreSQL
-      url: "/postgres/overview.html"
+      url: "/postgres/postgres-overview.html"
   - title: Oracle データベース
     links:
     - title: ONTAP上のOracle
-      url: "/oracle/overview.html"
+      url: "/oracle/oracle-overview.html"
     - title: Oracleのデータ保護
-      url: "/oracle/dp/oracle-data-protection-introduction.html"
+      url: "/oracle/oracle-dp-overview.html"
     - title: Oracleのディザスタリカバリ
-      url: "/oracle/dr/oracle-dr-overview.html"
+      url: "/oracle/oracle-dr-overview.html"
     - title: Oracleへの移行
-      url: "/oracle/migration/oracle-migration-overview.html"
+      url: "/oracle/oracle-migration-overview.html"
   - title: SAP HANA のサポート
     links:
     - title: SAP ソリューション
@@ -39,8 +43,8 @@ indexpage:
   - title: VMware
     links:
     - title: ONTAP を使用した VMware vSphere
-      url: "/vmware/vsphere/overview.html"
+      url: "/vmware/vmware-vsphere-overview.html"
     - title: ONTAPを備えた仮想ボリューム（VVOL）
-      url: "/vmware/vvols/overview.html"
+      url: "/vmware/vmware-vvols-overview.html"
     - title: VMware Site Recovery ManagerとONTAP
-      url: "/vmware/srm/overview.html"
+      url: "/vmware/vmware-srm-overview.html"

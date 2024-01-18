@@ -1,0 +1,113 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-host-config-aix.html 
+keywords: oracle, database, ontap, aix, cio 
+summary: AIXを使用したONTAP上のOracle 
+---
+= IBM AIX
+:allow-uri-read: 
+
+
+[role="lead"]
+IBM AIXオペレーティングシステム固有の構成に関するトピック。
+
+
+
+== 同時I/O
+
+IBM AIXで最適なパフォーマンスを実現するには、同時I/Oを使用する必要があります。AIXはシリアル化されたアトミックなI/Oを実行するため、大量のオーバーヘッドが発生するため、同時I/Oがないとパフォーマンスが制限される可能性があります。
+
+従来のNetAppでは、 `cio` マウントオプション：ファイルシステムで強制的に同時I/Oを使用しますが、このプロセスには欠点があるため不要になりました。AIX 5.2とOracle 10gR1が導入されて以降、AIX上のOracleでは、ファイルシステム全体で同時I/Oを強制的に実行するのではなく、個 々 のファイルを開いて同時IOを実行できるようになりました。
+
+同時I/Oを有効にする最適な方法は、 `init.ora` パラメータ `filesystemio_options` 終了： `setall`。これにより、Oracleが特定のファイルを開いて同時I/Oで使用できるようになります。
+
+を使用します `cio` マウントオプションを指定すると、同時I/Oが強制的に使用されるため、悪影響が生じる可能性があります。たとえば、同時I/Oを強制するとファイルシステムの先読みが無効になり、Oracleデータベースソフトウェアの外部で発生するI/O（ファイルのコピーやテープバックアップの実行など）のパフォーマンスが低下する可能性があります。さらに、Oracle GoldenGateやSAP BR * Toolsなどの製品は、 `cio` 特定のバージョンのOracleでのマウントオプション。
+
+[TIP]
+====
+* NetAppの推奨事項*：
+
+* を使用しないでください `cio` ファイルシステムレベルのマウントオプション。代わりに、を使用して同時I/Oを有効にします。 `filesystemio_options=setall`。
+* 使用するのは、 `cio` マウントオプションは次のように設定できない場合に実行します： `filesystemio_options=setall`。
+
+
+====
+
+
+== AIX NFSのマウントオプション
+
+次の表に、OracleシングルインスタンスデータベースのAIX NFSマウントオプションを示します。
+
+|===
+| ファイルタイプ | マウントオプション 
+
+
+| ADRホーム | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144` 
+
+
+| 制御ファイル
+データファイル
+REDO ログ | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144` 
+
+
+| `ORACLE_HOME` | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+intr` 
+|===
+次の表に、RACのAIX NFSマウントオプションを示します。
+
+|===
+| ファイルタイプ | マウントオプション 
+
+
+| ADRホーム | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144` 
+
+
+| 制御ファイル
+データファイル
+REDO ログ | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+nointr,noac` 
+
+
+| `CRS/Voting` | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+nointr,noac` 
+
+
+| 専用 `ORACLE_HOME` | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144` 
+
+
+| 共有 `ORACLE_HOME` | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+nointr` 
+|===
+シングルインスタンスとRACマウントオプションの主な違いは、 `noac` をマウントオプションに移動します。このオプションを使用するとホストOSのキャッシングが無効になるため、データの状態について、RACクラスタ内のすべてのインスタンスが一貫した情報を認識できるようになります。
+
+ただし、 `cio` マウントオプションと `init.ora` パラメータ `filesystemio_options=setall` ホストのキャッシングを無効にした場合と同じ効果がありますが、引き続きを使用する必要があります。 `noac`。 `noac` 共有の場合は必須です `ORACLE_HOME` OracleパスワードファイルやOracleパスワードファイルなどのファイルの整合性を維持するための導入 `spfile` パラメータファイル。RACクラスタ内の各インスタンスに専用の `ORACLE_HOME`の場合、このパラメータは必要ありません。
+
+
+
+== AIX JFS / JFS2のマウントオプション
+
+次の表に、AIX JFS / JFS2のマウントオプションを示します。
+
+|===
+| ファイルタイプ | マウントオプション 
+
+
+| ADRホーム | デフォルト値です 
+
+
+| 制御ファイル
+データファイル
+REDO ログ | デフォルト値です 
+
+
+| ORACLE_HOME を参照してください | デフォルト値です 
+|===
+AIXを使用する前に `hdisk` データベースを含むあらゆる環境のデバイスで、パラメータをチェックします。 `queue_depth`。このパラメータはHBAのキュー深度ではなく、個 々 ののSCSIキュー深度に関連します。 `hdisk device. Depending on how the LUNs are configured, the value for `queue_depth` パフォーマンスを向上させるには低すぎる可能性があります。テストでは、最適値は64であることが示されています。

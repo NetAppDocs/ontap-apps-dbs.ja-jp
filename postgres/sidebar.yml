@@ -3,28 +3,29 @@ section: postgres
 title: PostgreSQL
 entries:
 - title: 概要
-  url: "/postgres/overview.html"
+  url: "/postgres/postgres-overview.html"
 - title: データベース設定
+  pdf-filename: PostgreSQLのホスト設定
   entries:
   - title: アーキテクチャ
-    url: "/postgres/architecture.html"
+    url: "/postgres/postgres-architecture.html"
   - title: 初期化
-    url: "/postgres/initialization.html"
+    url: "/postgres/postgres-initialization.html"
   - title: 設定
-    url: "/postgres/db-config.html"
+    url: "/postgres/postgres-db-config.html"
   - title: 表領域
-    url: "/postgres/tablespaces.html"
+    url: "/postgres/postgres-tablespaces.html"
 - title: ストレージ構成
+  pdf-filename: PostgreSQLのストレージ設定
   entries:
   - title: ファイルシステム構成
-    url: "/postgres/filesystems.html"
-  - title: 階層化
-    url: "/postgres/tiering.html"
+    url: "/postgres/postgres-filesystems.html"
 - title: データ保護
+  pdf-filename: PostgreSQLのデータ保護
   entries:
   - title: 標準搭載のデータ保護
-    url: "/postgres/native-dp.html"
+    url: "/postgres/postgres-native-dp.html"
   - title: Snapshotテクノロジ
-    url: "/postgres/snapshot-dp.html"
+    url: "/postgres/postgres-snapshot-dp.html"
   - title: データ保護ソフトウェア
-    url: "/postgres/snapcenter-dp.html"
+    url: "/postgres/postgres-snapcenter-dp.html"

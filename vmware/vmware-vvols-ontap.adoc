@@ -1,0 +1,186 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-vvols-ontap.html 
+keywords: tr-4400, vvols, ontap 
+summary: このドキュメントでは、 VMware vSphere 向け ONTAP ツールの製品セキュリティについて説明します。 
+---
+= ONTAP でVVOLを使用する
+:allow-uri-read: 
+
+
+[role="lead"]
+VVOLをONTAP で使用するための鍵は、ONTAP Tools for VMware vSphere仮想アプライアンスに含まれているVASA Providerソフトウェアです。
+
+ONTAP ツールには、vCenter UI拡張機能、REST APIサーバ、Storage Replication Adapter for VMware Site Recovery Manager、Monitoring and Host構成ツール、VMware環境の管理に役立つ一連のレポートも含まれています。
+
+
+
+== 製品およびドキュメント
+
+ネットアップONTAP でVVOLを使用するために必要な追加製品は、ONTAP FlexCloneライセンス（ONTAP Oneに付属）とONTAP toolsアプライアンスだけです。最近リリースされたONTAP toolsは、ESXi上で動作する単一の統合アプライアンスとして提供され、これまで3種類のアプライアンスとサーバの機能を提供します。VVOLの場合、vSphereのONTAP 機能の一般的な管理ツールおよびユーザインターフェイスとして、ONTAP toolsのvCenter UI拡張機能またはREST APIを、特定のVVOL機能を提供するVASA Providerとともに使用することが重要です。SRAコンポーネントは従来のデータストアに含まれていますが、VMware Site Recovery ManagerはvVolにSRAを使用せず、代わりにvVolレプリケーションにVASAプロバイダを利用する新しいサービスをSRM 8.3以降に実装します。
+
+
+
+=== iSCSIまたはFCPを使用する場合のONTAP tools VASA Providerのアーキテクチャ
+
+image:vvols-image5.png["ONTAP tools VASA Providerのアーキテクチャ、240"]
+
+
+
+=== 製品のインストール
+
+新規インストールの場合は、仮想アプライアンスをvSphere環境に導入します。現在のリリースのONTAP toolsは自動的にvCenterに登録され、VASA Providerがデフォルトで有効になります。ESXiホストとvCenter Serverの情報に加えて、アプライアンスのIPアドレス設定の詳細も必要です。前述したように、VVOLに使用するすべてのONTAP クラスタには、ONTAP FlexCloneライセンスがあらかじめインストールされている必要があります。アプライアンスには可用性を確保するためのwatchdogが組み込まれています。ベストプラクティスとして、VMwareの高可用性機能とオプションのフォールトトレランス機能を使用して設定する必要があります。詳細については、セクション4.1を参照してください。ONTAP toolsアプライアンスまたはvCenter Serverアプライアンス（vCSA）をvVolストレージにインストールしたり移動したりしないでください。アプライアンスが再起動しない可能性があります。
+
+ONTAP ツールのインプレースアップグレードは、NetApp Support Site （NSS）からダウンロードできるアップグレードISOファイルを使用してサポートされます。導入およびセットアップガイドの手順に従って、アプライアンスをアップグレードします。
+
+仮想アプライアンスのサイジングと構成の制限については、次のナレッジベースの記事を参照してください。 https://kb.netapp.com/Advice_and_Troubleshooting/Data_Storage_Software/VSC_and_VASA_Provider/OTV%3A_Sizing_Guide_for_ONTAP_tools_for_VMware_vSphere["『Sizing Guide for ONTAP tools for VMware vSphere』を参照してください"^]
+
+
+
+=== 製品ドキュメント
+
+ONTAP ツールの導入に役立つ次のドキュメントを参照してください。
+
+https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/index.html["完全なドキュメントリポジトリについては、次のリンクを参照してください。docs.netapp.com"^]
+
+
+
+==== はじめに
+
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/release_notes.html["リリースノート"^]
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/concepts/concept_virtual_storage_console_overview.html["ONTAP Tools for VMware vSphereについて説明します"^]
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/qsg.html["ONTAP ツールクイックスタート"^]
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/deploy/task_deploy_ontap_tools.html["ONTAP ツールを導入"^]
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/deploy/task_upgrade_to_the_9_8_ontap_tools_for_vmware_vsphere.html["ONTAP ツールをアップグレードする"^]
+
+
+
+
+==== ONTAP ツールを使用する
+
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/configure/task_provision_datastores.html["従来のデータストアをプロビジョニングする"^]
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/configure/task_provision_vvols_datastores.html["vVol データストアをプロビジョニングする"^]
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/concepts/concept_vcenter_server_role_based_access_control_features_in_vsc_for_vmware_vsphere.html["ロールベースアクセス制御を設定する"^]
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/manage/task_configure_vasa_provider_to_use_ssh_for_remote_diag_access.html["リモート診断を設定します"^]
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/concepts/concept_configure_high_availability_for_ontap_tools_for_vmware_vsphere.html["ハイアベイラビリティを設定する"^]
+
+
+
+
+==== データストアの保護と管理
+
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/protect/task_enable_storage_replication_adapter.html["従来のデータストアを保護"^] SRMを使用
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/protect/concept_configure_replication_for_vvols_datastore.html["VVOLベースの仮想マシンを保護"^] SRMを使用
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/manage/task_monitor_datastores_using_the_traditional_dashboard.html["従来のデータストアと仮想マシンを監視する"^]
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/manage/task_monitor_vvols_datastores_and_virtual_machines_using_vvols_dashboard.html["VVol データストアと仮想マシンを監視する"^]
+
+
+製品ドキュメント以外にも、役立つサポート技術情報アーティクルがあります。
+
+* https://kb.netapp.com/app/answers/answer_view/a_id/1031261["VASA Providerのディザスタリカバリの実行方法"^]
+
+
+
+
+=== VASA Providerダッシュボード
+
+VASA Providerには、個 々 のvVol VMのパフォーマンスと容量の情報が表示されたダッシュボードがあります。この情報は、VVOLファイルおよびLUNのONTAP から直接取得されます。上位5つのVMのレイテンシ、IOPS、スループット、アップタイム、上位5つのデータストアのレイテンシとIOPSなどが含まれます。ONTAP 9.7以降を使用している場合はデフォルトで有効になります。初期データが取得されてダッシュボードに表示されるまで、最大で30分かかることがあります。
+
+
+
+==== ONTAP tools vVolダッシュボード
+
+image:vvols-image6.png["ONTAP tools vVolダッシュボード、400"]
+
+
+
+== ベストプラクティス
+
+vSphereでONTAP vVolを使用するのは簡単で、公開されているvSphereのメソッドに従います（使用しているバージョンのESXiに対応するVMwareのドキュメントの「vSphere Storage」の「Working with Virtual Volumes」を参照してください）。ここでは、ONTAP と併せて考慮すべき追加のプラクティスをいくつか紹介します。
+
+*制限*
+
+一般に、ONTAP でサポートされるVVOLの制限は、VMwareで定義されています（公開されているを参照） https://configmax.esp.vmware.com/guest?vmwareproduct=vSphere&release=vSphere%207.0&categories=8-0["構成の最大値"^]）。次の表は、ONTAP 固有のVVOLのサイズと数の制限をまとめたものです。必ずをチェックしてください https://hwu.netapp.com/["NetApp Hardware Universe の略"^] LUNとファイルの数とサイズの制限を更新
+
+* ONTAP vVolの制限*
+
+|===
+| 容量 / 機能 | SAN（SCSIまたはNVMe-oF） | NFS 
+
+
+| vVolの最大サイズ | 62TiB * | 62TiB * 
+
+
+| FlexVol あたりの最大VVol数 | 一、〇 二四 | 20億です 
+
+
+| ONTAP ノードあたりの最大VVol数 | 最大12,288 ** | 500億です 
+
+
+| ONTAP ペアあたりの最大VVol数 | 最大24,576 ** | 500億です 
+
+
+| ONTAP クラスタあたりの最大VVol数 | 最大98,304 ** | 特定のクラスタ制限はありません 
+
+
+| 最大QoSオブジェクト（共有ポリシーグループと個 々 のvVolサービスレベル） | ONTAP 9.3では12、000、ONTAP 9.4以降では40、000 |  
+|===
+* サイズ制限はASA システム、またはONTAP 9.12.1P2以降を実行するAFF およびFAS システムによって異なります。
++
+** SAN vVol（NVMeネームスペースまたはLUN）の数はプラットフォームによって異なります。必ずをチェックしてください https://hwu.netapp.com/["NetApp Hardware Universe の略"^] LUNとファイルの数とサイズの制限を更新
+
+
+
+
+* ONTAP ツールfor VMware vSphereのUI拡張機能またはREST APIを使用して、VVOLデータストア*およびプロトコルエンドポイントをプロビジョニングします。*
+
+VVOLデータストアは一般的なvSphereインターフェイスを使用して作成することもできますが、ONTAPツールを使用すると、必要に応じてプロトコルエンドポイントが自動的に作成されます。また、ONTAPのベストプラクティスに従って、定義されたストレージ機能プロファイルに準拠したFlexVolボリュームが作成されます。ホスト/クラスタ/データセンターを右クリックし、ONTAP tools_and_Provision datastores_を選択します。ウィザードで目的のvVolオプションを選択するだけです。
+
+* ONTAP ToolsアプライアンスまたはvCenter Server Appliance（vCSA）は、管理対象のVVOLデータストアには絶対に保存しないでください。*
+
+その結果、アプライアンスのリブートが必要になった場合、リブート中に自身のVVOLを再バインドできないため、アプライアンスのリブートが必要になることがあります。これらのデータは、別のONTAP ツールとvCenter環境で管理されるvVolデータストアに格納できます。
+
+*異なるONTAP リリース間でのVVOL処理は避けてください。*
+
+サポートされるストレージ機能（QoS、パーソナリティなど）はVASA Providerのリリースによって変更され、一部はONTAP リリースに依存します。ONTAP クラスタで異なるリリースを使用したり、リリースの異なるクラスタ間でVVolを移動したりすると、予期しない動作やコンプライアンスアラームが発生する可能性があります。
+
+* VVOLにNVMe/FCまたはFCPを使用する前に、ファイバチャネルファブリックのゾーニングを設定してください。*
+
+ONTAP tools VASAプロバイダは、管理対象のESXiホストで検出されたイニシエータに基づいて、FCPおよびiSCSI igroup、およびONTAP 内のNVMeサブシステムを管理します。ただし、ゾーニングを管理するためにファイバチャネルスイッチと統合することはできません。プロビジョニングを実行する前に、ベストプラクティスに従ってゾーニングを実行する必要があります。次に、4つのONTAPシステムに対する単一イニシエータゾーニングの例を示します。
+
+単一イニシエータのゾーニング：
+
+image:vvols-image7.gif["4つのノードを使用した単一イニシエータゾーニング（400"]
+
+ベストプラクティスの詳細については、次のドキュメントを参照してください。
+
+https://www.netapp.com/media/10680-tr4080.pdf["_TR-4080『Best Practices for Modern SAN ONTAP 9』を参照してください"^]
+
+https://www.netapp.com/pdf.html?item=/media/10681-tr4684.pdf["_TR-4684『Implementing and Configuring Modern SANs with NVMe-oF』を参照してください"^]
+
+*あなたの必要性に応じてあなたのバッキングFlexVolを計画しなさい。*
+
+VVOLデータストアに元のボリュームをいくつか追加して、ONTAP クラスタ全体にワークロードを分散したり、さまざまなポリシーオプションをサポートしたり、許可するLUNやファイルの数を増やしたりすることができます。ただし、最大限のストレージ効率が必要な場合は、すべてのバッキングボリュームを1つのアグリゲートに配置してください。また、クローニングのパフォーマンスを最大限に高める必要がある場合は、単一のFlexVol ボリュームを使用し、テンプレートまたはコンテンツライブラリを同じボリューム内に維持することを検討してください。VASA Providerは、移行、クローニング、Snapshotなど、多くのVVOLストレージ処理をONTAP にオフロードします。単一のFlexVol ボリューム内で実行すると、スペース効率に優れたファイルクローンが使用され、ほぼ瞬時に使用できます。この処理をFlexVol ボリューム間で実行すると、コピーをすぐに使用でき、インラインの重複排除と圧縮が使用されます。ただし、バックグラウンドの重複排除と圧縮を使用するボリュームでバックグラウンドジョブが実行されるまで、最大限のストレージ効率が回復されることはありません。ソースとデスティネーションによっては、一部の効率が低下する場合があります。
+
+*ストレージ機能プロファイル（SCP）はシンプルに。*
+
+必要のない機能は、anyに設定して指定しないでください。これにより、FlexVol ボリュームを選択または作成する際の問題を最小限に抑えることができます。たとえば、VASA Provider 7.1以前では、圧縮がデフォルトのSCP設定の[いいえ]のままになっていると、AFF システムであっても圧縮を無効にしようとします。
+
+*デフォルトのSCPをサンプルテンプレートとして使用して、独自のSCPを作成します。*
+
+付属のSCPはほとんどの汎用用途に適していますが、要件が異なる場合があります。
+
+*最大IOPSを使用して不明なVMやテストVMを制御することを検討してください。*
+
+最大IOPSを使用すると、不明なワークロードのIOPSを特定のVVolに制限して、他の重要度の高いワークロードへの影響を回避できます。パフォーマンス管理の詳細については、表4を参照してください。
+
+*十分な数のデータLIFがあることを確認してください。*
+各HAペアのノードごとに少なくとも2つのLIFを作成します。ワークロードに応じて、さらに多くの処理が必要になる場合があります。
+
+*すべてのプロトコルのベストプラクティスに従ってください。*
+
+選択したプロトコルに固有のNetAppおよびVMwareのその他のベストプラクティスガイドを参照してください。一般的に、上記以外の変更はありません。
+
+* NFS v3経由でVVOLを使用したネットワーク構成の例*
+
+image:vvols-image18.png["NFS v3、500経由でVVOLを使用するネットワーク設定"]

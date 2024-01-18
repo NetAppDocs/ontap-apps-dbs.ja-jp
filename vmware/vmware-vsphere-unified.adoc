@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-vsphere-unified.html 
+keywords: introduction, unified storage, virtual volumes, storage efficiency, hybrid cloud 
+summary: NetApp ONTAP ソフトウェアは、 VMware vSphere 環境向けのストレージ解決策を約 20 年にわたって業界をリードしてきました。また、コストを削減しながら管理を簡易化する革新的な機能を継続的に追加しています。このドキュメントでは、導入の合理化、リスクの軽減、管理の簡易化を実現するために、最新の製品情報とベストプラクティスを含む ONTAP 解決策 for vSphere について説明します。 
+---
+= ユニファイドストレージ
+:allow-uri-read: 
+
+
+
+
+== ユニファイドストレージ
+
+[role="lead"]
+ONTAP ソフトウェアを実行するシステムは、いくつかの重要な方法で統合されます。
+
+本来、このアプローチは、 1 つのストレージシステムで NAS プロトコルと SAN プロトコルの両方をサポートすることを指していました。 ONTAP は、 NAS における従来の強みと同様に、業界をリードする SAN 向けプラットフォームとして継続されています。
+
+Storage Virtual Machine （ SVM ）は、 ONTAP ソフトウェアを実行しているシステムにクライアントからアクセスできるようにする、論理的な構成要素です。SVM は、論理インターフェイス（ LIF ）を介して複数のデータアクセスプロトコルを使用して同時にデータをやり取りできます。SVM は、 CIFS や NFS などの NAS プロトコルでファイルレベルのデータアクセスを提供し、 iSCSI 、 FC / FCoE 、 NVMe などの SAN プロトコルでブロックレベルのデータアクセスを提供します。SVM は、 SAN クライアントと NAS クライアントそれぞれに同時にデータを提供できます。
+
+image:vsphere_admin_unified_storage.png["ユニファイドストレージ"]
+
+vSphere 環境では、このアプローチは仮想デスクトップインフラ（ VDI ）向けのユニファイドシステムと仮想サーバインフラ（ VSI ）の組み合わせを意味する場合もあります。ONTAP ソフトウェアを実行するシステムは一般に、従来のエンタープライズアレイに比べて VSI の方が安価ですが、同じシステムで VDI を処理するための高度な Storage Efficiency 機能も備えています。また、 ONTAP は、 SSD から SATA までさまざまなストレージメディアを統合し、クラウドへの拡張を容易にします。パフォーマンスのためにフラッシュアレイを1つ、アーカイブ用にSATAアレイを1つ、クラウド用に別 々 のシステムを購入する必要はありません。ONTAP は、これらすべてを 1 つにまとめます。
+
+
+NOTE: SVM 、ユニファイドストレージ、クライアントアクセスの詳細については、を参照してください https://docs.netapp.com/ontap-9/index.jsp?lang=en["ストレージ仮想化"^] ONTAP 9 ドキュメントセンターを参照してください。

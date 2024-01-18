@@ -1,0 +1,14 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-links-nva-1129-deploy.html 
+keywords: deploy, HCI, computing, vmware, cloud 
+summary: NetApp HCI を使用したVMwareエンドユーザコンピューティングは、仮想デスクトップワークロードをエンタープライズ規模で導入するための、事前検証済みのベストプラクティスデータセンターアーキテクチャです。 
+---
+= NVA-1129 - deploy：NetApp HCI とNVIDIA GPUを使用したVMwareエンドユーザコンピューティング
+:allow-uri-read: 
+
+
+[role="lead"]
+NetApp HCI を使用したVMwareエンドユーザコンピューティングは、仮想デスクトップワークロードをエンタープライズ規模で導入するための、事前に検証されたベストプラクティスのデータセンターアーキテクチャです。このドキュメントでは、信頼性の高いリスクのない方法で、本番環境の規模で解決策 を導入する方法について説明します
+
+link:https://www.netapp.com/pdf.html?item=/media/7124-nva-1129-deploy.pdf["NVA-1129 - deploy：NetApp HCI とNVIDIA GPUを使用したVMwareエンドユーザコンピューティング"^]

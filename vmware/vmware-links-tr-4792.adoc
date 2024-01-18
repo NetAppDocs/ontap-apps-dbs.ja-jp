@@ -1,0 +1,14 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-links-tr-4792.html 
+keywords: design, HCI, computing, vmware, cloud, graphics, virtualization 
+summary: TR-4792では、NVIDIAのグラフィック処理ユニット（GPU）と仮想化ソフトウェアを搭載したVMware Horizon環境で、3DグラフィックスワークロードにNetApp HCI 615Cを使用するためのガイダンスを提供しています。 
+---
+= NetApp HCI for virtual desktop infrastructure with VMware Horizon 7 -パワーユーザを3Dグラフィックスで支援します
+:allow-uri-read: 
+
+
+[role="lead"]
+TR-4792では、NVIDIAのグラフィック処理ユニット（GPU）と仮想化ソフトウェアを搭載したVMware Horizon環境で、3DグラフィックスワークロードにNetApp H615Cコンピューティングノードを使用する方法について説明しています。また、H615Cに対するSPECviewperf 13の予備テストの結果も記載します。
+
+link:https://www.netapp.com/pdf.html?item=/media/7125-tr4792.pdf["NetApp HCI for virtual desktop infrastructure with VMware Horizon 7 -パワーユーザを3Dグラフィックスで支援します"^]

@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: mysql/mysql-innodb_lru_scan_depth.html 
+keywords: MySQL,MariaDB,innodb_lru_scan_depth 
+summary: ONTAPでのMySQLの運用 
+---
+= innodb_lru_scan_depth
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+。 `innodb_lru_scan_depth` パラメータは、InnoDBバッファプールのフラッシュ操作のアルゴリズムとヒューリスティックに影響を与えます。
+
+このパラメータは、I/O負荷の高いワークロードを調整するパフォーマンスのエキスパートが主に関心を持っています。このパラメータは、バッファプールインスタンスごとに、Least Recently Used（LRU）ページリスト内でページクリーナースレッドがスキャンを続行し、フラッシュするダーティページを探す距離を指定します。このバックグラウンド処理は1秒に1回実行されます。
+
+値を上下に調整して、空きページ数を最小限に抑えることができます。必要以上の値を設定しないでください。スキャンを実行すると、パフォーマンスが大幅に低下する可能性があります。また、バッファプールインスタンスの数を変更する場合は、このパラメータを調整することを検討してください。 `innodb_lru_scan_depth * innodb_buffer_pool_instances` ページクリーナースレッドが毎秒実行する作業量を定義します。
+
+デフォルトよりも小さい設定は、ほとんどのワークロードに適しています。一般的なワークロードでスペアのI/O容量がある場合にのみ、値を増やすことを検討してください。逆に、大量の書き込みが発生するワークロードでI/O容量が飽和状態になった場合は、特にバッファプールが大きい場合は値を小さくしてください。

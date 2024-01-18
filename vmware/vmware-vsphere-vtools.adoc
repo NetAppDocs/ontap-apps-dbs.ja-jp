@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-vsphere-vtools.html 
+keywords: protocols, licensing, virtualization, NFS Plug-In for VMware VAAI, VASA Provider, Storage Replication Adapter 
+summary: ONTAP は、仮想化に使用されるすべての主要なストレージプロトコルをサポートしています。たとえば、 SAN 環境向けの iSCSI 、 Fibre Channel （ FC ）、 Fibre Channel over Ethernet （ FCoE ）、 Non-Volatile Memory Express over Fibre Channel （ NVMe/FC ）、ゲスト接続用の NFS （ v3 および v4.1 ）、 SMB または S3 などです。お客様は、環境に最適なものを自由に選択でき、必要に応じてプロトコルを 1 つのシステムで組み合わせることができます。 
+---
+= ONTAP の仮想化ツール
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ネットアップでは、 ONTAP および vSphere と組み合わせて使用し、仮想環境を管理できるスタンドアロンのソフトウェアツールをいくつか提供しています。
+
+ONTAP ライセンスには、追加コストなしで次のツールが含まれています。vSphere 環境でこれらのツールがどのように連携するかについては、図 1 を参照してください。
+
+
+
+== VMware vSphere 用の ONTAP ツール
+
+VMware vSphere 用の ONTAP ツールは、 vSphere とともに ONTAP ストレージを使用するための一連のツールです。vCenter プラグインは、以前 Virtual Storage Console （ VSC ）と呼ばれていたもので、 SAN と NAS のどちらを使用している場合でも、ストレージ管理と効率化機能の簡易化、可用性の向上、ストレージコストと運用オーバーヘッドの削減を実現します。データストアのプロビジョニングのベストプラクティスを使用して、 NFS 環境およびブロックストレージ環境用の ESXi ホスト設定を最適化します。以上のメリットのために、ネットアップでは、 ONTAP ソフトウェアを実行しているシステムで vSphere を使用する際のベストプラクティスとして、これらの ONTAP ツールを使用することを推奨します。サーバアプライアンス、vCenter、VASA Provider、Storage Replication Adapterのユーザインターフェイス拡張機能が含まれています。ONTAP ツールのほぼすべてを、最新の自動化ツールで利用できるシンプルなREST APIを使用して自動化できます。
+
+* * vCenter UIの拡張機能* ONTAP ツールのUI拡張機能は、vCenter UIにホストとストレージを管理するための使いやすいコンテキスト依存メニュー、情報ポートレット、およびネイティブアラート機能を直接組み込み、ワークフローを合理化することで、運用チームやvCenter管理者の業務を簡素化します。
+* * VASA Provider for ONTAP 。* VASA Provider for ONTAP は、VMware vStorage APIs for Storage Awareness（VASA）フレームワークをサポートしています。VMware vSphere 用の ONTAP ツールの一部として提供され、導入を容易にする単一の仮想アプライアンスとして提供されます。VASA Provider では、 VM ストレージのプロビジョニングと監視に役立つように vCenter Server と ONTAP を接続します。VMware Virtual Volumes （ VVol ）のサポート、ストレージ機能プロファイルと個々の VM VVol のパフォーマンスの管理、およびプロファイルの容量と準拠状況の監視用アラームが可能になります。
+* * Storage Replication Adapter. SRAは、VMware Site Recovery Manager（SRM）と併用して、本番サイトと災害復旧サイト間のデータ複製を管理し、DRレプリカを無停止でテストします。検出、リカバリ、再保護のタスクを自動化します。Windows SRM サーバおよび SRM アプライアンス用の SRA サーバアプライアンスと SRA アダプタの両方が含まれています。
+
+
+次の図は、 vSphere 用の ONTAP ツールを示しています。
+
+image:vsphere_ontap_image1.png["エラー：グラフィックイメージがありません"]
+
+
+
+== NFS Plug-in for VMware VAAI のこと
+
+NetApp NFS Plug-in for VMware VAAIはESXiホスト向けのプラグインで、ONTAP 上のNFSデータストアでVAAI機能を使用できます。クローン処理、シック仮想ディスクファイルのスペースリザベーション、およびスナップショットオフロードのコピーオフロードをサポートします。コピー処理をストレージにオフロードしても、完了までの時間が必ずしも短縮されるとは限りませんが、ネットワーク帯域幅の要件が軽減され、CPUサイクル、バッファ、キューなどのホストリソースがオフロードされます。VMware vSphere用のONTAP ツールを使用して、ESXiホストまたはサポートされている場合はvSphere Lifecycle Manager（VLCM）にプラグインをインストールできます。

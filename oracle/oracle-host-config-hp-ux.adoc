@@ -1,0 +1,96 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-host-config-hp-ux.html 
+keywords: oracle, database, ontap, hp-ux 
+summary: HP-UXを使用したONTAP上のOracle 
+---
+= HP-UX
+:allow-uri-read: 
+
+
+[role="lead"]
+HP-UXオペレーティングシステムに固有の構成トピック。
+
+
+
+== HP-UX NFSのマウントオプション
+
+次の表に、単一インスタンスのHP-UX NFSマウントオプションを示します。
+
+|===
+| ファイルタイプ | マウントオプション 
+
+
+| ADRホーム | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+suid` 
+
+
+| 制御ファイル
+データファイル
+REDO ログ | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,forcedirectio, nointr,suid` 
+
+
+| `ORACLE_HOME` | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+suid` 
+|===
+次の表に、RACのHP-UX NFSマウントオプションを示します。
+
+|===
+| ファイルタイプ | マウントオプション 
+
+
+| ADRホーム | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+noac,suid` 
+
+
+| 制御ファイル
+データファイル
+REDO ログ | `rw, bg,hard, [vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+nointr,noac,forcedirectio,suid` 
+
+
+| CRS /投票 | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+nointr,noac,
+forcedirectio,suid` 
+
+
+| 専用 `ORACLE_HOME` | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+suid` 
+
+
+| 共有 `ORACLE_HOME` | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
+timeo=600,rsize=262144,wsize=262144,
+nointr,noac,suid` 
+|===
+シングルインスタンスとRACマウントオプションの主な違いは、 `noac` および `forcedirectio` をマウントオプションに移動します。このオプションを使用するとホストOSのキャッシングが無効になるため、データの状態について、RACクラスタ内のすべてのインスタンスが一貫した情報を認識できるようになります。ただし、 `init.ora` パラメータ `filesystemio_options=setall` ホストのキャッシングを無効にした場合と同じ効果がありますが、引き続きを使用する必要があります。 `noac` および `forcedirectio`。
+
+理由 `noac` 共有の場合は必須です `ORACLE_HOME` を導入すると、Oracleパスワードファイルやspfileなどのファイルの整合性が維持されます。RACクラスタ内の各インスタンスに専用の `ORACLE_HOME`、このパラメータは必須ではありません。
+
+
+
+== HP-UX VxFSマウントオプション
+
+Oracleバイナリをホストするファイルシステムには、次のマウントオプションを使用します。
+
+....
+delaylog,nodatainlog
+....
+データファイル、Redoログ、アーカイブログ、制御ファイルが格納されているファイルシステムで、HP-UXのバージョンが同時I/Oをサポートしていない場合は、次のマウントオプションを使用します。
+
+....
+nodatainlog,mincache=direct,convosync=direct
+....
+同時I/Oがサポートされている場合（VxFS 5.0.1以降、またはServiceGuard Storage Management Suiteを使用している場合）は、データファイル、Redoログ、アーカイブログ、および制御ファイルを格納しているファイルシステムで次のマウントオプションを使用します。
+
+....
+delaylog,cio
+....
+
+NOTE: パラメータ `db_file_multiblock_read_count` VxFS環境では特に重要です。Oracleでは、特に指示がないかぎり、Oracle 10g R1以降ではこのパラメータを未設定のままにすることを推奨しています。Oracleの8KBブロックサイズの場合、デフォルトは128です。このパラメータの値が強制的に16以下になる場合は、 `convosync=direct` シーケンシャルI/Oのパフォーマンスが低下する可能性があるため、マウントオプションを使用します。この手順は、パフォーマンスの他の側面に損傷を与えるため、 `db_file_multiblock_read_count` デフォルト値から変更する必要があります。

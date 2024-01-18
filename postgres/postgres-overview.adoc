@@ -1,0 +1,25 @@
+---
+sidebar: sidebar 
+permalink: postgres/postgres-overview.html 
+keywords: PostgreSQL,database,postgres 
+summary: ONTAP上のPostgreSQLデータベース 
+---
+= ONTAP上のPostgreSQLデータベース
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+PostgreSQLには、PostgreSQL、PostgreSQL Plus、EDB Postgres Advanced Server（EPAS）などのバリアントが付属しています。PostgreSQLは通常、多層アプリケーションのバックエンドデータベースとして導入されます。一般的なミドルウェアパッケージ(PHP、Java、Python、Tcl/Tk、ODBCなど)でサポートされています。 とJDBC）は、オープンソースのデータベース管理システムでは、歴史的に人気のある選択肢でした。NetApp ONTAPは、信頼性、パフォーマンス、効率に優れたデータ管理機能を備えたPostgreSQLデータベースを実行するための優れた選択肢です。
+
+
+NOTE: ONTAPおよびPostgreSQLデータベースに関するこのドキュメントは、以前に公開されていた_TR-4770：『PostgreSQL database on ONTAP best practices』に代わるものです。_
+
+データが指数関数的に増加するにつれて、企業にとってデータ管理はより複雑になります。この複雑さにより、ライセンス、運用、サポート、メンテナンスのコストが増大します。全体的なTCOを削減するには、信頼性とパフォーマンスに優れたバックエンドストレージを使用して、商用データベースからオープンソースデータベースに切り替えることを検討してください。PostgreSQLは、学術、商業、大企業で広く使用されている高度なオープンソースデータベースです。他のリレーショナルデータベース管理システム(RDBMS)のギャップに対処する新しい機能セットが付属しています。
+
+
+NOTE: 物理環境または仮想環境でPostgreSQLデータベースを使用しているNetAppのお客様は、ONTAPにPostgreSQLデータベースを適切に導入して管理するためのベストプラクティスを理解することができます。推奨事項は一般的なものであるため、どの構成にも固有のものではありません。ビジネスニーズによっては、一部の提案で変更が必要になる場合があります。使用する環境は、PostgreSQL、ハイパーバイザー、OS、ONTAPストレージに関する公式ドキュメントに照らして評価する必要があります。

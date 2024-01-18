@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: mysql/mysql-innodb_io_capacity.html 
+keywords: MySQL,MariaDB,innodb_io_capacity 
+summary: ONTAPでのMySQLの運用 
+---
+= innodb_io_capacity
+:allow-uri-read: 
+:icons: font
+:imagesdir: ../media/
+
+
+[role="lead"]
+InnoDBプラグインでは、MySQL 5.7からInnoDB_io_capacityという新しいパラメータが追加されました。
+
+InnoDBが実行する最大IOPS（ダーティページのフラッシュレートと挿入バッファ[ibuf]バッチサイズを含む）を制御します。innodb_io_capacityパラメータは、バッファプールからのページのフラッシュや変更バッファからのデータのマージなど、InnoDBバックグラウンドタスクによるIOPSの上限を設定します。
+
+innodb_io_capacityパラメータに、システムが1秒あたりに実行できるI/O処理のおおよその数を設定します。理想的には、設定をできるだけ低くしてくださいが、バックグラウンドアクティビティが遅くなるように低くしないでください。この設定が高すぎると、データがバッファプールから削除され、キャッシュするにはバッファの挿入が早すぎて大きなメリットが得られません。
+
+
+TIP: * NetAppでは*この設定をNFSで使用する場合は、IOPSのテスト結果（SysBench / Fio）を分析し、それに応じてパラメータを設定することを推奨します。InnoDBバッファプールで必要以上に変更されたページやダーティなページが表示されない場合は、フラッシュとパージにできるだけ小さい値を使用してください。
+
+
+CAUTION: ワークロードに対して低い値では不十分であることを証明した場合を除き、20、000以上などの極端な値は使用しないでください。
+
+innodb_io_capacityパラメータは、フラッシュ速度と関連するI/Oを調整します。
+
+
+CAUTION: このパラメータまたはinnodb_io_capacity_maxパラメータを設定すると、パフォーマンスに深刻な影響を与える可能性があります。このパラメータが高すぎて、早期フラッシュでI/O処理が無駄になります。
