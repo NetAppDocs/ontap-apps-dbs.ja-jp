@@ -77,7 +77,7 @@ https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere/index.html["完全な�
 
 製品ドキュメント以外にも、役立つサポート技術情報アーティクルがあります。
 
-* https://kb.netapp.com/app/answers/answer_view/a_id/1031261["VASA Providerのディザスタリカバリの実行方法"^]
+* https://kb.netapp.com/mgmt/OTV/NetApp_VASA_Provider/How_to_perform_a_VASA_Provider_Disaster_Recovery_-_Resolution_Guide["『How to perform a VASA Provider Disaster Recovery - Resolution Guide』"^]
 
 
 

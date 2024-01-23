@@ -153,10 +153,6 @@ ONTAPメディエーターは、MetroCluster IPおよびその他の特定のONT
 
 
 
-=== Mediator Automatic Unattended Switch Over（MAUSO；メディエーター自動無人スイッチオーバー）
-
-
-
 === ClusterLionを使用した3番目の仮想サイト
 
 ClusterLionは、仮想の第3サイトとして機能する高度なMetroCluster監視アプライアンスです。このアプローチにより、完全に自動化されたスイッチオーバー機能により、MetroClusterを2サイト構成で安全に導入できます。さらに、ClusterLionでは、追加のネットワークレベル監視を実行し、スイッチオーバー後の処理を実行できます。完全なドキュメントはProLionから入手できます。

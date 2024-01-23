@@ -13,7 +13,7 @@ summary: ONTAP上のMicrosoft SQL Server
 SQL ServerはMicrosoftのデータプラットフォームの基盤であり、オンプレミスでもクラウドでも、インメモリテクノロジを使用してミッションクリティカルなパフォーマンスを実現し、あらゆるデータの分析を高速化します。
 
 
-NOTE: このドキュメントは、以前に公開されたテクニカルレポート（TR-4590：『Best Practice Guide for Microsoft SQL Server with ONTAP』）に代わるものです。
+NOTE: このドキュメントは、以前に公開されたテクニカルレポート_TR-4590：『Best Practice Guide for Microsoft SQL Server with ONTAP』の内容を置き換えます。
 
 Microsoft SQL Serverは、ミッションクリティカルなアプリケーションに画期的なパフォーマンス、可用性、管理性を提供することで、以前のリリースで提供されていたミッションクリティカルな機能を基盤としています。ストレージシステムは、SQL Serverデータベースの全体的なパフォーマンスを左右する重要な要素です。NetAppには、SQL Serverデータベースでエンタープライズクラスのパフォーマンスを実現しながら、環境を管理するためのワールドクラスのツールを提供する複数の製品が用意されています。
 

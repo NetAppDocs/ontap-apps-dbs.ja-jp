@@ -6,12 +6,11 @@ summary: ONTAP上のMicrosoft SQL Server
 ---
 = Microsoft SQL Serverのメモリ構成
 :allow-uri-read: 
-:firstname: [.lead]
-:author: [.lead]
-:authorinitials: [
-:authors: [.lead]
 :imagesdir: ../media/
 
+
+[role="lead"]
+次の項では、重要なメモリ構成設定の一部について説明します。
 
 
 

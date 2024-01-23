@@ -25,9 +25,9 @@ NFSv4がプロトコルとして選択されている場合、NetAppではNFSv4.
 一般的なデータベースワークロードには、次のマウントオプションを使用します。
 
 ....
-rw, hard,nointr,bg,vers=[3|4],proto=tcp,rsize=65536,wsize=65536
+rw,hard,nointr,bg,vers=[3|4],proto=tcp,rsize=65536,wsize=65536
 ....
-大量のシーケンシャルI/Oが予想される場合は、NFS転送サイズを増やすことができます。
+大量のシーケンシャルIOが予想される場合は、次のセクションの説明に従ってNFS転送サイズを増やすことができます。
 
 
 
@@ -57,7 +57,7 @@ Cluster01::*>
 転送サイズをONTAPレベルで拡張すると、次のマウントオプションが使用されます。
 
 ....
-rw, hard,nointr,bg,vers=[3|4],proto=tcp,rsize=262144,wsize=262144
+rw,hard,nointr,bg,vers=[3|4],proto=tcp,rsize=262144,wsize=262144
 ....
 
 
