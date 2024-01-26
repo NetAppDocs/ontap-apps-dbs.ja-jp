@@ -114,7 +114,7 @@ entries:
   entries:
   - title: 概要
     url: "/oracle/oracle-dp-overview.html"
-  - title: RPO、TRO、SLA
+  - title: RPO、RTO、SLA
     url: "/oracle/oracle-dp-slas.html"
   - title: データの可用性
     url: "/oracle/oracle-dp-data-availability.html"

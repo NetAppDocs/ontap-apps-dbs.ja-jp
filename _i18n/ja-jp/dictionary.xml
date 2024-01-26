@@ -2523,15 +2523,6 @@ I/Oの中断はありません。</block>
   <block id="ff1d278a485c443dc5d8fc9f10f1a702" category="doc">NetApp HCI for virtual desktop infrastructure with VMware Horizon 7 -パワーユーザを3Dグラフィックスで支援します</block>
   <block id="e3162938e0d7b1bbc74111cc5b5871c5" category="paragraph">TR-4792では、NVIDIAのグラフィック処理ユニット（GPU）と仮想化ソフトウェアを搭載したVMware Horizon環境で、3DグラフィックスワークロードにNetApp H615Cコンピューティングノードを使用する方法について説明しています。また、H615Cに対するSPECviewperf 13の予備テストの結果も記載します。</block>
   <block id="1de37c09602b46db5de57a946efe2768" category="paragraph"><block ref="1de37c09602b46db5de57a946efe2768" category="inline-link-macro-rx"></block></block>
-  <block id="5ed492cbbbf7e6d167035a7c10478daa" category="summary">NetApp HCI を使用したVMwareエンドユーザコンピューティングは、仮想デスクトップワークロードをエンタープライズ規模で導入するための、事前検証済みのベストプラクティスデータセンターアーキテクチャです。</block>
-  <block id="36f00397200c227ebfe56599e7bafcd5" category="doc">NVA-1129-DESIGN：NetApp HCI とNVIDIA GPUを使用したVMwareエンドユーザコンピューティング</block>
-  <block id="52940073ac3f539b3c6d9ac1e41d5f06" category="paragraph">NetApp HCI を使用したVMwareエンドユーザコンピューティングは、仮想デスクトップワークロードをエンタープライズ規模で導入するための、事前検証済みのベストプラクティスデータセンターアーキテクチャです。本ドキュメントでは、信頼性が高くリスクのない方法で本番環境に解決策 を導入するためのアーキテクチャ設計とベストプラクティスについて説明します。</block>
-  <block id="8a36e2f35bf4a10959caf61f15d8df63" category="paragraph"><block ref="8a36e2f35bf4a10959caf61f15d8df63" category="inline-link-macro-rx"></block></block>
-  <block id="b4a3c2c985fcfc0d0e59c8d9c3259eb0" category="doc">NVA-1129 - deploy：NetApp HCI とNVIDIA GPUを使用したVMwareエンドユーザコンピューティング</block>
-  <block id="8b3f1e47da9509d2edf2f21012c6ec7e" category="paragraph">NetApp HCI を使用したVMwareエンドユーザコンピューティングは、仮想デスクトップワークロードをエンタープライズ規模で導入するための、事前に検証されたベストプラクティスのデータセンターアーキテクチャです。このドキュメントでは、信頼性の高いリスクのない方法で、本番環境の規模で解決策 を導入する方法について説明します</block>
-  <block id="ba999af3664a8f6c5b43a92bc11de64a" category="paragraph"><block ref="ba999af3664a8f6c5b43a92bc11de64a" category="inline-link-macro-rx"></block></block>
-  <block id="85864e2699dfaceb7f8d1f85448939fe" category="doc">NVA-1132-DESIGN：NetApp HCI を使用したVMwareのエンドユーザコンピューティング</block>
-  <block id="8c40c45c2332a47a83ae257f42af2331" category="paragraph"><block ref="8c40c45c2332a47a83ae257f42af2331" category="inline-link-macro-rx"></block></block>
   <block id="93b94e62ad8cb02a1d1a7b0944a5445d" category="summary">このドキュメントでは、 VMware vSphere 向け ONTAP ツールの製品セキュリティについて説明します。</block>
   <block id="57a033c33a8be6110be46b2914cc4989" category="doc">ONTAP でVVOLを使用する</block>
   <block id="69556d50c944e0a07ade0bea62f078a3" category="paragraph">VVOLをONTAP で使用するための鍵は、ONTAP Tools for VMware vSphere仮想アプライアンスに含まれているVASA Providerソフトウェアです。</block>
@@ -3883,7 +3874,6 @@ SOAP over https 接続に使用されます</block>
   <block id="35084d885dea7b061e6894c1cf3036d9" category="sidebar">ワークロード</block>
   <block id="7d219314ccabde6609510141bb175a6c" category="sidebar">共有インスタンスと専用インスタンス</block>
   <block id="d5363ae19ecaede49e2ced297df7737a" category="sidebar">メモリ構成</block>
-  <block id="459f656cac9c4d74b9f3f16ebb2a76c8" category="sidebar">データベースファイルとファイルグループ</block>
   <block id="500c09aa1bb9af431f2c18348e69bfd0" category="sidebar">tempdbフアイル</block>
   <block id="6fb6843bd9a214011969c02729c7d671" category="sidebar">ストレージに関する考慮事項</block>
   <block id="4c5d94eb4dc4bff93f6a96a08ab7b244" category="sidebar">データセキュリティ</block>
@@ -3899,9 +3889,6 @@ SOAP over https 接続に使用されます</block>
   <block id="619615da0f93507e22a6054ef2aea4f1" category="sidebar">論理インターフェイス</block>
   <block id="aca8e861c6f30fe2d42d0310a387312b" category="sidebar">イーサネット構成</block>
   <block id="63a5b8bd41978e8124f9ccdfa9063e9e" category="sidebar">FC SAN構成</block>
-  <block id="d63f66214ae30c5b9b10653f1e503492" category="sidebar">LUNアライメント</block>
-  <block id="f6556bc360e8c25d9e29515d2d52cd66" category="sidebar">LUNの数とサイズ</block>
-  <block id="d552d63771786b001d365cf747f74f6a" category="sidebar">LUNのサイズ変更</block>
   <block id="c3f378ef942f6bf228a43aaacc628fea" category="sidebar">LVMストライピング</block>
   <block id="254f642527b45bc260048e30704edb39" category="sidebar">設定</block>
   <block id="f3a78e25ce9f95fc3c61ccc39f32fb4d" category="sidebar">Oracle Direct NFS （ dNFS ）</block>
@@ -3915,10 +3902,8 @@ SOAP over https 接続に使用されます</block>
   <block id="7fbd108e1fc6910c941094e95a677878" category="sidebar">ファイル全体</block>
   <block id="eb43c2427eb06b9f561363863b4a4f0b" category="sidebar">部分ファイル</block>
   <block id="1afe200fa26ba361f59b603b22ad6392" category="sidebar">ファイルを選択します</block>
-  <block id="46880cc1d7a1624f1d6fa77e7ee02fb7" category="sidebar">RPO、TRO、SLA</block>
   <block id="448d15345bb99c834095da225c529b8a" category="sidebar">データの可用性</block>
   <block id="5869e10a9dea6d88d61bb10040557f35" category="sidebar">データ整合性</block>
-  <block id="e2ac7be9b8940191426986b2ca575aa2" category="sidebar">バックアップとリカバリの基本</block>
   <block id="7b68149402c05a52968bda6af0435c8a" category="sidebar">Snapshotベースのオンラインバックアップ</block>
   <block id="49ba0ee205d016d8236db9c1e8c130e5" category="sidebar">ストレージSnapshotで最適化されたバックアップ</block>
   <block id="2c6d98297c340e390e0783220b038545" category="sidebar">物理アーキテクチャ</block>
@@ -4056,4 +4041,11 @@ SOAP over https 接続に使用されます</block>
   <block id="512ee19e5020f3ee80a9e25f3f5a6468" category="paragraph">ベストプラクティスとして、保護対象の VM ストレージの構成を変更する場合は、必ずテストフェイルオーバーを実行してください。これにより、災害が発生した場合に、Site Recovery Managerが予想されるRTOターゲット内でサービスをリストアできると信頼できます。</block>
   <block id="4da3f855cd505741909cfd49d743e68e" category="paragraph">SRM では、リカバリ時に VM のネットワーク設定を変更することもできます。この再設定には、IPアドレス、ゲートウェイアドレス、DNSサーバ設定などの設定が含まれます。リカバリ時に個 々 のVMに適用されるさまざまなネットワーク設定は、リカバリプランのVMのプロパティ設定で指定できます。</block>
   <block id="e409450ce49f3558b068c69a77a9623a" category="paragraph">フェイルバック後、再保護を再度実行する前に、すべての関係者にサービスが正常に戻ったことを確認する必要があります。</block>
+  <block id="a42cf9beb4788dddb7d317e05cc08e23" category="sidebar">データベースファイルとファイルグループ</block>
+  <block id="8858bb6564a2efc189c9183c495ce545" category="sidebar">LUNアライメント</block>
+  <block id="02bc4ad8a694d41c8b598dfbcb12f069" category="sidebar">LUNの数とサイズ</block>
+  <block id="066f208a93617bd82090d42624ce63cc" category="sidebar">LUNのサイズ変更</block>
+  <block id="9eeba6fd02cf3b6d8aee35e0ce9bf8fe" category="sidebar">LVMストライピング</block>
+  <block id="183bdb28f19bee640319f68825827aea" category="sidebar">RPO、RTO、SLA</block>
+  <block id="2172b5d51273924b537842b0db78bfd4" category="sidebar">バックアップとリカバリの基本</block>
 </blocks>
