@@ -4,7 +4,7 @@ permalink: postgres/postgres-nfs-filesystems.html
 keywords: PostgreSQL,database,postgres 
 summary: PostgreSQLデータベースNFSとONTAP 
 ---
-= NFSファイルシステムを使用したPostgreSQL
+= NFSファイルシステムを使用したPostgreSQLデータベース
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

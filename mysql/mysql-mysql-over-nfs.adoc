@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: mysql/mysql-mysql-over-nfs.html 
 keywords: MySQL,MariaDB,NFS 
-summary: ONTAPでのMySQLの運用 
+summary: MySQLとNFS 
 ---
-= NFS経由のMySQL
+= MySQLとNFS
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -1,17 +1,17 @@
 ---
 sidebar: sidebar 
 permalink: mysql/mysql-file-descriptors.html 
-keywords: MySQL,MariaDB,TR-4722 
-summary: ONTAPでのMySQLの運用 
+keywords: MySQL,MariaDB,file descriptors 
+summary: MySQLフアイルノシキイチ 
 ---
-= ファイル記述子
+= MySQLフアイルキシユツシ
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-実行するには、MySQLサーバにファイル記述子が必要です。
+MySQLサーバを実行するにはファイル記述子が必要であり、デフォルト値では不十分です。
 
 これらを使用して、新しい接続を開いたり、テーブルをキャッシュに格納したり、複雑なクエリを解決するための一時テーブルを作成したり、永続的なテーブルにアクセスしたりします。mysqldが必要なときに新しいファイルを開くことができない場合、正常に機能しなくなる可能性があります。この問題の一般的な現象は、エラー24「開いているファイルが多すぎます」です。 mysqldが同時に開くことができるファイル記述子の数は、 `open_files_limit` 構成ファイルに設定されたオプション (`/etc/my.cnf`）。でも...。 `open_files_limit` オペレーティングシステムの制限によっても異なります。この依存関係により、変数の設定がより複雑になります。
 

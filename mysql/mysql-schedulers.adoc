@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: mysql/mysql-schedulers.html 
 keywords: MySQL,MariaDB,schedulers 
-summary: ONTAPでのMySQLの運用 
+summary: MySQLおよびIOスケジューラ 
 ---
-= I/Oスケジューラ
+= I/OスケジューラとMySQL
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: postgres/postgres-initialization.html 
 keywords: PostgreSQL,database,postgres 
-summary: PostgreSQLの初期化 
+summary: PostgreSQL初期化パラメータ 
 ---
-= 初期化
+= PostgreSQL初期化パラメータ
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

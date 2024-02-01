@@ -2,16 +2,16 @@
 sidebar: sidebar 
 permalink: mysql/mysql-configuration.html 
 keywords: MySQL,MariaDB 
-summary: MySQL構成 
+summary: MySQLセツテイハラメエタ 
 ---
-= 設定の概要
+= MySQLセツテイハラメエタ
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-NetAppでは、最適なパフォーマンスを得るために、いくつかの重要なMySQL構成パラメータ（表1を参照）を推奨しています。
+NetAppでは、最適なパフォーマンスを得るために、いくつかの重要なMySQL構成パラメータを推奨しています。
 
 [cols="1,1"]
 |===

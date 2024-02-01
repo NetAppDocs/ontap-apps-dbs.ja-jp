@@ -45,5 +45,3 @@ entries:
     url: "/mysql/mysql-mysql-over-nfs.html"
   - title: SAN経由のMySQL
     url: "/mysql/mysql-mysql-over-san.html"
-  - title: FabricPoolを使用したMySQLの階層化
-    url: "/mysql/mysql-tiering.html"

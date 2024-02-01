@@ -526,9 +526,7 @@
   <block id="9ca503fae9ccd4d6d8e67806b23adfa0" category="paragraph"><block ref="9ca503fae9ccd4d6d8e67806b23adfa0" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0353522b39b87d54d40d3f09ec668851" category="doc">ONTAP構成</block>
   <block id="8e52de0d4b03d5fe87dc88da09616c7f" category="inline-link-macro">こちらをご覧ください。</block>
-  <block id="9fe343788d08130f46e418bb81928479" category="summary">FabricPool の概要</block>
   <block id="337c62c6b6eb7319bae58701105e889c" category="doc">階層化</block>
-  <block id="cec4b296aaf93974a98a5d3b3f27ff9e" category="paragraph">FabricPoolの階層化がアプリケーションとデータベースに与える影響を理解するには、低レベルのFabricPoolアーキテクチャについて理解しておく必要があります。</block>
   <block id="3493794b3ccb587f71a663f51f4484ef" category="summary">ONTAP上のPostgreSQLデータベース</block>
   <block id="2d3298c651b356a82db5d664ce68e65e" category="doc">標準搭載のデータ保護</block>
   <block id="31c6611c8e0bd237a3ee51db1728a440" category="paragraph">ストレージ設計の主な側面の1つは、PostgreSQLボリュームの保護を有効にすることです。お客様は、ダンプアプローチを使用するか、ファイルシステムバックアップを使用して、PostgreSQLデータベースを保護できます。このセクションでは、個 々 のデータベースまたはクラスタ全体をバックアップするさまざまな方法について説明します。</block>
@@ -541,19 +539,6 @@
   <block id="10907e7ac5ab6e5235a23898a2331b31" category="doc">ONTAP上のPostgreSQLデータベース</block>
   <block id="b5f477e959f26421a80e1eebdadbdd71" category="paragraph">PostgreSQLには、PostgreSQL、PostgreSQL Plus、EDB Postgres Advanced Server（EPAS）などのバリアントが付属しています。PostgreSQLは通常、多層アプリケーションのバックエンドデータベースとして導入されます。一般的なミドルウェアパッケージ(PHP、Java、Python、Tcl/Tk、ODBCなど)でサポートされています。 とJDBC）は、オープンソースのデータベース管理システムでは、歴史的に人気のある選択肢でした。NetApp ONTAPは、信頼性、パフォーマンス、効率に優れたデータ管理機能を備えたPostgreSQLデータベースを実行するための優れた選択肢です。</block>
   <block id="841a21e58e7c22a71c07b89a4362d2b6" category="admonition">ONTAPおよびPostgreSQLデータベースに関するこのドキュメントは、以前に公開されていた_TR-4770：『PostgreSQL database on ONTAP best practices』に代わるものです。_</block>
-  <block id="23dc28a190980aa339329235e8b66434" category="paragraph">データが指数関数的に増加するにつれて、企業にとってデータ管理はより複雑になります。この複雑さにより、ライセンス、運用、サポート、メンテナンスのコストが増大します。全体的なTCOを削減するには、信頼性とパフォーマンスに優れたバックエンドストレージを使用して、商用データベースからオープンソースデータベースに切り替えることを検討してください。PostgreSQLは、学術、商業、大企業で広く使用されている高度なオープンソースデータベースです。他のリレーショナルデータベース管理システム(RDBMS)のギャップに対処する新しい機能セットが付属しています。</block>
-  <block id="595e7195ec732ff0042e8b03492176cc" category="admonition">物理環境または仮想環境でPostgreSQLデータベースを使用しているNetAppのお客様は、ONTAPにPostgreSQLデータベースを適切に導入して管理するためのベストプラクティスを理解することができます。推奨事項は一般的なものであるため、どの構成にも固有のものではありません。ビジネスニーズによっては、一部の提案で変更が必要になる場合があります。使用する環境は、PostgreSQL、ハイパーバイザー、OS、ONTAPストレージに関する公式ドキュメントに照らして評価する必要があります。</block>
-  <block id="6c1ea8a6f96c812bdbee4a788f8282dc" category="doc">付録A：ホストの設定</block>
-  <block id="c3ef6436e8acdba8ced1def7d29a99b8" category="paragraph">付録の内容：</block>
-  <block id="873bf9c2fc74dd3fc39aa67a16b51d6a" category="list-text">ESXホストのFC Host Bus Adapter（HBA；ホストバスアダプタ）が実行されており、ドライバ、ファームウェア、および正しいBIOSバージョンが更新されていることを確認します。</block>
-  <block id="b6d348f60c7c0e3bb221591b67518d1c" category="list-text">ホストにNetApp Host Utilitiesをインストールして、特定のLUNの直接パスと間接パスを表示します。キットには、LUN SVM情報に関する詳細情報も含まれています。</block>
-  <block id="4a1afd4a3d39c7e385017e01816d721f" category="list-text">ホストでは必ず再スキャンSCSIバススクリプトを使用して、次の処理を実行します。</block>
-  <block id="6d1436a6f6bda3b3ce87df91aaf6fb56" category="list-text">新しいLUNの検索</block>
-  <block id="897dc659ee2dd9f0dd17af82c47259bd" category="list-text">古いLUNを破棄する</block>
-  <block id="ecef9cf88b8cf100d1a489f3acdd4732" category="list-text">LUNへの新しいパスの更新</block>
-  <block id="c7b133bd977e02fc973a2df60786e7a8" category="list-text">パス障害が発生した場合にストレージへの複数のルートを確立するには、ホストオペレーティングシステムにマルチパスソフトウェアをインストールして設定します。</block>
-  <block id="3617da17b3368e5730bf10cdacf54a18" category="list-text">マルチパスソフトウェアを使用しない場合は、各LUNのパスを1つに制限する必要があります。</block>
-  <block id="6dff2f8361cdca0bbb6cfa1d162de499" category="list-text">Linuxカーネルでは、ブロックデバイスへのI/Oのスケジュールを低レベルで制御できます。デフォルトの設定はLinuxのバージョンによって大きく異なる場合があります。一般に、NetAppをご利用のお客様や社内テストでは、データベース向けのNoOpsスケジューラを使用した方が効果的です。ベンチマークを実行して、ユースケースに最適なI/Oスケジューラを特定する必要があります。</block>
   <block id="9147e5e61a7b9260dec09f3a6eb3e5be" category="doc">Snapshot</block>
   <block id="0b9d99167191c5d9ad23ca07bc6a9b38" category="paragraph">PostgreSQLを使用したスナップショットベースのバックアップでは、フルリカバリまたはポイントインタイムリカバリを提供するために、データファイル、WALファイル、およびアーカイブされたWALファイルのスナップショットを構成する必要があります。</block>
   <block id="8c6a53edc4449a4cc3983d47ecffa851" category="paragraph">PostgreSQLデータベースの場合、Snapshotを使用した平均バックアップ時間は数秒~数分です。このバックアップ速度は、<block ref="35679fc424d9eec0c30f38459fd9b322" prefix=" " category="inline-code"></block> その他のファイル・システム・ベースのバックアップ・アプローチ</block>
@@ -566,7 +551,6 @@
   <block id="55ca4b30c6f7c3ef975a6d1e1fb222a2" category="inline-link-macro">NetApp整合性グループの概要</block>
   <block id="69dd5879aee425e37fdd5796a8e06a56" category="paragraph">コンシステンシグループの詳細については、を参照してください。 <block ref="112c5744a39904facdbc5fab385d9fe1" category="inline-link-macro-rx"></block>。</block>
   <block id="7e7397a7b79323762c61941fc0e6b5f9" category="doc">データ保護</block>
-  <block id="90b0d8da95f7f5935481bc7e648c111e" category="summary">PostgreSQLテーブルスペース</block>
   <block id="16a49d0bc0249ef3dd42949589a0ed4e" category="doc">表領域</block>
   <block id="d6d544de56c329d9f68bb176c6245e7c" category="paragraph">データベース・クラスタが初期化されると、2つの表領域が自動的に作成されます。</block>
   <block id="6df924905e21856e4e8b8f936767cdd6" category="paragraph">。<block ref="bd676cbef0d168a62a062c8709af1824" prefix=" " category="inline-code"></block> 表領域は共有システムカタログに使用されます。。<block ref="3224684b8e7208962a73daeb0bb24110" prefix=" " category="inline-code"></block> tablespaceは、template1およびtemplate0データベースのデフォルトのテーブルスペースです。クラスタが初期化されたパーティションまたはボリュームの容量が不足し、拡張できない場合は、別のパーティションに表領域を作成して、システムを再構成できるようになるまで使用できます。</block>
@@ -594,7 +578,6 @@
   <block id="385e23b8ebe64dfd0005f6846cc8e85e" category="paragraph">通常のPostgreSQL操作では、更新によって削除または廃止されたタプルはテーブルから物理的に削除されず、VACUUMが実行されるまで存在したままになります。したがって、特に頻繁に更新されるテーブルでは、VACUMを定期的に実行する必要があります。ディスクスペースが使用されているスペースは、ディスクスペースが停止しないように、新しい行で再利用できるように再利用する必要があります。ただし、スペースはオペレーティングシステムに返されません。</block>
   <block id="db81319c35b48ed94867775a9a1ce1d7" category="paragraph">ページ内の空き領域は断片化されません。VACUUMはブロック全体を書き換え、残りの行を効率的にパッキングし、1つの連続した空き領域ブロックをページに残します。</block>
   <block id="8a5c17164c9920590fc057ee01f2fcb3" category="paragraph">一方、VACUUM FULLは、デッドスペースのないまったく新しいバージョンのテーブルファイルを作成することで、テーブルを積極的に圧縮します。この操作により、テーブルのサイズは最小限に抑えられますが、時間がかかることがあります。また、処理が完了するまで、テーブルの新しいコピー用に追加のディスクスペースが必要になります。ルーチンバキュームの目的は、バキュームフルアクティビティを回避することです。このプロセスでは、テーブルが最小サイズに維持されるだけでなく、ディスクスペースの安定した使用量も維持されます。</block>
-  <block id="d3213224909897cac25fe1359e587293" category="summary">PostgreSQLの初期化</block>
   <block id="61bcd96a2c1f8026527cbf2019d6e9a4" category="doc">初期化</block>
   <block id="f4f9dac58f7c47e819293af5f2dd1177" category="paragraph">新しいデータベースクラスタを作成するには、<block ref="abc91e782cd3950bfa31202aff74ca69" prefix=" " category="inline-code"></block> プログラム。A<block ref="abc91e782cd3950bfa31202aff74ca69" prefix=" " category="inline-code"></block> スクリプトは、クラスタを定義するデータファイル、システムテーブル、およびテンプレートデータベース（template0およびtemplate1）を作成します。</block>
   <block id="b668460552732302350bbb840d57931c" category="paragraph">テンプレートデータベースはストックデータベースを表します。システムテーブル、標準ビュー、関数、およびデータ型の定義が含まれています。<block ref="3865cf98fe802a965570b4a10a1d894b" prefix=" " category="inline-code"></block> の引数として機能します。<block ref="abc91e782cd3950bfa31202aff74ca69" prefix=" " category="inline-code"></block> データベースクラスタの場所を指定するスクリプト。</block>
@@ -2411,15 +2394,12 @@ I/Oの中断はありません。</block>
   <block id="3d601b26d05eac41fc6a7eba92fdc8b9" category="admonition">このドキュメントは、以前に公開されていたテクニカルレポート_TR-4591：『Oracle data protection：Backup、recovery、and replication』に代わるものです。_</block>
   <block id="21d28aa03f67eb242b1c95a6a0594ff5" category="section-title">計画</block>
   <block id="0bf5784d6c307e4ee0371d46053937c0" category="summary">Oracleパフォーマンステスト</block>
-  <block id="3993fbf2fe01237c798f68ece0b84724" category="doc">Oracleのパフォーマンス最適化とベンチマーク</block>
   <block id="355ba59494fea8b20be391a73cc755eb" category="paragraph">データベースストレージのパフォーマンスを正確にテストすることは、非常に複雑な課題です。次の問題について理解しておく必要があります。</block>
   <block id="b57041cc3b57577b5c21eff44739e3f9" category="list-text">IOPSとスループット</block>
   <block id="236e7fd957ada95e8094e302623980d3" category="list-text">フォアグラウンドI/O処理とバックグラウンドI/O処理の違い</block>
   <block id="902f90cc4ab59808cac5606f767f61c4" category="list-text">データベースへのレイテンシの影響</block>
   <block id="196198dbaa1d1ea17cfc478fbb2f419f" category="list-text">ストレージのパフォーマンスにも影響する多数のOSとネットワーク設定</block>
   <block id="5ff18eadb2ef3fc20e13bed3e5b61d79" category="paragraph">また、ストレージデータベース以外のタスクについても考慮する必要があります。ストレージパフォーマンスがパフォーマンスの制限要因ではなくなったため、ストレージパフォーマンスを最適化しても有益なメリットは得られなくなります。</block>
-  <block id="92d509b1796c0ac8e185dc559cb7e294" category="paragraph">現在、データベースユーザの大半がオールフラッシュアレイを選択していることから、新たな考慮事項がいくつか生まれています。たとえば、2ノードのAFF8080システムでパフォーマンスをテストする場合を考えてみましょう。</block>
-  <block id="4eb08b8b1c39980bb639a6e5890ec0de" category="list-text">読み取り/書き込みの比率が75対25の場合、2台のAFF8080ノードで30万を超えるランダムデータベースIOPSを、レイテンシ1ミリ秒未満で達成できます。これは、ほとんどのデータベースで現在必要とされているパフォーマンスをはるかに超えているため、予想される改善を予測することは困難です。ストレージがボトルネックになることはほとんどありません。</block>
   <block id="32a993d3f497a6dd4392d3348b05ebc3" category="list-text">ネットワーク帯域幅は、パフォーマンス上の制約の原因としてますます一般的になっています。たとえば、回転式ディスクソリューションはI/Oレイテンシが非常に高いため、データベースパフォーマンスのボトルネックになることがよくあります。オールフラッシュアレイでレイテンシの制限が取り除かれると、多くの場合、その障壁はネットワークに移ります。これは、真のネットワーク接続を可視化することが困難な仮想環境やブレードシステムで特に顕著です。帯域幅の制限のためにストレージシステム自体をフルに活用できない場合、パフォーマンステストが複雑になる可能性があります。</block>
   <block id="8caa382fb0f5f7a8279424d306dd003d" category="list-text">オールフラッシュアレイのレイテンシが劇的に改善されるため、オールフラッシュアレイと回転式ディスクを搭載したアレイのパフォーマンスを比較することは一般的に不可能です。通常、テスト結果は意味がありません。</block>
   <block id="bc2b8b37bdda467f2ce639ab28bf4646" category="list-text">オールフラッシュアレイでピーク時のIOPSパフォーマンスを比較することは、データベースがストレージI/Oの制約を受けないため、あまり有益なテストではありません。たとえば、あるアレイが50万IOPSを維持でき、別のアレイが30万IOPSを維持できるとします。データベースの処理時間の99%がCPU処理に費やされている場合、この違いは現実の世界では無関係です。ワークロードがストレージアレイのすべての機能を利用することはありません。一方、ストレージアレイの能力を最大限に引き出すことが期待される統合プラットフォームでは、ピーク時のIOPS性能が重要になる場合があります。</block>
@@ -3696,7 +3676,6 @@ SOAP over https 接続に使用されます</block>
   <block id="2c87609dbbc3630573c64e271de8207d" category="list-text">クレデンシャル情報はすべてSHA256ハッシュを使用して保存されます。</block>
   <block id="0f1a6fa0a65f9d5c3c4a16b070104d7a" category="list-text">*基本オペレーティングシステムイメージ。*この製品は、アクセス制限とシェルアクセスが無効になったOVA用のDebianベースOSに同梱されています。これにより、攻撃のフットプリントが削減されます。すべてのSnapCenter リリースベースのオペレーティングシステムには、最大限のセキュリティを適用できる最新のセキュリティパッチが適用されています。</block>
   <block id="83cd5867ba912e517fa1100299fd1cf3" category="paragraph">ネットアップでは、SnapCenter Plug-in for VMware vSphereアプライアンスに関連するソフトウェア機能およびセキュリティパッチを開発し、その後、バンドルソフトウェアプラットフォームとしてお客様にリリースします。ネットアップでは、これらのアプライアンスにはLinuxのサブシステムに固有の依存関係と独自のソフトウェアが含まれているため、サブオペレーティングシステムを変更しないことを推奨します。これは、ネットアップアプライアンスに影響を及ぼす可能性が高いためです。これは、ネットアップがアプライアンスをサポートできるかどうかに影響します。アプライアンスはセキュリティ関連の問題にパッチを適用するためにリリースされているため、最新のコードバージョンをテストして導入することを推奨します。</block>
-  <block id="c7eca250a9863785d63364853c46c00d" category="doc">FabricPoolを使用したMySQLの階層化</block>
   <block id="1bc6cee680286aae1b12889369b7f18a" category="summary">ONTAPでのMySQLの運用</block>
   <block id="dac8ea4fbfd87a535663c227b91f50e3" category="doc">I/Oスケジューラ</block>
   <block id="215dca219378b291ae287eb076489fdd" category="paragraph">Linuxカーネルでは、ブロックデバイスへのI/Oのスケジュール方法を低レベルで制御できます。</block>
@@ -3712,14 +3691,6 @@ SOAP over https 接続に使用されます</block>
   <block id="d4ae77cd65c244ceb4277b27553d6931" category="doc">ONTAPノMySQLテタヘス</block>
   <block id="598132a821e8cc696fbbae934047d991" category="paragraph">MariaDBやPercona MySQLを含むMySQLとその変種は、世界で最も人気のあるデータベースです。</block>
   <block id="478f00c3805e92ad9e8a7cd4f335a020" category="admonition">ONTAPとMySQLデータベースに関するこのドキュメントは、以前に公開されていた_TR-4722：『MySQL database on NetApp ONTAP best practices』に代わるものです。_</block>
-  <block id="9793e07572d1520fdffd0e4db62df588" category="paragraph">MySQLには次のような機能があります。</block>
-  <block id="04b90043b7bbdc843dd2b77f2014f14f" category="list-text">* TCOの削減* MySQLは、強力で無料のオープンソースのデータベース管理システムで、数年前から提供されています。非常に安定しています。コミュニティサポートがあり、新機能の保守、デバッグ、追加に役立ちます。Webアプリケーションに複数のデータベースが必要な場合や、ロードバランシングやシャーディングが必要な場合は、インスタンスごとに単一のライセンスを必要とする商用データベースではなく、ハードウェアコストのみでデータベースインスタンスを簡単にセットアップできます。</block>
-  <block id="ae129f31dc6bc29ee6e28e9dbd8bd904" category="list-text">*信頼性、パフォーマンス、使いやすさ。* MySQLの特徴の1つは、優れたパフォーマンスとスケーラビリティです。そのため、多くのWebベースの企業がそれを使用しています。MySQLは、高速なパフォーマンスを実現するためにいくつかの主要な強みを活用競争は常にマウスクリック(またはスクリーンタッチ)で行われるため、顧客からの問い合わせや活動への迅速な対応が最も重要です。Webベースのアプリケーションを処理するデータベースは、読み取り（単純なクエリと複雑なクエリ）処理と書き込み処理の両方で、卓越したパフォーマンスを提供する必要があります。</block>
-  <block id="ce921a1775ad78848c0ef06b4c2aaff3" category="list-text">*データベースの開発、設計、および管理。* MySQL Workbenchは、開発、設計、および管理を統合した環境を提供し、開発者およびDBAの生産性を高めます。異なる開発者がデータベースで異なる機能を探していますが、MySQLはさまざまな機能を提供しています。ラップトップとデスクトップの両方で適切に実行できます。既存のWebサーバやアプリケーションと衝突しないように、環境に簡単に適応できます。</block>
-  <block id="26ab39333494c60fdfe1fbf67fcb9c4a" category="list-text">*包括的なトランザクション・サポート。* MySQLは、利用可能な最も堅牢なトランザクション・データベース・エンジンの1つです。完全なデータ整合性を実現する解決策であり、完全なアトミック、一貫性、分離、永続性トランザクションのサポート、マルチバージョントランザクションのサポートなどの機能を提供します。 および無制限のローレベルロック。サーバーによって強制された参照整合性により、即時デッドロック識別が可能になります。</block>
-  <block id="f9ab99873ba8416ec0975ef4f4fb655a" category="list-text">*データセキュリティ。* MySQLは、WordPress、Drupal、Joomla、Facebook、Google、 そしてtwitter。MySQLの最新バージョンに付随するデータセキュリティとトランザクション処理のサポートは、あらゆるビジネス、特に頻繁な送金を伴うEコマースビジネスに利益をもたらす可能性があります。</block>
-  <block id="2cb5bda4a8945e058ff550f4991ba8b6" category="list-text">*プラガブル・アーキテクチャー。* MySQLプラガブル・ストレージ・エンジン・アーキテクチャーにより、データベースの専門家は、アプリケーションのコーディング要件を管理することなく、特定のアプリケーションのニーズに特化したストレージ・エンジンを選択できます。MySQLサーバアーキテクチャは、アプリケーションプログラマとDBAを、ストレージレベルでの低レベルの実装の詳細から分離し、一貫性のある簡単なアプリケーションモデルとAPIを提供します。さまざまなストレージエンジンにはさまざまな機能がありますが、アプリケーションはこれらの違いから保護されています。</block>
-  <block id="e0780e103bd4ebcb0ee7f25b644eca40" category="paragraph">MySQLの効率的でモジュール化されたアーキテクチャは、1つのストレージエンジンから独立したインターフェイスとサービスを使用しながら、データウェアハウス、トランザクション処理、HA状況など、特定のアプリケーションのニーズに対応したい場合に大きなメリットをもたらします。</block>
   <block id="35701e1bcd40c8e1a520fc33d0e14842" category="doc">innodb_flush_method</block>
   <block id="138738e11d5fda5c496edaa92e32e158" category="paragraph">innodb_flush_methodパラメータは、InnoDBがログファイルとデータファイルを開いてフラッシュする方法を指定します。</block>
   <block id="c262c8cd82b96f69fbbc058d7a35683b" category="section-title">最適化</block>
@@ -3750,7 +3721,6 @@ SOAP over https 接続に使用されます</block>
   <block id="03f07291794c3b9cb00d04cb9f30be81" category="list-text">専用のInnoDB専用マシンの場合は、バッファプールサイズを使用可能なRAMの80%以上に設定します。</block>
   <block id="7b0119b7fa59f87d23d5c65da456b226" category="list-text">MySQL専用サーバーでない場合は、サイズをRAMの50%に設定します。</block>
   <block id="a6a9695e1464f5554c0006c55facfadf" category="doc">ファイル記述子</block>
-  <block id="5ef6471f819ed2d47303473cc87d9305" category="paragraph">実行するには、MySQLサーバにファイル記述子が必要です。</block>
   <block id="8e222c68dd214db9f8a1b5b572ee6267" category="paragraph">これらを使用して、新しい接続を開いたり、テーブルをキャッシュに格納したり、複雑なクエリを解決するための一時テーブルを作成したり、永続的なテーブルにアクセスしたりします。mysqldが必要なときに新しいファイルを開くことができない場合、正常に機能しなくなる可能性があります。この問題の一般的な現象は、エラー24「開いているファイルが多すぎます」です。 mysqldが同時に開くことができるファイル記述子の数は、<block ref="3d39e9c5aa2f78830dd6993cec18e93e" prefix=" " category="inline-code"></block> 構成ファイルに設定されたオプション <block ref="86d0d007043d911697753b35e2c18f35" prefix="(" category="inline-code"></block>）。でも...。<block ref="3d39e9c5aa2f78830dd6993cec18e93e" prefix=" " category="inline-code"></block> オペレーティングシステムの制限によっても異なります。この依存関係により、変数の設定がより複雑になります。</block>
   <block id="07561a91f81dfe3c8e4364aac8bdbea4" category="paragraph">MySQLカセツテイテキナイ<block ref="3d39e9c5aa2f78830dd6993cec18e93e" prefix=" " category="inline-code"></block> オプションがで指定されている値よりも大きい<block ref="dd1c6d8164dfd1cee0afa39b177e843b" prefix=" " category="inline-code"></block>。したがって、必要に応じてMySQLがファイルを開くことができるように、これらの制限をオペレーティングシステムレベルで明示的に設定する必要があります。Linuxでファイル制限を確認するには、次の2つの方法があります。</block>
   <block id="84e705ac120a887df441f4161dc29409" category="list-text">。<block ref="2eabb4efed7dffb32ea1170eab71b798" prefix=" " category="inline-code"></block> コマンドを実行すると、許可またはロックされているパラメータの詳細な概要がすばやく表示されます。このコマンドを実行して行った変更は永続的ではなく、システムのリブート後に消去されます。</block>
@@ -3797,9 +3767,7 @@ SOAP over https 接続に使用されます</block>
   <block id="86fc8cb3bf2cae621315896a94b35f67" category="paragraph">NetApp LUNは4KBの物理ブロックにデータを格納するため、512バイトの論理ブロックが8個生成されます。</block>
   <block id="5f441ceabc94de2a9cced94d9f53a2d0" category="paragraph">同じブロックサイズを設定しないと、I/Oは物理ブロックと正しくアライメントされず、RAIDグループ内の2つの異なるドライブに書き込みが行われてレイテンシが発生する可能性があります。</block>
   <block id="236ac851d05b8822524001920948f23d" category="admonition">スムーズな読み取り/書き込み処理を実現するためには、I/Oのアライメントが重要です。ただし、物理ブロックの先頭以外の論理ブロックからI/Oが開始されると、I/Oはミスアライメントされます。I/O処理がアライメントされるのは、I/O処理が論理ブロック（物理ブロック内の最初の論理ブロック）で開始されたときだけです。</block>
-  <block id="e6cf2549be4da18bf404cacc6100516a" category="summary">MySQL構成</block>
   <block id="282155126a94a0702cfd80daf38d4362" category="doc">設定の概要</block>
-  <block id="13b506e9cda8a01b4cd60e08f3f1faf6" category="paragraph">NetAppでは、最適なパフォーマンスを得るために、いくつかの重要なMySQL構成パラメータ（表1を参照）を推奨しています。</block>
   <block id="3225a10b07f1580f10dee4abc3779e6c" category="cell">パラメータ</block>
   <block id="c82a6100dace2b41087ba6cf99a5976a" category="cell">値</block>
   <block id="b10db909b8fda84e70bf9b308d0938d9" category="cell">2億5、600万</block>
@@ -3813,7 +3781,6 @@ SOAP over https 接続に使用されます</block>
   <block id="1006f82d8df7d2325439b28ea691737c" category="cell">open_file_limit</block>
   <block id="3c9b5f1cd6a030bcb7bed9eac80589fb" category="cell">65535</block>
   <block id="c9f5a4d3ede4d084dda0a788ed06783c" category="paragraph">このセクションで説明するパラメータを設定するには、MySQL構成ファイル（my.cnf）でパラメータを変更する必要があります。NetAppのベストプラクティスは、社内で実施したテストの結果です。</block>
-  <block id="5382aaf8b3d2fdeb6717f9805b0dd511" category="doc">コンテナ</block>
   <block id="6a554ff1dc93539a626e576bf0d28a02" category="paragraph">MySQLデータベースのコンテナ化はますます普及しています。</block>
   <block id="bcc002a9f2e2ade112438f50a6630498" category="paragraph">低レベルのコンテナ管理は、ほとんどの場合Dockerを使用して実行されます。OpenShiftやKubernetesなどのコンテナ管理プラットフォームを使用すると、大規模なコンテナ環境の管理がさらに簡単になります。コンテナ化のメリットとしては、ハイパーバイザーのライセンスが不要なため、コストの削減が挙げられます。また、コンテナを使用すると、基盤となる同じカーネルとオペレーティングシステムを共有しながら、複数のデータベースを互いに分離して実行できます。コンテナはマイクロ秒単位でプロビジョニングできます。</block>
   <block id="14d9b10c6196045941347a9e85704b50" category="inline-link-macro">Astra Trident のドキュメント</block>
@@ -3835,7 +3802,6 @@ SOAP over https 接続に使用されます</block>
   <block id="defc1bfda928f419df5e4af79c98343e" category="list-text">MySQLのランダムI/OおよびシーケンシャルI/O指向ファイルを1つのボリュームに格納</block>
   <block id="7fd750411093ebd1faa0d99dd2608514" category="list-text">純粋にシーケンシャルなI/O指向のMySQLファイルを格納するための別のボリューム</block>
   <block id="0561a3b014eef0e5125fa63e1626cf57" category="paragraph">このレイアウトは、データ保護のポリシーと戦略の設計にも役立ちます。</block>
-  <block id="a53db665fd1a9734a7a0e119671a0cd0" category="paragraph">LinuxでのNFSパフォーマンスは、というパラメータによって異なります。<block ref="453f2cc2326f82af1053f4aa4b75400b" prefix=" " category="inline-code"></block>。</block>
   <block id="9166d970028a28a614af39e6286371b7" category="paragraph">このパラメータは、次のコマンドで無効にできます。<block ref="8cafbd8d9096941261e87f4f9152ab92" prefix=" " category="inline-code"></block> ベンチマークの場合や、データの整合性や障害の可能性よりも最高のパフォーマンスに関心がある場合。InnoDBでは、ダブルライトと呼ばれるファイルフラッシュ技術が使用されています。InnoDBは、ページをデータファイルに書き込む前に、ダブル書き込みバッファと呼ばれる連続領域にページを書き込みます。書き込みとダブル書き込みバッファへのフラッシュが完了すると、InnoDBはページをデータファイル内の適切な位置に書き込みます。ページの書き込み中にオペレーティングシステムまたはmysqldプロセスがクラッシュした場合、InnoDBは後でクラッシュリカバリ中にダブルライトバッファからページの適切なコピーを見つけることができます。</block>
   <block id="3dfd4b9a526f8a8cf17021e34638b375" category="admonition">* NetAppでは、ダブル書き込みバッファを無効にすることを推奨しています。ONTAP NVRAMは同じ機能を果たします。ダブルバッファリングは不必要にパフォーマンスを低下させます。</block>
   <block id="dd5a2a602f713562e0f9f0fd8385660e" category="doc">NFS経由のMySQL</block>
@@ -3983,8 +3949,6 @@ SOAP over https 接続に使用されます</block>
   <block id="74cacb0c34a37e2859e3b054938a344d" category="doc">SANファイルシステムを使用するPostgreSQL</block>
   <block id="1758f5c81d60f1a0ac8600fddc99a919" category="paragraph">SANを使用したPostgreSQLデータベースは、通常xfsファイルシステムでホストされますが、OSベンダーがサポートしていれば他のデータベースも使用できます。</block>
   <block id="d73e7b56b7baa813a32c521ca074e7c4" category="paragraph">1つのLUNで最大10万IOPSをサポートできますが、I/O負荷の高いデータベースでは、一般にLVMとストライピングを使用する必要があります。</block>
-  <block id="5c24f0d1d447c2dfc01f2f2641e1d56c" category="summary">PostgreSQLデータベースNFSとONTAP</block>
-  <block id="3532099588a13fbccb2af22a75936454" category="doc">NFSファイルシステムを使用したPostgreSQL</block>
   <block id="f7cc8c4234952826818ad4d0c2050ac9" category="paragraph">PostgreSQLデータベースは、NFSv3またはNFSv4ファイルシステムでホストできます。最適なオプションは、データベース外の要因によって異なります。</block>
   <block id="1482c42acc1dd31ee8496c71a805e73c" category="paragraph">たとえば、特定のクラスタ環境ではNFSv4のロック動作が推奨されます。（参照： <block ref="bc3a7e667477b8b3590fa1451dcb924c" category="inline-link-macro-rx"></block> 詳細はこちら）</block>
   <block id="9674525687765646f35916d0e569eda9" category="paragraph">それ以外の場合は、パフォーマンスも含めて、データベース機能はほぼ同一である必要があります。唯一の要件は、<block ref="d64a84456adc959f56de6af685d0dadd" prefix=" " category="inline-code"></block> マウントオプション。これは、ソフトタイムアウトによって回復不能なIOエラーが発生しないようにするために必要です。</block>
@@ -4048,4 +4012,44 @@ SOAP over https 接続に使用されます</block>
   <block id="9eeba6fd02cf3b6d8aee35e0ce9bf8fe" category="sidebar">LVMストライピング</block>
   <block id="183bdb28f19bee640319f68825827aea" category="sidebar">RPO、RTO、SLA</block>
   <block id="2172b5d51273924b537842b0db78bfd4" category="sidebar">バックアップとリカバリの基本</block>
+  <block id="3403aac944f3cb6e2d2c7f7d52bc44b9" category="paragraph">データが指数関数的に増加するにつれて、企業にとってデータ管理はより複雑になります。この複雑さにより、ライセンス、運用、サポート、メンテナンスのコストが増大します。全体的なTCOを削減するには、信頼性とパフォーマンスに優れたバックエンドストレージを使用して、商用データベースからオープンソースデータベースに切り替えることを検討してください。</block>
+  <block id="dcac08882e3396bd30210108baa1641d" category="paragraph">ONTAPは理想的なプラットフォームです。ONTAPは文字通りデータベース向けに設計されているからです。データベースワークロードのニーズに対応するために、高度なQuality of Service（QoS；サービス品質）機能や基本的なFlexClone機能に対するランダムI/Oレイテンシの最適化など、多数の機能が特別に開発されました。</block>
+  <block id="1429a98a71e16287326edd7fc1f999fd" category="paragraph">無停止アップグレード（ストレージの交換など）などの追加機能により、重要なデータベースの可用性を維持できます。また、MetroClusterを使用して大規模な環境で瞬時にディザスタリカバリを実行したり、SnapMirrorアクティブ同期を使用してデータベースを選択したりすることもできます。</block>
+  <block id="8df3fb35ff15e02683bfb1bc7f852c93" category="paragraph">最も重要なことは、ONTAPが卓越したパフォーマンスを提供し、お客様固有のニーズに合わせて解決策をサイジングできることです。ネットアップのハイエンドシステムは100万超のIOPSをマイクロ秒単位のレイテンシで提供できますが、必要なIOPSが10万だけの場合は、同じストレージオペレーティングシステムを実行する小型のコントローラでストレージ解決策を適切にサイジングできます。</block>
+  <block id="97b4cda00dd31f5be69440f48c4da149" category="summary">ONTAPを使用したPostgreSQLデータベースの設定</block>
+  <block id="c4f52498c0db572381512887d7584e53" category="summary">PostgreSQLデータベースとストレージスナップショット</block>
+  <block id="b0792163c858a7c221b236d84619b5ef" category="summary">PostgreSQLデータベースNFSとONTAP</block>
+  <block id="189950ed46e5e8b7e92941531a5bb88b" category="doc">NFSファイルシステムを使用したPostgreSQLデータベース</block>
+  <block id="504cd1fb60a8eb7918484270e743ae3a" category="summary">PostgreSQLデータ保護P</block>
+  <block id="6cabd4dcf3582d38c441228705da3bda" category="doc">PostgreSQLのデータ保護</block>
+  <block id="383a6a5241ecfc558b9fec1d7cff5239" category="summary">PostgreSQLテーブルスペース</block>
+  <block id="20d0e2519b3555a0a2927c8914c17280" category="summary">PostgreSQLデータ保護ソフトウェア</block>
+  <block id="29e2aec511a8e307ecceacbd86c22f14" category="summary">PostgreSQL初期化パラメータ</block>
+  <block id="55e3f073b1864d9281d074e5b23effca" category="doc">Oracleのパフォーマンス最適化とベンチマーク手順</block>
+  <block id="035ecd1be6cacde993302b440e396bc2" category="paragraph">現在、データベースユーザの大半がオールフラッシュアレイを選択していることから、新たな考慮事項がいくつか生まれています。たとえば、2ノードのAFF A900システムでパフォーマンスをテストする場合を考えてみましょう。</block>
+  <block id="33f545d041b93838074263c0efd2e9da" category="list-text">読み取り/書き込み比率が80対20のA900ノードでは、レイテンシが150 µ sマークを超える前に、100万を超えるランダムデータベースIOPSを達成できます。これは、ほとんどのデータベースで現在必要とされているパフォーマンスをはるかに超えているため、予想される改善を予測することは困難です。ストレージがボトルネックになることはほとんどありません。</block>
+  <block id="0445195555faac96ebff962dbff126ea" category="summary">MySQLセツテイハラメエタ</block>
+  <block id="c0b7708ffcd66fd65a9d2a4801091563" category="paragraph">NetAppでは、最適なパフォーマンスを得るために、いくつかの重要なMySQL構成パラメータを推奨しています。</block>
+  <block id="10eb8b7e75da1815860da31490513841" category="summary">MySQLとNFS</block>
+  <block id="5249e05857621fbfae51371a73006c44" category="summary">MySQLとNFSv3のスロットテーブル</block>
+  <block id="d058f95e3a8d4b7b46802139d6b95982" category="paragraph">LinuxでのNFSv3のパフォーマンスは、<block ref="453f2cc2326f82af1053f4aa4b75400b" prefix=" " category="inline-code"></block>。</block>
+  <block id="bf2bdc980948fb9084a63963398846b2" category="paragraph">ONTAPは文字通りデータベース向けに設計されているため、ONTAPはMySQLデータベースに最適なプラットフォームです。データベースワークロードのニーズに対応するために、高度なQuality of Service（QoS；サービス品質）機能や基本的なFlexClone機能に対するランダムI/Oレイテンシの最適化など、多数の機能が特別に開発されました。</block>
+  <block id="1b3804b7e2292e18f5e66d54f7a9fafc" category="paragraph">最も重要なことは、ONTAPが卓越したパフォーマンスを提供し、お客様固有のニーズに合わせて解決策をサイジングできることです。ネットアップのハイエンドシステムは100万超のIOPSをマイクロ秒単位のレイテンシで提供できますが、必要なIOPSが10万だけの場合は、同じストレージオペレーティングシステムを実行する小型のコントローラでストレージ解決策を適切にサイジングできます。</block>
+  <block id="1339877637a3f7f59745a00e04f304fd" category="summary">MySQLおよびinnodb_log_file_size</block>
+  <block id="c1c4e722764621d56a075e42ce48d0c0" category="summary">MySQLおよびinnodb_buffer_pool_size</block>
+  <block id="ae14ab6d1e5edd0e782d8897d1721eb4" category="summary">MySQLとInnoDB_doublewrite</block>
+  <block id="689c52e3f5db5d2dafccd7d93cf1abc4" category="summary">MySQLおよびInnodb_flush_log_at_trx_commi</block>
+  <block id="639600080c225673dfdfa012fdbd6146" category="summary">MySQLおよびIOスケジューラ</block>
+  <block id="32e3724e2b54692cbef969373fbfe040" category="doc">I/OスケジューラとMySQL</block>
+  <block id="72985ac51e91797345b2437088a4362e" category="summary">MySQLとSAN</block>
+  <block id="d5ef0a45fe252b03f538bfd134b168db" category="summary">MySQLおよびInnoDB_LRU_SCAN_DEPTH</block>
+  <block id="df657260453f6ef228ee0ca22dd7a415" category="summary">MySQLのコンテナ化</block>
+  <block id="885b1b5a90f898c89b664ec58a42121c" category="doc">MySQLのコンテナ化</block>
+  <block id="2cbac38815d492c0afc5e7d7229601df" category="doc">MySQLとInnoDB</block>
+  <block id="1115aaa86f0065e0a105795d33ef4731" category="summary">MySQLフアイルノシキイチ</block>
+  <block id="2828450fc6669c8df75f937e227996f1" category="doc">MySQLフアイルキシユツシ</block>
+  <block id="9420010a756fb6d3ddeadfa63d2170f6" category="paragraph">MySQLサーバを実行するにはファイル記述子が必要であり、デフォルト値では不十分です。</block>
+  <block id="62414a5a9c0e2fc12a8d028ad29164b8" category="summary">MySQLとinnodb_io_capacity</block>
+  <block id="6219c45bc8c26437c0b7e1a69d4cbe58" category="summary">MySQLおよびinnodb_flush_method</block>
+  <block id="35d1a5d7b12999ec27f5233dccba043f" category="summary">MySQLとopen_file_limits</block>
 </blocks>

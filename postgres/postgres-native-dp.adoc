@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: postgres/postgres-native-dp.html 
 keywords: PostgreSQL,database,postgres 
-summary: ONTAP上のPostgreSQLデータベース 
+summary: PostgreSQLデータ保護P 
 ---
-= 標準搭載のデータ保護
+= PostgreSQLのデータ保護
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

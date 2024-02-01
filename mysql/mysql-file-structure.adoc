@@ -4,7 +4,7 @@ permalink: mysql/mysql-file-structure.html
 keywords: MySQL,MariaDB 
 summary: MySQLフアイルノコウソウ 
 ---
-= ファイル構造
+= MySQLとInnoDB
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

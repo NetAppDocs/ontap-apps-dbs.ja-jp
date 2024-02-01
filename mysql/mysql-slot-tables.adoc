@@ -2,16 +2,16 @@
 sidebar: sidebar 
 permalink: mysql/mysql-slot-tables.html 
 keywords: MySQL,MariaDB,TR-4722 
-summary: ONTAPでのMySQLの運用 
+summary: MySQLとNFSv3のスロットテーブル 
 ---
-= スロットテーブル
+= MySQLとNFSv3のスロットテーブル
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
 
 
 [role="lead"]
-LinuxでのNFSパフォーマンスは、というパラメータによって異なります。 `tcp_max_slot_table_entries`。
+LinuxでのNFSv3のパフォーマンスは、 `tcp_max_slot_table_entries`。
 
 TCPスロットテーブルは、NFSv3でホストバスアダプタ（HBA）のキュー深度に相当します。一度に未処理となることのできるNFS処理の数を制御します。デフォルト値は通常16ですが、最適なパフォーマンスを得るには小さすぎます。逆に、新しいLinuxカーネルでTCPスロットテーブルの上限をNFSサーバが要求でいっぱいになるレベルに自動的に引き上げることができるため、問題が発生します。
 

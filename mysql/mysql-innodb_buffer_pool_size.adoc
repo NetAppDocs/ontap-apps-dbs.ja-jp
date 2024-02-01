@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: mysql/mysql-innodb_buffer_pool_size.html 
 keywords: MySQL,MariaDB,innodb_buffer_pool_size 
-summary: ONTAPでのMySQLの運用 
+summary: MySQLおよびinnodb_buffer_pool_size 
 ---
 = innodb_buffer_pool_size
 :allow-uri-read: 

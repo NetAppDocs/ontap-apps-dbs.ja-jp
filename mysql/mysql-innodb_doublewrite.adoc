@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: mysql/mysql-innodb_doublewrite.html 
 keywords: MySQL,MariaDB,innodb_doublewrite 
-summary: ONTAPでのMySQLの運用 
+summary: MySQLとInnoDB_doublewrite 
 ---
 = innodb_doublewrite
 :allow-uri-read: 

@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: mysql/mysql-containers.html 
-keywords: MySQL,MariaDB,containers 
-summary: ONTAPでのMySQLの運用 
+keywords: MySQL,MariaDB,containers,trident 
+summary: MySQLのコンテナ化 
 ---
-= コンテナ
+= MySQLのコンテナ化
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/
