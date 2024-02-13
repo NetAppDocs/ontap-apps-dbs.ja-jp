@@ -4,7 +4,7 @@ permalink: oracle/oracle-migration-planning.html
 keywords: migration, oracle 
 summary: Oracleの移行計画 
 ---
-= 驚異的な移行計画
+= Oracleの移行計画
 :allow-uri-read: 
 
 
