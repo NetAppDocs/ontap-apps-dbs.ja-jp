@@ -3048,7 +3048,6 @@ vSphere 8を使用したNVMe-oFの詳細については、を参照してくだ�
   <block id="2d506b6088a383ccf08479b0f80c0ff4" category="paragraph">バックアップや FlexClone 用の SnapRestore など、追加のライセンス機能を使用してクローニングを強化できる場合があります。これらのライセンスは、追加コストなしでライセンスバンドルに含まれていることがよくあります。FlexCloneライセンスは、VVolのクローニング処理や、VVolの管理対象Snapshot（ハイパーバイザーからONTAPにオフロードされる）をサポートするために必要です。FlexClone をデータストア / ボリューム内で使用すると、特定の VAAI ベースのクローンの品質を向上させることもできます（ブロックコピーではなく、スペース効率に優れたコピーが瞬時に作成されます）。  また、 DR レプリカのリカバリをテストする際に SRA で使用され、クローニング処理用に SnapCenter でバックアップコピーを参照して個々のファイルをリストアする際にも使用されます。</block>
   <block id="5dd57c2a315d3af44c2eb40eefc47111" category="doc">ネットワーク構成：</block>
   <block id="66507f357c74ee12194270cfe053b98d" category="paragraph">考慮すべき点をいくつか挙げます。</block>
-  <block id="b3752ab8dec37db2e30f4bf37fbdc112" category="list-text">ストレージネットワークのトラフィックを他のネットワークから分離します。専用の VLAN を使用するか、ストレージ用に別個のスイッチを使用することで、別のネットワークを実現できます。ストレージネットワークがアップリンクなどの物理パスを共有している場合は、十分な帯域幅を確保するために QoS または追加のアップリンクポートが必要になることがあります。ホストをストレージに直接接続しないでください。スイッチを使用して冗長パスを確保し、VMware HAが介入なしで機能できるようにします。</block>
   <block id="7c4904daaa282388097ad83bf382e1a5" category="list-text">ジャンボフレームは、必要に応じてネットワークでサポートされていれば、特に iSCSI を使用している場合に使用できます。使用する場合は、ストレージと ESXi ホストの間のパスにあるすべてのネットワークデバイスや VLAN で設定が同じであることを確認してください。そうしないと、パフォーマンスや接続の問題が発生する可能性があります。MTU は、 ESXi 仮想スイッチ、 VMkernel ポート、および各 ONTAP ノードの物理ポートまたはインターフェイスグループでも同一の設定にする必要があります。</block>
   <block id="8b6e7f43d1d697e8f99164f0aa2ab1b6" category="inline-link">TR-4182</block>
   <block id="3745abd352adaa2cdec42c798060eef6" category="list-text">ネットワークフロー制御は、 ONTAP クラスタ内のクラスタネットワークポートでのみ無効にすることを推奨します。データトラフィックに使用される残りのネットワークポートについては、推奨されるベストプラクティスはありません。必要に応じて有効または無効にしてください。を参照してください<block ref="bdfb81665a0ef86d871a52c0e6ebc591" category="inline-link-rx"></block> を参照してください。</block>
@@ -4063,4 +4062,6 @@ SOAP over https 接続に使用されます</block>
   <block id="d078ae9a339971900f939db9e82f253d" category="paragraph">ストレージ管理者は、構成からネットワークスイッチを削除してインフラを簡易化したいと考える場合があります。これは一部のシナリオでサポートされます。</block>
   <block id="14a07a9c146c886f1cf8b6ebd4b2b418" category="summary">ONTAPによる直接ネットワーク接続</block>
   <block id="a4e0be5abb980518338c55619fbfa4df" category="doc">TCP/IPおよびFCネットワークとの直接接続</block>
+  <block id="abf5ca60591addc6b98fa0f5479fdd67" category="list-text">ストレージネットワークのトラフィックを他のネットワークから分離します。専用の VLAN を使用するか、ストレージ用に別個のスイッチを使用することで、別のネットワークを実現できます。ストレージネットワークがアップリンクなどの物理パスを共有している場合は、十分な帯域幅を確保するために QoS または追加のアップリンクポートが必要になることがあります。ホストをストレージに直接接続しないでください。スイッチを使用して冗長パスを確保し、VMware HAが介入なしで機能できるようにします。を参照してください <block ref="afd3cc0da7d20400afc9250e88156a0f" category="inline-link-macro-rx"></block> 追加情報 の場合。</block>
+  <block id="e817ecc2f82a2b78d828ec8704031da3" category="section-title">直接接続ネットワーク</block>
 </blocks>
