@@ -55,6 +55,8 @@ entries:
     url: "/oracle/oracle-network-config-ethernet.html"
   - title: FC SAN構成
     url: "/oracle/oracle-network-config-fc.html"
+  - title: 直接接続ネットワーク
+    url: "/oracle/oracle-network-config-direct-connect.html"
 - title: ストレージ構成
   pdf-filename: Oracle Database用のストレージ構成
   entries:
