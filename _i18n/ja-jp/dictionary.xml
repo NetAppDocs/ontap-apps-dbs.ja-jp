@@ -2889,7 +2889,6 @@ I/Oの中断はありません。</block>
   <block id="6aadcb77504dae1dbfed2e4d1c969158" category="paragraph"><block ref="6aadcb77504dae1dbfed2e4d1c969158" category="inline-image-macro-rx" type="image"></block></block>
   <block id="7be2e69e5d19c282db8d81c60a51c862" category="summary">このページでは、 VMware vSphere 環境に NetApp ONTAP ストレージ解決策を実装するためのベストプラクティスについて説明します。</block>
   <block id="d3ba101543fc97ba1dd9272c87bf65da" category="doc">Virtual Volumes （ VVol ）と Storage Policy Based Management （ SPBM ）</block>
-  <block id="25e09c324ad3c89ee3aa01454fce14cd" category="section-title">VVol と SPBM について</block>
   <block id="a42f13867ea459821488608dc4d1b7c4" category="paragraph">ネットアップは、 vSphere Virtual Volumes （ VVol ）の開発において VMware と初期の設計パートナーとして、アーキテクチャに関する情報提供と、 VVol および VMware vSphere APIs for Storage Awareness （ VASA ）のサポートを提供していました。このアプローチにより、VMのきめ細かなストレージ管理がVMFSで実現しただけでなく、Storage Policy Based Management（SPBM）によるストレージプロビジョニングの自動化もサポートされました。</block>
   <block id="ce09fc365ce48a9d89c0fdb5222c3909" category="paragraph">SPBM は、仮想化環境で使用できるストレージサービスと、プロビジョニングされたストレージ要素の間の抽象化レイヤとして機能するフレームワークを、ポリシーを通じて提供します。このアプローチにより、ストレージアーキテクトは、 VM 管理者が簡単に利用できるさまざまな機能を備えたストレージプールを設計できます。仮想マシンのワークロード要件をプロビジョニングされたストレージプールと照合することで、仮想マシンごとまたは仮想ディスクレベルのさまざまな設定をきめ細かく制御できます。</block>
   <block id="2902acda09b9786460c2dd928a2d8f1a" category="paragraph">ONTAP は VVol の規模においてストレージ業界をリードし、 1 つのクラスタで数十万もの VVol をサポートします。一方、エンタープライズアレイや小規模なフラッシュアレイベンダーは、アレイあたり数千の VVol をサポートします。また、 VVOL 3.0 をサポートする機能が追加され、 VM のきめ細かな管理が進化しています。</block>
@@ -3345,7 +3344,6 @@ VAAIを使用しない場合、NFS上のすべてのVMに対してこの設定�
   <block id="096f2185af16e07c387a7fbe50df957a" category="list-text">より慎重な移行が必要な仮想マシンには、接続されたストレージを使用するデータベースやアプリケーションなどがあります。一般的に、移行を管理するためにアプリケーションのツールを使用することを検討してください。Oracle の場合は、 RMAN や ASM などの Oracle ツールを使用してデータベース・ファイルを移行することを検討してください。を参照してください<block ref="6b3f565e7a7ce633fa62f4114c295216" category="inline-link-rx"></block> を参照してください。同様に、 SQL Server の場合は、 SQL Server Management Studio を使用するか、 SnapManager for SQL Server や SnapCenter などのネットアップのツールを使用することを検討します。</block>
   <block id="09485b54473eee31422696bf0217d714" category="paragraph">ONTAP ソフトウェアを実行しているシステムで vSphere を使用する際に最も重要なベストプラクティスは、 VMware vSphere プラグイン（旧 Virtual Storage Console ）用の ONTAP ツールをインストールして使用することです。この vCenter プラグインは、 SAN と NAS のどちらを使用している場合でも、ストレージ管理を簡易化し、可用性を向上させ、ストレージコストと運用オーバーヘッドを削減します。データストアのプロビジョニングのベストプラクティスを使用して、マルチパスと HBA タイムアウト（これらは付録 B で説明）用の ESXi ホスト設定を最適化します。vCenterプラグインであるため、vCenterサーバに接続するすべてのvSphere Web Clientで使用できます。</block>
   <block id="9fb2cc2ced88ce872ef16c37d8284360" category="paragraph">このプラグインは、 vSphere 環境で他の ONTAP ツールを使用する場合にも役立ちます。NFS Plug-in for VMware VAAIをインストールできます。これにより、VMのクローニング処理、シック仮想ディスクファイルのスペースリザベーション、ONTAPスナップショットのオフロードのために、ONTAPへのコピーオフロードが可能になります。</block>
-  <block id="2e0fa230911ceec131e12fe7c87fc01e" category="paragraph">このプラグインは、VASA Provider for ONTAPの多くの機能の管理インターフェイスでもあり、VVOLを使用したストレージポリシーベースの管理をサポートします。VMware vSphere 用の ONTAP ツールを登録したら、ストレージ機能プロファイルを作成してストレージにマッピングし、データストアがプロファイルに一定期間にわたって準拠していることを確認します。VASA Provider には、 VVol データストアの作成と管理を行うためのインターフェイスも用意されています。</block>
   <block id="9baea886f208a41896164d4ade5b3fde" category="paragraph">一般に、 vCenter 内で VMware vSphere インターフェイス用の ONTAP ツールを使用して、従来のデータストアと VVol データストアをプロビジョニングし、ベストプラクティスに従っていることを確認することを推奨します。</block>
   <block id="6161d374e9022f89382fd63b4be15aa1" category="section-title">一般的なネットワーク</block>
   <block id="f0cd6847f2a7a0773ad0b58d0f9dc67d" category="paragraph">ONTAP ソフトウェアを実行しているシステムで vSphere を使用する場合のネットワーク設定の構成は簡単で、他のネットワーク構成と同様です。考慮すべき点をいくつか挙げます。</block>
@@ -3367,7 +3365,6 @@ VAAIを使用しない場合、NFS上のすべてのVMに対してこの設定�
   <block id="eafcbe529f542610c50d02e4a2fffcd6" category="paragraph">ONTAP 9.8では、FlexGroupボリュームファイル用のファイルベースのパフォーマンス指標（IOPS、スループット、レイテンシ）も新たに追加されており、これらの指標はONTAP tools for VMware vSphereのダッシュボードとVMレポートで確認できます。VMware vSphere プラグイン用の ONTAP ツールでは、最大 IOPS と最小 IOPS の組み合わせを使用してサービス品質（ QoS ）ルールを設定することもできます。これらは、データストア内のすべての VM に対して個別に設定することも、特定の VM に対して個別に設定することもできます。</block>
   <block id="b8c631b88d7be5f1105be2f8c7ff3213" category="list-text">FlexGroupボリュームプロビジョニングのデフォルト設定を使用します。VMware vSphere 用の ONTAP ツールは vSphere 内で FlexGroup を作成およびマウントするため推奨されますが、 ONTAP System Manager やコマンドラインを使用すると特別なニーズを満たすことができます。その場合も、ノードあたりのコンスティチュエントメンバー数などのデフォルト値を使用してください。これはvSphereで最も徹底的にテストされているためです。ただし、コンスティチュエントの数や配置の変更など、デフォルト以外の設定も引き続き完全にサポートされます。</block>
   <block id="301593c45668093a7eb242d138c597a3" category="list-text">FlexGroupベースのデータストアをサイジングする場合は、FlexGroupが複数の小規模なFlexVolで構成され、より大きなネームスペースが作成されることに注意してください。そのため、8つのコンスティチュエントでFlexGroupを使用する場合は、データストアのサイズを最大の仮想マシンの8倍以上にする必要があります。たとえば、使用している環境に 6TB の VM がある場合、 FlexGroup データストアのサイズは 48TB 以上にする必要があります。</block>
-  <block id="6d9993f47e7802210a05453f494513bf" category="list-text">VMware とネットアップは、現在、一般的なマルチパスネットワークアプローチをサポートしていません。NFSv4.1 では、ネットアップは pNFS をサポートしていますが、 VMware はセッショントランキングをサポートしています。NFSv3 は、ボリュームへの複数の物理パスをサポートしていません。ONTAP 9.8を搭載したでは、ONTAP tools for VMware vSphereでFlexGroupを作成することを推奨しますが、クラスタ全体に負荷を分散するためには、そのFlexGroupをアンマウントし、ラウンドロビンDNSを使用して再マウントすることを推奨します。ONTAP toolsでデータストアのマウント時に使用されるLIFは1つだけです。データストアを再マウントしたら、ONTAPツールを使用してデータストアを監視および管理できます。</block>
   <block id="04cc9e0b9478cc704d42735886027630" category="list-text">コピーオフロードには、 NFS Plug-in for VMware VAAI を使用します。前述したように、クローニングはFlexGroupデータストア内で強化されますが、FlexVolボリュームとFlexGroupボリュームの間でVMをコピーする場合、ONTAPはESXiホストのコピーに比べてパフォーマンス上の大きなメリットはありません。そのため、VAAIとFlexGroupのどちらを使用するかを決定する際は、ワークロードのクローニングを検討してください。コンスティチュエントボリュームの数の変更は、FlexGroupベースのクローニングを最適化する1つの方法です。キャッシュタイムアウトの調整も同様です。</block>
   <block id="b9e0a0134c0815e50bb71d8dd7e367b6" category="list-text">QoS （最大 / 最小 IOPS ）は、個々の VM に対して、またはデータストア内のすべての VM に対して設定できます。すべての VM に QoS を設定すると、 VM ごとに個別に設定する必要がなくなります。今後は、新規または移行された VM には適用されません。新しい VM に QoS を設定するか、データストア内のすべての VM に QoS を再適用してください。また、別のデータストアに移行されたVMには、FlexGroup QoSポリシーも適用されません。これに対し、VVOLでは、別のデータストアに移行してもQoSポリシーの設定を維持できます。</block>
   <block id="1133ff8355478000111c8b1969e32770" category="list-text">SnapCenter Plug-in for VMware vSphereリリース4.4以降では、プライマリストレージシステム上のFlexGroupデータストアのVMのバックアップとリカバリがサポートされます。SCV 4.6では、FlexGroupベースのデータストアに対するSnapMirrorのサポートが追加されています。</block>
@@ -3406,7 +3403,6 @@ VAAIを使用しない場合、NFS上のすべてのVMに対してこの設定�
   <block id="dcaf091737df278b1b4bdd2e37c10a75" category="summary">NetApp ONTAP は、 2002 年に最新のデータセンターに導入されて以来、 VMware vSphere 環境向けストレージ解決策として業界をリードしてきました。また、コストを削減しながら管理を簡易化する革新的な機能を継続的に追加しています。</block>
   <block id="0a0e655ee9ba6467857ebf014a268f29" category="doc">VMware Site Recovery ManagerとNetApp ONTAP</block>
   <block id="5bdb12cbb14efa98a61e7c5e3b4de108" category="admonition">このドキュメントは、以前に公開されていたテクニカルレポート「TR-4900：VMware Site Recovery Manager」をONTAPに置き換えます。</block>
-  <block id="7659430738ccf1c5b8c8084a4003c709" category="paragraph">NetApp ONTAP は、 2002 年に最新のデータセンターに導入されて以来、 VMware vSphere 環境向けストレージ解決策として業界をリードしてきました。また、コストを削減しながら管理を簡易化する革新的な機能を継続的に追加しています。このドキュメントでは、業界をリードするVMwareのディザスタリカバリ（DR）ソフトウェアであるONTAP 解決策for VMware Site Recovery Manager（SRM）について説明します。最新の製品情報とベストプラクティスを紹介し、導入の合理化、リスクの軽減、継続的な管理の簡素化を実現します。</block>
   <block id="e3445c3aa798f5ad98665e33d34dd952" category="paragraph">ベストプラクティスは、ガイドや互換性ツールなどの他のドキュメントを補うものです。ラボテストに基づいて開発されており、ネットアップのエンジニアやお客様は広範な現場経験を積んでいます。推奨されるベストプラクティスがお客様の環境に適していない場合もありますが、一般に最もシンプルなソリューションであり、ほとんどのお客様のニーズに対応できます。</block>
   <block id="10b8f80c23f8a44dfa6b10ae56d7dbe9" category="paragraph">本ドキュメントでは、ONTAP Tools for VMware vSphere 9.12（NetApp Storage Replication Adapter[SRA]およびVASA Provider[VP]を含む）およびVMware Site Recovery Manager 8.7と組み合わせて使用した場合の、ONTAP 9の最近のリリースの機能を中心に説明します。</block>
   <block id="c40f8c2af56356193284f6b46865d954" category="section-title">SRM で ONTAP を使用する理由</block>
@@ -3587,7 +3583,6 @@ VAAIを使用しない場合、NFS上のすべてのVMに対してこの設定�
   <block id="cb03753531bad31391d7156433b98ae6" category="paragraph">フェイルバックのもう 1 つのベストプラクティスとして、再保護の完了後、および最終フェイルバックの実行前に、常にテストフェイルオーバーを実行することがあります。これにより、元のサイトに配置されたシステムで処理が完了できるかどうかを確認できます。</block>
   <block id="900a3b65ea54b6dcff72ed0d6ac66fdf" category="section-title">元のサイトを再保護する</block>
   <block id="12d059a2c7519f2e3497b30a71121503" category="paragraph">フェイルバック後の再保護を実行すると、基本的に環境は最初の状態に戻り、 SnapMirror レプリケーションが本番用サイトからリカバリサイトに再度実行されます。</block>
-  <block id="7ab9df3e4e38ca227c1b48b0f6740675" category="section-title">安全な開発活動</block>
   <block id="1a79eb278bc02ebdbd2ab32925e316f6" category="paragraph">NetApp ONTAP Tools for VMware vSphere のソフトウェアエンジニアリングでは、次の安全な開発作業を実施します。</block>
   <block id="39e5fc9eb192f011ab14dae6c2974c4e" category="list-text">* 脅威モデリング。 * 脅威モデリングの目的は、ソフトウェア開発ライフサイクルの早い段階で、機能、コンポーネント、または製品のセキュリティ上の欠陥を発見することです。脅威モデルとは、アプリケーションのセキュリティに影響するすべての情報を構造化したものです。本質的に、これはセキュリティの観点から見たアプリケーションとその環境です。</block>
   <block id="9f16ab3a50bca32d19c4729319035c8d" category="list-text">* Dynamic Application Security Testing （ DAST ）。 * このテクノロジーは、実行中のアプリケーションで脆弱な状態を検出するように設計されています。DAST は、 Web 対応アプリケーションの公開 HTTP および HTML インターフェイスをテストします。</block>
@@ -4062,6 +4057,319 @@ SOAP over https 接続に使用されます</block>
   <block id="d078ae9a339971900f939db9e82f253d" category="paragraph">ストレージ管理者は、構成からネットワークスイッチを削除してインフラを簡易化したいと考える場合があります。これは一部のシナリオでサポートされます。</block>
   <block id="14a07a9c146c886f1cf8b6ebd4b2b418" category="summary">ONTAPによる直接ネットワーク接続</block>
   <block id="a4e0be5abb980518338c55619fbfa4df" category="doc">TCP/IPおよびFCネットワークとの直接接続</block>
-  <block id="abf5ca60591addc6b98fa0f5479fdd67" category="list-text">ストレージネットワークのトラフィックを他のネットワークから分離します。専用の VLAN を使用するか、ストレージ用に別個のスイッチを使用することで、別のネットワークを実現できます。ストレージネットワークがアップリンクなどの物理パスを共有している場合は、十分な帯域幅を確保するために QoS または追加のアップリンクポートが必要になることがあります。ホストをストレージに直接接続しないでください。スイッチを使用して冗長パスを確保し、VMware HAが介入なしで機能できるようにします。を参照してください <block ref="afd3cc0da7d20400afc9250e88156a0f" category="inline-link-macro-rx"></block> 追加情報 の場合。</block>
   <block id="e817ecc2f82a2b78d828ec8704031da3" category="section-title">直接接続ネットワーク</block>
+  <block id="f437881fa7e42bf0e4563bbec8176f81" category="paragraph">ONTAP ソフトウェアを実行するシステムでは、 ONTAP ストレージ QoS 機能を使用して、ファイル、 LUN 、ボリューム、 SVM 全体などの異なるストレージオブジェクトに対するスループットを MBps や IOPS （ 1 秒あたりの I/O 数）で制限できます。</block>
+  <block id="87e6f97c8ec2f31df616ef84401ffaf4" category="paragraph">追加情報 には、いくつかのトラブルシューティングリソースが用意されています。</block>
+  <block id="52d04863ac62a6fa67e1b49a31086928" category="paragraph">以降のセクションでは、VMware SRMとONTAPストレージの運用に関するベストプラクティスについて説明します。</block>
+  <block id="30b34ee8f62b7bf57684faae3645acc4" category="summary">NetApp ONTAPを使用したvSphere Metroストレージクラスタの詳細</block>
+  <block id="f24ef4a42850a2b3e3d77e610ae46fee" category="doc">計画的イベントと計画外イベントの耐障害性</block>
+  <block id="4bce11924453ef2ee7e40109f79dc66d" category="paragraph">NetApp MetroClusterとSnapMirrorのアクティブ同期は、NetAppハードウェアとONTAP®ソフトウェアの高可用性とノンストップオペレーションを強化する強力なツールです。</block>
+  <block id="52f49b6400100ac4558d31582b90ca4e" category="paragraph">これらのツールは、ストレージ環境全体をサイト全体で保護し、データの可用性を確保します。スタンドアロンサーバ、高可用性サーバクラスタ、Dockerコンテナ、仮想サーバのいずれを使用している場合でも、NetAppテクノロジは、停電、冷却装置の障害、ネットワーク接続の障害、ストレージアレイのシャットダウン、または運用上のエラーが原因で全体が停止した場合でも、ストレージの可用性をシームレスに維持します。</block>
+  <block id="d267775072875ddbb24c16a41c22d8a2" category="paragraph">MetroClusterとSnapMirrorのアクティブな同期では、計画的または計画外のイベントが発生した場合に、次の3つの基本的な方法でデータを継続できます。</block>
+  <block id="1d3027d09fc1db3087f05f2163af2cb7" category="list-text">冗長コンポーネントによる単一コンポーネント障害からの保護</block>
+  <block id="f3b83f3b77289efe3b53cf537b7b77f5" category="list-text">ローカルのHAテイクオーバー：1台のコントローラに影響するイベントに対応</block>
+  <block id="b6ed0cba165f6f9664dc1e57ac3419ec" category="list-text">完全なサイト保護–ストレージおよびクライアントのアクセスをソースクラスタからデスティネーションクラスタに移動することで、サービスを迅速に再開します。</block>
+  <block id="16afcbe8821dfa582521cd62c1ec130d" category="paragraph">つまり、1つのコンポーネントで障害が発生してもシームレスに運用が継続され、障害が発生したコンポーネントを交換すると自動的に冗長運用に戻ります。</block>
+  <block id="8fab78e8b214cad43d962b802bf568f8" category="paragraph">シングルノードクラスタ（通常はONTAP Selectなどのソフトウェア定義バージョン）を除くすべてのONTAPクラスタには、テイクオーバーとギブバックと呼ばれるHA機能が組み込まれています。クラスタ内の各コントローラが別のコントローラとペアリングされ、HAペアが形成されます。これらのペアにより、各ノードはストレージにローカルで接続されます。</block>
+  <block id="83e1749664841043ce8b1e894769a201" category="paragraph">テイクオーバーは、データサービスを維持するために一方のノードがもう一方のノードのストレージをテイクオーバーする自動プロセスです。ギブバックは、通常動作に戻る逆のプロセスです。テイクオーバーは、ハードウェアのメンテナンス時やONTAPのアップグレード時などに計画的に行うことも、ノードのパニックやハードウェア障害による計画外で行うこともできます。</block>
+  <block id="834d83f4ff04b7e3948831f336559b7c" category="paragraph">テイクオーバー時に、MetroCluster構成のネットワーク接続型ストレージ論理インターフェイス（NAS LIF）が自動的にフェイルオーバーされます。ただし、ストレージエリアネットワークLIF（SAN LIF）はフェイルオーバーせず、引き続き論理ユニット番号（LUN）への直接パスを使用します。</block>
+  <block id="0b0403a9258293da1f6a5fc84d24a18e" category="inline-link">HAペアの管理の概要</block>
+  <block id="df5ca9bc3ee60e70aa9fd870a1ce1065" category="paragraph">HAのテイクオーバーとギブバックの詳細については、<block ref="5a72801b431f75b7489a0e7de50680bf" category="inline-link-rx"></block>。この機能は、MetroClusterまたはSnapMirrorのアクティブな同期に固有ではないことに注意してください。</block>
+  <block id="cf654073ce9eb8f38d3f05292ed83cc5" category="paragraph">MetroClusterによるサイトのスイッチオーバーは、一方のサイトがオフラインになった場合、またはサイト全体のメンテナンスのために計画的に実行された場合に実行されます。オフラインになったクラスタのストレージリソース（ディスクおよびアグリゲート）の所有権がもう一方のサイトに引き継がれ、障害が発生したサイトのSVMがディザスタサイトでオンラインになって再起動されます。その際、クライアントとホストのアクセス用にIDは保持されます。</block>
+  <block id="4dd2305dcb9d7412784238dd42dcdc21" category="paragraph">SnapMirrorのアクティブな同期では、両方のコピーが同時にアクティブに使用されるため、既存のホストは引き続き動作します。サイトのフェイルオーバーを正しく実行するには、NetAppメディエーターが必要です。</block>
+  <block id="823bd5c6c005e340599d915e134d851c" category="summary">VMware vSphere解決策の概要</block>
+  <block id="be26d39d86de44047c65c1fed157d529" category="paragraph">vCenter Server Appliance（vCSA）は、管理者がESXiクラスタを効果的に運用できるようにする、強力な一元管理システムであり、vSphere用の単一コンソールです。VMプロビジョニング、vMotion処理、High Availability（HA；高可用性）、Distributed Resource Scheduler（DRS；分散リソーススケジューラ）、Tanzu Kubernetes Gridなどの主要な機能を簡易化します。VMwareクラウド環境に欠かせないコンポーネントであり、サービスの可用性を考慮して設計する必要があります。</block>
+  <block id="8ba8694e23f6560a60d85c4de549122b" category="section-title">vSphereの高可用性</block>
+  <block id="4b5543b81af03f01e26fcb74614f7062" category="paragraph">VMwareのクラスタテクノロジは、ESXiサーバを仮想マシンの共有リソースプールにグループ化し、vSphere High Availability（HA；高可用性）を提供します。vSphere HAは、仮想マシンで実行されるアプリケーションに対して、使いやすく高可用性を提供します。クラスタでHA機能を有効にすると、いずれかのESXiホストが応答しなくなったり分離されたりした場合に、各ESXiサーバが他のホストとの通信を維持します。 HAクラスタは、そのESXiホストで実行されていた仮想マシンのリカバリを、クラスタ内の残りのホスト間でネゴシエートできます。ゲストオペレーティングシステムに障害が発生すると、vSphere HAは影響を受ける仮想マシンを同じ物理サーバ上で再起動します。vSphere HAを使用すると、計画的停止の削減、計画外停止の防止、システム停止からの迅速なリカバリが可能になります。</block>
+  <block id="01036edb3159652090a3f7149fe1ce2f" category="paragraph">vSphere HAクラスタ：障害が発生したサーバからVMをリカバリします。</block>
+  <block id="15496c3917565cea1f21bbc7e6eba996" category="image-alt">vMSCの図</block>
+  <block id="c1bb7aa3a002a819d935439c7e347826" category="paragraph">VMware vSphereはNetApp MetroClusterまたはSnapMirrorのアクティブ同期を認識しないため、vSphereクラスタ内のすべてのESXiホストが、ホストおよびVMグループのアフィニティ構成に応じてHAクラスタ処理の対象となるホストとして認識されることを理解しておくことが重要です。</block>
+  <block id="dcff37ab37f2cb6a72aeb3c30e3ed5aa" category="section-title">ホスト障害の検出</block>
+  <block id="7069d861b63dd4095cfb7b2ee30587f5" category="paragraph">HAクラスタが作成されるとすぐに、クラスタ内のすべてのホストが選択対象になり、いずれかのホストがマスターになります。各スレーブはマスターに対してネットワークハートビートを実行し、マスターはすべてのスレーブホストに対してネットワークハートビートを実行します。vSphere HAクラスタのマスターホストは、スレーブホストの障害を検出する役割を果たします。</block>
+  <block id="73b629afd8ef39d8d0147696412538c8" category="paragraph">検出された障害のタイプによっては、ホストで実行されている仮想マシンのフェイルオーバーが必要になる場合があります。</block>
+  <block id="e12cf4015a45ff29f1f84ae1a3ee0390" category="paragraph">vSphere HAクラスタでは、次の3種類のホスト障害が検出されます。</block>
+  <block id="4eac346eb6cdd3a1a98ee9bc71ebccaa" category="list-text">障害-ホストが機能を停止しました。</block>
+  <block id="3875a4c584a7715edf4a221ce53d45fc" category="list-text">分離-ホストがネットワークから分離されます。</block>
+  <block id="82fba11358d642111efbcf36273159f2" category="list-text">パーティション-ホストとマスターホストとのネットワーク接続が失われます。</block>
+  <block id="5f72ceebd161159fe623ff01ac0cf1b4" category="paragraph">マスターホストは、クラスタ内のスレーブホストを監視します。この通信は、1秒ごとにネットワークハートビートを交換して行われます。マスターホストは、スレーブホストからのハートビートの受信を停止すると、ホストの稼働状況を確認してから、ホストに障害が発生したことを宣言します。マスターホストが実行する活性チェックでは、スレーブホストがいずれかのデータストアとハートビートを交換しているかどうかを確認します。また、マスターホストは、管理IPアドレスに送信されたICMP pingにホストが応答するかどうかをチェックして、単にマスターノードから隔離されているか、ネットワークから完全に隔離されているかを検出します。これは、デフォルトゲートウェイに対してpingを実行することによって行われます。隔離アドレスを手動で指定することで、隔離検証の信頼性を高めることができます。</block>
+  <block id="5546466ab10e5cbfbc4b286cd60b8b4a" category="section-title">_ベストプラクティス_</block>
+  <block id="0456a7ce7bf92fb68980571fdd2defa1" category="paragraph">NetAppでは、隔離アドレスを少なくとも2つ追加し、各アドレスをサイトローカルにすることを推奨しています。これにより、隔離検証の信頼性が向上します。</block>
+  <block id="19c262cd1e1bb07c491e359333f04a29" category="section-title">ホスト隔離時の対応</block>
+  <block id="7a2723aad08de3c674693adf221e4a48" category="paragraph">[Isolation Response]はvSphere HAの設定で、vSphere HAクラスタ内のホストが管理ネットワーク接続を失い、実行は継続した場合に仮想マシンでトリガーされる処理を決定します。この設定には、[Disabled]、[Shut Down and Restart VMs]、[Power Off and Restart VMs]の3つのオプションがあります。</block>
+  <block id="715e310d886b45856c3ab0f69b06241b" category="paragraph">[Shut Down]は、[Power Off]よりも優れています。[Power Off]では、最新の変更がディスクにフラッシュされたり、トランザクションがコミットされたりしません。仮想マシンが300秒以内にシャットダウンされない場合は、電源がオフになります。待機時間を変更するには、詳細オプションdas.isolationshutdowntimeoutを使用します。</block>
+  <block id="620b4ae663a26c98656d1c81bec1a6c2" category="paragraph">HAは隔離時の対応を開始する前に、vSphere HAマスターエージェントがVM構成ファイルが格納されたデータストアを所有しているかどうかを確認します。そうでない場合、VMを再起動するマスターがないため、ホストは隔離時の対応をトリガーしません。ホストはデータストアの状態を定期的にチェックして、マスターロールを持つvSphere HAエージェントがデータストアを要求しているかどうかを判断します。</block>
+  <block id="6824ef1b1c5e58e8ea5ebc8b2cf94be2" category="paragraph">NetAppでは、[Host Isolation Response]を[Disabled]に設定することを推奨しています。</block>
+  <block id="6bd7b146f345eefac88b336a89aa3754" category="paragraph">ホストがvSphere HAマスターホストから分離またはパーティショニングされ、ハートビートデータストアまたはpingを介してマスターと通信できなくなると、スプリットブレイン状態が発生することがあります。マスターは、隔離されたホストの停止を宣言し、クラスタ内の他のホスト上のVMを再起動します。仮想マシンのインスタンスが2つ実行され、そのうちの1つだけが仮想ディスクの読み取りまたは書き込みを実行できるため、スプリットブレイン状態が発生します。VM Component Protection（VMCP）を設定することで、スプリットブレイン状態を回避できるようになりました。</block>
+  <block id="df05a421ed8ba49f97f18dc085495ee4" category="section-title">VMコンポーネント保護（VMCP）</block>
+  <block id="1418d127ee81cc7f3e114029e9ba6856" category="paragraph">vSphere 6で強化されたHA関連機能の1つにVMCPがあります。VMCPは、ブロック（FC、iSCSI、FCoE）とファイルストレージ（NFS）のAll Paths Down（APD）状態とPermanent Device Loss（PDL）状態からの保護を強化します。</block>
+  <block id="fc35e15d00ef5b037a1a56c77ef3e17c" category="section-title">Permanent Device Loss（PDL）</block>
+  <block id="967b20f28092443585be2b9649d0ba93" category="paragraph">PDLとは、ストレージデバイスに永続的に障害が発生した場合、または管理上削除されて元に戻ることがない場合に発生する状態です。NetAppストレージアレイは、デバイスが永続的に失われたことを宣言するSCSIセンスコードをESXiに発行します。vSphere HAの[Failure Conditions and VM Response]セクションで、PDL状態が検出されたあとの応答を設定できます。</block>
+  <block id="7cf4fdbfc8e1deb9f567848f2df19e91" category="paragraph">NetAppでは、[Response for Datastore with PDL]を[* Power off and restart VMs]に設定することを推奨しています。この状態が検出されると、vSphere HAクラスタ内の正常なホストでVMが即座に再起動されます。</block>
+  <block id="6d623de2ea8c5007def6f2349d9ad8b9" category="section-title">すべてのパスがダウン（APD）</block>
+  <block id="15d2d9b1f25022e7080482582e155265" category="paragraph">APDは、ストレージデバイスがホストからアクセスできなくなり、アレイへのパスが使用できなくなった場合に発生する状態です。ESXiは、これをデバイスの一時的な問題とみなし、再び使用可能になることを想定しています。</block>
+  <block id="f89caca297ba86d190d90ef30c409ccf" category="paragraph">APD状態が検出されると、タイマーが開始されます。140秒後、APD状態が正式に宣言され、デバイスはAPDタイムアウトとしてマークされます。140秒が経過すると、[Delay for VM Failover APD]で指定された分数がカウントされます。指定した時間が経過すると、影響を受ける仮想マシンが再起動されます。必要に応じて異なる方法（[Disabled]、問題Events]、[Power Off and Restart VMs]）で応答するようにVMCPを設定できます。</block>
+  <block id="8f179a61d789dab9b994ecd0ca8c53cb" category="paragraph">NetAppでは、[Response for Datastore with APD]を「* Power off and restart VMs（conservative）*」に設定することを推奨しています。</block>
+  <block id="76d29c3c5f57a16a7f080459356c3793" category="paragraph">保守的とは、HAがVMを再起動できる可能性を示します。[Conservative]に設定すると、APDの影響を受けるVMは、別のホストで再起動できることがわかっている場合にのみ再起動されます。アグレッシブの場合、HAは他のホストの状態を認識していなくてもVMの再起動を試行します。その結果、VMが配置されているデータストアにアクセスできるホストがないと、VMが再起動されない可能性があります。</block>
+  <block id="c64ef72a18526e28efe7c08b3ff3889a" category="paragraph">タイムアウトになる前にAPDステータスが解決され、ストレージへのアクセスが回復した場合は、明示的に設定していないかぎり、仮想マシンが不要に再起動されることはありません。環境がAPD状態から回復した場合でも応答が必要な場合は、[Response for APD Recovery After APD Timeout]を[Reset VMs]に設定する必要があります。</block>
+  <block id="580bc3953adcf3e3a20c5497f67f8b2c" category="paragraph">NetAppでは、[Response for APD Recovery After APD Timeout]を[Disabled]に設定することを推奨します。</block>
+  <block id="a067a9a0e98c97f62fba4698bde30edc" category="section-title">NetApp MetroCluster向けVMware DRSの実装</block>
+  <block id="3bf3e67966e8b0e07b0812dae7b86ce7" category="paragraph">VMware DRSは、クラスタ内のホストリソースを集約する機能で、主に仮想インフラストラクチャ内のクラスタ内での負荷分散に使用されます。VMware DRSは、クラスタ内でロードバランシングを実行するために、主にCPUリソースとメモリリソースを計算します。vSphereはストレッチクラスタリングを認識しないため、両方のサイトのすべてのホストをロードバランシングの対象とします。サイト間トラフィックを回避するために、NetAppでは、VMの論理的な分離を管理するDRSアフィニティルールを設定することを推奨しています。これにより、サイト全体に障害が発生しないかぎり、HAとDRSでローカルホストのみが使用されるようになります。</block>
+  <block id="b9e04f46a88c8139fbb91780a2ff9064" category="paragraph">クラスタ用のDRSアフィニティルールを作成する場合は、仮想マシンのフェイルオーバー時にvSphereがそのルールを適用する方法を指定できます。</block>
+  <block id="f903d43a0acb7412db93e8201ab12be3" category="paragraph">vSphere HAのフェイルオーバー動作を指定できるルールには、次の2種類があります。</block>
+  <block id="a96c8bab3a450bb828e3093d16f7e32c" category="list-text">VMの非アフィニティルールでは、フェイルオーバー処理中に指定した仮想マシンが分離されたままになります。</block>
+  <block id="1fa3a04279011cbc6001c96c0f6f27fb" category="list-text">VMホストアフィニティルールは、フェイルオーバー処理中に、指定した仮想マシンを特定のホストまたは定義されたホストグループのメンバーに配置します。</block>
+  <block id="225e3f7204b6e5bf6cd388af7bb16eb4" category="paragraph">VMware DRSのVMホストアフィニティルールを使用すると、サイトAとサイトBを論理的に分離して、特定のデータストアのプライマリ読み取り/書き込みコントローラとして設定されたアレイと同じサイトのホストでVMを実行できます。また、VMホストアフィニティルールを使用すると、仮想マシンはストレージに対してローカルなままになり、サイト間でネットワーク障害が発生した場合に仮想マシンの接続が確保されます。</block>
+  <block id="db03e2255e35df6fa9719c800850c397" category="paragraph">次に、VMホストグループとアフィニティルールの例を示します。</block>
+  <block id="6c9bd967c46984c9e5e0d8a6e5ec81a0" category="image-alt">概要が自動的に生成されたコンピュータサーバの図</block>
+  <block id="d400b2cf908bc5f979847146ff8ac816" category="paragraph">NetAppでは、障害が発生した場合にvSphere HAによって違反されるため、「must」ルールではなく「should」ルールを実装することを推奨しています。「must」ルールを使用すると、サービスが停止する可能性があります。</block>
+  <block id="e9503bc9ad84f6517ddc938c85541dd5" category="paragraph">サービスの可用性は常にパフォーマンスより優先されるべきです。データセンター全体で障害が発生した場合、「must」ルールではVMホストアフィニティグループからホストを選択する必要があり、データセンターが使用できなくなっても仮想マシンは再起動されません。</block>
+  <block id="b3c45603f3738ac1e1f8e1e87569c00c" category="section-title">NetApp MetroClusterでのVMware Storage DRSの実装</block>
+  <block id="b273633ed947791e90b7b83ad1bb2021" category="paragraph">VMware Storage DRS機能を使用すると、データストアを1つのユニットに集約し、Storage I/O Controlのしきい値を超えた場合に仮想マシンディスクのバランスを調整できます。</block>
+  <block id="4669dbcf4d42583b3fae1c79fa228078" category="paragraph">Storage I/O Controlは、Storage DRS対応のDRSクラスタではデフォルトで有効になっています。Storage I/O Controlを使用すると、I/Oの輻輳時に仮想マシンに割り当てるストレージI/Oの量を管理者が制御できるため、重要度の高い仮想マシンを優先してI/Oリソースを割り当てることができます。</block>
+  <block id="f06483bf36a941eebbb2f78a89b6bf68" category="paragraph">Storage DRSは、Storage vMotionを使用して、データストアクラスタ内の別のデータストアに仮想マシンを移行します。NetApp MetroCluster環境では、仮想マシンの移行をそのサイトのデータストア内で制御する必要があります。たとえば、サイトAのホストで実行されている仮想マシンAを移行する場合は、サイトAのSVMのデータストア内で移行するのが理想的です。そうしないと、仮想ディスクの読み取り/書き込みはサイト間リンクを介してサイトBから行われるため、仮想マシンは引き続き動作しますが、パフォーマンスは低下します。</block>
+  <block id="e607d8c3dc392e521065e5494d8c85c6" category="paragraph">NetAppでは、ストレージサイトのアフィニティに従ってデータストアクラスタを作成することを推奨しています。つまり、サイトAに対するサイトアフィニティが設定されたデータストアクラスタと、サイトBに対するサイトアフィニティが設定されたデータストアを混在させないでください。</block>
+  <block id="63fe88e257ae2d072b6920d6dbcf0818" category="paragraph">Storage vMotionを使用して仮想マシンを新規にプロビジョニングまたは移行するたびに、NetAppそれらの仮想マシンに固有のすべてのVMware DRSルールを手動で更新することを推奨します。これにより、ホストとデータストアの両方について、サイトレベルで仮想マシンのアフィニティが確保され、ネットワークとストレージのオーバーヘッドが削減されます。</block>
+  <block id="b6cd969550b5501b0f62a149fb7964ce" category="paragraph">ONTAP 9.8 では、 vSphere で FlexGroup データストアがサポートされるようになり、 VMware vSphere 9.8 リリース用の ONTAP ツールも追加されています。</block>
+  <block id="4adcd8d9323839ff088dc4f8f0bdcce2" category="paragraph">VM用のVVOLストレージを作成するには、いくつかの手順を実行します。</block>
+  <block id="2438f6a80b933cf058ad052d26ac0703" category="paragraph">ストレージオブジェクトをクローニングすると、追加の VM のプロビジョニングやバックアップ / リカバリ処理などの用途に使用できるコピーを簡単に作成できます。</block>
+  <block id="1a795345e422d7dbcca8fe38671a9371" category="summary">vMSC設計および実装ガイドライン</block>
+  <block id="b73deaadc37ea1c7a13ad17af6730c42" category="doc">vMSC設計および実装ガイドライン</block>
+  <block id="3512760e2d3fc1a9dd2116e83bb0cada" category="paragraph">本ドキュメントでは、ONTAPストレージシステムを使用するvMSCの設計と実装のガイドラインについて説明します。</block>
+  <block id="556669df5b5073ab3d2ddcf638e942d9" category="section-title">NetAppストレージ構成</block>
+  <block id="7f4d4fbe08a8a895671d05c4a82b0c85" category="inline-link">MetroCluster のドキュメント</block>
+  <block id="002eb41870df47521a2b59424d251f60" category="inline-link">SnapMirror のビジネス継続性機能の概要</block>
+  <block id="008c17a2bb74d3d9706c0f2c88499240" category="paragraph">NetApp MetroCluster（MCC構成）のセットアップ手順については、次のWebサイトを参照してください。<block ref="2c736bccede87dae47dcf61108f083c4" category="inline-link-rx"></block>。SnapMirrorアクティブ同期の手順については、<block ref="14203840309dd1b6e13f73373477bb9d" category="inline-link-rx"></block>。</block>
+  <block id="447566f62201eb825a1f6fb7a570873f" category="paragraph">一度MetroClusterを設定すると、従来のONTAP環境を管理するようなものになります。Storage Virtual Machine（SVM）は、コマンドラインインターフェイス（CLI）、System Manager、Ansibleなどのさまざまなツールを使用してセットアップできます。SVMを設定したら、通常の運用に使用する論理インターフェイス（LIF）、ボリューム、論理ユニット番号（LUN）をクラスタに作成します。これらのオブジェクトは、クラスタピアリングネットワークを使用してもう一方のクラスタに自動的にレプリケートされます。</block>
+  <block id="b5486be95ed9ae2e4681a39cf8fe8041" category="inline-link">整合グループの概要</block>
+  <block id="5440d8600dfca322be65444d14c4566f" category="paragraph">MetroClusterを使用していない場合は、SnapMirrorアクティブ同期を使用して、異なる障害ドメインにある複数のONTAPクラスタ間で、データストア単位でのきめ細かな保護とアクティブ/アクティブアクセスを実現できます。SnapMirrorアクティブ同期では、整合グループを使用して1つ以上のデータストア間で書き込み順序の整合性が確保されます。また、アプリケーションとデータストアの要件に応じて、複数の整合グループを作成することもできます。整合グループは、複数のデータストア間でのデータ同期が必要なアプリケーションに特に役立ちます。SnapMirror Active Syncでは、rawデバイスマッピング（RDM）とゲスト内iSCSIイニシエータを使用するゲスト接続ストレージもサポートされます。整合グループの詳細については、を参照してください。<block ref="8bba9b5b97dba092834d7a48a07f102d" category="inline-link-rx"></block>。</block>
+  <block id="f9ac6f5e1bf01f1df914b714d5e6cb02" category="paragraph">SnapMirrorアクティブ同期を使用するvMSC構成の管理は、MetroClusterとは多少異なります。まず、これはSANのみの構成であり、SnapMirrorのアクティブな同期でNFSデータストアを保護することはできません。次に、両方の障害ドメインのレプリケートされたデータストアにアクセスできるように、両方のLUNのコピーをESXiホストにマッピングする必要があります。</block>
+  <block id="c972b11c861e42787c05a2ee24828e3a" category="section-title">VMware vSphere HA の場合</block>
+  <block id="57166da54d8751e1ed084f00b3f169e3" category="section-title">vSphere HAクラスタの作成</block>
+  <block id="829006223e7bdcfd478d2261f1d5ac40" category="inline-link">docs.vmware.comのvSphere Clientでクラスタを作成および構成する方法</block>
+  <block id="2bbae4763835d2e2dd123c1b4b0ae73d" category="paragraph">vSphere HAクラスタの作成は複数の手順で構成されます。詳細については、を参照してください。<block ref="dd51ccd863dd3c9fbca770681f8e68a9" category="inline-link-rx"></block>。つまり、最初に空のクラスタを作成してから、vCenterを使用してホストを追加し、クラスタのvSphere HAなどの設定を指定する必要があります。</block>
+  <block id="d50e63b9f70efedde8dc093be8ec12b2" category="inline-link">VMware vSphere Metro Storage Cluster Recommended Practices</block>
+  <block id="33d532b774d7b67104f4749e25ba03ef" category="paragraph">*注：*このドキュメントには、このドキュメントより優先されるものはありません。<block ref="3a8301f60ad04eb873ae8dea15ee0495" category="inline-link-rx"></block></block>
+  <block id="950954623b197b80e3ebb95b0adcc3de" category="paragraph">HAクラスタを設定するには、次の手順を実行します。</block>
+  <block id="1073102bd8c6cbd17340f2a19043583f" category="list-text">vCenter UIに接続します。</block>
+  <block id="ebf69ea3a3e34739bde13d589e85ef10" category="list-text">[Hosts and Clusters]で、HAクラスタを作成するデータセンターを選択します。</block>
+  <block id="d8fd85bbc0cd4746e5d80e291696b86c" category="list-text">データセンターオブジェクトを右クリックし、[New Cluster]を選択します。[Basics]で、vSphere DRSとvSphere HAが有効になっていることを確認します。ウィザードの手順を実行します。</block>
+  <block id="f2c634ca704e26f96be1723db6dda32a" category="image-alt">概要が自動的に生成されたコンピュータのスクリーンショット</block>
+  <block id="f4f59bf1e324854573172ca2b5070d45" category="list-text">クラスタを選択し、[Configure]タブに移動します。[vSphere HA]を選択し、[edit]をクリック</block>
+  <block id="329c69e52a7de6215aa4dbfa19940f2d" category="list-text">[Host Monitoring]で、[Enable Host Monitoring]オプションを選択します。</block>
+  <block id="9fc231ac455a53f2fabc59f29ab537ad" category="list-text">[Failures and Responses]タブの[VM Monitoring]で、[VM Monitoring Only]オプションまたは[VM and Application Monitoring]オプションを選択します。</block>
+  <block id="58aea8c81a7e8b8160584574af309fbb" category="list-text">[Admission Control]で、[HA Admission Control]オプションを[cluster resource reserve]に設定し、50%のCPU/MEMを使用します。</block>
+  <block id="d94a9f01bee7dcc2643864bf92ab4e59" category="list-text">[OK]をクリックします。</block>
+  <block id="3f059eee365aa5c64c0be1d6dba81d69" category="list-text">[DRS]を選択し、[編集]をクリックします。</block>
+  <block id="7b5f9be03fd1421a9da56c2c7677ad69" category="list-text">アプリケーションで必要な場合を除き、自動化レベルを手動に設定します。</block>
+  <block id="a8ee10582e28e3623629963a88ff5ec9" category="image-alt">vmsc 3 5</block>
+  <block id="256164bb48582e5267e408f2e67e1939" category="inline-link">docs.vmware.com</block>
+  <block id="91fb89f03b846483f7108d3f1bfb0156" category="list-text">VMコンポーネント保護を有効にします。を参照してください。<block ref="fc88c93ad20ad804a211f4e6fea63e56" category="inline-link-rx"></block>。</block>
+  <block id="918c2d8e02dbd2c1f4cc3a0062690387" category="list-text">MCCを使用するvMSCでは、次のvSphere HAの追加設定が推奨されます。</block>
+  <block id="d64ed3e9c10229648e069f56e32f4c8e" category="cell">応答</block>
+  <block id="f3c1d0e4118d5d9501e1a7aeed19d224" category="cell">ホスト障害です</block>
+  <block id="45d583cd5692c76d45e96536edce2a0e" category="cell">VMの再起動</block>
+  <block id="1c3a7ae924920b573baede481becd22f" category="cell">ホストの分離</block>
+  <block id="2e011e74abc75a2823c627b7ee9e22a7" category="cell">Permanent Device Loss（PDL；永続的デバイス損失）のあるデータストア</block>
+  <block id="49476a1ad365d5f8deb36464de7fe33b" category="cell">VMの電源をオフにして再起動する</block>
+  <block id="e7bbd35db169028c75e7c8ae655bf6ae" category="cell">すべてのパスがダウンしているデータストア（APD）</block>
+  <block id="e7480b00a5e3efd904a08ca88804de45" category="cell">ゲストが鼓動しない</block>
+  <block id="e8896c595f3effde37ef29d7c6233703" category="cell">VMのリセット</block>
+  <block id="59695df3d45a3a21b8ff0bf57fda6a2b" category="cell">VM再起動ポリシー</block>
+  <block id="a150f56b87fd99bf9bf019f8447ba68b" category="cell">VMの重要度に応じて決定</block>
+  <block id="370a480458a8c63a838940f1241e14ee" category="cell">ホスト隔離時の応答</block>
+  <block id="11f30f9be08cd4f9e500290222ddc552" category="cell">VMのシャットダウンと再起動</block>
+  <block id="fb53fafa45c0de9bd41d368c7455c9f1" category="cell">PDLを使用したデータストアの応答</block>
+  <block id="d7c3b9f5568eb60f08076b29490afcaf" category="cell">APDを使用するデータストアの応答</block>
+  <block id="423b2d98eae113ae3391aa0b12f11935" category="cell">VMの電源をオフにして再起動する（控えめ）</block>
+  <block id="132bbe6dbceb01227dba5ab04db7202b" category="cell">APDのVMフェイルオーバーの遅延</block>
+  <block id="8d15ed7d27d83ed6229a66b1f44b7696" category="cell">3分</block>
+  <block id="8c7b0644547f0ee3fe537e8ba441566d" category="cell">APDタイムアウトによるAPDリカバリの応答</block>
+  <block id="4dea08318b2824f845e9b889a6e17778" category="cell">VM監視の感度</block>
+  <block id="f535a28adc173e28610c129d0dc578ae" category="cell">プリセット高</block>
+  <block id="83164803a765d1ea1f10d50dfdd26130" category="section-title">ハートビート用のデータストアの設定</block>
+  <block id="22c81b09ec3086b2dce8f68867a221e0" category="paragraph">vSphere HAでは、管理ネットワークに障害が発生した場合、データストアを使用してホストと仮想マシンを監視します。vCenterでのハートビートデータストアの選択方法を設定できます。ハートビート用のデータストアを設定するには、次の手順を実行します。</block>
+  <block id="64809e5386c9dc53f894f772f27d1b44" category="list-text">[Datastore Heartbeating]セクションで、[Use Datastores from the Specified List and Complement Automatically if Needed]を選択します。</block>
+  <block id="fc66ba7317ceb4220dc88aa267db085d" category="list-text">vCenterで使用するデータストアを両方のサイトから選択し、[OK]を押します。</block>
+  <block id="1d2b14769d080b9214d9e407dfc92a64" category="section-title">詳細オプションの設定</block>
+  <block id="a22b9827e1a78c5fb9c939a78c116a05" category="paragraph">*ホスト障害の検出*</block>
+  <block id="a9316d69e5abcfaffc56fc8f5e645412" category="paragraph">HAクラスタ内のホストがネットワークまたはクラスタ内の他のホストに接続できなくなると、分離イベントが発生します。デフォルトでは、vSphere HAは管理ネットワークのデフォルトゲートウェイをデフォルトの分離アドレスとして使用します。ただし、ホストがpingを実行するための追加の隔離アドレスを指定して、隔離応答をトリガーするかどうかを判断することができます。pingを実行できる隔離IPをサイトごとに1つずつ追加します。ゲートウェイIPは使用しないでください。使用するvSphere HAの詳細設定はdas.isolationaddressです。この目的には、ONTAPまたはメディエーターのIPアドレスを使用できます。</block>
+  <block id="102d7879ceca393c309ef492c958e19d" category="inline-link">core.vmware.com</block>
+  <block id="27e2292ff6db48ed2e6d50b256eae43e" category="paragraph">を参照してください<block ref="43057df4f3a6b5f2fffe8b7c5a490646" category="inline-link-rx"></block> 詳細については、_____を参照してください。</block>
+  <block id="3f44bb4a3b9420d495e400b9afbda2c7" category="paragraph">das.heartbeatDsPerHostという詳細設定を追加すると、ハートビートデータストアの数を増やすことができます。4つのハートビートデータストア（HB DSS）（サイトごとに2つ）を使用します。[Select from List but complent]オプションを使用します。これは、1つのサイトで障害が発生してもHB DSSが2つ必要になるためです。ただし、MCCやSnapMirrorのアクティブな同期で保護する必要はありません。</block>
+  <block id="eaa1dfe3982e06655ce64e240c139b81" category="paragraph">NetApp MetroCluster向けVMware DRSアフィニティ</block>
+  <block id="e32221c52eb3b0bbeb3ca79aad6c90f6" category="paragraph">このセクションでは、MetroCluster環境内のサイト/クラスタごとに、VMとホストのDRSグループを作成します。次に、VMホストアフィニティをローカルストレージリソースとアライメントするようにVM\Hostルールを設定します。たとえば、サイトAのVMがVMグループsitea_vmsに属し、サイトAのホストがホストグループsitea_hostsに属しているとします。次に、VM\Hostルールで、sitea_vmsをsitea_hostsのホストで実行するように記述します。</block>
+  <block id="5bfa0d712f66aef47f8a2ea582bc0b72" category="list-text">NetAppでは、「Must Run on Hosts in Group」という仕様ではなく、「Should Run on Hosts in Group」という仕様を使用することを強く推奨しています。サイトAのホストで障害が発生した場合、vSphere HAを使用してサイトAのVMをサイトBのホストで再起動する必要がありますが、後者の仕様では、HAがサイトBのVMを再起動することは難しいルールであるため許可されていません。前者の仕様はソフトルールであり、HAが発生した場合は違反となるため、パフォーマンスではなく可用性が確保されます。</block>
+  <block id="cc6a363013bd2a8c1e05304f1c6abd79" category="inline-link">vSphereの監視とパフォーマンス</block>
+  <block id="db9540392e62211ad47ebec39232329e" category="paragraph">*注：*仮想マシンがVMとホストのアフィニティルールに違反したときにトリガーされるイベントベースのアラームを作成できます。vSphere Clientで、仮想マシンの新しいアラームを追加し、イベントトリガーとして[VM is violating VM-Host Affinity Rule]を選択します。アラームの作成と編集の詳細については、を参照してください。<block ref="d28eed239632aed40803fe0ed2311ba6" category="inline-link-rx"></block> ドキュメント</block>
+  <block id="124de7d2bc72d75be9e481c1cc56ada2" category="section-title">DRSホストグループの作成</block>
+  <block id="0759e9476d3bf1868f88356025adafb2" category="paragraph">サイトAとサイトBに固有のDRSホストグループを作成するには、次の手順を実行します。</block>
+  <block id="a69dff3dd4b284f60243dfd62fa4e57f" category="list-text">vSphere Web Clientで、インベントリ内のクラスタを右クリックし、[Settings]を選択します。</block>
+  <block id="a130b4af254ead99e9ea83044e54ea1d" category="list-text">[VM\Host Groups]をクリックします。</block>
+  <block id="1bb250fbf1946dd1bd7ad228032f8803" category="list-text">追加をクリックします。</block>
+  <block id="62c4d1538f957af2951f2c93ee191d0b" category="list-text">グループの名前を入力します（例：sitea_hosts）。</block>
+  <block id="df22605898fc890edbcb2a126aa202ce" category="list-text">[Type]メニューから[Host Group]を選択します。</block>
+  <block id="57c0028584902f6cee210dcc13bc9745" category="list-text">[Add]をクリックし、サイトAから目的のホストを選択して[OK]をクリックします。</block>
+  <block id="583e6d8c3b1006b0561d4b360e58994f" category="list-text">同じ手順を繰り返して、サイトBのホストグループをもう1つ追加します。</block>
+  <block id="18d0ad44a1e563aaf9f5871e32535a6c" category="list-text">[OK] をクリックします。</block>
+  <block id="154964ee7fc6d3261ec55811b0ff9972" category="section-title">DRS VMグループの作成</block>
+  <block id="40c1eaba5f178f243c57b595b6af4d5e" category="paragraph">サイトAとサイトBに固有のDRS VMグループを作成するには、次の手順を実行します。</block>
+  <block id="9a209a741c26968fc13ed8192523df15" category="list-text">グループの名前を入力します（例：sitea_vms）。</block>
+  <block id="f947c7c9f173289b1c2565b3297095f0" category="list-text">[Type]メニューから[VM Group]を選択します。</block>
+  <block id="40a2a21a084c8d16395113cb79a19ebb" category="list-text">[Add]をクリックし、サイトAから目的のVMを選択して[OK]をクリックします。</block>
+  <block id="e2e7af699096077fe178ebf021fb2273" category="section-title">VMホストルールの作成</block>
+  <block id="0a6075f3d3fdbe7c133268face0f5c82" category="paragraph">サイトAとサイトBに固有のDRSアフィニティルールを作成するには、次の手順を実行します。</block>
+  <block id="df4f9bcca0ceb7a67ba25d886a18743b" category="list-text">[VM\Host Rules]をクリックします。</block>
+  <block id="876a25c102b5c301814921d1a9c0e625" category="list-text">ルールの名前を入力します（例：sitea_affinity）。</block>
+  <block id="d4b5f57f4e2bd5c357ad9b1fbdc2cf8e" category="list-text">Enable Ruleオプションがオンになっていることを確認します。</block>
+  <block id="d1169f525bd934df7f1a7e3bcf401997" category="list-text">[Type]メニューから[Virtual Machines to Hosts]を選択します。</block>
+  <block id="77328c16c697ce1d6c036c3f950e7542" category="list-text">VMグループを選択します（例：sitea_vms）。</block>
+  <block id="b36943ce975d4c5c6e9481a4ca396270" category="list-text">ホストグループを選択します（例：sitea_hosts）。</block>
+  <block id="32fbcb32cfae9a0656233943c28f7c94" category="list-text">同じ手順を繰り返して、サイトBのVM\Hostルールをもう1つ追加します。</block>
+  <block id="ff0ded925b170243e5154c9a687bb925" category="section-title">NetApp MetroCluster向けVMware vSphere Storage DRS</block>
+  <block id="b0cb5ad168b84040eff8132c70e41fdb" category="section-title">データストアクラスタの作成</block>
+  <block id="488f70e76f3c9ddf155b693e31c5a1e1" category="paragraph">各サイトのデータストアクラスタを設定するには、次の手順を実行します。</block>
+  <block id="1dfbc2b980c0b56a5d9889c6d9a25460" category="list-text">vSphere Web Clientを使用して、[Storage]の下にあるHAクラスタが配置されているデータセンターに移動します。</block>
+  <block id="dfc332b252ad3de167b6a336d7e70d46" category="list-text">データセンターオブジェクトを右クリックし、[Storage]&gt;[New Datastore Cluster]を選択します。</block>
+  <block id="7ce7f4ad7022187801efdf33d1fab92d" category="list-text">[Turn on Storage DRS]オプションを選択し、[Next]をクリックします。</block>
+  <block id="6196801f8f77bab7132531adbb268512" category="list-text">すべてのオプションを[No Automation（Manual Mode）]に設定し、[Next]をクリックします。</block>
+  <block id="cfcdd0a8a765af314fb460ad445fb375" category="list-text">NetAppでは、移行が必要になるタイミングを管理者が判断して制御できるように、Storage DRSを手動モードで設定することを推奨しています。</block>
+  <block id="dfffe1ce0daeb61f9fbc153ae4945fd4" category="image-alt">自動的に生成されたテキスト概要のクローズアップ</block>
+  <block id="51a3bc726f294f3376fcaa12ccdf8b3b" category="list-text">[Enable I/O Metric for SDRS Recommendations]チェックボックスがオンになっていることを確認します。メトリック設定はデフォルト値のままにできます。</block>
+  <block id="829b62dbd6a4923b66591b2bff38ed5b" category="list-text">HAクラスタを選択し、[Next]をクリックします。</block>
+  <block id="30fe6cfa0a4c5fb23fccfe149cefc006" category="list-text">サイトAに属するデータストアを選択し、[Next]をクリックします。</block>
+  <block id="4ea461b22638db4c94aa076d62a2065f" category="list-text">オプションを確認し、[完了]をクリックします。</block>
+  <block id="7b79e97caff76847cf350f1197c49953" category="list-text">同じ手順を繰り返してサイトBのデータストアクラスタを作成し、サイトBのデータストアのみが選択されていることを確認します。</block>
+  <block id="d8f83b09bd6b864f22076c109cfaae66" category="section-title">vCenter Serverの可用性</block>
+  <block id="605b8c1efcf2de9164e5d5425c67bdcd" category="paragraph">vCenter Server Appliance（VCSA）はvCenter HAで保護する必要があります。vCenter HAでは、アクティブ/パッシブHAペアに2つのVCSAを導入できます。障害ドメインごとに1つ。vCenter HAの詳細については、<block ref="173ca8434bdf39dd0a60efe576d066cd" category="inline-link-rx"></block>。</block>
+  <block id="2b6203f34def274ff7424bf1d64a9bca" category="paragraph">ONTAP ソフトウェアを実行しているシステムで vSphere を使用する場合のネットワーク設定の構成は簡単で、他のネットワーク構成と同様です。</block>
+  <block id="70901a02a148fd2dfc1ff5736f4f5336" category="list-text">ストレージネットワークのトラフィックを他のネットワークから分離します。専用の VLAN を使用するか、ストレージ用に別個のスイッチを使用することで、別のネットワークを実現できます。ストレージネットワークがアップリンクなどの物理パスを共有している場合は、十分な帯域幅を確保するために QoS または追加のアップリンクポートが必要になることがあります。ホストをストレージに直接接続しないでください。スイッチを使用して冗長パスを確保し、VMware HAが介入なしで機能できるようにします。を参照してください <block ref="2d54da766c3f840b00eab5923273fca5" category="inline-link-macro-rx"></block> 追加情報 の場合。</block>
+  <block id="ed895c1c16c46a33c1fb8d980afb4d4b" category="list-text">現在サポートされているすべてのバージョンのVMware vSphereで、NFS v3とv4.1の両方を使用できます。nconnectの公式サポートは、NFS v3用のvSphere 8.0 Update 2に追加されました。NFS v4.1のvSphereは、セッショントランキング、Kerberos認証、整合性を維持したKerberos認証を引き続きサポートします。セッショントランキングにはONTAP 9.14.1以降のバージョンが必要であることに注意してください。</block>
+  <block id="83d007e105712dc05dcf363c7151dba1" category="paragraph">NFSv3とNFSv4.1では、異なるロックメカニズムが使用されていることに注目してください。NFSv3ではクライアント側ロックが使用され、NFSv4.1ではサーバ側ロックが使用されます。ONTAPボリュームは両方のプロトコルでエクスポートできますが、ESXiは1つのプロトコルでしかデータストアをマウントできません。ただしこれは、他のESXiホストが異なるバージョンを使用して同じデータストアをマウントできないという意味ではありません。問題を回避するには、マウント時に使用するプロトコルのバージョンを指定して、すべてのホストで同じバージョン、つまり同じロック形式を使用するようにする必要があります。NFSバージョンをホスト間で混在させないことが重要です。可能であれば、ホストプロファイルを使用して準拠を確認します。
+**データストアはNFSv3とNFSv4.1の間で自動で変換されないため、新しいNFSv4.1データストアを作成し、Storage vMotionを使用して新しいデータストアにVMを移行します。
+** NFS v4.1の相互運用性の表を参照してください。<block ref="8813559f5b95abb5411182be29200aff" category="inline-link-rx"></block> をサポートするには、特定の ESXi パッチレベルが必要です。
+* NFSエクスポートポリシーは、vSphereホストによるアクセスの制御に使用されます。複数のボリューム（データストア）で 1 つのポリシーを使用できます。NFSv3 では、 ESXi で sys （ UNIX ）セキュリティ形式が使用され、 VM を実行するためにルートマウントオプションが必要となります。ONTAP では、このオプションはスーパーユーザと呼ばれます。スーパーユーザオプションを使用する場合は、匿名ユーザ ID を指定する必要はありません。の値が異なるエクスポートポリシールールに注意してください<block ref="ea72d12ecaa06afdb0c8a3b15e485e95" prefix=" " category="inline-code"></block> および<block ref="df809a941c1287d18c08bb5927b639dc" prefix=" " category="inline-code"></block> 原因 SVM検出がONTAP ツールで問題を検出できるかどうか。ポリシーの例を次に示します。
+**アクセスプロトコル：NFS3
+**クライアント一致仕様：192.168.42.21
+** ROアクセスルール: sys
+** RWアクセスルール: sys
+**匿名UID
+**スーパーユーザ: sys
+* NetApp NFS Plug-in for VMware VAAIを使用する場合、プロトコルは次のように設定する必要があります。<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block> エクスポートポリシールールが作成または変更されたとき。VAAIコピーオフロードが機能するためには、次のように指定してNFSv4プロトコルが必要です。<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block> NFSv3とNFSv4の両方のバージョンが自動的に含まれます。
+* NFSデータストアボリュームはSVMのルートボリュームからジャンクションされるため、ESXiがデータストアボリュームに移動してマウントするには、ルートボリュームへのアクセスも必要です。ルートボリューム、およびデータストアボリュームのジャンクションがネストされているその他のボリュームのエクスポートポリシーには、ESXiサーバに読み取り専用アクセスを許可するルールが含まれている必要があります。VAAIプラグインを使用したルートボリュームのポリシーの例を次に示します。
+**アクセスプロトコル：NFS（NFS3とnfs4の両方を含む）
+**クライアント一致仕様：192.168.42.21
+** ROアクセスルール: sys
+** RW Access Rule：never（ルートボリュームに最適なセキュリティ）
+**匿名UID
+** Superuser：sys（VAAIを使用するルートボリュームにも必要）
+* ONTAP Tools for VMware vSphere（最も重要なベストプラクティス）を使用します。
+** ONTAP Tools for VMware vSphereを使用すると、エクスポートポリシーの管理が自動的に簡素化されるため、データストアをプロビジョニングできます。
+**プラグインを使用してVMwareクラスタ用のデータストアを作成する場合は、単一のESXサーバではなくクラスタを選択します。これにより、データストアがクラスタ内のすべてのホストに自動的にマウントされます。
+**既存のデータストアを新しいサーバに適用するには、プラグインマウント機能を使用します。
+** ONTAP Tools for VMware vSphereを使用しない場合は、すべてのサーバ、または追加のアクセス制御が必要なサーバのクラスタごとに1つのエクスポートポリシーを使用します。
+* ONTAPは柔軟なボリュームネームスペース構造を提供し、ジャンクションを使用してボリュームをツリーにまとめることができますが、このアプローチはvSphereには意味がありません。ストレージのネームスペース階層に関係なく、データストアのルートに各 VM 用のディレクトリが作成されます。そのため、単に SVM のルートボリュームに vSphere のボリュームのジャンクションパスをマウントすることがベストプラクティスです。これは、 VMware vSphere 用の ONTAP ツールでデータストアをプロビジョニングする方法です。ジャンクションパスがネストされていないと、ルートボリューム以外のボリュームに依存しているボリュームがないこと、またボリュームをオフラインにするか破棄するかによって意図的に他のボリュームへのパスに影響が及ぶこともありません。
+* NFSデータストア上のNTFSパーティションでは、ブロックサイズを4Kに設定しても問題ありません。次の図は、 vSphere ホストから ONTAP NFS データストアへの接続を示しています。</block>
+  <block id="59cfc5aaa0678bcb883492b4397c71b8" category="cell">○（ONTAP 9.14.1）</block>
+  <block id="f37fed71aa90eb80f77d4f14b0ee295b" category="summary">NetApp ONTAPを使用したvSphere Metroストレージクラスタ</block>
+  <block id="a58c81d13cac4e9b37bba2bd7fc3a93d" category="paragraph">VMwareの業界をリードするvSphereハイパーバイザーは、vSphere Metro Storage Cluster（vMSC）と呼ばれるストレッチクラスタとして導入できます。</block>
+  <block id="e5239709587bb3ebb34629be6c41ac7b" category="paragraph">vMSCソリューションは、NetApp®MetroCluster™とSnapMirrorアクティブ同期（旧称SnapMirrorビジネス継続性（SMBC））の両方でサポートされており、1つ以上の障害ドメインで全体的な停止が発生した場合に高度なビジネス継続性を提供します。さまざまな障害モードへの耐障害性は、どの設定オプションを選択するかによって異なります。</block>
+  <block id="e3224e391e08365c1593c07b9fe99cfa" category="section-title">vSphere環境向けの継続的可用性ソリューション</block>
+  <block id="e724bf1a385b292b55017a9963682b40" category="paragraph">NetApp ONTAPのアーキテクチャは、柔軟性と拡張性に優れたストレージプラットフォームであり、データストアにSAN（FCP、iSCSI、NVMe-oF）サービスとNAS（NFS v3およびv4.1）サービスを提供します。NetApp AFF、ASA、FASの各ストレージシステムは、ONTAPオペレーティングシステムを使用して、ゲストストレージアクセス用にS3、SMB / CIFSなどの追加プロトコルを提供します。</block>
+  <block id="ffa76ec5527e36c51f49fe091541cca6" category="paragraph">NetApp MetroClusterは、ネットアップのHA（コントローラフェイルオーバーまたはCFO）機能を使用してコントローラ障害から保護します。また、ローカルSyncMirrorテクノロジ、災害時のクラスタフェイルオーバー（オンデマンドのコントローラフェイルオーバーまたはCFOD）、ハードウェアの冗長性、地理的な分離によって高レベルの可用性を実現します。SyncMirrorは、アクティブにデータを提供しているローカルプレックス（ローカルシェルフ上）と、通常はデータを提供していないリモートプレックス（リモートシェルフ上）の2つのプレックスにデータを書き込むことで、MetroCluster構成の2つの部分にわたってデータを同期的にミラーリングします。ハードウェアの冗長性は、コントローラ、ストレージ、ケーブル、スイッチ（ファブリックMetroClusterで使用）、アダプタなど、MetroClusterのすべてのコンポーネントで確保されています。</block>
+  <block id="54823008c0a63d8491d2c84e13356f84" category="paragraph">NetApp SnapMirrorアクティブ同期は、FCPおよびiSCSI SANプロトコルを使用してデータストアをきめ細かく保護するため、優先度の高いワークロードのみを選択的に保護できます。アクティブ/スタンバイ解決策であるNetApp MetroClusterとは異なり、ローカルサイトとリモートサイトの両方にアクティブ/アクティブアクセスを提供します。現時点では、アクティブ同期は非対称解決策であり、一方が他方よりも優先されるため、パフォーマンスが向上します。これにはAsymmetric Logical Unit Access（ALUA；非対称論理ユニットアクセス）機能が使用され、どのコントローラを優先するかがESXiホストに自動的に通知されます。ただし、NetAppでは、アクティブな同期によって完全対称アクセスがまもなく有効になることが発表されています。</block>
+  <block id="d3e911c902a6b066f9c31d471d16fb21" category="paragraph">2つのサイトにVMware HA / DRSクラスタを作成するために、ESXiホストをvCenter Server Appliance（vCSA）で使用および管理します。vSphere管理ネットワーク、vMotion®ネットワーク、および仮想マシンネットワークは、2つのサイト間の冗長ネットワークを介して接続されます。HA / DRSクラスタを管理するvCenter Serverは両方のサイトのESXiホストに接続でき、vCenter HAを使用して設定する必要があります。</block>
+  <block id="da76be2bc20d4e043d9a2019b817214f" category="inline-link">vSphere Clientでクラスタを作成および構成する方法</block>
+  <block id="e02f3e9258a23204655bd512ec53911d" category="paragraph">を参照してください<block ref="c06ae090600e7aa086edfa28514435e7" category="inline-link-rx"></block> をクリックしてvCenter HAを設定します。</block>
+  <block id="bdd88c75f085534f6e2cdc7726cf1dd6" category="paragraph">また、<block ref="3a8301f60ad04eb873ae8dea15ee0495" category="inline-link-rx"></block>。</block>
+  <block id="7ed2d453d67762a9f20ad13c2f472fcb" category="section-title">vSphere Metro Storage Clusterとは</block>
+  <block id="38910d3dab2318849fd5f1a1dfbe0152" category="inline-link">VMwareストレージ互換性ガイド</block>
+  <block id="eab65c9bc6c74eff9aee0d7f0c44276d" category="paragraph">vSphere Metro Storage Cluster（vMSC）は、仮想マシン（VM）とコンテナを障害から保護する認定済みの構成です。これは、ストレッチストレージの概念とESXiホストのクラスタを使用して実現されます。ESXiホストは、ラック、建物、キャンパス、さらには都市など、さまざまな障害ドメインに分散されます。NetApp MetroClusterとSnapMirrorのアクティブな同期ストレージテクノロジは、それぞれホストクラスタに対してRPO=0またはNearRPO=0の保護を提供するために使用されます。vMSCの構成は、物理的または論理的な「サイト」全体に障害が発生した場合でも、データを常に利用できるように設計されています。vMSC構成に含まれるストレージデバイスは、vMSC認定プロセスを完了したあとに認定されている必要があります。サポートされているすべてのストレージデバイスは、<block ref="293ceee3268d7991d7fe245e02c1c5c9" category="inline-link-rx"></block>。</block>
+  <block id="838b66b875df1b432ac420a98cba3db6" category="paragraph">vSphere Metro Storage Clusterの設計ガイドラインの詳細については、次のドキュメントを参照してください。</block>
+  <block id="07aaf2aebfd07b8763284018d1ebbf57" category="inline-link">NetApp MetroClusterによるVMware vSphereのサポート</block>
+  <block id="a4a5fd5b00daf98bd381d80257378acd" category="list-text"><block ref="a4a5fd5b00daf98bd381d80257378acd" category="inline-link-rx"></block></block>
+  <block id="c3dc11e39d996a00b095022f4e56583d" category="inline-link">NetApp SnapMirrorビジネス継続性によるVMware vSphereのサポート</block>
+  <block id="8f675397d9c0ef95aa8b3f0ada9d601a" category="list-text"><block ref="f53214cfd764fa0267c92323be0d7337" category="inline-link-rx"></block> （SnapMirrorアクティブ同期）</block>
+  <block id="ee0a206d2287c89b2a7b780e07929b81" category="paragraph">レイテンシの考慮事項に応じて、NetApp MetroClusterを導入してvSphereで使用できます。</block>
+  <block id="b553530def78406c0977f70d5e90b9e8" category="list-text">ストレッチMetroCluster</block>
+  <block id="2d90abe978ed8084d304295ad0a8c8fd" category="list-text">ファブリックMetroCluster</block>
+  <block id="b03023e82bda6a71adc49c4834e3b6ab" category="paragraph">次の図は、ストレッチMetroClusterのトポロジ図の概要を示しています。</block>
+  <block id="b0c20dc8226bb49f35f0f68f7ef77bba" category="image-alt">MCCを使用したvMSCの図</block>
+  <block id="119be031ef4485d20c7683d291d0e9f6" category="inline-link">MetroCluster のドキュメント</block>
+  <block id="ad9122c6d75ebaa024669fde1c0bdfb8" category="paragraph">を参照してください<block ref="d8a206747dbcec13122724b2aee18957" category="inline-link-rx"></block> を参照してくださいMetroCluster。</block>
+  <block id="b47354fcd7d17ab4fbb3283f71677efe" category="paragraph">SnapMirror Active Syncは、2つの方法で導入することもできます。</block>
+  <block id="314084a577b998d8089dff72c98c58b0" category="list-text">非対称</block>
+  <block id="40e2e641bad11918585c3dd4f76c2716" category="list-text">対称（ONTAP 9.14.1でのプライベートプレビュー）</block>
+  <block id="b9ca5ba97cf75d3dafb51f78e073770a" category="inline-link">ネットアップのドキュメント</block>
+  <block id="1c71125ba0668792e46d93c17dc6c428" category="paragraph">を参照してください<block ref="9ace5d3ebe2fe57037322de54ac9a869" category="inline-link-rx"></block> を参照し、SnapMirror Active Syncの設計と導入に関する情報を確認してください。</block>
+  <block id="bca8b52c503406abc3e9e50c5352d0a2" category="paragraph">このドキュメントでは、業界をリードするVMwareのディザスタリカバリ（DR）ソフトウェアであるONTAP 解決策for VMware Site Recovery Manager（SRM）について説明します。最新の製品情報とベストプラクティスを紹介し、導入の合理化、リスクの軽減、継続的な管理の簡素化を実現します。</block>
+  <block id="4f46fffb0ac7017fd2b42c10d6aa03fc" category="paragraph">VM のバックアップと迅速なリカバリは、 ONTAP for vSphere の大きな特長の 1 つです。この機能は、 SnapCenter Plug-in for VMware vSphere を使用して vCenter 内で簡単に管理できます。</block>
+  <block id="3a021eaaeb6692340890af4de2f7514a" category="paragraph">以降のセクションでは、VMwareとONTAP SRMを使用した導入のベストプラクティスについて説明します。</block>
+  <block id="ff53ee8001042abcefe5c912d0b5012f" category="doc">vSphere のデータストアとプロトコルの機能</block>
+  <block id="b69cd5a82aaf0c524a71d46ec6fdd29c" category="cell">NFS v4.1セッショントランキングにはONTAP 9.14.1以降が必要</block>
+  <block id="80303385ad0f7147caa1af6d2162852b" category="paragraph">VASA Provider for ONTAP の多くの機能を使用するための管理インターフェイスでもあり、 VVol でのストレージポリシーベースの管理がサポートされています。VMware vSphere 用の ONTAP ツールを登録したら、ストレージ機能プロファイルを作成してストレージにマッピングし、データストアがプロファイルに一定期間にわたって準拠していることを確認します。VASA Provider には、 VVol データストアの作成と管理を行うためのインターフェイスも用意されています。</block>
+  <block id="83fe2b10c55a47a84465ff5a93a3feda" category="list-text">VMwareとNetAppでは、ONTAP 9.14.1以降で現在NFSv4.1セッショントランキングがサポートされています。特定のバージョンの詳細については、NetApp NFS 4.1のInteroperability Matrixの注意事項を参照してください。NFSv3では、ボリュームへの複数の物理パスはサポートされませんが、vSphere 8.0U2以降ではnconnectがサポートされます。ONTAP 9.8を搭載したでは、ONTAP tools for VMware vSphereでFlexGroupを作成することを推奨しますが、クラスタ全体に負荷を分散するためには、そのFlexGroupをアンマウントし、ラウンドロビンDNSを使用して再マウントすることを推奨します。ONTAP toolsでデータストアのマウント時に使用されるLIFは1つだけです。データストアを再マウントしたら、ONTAPツールを使用してデータストアを監視および管理できます。</block>
+  <block id="d9c9eb44a58ee1ce90daa68527aa8930" category="summary">MCCを使用するvMSCの障害シナリオ</block>
+  <block id="e7c7574b0826c9074f480de76c889ba8" category="paragraph">以降のセクションでは、vMSCおよびNetApp MetroClusterシステムで発生したさまざまな障害シナリオで想定される結果について説明します。</block>
+  <block id="c8a2eebb480fef69e6ed917ea7f7a9d3" category="section-title">単一のストレージパス障害</block>
+  <block id="b99e8e694b032f593bbd01f6205b4a98" category="paragraph">このシナリオでは、HBAポート、ネットワークポート、フロントエンドデータスイッチポート、FCケーブル、イーサネットケーブルなどのコンポーネントで障害が発生すると、ストレージデバイスへの特定のパスがESXiホストによって停止とマークされます。HBA /ネットワーク/スイッチポートで耐障害性を提供してストレージデバイスに複数のパスが設定されている場合は、ESXiがパススイッチオーバーを実行するのが理想的です。この間、ストレージデバイスへの複数のパスを提供することでストレージの可用性が確保されるため、仮想マシンは影響を受けずに実行され続けます。</block>
+  <block id="1fff6650ef9c430da0f875c203d5dab0" category="paragraph">*注：*このシナリオではMetroClusterの動作に変更はなく、すべてのデータストアがそれぞれのサイトで引き続き実行されます。</block>
+  <block id="80fc15dd1deb985234440745e8a78d4c" category="paragraph">NFS / iSCSIボリュームを使用している環境ではNetApp、NFS vmkernelポート用に少なくとも2つのネットワークアップリンクを標準vSwitchに設定し、NFS vmkernelインターフェイスが分散vSwitchにマッピングされているポートグループに設定することを推奨します。NICチーミングは、アクティブ/アクティブまたはアクティブ/スタンバイのいずれかで設定できます。</block>
+  <block id="0c8694e8ef7f8935edbfac605753bc95" category="paragraph">また、iSCSI LUNの場合は、vmkernelインターフェイスをiSCSIネットワークアダプタにバインドしてマルチパスを設定する必要があります。詳細については、vSphereストレージのドキュメントを参照してください。</block>
+  <block id="0fc808fdb968eb089fbc5124c0a8e15a" category="paragraph">ファイバチャネルLUNを使用する環境でNetAppは、HBAを少なくとも2つ搭載し、HBA /ポートレベルでの耐障害性を保証することを推奨します。NetAppでは、ゾーニングを設定するためのベストプラクティスとして、単一のイニシエータから単一のターゲットへのゾーニングも推奨しています。</block>
+  <block id="238c3d1c7bf8b5b42237392383a4c7ab" category="paragraph">新規および既存のすべてのNetAppストレージデバイスにポリシーが設定されるため、Virtual Storage Console（VSC）を使用してマルチパスポリシーを設定する必要があります。</block>
+  <block id="217811709dfb096c78e73934de01271c" category="section-title">単一のESXiホスト障害</block>
+  <block id="93bc89a0478478dd84d8159a18f6c1a2" category="image-alt">単一ホストの障害。</block>
+  <block id="15023af3b440b4004f509e961bfe1e30" category="paragraph">このシナリオでは、ESXiホストで障害が発生すると、VMware HAクラスタのマスターノードがネットワークハートビートを受信しなくなるため、ホスト障害を検出します。ホストが本当に停止しているのか、ネットワークパーティションだけなのかを判別するために、マスターノードはデータストアハートビートを監視し、ハートビートがない場合は、障害が発生したホストの管理IPアドレスに対してpingを実行して最終チェックを実行します。これらのチェックがすべて無効の場合、マスターノードはこのホストを障害が発生したホストであると宣言し、この障害が発生したホストで実行されていたすべての仮想マシンが、クラスタ内の残りのホストでリブートされます。</block>
+  <block id="9a11158d52f71012ae8722b09bf8bf29" category="paragraph">DRSのVMとホストのアフィニティルールが設定されている場合（VMグループsitea_vmsのVMはホストグループsitea_hostsのホストを実行する必要があります）、HAマスターは最初にサイトAで使用可能なリソースを確認します。サイトAに使用可能なホストがない場合、マスターはサイトBのホストでVMの再起動を試みます。</block>
+  <block id="7922c92ff860eb0508dc8cc8aae3ffdd" category="paragraph">ローカルサイトのリソースに制約がある場合は、もう一方のサイトのESXiホストで仮想マシンが起動される可能性があります。ただし、DRSのVMとホストのアフィニティルールに違反した場合は、仮想マシンをローカルサイトの稼働しているESXiホストに移行することで修正されます。DRSが手動に設定されている場合、NetAppはDRSを起動し、推奨事項を適用して仮想マシンの配置を修正することを推奨します。</block>
+  <block id="387b5a49326be3a47e081682e75e19b4" category="paragraph">このシナリオではMetroClusterの動作に変更はなく、すべてのデータストアがそれぞれのサイトで引き続き実行されます。</block>
+  <block id="a11ffa7d20dab792fe5aa9c27017493e" category="section-title">ESXiホストの分離</block>
+  <block id="17e01652089acd413e26ea89cf98a2b8" category="image-alt">ESXiホストの分離</block>
+  <block id="8a4b746274e9d7129602d54434624806" category="paragraph">このシナリオでは、ESXiホストの管理ネットワークが停止すると、HAクラスタ内のマスターノードがハートビートを受信しなくなり、このホストがネットワークから分離された状態になります。障害が発生したか、隔離されているだけかを判別するために、マスターノードはデータストアハートビートの監視を開始します。ホストが存在する場合、ホストはマスターノードによって分離されていると宣言されます。構成されている隔離時の対応に応じて、ホストは仮想マシンの電源をオフにするか、シャットダウンするか、仮想マシンの電源をオンにしたままにするかを選択できます。分離応答のデフォルトの間隔は30秒です。</block>
+  <block id="a070f7923919fed39772c5d3f91bf482" category="section-title">ディスクシェルフの障害</block>
+  <block id="e8acf0e4f25cdd641c9a047482d56ba5" category="paragraph">このシナリオでは、3本以上のディスクまたはシェルフ全体で障害が発生しています。データは、データサービスを中断することなく、稼働しているプレックスから提供されます。ディスク障害は、ローカルまたはリモートのプレックスに影響する可能性があります。アクティブなプレックスが1つしかないため、アグリゲートはデグレードモードになります。障害が発生したディスクを交換すると、影響を受けたアグリゲートが自動的に再同期されてデータが再構築されます。再同期後、アグリゲートは自動的に通常のミラーモードに戻ります。単一のRAIDグループ内の3本以上のディスクで障害が発生した場合は、プレックスを最初から再構築する必要があります。</block>
+  <block id="4f90d34a41c7ebc83024a5e3ca35ff3a" category="image-alt">単一のディスクシェルフ障害。</block>
+  <block id="8af0b36d49baf198133a234e76b06445" category="paragraph">*注：*この間、仮想マシンのI/O処理への影響はありませんが、データはISLリンクを介してリモートのディスクシェルフからアクセスされるため、パフォーマンスが低下します。</block>
+  <block id="1c872dcd4bcebb1d7567f383901dfc0d" category="section-title">単一のストレージコントローラ障害</block>
+  <block id="68badb604dbd29653979fdc7083cbffe" category="paragraph">このシナリオでは、一方のサイトの2台のストレージコントローラのどちらかで障害が発生します。各サイトにHAペアがあるため、一方のノードで障害が発生すると、もう一方のノードへのフェイルオーバーが透過的かつ自動的にトリガーされます。たとえば、ノードA1に障害が発生した場合、そのストレージとワークロードは自動的にノードA2に転送されます。すべてのプレックスが引き続き使用可能なため、仮想マシンに影響はありません。2つ目のサイトのノード（B1とB2）は影響を受けません。また、クラスタ内のマスターノードは引き続きネットワークハートビートを受信するため、vSphere HAによる処理は行われません。</block>
+  <block id="0ac25682ea568511724f2e0819127d89" category="image-alt">単一ノード障害</block>
+  <block id="e7b4c0523308b3fd46189b6ab4867fe5" category="paragraph">フェイルオーバーがローリングディザスタ（ノードA1からA2にフェイルオーバー）の一部である場合に、その後A2またはサイトA全体で障害が発生すると、災害後にサイトBでスイッチオーバーが発生する可能性があります。</block>
+  <block id="7b590b52d9f3d4d40cda67758ff92ba1" category="section-title">スイッチ間リンクの障害</block>
+  <block id="9df08f82abe35d87c6f7c96b18dab755" category="section-title">管理ネットワークでのスイッチ間リンク障害</block>
+  <block id="ed0711cbc7a050952e0e370bab079bff" category="image-alt">管理ネットワークでのスイッチ間リンク障害</block>
+  <block id="a32c6c77bb8d407cf5825aec175bab4b" category="paragraph">このシナリオでは、フロントエンドホスト管理ネットワークのISLリンクで障害が発生し、サイトAのESXiホストがサイトBのESXiホストと通信できなくなります。これにより、特定のサイトのESXiホストからHAクラスタ内のマスターノードにネットワークハートビートを送信できなくなるため、ネットワークが分割されます。そのため、パーティションのために2つのネットワークセグメントがあり、各セグメントにマスターノードがあり、特定のサイト内でVMがホスト障害から保護されます。</block>
+  <block id="36974534f1a2014a3e7e229d795ef51b" category="paragraph">*注：*この間、仮想マシンは実行されたままであり、このシナリオではMetroClusterの動作に変更はありません。すべてのデータストアがそれぞれのサイトで引き続き実行されます。</block>
+  <block id="628309883a8d1307131d205b200c56ae" category="section-title">ストレージネットワークのスイッチ間リンク障害</block>
+  <block id="a9da7e2a43bcea673a22b949355e619d" category="image-alt">ストレージネットワークのスイッチ間リンク障害</block>
+  <block id="625db96c5ee1e9b5197b6cb3c1715021" category="paragraph">このシナリオでは、バックエンドストレージネットワークのISLリンクで障害が発生すると、サイトAのホストはサイトBのクラスタBのストレージボリュームまたはLUNにアクセスできなくなります。その逆も同様です。VMware DRSルールは、ホストとストレージサイトのアフィニティによって、サイト内で影響を与えることなく仮想マシンを実行できるように定義されています。</block>
+  <block id="8d9609f32cbee8fa5080f95d71a2a142" category="paragraph">この間、仮想マシンはそれぞれのサイトで実行されたままになり、このシナリオではMetroClusterの動作に変更はありません。すべてのデータストアがそれぞれのサイトで引き続き実行されます。</block>
+  <block id="719831bfdda20be14c04e2b165cce85e" category="paragraph">何らかの理由でアフィニティルールに違反した場合（ローカルクラスタAのノードにディスクが配置されているサイトAから実行されていたVM1がサイトBのホストで実行されている場合など）、仮想マシンのディスクにISLリンクを介してリモートからアクセスされます。ISLリンクで障害が発生すると、ストレージボリュームへのパスが停止し、その仮想マシンが停止するため、サイトBで実行されているVM1はディスクに書き込むことができなくなります。この場合、ホストからハートビートがアクティブに送信されるため、VMware HAによる処理は行われません。これらの仮想マシンは、それぞれのサイトで手動で電源をオフにしてオンにする必要があります。次の図は、VMがDRSアフィニティルールに違反していることを示しています。</block>
+  <block id="09ba89b1ea49214c15fbf8ea6f129cb0" category="image-alt">ISL障害後にVMがDRSアフィニティルールに違反してディスクに書き込むことができない</block>
+  <block id="49f26967af2ad76cacf7888cbeeb0590" category="section-title">すべてのスイッチ間障害またはデータセンターの完全なパーティション</block>
+  <block id="bc331d84348670dff6731555166fa378" category="paragraph">このシナリオでは、サイト間のすべてのISLリンクが停止し、両方のサイトが相互に分離されます。管理ネットワークやストレージネットワークでのISL障害などのシナリオで説明したように、ISL全体で障害が発生しても仮想マシンは影響を受けません。</block>
+  <block id="a40e8cf2a5b5b1e22fec9f26cce85b9d" category="paragraph">ESXiホストがサイト間でパーティショニングされると、vSphere HAエージェントがデータストアハートビートをチェックし、各サイトでローカルのESXiホストがデータストアハートビートを対応する読み書き可能なボリューム/ LUNに更新できるようになります。サイトAのホストは、ネットワーク/データストアハートビートがないため、サイトBの他のESXiホストで障害が発生したと見なします。サイトAのvSphere HAはサイトBの仮想マシンの再起動を試行しますが、ストレージISLの障害が原因でサイトBのデータストアにアクセスできなくなるため、再起動は失敗します。同様の状況がサイトBでも繰り返されます。</block>
+  <block id="3543d47d1f3a8dc6989a32f62ce3ea77" category="image-alt">すべてのISL障害またはデータセンターの完全なパーティショニング</block>
+  <block id="3a096ef571101010add81b37081d3276" category="paragraph">NetAppでは、DRSルールに違反した仮想マシンがないかどうかを確認することを推奨しています。リモートサイトから実行されている仮想マシンはデータストアにアクセスできないため停止し、vSphere HAはその仮想マシンをローカルサイトで再起動します。ISLリンクがオンラインに戻ると、同じMACアドレスで仮想マシンのインスタンスが2つ実行されることはないため、リモートサイトで実行されていた仮想マシンが強制終了されます。</block>
+  <block id="87e9384cb464ff9a4ce385fc59a178a2" category="image-alt">VM1がDRSアフィニティルールに違反したデータセンターパーティション</block>
+  <block id="0951e388ebea20c49e71af25ef84947d" category="section-title">NetApp MetroClusterの両方のファブリックのスイッチ間リンク障害</block>
+  <block id="1e9be78885a356d1a2ec0ab0d4a4cecb" category="paragraph">1つ以上のISLで障害が発生した場合、トラフィックは残りのリンクを経由して続行されます。両方のファブリックのすべてのISLで障害が発生し、ストレージとNVRAMのレプリケーション用のサイト間のリンクがなくなった場合、各コントローラはローカルデータの提供を継続します。少なくとも1つのISLをリストアすると、すべてのプレックスの再同期が自動的に実行されます。</block>
+  <block id="715cbc6f6bcf5da6b73f10233847d3a1" category="paragraph">すべてのISLが停止したあとに発生した書き込みは、もう一方のサイトにミラーリングされません。そのため、構成がこの状態のときに災害時にスイッチオーバーを実行すると、同期されていなかったデータが失われます。この場合、スイッチオーバー後のリカバリを手動で行う必要があります。ISLが長期間使用できなくなる可能性がある場合は、災害時のスイッチオーバーが必要な場合にデータ損失のリスクを回避するために、すべてのデータサービスをシャットダウンすることができます。この処理を実行するかどうかは、少なくとも1つのISLが使用可能になる前にスイッチオーバーが必要な災害が発生する可能性と比較して判断する必要があります。また、ISLで連鎖的に障害が発生した場合は、すべてのリンクで障害が発生する前に、いずれかのサイトへの計画的スイッチオーバーをトリガーすることもできます。</block>
+  <block id="89f375bfe8be0893bf175b89ce754b8e" category="image-alt">NetApp MetroClusterの両方のファブリックでスイッチ間リンク障害が発生しました。</block>
+  <block id="bc813a6fdbbeebf4d230b7e33d8c3a76" category="section-title">ピアクラスタのリンク障害</block>
+  <block id="1919456d1613248a128c65a84b235fe5" category="paragraph">ピアクラスタのリンクで障害が発生した場合、ファブリックのISLはアクティブなままであるため、データサービス（読み取りと書き込み）は両方のサイトで両方のプレックスに対して継続されます。クラスタ設定の変更（新しいSVMの追加、既存のSVMでのボリュームやLUNのプロビジョニングなど）は、もう一方のサイトに伝播できません。これらはローカルのCRSメタデータボリュームに保持され、ピアクラスタリンクのリストア時にもう一方のクラスタに自動的に伝播されます。ピアクラスタのリンクがリストアされる前に強制スイッチオーバーが必要な場合は、スイッチオーバープロセスの一環として、サバイバーサイトにあるメタデータボリュームのリモートレプリケートコピーから、未処理のクラスタ構成変更が自動的に再生されます。</block>
+  <block id="77130a0b52e4379c6b6667cf7f8e155c" category="image-alt">ピアクラスタのリンク障害</block>
+  <block id="9dc32d7afddc9a265c5c2713db55fc70" category="section-title">サイト全体の障害</block>
+  <block id="d0d6a03c382bc5412f1822e5c97d5142" category="paragraph">サイトA全体で障害が発生した場合、サイトAのESXiホストが停止しているため、サイトBのESXiホストはサイトAのESXiホストからネットワークハートビートを受信しません。サイトBのHAマスターは、データストアハートビートが存在しないことを確認し、サイトAのホストで障害が発生したことを宣言して、サイトAの仮想マシンをサイトBで再起動しようとします。この間に、ストレージ管理者はスイッチオーバーを実行して障害が発生したノードのサービスをサバイバーサイトで再開し、サイトAのすべてのストレージサービスをサイトBでリストアします。サイトAのボリュームまたはLUNがサイトBで使用可能になると、HAマスターエージェントはサイトAの仮想マシンをサイトBで再起動しようとします。</block>
+  <block id="23e5761401326cc21bcf9d108b9e3e7f" category="paragraph">vSphere HAマスターエージェントがVMの再起動（VMの登録と電源投入を含む）に失敗した場合、遅延後に再起動が再試行されます。再起動の間隔は、最大30分まで設定できます。vSphere HAは、再起動を最大試行回数（デフォルトでは6回）試行します。</block>
+  <block id="641031c1f370e06434afd215f8610dae" category="paragraph">*注：* HAマスターは、Placement Managerが適切なストレージを検出するまで再起動の試行を開始しません。したがって、サイト全体で障害が発生した場合は、スイッチオーバーの実行後に再起動が試行されます。</block>
+  <block id="085a4a3eba6c30fa589bfee20eb0c294" category="paragraph">サイトAがスイッチオーバーされた場合は、サバイバーサイトBのいずれかのノードで障害が発生しても、サバイバーノードにフェイルオーバーすることでシームレスに対応できます。この場合、4つのノードの作業は1つのノードだけで実行されます。この場合のリカバリでは、ローカルノードへのギブバックを実行します。その後、サイトAがリストアされるとスイッチバック処理が実行され、構成の安定した運用が再開されます。</block>
+  <block id="2b9b713afb0d80ef371a0b55e58366b6" category="image-alt">サイト全体の障害</block>
+  <block id="e6364c2f5314a32cd95be04b4c2112e6" category="paragraph">以降のセクションでは、VMware VVOLとONTAPストレージを使用する手順とベストプラクティスについて説明します。</block>
+  <block id="a9da618400fb93b20c20f5343efaefa7" category="sidebar">ONTAPを使用したVMware vSphere Metroストレージクラスタ</block>
+  <block id="2f58fa882a22b5af5f0741f03abaf611" category="sidebar">ONTAPを使用したvSphere Metroストレージクラスタ</block>
+  <block id="4ed162a87c3bbcd728e66cd9365c7660" category="sidebar">vMSCの概要</block>
+  <block id="111464465e5bb57958d189842ad5e093" category="sidebar">vSphere HA解決策</block>
+  <block id="422fa84cbd2dc1a741d30fa40ad8284d" category="sidebar">vMSCの設計</block>
+  <block id="f6aef7af169e3878f32a39224e7a6cb8" category="sidebar">vMSCの耐障害性</block>
+  <block id="dfcccfecca566c55bd84119f294cde76" category="sidebar">MCCを使用したvMSCのシナリオ</block>
 </blocks>

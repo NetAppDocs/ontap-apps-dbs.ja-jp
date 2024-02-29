@@ -52,6 +52,18 @@ entries:
     url: "/vmware/vmware-srm-replication_topologies.html"
   - title: VVol レプリケーションを使用する場合の SRM のトラブルシューティング
     url: "/vmware/vmware-srm-vvol-troubleshooting.html"
+- title: ONTAPを使用したvSphere Metroストレージクラスタ
+  entries:
+  - title: vMSCの概要
+    url: "/vmware/vmware_vmsc_overview.html"
+  - title: vSphere HA解決策
+    url: "/vmware/vmware_vmsc_solution.html"
+  - title: vMSCの設計
+    url: "/vmware/vmware_vmsc_design.html"
+  - title: vMSCの耐障害性
+    url: "/vmware/vmware_vmsc_resiliency.html"
+  - title: MCCを使用したvMSCのシナリオ
+    url: "/vmware/vmware_vmsc_scen_mcc.html"
 - title: 製品のセキュリティ
   entries:
   - title: VMware vSphere 用の ONTAP ツール

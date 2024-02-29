@@ -11,13 +11,10 @@ summary: SnapCenter では、複数のジョブに適用可能なバックアッ
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:firstname: [.lead]
-:author: [.lead]
-:authorinitials: [
-:authors: [.lead]
-:revnumber: 
-:revdate: or entire SVMs.
 
+
+[role="lead"]
+ONTAP ソフトウェアを実行するシステムでは、 ONTAP ストレージ QoS 機能を使用して、ファイル、 LUN 、ボリューム、 SVM 全体などの異なるストレージオブジェクトに対するスループットを MBps や IOPS （ 1 秒あたりの I/O 数）で制限できます。
 
 スループット制限は、他のワークロードに影響しないように、導入前に未知のワークロードやテストワークロードを制御するのに役立ちます。また、 Bully ワークロードが特定された場合に、この 2 つを使用して抑制することもできます。ONTAP 9.2 では SAN オブジェクトに、 ONTAP 9.3 では NAS オブジェクトに一貫したパフォーマンスを提供するために、 IOPS に基づく最小サービスレベルもサポートされています。
 

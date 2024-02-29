@@ -11,12 +11,14 @@ summary: 可能であれば、必ず ONTAP ツールを使用してデータス�
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:firstname: [.lead]
-:author: [.lead]
-:authorinitials: [
-:authors: [.lead]
-:revdate: == Datastores and protocols
 
+
+[role="lead"]
+以降のセクションでは、VMware SRMとONTAPストレージの運用に関するベストプラクティスについて説明します。
+
+
+
+== データストアおよびプロトコル
 
 * 可能であれば、必ず ONTAP ツールを使用してデータストアとボリュームをプロビジョニングしてください。ボリューム、ジャンクションパス、 LUN 、 igroup 、エクスポートポリシーが その他の設定は互換性のある方法で構成されます。
 * SRM では、 ONTAP 9 で iSCSI 、ファイバチャネル、および NFS バージョン 3 をサポートしているのは、 SRA 経由のアレイベースのレプリケーションを使用している場合です。SRM は、従来のデータストアまたは VVOL データストアでの NFS バージョン 4.1 のアレイベースのレプリケーションをサポートしていません。

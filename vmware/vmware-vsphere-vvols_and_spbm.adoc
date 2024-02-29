@@ -13,10 +13,7 @@ summary: このページでは、 VMware vSphere 環境に NetApp ONTAP スト�
 :imagesdir: ../media/
 
 
-
-
-== VVol と SPBM について
-
+[role="lead"]
 ネットアップは、 vSphere Virtual Volumes （ VVol ）の開発において VMware と初期の設計パートナーとして、アーキテクチャに関する情報提供と、 VVol および VMware vSphere APIs for Storage Awareness （ VASA ）のサポートを提供していました。このアプローチにより、VMのきめ細かなストレージ管理がVMFSで実現しただけでなく、Storage Policy Based Management（SPBM）によるストレージプロビジョニングの自動化もサポートされました。
 
 SPBM は、仮想化環境で使用できるストレージサービスと、プロビジョニングされたストレージ要素の間の抽象化レイヤとして機能するフレームワークを、ポリシーを通じて提供します。このアプローチにより、ストレージアーキテクトは、 VM 管理者が簡単に利用できるさまざまな機能を備えたストレージプールを設計できます。仮想マシンのワークロード要件をプロビジョニングされたストレージプールと照合することで、仮想マシンごとまたは仮想ディスクレベルのさまざまな設定をきめ細かく制御できます。

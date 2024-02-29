@@ -13,6 +13,9 @@ summary: ONTAP では、 Storage Virtual Machine （ SVM ）の概念を採用�
 :imagesdir: ../media/
 
 
+[role="lead"]
+以降のセクションでは、VMwareとONTAP SRMを使用した導入のベストプラクティスについて説明します。
+
 
 
 == SMT の SVM のレイアウトとセグメント化

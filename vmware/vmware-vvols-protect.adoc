@@ -10,11 +10,10 @@ summary:
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:firstname: [.lead]
-:author: [.lead]
-:authorinitials: [
-:authors: [.lead]
 
+
+[role="lead"]
+以降のセクションでは、VMware VVOLとONTAPストレージを使用する手順とベストプラクティスについて説明します。
 
 
 

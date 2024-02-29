@@ -11,13 +11,10 @@ summary: SnapCenter では、複数のジョブに適用可能なバックアッ
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:firstname: [.lead]
-:author: [.lead]
-:authorinitials: [
-:authors: [.lead]
-:revnumber: 
-:revdate: and so on.
 
+
+[role="lead"]
+ストレージオブジェクトをクローニングすると、追加の VM のプロビジョニングやバックアップ / リカバリ処理などの用途に使用できるコピーを簡単に作成できます。
 
 vSphere では、 VM 、仮想ディスク、 VVOL 、またはデータストアをクローニングできます。クローニングされたオブジェクトは、多くの場合、自動化されたプロセスによってさらにカスタマイズできます。vSphere では、フルコピークローンとリンククローンの両方がサポートされます。リンククローンでは、元のオブジェクトとは別に変更が追跡されます。
 

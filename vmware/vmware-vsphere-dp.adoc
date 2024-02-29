@@ -11,13 +11,10 @@ summary: SnapCenter では、複数のジョブに適用可能なバックアッ
 :icons: font
 :linkattrs: 
 :imagesdir: ../media/
-:firstname: [.lead]
-:author: [.lead]
-:authorinitials: [
-:authors: [.lead]
-:revnumber: 
-:revdate: and it is easy to manage this ability inside vCenter with the SnapCenter Plug-In for VMware vSphere.
 
+
+[role="lead"]
+VM のバックアップと迅速なリカバリは、 ONTAP for vSphere の大きな特長の 1 つです。この機能は、 SnapCenter Plug-in for VMware vSphere を使用して vCenter 内で簡単に管理できます。
 
 Snapshotを使用すると、パフォーマンスに影響を与えずにVMやデータストアのコピーをすばやく作成でき、SnapMirrorを使用してセカンダリシステムに送信することで、オフサイトでの長期的なデータ保護を実現できます。このアプローチでは、変更された情報のみを格納することで、ストレージスペースとネットワーク帯域幅を最小限に抑えます。
 
