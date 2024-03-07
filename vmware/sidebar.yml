@@ -13,7 +13,15 @@ entries:
   - title: 仮想ボリュームとストレージポリシーベースの管理
     url: "/vmware/vmware-vsphere-vvols_and_spbm.html"
   - title: データストアおよびプロトコル
-    url: "/vmware/vmware-vsphere-datastores.html"
+    entries:
+    - title: 概要
+      url: "/vmware/vmware-vsphere-datastores-top.html"
+    - title: SAN
+      url: "/vmware/vmware-vsphere-datastores-san.html"
+    - title: NFS
+      url: "/vmware/vmware-vsphere-datastores-nfs.html"
+    - title: FlexGroup ボリューム
+      url: "/vmware/vmware-vsphere-datastores-fg.html"
   - title: ネットワーク構成：
     url: "/vmware/vmware-vsphere-network.html"
   - title: クローニング
@@ -54,15 +62,15 @@ entries:
     url: "/vmware/vmware-srm-vvol-troubleshooting.html"
 - title: ONTAPを使用したvSphere Metroストレージクラスタ
   entries:
-  - title: vMSCの概要
+  - title: vMSCノカイヨウ
     url: "/vmware/vmware_vmsc_overview.html"
   - title: vSphere HA解決策
     url: "/vmware/vmware_vmsc_solution.html"
-  - title: vMSCの設計
+  - title: vMSC設計
     url: "/vmware/vmware_vmsc_design.html"
-  - title: vMSCの耐障害性
+  - title: vMSCノタイショウガイ
     url: "/vmware/vmware_vmsc_resiliency.html"
-  - title: MCCを使用したvMSCのシナリオ
+  - title: MCCを使用するvMSCのシナリオ
     url: "/vmware/vmware_vmsc_scen_mcc.html"
 - title: 製品のセキュリティ
   entries:

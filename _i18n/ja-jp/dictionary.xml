@@ -2472,32 +2472,13 @@ I/Oの中断はありません。</block>
   <block id="e357ccd0745db58f22ea5c0947b613ee" category="paragraph"><block ref="330c4316ae6124616389eb1ca9912f7a" prefix="" category="inline-code"></block> では、shortを返します。<block ref="c7169a6dd344d0f0a38071a1262e4973" prefix=" " category="inline-code"></block> ホスト名（の出力に一致）<block ref="4040592cec1880aa70936989f05e7c31" prefix=" " category="inline-code"></block>。したがって、ロックはサーバクラッシュ後に自動的にクリアされます。</block>
   <block id="547b870352d8464aadbe7bee63d6f3d1" category="summary">データベース仮想化の概要</block>
   <block id="ea4c55be196897a16d86999f5c16d582" category="doc">仮想化</block>
-  <block id="4a478889a2e46bee771126a78eda2911" category="paragraph">VMware ESX、Oracle OVM、KVMを使用したデータベースの仮想化は、最もミッションクリティカルなデータベースでさえ仮想化を選択したNetAppのお客様にとって、ますます一般的な選択肢となっています。</block>
-  <block id="0f976e587b1e7af0949904e76d91384b" category="paragraph">仮想化のサポートポリシー、特にVMware製品については、多くの誤解が存在します。実際、Oracleが仮想化をサポートしていないという話は珍しくありません。この概念は正しくないため、仮想化の機会を逃してしまいます。Oracle Doc ID 249212.1では、Oracle環境の既知の問題について説明し、RACのサポートも指定しています。</block>
-  <block id="02ea3d7754e6bc1c99ff77393e49e373" category="paragraph">Oracleが把握していない問題を抱えているお客様は、物理ハードウェアで問題を再現するように依頼されることがあります。最新バージョンの製品を使用しているOracleのお客様は、新しいバグが発見される可能性があるため、仮想化の使用を望まないかもしれません。ただし、一般提供されている製品バージョンを使用している仮想化環境では、このような状況は実際には問題になりませんでした。</block>
   <block id="9e28dbd7a4f5940eeaf6d3893c5c4b1f" category="section-title">ストレージ提供</block>
-  <block id="8fdbc6d55014a06c15b9f130e5bedd12" category="paragraph">データベースの仮想化を検討しているお客様は、ビジネスニーズに基づいてストレージに関する意思決定を行う必要があります。これはすべてのIT意思決定に一般的に当てはまりますが、プロジェクトの規模と範囲が大きく異なるため、仮想化にとって特に重要です。</block>
-  <block id="6cf53ad2948792abdf4a8668365b8396" category="paragraph">ストレージプレゼンテーションには、次の4つの基本的なオプションがあります。</block>
   <block id="151ae53a4100e0a6e83bde4d78083f81" category="list-text">iSCSI LUNをハイパーバイザーではなくVMのiSCSIイニシエータで管理</block>
-  <block id="73014dc1e7381cfd107ba79742a873e3" category="list-text">NFSファイルシステムを、仮想マシンディスク（VMDK）ではなくVMでマウントする</block>
-  <block id="810f0004f0e8e215c676ac0621d5836b" category="list-text">ハイパーバイザーデータストア</block>
-  <block id="8e2a0eba3eaebd64066d020ab225dd78" category="paragraph">一般的なルールとして、Oracleファイルにデータストアを使用することは避けてください。この推奨事項には多くの理由があります。</block>
-  <block id="98b171e836c6656f9cf88835666c6345" category="list-text">*透過性。* VMが自身のファイルシステムを所有している場合、データベース管理者やシステム管理者は、データのファイルシステムのソースを簡単に特定できます。</block>
-  <block id="ec6a3b593d5584a2e15651852e384082" category="list-text">*パフォーマンス。*テストでは、ハイパーバイザーデータストアを介してすべてのI/Oをチャネリングすることでパフォーマンスに影響があることが示されています。</block>
-  <block id="47464ddf615c138c6c06d3bfea555b2d" category="list-text">*管理性。* VMが自身のファイルシステムを所有している場合、ハイパーバイザーレイヤを使用するかどうかは管理性に影響します。プロビジョニング、監視、データ保護などの手順は、仮想環境と非仮想環境の両方を含め、資産全体で同じです。</block>
-  <block id="3d04d7019fbc0d27880dcc5c0881f87b" category="list-text">*安定性とトラブルシューティング。* VMが自身のファイルシステムを所有している場合、ストレージスタック全体がVM上に存在するため、優れた安定したパフォーマンスが提供され、問題のトラブルシューティングがはるかに簡単になります。ハイパーバイザーの役割は、FCフレームまたはIPフレームを転送することだけです。構成にデータストアが含まれていると、タイムアウト、パラメータ、ログファイル、および潜在的なバグが新たに発生するため、構成が複雑になります。</block>
   <block id="36f9cea3dc0f65698a9fbe15460591c1" category="list-text">*モビリティ。* VMが自身のファイルシステムを所有している場合、Oracle環境を移動するプロセスははるかにシンプルになります。ファイルシステムは、仮想ゲストと非仮想ゲストの間で簡単に移動できます。</block>
-  <block id="cb90f9e52412940f028394174f31ec2f" category="list-text">*ベンダーロックイン。*データをデータストアに配置した後は、別のハイパーバイザーを使用したり、仮想環境からデータを取り出すことは完全に非常に困難になります。</block>
-  <block id="4308dde96d1bdae6ac436a611c834331" category="list-text">*スナップショットの有効化。*帯域幅が比較的限られているため、場合によっては、仮想環境でのバックアップが問題になることがあります。たとえば、多くの仮想データベースで日 々 必要とされるパフォーマンスを満たすには、4ポートの10GbEトランクで十分な場合があります。ただし、RMANなどのバックアップ製品を使用してバックアップを実行するには、このようなトランクでは不十分であり、データのフルサイズのコピーをストリーミングする必要があります。</block>
-  <block id="872c95c8713fd14a0bef21fe92a55ab7" category="paragraph">VM所有のファイルシステムを使用すると、Snapshotベースのバックアップとリストアを簡単に活用できます。VM所有のファイルシステムを使用すると、ストレージシステムにバックアップ処理がオフロードされます。バックアップウィンドウで帯域幅とCPUの要件をサポートするためだけに、ハイパーバイザー構成を過剰に構築する必要はありません。</block>
-  <block id="3522f960cdbaf08c375bd70214f8db2f" category="admonition">* NetAppでは、最適なパフォーマンスと管理性を実現するために、Oracleデータをデータストアに配置しないことを推奨しています。ゲスト所有のファイルシステム（ゲストまたはRDMで管理されるNFSまたはiSCSIファイルシステムなど）を使用します。</block>
   <block id="f114856edc6cd8d6a9add5ec3f67656f" category="section-title">準仮想化ドライバ</block>
   <block id="beeb10ceee6c9aabe178fb51edea7d22" category="paragraph">最適なパフォーマンスを実現するには、準仮想化ネットワークドライバを使用することが重要です。データストアを使用する場合は、準仮想化SCSIドライバが必要です。準仮想化デバイスドライバを使用すると、エミュレートされたドライバとは対照的に、ゲストをハイパーバイザーにより深く統合できます。エミュレートされたドライバでは、ハイパーバイザーは物理ハードウェアの動作を模倣するためにより多くのCPU時間を消費します。</block>
-  <block id="59b3d62404749c3e899b7e4c9ee10146" category="paragraph">ほとんどのデータベースのパフォーマンスは、ストレージによって制限されます。そのため、ネットワークまたはSCSIドライバによって発生する余分な遅延が特に顕著になります。NetAppカスタマサポートでは、準仮想化ドライバをインストールすることで解決された、パフォーマンスに関する多くの苦情が発生しています。あるお客様のコンセプトの実証（POC）では、同じハードウェアをベアメタルとして実行した場合よりも、ESXを使用した場合の方がデータベースのパフォーマンスが向上しました。テストではI/O負荷が非常に高く、パフォーマンスの違いはESX準仮想化ネットワークドライバを使用したことによるものです。</block>
-  <block id="4e27b04a271416c5701a99234f8a23e6" category="admonition">* NetAppでは、常に準仮想化ネットワークドライバとSCSIドライバを使用することを推奨しています。</block>
   <block id="7c5996fc15a24ce96b30160b60ac2b96" category="section-title">RAMのオーバーコミット</block>
   <block id="5bccdd812c4af1cb5b9e36ddce656b60" category="paragraph">RAMのオーバーコミットとは、物理ハードウェア上に存在するよりも多くの仮想RAMをさまざまなホストに設定することを意味します。原因で予期しないパフォーマンスの問題が発生する可能性があります。データベースを仮想化する場合、Oracle SGAの基盤となるブロックがハイパーバイザーによってストレージにスワップアウトされないようにする必要があります。このように設定すると、パフォーマンスが非常に不安定になります。</block>
-  <block id="31db92967e891f0a122e0329d819842e" category="admonition">* NetAppでは、Oracle SGAブロックがスワップアウトされるような方法でハイパーバイザーを設定しないことを推奨しています*。</block>
   <block id="be493f1fc0b02ae45602c7c13f7b5dc7" category="summary">TR-4792では、NVIDIAのグラフィック処理ユニット（GPU）と仮想化ソフトウェアを搭載したVMware Horizon環境で、3DグラフィックスワークロードにNetApp HCI 615Cを使用するためのガイダンスを提供しています。</block>
   <block id="ff1d278a485c443dc5d8fc9f10f1a702" category="doc">NetApp HCI for virtual desktop infrastructure with VMware Horizon 7 -パワーユーザを3Dグラフィックスで支援します</block>
   <block id="e3162938e0d7b1bbc74111cc5b5871c5" category="paragraph">TR-4792では、NVIDIAのグラフィック処理ユニット（GPU）と仮想化ソフトウェアを搭載したVMware Horizon環境で、3DグラフィックスワークロードにNetApp H615Cコンピューティングノードを使用する方法について説明しています。また、H615Cに対するSPECviewperf 13の予備テストの結果も記載します。</block>
@@ -3115,13 +3096,11 @@ vSphere 8を使用したNVMe-oFの詳細については、を参照してくだ�
   <block id="8065bff4940ae8d7161f926b0df47ac4" category="inline-link">NetApp Interoperability Matrix Tool で確認できます</block>
   <block id="1479ddf58c038ab7d220ff734c74deaf" category="list-text">に記載されている NFS v4.1 と相互運用性に関する表の注を参照してください<block ref="8813559f5b95abb5411182be29200aff" category="inline-link-rx"></block> をサポートするには、特定の ESXi パッチレベルが必要です。</block>
   <block id="24aaa4a688e881fa13d31656a85d40a9" category="list-text">NFS エクスポートポリシーは、 vSphere ホストによるアクセスの制御に使用されます。複数のボリューム（データストア）で 1 つのポリシーを使用できます。NFSv3 では、 ESXi で sys （ UNIX ）セキュリティ形式が使用され、 VM を実行するためにルートマウントオプションが必要となります。ONTAP では、このオプションはスーパーユーザと呼ばれます。スーパーユーザオプションを使用する場合は、匿名ユーザ ID を指定する必要はありません。の値が異なるエクスポートポリシールールに注意してください<block ref="ea72d12ecaa06afdb0c8a3b15e485e95" prefix=" " category="inline-code"></block> および<block ref="df809a941c1287d18c08bb5927b639dc" prefix=" " category="inline-code"></block> 原因 SVM検出がONTAP ツールで問題を検出できるかどうか。ポリシーの例を次に示します。</block>
-  <block id="822366735aef72f1a9429ac86dda7338" category="list-text">Access Protocol ： nfs3</block>
   <block id="69abbd5c7cd9c1b3828b9aa5a894ff47" category="list-text">クライアント一致仕様： 192.168.42.21</block>
   <block id="bd6cc42f9cd65cca72cbd56d2f4bf43d" category="list-text">RO アクセスルール： sys</block>
   <block id="581c470a5099548fc9865a4bab8761f8" category="list-text">RWアクセスルール:sys</block>
   <block id="0bbc71e6a4ea49af70dd616d3807e524" category="list-text">匿名UIDの形式です</block>
   <block id="59d5d8c898df18115bd4ced36c6bc0de" category="list-text">superuser ： sys</block>
-  <block id="c184ce6b86d2e6fbf8681d61637c101b" category="list-text">NetApp NFS Plug-in for VMware VAAIを使用する場合は、プロトコルをに設定する必要があります。<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block> エクスポートポリシールールが作成または変更されたとき。VAAIコピーオフロードが機能するためには、次のように指定してNFSv4プロトコルが必要です。<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block> NFSv3とNFSv4の両方のバージョンが自動的に含まれます。</block>
   <block id="6670a317619282ec228a9ef492af0a76" category="list-text">NFS データストアのボリュームは SVM のルートボリュームからジャンクションされるため、 ESXi がデータストアボリュームに移動してマウントするためにはルートボリュームへのアクセス権も必要となります。ルートボリューム、およびデータストアボリュームのジャンクションがネストされているその他のボリュームのエクスポートポリシーには、ESXiサーバに読み取り専用アクセスを許可するルールが含まれている必要があります。VAAIプラグインを使用したルートボリュームのポリシーの例を次に示します。</block>
   <block id="8c93fb3ff528165613797962f5a0ed9c" category="list-text">Access Protocol：nfs（nfs3とnfs4の両方を含む）</block>
   <block id="80e6a4f964e826c69c1c62bd5ea67590" category="list-text">RW Access Rule：never（ルートボリュームに最適なセキュリティ）</block>
@@ -4281,7 +4260,6 @@ SOAP over https 接続に使用されます</block>
   <block id="da76be2bc20d4e043d9a2019b817214f" category="inline-link">vSphere Clientでクラスタを作成および構成する方法</block>
   <block id="e02f3e9258a23204655bd512ec53911d" category="paragraph">を参照してください<block ref="c06ae090600e7aa086edfa28514435e7" category="inline-link-rx"></block> をクリックしてvCenter HAを設定します。</block>
   <block id="bdd88c75f085534f6e2cdc7726cf1dd6" category="paragraph">また、<block ref="3a8301f60ad04eb873ae8dea15ee0495" category="inline-link-rx"></block>。</block>
-  <block id="7ed2d453d67762a9f20ad13c2f472fcb" category="section-title">vSphere Metro Storage Clusterとは</block>
   <block id="38910d3dab2318849fd5f1a1dfbe0152" category="inline-link">VMwareストレージ互換性ガイド</block>
   <block id="eab65c9bc6c74eff9aee0d7f0c44276d" category="paragraph">vSphere Metro Storage Cluster（vMSC）は、仮想マシン（VM）とコンテナを障害から保護する認定済みの構成です。これは、ストレッチストレージの概念とESXiホストのクラスタを使用して実現されます。ESXiホストは、ラック、建物、キャンパス、さらには都市など、さまざまな障害ドメインに分散されます。NetApp MetroClusterとSnapMirrorのアクティブな同期ストレージテクノロジは、それぞれホストクラスタに対してRPO=0またはNearRPO=0の保護を提供するために使用されます。vMSCの構成は、物理的または論理的な「サイト」全体に障害が発生した場合でも、データを常に利用できるように設計されています。vMSC構成に含まれるストレージデバイスは、vMSC認定プロセスを完了したあとに認定されている必要があります。サポートされているすべてのストレージデバイスは、<block ref="293ceee3268d7991d7fe245e02c1c5c9" category="inline-link-rx"></block>。</block>
   <block id="838b66b875df1b432ac420a98cba3db6" category="paragraph">vSphere Metro Storage Clusterの設計ガイドラインの詳細については、次のドキュメントを参照してください。</block>
@@ -4304,10 +4282,8 @@ SOAP over https 接続に使用されます</block>
   <block id="bca8b52c503406abc3e9e50c5352d0a2" category="paragraph">このドキュメントでは、業界をリードするVMwareのディザスタリカバリ（DR）ソフトウェアであるONTAP 解決策for VMware Site Recovery Manager（SRM）について説明します。最新の製品情報とベストプラクティスを紹介し、導入の合理化、リスクの軽減、継続的な管理の簡素化を実現します。</block>
   <block id="4f46fffb0ac7017fd2b42c10d6aa03fc" category="paragraph">VM のバックアップと迅速なリカバリは、 ONTAP for vSphere の大きな特長の 1 つです。この機能は、 SnapCenter Plug-in for VMware vSphere を使用して vCenter 内で簡単に管理できます。</block>
   <block id="3a021eaaeb6692340890af4de2f7514a" category="paragraph">以降のセクションでは、VMwareとONTAP SRMを使用した導入のベストプラクティスについて説明します。</block>
-  <block id="ff53ee8001042abcefe5c912d0b5012f" category="doc">vSphere のデータストアとプロトコルの機能</block>
   <block id="b69cd5a82aaf0c524a71d46ec6fdd29c" category="cell">NFS v4.1セッショントランキングにはONTAP 9.14.1以降が必要</block>
   <block id="80303385ad0f7147caa1af6d2162852b" category="paragraph">VASA Provider for ONTAP の多くの機能を使用するための管理インターフェイスでもあり、 VVol でのストレージポリシーベースの管理がサポートされています。VMware vSphere 用の ONTAP ツールを登録したら、ストレージ機能プロファイルを作成してストレージにマッピングし、データストアがプロファイルに一定期間にわたって準拠していることを確認します。VASA Provider には、 VVol データストアの作成と管理を行うためのインターフェイスも用意されています。</block>
-  <block id="83fe2b10c55a47a84465ff5a93a3feda" category="list-text">VMwareとNetAppでは、ONTAP 9.14.1以降で現在NFSv4.1セッショントランキングがサポートされています。特定のバージョンの詳細については、NetApp NFS 4.1のInteroperability Matrixの注意事項を参照してください。NFSv3では、ボリュームへの複数の物理パスはサポートされませんが、vSphere 8.0U2以降ではnconnectがサポートされます。ONTAP 9.8を搭載したでは、ONTAP tools for VMware vSphereでFlexGroupを作成することを推奨しますが、クラスタ全体に負荷を分散するためには、そのFlexGroupをアンマウントし、ラウンドロビンDNSを使用して再マウントすることを推奨します。ONTAP toolsでデータストアのマウント時に使用されるLIFは1つだけです。データストアを再マウントしたら、ONTAPツールを使用してデータストアを監視および管理できます。</block>
   <block id="d9c9eb44a58ee1ce90daa68527aa8930" category="summary">MCCを使用するvMSCの障害シナリオ</block>
   <block id="e7c7574b0826c9074f480de76c889ba8" category="paragraph">以降のセクションでは、vMSCおよびNetApp MetroClusterシステムで発生したさまざまな障害シナリオで想定される結果について説明します。</block>
   <block id="c8a2eebb480fef69e6ed917ea7f7a9d3" category="section-title">単一のストレージパス障害</block>
@@ -4367,9 +4343,42 @@ SOAP over https 接続に使用されます</block>
   <block id="e6364c2f5314a32cd95be04b4c2112e6" category="paragraph">以降のセクションでは、VMware VVOLとONTAPストレージを使用する手順とベストプラクティスについて説明します。</block>
   <block id="a9da618400fb93b20c20f5343efaefa7" category="sidebar">ONTAPを使用したVMware vSphere Metroストレージクラスタ</block>
   <block id="2f58fa882a22b5af5f0741f03abaf611" category="sidebar">ONTAPを使用したvSphere Metroストレージクラスタ</block>
-  <block id="4ed162a87c3bbcd728e66cd9365c7660" category="sidebar">vMSCの概要</block>
-  <block id="111464465e5bb57958d189842ad5e093" category="sidebar">vSphere HA解決策</block>
-  <block id="422fa84cbd2dc1a741d30fa40ad8284d" category="sidebar">vMSCの設計</block>
-  <block id="f6aef7af169e3878f32a39224e7a6cb8" category="sidebar">vMSCの耐障害性</block>
-  <block id="dfcccfecca566c55bd84119f294cde76" category="sidebar">MCCを使用したvMSCのシナリオ</block>
+  <block id="4a884da785a62e8b1758932191ff42de" category="paragraph">VMware、Oracle OLVM、KVMを使用したデータベースの仮想化は、最もミッションクリティカルなデータベースでさえ仮想化を選択したNetAppのお客様にとって、ますます一般的な選択肢となっています。</block>
+  <block id="3a8ba1ff8824968961222d6b447b4973" category="section-title">サポート性</block>
+  <block id="3231d83af741101eb02b16e5d7a6dffc" category="paragraph">Oracleによる仮想化のサポートポリシーについては、多くの誤解があります。特にVMware製品については、誤解が生じています。Oracle OUTRIGHTが仮想化をサポートしていないという話は珍しくありません。この概念は正しくないため、仮想化によるメリットを得る機会を逃してしまいます。実際の要件についてはOracleのドキュメントID 249212.1で説明されており、お客様が懸念事項と考えることはほとんどありません。</block>
+  <block id="722bd611ee4f38780607b400c8a604c0" category="paragraph">仮想化されたサーバで問題が発生し、これまでOracleサポートがその問題を認識していなかった場合は、物理ハードウェアで問題を再現するようにお客様に依頼されることがあります。最新バージョンの製品を使用しているOracleのお客様は、サポート性の問題が発生する可能性があるため、仮想化の使用を望まないかもしれませんが、一般提供されているOracle製品バージョンを使用しているお客様にとって、このような状況は現実のものではありません。</block>
+  <block id="c8a4476ecddeda66dbd2c354c8fb2c6b" category="paragraph">データベースの仮想化を検討しているお客様は、ビジネスニーズに基づいてストレージに関する意思決定を行う必要があります。これはすべてのIT意思決定に一般的に当てはまりますが、要件のサイズと範囲が大幅に異なるため、データベースプロジェクトでは特に重要です。</block>
+  <block id="835ce293f862d9fb74e50f4cf928c56d" category="paragraph">ストレージプレゼンテーションには、次の3つの基本的なオプションがあります。</block>
+  <block id="327813abbc0ae1e9d3abe282303bf00c" category="list-text">ハイパーバイザーデータストア上の仮想LUN</block>
+  <block id="1a1af5efffda8c766ead9f73fc782e0e" category="list-text">（NFSベースのデータストアからではなく）VMによってマウントされたNFSファイルシステム</block>
+  <block id="f9bf9489147891f7ee7ba15126a27fda" category="list-text">直接デバイスマッピング。VMware RDMはお客様から嫌われていますが、多くの場合、物理デバイスはKVMやOLVM仮想化と同様に直接マッピングされています。</block>
+  <block id="69b0ac6bf6ea8e1ab4e4fc896294da01" category="paragraph">仮想ゲストにストレージを提供する方法は、通常、パフォーマンスに影響しません。ホストOS、仮想ネットワークドライバ、ハイパーバイザーデータストアの実装はいずれも高度に最適化されており、基本的なベストプラクティスに従うかぎり、ハイパーバイザーとストレージシステムの間で使用可能なFCまたはIPネットワーク帯域幅をすべて消費できます。場合によっては、あるストレージプレゼンテーションのアプローチを使用した方が、別のアプローチよりもわずかに簡単に最適なパフォーマンスを得ることができますが、最終的な結果は同等である必要があります。</block>
+  <block id="a2e8fb5328f6558e3a119d8c224a1897" category="paragraph">仮想ゲストにストレージをどのように提供するかを決定する際の重要な要素は、管理性です。正しい方法も間違った方法もありません。最適なアプローチは、IT運用のニーズ、スキル、好みによって異なります。</block>
+  <block id="e4919ac0a074fa1bba5303f596a5f591" category="paragraph">考慮すべき要素は次のとおりです。</block>
+  <block id="c422e10bbf04c180f4c47f81ed9a1f7a" category="list-text">*透過性。* VMがファイルシステムを管理する場合、データベース管理者やシステム管理者は、データのファイルシステムのソースを簡単に特定できます。ファイルシステムとLUNへのアクセス方法は、物理サーバと同じです。</block>
+  <block id="42de52ad09be3101fc535dea2aedce1d" category="list-text">*一貫性。* VMが自身のファイルシステムを所有している場合、ハイパーバイザーレイヤを使用するかどうかは管理性に影響します。プロビジョニング、監視、データ保護などの手順は、仮想環境と非仮想環境の両方を含め、資産全体で同じです。</block>
+  <block id="0562446bc5eefe9a584e23ffb3061cbf" category="paragraph">一方、完全に仮想化されたデータセンターでは、前述のように、プロビジョニング、保護、モンターリング、データ保護に同じ手順を使用できる一貫性という同じ根拠に基づいて、フットプリント全体でデータストアベースのストレージを使用することを推奨します。</block>
+  <block id="7269a37b557c66664c0377693f62ec8a" category="list-text">*安定性とトラブルシューティング。* VMが自身のファイルシステムを所有している場合、ストレージスタック全体がVM上に存在するため、優れた安定したパフォーマンスが提供され、問題のトラブルシューティングが簡単になります。ハイパーバイザーの役割は、FCフレームまたはIPフレームを転送することだけです。構成にデータストアが含まれていると、タイムアウト、パラメータ、ログファイル、および潜在的なバグが新たに発生するため、構成が複雑になります。</block>
+  <block id="c160b6d86853c20a432e2407b82866e6" category="list-text">*ベンダーロックイン。*データをデータストアに配置すると、別のハイパーバイザーを使用したり、仮想環境からデータを取り出すことが完全に困難になります。</block>
+  <block id="a42abd01a1e0c89cfa2112dc09378967" category="list-text">*スナップショットの有効化。*仮想環境での従来のバックアップ手順は、帯域幅が比較的限られているため、問題になる可能性があります。たとえば、多くの仮想データベースで日常的に必要とされるパフォーマンスには4ポート10GbEトランクで十分ですが、RMANなどのバックアップ製品を使用してバックアップを実行するには、データのフルサイズのコピーをストリーミングする必要がある場合は、このようなトランクでは不十分です。その結果、統合が進む仮想環境では、ストレージスナップショットを使用してバックアップを実行する必要が生じています。これにより、バックアップウィンドウで帯域幅とCPUの要件をサポートするためだけにハイパーバイザー構成を過剰に構築する必要がなくなります。</block>
+  <block id="86c36175331b4a95c083fabdcca8b8a0" category="paragraph">ゲスト所有のファイルシステムを使用すると、保護を必要とするストレージオブジェクトをより簡単にターゲットにできるため、Snapshotベースのバックアップとリストアを簡単に活用できる場合があります。しかし、データストアやスナップショットとうまく統合できる仮想化データ保護製品の数はますます増えています。仮想化されたホストにストレージを提供する方法を決定する前に、バックアップ戦略を十分に検討する必要があります。</block>
+  <block id="8c19dda4c4cab5e52edf9463f196b97d" category="section-title">データストアのストライピング</block>
+  <block id="8fa77493c52e71f201ccdb67db26446d" category="paragraph">データストアでデータベースを使用する場合、パフォーマンスストライピングに関して考慮すべき重要な要素が1つあります。</block>
+  <block id="53ab623a905e6ec84d908f0b99a8d1c8" category="paragraph">VMFSなどのデータストアテクノロジは複数のLUNにまたがることができますが、ストライプデバイスではありません。LUNが連結されます。その結果、LUNのホットスポットが発生する可能性があります。たとえば、一般的なOracleデータベースに8 LUNのASMディスクグループがあるとします。8つの仮想化されたLUNはすべて8 LUNのVMFSデータストアにプロビジョニングできますが、データがどのLUNに格納されるかは保証されません。この構成では、8つの仮想LUNすべてがVMFSデータストア内の1つのLUNを占有するようになります。これがパフォーマンスのボトルネックになります。</block>
+  <block id="e6bb99e411f5495b03c1e0a4e75a1434" category="paragraph">通常、ストライピングが必要です。KVMなどの一部のハイパーバイザーでは、次の説明に従ってLVMストライピングを使用してデータストアを構築できます。 <block ref="dd0ff2598ebb26feb9ff73a59186b79f" category="inline-link-macro-rx"></block>。VMwareの場合、アーキテクチャは少し異なります。各仮想LUNを別 々 のVMFSデータストアに配置する必要があります。</block>
+  <block id="506c2c0c7f5b70af3df68c45c46f45a7" category="paragraph">例：</block>
+  <block id="6ec151851a31c86edd358bc49f80908c" category="paragraph"><block ref="6ec151851a31c86edd358bc49f80908c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="70ff2667d6b190dea65bae42217aa310" category="paragraph">このアプローチの主な推進力はONTAPではありません。これは、1つのVMまたはハイパーバイザーLUNが並行して処理できる処理数に固有の制限があるためです。1つのONTAP LUNでサポートできるIOPSは、通常、ホストが要求できるIOPSよりもはるかに多くなります。単一LUNのパフォーマンス制限は、ほとんどの場合、ホストOSが原因です。そのため、ほとんどのデータベースでは、パフォーマンスのニーズを満たすために4~8個のLUNが必要になります。</block>
+  <block id="59f9d8d1b212a8ff6bd3476975e17620" category="paragraph">VMwareアーキテクチャでは、データストアやLUNパスの最大数がこのアプローチで発生しないように、アーキテクチャを慎重に計画する必要があります。また、すべてのデータベースに固有のVMFSデータストアセットを用意する必要はありません。主に必要なのは、各ホストに、仮想化されたLUNからストレージシステム自体のバックエンドLUNへの4 ~ 8個のIOパスのクリーンなセットがあることを確認することです。まれに、より多くのデータストアが本当に極端なパフォーマンス要求に対して有益な場合もありますが、一般に、全データベースの95%に対して4~8個のLUNで十分です。8個のLUNを含む1つのONTAPボリュームでは、一般的なOS / ONTAP /ネットワーク構成で、OracleブロックのランダムIOPSを最大25、000個サポートできます。</block>
+  <block id="622b235a9123d972c612737c81eb55a1" category="inline-link">NetAppおよびVMwareでのNFSv3 nconnect機能</block>
+  <block id="ee7dab8e6be0e4b3085e8fb1df295146" category="list-text">VMwareとNetAppでは、ONTAP 9.14.1以降で現在NFSv4.1セッショントランキングがサポートされています。特定のバージョンの詳細については、NetApp NFS 4.1のInteroperability Matrixの注意事項を参照してください。NFSv3では、ボリュームへの複数の物理パスはサポートされませんが、vSphere 8.0U2以降ではnconnectがサポートされます。nconnectの詳細については、<block ref="2668e8271f58131cbbe97dab01f83475" category="inline-link-rx"></block>。ONTAP 9.8を搭載したでは、ONTAP tools for VMware vSphereでFlexGroupを作成することを推奨しますが、クラスタ全体に負荷を分散するためには、そのFlexGroupをアンマウントし、ラウンドロビンDNSを使用して再マウントすることを推奨します。ONTAP toolsでデータストアのマウント時に使用されるLIFは1つだけです。データストアを再マウントしたら、ONTAPツールを使用してデータストアを監視および管理できます。</block>
+  <block id="7564f732469e12963d8b416572cf4efb" category="section-title">vSphere Metro Storage Clusterとは</block>
+  <block id="830d984ea50f71fa76636d0524167a3a" category="doc">vSphereデータストアとプロトコルの機能の概要</block>
+  <block id="7bbcbf5b4bf3f23dc1b710dfd65de967" category="list-text">vSphere 8.0U2以降では、VMwareでNFSv3でのnconnectがサポートされます。nconnectの詳細については、<block ref="2668e8271f58131cbbe97dab01f83475" category="inline-link-rx"></block></block>
+  <block id="1d1d9d816e63b6c7d3057732579e8889" category="list-text">NetApp NFS Plug-in for VMware VAAIを使用する場合は、プロトコルをに設定する必要があります。<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block> ではなく<block ref="61a52f7a75745796f63ec9e3ea2547b4" prefix=" " category="inline-code"></block> エクスポートポリシールールが作成または変更されたとき。VAAIコピーオフロード機能を使用するには、データプロトコルがNFSv3であっても、NFSv4プロトコルが機能する必要があります。フロトコルノシテイ<block ref="2521ef5d58fc027d3121662b7d8f9ac2" prefix=" " category="inline-code"></block> NFSv3とNFSv4の両方のバージョンが含まれます。</block>
+  <block id="cc0f7f705e4495c607aea288505e31bf" category="sidebar">vMSCノカイヨウ</block>
+  <block id="de9a829f775bc333b77fdacbc333f7a1" category="sidebar">vSphere HA解決策</block>
+  <block id="70b29c8dabeb7a16884003c35e163f96" category="sidebar">vMSC設計</block>
+  <block id="6c4755219197ce467bf892a552c8663a" category="sidebar">vMSCノタイショウガイ</block>
+  <block id="13376e3e9b02a56731aa64aeb10947b2" category="sidebar">MCCを使用するvMSCのシナリオ</block>
 </blocks>
