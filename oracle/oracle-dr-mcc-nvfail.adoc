@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dr-mcc-nvfail.html 
 keywords: metrocluster, nvfail, switchover 
-summary: NVFail 
+summary: Oracle、MetroCluster、NVFAIL 
 ---
-= Oracle、MetroCluster、NVFAIL
+= Oracleデータベース、MetroCluster、NVFAIL
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: NVFail
 
 
 [role="lead"]
-NVFailは、ONTAPの一般的なデータ整合性機能であり、データベースワークロードで特に重要です。
+NVFailはONTAPの一般的なデータ整合性機能で、データベースを使用してデータ整合性を最大限に保護するように設計されています。
 
 
 NOTE: このセクションでは、基本的なONTAP NVFAILについて説明し、MetroCluster固有のトピックを扱います。

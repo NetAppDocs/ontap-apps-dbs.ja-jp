@@ -4,7 +4,7 @@ permalink: oracle/oracle-storage-san-config-lun-sizing.html
 keywords: SAN, ASM, LVM 
 summary: OracleデータベースのLUNのサイジングとLUN数のガイドライン 
 ---
-= Oracle LUNのサイジングとLUN数
+= OracleデータベースのLUNのサイジングと数
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

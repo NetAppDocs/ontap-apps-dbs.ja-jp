@@ -2,14 +2,14 @@
 sidebar: sidebar 
 permalink: oracle/oracle-host-config-hp-ux.html 
 keywords: oracle, database, ontap, hp-ux 
-summary: HP-UXを使用したONTAP上のOracle 
+summary: HP-UXを使用したOracleデータベース 
 ---
-= HP-UX
+= HP-UXを使用したOracleデータベース
 :allow-uri-read: 
 
 
 [role="lead"]
-HP-UXオペレーティングシステムに固有の構成トピック。
+ONTAPを使用したHP-UX上のOracleデータベースの設定に関するトピック。
 
 
 

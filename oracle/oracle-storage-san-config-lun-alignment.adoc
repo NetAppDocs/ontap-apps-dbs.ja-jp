@@ -4,7 +4,7 @@ permalink: oracle/oracle-storage-san-config-lun-alignment.html
 keywords: SAN, ASM, LVM 
 summary: OracleデータベースとのLUNのアライメント 
 ---
-= Oracle I/OのLUNアライメント
+= OracleデータベースI/OのLUNアライメント
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

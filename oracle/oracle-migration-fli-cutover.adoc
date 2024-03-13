@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-migration-fli-cutover.html 
 keywords: migration, oracle, FLI 
-summary: FLIカットオーバー- Oracle 
+summary: FLIカットオーバーを使用したOracle移行 
 ---
-= FLIカットオーバー- Oracle
+= FLIカットオーバーを使用したOracle移行
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-tiering-snapshots.html 
 keywords: tiering, fabricpool 
-summary: Oracleスナップショットの階層化 
+summary: OracleとFabricPoolのスナップショット階層化 
 ---
-= Oracleスナップショットの階層化
+= OracleとFabricPoolスナップショットの階層化
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

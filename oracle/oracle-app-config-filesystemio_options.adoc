@@ -2,9 +2,9 @@
 permalink: oracle/oracle-app-config-filesystemio_options.html 
 sidebar: sidebar 
 keywords: oracle, database, ontap, filesystemio_options, filesystemio, async, directio 
-summary: Oracleファイルシステムオプション 
+summary: Oracleデータベースのパラメータ- filesystemio_options 
 ---
-= ファイルシステムオプション
+= Oracleデータベースパラメータ:filesystemio_options
 :allow-uri-read: 
 
 

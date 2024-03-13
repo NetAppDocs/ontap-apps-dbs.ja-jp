@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-storage-nfs-config-caching.html 
 keywords: NFS 
-summary: NFS属性のキャッシュデータベース 
+summary: OracleデータベースでのNFSキャッシュ 
 ---
-= データベースでのNFSキャッシュ
+= OracleデータベースでのNFSキャッシュ
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

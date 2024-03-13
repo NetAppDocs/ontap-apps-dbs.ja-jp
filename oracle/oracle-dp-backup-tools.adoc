@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dp-backup-tools.html 
 keywords: ontap, data protection 
-summary: OracleとNetAppのバックアップツール 
+summary: Oracleデータベースの管理と自動化のためのツール 
 ---
-= SnapCenterおよびその他のツール
+= Oracleデータベースの管理と自動化のためのツール
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: OracleとNetAppのバックアップツール
 
 
 [role="lead"]
-アプリケーション環境におけるONTAPの主な価値は、瞬時のSnapshotコピー、シンプルなSnapMirrorレプリケーション、効率的なFlexCloneボリュームの作成など、ONTAPのコアテクノロジにあります。
+Oracleデータベース環境におけるONTAPの主な価値は、瞬時のSnapshotコピー、シンプルなSnapMirrorレプリケーション、効率的なFlexCloneボリュームの作成など、ONTAPのコアテクノロジにあります。
 
 これらのコア機能をONTAPに直接簡単に設定して要件を満たす場合もありますが、より複雑なニーズにはオーケストレーションレイヤが必要です。
 

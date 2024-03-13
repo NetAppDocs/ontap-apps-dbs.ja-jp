@@ -2,15 +2,15 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dr-smbc-rac.html 
 keywords: oracle, smbc, sm-bc, RAC 
-summary: SM-BCを使用したONTAP上のOracle RAC 
+summary: Oracle RACとSnapMirrorのアクティブな同期 
 ---
-= SM-BCを使用したOracle RAC
+= Oracle RACとSnapMirrorのアクティブな同期
 :allow-uri-read: 
 
 
 [role="lead"]
-SM-BCでは、ロードバランシングや個 々 のアプリケーションのフェイルオーバーなどの目的で、データセットのレプリケーションをきめ細かく制御できます。アーキテクチャ全体は拡張RACクラスタのように見えますが、一部のデータベースは特定のサイト専用で、全体の負荷は分散されます。
+SnapMirror Active Syncを使用すると、ロードバランシングや個 々 のアプリケーションのフェイルオーバーなど、データセットのレプリケーションをきめ細かく制御できます。アーキテクチャ全体は拡張RACクラスタのように見えますが、一部のデータベースは特定のサイト専用で、全体の負荷は分散されます。
 
 たとえば、6つのデータベースを個別にホストするOracle RACクラスタを構築できます。3つのデータベースのストレージは主にサイトAでホストされ、残りの3つのデータベースのストレージはサイトBでホストされます。この構成により、クロスサイトトラフィックが最小限に抑えられ、可能な限り最高のパフォーマンスが保証されます。また、ストレージシステムに対してローカルなデータベースインスタンスをアクティブパスで使用するようにアプリケーションを設定します。これにより、RACインターコネクトトラフィックが最小限に抑えられます。最後に、この全体的な設計により、すべてのコンピューティングリソースが均等に使用されます。ワークロードの変化に応じて、データベースをサイト間で選択的にフェイルバックして、ロードが均一になるようにすることができます。
 
-細かさを除けば、SM-BCを使用するOracle RACの基本原則とオプションは次のとおりです。 link:../metrocluster/mcc-rac.html["MetroCluster上のOracle RAC"]
+きめ細かさを除けば、SnapMirror Active Syncareを使用するOracle RACの基本原則とオプションは link:../metrocluster/mcc-rac.html["MetroCluster上のOracle RAC"]

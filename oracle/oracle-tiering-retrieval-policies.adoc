@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-tiering-retrieval-policies.html 
 keywords: tiering, FabricPool 
-summary: Pracle階層化読み出しポリシー 
+summary: OracleデータベースとFabricPoolの読み出しポリシー 
 ---
-= 読み出しポリシー
+= OracleデータベースとFabricPoolの読み出しポリシー
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

@@ -4,12 +4,12 @@ permalink: oracle/oracle-migration-overview.html
 keywords: oracle, ontap, migrations, TR-4534 
 summary: Oracleストレージ移行の概要 
 ---
-= NetAppストレージシステムへのOracleデータベースの移行
+= ONTAPストレージシステムへのOracleデータベースの移行
 :allow-uri-read: 
 
 
 [role="lead"]
-新しいストレージプラットフォームの機能を活用するには、必ず新しいストレージシステムにデータを配置する必要があるという、避けられない要件が1つあります。
+新しいストレージプラットフォームの機能を活用するには、必ず新しいストレージシステムにデータを配置する必要があるという、避けられない要件が1つあります。ONTAPを使用すると、ONTAPからONTAPへの移行とアップグレード、外部LUNのインポート、ホストオペレーティングシステムまたはOracleデータベースソフトウェアを直接使用する手順など、移行プロセスを簡単に実行できます。
 
 
 NOTE: 以前に公開されていたテクニカルレポート_TR-4534：『Migration of Oracle Databases to NetApp Storage Systems_

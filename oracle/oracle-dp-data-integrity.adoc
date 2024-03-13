@@ -2,14 +2,14 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dp-data-integrity.html 
 keywords: checksums, data integrity 
-summary: チェックサムとOracleデータ保護 
+summary: チェックサムとOracleデータベースの整合性 
 ---
-= チェックサムとOracleデータ整合性
+= チェックサムとOracleデータベースの整合性
 :allow-uri-read: 
 
 
 [role="lead"]
-NetAppによく寄せられる質問の1つは、Oracleデータベースのデータ整合性を保護する方法です。
+ONTAPとそのサポートされているプロトコルには、保存データとネットワーク経由で転送されるデータの両方を含む、Oracleデータベースの整合性を保護する複数の機能が含まれています。
 
 ONTAPでの論理データ保護は、次の3つの重要な要件で構成されます。
 

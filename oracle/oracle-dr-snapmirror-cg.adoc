@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dr-snapmirror-cg.html 
 keywords: oracle, data protection, DR, CG 
-summary: Oracleデータベースの整合グループレプリケーション 
+summary: Oracleデータベースと整合グループのディザスタリカバリ 
 ---
-= 整合グループのディザスタリカバリ
+= Oracleデータベースと整合グループのディザスタリカバリ
 :allow-uri-read: 
 
 

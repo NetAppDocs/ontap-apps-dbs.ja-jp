@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-tiering-partial-file.html 
 keywords: tiering, fabricpool 
-summary: FabricPoolによる部分的なファイル階層化 
+summary: Oracleの部分ファイルFabricPool階層化 
 ---
-= Oracleの部分ファイル階層化
+= Oracleの部分ファイルFabricPool階層化
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

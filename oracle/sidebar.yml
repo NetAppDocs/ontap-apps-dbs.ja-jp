@@ -10,7 +10,7 @@ entries:
     url: "/oracle/oracle-ontap-config-raid.html"
   - title: 容量制限
     url: "/oracle/oracle-ontap-config-capacity-limits.html"
-  - title: Storage Virtual Machineの略
+  - title: Storage Virtual Machine
     url: "/oracle/oracle-ontap-config-svm.html"
   - title: サービス品質（ QoS ）
     url: "/oracle/oracle-ontap-config-qos.html"
@@ -150,19 +150,19 @@ entries:
       url: "/oracle/oracle-dr-mcc-failover.html"
     - title: NVFail
       url: "/oracle/oracle-dr-mcc-nvfail.html"
-    - title: MetroCluster上の単一インスタンス
+    - title: MetroCluster上のOracle SI
       url: "/oracle/oracle-dr-mcc-si.html"
     - title: MetroCluster上のOracle RAC
       url: "/oracle/oracle-dr-mcc-rac.html"
-  - title: SnapMirror によるビジネス継続性
+  - title: SnapMirrorアクティブ同期
     entries:
     - title: アーキテクチャ
       url: "/oracle/oracle-dr-smbc-architecture.html"
     - title: フェイルオーバー
       url: "/oracle/oracle-dr-smbc-failover.html"
-    - title: SM-BCの単一インスタンス
+    - title: Oracle SIとSnapMirrorのアクティブな同期
       url: "/oracle/oracle-dr-smbc-si.html"
-    - title: SM-BC上のOracle RAC
+    - title: Oracle RACとSnapMirrorのアクティブな同期
       url: "/oracle/oracle-dr-smbc-rac.html"
     - title: 障害シナリオ
       url: "/oracle/oracle-dr-smbc-failure-scenarios.html"

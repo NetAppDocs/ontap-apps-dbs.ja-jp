@@ -2,14 +2,14 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dp-storage-snapshot-optimized-backups.html 
 keywords: oracle, data protection, snapshot-optimized, crash-consistent 
-summary: Snapshotで最適化されたバックアップ 
+summary: Oracle Storage Snapshot Optimizedバックアップ 
 ---
-= Oracle Storage Snapshot Optimizedバックアップ
+= Oracle DatabaseストレージのSnapshotによる最適化されたバックアップ
 :allow-uri-read: 
 
 
 [role="lead"]
-Oracle 12cでは、データベースをホットバックアップモードにする必要がないため、Snapshotベースのバックアップとリカバリがさらに簡単になります。そのため、Snapshotベースのバックアップをストレージシステム上で直接スケジュール設定しても、完全なリカバリやポイントインタイムリカバリを引き続き実行できます。
+Oracle 12cがリリースされた時点では、データベースをホットバックアップモードにする必要がないため、Snapshotベースのバックアップとリカバリはさらにシンプルになりました。そのため、Snapshotベースのバックアップをストレージシステム上で直接スケジュール設定しても、完全なリカバリやポイントインタイムリカバリを引き続き実行できます。
 
 データベース管理者にとってはホットバックアップリカバリの手順の方がなじみがありますが、データベースがホットバックアップモードのときに作成されなかったSnapshotを使用することは以前から可能でした。Oracle 10gおよび11gでは、データベースの整合性を維持するために、リカバリ時に手動で追加の手順を実行する必要がありました。Oracle 12cでは、 `sqlplus` および `rman` ホットバックアップモードではないデータファイルバックアップでアーカイブログを再生するための追加ロジックが含まれています。
 

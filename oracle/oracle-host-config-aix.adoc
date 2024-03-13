@@ -2,14 +2,14 @@
 sidebar: sidebar 
 permalink: oracle/oracle-host-config-aix.html 
 keywords: oracle, database, ontap, aix, cio 
-summary: AIXを使用したONTAP上のOracle 
+summary: AIXを使用したOracleデータベース 
 ---
-= IBM AIX
+= IBM AIXを使用するOracleデータベース
 :allow-uri-read: 
 
 
 [role="lead"]
-IBM AIXオペレーティングシステム固有の構成に関するトピック。
+ONTAPを使用したIBM AIX上のOracleデータベースの構成に関するトピック。
 
 
 

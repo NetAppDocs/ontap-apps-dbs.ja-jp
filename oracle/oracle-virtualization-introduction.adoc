@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-virtualization-introduction.html 
 keywords: oracle, database, ontap, virtualization, esx, hyper-v, KVM 
-summary: データベース仮想化の概要 
+summary: Oracleデータベース仮想化の概要 
 ---
-= 仮想化
+= Oracleデータベースの仮想化
 :allow-uri-read: 
 
 

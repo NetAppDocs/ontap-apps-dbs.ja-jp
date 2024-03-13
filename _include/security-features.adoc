@@ -66,7 +66,7 @@ ONTAPおよびその他の一部のNetApp製品では、さまざまな方法を
 
 自動化にはAPI呼び出しが必要ですが、すべてのツールにフル管理アクセスが必要となるわけではありません。自動化システムを保護するために、APIレベルでRBACを使用することもできます。自動化ユーザアカウントは、必要なAPI呼び出しだけに制限できます。たとえば、監視ソフトウェアには変更アクセスは必要なく、読み取りアクセスのみが必要です。ストレージをプロビジョニングするワークフローでは、ストレージを削除する機能は必要ありません。
 
-詳細については、 link:https://docs.netapp.com/us-en/ontap-automation/rest/rbac_overview.html["こちらをご覧ください。"]
+詳細については、c https://docs.netapp.com/us-en/ontap-automation/rest/rbac_overview.html[here.]
 
 
 

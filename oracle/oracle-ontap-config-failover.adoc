@@ -4,7 +4,7 @@ permalink: oracle/oracle-ontap-config-failover.html
 keywords: failover, switchover 
 summary: Oracleデータベースの処理が中断されないようにするには、ストレージのテイクオーバーとスイッチオーバーの機能を理解しておく必要があります。また、テイクオーバー処理やスイッチオーバー処理で使用される引数を正しく使用しないと、データの整合性に影響する可能性があります。 
 ---
-= OracleおよびONTAPコントローラのフェイルオーバー/スイッチオーバー
+= OracleデータベースとONTAPコントローラのフェイルオーバー/スイッチオーバー
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

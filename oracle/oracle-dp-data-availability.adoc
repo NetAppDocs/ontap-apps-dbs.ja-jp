@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dp-data-availability.html 
 keywords: data protection, availability, takeover, giveback, switchover, switchback 
-summary: Oracle on ONTAPによる可用性の最大化 
+summary: ONTAP上のOracleデータベースで可用性を最大限に向上 
 ---
-= ONTAPによるOracleデータの可用性
+= ONTAPによるOracleデータベースの可用性
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

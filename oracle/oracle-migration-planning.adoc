@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-migration-planning.html 
 keywords: migration, oracle 
-summary: Oracleの移行計画 
+summary: Oracleデータベースの移行計画 
 ---
-= Oracleの移行計画
+= Oracleデータベースの移行計画
 :allow-uri-read: 
 
 

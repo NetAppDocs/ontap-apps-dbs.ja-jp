@@ -4,7 +4,7 @@ permalink: oracle/oracle-network-config-fc.html
 keywords: SAN, zoning 
 summary: Oracleデータベース用のFCネットワーク構成 
 ---
-= Oracle向けのFCの設定
+= OracleテタヘスヨウノFCノセツテイ
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

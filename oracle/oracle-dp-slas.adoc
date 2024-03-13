@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dp-slas.html 
 keywords: SLA, data protection, RPO, RTO 
-summary: Oracleのデータ保護のSLA 
+summary: Oracleデータベースのデータ保護のSLA 
 ---
-= 目標復旧時間、目標復旧時点、サービスレベルアグリーメント
+= OracleデータベースのRTO、RPO、SLA計画
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: Oracleのデータ保護のSLA
 
 
 [role="lead"]
-データ保護戦略は、ビジネス要件によって定義する必要があります。
+ONTAPを使用すると、Oracleデータベースのデータ保護戦略をビジネス要件に簡単にカスタマイズできます。
 
 これらの要件には、リカバリの速度、許容される最大データ損失、バックアップの保持ニーズなどの要因が含まれます。データ保護計画では、データの保持とリストアに関するさまざまな規制要件も考慮する必要があります。最後に、さまざまなデータリカバリシナリオを検討する必要があります。たとえば、ユーザやアプリケーションのエラーに起因する一般的で予測可能なリカバリから、サイト全体の損失を含むディザスタリカバリのシナリオまで、さまざまなシナリオを検討する必要があります。
 

@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dp-snaprestore.html 
 keywords: ontap, snaprestore 
-summary: ONTAPでSnapshotコピーからのOracleデータベースの高速リカバリは、NetApp SnapRestoreテクノロジによって実現されます。 
+summary: SnapRestoreによるOracleデータベースの高速リカバリ 
 ---
-= SnapRestore
+= SnapRestoreによるOracleデータベースの高速リカバリ
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

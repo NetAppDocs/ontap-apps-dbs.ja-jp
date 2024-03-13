@@ -2,14 +2,14 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dp-snapshots.html 
 keywords: oracle, database, ontap, snapshots 
-summary: ONTAP上のOracleとスナップショットの役割 
+summary: ONTAP上のOracleデータベースとSnapshotの役割 
 ---
-= Snapshotベースのバックアップ
+= OracleデータベースとSnapshotベースのバックアップ
 :allow-uri-read: 
 
 
 [role="lead"]
-ONTAPでのOracleデータ保護の基盤となるのが、NetAppのSnapshotテクノロジです。
+ONTAPでのOracleデータベースのデータ保護の基盤となるのが、NetAppのSnapshotテクノロジです。
 
 主な値は次のとおりです。
 

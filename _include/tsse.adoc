@@ -1,0 +1,9 @@
+= 温度に基づくストレージ効率
+:allow-uri-read: 
+
+
+
+
+=== 温度に基づくストレージ効率
+
+ONTAP 9.8以降で利用できるTemperature Sensitive Storage Efficiency（TSSE）は、ブロックアクセスのヒートマップを利用してアクセス頻度の低いブロックを特定し、圧縮して効率を高めます。

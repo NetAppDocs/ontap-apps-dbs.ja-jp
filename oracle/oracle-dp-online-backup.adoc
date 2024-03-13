@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dp-online-backup.html 
 keywords: oracle, data protection, hot backup 
-summary: OracleのSnapshotベースのバックアップとリカバリ 
+summary: OracleデータベースのSnapshotベースのバックアップとリカバリ 
 ---
-= Oracleオンラインバックアップ
+= Oracleデータベースのオンラインバックアップ
 :allow-uri-read: 
 
 

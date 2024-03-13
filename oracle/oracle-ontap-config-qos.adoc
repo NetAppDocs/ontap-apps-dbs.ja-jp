@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-ontap-config-qos.html 
 keywords: qos, bandwidth, minimum, guaranteed 
-summary: QoSによるOracleのパフォーマンス管理 
+summary: ONTAP QoSによるOracleデータベースのパフォーマンス管理 
 ---
-= OracleデータベースでのQuality of Service（QoS；サービス品質）
+= ONTAP QoSによるOracleデータベースのパフォーマンス管理
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dr-snapmirror-basics.html 
 keywords: ontap, snapmirror 
-summary: SnapMirrorとSyncMirror 
+summary: SnapMirrorとSyncMirrorを使用したOracleデータベース 
 ---
-= SnapMirrorとSyncMirror
+= SnapMirrorとSyncMirrorを使用したOracleデータベース
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -72,7 +72,7 @@ SM-Sの詳細については、を参照してください。 https://www.netapp
 
 ONTAPでは整合グループSnapshotを作成できます。9.13.1以降では、ONTAPでボリュームのグループを整合グループとしてレプリケートできます（ONTAP用語のボリュームはLUNではなく、1つ以上のファイルまたはLUNで構成される管理コンテナです）。
 
-SnapMirrorレプリケーションとCG SnapMirror関係の解除では、ボリューム間で整合性が維持され、SnapMirror SynchronousとSnapMirror Business Continuityはどちらもコンスティチュエントボリューム間で整合性が維持されます。
+SnapMirrorレプリケーションとCG SnapMirror関係の解除によってボリューム間の整合性が維持され、SnapMirror SynchronousとSnapMirror Active Syncの両方でコンスティチュエントボリューム間の整合性が維持されます。
 
 その結果、複数ボリュームのデータセットをレプリケートして、すべてのボリュームの整合性を確保できます。特に、アプリケーションやデータベースのリカバリを追加することなく、ミラーを解除してDR処理を実行できます。
 

@@ -4,7 +4,7 @@ permalink: oracle/oracle-tiering-logs.html
 keywords: tiering, fabricpool 
 summary: Oracleアーカイブログの階層化 
 ---
-= Oracleログの階層化
+= Oracleデータベースのアーカイブログの階層化
 :allow-uri-read: 
 :nofooter: 
 :icons: font

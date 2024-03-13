@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: oracle/oracle-overview.html 
 keywords: oracle, database, ontap, TR-3633 
-summary: NetApp ONTAPは、瞬時のバックアップ、リストア、クローニングなどの機能、インライン圧縮、ハードウェアの無停止アップグレードなどの効率化機能、外部ストレージアレイからのLUNインポート機能など、あらゆる機能を標準搭載した強力なデータ管理プラットフォームです。 
+summary: ONTAPはOracleデータベース向けに設計されています。その方法をご確認ください。 
 ---
 = ONTAP上のOracleデータベース
 :allow-uri-read: 

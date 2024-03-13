@@ -1,10 +1,10 @@
 ---
 permalink: oracle/oracle-dr-smbc-failure-scenarios.html 
 sidebar: sidebar 
-keywords: SM-BC, smbc, failover 
-summary: Oracle SM-BC障害シナリオ 
+keywords: SnapMirror active sync, smbc, failover 
+summary: OracleデータベースとSnapMirrorのアクティブな同期に失敗した場合 
 ---
-= Oracle SM-BCの障害シナリオ
+= OracleデータベースとSnapMirrorのアクティブな同期が失敗した場合
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: Oracle SM-BC障害シナリオ
 
 
 [role="lead"]
-SnapMirrorビジネス継続性（SM-BC）の障害シナリオでは、それぞれ結果が異なります。
+SnapMirror Active Sync（SM-AS）で障害が発生した場合は、それぞれ結果が異なります。
 
 [cols="1,1"]
 |===
@@ -43,7 +43,7 @@ I/Oの中断はありません。
 | ディスクノテイシ | IOは、連続して3つのディスク障害が発生しても継続されます。これはRAID-TECの一部です。 
 
 
-| 一般的な環境でサイト全体が停止する | 障害が発生したサイトのサーバは、明らかに使用できなくなります。クラスタリングをサポートするアプリケーションは、両方のサイトで実行し、代替サイトで処理を継続するように設定できます。ただし、ほとんどのアプリケーションでは、SM-BCでメディエーターが必要な場合と同様の第3のサイトTiebreakerが必要です。
+| 一般的な環境でサイト全体が停止する | 障害が発生したサイトのサーバは、明らかに使用できなくなります。クラスタリングをサポートするアプリケーションは、両方のサイトで実行し、代替サイトで処理を継続するように設定できます。ただし、ほとんどのアプリケーションでは、SM-ASでメディエーターが必要な場合と同様の第3のサイトTiebreakerが必要です。
 
 アプリケーションレベルのクラスタがない場合は、サバイバーサイトでアプリケーションを起動する必要があります。これは可用性に影響しますが、RPO=0は維持されます。データが失われることはありません。 
 |===

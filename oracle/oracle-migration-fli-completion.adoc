@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-migration-fli-completion.html 
 keywords: migration, oracle, FLI 
-summary: FLIカットオーバーの完了- Oracle 
+summary: FLIを使用したOracle移行の完了 
 ---
-= FLIの完了- Oracle
+= FLIを使用したOracle移行の完了
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

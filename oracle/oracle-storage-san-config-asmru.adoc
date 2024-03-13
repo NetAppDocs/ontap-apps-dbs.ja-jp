@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: oracle/oracle-storage-san-config-asmru.html 
 keywords: ontap, thin provisioning 
-summary: ONTAPを使用したASM再生ユーティリティ 
+summary: ASM再利用ユーティリティとONTAPゼロブロック検出 
 ---
-= ASM再利用ユーティリティとゼロブロック検出
+= ASM再生ユーティリティとONTAPゼロブロック検出
 :allow-uri-read: 
 
 
