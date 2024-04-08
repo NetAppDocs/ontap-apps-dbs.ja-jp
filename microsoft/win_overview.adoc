@@ -1,0 +1,52 @@
+---
+sidebar: sidebar 
+permalink: microsoft/win_overview.html 
+keywords: Windows,Hyper-V,VHDX,VM,Virtual 
+summary: ONTAPを使用したMicrosoft WindowsとHyper-Vの仮想化の概要 
+---
+= 概要
+:allow-uri-read: 
+
+
+[role="lead"]
+Microsoft Windows Serverは、ネットワーク、セキュリティ、仮想化、プライベートクラウド、ハイブリッドクラウド、 仮想デスクトップインフラ、アクセス保護、情報保護、Webサービス、アプリケーションプラットフォームインフラ、 その他多数。
+
+
+NOTE: *このドキュメントは、以前に公開されていたテクニカルレポート_TR-4568：『NetApp Deployment Guidelines and Storage Best Practices for Windows Server_*』の内容を置き換えます。
+
+.NetApp ONTAP(R)管理ソフトウェアは、NetAppストレージコントローラ上で動作します。複数の形式で使用できます。
+* ファイル、オブジェクト、ブロックの各プロトコルをサポートするユニファイドアーキテクチャ。これにより、ストレージコントローラがNASデバイスとSANデバイスの両方、およびオブジェクトストアとして機能できるようになります。
+* ブロックプロトコルのみに重点を置き、接続ホストに対称アクティブ/アクティブマルチパスを追加することでI/O再開時間（IORT）を最適化するオールSANアレイ（ASA）
+* ソフトウェア定義型のユニファイドアーキテクチャ
++
+** VMware vSphereまたはKVMで実行されるONTAP Select
+** クラウドネイティブインスタンスとして実行されるCloud Volumes ONTAP
+
+
+* ハイパースケールクラウドプロバイダが提供するファーストパーティ製品
++
+** NetApp ONTAP 対応の Amazon FSX
+** Azure NetApp Files の特長
+** Google Cloud NetAppボリューム
+
+
+
+
+ONTAPは、NetApp Snapshot（R）テクノロジ、クローニング、重複排除、シンプロビジョニング、シンレプリケーションなどのNetApp Storage Efficiency機能を提供 圧縮、バーチャルストレージ階層化など、パフォーマンスと効率性が向上しています。
+
+Windows ServerとONTAPを併用すれば、大規模な環境でも運用でき、データセンターの統合やプライベートクラウドやハイブリッドクラウドの導入に大きな価値をもたらすことができます。また、この組み合わせにより、システムを停止することなくワークロードを効率的に実行でき、シームレスな拡張性
+
+
+
+== 対象読者
+
+本ドキュメントは、Windows Server向けのNetAppストレージソリューションを設計するシステムアーキテクトおよびストレージアーキテクトを対象としています。
+
+本ドキュメントでは、次のことを前提としています。
+
+* NetAppのハードウェアおよびソフトウェアソリューションに関する一般的な知識がある。を参照してください https://docs.netapp.com/us-en/ontap/cluster-admin/index.html["システムアドミニストレーションガイド（クラスタ管理）"] を参照してください。
+* iSCSI、FC、ファイルアクセスプロトコルSMB / CIFSなどのブロックアクセスプロトコルに関する一般的な知識がある読者。を参照してください https://docs.netapp.com/us-en/ontap/san-management/index.html["clustered Data ONTAPのSAN管理"] を参照してください。を参照してください https://docs.netapp.com/us-en/ontap/nas-management/index.html["NAS管理"] を参照してください。
+* 読者には、Windows Server OSおよびHyper-Vに関する一般的な知識があります。
+
+
+テスト済みでサポートされているSANおよびNAS構成のマトリックスについては、定期的に更新される完全なマトリックスを参照してください。 http://mysupport.netapp.com/matrix/["Interoperability Matrix Tool （ IMT ）"] NetApp Support Site上。IMTを使用すると、特定の環境でサポートされている製品や機能のバージョンを確認できます。NetApp IMTには、NetAppでサポートされる構成と互換性のある製品コンポーネントとバージョンが定義されています。サポートの可否は、お客様の実際のインストール環境が公表されている仕様に従っているかどうかによって異なります。

@@ -1,27 +1,30 @@
 ---
 sidebar: sidebar 
 permalink: mssql/mssql-disaster-recovery.html 
-keywords: MS-SQL,mssql,SQL Server, disaster recovery, snapmirror 
-summary: ONTAP上のMicrosoft SQL Server 
+keywords: MSSQL,SQL Server, disaster recovery, snapmirror 
+summary: ONTAPを使用したMicrosoft SQL Serverディザスタリカバリ 
 ---
-= Microsoft SQL Serverのディザスタリカバリ
+= ONTAPを使用したMicrosoft SQL Serverディザスタリカバリ
 :allow-uri-read: 
 :imagesdir: ../media/
 
 
 [role="lead"]
-NetAppは、ハードウェア、ソフトウェア、またはサイトに障害が発生した場合にデータの可用性を高めるためのさまざまなアプローチを提供します。
+エンタープライズデータベースやアプリケーションインフラでは、自然災害や予期しないビジネスの中断からダウンタイムを最小限に抑えて保護するために、レプリケーションが必要になることがよくあります。
+
+SQL Server Always-On可用性グループレプリケーション機能は優れたオプションであり、NetAppはデータ保護とAlways-Onを統合するオプションを提供します。ただし、ONTAPレプリケーションテクノロジを検討する必要がある場合もあります。MetroClusterやSnapMirrorなどのONTAPレプリケーションオプションを使用すると、パフォーマンスへの影響を最小限に抑えながら拡張性が向上し、SQL以外のデータを保護できます。また、一般にインフラ全体のレプリケーションとDR解決策が提供されます。
 
 
 
-== NetApp SnapMirror
+== SnapMirror非同期
 
-NetApp SnapMirrorテクノロジは、LANおよびWAN経由でデータをミラーリングまたはレプリケートするための、高速で柔軟なエンタープライズ解決策を提供します。SnapMirrorテクノロジでは、初回のベース転送後に変更された4KBのデータブロックのみがデスティネーションに転送されるため、必要なネットワーク帯域幅が大幅に削減されます。SnapMirrorは、設定されたレプリケーション更新間隔に基づいて、ボリュームレベルの非同期レプリケーションを提供します。
+SnapMirrorテクノロジは、LANおよびWAN経由でデータをレプリケートするための、高速で柔軟な非同期エンタープライズ解決策を提供します。最初のミラーリングの作成後は、変更されたデータブロックのみがデスティネーションに転送されるため、必要なネットワーク帯域幅が大幅に削減されます。
+
 SnapMirror for SQL Serverの推奨事項は次のとおりです。
 
 * CIFSを使用する場合は、デスティネーションSVMがソースSVMと同じActive Directoryドメインのメンバーである必要があります。これにより、NASファイルに格納されているアクセス制御リスト（ACL）が災害からのリカバリ時に破損しないようになります。
 * ソースボリューム名と同じデスティネーションボリューム名を使用する必要はありませんが、デスティネーションボリュームをデスティネーションにマウントするプロセスを管理しやすくすることができます。CIFSを使用する場合は、デスティネーションNASネームスペースをソースネームスペースとパスおよびディレクトリ構造で同一にする必要があります。
-* 整合性を確保するために、コントローラからのSnapMirror更新のスケジュールを設定しないでください。ただし、フルバックアップまたはログバックアップの完了後にSnapCenterからのSnapMirror更新を有効にしてSnapMirrorを更新してください。
+* 整合性を確保するために、コントローラからのSnapMirror更新のスケジュールを設定しないでください。代わりに、フルバックアップまたはログバックアップの完了後にSnapCenterからのSnapMirror更新を有効にしてSnapMirrorを更新します。
 * SQL Serverデータを含むボリュームをクラスタ内の複数のノードに分散して、すべてのクラスタノードでSnapMirrorレプリケーションアクティビティを共有できるようにします。この分散により、ノードリソースの使用が最適化されます。
 
 

@@ -24,7 +24,7 @@ SnapCenter では、複数のジョブに適用可能なバックアップポリ
 
 次の図は、 SnapCenter の導入例を示しています。
 
-image:vsphere_ontap_image4.png["エラー：グラフィックイメージがありません"]
+image:vsphere_ontap_image4.png["SnapCenter導入"]
 
 ディザスタリカバリ機能を強化するには、 ONTAP 用 NetApp SRA と VMware Site Recovery Manager の使用を検討してください。DR サイトへのデータストアのレプリケーションをサポートするだけでなく、レプリケートしたデータストアをクローニングすることで DR 環境を無停止でテストすることもできます。SRA に組み込まれている自動化機能を使用すると、災害からのリカバリや、システム停止が解決したあとの本番環境の再保護も簡単に実行できます。
 

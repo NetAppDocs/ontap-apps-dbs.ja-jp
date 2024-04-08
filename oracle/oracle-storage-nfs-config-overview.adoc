@@ -16,7 +16,7 @@ summary: OracleテタヘスヨウノNFSノセツテイ
 [role="lead"]
 NetAppは30年以上にわたってエンタープライズクラスのNFSストレージを提供してきましたが、クラウドベースのインフラへの移行が進むにつれ、その使用がますます増えています。その理由は、シンプルさです。
 
-NFSプロトコルには、要件が異なる複数のバージョンが含まれています。ONTAPを使用したNFSの完全な概要構成については、を参照してください。 link:https://www.netapp.com/pdf.html?item=/media/10720-tr-4067.pdf["TR-4067『NFS on NetApp ONTAP Best Practices』"^]。次のセクションでは、より重要な要件と一般的なユーザーエラーについて説明します。
+NFSプロトコルには、要件が異なる複数のバージョンが含まれています。ONTAPを使用したNFSの完全な概要構成については、を参照してください。 link:https://www.netapp.com/pdf.html?item=/media/10720-tr-4067.pdf["TR-4067『NFS on ONTAP Best Practices』"^]。次のセクションでは、より重要な要件と一般的なユーザーエラーについて説明します。
 
 
 
@@ -122,7 +122,7 @@ vserver1  orabin     1         sys       true
 
 TIP: * NetAppでは* NFSv4の機能が必要な場合はNFSv4.1を使用することを推奨します。NFSv4.1では、一部のエッジにおける耐障害性を向上させるために、NFSv4プロトコルの機能がいくつか強化されています。
 
-NFSv4への切り替えは、マウントオプションを単にvers=3からvers=4.1に変更するよりも複雑です。ONTAPを使用したNFSv4設定の詳細（OSの設定に関するガイダンスなど）については、を参照してください。 https://www.netapp.com/pdf.html?item=/media/10720-tr-4067.pdf["TR-4067『NFS on NetApp ONTAP』のベストプラクティス"^]。このTRの以降のセクションでは、NFSv4を使用するための基本的な要件の一部について説明します。
+NFSv4への切り替えは、マウントオプションを単にvers=3からvers=4.1に変更するよりも複雑です。ONTAPを使用したNFSv4設定の詳細（OSの設定に関するガイダンスなど）については、を参照してください。 https://www.netapp.com/pdf.html?item=/media/10720-tr-4067.pdf["TR-4067『NFS on ONTAP』のベストプラクティス"^]。このTRの以降のセクションでは、NFSv4を使用するための基本的な要件の一部について説明します。
 
 
 

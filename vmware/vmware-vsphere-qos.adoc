@@ -90,7 +90,7 @@ ONTAP の QoS と VMware vSphere の Storage I/O Control （ SIOC ）は、 vSph
 
 VMware Storage Distributed Resource Scheduler （ SDRS ）は、現在の I/O レイテンシとスペース使用量に基づいて VM をストレージに配置する vSphere の機能です。その後、 VM や VMDK の配置先として最適なデータストアをデータストアクラスタ内から選択し、システムを停止することなくデータストアクラスタ（ポッドとも呼ばれます）内のデータストア間で VM や VMDK を移動します。データストアクラスタは、類似するデータストアをvSphere管理者から見た単一の消費単位に集約したものです。
 
-SDRS を NetApp ONTAP Tools for VMware vSphere と併用する場合は、まずプラグインを使用してデータストアを作成し、 vCenter を使用してデータストアクラスタを作成し、そこにデータストアを追加する必要があります。データストアクラスタを作成したら、プロビジョニングウィザードの詳細ページからデータストアクラスタにデータストアを直接追加できます。
+SDRSとONTAP tools for VMware vSphereを使用する場合は、まずプラグインを使用してデータストアを作成し、vCenterを使用してデータストアクラスタを作成してから、そのデータストアにデータストアを追加する必要があります。データストアクラスタを作成したら、プロビジョニングウィザードの詳細ページからデータストアクラスタにデータストアを直接追加できます。
 
 SDRS に関するその他の ONTAP のベストプラクティスは、次のとおりです。
 
@@ -116,13 +116,13 @@ SCPでは、VMのデータVVOLに対して最小または最大のQoSがサポ�
 
 次の図は、 VMware vSphere 9.8 VVol ダッシュボード用の ONTAP ツールを示しています。
 
-image:vsphere_ontap_image7.png["エラー：グラフィックイメージがありません"]
+image:vsphere_ontap_image7.png["ONTAP Tools for VMware vSphere 9.8 vVolダッシュボード"]
 
 ストレージ機能プロファイルを定義したら、そのプロファイルを使用して要件を定義するストレージポリシーを使用して VM をプロビジョニングできます。vCenter では、 VM ストレージポリシーとデータストアストレージ機能プロファイルのマッピングに基づいて、互換性があるデータストアのリストを選択対象として表示できます。このアプローチは、ストレージポリシーベースの管理と呼ばれます。
 
 VASA は、ストレージを照会して一連のストレージ機能を vCenter に返すためのテクノロジを提供します。VASA ベンダープロバイダは、ストレージシステムの API およびコンストラクトと、 vCenter が認識可能な VMware API との間の変換機能を提供します。ネットアップのVASA Provider for ONTAPは、ONTAP Tools for VMware vSphereアプライアンスVMの一部として提供されます。vCenterプラグインは、VVOLデータストアをプロビジョニングおよび管理するためのインターフェイスと、ストレージ機能プロファイル（SCP）を定義する機能を提供します。
 
-ONTAP は、 VMFS データストアと NFS データストアの両方をサポートしています。SAN データストアで VVOL を使用すると、 VM レベルのきめ細かさなど、 NFS のメリットの一部を活用できます。ここでは考慮すべきベストプラクティスをいくつか示します。また、追加情報はにあります http://www.netapp.com/us/media/tr-4400.pdf["TR-4400"^]：
+ONTAP は、 VMFS データストアと NFS データストアの両方をサポートしています。SAN データストアで VVOL を使用すると、 VM レベルのきめ細かさなど、 NFS のメリットの一部を活用できます。ここでは考慮すべきベストプラクティスをいくつか示します。また、追加情報はにあります link:vmware-vvols-overview.html["TR-4400"^]：
 
 * VVOL データストアは、複数のクラスタノードにある複数の FlexVol で構成できます。ボリュームごとに機能が異なる場合でも、最もシンプルなアプローチは 1 つのデータストアです。SPBM により、互換性のあるボリュームが VM に使用されています。ただし、すべてのボリュームが 1 つの ONTAP SVM に含まれていて、単一のプロトコルでアクセスできる必要があります。各プロトコルでノードごとに 1 つの LIF で十分です。1 つの VVOL データストアで複数の ONTAP リリースを使用することは避けてください。リリースによってストレージ機能が異なる場合があります。
 * VVol データストアの作成と管理には、 VMware vSphere プラグインの ONTAP ツールを使用します。データストアとそのプロファイルの管理に加え、必要に応じて、 VVOL にアクセスするためのプロトコルエンドポイントが自動的に作成されます。LUN を使用する場合、 LUN PE は 300 以上の LUN ID を使用してマッピングされます。ESXiホストの詳細なシステム設定を確認する `Disk.MaxLUN` 300を超えるLUN ID番号を許可します（デフォルトは1、024）。そのためには、vCenterでESXiホストを選択し、[Configure]タブで `Disk.MaxLUN` をクリックします。
@@ -132,7 +132,7 @@ ONTAP は、 VMFS データストアと NFS データストアの両方をサポ
 
 次の図は、 VVOL のコンポーネントを示しています。
 
-image:vsphere_ontap_image8.png["エラー：グラフィックイメージがありません"]
+image:vsphere_ontap_image8.png["VVOLのコンポーネント"]
 
 
 
@@ -141,7 +141,7 @@ image:vsphere_ontap_image8.png["エラー：グラフィックイメージがあ
 ONTAP のもう 1 つの強みは、ハイブリッドクラウドを幅広くサポートすることで、オンプレミスのプライベートクラウドのシステムとパブリッククラウドの機能を統合できることです。vSphere と組み合わせて使用できるネットアップのクラウドソリューションには、次のものがあります。
 
 * * Cloud Volumes。* NetApp Cloud Volumes Service for Amazon Web ServicesまたはGoogle Cloud PlatformとAzure NetApp Files for ANFは、主要なパブリッククラウド環境でハイパフォーマンスなマルチプロトコルマネージドストレージサービスを提供します。VMware Cloud VM ゲストで直接使用できます。
-* * Cloud Volumes ONTAP 。 * NetApp Cloud Volumes ONTAP データ管理ソフトウェアは、お客様が選択したクラウド上のデータを管理、保護、柔軟性、効率性で保護します。Cloud Volumes ONTAP は、 NetApp ONTAP ストレージソフトウェアを基盤としたクラウドネイティブのデータ管理ソフトウェアです。Cloud Volumes ONTAP インスタンスをオンプレミスの ONTAP システムと一緒に導入、管理する際には、 Cloud Manager と組み合わせて使用できます。NASおよびiSCSI SANの高度な機能と、スナップショットやSnapMirrorレプリケーションなどの統合データ管理機能を活用できます。
+* * Cloud Volumes ONTAP 。 * NetApp Cloud Volumes ONTAP データ管理ソフトウェアは、お客様が選択したクラウド上のデータを管理、保護、柔軟性、効率性で保護します。Cloud Volumes ONTAPは、ONTAPストレージ上に構築されたクラウドネイティブのデータ管理ソフトウェアです。Cloud Volumes ONTAP インスタンスをオンプレミスの ONTAP システムと一緒に導入、管理する際には、 Cloud Manager と組み合わせて使用できます。NASおよびiSCSI SANの高度な機能と、スナップショットやSnapMirrorレプリケーションなどの統合データ管理機能を活用できます。
 * * Cloud Backup Service * 。クラウドサービスまたは SnapMirror クラウドを使用して、パブリッククラウドストレージを使用してオンプレミスシステムからデータを保護します。Cloud Sync を使用すると、 NAS 、オブジェクトストア、 Cloud Volumes Service ストレージ間でデータを移行し、同期を維持できます。
 * * ONTAP * FabricPool は、 FabricPool データの階層化を迅速かつ容易にします。コールドブロックは、パブリッククラウドまたはStorageGRIDのプライベートオブジェクトストアにあるオブジェクトストアに移行でき、ONTAPデータが再度アクセスされると自動的にリコールされます。または、 SnapVault ですでに管理されているデータの第 3 レベルの保護としてオブジェクト階層を使用することもできます。この方法を使用すると、を実行できます https://www.linkedin.com/pulse/rethink-vmware-backup-again-keith-aasen/["VMのより多くのスナップショットを保存"^] プライマリおよびセカンダリ ONTAP ストレージシステム。
 * * ONTAP Select * 。ネットアップの Software-Defined Storage を使用して、インターネット経由でプライベートクラウドをリモートの施設やオフィスに拡張できます。 ONTAP Select を使用すれば、ブロックサービスやファイルサービスのほか、エンタープライズデータセンターと同じ vSphere データ管理機能をサポートできます。
@@ -177,10 +177,10 @@ ONTAP の一般的な仮想インフラ環境には、さまざまなコンポ�
 
 次のスクリーンショットは、 Active IQ Unified Manager の仮想マシンビューを示しています。
 
-image:vsphere_ontap_image9.png["エラー：グラフィックイメージがありません"]
+image:vsphere_ontap_image9.png["Active IQ Unified Managerの[Virtual Machines]ビュー"]
 
 Unified Manager のトポロジビューには、仮想環境の基盤となるサブシステムが表示され、コンピューティングノード、ネットワーク、またはストレージでレイテンシ問題が発生したかどうかが確認されます。また、修復手順を実行して基盤となる問題に対応するために、パフォーマンス低下の原因となっているオブジェクトが強調表示されます。
 
 次のスクリーンショットは、 AIQUM の拡張トポロジを示しています。
 
-image:vsphere_ontap_image10.png["エラー：グラフィックイメージがありません"]
+image:vsphere_ontap_image10.png["AIQUM拡張トポロジ"]

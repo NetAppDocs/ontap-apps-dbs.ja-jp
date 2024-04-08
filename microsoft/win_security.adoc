@@ -1,0 +1,36 @@
+---
+sidebar: sidebar 
+permalink: microsoft/win_security.html 
+keywords: Windows,Hyper-V,VHDX,VM,Virtual 
+summary: Hyper-VによるONTAPストレージセキュリティ 
+---
+= セキュリティ
+:allow-uri-read: 
+
+
+[role="lead"]
+ONTAPは、Windowsオペレーティングシステムにセキュアなストレージシステムを提供します。
+
+
+
+== Windows Defenderアンチウイルス
+
+Windows Defenderは、Windows Serverにインストールされ、デフォルトで有効になっているマルウェア対策ソフトウェアです。このソフトウェアは、既知のマルウェアからWindows Serverを積極的に保護し、Windows Updateを介して定期的にマルウェア対策の定義を更新することができます。NetApp LUNおよびSMB共有は、Windows Defenderを使用してスキャンできます。
+
+
+
+=== 詳細はこちら
+
+詳細については、を参照してください。 https://technet.microsoft.com/windows-server-docs/security/windows-defender/windows-defender-overview-windows-server?f=255&MSPPError=-2147217396["Windows Defenderの概要"]。
+
+
+
+== BitLocker
+
+BitLockerドライブ暗号化は、Windows Server 2012から引き継がれたデータ保護機能です。この暗号化により、物理ディスク、LUN、およびCSVが保護されます。
+
+
+
+=== ベストプラクティス
+
+BitLockerを有効にする前に、CSVをメンテナンスモードにする必要があります。そのため、NetAppでは、ダウンタイムを回避するために、CSV上にVMを作成する前に、BitLockerベースのセキュリティに関する決定を行うことを推奨しています。

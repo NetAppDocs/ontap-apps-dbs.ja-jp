@@ -1,0 +1,32 @@
+---
+sidebar: sidebar 
+permalink: microsoft/win_deploy_hyperv_slm.html 
+keywords: Windows,Hyper-V,VHDX,VM,Virtual 
+summary: Hyper-Vストレージのライブマイグレーションの設定方法 
+---
+= Hyper-Vストレージのライブマイグレーションの導入
+:allow-uri-read: 
+
+
+[role="lead"]
+Hyper-Vストレージのライブマイグレーションの設定方法
+
+
+
+== 前提条件
+
+* 独立したストレージ（DASまたはLUN）またはSMBストレージ（ローカルまたは他のHyper-Vサーバ間で共有）を備えたスタンドアロンのHyper-Vサーバが必要です。
+* Hyper-Vサーバがライブマイグレーション用に設定されている必要があります。の導入に関するセクションを確認します。 link:win_deploy_hyperv_replica_oce.html["クラスタ環境外でのライブマイグレーション"]。
+
+
+
+
+== 導入
+
+. Hyper-V Managerを開きます。
+. VMを右クリックし、[Move]をクリックします。
+. [仮想マシンのストレージの移動]を選択します。
+. 設定に基づいてストレージの移動オプションを選択します。
+. VMの項目の新しい場所を指定します。
+. 概要を確認し、[OK]をクリックしてVMのストレージを移動します。
+

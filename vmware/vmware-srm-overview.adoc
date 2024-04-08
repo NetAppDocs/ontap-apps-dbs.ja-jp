@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: vmware/vmware-srm-overview.html 
 keywords: ontap, vsphere, srm, srm, hybrid, cloud, migration, vmware, site, recovery manager, vsrm 
-summary: NetApp ONTAP は、 2002 年に最新のデータセンターに導入されて以来、 VMware vSphere 環境向けストレージ解決策として業界をリードしてきました。また、コストを削減しながら管理を簡易化する革新的な機能を継続的に追加しています。 
+summary: ONTAP 解決策for VMware Site Recovery Manager（SRM） 
 ---
-= VMware Site Recovery ManagerとNetApp ONTAP
+= VMware Site Recovery ManagerとONTAP
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: NetApp ONTAP は、 2002 年に最新のデータセンターに導入�
 
 
 [role="lead"]
-NetApp ONTAP は、 2002 年に最新のデータセンターに導入されて以来、 VMware vSphere 環境向けストレージ解決策として業界をリードしてきました。また、コストを削減しながら管理を簡易化する革新的な機能を継続的に追加しています。
+ONTAPは、2002年に最新のデータセンターに導入されて以来、VMware vSphere環境向けストレージ解決策として業界をリードしてきました。また、コストを削減しながら管理を簡易化する革新的な機能を継続的に追加しています。
 
 このドキュメントでは、業界をリードするVMwareのディザスタリカバリ（DR）ソフトウェアであるONTAP 解決策for VMware Site Recovery Manager（SRM）について説明します。最新の製品情報とベストプラクティスを紹介し、導入の合理化、リスクの軽減、継続的な管理の簡素化を実現します。
 

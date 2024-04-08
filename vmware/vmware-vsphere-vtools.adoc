@@ -31,7 +31,7 @@ VMware vSphere 用の ONTAP ツールは、 vSphere とともに ONTAP ストレ
 
 次の図は、 vSphere 用の ONTAP ツールを示しています。
 
-image:vsphere_ontap_image1.png["エラー：グラフィックイメージがありません"]
+image:vsphere_ontap_image1.png["vSphere向けONTAPツール"]
 
 
 

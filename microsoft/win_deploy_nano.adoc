@@ -1,0 +1,130 @@
+---
+sidebar: sidebar 
+permalink: microsoft/win_deploy_nano.html 
+keywords: Windows,Hyper-V,VHDX,VM,Virtual 
+summary: Microsoft Windows Nano Serverの導入について 
+---
+= Nanoサーバーの展開
+:allow-uri-read: 
+
+
+[role="lead"]
+Microsoft Windows Nano Serverの導入について説明します。
+
+
+
+== 導入
+
+Nano ServerをHyper-Vホストとして導入するには、次の手順を実行します。
+
+. 管理者グループのメンバーとしてWindows Serverにログインします。
+. Windows Server ISOの\NanoServerフォルダからNanoServerImageGeneratorフォルダをローカルハードドライブにコピーします。
+. Nano Server VHD/VHDXを作成するには、次の手順を実行します。
++
+.. Windows PowerShellを管理者として起動し、ローカルハードドライブ上のコピーされたNanoServerImageGeneratorフォルダに移動して、次のコマンドレットを実行します。
++
+....
+Set-ExecutionPolicy RemoteSigned
+Import-Module .\NanoServerImageGenerator -Verbose
+....
+.. 次のPowerShellコマンドレットを実行して、Nano Server用のVHDをHyper-Vホストとして作成します。このコマンドを実行すると、新しいVHDの管理者パスワードを入力するように求められます。
++
+ New-NanoServerImage -Edition Standard -DeploymentType Guest -MediaPath <"input the path to the root of the contents of Windows Server 2016 ISO"> -TargetPath <"input the path, including the filename and extension where the resulting VHD/VHDX will be created"> -ComputerName <"input the name of the nano server computer you are about to create"> -Compute
+.. 次の例では、フェイルオーバークラスタリングが有効なHyper-Vホスト機能を持つNano Server VHDを作成します。この例では、f:\にマウントされたISOからNano Server VHDを作成します。新しく作成したVHDは、コマンドレットの実行元のフォルダ内のNanoServerという名前のフォルダに配置されます。コンピュータ名はNanoServerで、作成されたVHDにはWindows Serverの標準エディションが含まれています。
++
+ New-NanoServerImage -Edition Standard -DeploymentType Guest -MediaPath f:\ -TargetPath .\NanoServer.vhd -ComputerName NanoServer -Compute -Clustering
+.. コマンドレットNew-NanoServerImageを使用して、IPアドレス、サブネットマスク、デフォルトゲートウェイ、DNSサーバ、ドメイン名を設定するパラメータを設定します。 など。
+
+
+. VMまたは物理ホストでVHDを使用して、Nano ServerをHyper-Vホストとして導入します。
++
+.. VMに導入する場合は、Hyper-V Managerで新しいVMを作成し、手順3で作成したVHDを使用します。
+.. 物理ホストに導入する場合は、VHDを物理コンピュータにコピーし、この新しいVHDから起動するように構成します。まず、VHDをマウントし、bcdboot e:\windows（VHDがE:\の下にマウントされている場所）を実行し、VHDをアンマウントし、物理コンピュータを再起動して、Nano Serverを起動します。
+
+
+. Nano Serverをドメインに参加させる（オプション）：
++
+.. ドメイン内の任意のコンピュータにログインし、次のPowerShellコマンドレットを実行してデータブロブを作成します。
++
+....
+$domain = "<input the domain to which the Nano Server is to be joined>"
+$nanoserver = "<input name of the Nano Server>"
+....
++
+ djoin.exe /provision /domain $domain /machine $nanoserver /savefile C:\temp\odjblob /reuse
+.. リモートマシンで次のPowerShellコマンドレットを実行して、odjblobファイルをNano Serverにコピーします。
++
+....
+$nanoserver = "<input name of the Nano Server>"
+$nanouname = ""<input username of the Nano Server>"
+$nanopwd = ""<input password of the Nano Server>"
+....
++
+....
+$filePath = 'c:\temp\odjblob'
+$fileContents = Get-Content -Path $filePath -Encoding Unicode
+....
++
+....
+$securenanopwd = ConvertTo-SecureString -AsPlainText -Force $nanopwd
+$nanosecurecred = new-object management.automation.pscredential $nanouname, $securenanopwd
+....
++
+....
+Invoke-Command -VMName $nanoserver -Credential $nanosecurecred -ArgumentList @($filePath,$fileContents) -ScriptBlock \{
+    param($filePath,$data)
+    New-Item -ItemType directory -Path c:\temp
+    Set-Content -Path $filePath -Value $data -Encoding Unicode
+    cd C:\temp
+    djoin /requestodj /loadfile c:\temp\odjblob /windowspath c:\windows /localos
+}
+....
+.. Nano Serverを再起動します。
+
+
+
+
+
+
+== Nanoサーバーへの接続
+
+PowerShellを使用してNano Serverにリモート接続するには、次の手順を実行します。
+
+. リモートサーバーで次のコマンドレットを実行して、Nano Serverをリモートコンピュータ上の信頼できるホストとして追加します。
++
+ Set-Item WSMan:\LocalHost\Client\TrustedHosts "<input IP Address of the Nano Server>"
+. 環境が安全で、すべてのホストを信頼できるホストとしてサーバに追加する場合は、次のコマンドを実行します。
++
+ Set-Item WSMan:\LocalHost\Client\TrustedHosts *
+. リモートサーバで次のコマンドレットを実行して、リモートセッションを開始します。プロンプトが表示されたら、Nano Serverのパスワードを入力します。
++
+ Enter-PSSession -ComputerName "<input IP Address of the Nano Server>" -Credential ~\Administrator
+
+
+リモートWindows ServerからGUI管理ツールを使用してNano Serverにリモート接続するには、次のコマンドを実行します。
+
+. 管理者グループのメンバーとしてWindows Serverにログインします。
+. Server Managerの起動**。**
+. Server ManagerからNano Serverをリモートで管理するには、All Servers（すべてのサーバー）を右クリックし、Add Servers（サーバーの追加）をクリックして、Nano Serverの情報を入力して追加します。これで、サーバーリストにNano Serverが表示されます。Nano Serverを選択し、右クリックして、提供されたさまざまなオプションで管理を開始します。
+. Nano Server上のサービスをリモートで管理するには、次の手順を実行します。
++
+.. サーバーマネージャのツールセクションからサービスを開きます。
+.. [サービス（ローカル）]を右クリックします。
+.. [Connect to Server]をクリックします。
+.. Nano Serverのサービスを表示および管理するためのNano Serverの詳細情報を提供します。
+
+
+. Nano ServerでHyper-Vの役割が有効になっている場合は、次の手順を実行してHyper-V Managerからリモートで管理します。
++
+.. [Server Manager]の[Tools]セクションから[Hyper-V Manager]を開きます。
+.. [Hyper-V Manager]を右クリックします。
+.. [Connect to Server]をクリックし、Nano Serverの詳細を入力します。Nano ServerをHyper-Vサーバとして管理し、その上にVMを作成および管理できるようになりました。
+
+
+. Nano Serverでフェールオーバークラスタリングロールが有効になっている場合は、次の手順を実行してフェールオーバークラスタマネージャからリモートで管理します。
++
+.. Server ManagerのToolsセクションからFailover Cluster Managerを開きます。
+.. Nano Serverを使用してクラスタリング関連の操作を実行します。
+
+
+

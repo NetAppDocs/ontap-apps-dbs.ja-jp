@@ -1,0 +1,376 @@
+---
+sidebar: sidebar 
+permalink: microsoft/win_san.html 
+keywords: Windows,Hyper-V,VHDX,VM,Virtual,SAN,LUN,NVMe 
+summary: SAN環境でのWindowsおよびHyper-V用のONTAPストレージのプロビジョニング 
+---
+= SAN環境でのプロビジョニング
+:allow-uri-read: 
+
+
+[role="lead"]
+ONTAP SVMは、ブロックプロトコルiSCSIおよびFCをサポートしています。ブロックプロトコルiSCSIまたはFCを使用してSVMを作成すると、SVMにはiSCSI Qualified Name（IQN）またはFC Worldwide Name（WWN）がそれぞれ取得されます。この識別子は、NetAppブロックストレージにアクセスするホストにSCSIターゲットを提供します。
+
+
+
+== Windows ServerでのNetApp LUNのプロビジョニング
+
+
+
+=== 前提条件
+
+Windows ServerのSAN環境でNetAppストレージを使用するには、次の要件があります。
+
+* NetAppクラスタには、1つ以上のNetAppストレージコントローラが設定されています。
+* NetAppクラスタまたはストレージコントローラに有効なiSCSIライセンスがある。
+* iSCSIポートまたはFCポートが設定されていることを確認します。
+* FCゾーニングはFCスイッチでFC用に実行されます。
+* アグリゲートが少なくとも1つ作成されている。
+* SVMには、iSCSIまたはファイバチャネルを使用してデータを提供するすべてのストレージコントローラ上のイーサネットネットワークまたはファイバチャネルファブリックごとに1つのLIFが必要です。
+
+
+
+
+=== 導入
+
+. ブロックプロトコルiSCSIまたはFCを有効にして、新しいSVMを作成します。新しいSVMは次のいずれかの方法で作成できます。
++
+** NetAppストレージのCLIコマンド
+** ONTAP システムマネージャ
+** NetApp PowerShellツールキット
+
+
+
+
+. iSCSIプロトコル/ FCプロトコルを設定
+. SVMに各クラスタノードのLIFを割り当てます。
+. SVMでiSCSIサービス/ FCサービスを開始します。
++
+。
+
+. SVM LIFを使用して、iSCSIポートセットやFCポートセットを作成します。
+. 作成したポートセットを使用して、Windows用のiSCSIイニシエータ/ FCイニシエータグループを作成します。
+. イニシエータグループにイニシエータを追加します。イニシエータは、iSCSIのIQNとFCのWWPNです。Windows Serverからクエリを実行するには、PowerShellコマンドレットGet-InitiatorPortを実行します。
+
+
+
+
+= iSCSI+のIQNを取得
+
+Get-InitiatorPort | WHERE \｛$_.ConnectionType -eq 'iscsi'｝| Select-Object - Property NodeAddress
+
+
+
+= FC+のWWPNの取得
+
+Get-InitiatorPort | WHERE \｛$_.ConnectionType -eq ' Fibre Channel '｝| Select-Object - property portaddress +
+ [+]
+# FCの場合にイニシエータをイニシエータグループに追加するときは、イニシエータ（ポートアドレス）を標準のWWPN形式で指定してください
+
+Windows Server上のiSCSIのIQNは、iSCSIイニシエータプロパティの構成でも確認できます。
+
+* LUN作成ウィザードを使用してLUNを作成し、作成したイニシエータグループに関連付けます。
+
+
+
+
+=== ホスト統合
+
+Windows Serverでは、Asymmetrical Logical Unit Access（ALUA；非対称論理ユニットアクセス）拡張MPIOを使用して、LUNへの直接パスと間接パスを決定します。SVMが所有するすべてのLIFはLUNの読み取り/書き込み要求を受け入れますが、そのLUNの元となるディスクを実際に所有しているクラスタノードは常に1つだけです。これにより、次の図に示すように、LUNへの使用可能なパスが直接パスと間接パスの2種類に分けられます。
+
+LUNの直接パスとは、SVMのLIFとアクセス対象のLUNが同じノードにあるパスです。物理ターゲットポートからディスクに移動する場合、クラスタネットワークを経由する必要はありません。
+
+間接パスは、SVMのLIFとアクセス対象のLUNが別 々 のノードにあるデータパスです。物理ターゲットポートからディスクに移動するには、データがクラスタネットワークを経由する必要があります。
+
+image:win_image3.png["SAN環境での複数パス、幅=624、高さ=232"]
+
+
+
+=== MPIO
+
+NetApp ONTAPは、ストレージコントローラからWindows Serverへの複数のパスが存在できる高可用性ストレージを提供します。マルチパスは、サーバからストレージアレイへの複数のデータパスを確立する機能です。マルチパスは、ハードウェア障害（ケーブルの切断、スイッチおよびHost Bus Adapter（HBA；ホストバスアダプタ）の障害など）から保護します。また、複数の接続を集約したパフォーマンスを使用することで、より高いパフォーマンス制限を実現できます。一方のパスまたは接続が使用できなくなると、マルチパスソフトウェアは自動的に他の使用可能なパスのいずれかに負荷を移します。MPIO機能は、ストレージへの複数の物理パスをデータアクセスに使用する単一の論理パスとして組み合わせて、ストレージの耐障害性と負荷分散を実現します。この機能を使用するには、Windows ServerでMPIO機能を有効にする必要があります。
+
+
+
+=== MPIOを有効にする
+
+Windows ServerでMPIOを有効にするには、次の手順を実行します。
+
+. 管理者グループのメンバーとしてWindows Serverにログインします。
+
+
+. Server Managerを起動します。
+. [管理]セクションで、[ロールと機能の追加]をクリックします。
+. [Select Features]ページで、[Multipath I/O]を選択します。
+
+
+
+
+=== MPIOの設定
+
+iSCSIプロトコルを使用する場合は、MPIOプロパティでiSCSIデバイスにマルチパスサポートを適用するようにWindows Serverに指示する必要があります。
+
+Windows ServerでMPIOを設定するには、次の手順を実行します。
+
+. 管理者グループのメンバーとしてWindows Serverにログオンします。
+
+
+. Server Managerを起動します。
+. [ツール]セクションで、[MPIO]をクリックします。
+. [Discover Multi-Paths]の[MPIO Properties]で、[Add Support for iSCSI Devices]を選択し、[Add]をクリックします。コンピュータの再起動を求めるプロンプトが表示されます。
+. Windows Serverをリブートして、[MPIOのプロパティ]の[MPIOデバイス]セクションにMPIOデバイスが表示されることを確認します。
+
+
+
+
+=== iSCSIを設定
+
+Windows ServerでiSCSIブロックストレージを検出するには、次の手順を実行します。
+
+. 管理者グループのメンバーとしてWindows Serverにログオンします。
+
+
+. Server Managerを起動します。
+. [Tools]セクションで、[iSCSI Initiator]をクリックします。
+. [Discovery]タブで、[Discover Portal]をクリックします。
+. SANプロトコル用のNetAppストレージ用に作成したSVMに関連付けられているLIFのIPアドレスを指定します。[詳細設定]をクリックし、[全般]タブで情報を設定して、[OK]をクリックします。
+. iSCSIイニシエータによってiSCSIターゲットが自動的に検出され、[ターゲット]タブに一覧表示されます。
+. [Discovered Targets]でiSCSIターゲットを選択します。[Connect]をクリックして[Connect to Target]ウィンドウを開きます。
+. Windows ServerホストからNetAppストレージクラスタ上のターゲットiSCSI LIFへのセッションを複数作成する必要があります。これには、次の手順を実行します。
+
+
+. [Connect to Target]ウィンドウで、[Enable MPIO]を選択し、[Advanced]をクリックします。
+. [詳細設定]の[全般]タブで、ローカルアダプタをMicrosoft iSCSIイニシエータとして選択し、[イニシエータIP]と[ターゲットポータルIP]を選択します。
+. また、2番目のパスを使用して接続する必要があります。そのため、手順5から手順8を繰り返しますが、今回は2番目のパスとして[Initiator IP]と[Target Portal IP]を選択します。
+. [iSCSI Properties]メインウィンドウの[Discovered Targets]でiSCSIターゲットを選択し、[Properties]をクリックします。
+. [プロパティ]ウィンドウに、複数のセッションが検出されたことが表示されます。セッションを選択して[Devices]をクリックし、MPIOをクリックしてロードバランシングポリシーを設定します。デバイスに設定されているすべてのパスが表示され、すべてのロードバランシングポリシーがサポートされます。通常、NetAppではサブセットを使用したラウンドロビンを推奨しています。この設定は、ALUAが有効なアレイのデフォルトです。ラウンドロビンは、ALUAをサポートしないアクティブ/アクティブアレイのデフォルトです。
+
+
+
+
+=== ブロックストレージの検出
+
+Windows ServerでiSCSIまたはFCブロックストレージを検出するには、次の手順を実行します。
+
+. サーバーマネージャの[ツール]セクションで[コンピュータの管理]をクリックします。
+. [コンピュータの管理]で、[ストレージのディスクの管理]セクションをクリックし、[その他の操作]と[ディスクの再スキャン]をクリックします。これにより、raw iSCSI LUNが表示されます。
+. 検出されたLUNをクリックしてオンラインにします。次に、MBRまたはGPTパーティションを使用してディスクを初期化を選択します。ボリュームサイズとドライブ文字を指定して新しいシンプルボリュームを作成し、FAT、FAT32、NTFS、またはResilient File System（ReFS）を使用してフォーマットします。
+
+
+
+
+=== ベストプラクティス
+
+* NetAppでは、LUNをホストするボリュームでシンプロビジョニングを有効にすることを推奨しています。
+* マルチパスの問題を回避するために、NetAppでは、特定のLUNに対するすべての10Gbセッションまたはすべての1Gbセッションのいずれかを使用することを推奨しています。
+* NetAppでは、ストレージシステムでALUAが有効になっていることを確認することを推奨しています。ONTAPでは、ALUAがデフォルトで有効になっています。
+* NetApp LUNのマッピング先のWindows Serverホストで、ファイアウォールの設定で、インバウンドの場合はiSCSIサービス（TCP-IN）、アウトバウンドの場合はiSCSIサービス（TCP-OUT）を有効にします。これらの設定により、Hyper-VホストおよびNetAppコントローラとの間でiSCSIトラフィックが送受信されます。
+
+
+
+
+== NanoサーバでのNetApp LUNのプロビジョニング
+
+
+
+=== 前提条件
+
+前のセクションで説明した前提条件に加えて、ストレージロールをNano Server側から有効にする必要があります。たとえば、Nano Serverは-Storageオプションを使用して導入する必要があります。Nano Serverを展開するには、「link:win_deploy_nano.html["Nano Serverを展開します。"]"
+
+
+
+=== 導入
+
+ナノサーバでNetApp LUNをプロビジョニングするには、次の手順を実行します。
+
+. 「link:win_deploy_nano.html["Nanoサーバーへの接続"]. 」
+. iSCSIを設定するには、Nano Serverで次のPowerShellコマンドレットを実行します。
++
+....
+# Start iSCSI service, if it is not already running
+Start-Service msiscsi
+....
++
+....
+# Create a new iSCSI target portal
+New-IscsiTargetPortal â€“TargetPortalAddress <SVM LIF>
+....
++
+....
+# View the available iSCSI targets and their node address
+Get-IscsiTarget
+....
++
+....
+# Connect to iSCSI target
+Connect-IscsiTarget -NodeAddress <NodeAddress>
+....
++
+....
+# NodeAddress is retrived in above cmdlet Get-IscsiTarget
+# OR
+Get-IscsiTarget | Connect-IscsiTarget
+....
++
+....
+# View the established iSCSI session
+Get-IscsiSession
+....
++
+ # Note the InitiatorNodeAddress retrieved in the above cmdlet Get-IscsiSession. This is the IQN for Nano server and this needs to be added in the Initiator group on NetApp Storage
++
+....
+# Rescan the disks
+Update-HostStorageCache
+....
+
+
+. イニシエータグループにイニシエータを追加します。
++
+ Add the InitiatorNodeAddress retrieved from the cmdlet Get-IscsiSession to the Initiator Group on NetApp Controller
+
+
+. MPIOを設定します。
++
+....
+# Enable MPIO Feature
+Enable-WindowsOptionalFeature -Online -FeatureName MultipathIo
+....
++
+....
+# Get the Network adapters and their IPs
+Get-NetIPAddress â€“AddressFamily IPv4 â€“PrefixOrigin <Dhcp or Manual>
+....
++
+....
+# Create one MPIO-enabled iSCSI connection per network adapter
+Connect-IscsiTarget -NodeAddress <NodeAddress> -IsPersistent $True â€“IsMultipathEnabled $True â€“InitiatorPortalAddress <IP Address of ethernet adapter>
+....
++
+....
+# NodeAddress is retrieved from the cmdlet Get-IscsiTarget
+# IPs are retrieved in above cmdlet Get-NetIPAddress
+....
++
+....
+# View the connections
+Get-IscsiConnection
+....
+
+
+. ブロックストレージを検出
++
+....
+# Rescan disks
+Update-HostStorageCache
+....
++
+....
+# Get details of disks
+Get-Disk
+....
++
+....
+# Initialize disk
+Initialize-Disk -Number <DiskNumber> -PartitionStyle <GPT or MBR>
+....
++
+....
+# DiskNumber is retrived in the above cmdlet Get-Disk
+# Bring the disk online
+Set-Disk -Number <DiskNumber> -IsOffline $false
+....
++
+....
+# Create a volume with maximum size and default drive letter
+New-Partition -DiskNumber <DiskNumber> -UseMaximumSize -AssignDriveLetter
+....
++
+....
+# To choose the size and drive letter use -Size and -DriveLetter parameters
+# Format the volume
+Format-Volume -DriveLetter <DriveLetter> -FileSystem <FAT32 or NTFS or REFS>
+....
+
+
+
+
+== SANからのブート
+
+物理ホスト（サーバ）またはHyper-V VMは、内蔵ハードディスクではなくNetApp LUNから直接Windows Server OSをブートできます。SANブートのアプローチでは、ブート元のOSイメージは、物理ホストまたはVMに接続されたNetApp LUNに格納されます。物理ホストの場合、物理ホストのHBAは、NetApp LUNをブートに使用するように設定されます。VMの場合、NetApp LUNはブート用のパススルーディスクとして接続されます。
+
+
+
+=== NetApp FlexCloneのアプローチ
+
+NetApp FlexCloneテクノロジを使用すると、次の図に示すように、OSイメージを含むブートLUNのクローンを瞬時に作成し、サーバやVMに接続して、クリーンなOSイメージを迅速に提供できます。
+
+image:win_image4.png["NetApp FlexCloneを使用したLUNのブート、幅=561、高さ=357"]
+
+
+
+=== 物理ホストのSANからのブート
+
+
+
+==== 前提条件
+
+* 物理ホスト（サーバ）に適切なiSCSI HBAまたはFC HBAが搭載されている。
+* Windows Serverをサポートしているサーバに適したHBAデバイスドライバをダウンロードしておきます。
+* サーバーにWindows Server ISOイメージを挿入するのに適したCD/DVDドライブまたは仮想メディアがあり、HBAデバイスドライバがダウンロードされている。
+* NetApp iSCSIまたはFC LUNは、NetAppストレージコントローラ上にプロビジョニングされます。
+
+
+
+
+==== 導入
+
+物理ホストに対してSANからのブートを設定するには、次の手順を実行します。
+
+. サーバHBAでBootBIOSを有効にします
+. iSCSI HBAの場合は、ブートBIOS設定でイニシエータIP、iSCSIノード名、およびアダプタのブートモードを設定します。
+. NetAppストレージコントローラでiSCSIまたはFCのイニシエータグループを作成する場合は、サーバHBAイニシエータをグループに追加します。サーバのHBAイニシエータは、FC HBAのWWPNまたはiSCSI HBAのiSCSIノード名です。
+. NetAppストレージコントローラにLUN ID 0のLUNを作成し、前の手順で作成したイニシエータグループに関連付けます。このLUNはブートLUNとして機能します。
+. HBAをブートLUNへの単一のパスに制限します。Windows ServerをブートLUNにインストールしたあとにパスを追加して、マルチパス機能を利用できます。
+. HBAのBootBIOSユーティリティを使用して、LUNをブートデバイスとして設定します。
+. ホストをリブートし、ホストBIOSユーティリティを起動します。
+. ブートLUNがブート順序の最初のデバイスになるようにホストBIOSを設定します。
+. Windows Server ISOから、インストールセットアップを起動します。
+. 「Where do you want to install Windows？」というメッセージが表示されたら、インストール画面の下部にある「Load Driver（ドライバのロード）」をクリックして、「Select Driver to Install（インストールするドライバの選択）」ページを起動します。前の手順でダウンロードしたHBAデバイスドライバのパスを入力し、ドライバのインストールを完了します。
+. これで、前の手順で作成したブートLUNがWindowsのインストールページに表示されるようになります。ブートLUNにWindows ServerをインストールするブートLUNを選択し、インストールを完了します。
+
+
+
+
+=== 仮想マシンのSANからのブート
+
+VMに対してSANからのブートを設定するには、次の手順を実行します。
+
+
+
+==== 導入
+
+. NetAppストレージコントローラでiSCSIまたはFCのイニシエータグループを作成する場合は、Hyper-VサーバのIQN（iSCSIの場合）またはWWN（FCの場合）をコントローラに追加します。
+. NetAppストレージコントローラでLUNまたはLUNクローンを作成し、前の手順で作成したイニシエータグループに関連付けます。これらのLUNは、VMのブートLUNとして機能します。
+. Hyper-Vサーバ上のLUNを検出してオンラインにし、初期化します。
+. LUNをオフラインにします。
+. [Connect Virtual Hard Disk]ページで、[Attach a Virtual Hard Disk]オプションを使用してVMを作成します。
+. LUNをVMにパススルーディスクとして追加します。
++
+.. VM設定を開きます。
+.. [IDE Controller 0]をクリックし、[Hard Drive]を選択して、[Add]をクリックします。[IDE Controller 0]を選択すると、このディスクがVMの最初の起動デバイスになります。
+.. [Hard Disk]オプションで[Physical Hard Disk]を選択し、リストからパススルーディスクとしてディスクを選択します。ディスクは、前の手順で設定したLUNです。
+
+
+. パススルーディスクにWindows Serverをインストールします。
+
+
+
+
+=== ベストプラクティス
+
+* LUNがオフラインであることを確認します。そうしないと、ディスクをVMにパススルーディスクとして追加できません。
+* LUNが複数存在する場合は、ディスク管理でLUNのディスク番号をメモしておいてください。VMのリストにはディスク番号が記載されているため、この処理は必須です。また、VMのパススルーディスクとしてのディスクの選択は、このディスク番号に基づいて行われます。
+* NetAppでは、iSCSI NICのNICチーミングを避けることを推奨しています。
+* NetAppでは、ストレージ用にホストに設定されたONTAP MPIOを使用することを推奨しています。
+

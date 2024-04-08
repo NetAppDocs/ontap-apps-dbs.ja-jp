@@ -1,29 +1,29 @@
 ---
 sidebar: sidebar 
 permalink: mssql/mssql-data-protection.html 
-keywords: MS-SQL,mssql,SQL Server, SnapCenter, data protection 
-summary: ONTAPを使用したMicrosoft SQL Serverのデータ保護 
+keywords: MSSQL,SQL Server, SnapCenter, data protection, app-consistent backup, ONTAP 
+summary: SnapCenterおよびT-SQLコマンドを使用したONTAP上のMicrosoft SQL Serverデータベースの保護 
 ---
-= ONTAPを使用したMicrosoft SQL Serverのデータ保護
+= NetApp管理ソフトウェアによるMicrosoft SQL Serverデータ保護
 :allow-uri-read: 
 :imagesdir: ../media/
 
 
 [role="lead"]
-データベースの保護は、どのような組織にとっても重要です。データのサイズとデータベースの数が増えるにつれて、目標復旧時間（RTO）と目標復旧時点（RPO）を維持することが非常に重要になります。
-
-データベースバックアップの主な考慮事項は、NetAppのSnapshotテクノロジの活用です。アプリケーションと整合性のあるバックアップとデータベースのレイアウトも、NetApp SnapCenterによるオーケストレーションが可能なRTOとRPOを達成するための重要な考慮事項です。
+データベースのバックアップは、ビジネス要件に基づいて計画します。ONTAPのNetApp Snapshotテクノロジを組み合わせ、Microsoft SQL Server APIを活用することで、ユーザデータベースのサイズに関係なく、アプリケーションと整合性のあるバックアップを迅速に作成できます。より高度なデータ管理やスケールアウトデータ管理の要件に対応するために、NetAppはSnapCenterを提供しています。
 
 
 
 == SnapCenter
 
-SnapCenterは、エンタープライズアプリケーション向けのNetAppデータ保護ソフトウェアです。NetApp SnapCenterソフトウェアとPlug-in for SQL ServerおよびPlug-in for Microsoft Windowsを併用することで、SQL Serverデータベースを迅速かつ簡単に保護できます。
+SnapCenterは、エンタープライズアプリケーション向けのNetAppデータ保護ソフトウェアです。SnapCenter Plug-in for SQL Serverや、SnapCenter Plug-in for Microsoft Windowsで管理されるOS処理を使用して、SQL Serverデータベースを迅速かつ簡単に保護できます。
 
-この製品を使用すると、アプリケーションと整合性のあるバックアップ、自動クローニング、SQL Serverデータベース、インスタンス、可用性グループのリストアとリカバリを実行できます。
+SQL Serverインスタンスは、スタンドアロンセットアップ、フェイルオーバークラスタインスタンス、または常時稼働の可用性グループにすることができます。その結果、データベースの保護、クローニング、リストアをプライマリコピーまたはセカンダリコピーから単一コンソールで実行できます。SnapCenterでは、SQL Serverデータベースをオンプレミス、クラウド、ハイブリッド構成の両方で管理できます。また、開発やレポート作成のために、元のホストまたは代替ホストに数分でデータベースコピーを作成することもできます。
 
 
-TIP: * NetAppでは* SnapCenterを使用してSnapshotコピーを作成することを推奨しています。
+TIP: * NetAppでは* SnapCenterを使用してSnapshotコピーを作成することを推奨しています。以下に示すT-SQL方式も機能しますが、SnapCenterでは、バックアップ、リストア、クローニングのプロセスを完全に自動化できます。また、検出を実行して、正しいSnapshotが作成されていることを確認します。事前設定は必要ありません。
+な...何だ?
+また、SQL Serverでは、作成時にSnapshotに正しいデータが存在するように、OSとストレージの間で調整を行う必要があります。ほとんどの場合、これを行う唯一の安全な方法は、SnapCenterまたはT-SQLを使用することです。この追加の調整なしで作成されたSnapshotは、確実にリカバリできない可能性があります。
 
 SQL Server Plug-in for SnapCenterの詳細については、を参照してください。 link:https://www.netapp.com/pdf.html?item=/media/12400-tr4714.pdf["TR-4714：『Best Practice Guide for SQL Server using NetApp SnapCenter』"^]。
 
@@ -31,11 +31,11 @@ SQL Server Plug-in for SnapCenterの詳細については、を参照してく�
 
 == T-SQLスナップショットを使用したデータベースの保護
 
-SQL Server 2022では、MicrosoftがT-SQLスナップショットを導入しました。これは、データベース管理者が簡単に使用できなかった従来の方法よりも利点が組み込まれています。ONTAP REST APIを利用すると、Snapshotボリュームに対するコマンドを呼び出すことができます。
+SQL Server 2022では、MicrosoftがT-SQLスナップショットを導入しました。これにより、バックアップ処理のスクリプト作成と自動化を行うことができます。フルサイズのコピーを実行する代わりに、Snapshot用にデータベースを準備できます。データベースのバックアップ準備が完了したら、ONTAP REST APIを使用してSnapshotを作成できます。
 
 次に、バックアップワークフローの例を示します。
 
-. ALTERコマンドを使用してデータベースをフリーズします。基盤となるストレージで整合性のあるスナップショットを実行できます。その後、backupコマンドを使用してデータベースを解凍し、Snapshotを記録できます。
+. ALTERコマンドを使用してデータベースをフリーズします。これにより、基盤となるストレージ上で整合性のあるSnapshotを作成するためのデータベースが準備されます。フリーズ後、backupコマンドを使用してデータベースをフリーズ解除し、スナップショットを記録できます。
 . 新しいbackup groupコマンドとbackup serverコマンドを使用して、ストレージボリューム上の複数のデータベースのスナップショットを同時に実行します。
 . フルバックアップまたはCOPY_ONLYフルバックアップを実行します。これらのバックアップもmsdbに記録されます。
 . スナップショットフルバックアップ後に通常のストリーミング方式で作成されたログバックアップを使用して、ポイントインタイムリカバリを実行します。必要に応じて、ストリーミング差分バックアップもサポートされます。

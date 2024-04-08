@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: vmware/vmware-srm-replication_topologies.html 
 keywords: vmware, site, recovery manager, vsrm, replication, technologies, snapmirror layouts, array manager, snapvault, qtress, fc, iscsi, supported 
-summary: ONTAP 9 では、クラスタの物理コンポーネントはクラスタ管理者には見えますが、クラスタを使用しているアプリケーションやホストからは直接見えません。 
+summary: ONTAPとSnapMirrorおよびVMware SRMを使用したレプリケーショントポロジ。 
 ---
 = レプリケーショントポロジ
 :hardbreaks:
@@ -36,13 +36,13 @@ VMware vCenter Site Recovery Manager では、各 NetApp SVM がアレイとし�
 
 次の図は、 SRM と SRA でサポートされる SnapMirror 関係のレイアウトシナリオを示しています。レプリケートされたボリューム内の各 VM は、各サイトの 1 つの SRM アレイ（ SVM ）上のデータのみを所有します。
 
-image:vsrm-ontap9_image7.png["エラー：グラフィックイメージがありません"]
+image:vsrm-ontap9_image7.png["SnapMirror関係のレイアウト"]
 
-image:vsrm-ontap9_image8.png["エラー：グラフィックイメージがありません"]
+image:vsrm-ontap9_image8.png["SnapMirror関係のレイアウト"]
 
-image:vsrm-ontap9_image9.png["エラー：グラフィックイメージがありません"]
+image:vsrm-ontap9_image9.png["SnapMirror関係のレイアウト"]
 
-image:vsrm-ontap9_image10.png["エラー：グラフィックイメージがありません"]
+image:vsrm-ontap9_image10.png["SnapMirror関係のレイアウト"]
 
 
 
@@ -50,7 +50,7 @@ image:vsrm-ontap9_image10.png["エラー：グラフィックイメージがあ�
 
 次のスクリーンショットに示すように、 SRM でアレイベースレプリケーション（ ABR ）を使用すると、保護グループは単一のアレイペアに分離されます。このシナリオでは、 `SVM1` および `SVM2` ピア関係を設定する `SVM3` および `SVM4` リカバリサイトで。ただし、保護グループを作成するときに選択できるアレイペアは 2 つのうちの 1 つだけです。
 
-image:vsrm-ontap9_image11.png["エラー：グラフィックイメージがありません"]
+image:vsrm-ontap9_image11.png["アレイペア"]
 
 
 
@@ -58,13 +58,13 @@ image:vsrm-ontap9_image11.png["エラー：グラフィックイメージがあ�
 
 サポート対象外の構成では、個々の VM が所有する複数の SVM にデータ（ VMDK または RDM ）があります。次の図に示す例では、 `VM1` SRMで保護を設定できません。理由： `VM1` 2つのSVM上のデータがあります。
 
-image:vsrm-ontap9_image12.png["エラー：グラフィックイメージがありません"]
+image:vsrm-ontap9_image12.png["サポートされない構成です"]
 
-image:vsrm-ontap9_image13.png["エラー：グラフィックイメージがありません"]
+image:vsrm-ontap9_image13.png["サポートされない構成です"]
 
 1 つのネットアップボリュームを 1 つのソース SVM から同じ SVM または異なる SVM の複数のデスティネーションにレプリケートするレプリケーション関係は、 SnapMirror ファンアウトと呼ばれます。SRM ではファンアウトはサポートされていません。次の図の例では、 `VM1` SnapMirrorを使用して2つの異なる場所にレプリケートされるため、SRMで保護を設定できません。
 
-image:vsrm-ontap9_image14.png["エラー：グラフィックイメージがありません"]
+image:vsrm-ontap9_image14.png["サポートされない構成です"]
 
 
 
@@ -72,7 +72,7 @@ image:vsrm-ontap9_image14.png["エラー：グラフィックイメージがあ�
 
 SnapMirror でソースボリュームをデスティネーションボリュームにレプリケートし、そのデスティネーションボリュームを SnapMirror で別のデスティネーションボリュームにレプリケートする SnapMirror 関係のカスケードを、 SRM ではサポートしていません。次の図に示すシナリオでは、 SRM を使用してサイト間のフェイルオーバーを実行することはできません。
 
-image:vsrm-ontap9_image15.png["エラー：グラフィックイメージがありません"]
+image:vsrm-ontap9_image15.png["SnapMirror関係のカスケード"]
 
 
 
@@ -103,11 +103,11 @@ VMware 環境では、各データストアに Universal Unique Identifier （ U
 
 次の図に、 SnapMirror から SnapVault へのカスケード構成を示します。SnapVault デスティネーションがプライマリサイトの停止の影響を受けない DR サイトまたは第 3 のサイトにある場合、フェイルオーバー後にバックアップを続行できるように環境を再設定できます。
 
-image:vsrm-ontap9_image16.png["エラー：グラフィックイメージがありません"]
+image:vsrm-ontap9_image16.png["SnapMirrorからSnapVaultへのカスケード"]
 
 次の図は、 SRM を使用して SnapMirror レプリケーションをプライマリサイトに反転したあとの構成を示しています。SnapMirror ソースから SnapVault バックアップが実行されるように環境が再設定されている。このセットアップは、 SnapMirror SnapVault のファンアウト構成です。
 
-image:vsrm-ontap9_image17.png["エラー：グラフィックイメージがありません"]
+image:vsrm-ontap9_image17.png["SnapMirrorからSnapVaultへのカスケードリバース"]
 
 SRM でフェイルバックを実行し、 SnapMirror 関係が再度反転されると、本番環境のデータはプライマリサイトに戻ります。SnapMirror と SnapVault のバックアップにより、 DR サイトへのフェイルオーバー前と同じ方法でこのデータを保護できるようになりました。
 

@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: mssql/mssql-memory-configuration.html 
-keywords: MS-SQL,mssql,SQL Server 
-summary: ONTAP上のMicrosoft SQL Server 
+keywords: MSSQL,SQL Server, memory 
+summary: Microsoft SQL Serverのメモリ構成 
 ---
 = Microsoft SQL Serverのメモリ構成
 :allow-uri-read: 
@@ -10,7 +10,7 @@ summary: ONTAP上のMicrosoft SQL Server
 
 
 [role="lead"]
-次の項では、重要なメモリ構成設定の一部について説明します。
+次のセクションでは、データベースのパフォーマンスを最適化するためのSQL Serverメモリ設定の構成について説明します。
 
 
 
@@ -37,17 +37,11 @@ SQL Server Management Studioを使用してサーバの最小メモリまたは�
 
 ....
 EXECUTE sp_configure 'show advanced options', 1
-
 GO
-
 EXECUTE sp_configure 'min server memory (MB)', 2048
-
 GO
-
 EXEC sp_configure 'max server memory (MB)', 120832
-
 GO
-
 RECONFIGURE WITH OVERRIDE
 ....
 
@@ -72,7 +66,7 @@ index create memoryオプションは、通常は変更しないもう1つの高
 
 クエリを実行すると、SQL Serverは効率的に実行するために最適なメモリ容量を割り当てようとします。
 
-デフォルトでは、クエリごとの最小メモリ設定では、実行するクエリごとに>または=が1024KBに割り当てられます。SQL Serverがインデックス作成処理に割り当てられるメモリ容量を動的に管理できるようにするには、この設定をデフォルト値の0のままにしておくことを推奨します。ただし、SQL ServerのRAM容量が効率的に実行するために必要な容量を超えている場合は、この設定を大きくすると、一部のクエリのパフォーマンスが向上することがあります。したがって、SQL Server、その他のアプリケーション、またはオペレーティングシステムで使用されていないサーバ上のメモリが使用可能であれば、この設定を大きくすることでSQL Serverの全体的なパフォーマンスを向上させることができます。空きメモリがない場合、この設定を増やすと、全体的なパフォーマンスが低下する可能性があります。
+デフォルトでは、クエリごとの最小メモリ設定では、実行するクエリごとに>=が1024KBに割り当てられます。SQL Serverがインデックス作成処理に割り当てられるメモリ容量を動的に管理できるようにするには、この設定をデフォルト値の0のままにしておくことを推奨します。ただし、SQL ServerのRAM容量が効率的に実行するために必要な容量を超えている場合は、この設定を大きくすると、一部のクエリのパフォーマンスが向上することがあります。したがって、SQL Server、その他のアプリケーション、またはオペレーティングシステムで使用されていないサーバ上のメモリが使用可能であれば、この設定を大きくすることでSQL Serverの全体的なパフォーマンスを向上させることができます。空きメモリがない場合、この設定を増やすと、全体的なパフォーマンスが低下する可能性があります。
 
 image:mssql-min-memory-per-query.png["エラー：グラフィックイメージがありません"]
 
@@ -108,14 +102,9 @@ image:mssql-min-memory-per-query.png["エラー：グラフィックイメージ
 
 ....
 USE master
-
 GO
-
 ALTER SERVER CONFIGURATION
-
 SET BUFFER POOL EXTENSION ON
-
   (FILENAME = ‘P:\BUFFER POOL EXTENSION\SQLServerCache.BUFFER POOL EXTENSION', SIZE = 32 GB);
-
 GO
 ....

@@ -1,0 +1,144 @@
+---
+sidebar: sidebar 
+permalink: microsoft/win_smb.html 
+keywords: Windows,Hyper-V,VHDX,VM,Virtual 
+summary: SMB3を使用したHyper-V向けONTAP NASストレージ 
+---
+= SMB環境でのプロビジョニング
+:allow-uri-read: 
+
+
+[role="lead"]
+ONTAPは、SMB3プロトコルを使用して、Hyper-V仮想マシン用に耐障害性とパフォーマンスに優れたNASストレージを提供します。
+
+CIFSプロトコルを使用してSVMを作成すると、Windows Active Directoryドメインに属するSVM上でCIFSサーバが実行されます。SMB共有をホームディレクトリに使用したり、Hyper-VおよびSQL Serverのワークロードをホストしたりできます。ONTAPでは、SMB 3.0の次の機能がサポートされます。
+
+* 永続的ハンドル（継続的可用性を備えたファイル共有）
+* カンシフロトコル
+* クラスタクライアントフェイルオーバー
+* スケールアウト対応
+* ODX
+* リモオトVSS
+
+
+
+
+== Windows ServerでのSMB共有のプロビジョニング
+
+
+
+=== 前提条件
+
+Windows ServerのNAS環境でNetAppストレージを使用するには、次の要件があります。
+
+* ONTAPクラスタに有効なCIFSライセンスが必要です。
+* アグリゲートが少なくとも1つ作成されている。
+* データ論理インターフェイス（LIF）が1つ作成され、そのデータLIFをCIFS用に設定する必要があります。
+* DNSが設定したWindows Active Directoryドメインサーバとドメイン管理者のクレデンシャルがある。
+* NetAppクラスタ内の各ノードは、Windowsドメインコントローラと時刻が同期されます。
+
+
+
+
+=== Active Directoryドメインコントローラ
+
+NetAppストレージコントローラは、Windowsサーバと同様にActive Directoryに参加して、Active Directory内で動作することができます。SVMの作成時に、ドメイン名とネームサーバの詳細を指定してDNSを設定できます。SVMは、Windows Serverと同様の方法で、DNSにActive Directory / Lightweight Directory Access Protocol（LDAP）サーバを照会することで、Active Directoryドメインコントローラの検索を試みます。
+
+CIFSのセットアップが正しく機能するためには、NetAppストレージコントローラとWindowsドメインコントローラの時刻が同期されている必要があります。NetAppでは、WindowsドメインコントローラとNetAppストレージコントローラの間の時間差を5分以内にすることを推奨しています。ONTAPクラスタを外部の時間ソースと同期するには、ネットワークタイムプロトコル（NTP）サーバを設定することを推奨します。WindowsドメインコントローラをNTPサーバとして設定するには、ONTAPクラスタで次のコマンドを実行します。
+
+....
+$domainControllerIP = "<input IP Address of windows domain controller>"
+cluster::> system services ntp server create â€“server $domainControllerIP
+....
+
+
+=== 導入
+
+. 新しいSVMを作成してNASプロトコルCIFSを有効にします。新しいSVMは次のいずれかの方法で作成できます。
++
+** NetApp ONTAPノCLIコマント
+** System Manager の略
+** NetApp PowerShellツールキット
+
+
+. CIFSプロトコルの設定
++
+.. CIFSサーバ名を指定します。
+.. CIFSサーバを追加するActive Directoryを指定します。CIFSサーバをActive Directoryに追加するには、ドメイン管理者のクレデンシャルが必要です。
+
+
+. SVMに各クラスタノードのLIFを割り当てます。
+. SVMでCIFSサービスを開始します。
+. アグリゲートからNTFSセキュリティ形式のボリュームを作成します。
+. ボリュームにqtreeを作成します（オプション）。
+. Windows Serverからアクセスできるように、ボリュームまたはqtreeディレクトリに対応する共有を作成します。共有をHyper-Vストレージに使用する場合は、共有の作成時にHyper-Vの継続的可用性を有効にするを選択します。これにより、ファイル共有の高可用性が実現します。
+. 作成した共有を編集し、共有へのアクセスに必要に応じて権限を変更します。SMB共有にアクセスするすべてのサーバのコンピュータアカウントにアクセスを許可するように、SMB共有の権限を設定する必要があります。
+
+
+
+
+=== ホスト統合
+
+NASプロトコルCIFSは、ONTAPに標準で統合されています。したがって、Windows Serverは、NetApp ONTAP上のデータにアクセスするために追加のクライアントソフトウェアを必要としません。NetAppストレージコントローラは、ネットワーク上でネイティブファイルサーバとして認識され、Microsoft Active Directory認証をサポートします。
+
+Windows Serverで作成したCIFS共有を検出するには、次の手順を実行します。
+
+. 管理者グループのメンバーとしてWindows Serverにログインします。
+. run.exeに移動し、共有にアクセスするために作成したCIFS共有の完全パスを入力します。
+. 共有をWindows Serverに永続的にマッピングするには、[This PC]を右クリックし、[Map Network Drive]をクリックして、CIFS共有のパスを指定します。
+. 一部のCIFS管理タスクは、Microsoft管理コンソール（MMC）を使用して実行できます。これらのタスクを実行する前に、MMCメニューコマンドを使用してMMCをNetApp ONTAPストレージに接続する必要があります。
++
+.. Windows ServerでMMCを開くには、サーバーマネージャの[ツール]セクションで[コンピュータの管理]をクリックします。
+.. [その他の操作]をクリックして[別のコンピュータに接続]をクリックすると、[コンピュータの選択]ダイアログが開きます。
+.. CIFSサーバの名前またはCIFSサーバに接続するSVM LIFのIPアドレスを入力します。
+.. [システムツール]と[共有フォルダ]を展開して、開いているファイル、セッション、および共有を表示および管理します。
+
+
+
+
+
+
+=== ベストプラクティス
+
+* NetAppでは、ボリュームがあるノードから別のノードに移動されたときやノードで障害が発生したときにダウンタイムが発生しないことを確認するために、ファイル共有でcontinuous availabilityオプションを有効にすることを推奨しています。
+* Hyper-V over SMB環境用にVMをプロビジョニングする場合はNetApp、ストレージシステムでコピーオフロードを有効にすることを推奨します。これにより、VMのプロビジョニング時間が短縮されます。
+* ストレージクラスタでSQL Server、Hyper-V、CIFSサーバなどの複数のSMBワークロードをホストするNetApp場合は、別 々 のアグリゲートにある別 々 のSVMで異なるSMBワークロードをホストすることを推奨します。この構成は、各ワークロードに固有のストレージネットワークとボリュームレイアウトが必要になるため、有益です。
+* NetAppでは、Hyper-VホストとNetApp ONTAPストレージを10GBのネットワーク（使用可能な場合）で接続することを推奨しています。1GBのネットワーク接続の場合、NetAppでは、複数の1GBポートで構成されるインターフェイスグループを作成することを推奨します。
+* NetAppでは、あるSMB 3.0共有から別の共有にVMを移行する際に、移行時間を短縮するために、ストレージシステムでCIFSコピーオフロード機能を有効にすることを推奨しています。
+
+
+
+
+=== 覚えておくべきこと
+
+* SMB環境用のボリュームをプロビジョニングする場合は、ボリュームをNTFSセキュリティ形式で作成する必要があります。
+* クラスタ内のノードの時間設定は、それに応じて設定する必要があります。NetApp CIFSサーバがWindows Active Directoryドメインに参加している必要がある場合は、NTPを使用します。
+* 永続的ハンドルは、HAペアのノード間でのみ機能します。
+* 監視プロトコルは、HAペアのノード間でのみ機能します。
+* 継続的可用性を備えたファイル共有は、Hyper-VおよびSQL Serverワークロードでのみサポートされます。
+* SMBマルチチャネルはONTAP 9.4以降でサポートされます。
+* RDMAはサポートされません。
+* Refsはサポートされていません。
+
+
+
+
+== NanoサーバーでのSMB共有のプロビジョニング
+
+Nano Serverでは、NetAppストレージコントローラ上のCIFS共有上のデータにアクセスするために、追加のクライアントソフトウェアは必要ありません。
+
+Nano ServerからCIFS共有にファイルをコピーするには、リモートサーバで次のコマンドレットを実行します。
+
+ $ip = "<input IP Address of the Nano Server>"
+....
+# Create a New PS Session to the Nano Server
+$session = New-PSSession -ComputerName $ip -Credential ~\Administrator
+....
+ Copy-Item -FromSession $s -Path C:\Windows\Logs\DISM\dism.log -Destination \\cifsshare
+* `cifsshare` は、NetAppストレージコントローラ上のCIFS共有です。
+* Nano Serverにファイルをコピーするには、次のコマンドレットを実行します。
++
+ Copy-Item -ToSession $s -Path \\cifsshare\<file> -Destination C:\
+
+
+フォルダの内容全体をコピーするには、フォルダ名を指定し、コマンドレットの末尾にある-Recurseパラメータを使用します。

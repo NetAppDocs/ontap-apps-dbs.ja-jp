@@ -1,0 +1,36 @@
+---
+section: Hyper-V
+title: Hyper-V
+entries:
+- title: 導入ガイドラインとストレージのベストプラクティス
+  entries:
+  - title: 概要
+    url: "/microsoft/win_overview.html"
+  - title: NetAppストレージおよびWindows Server環境
+    url: "/microsoft/win_environment.html"
+  - title: SAN環境でのプロビジョニング
+    url: "/microsoft/win_san.html"
+  - title: SMB環境でのプロビジョニング
+    url: "/microsoft/win_smb.html"
+  - title: NetApp上のHyper-Vストレージインフラ
+    url: "/microsoft/win_hyperv_infra.html"
+  - title: ストレージ効率
+    url: "/microsoft/win_efficiency.html"
+  - title: セキュリティ
+    url: "/microsoft/win_security.html"
+  - title: Nanoサーバーの展開
+    url: "/microsoft/win_deploy_nano.html"
+  - title: Hyper-Vクラスタの導入
+    url: "/microsoft/win_deploy_hyperv.html"
+  - title: クラスタ環境へのHyper-Vライブマイグレーションの導入
+    url: "/microsoft/win_deploy_hyperv_lmce.html"
+  - title: クラスタ環境外でのHyper-Vライブマイグレーションの導入
+    url: "/microsoft/win_deploy_hyperv_lmoce.html"
+  - title: Hyper-Vストレージのライブマイグレーションの導入
+    url: "/microsoft/win_deploy_hyperv_slm.html"
+  - title: クラスタ環境外にHyper-Vレプリカを導入
+    url: "/microsoft/win_deploy_hyperv_replica_oce.html"
+  - title: クラスタ環境へのHyper-Vレプリカの導入
+    url: "/microsoft/win_deploy_hyperv_replica_ce.html"
+  - title: 追加情報の参照先
+    url: "/microsoft/win_additional_information.html"

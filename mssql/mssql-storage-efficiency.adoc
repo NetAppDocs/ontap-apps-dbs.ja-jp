@@ -1,18 +1,18 @@
 ---
 sidebar: sidebar 
 permalink: mssql/mssql-storage-efficiency.html 
-keywords: MS-SQL,mssql,SQL Server 
-summary: ONTAP上のMicrosoft SQL Server 
+keywords: MSSQL,SQL Server, efficiency, compression, deduplication 
+summary: Microsoft SQL ServerとONTAPのStorage Efficiency 
 ---
-= ONTAPによるMicrosoft SQL ServerのStorage Efficiency
+= Microsoft SQL ServerとStorage Efficiency
 :allow-uri-read: 
 :imagesdir: ../media/
 
 
 [role="lead"]
-Storage Efficiencyとは、消費するストレージスペースを最小限に抑えながら、システム全体のパフォーマンスにほとんど影響を与えずに、SQL Serverデータを格納、管理できる機能です。
+ONTAPのStorage Efficiency機能は、消費するストレージスペースが最小限に抑えられ、システム全体のパフォーマンスにほとんど影響しないようにSQL Serverデータを格納、管理できるように最適化されています。
 
-Storage Efficiencyは、RAID、プロビジョニング（全体的なレイアウトと利用率）、ミラーリング、その他のデータ保護テクノロジを組み合わせたものです。Snapshotコピー、シンプロビジョニング、FlexCloneなどのNetAppテクノロジを使用すると、インフラ内の既存のストレージを最適化し、将来のストレージ支出を先送りまたは回避することで、コスト削減を実現できます。これらのテクノロジを組み合わせて使用するほど、削減効果が大きくなります。
+Storage Efficiencyは、RAID、プロビジョニング（全体的なレイアウトと利用率）、ミラーリング、その他のデータ保護テクノロジを組み合わせたものです。Snapshot、シンプロビジョニング、クローニングなどのNetAppテクノロジは、インフラ内の既存のストレージを最適化し、将来のストレージ支出を先送りまたは回避します。これらのテクノロジを組み合わせて使用するほど、削減効果が大きくなります。
 
 
 
@@ -96,7 +96,7 @@ LVMの構成を慎重に計画すると、効率が向上し、ストレージ�
 
 NOTE: Storage Efficiencyとフラクショナルリザベーションの連動については、シンプロビジョニングに関する以下のセクションを参照してください。
 
-SQL Serverには、データを圧縮して効率的に管理する機能もあります。SQL Serverでは現在、行圧縮とページ圧縮の2種類のデータ圧縮がサポートされています。
+SQL Server自体には、データを圧縮して効率的に管理する機能もあります。SQL Serverでは現在、行圧縮とページ圧縮の2種類のデータ圧縮がサポートされています。
 
 行圧縮を使用すると、データストレージ形式が変更されます。たとえば、整数と小数を、ネイティブの固定長形式ではなく可変長形式に変更します。また、空白スペースを排除することで、固定長の文字列を可変長形式に変更します。ページ圧縮では、行圧縮と他の2つの圧縮方式（プレフィックス圧縮とディクショナリ圧縮）が実装されます。ページ圧縮の詳細については、 link:https://learn.microsoft.com/en-us/sql/relational-databases/data-compression/page-compression-implementation?view=sql-server-ver16&redirectedfrom=MSDN["ページ圧縮の実装"^]。
 

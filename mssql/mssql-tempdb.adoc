@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: mssql/mssql-tempdb.html 
-keywords: MS-SQL,mssql,SQL Server 
-summary: ONTAP上のMicrosoft SQL Server 
+keywords: MSSQL,SQL Server, tempdb, ONTAP 
+summary: ONTAPでのMicrosoft SQL Server tempdbの配置 
 ---
 = Microsoft SQL Server tempdbフアイル
 :allow-uri-read: 
@@ -10,7 +10,7 @@ summary: ONTAP上のMicrosoft SQL Server
 
 
 [role="lead"]
-NetAppでは、ディスクの断片化を避けるために、tempdbファイルを事前にフルサイズに拡張することを推奨しています。
+tempdbデータベースは大量に利用できます。ONTAPへのユーザデータベースファイルの最適な配置に加えて、tempdbデータファイルを変更して割り当ての競合を軽減
 
 ページ競合は、SQL Serverが新しいオブジェクトを割り当てるために特別なシステムページに書き込む必要がある場合に、グローバル割り当てマップ（GAM）、共有グローバル割り当てマップ（SGAM）、またはページ空きスペース（PFS）ページで発生する可能性があります。ラッチは、メモリ内のこれらのページを保護（ロック）します。ビジー状態のSQL Serverインスタンスでは、tempdbのシステムページでラッチを取得するのに時間がかかることがあります。その結果、クエリの実行時間が長くなり、ラッチ競合と呼ばれます。tempdbデータファイルを作成する場合は、次のベストプラクティスを参照してください。
 

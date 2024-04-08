@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmware-security-snapcenter.html 
-keywords: WP-7355, security, snapcenter, treat modeling, dast, vulnerability scanning, penetration testing 
-summary:  
+keywords: WP-7355, security, snapcenter, treat modeling, dast, vulnerability scanning, penetration testing,SCV,VMware,vSphere 
+summary: このドキュメントでは、VMware用SnapCenterプラグインのセキュリティについて説明します。 
 ---
 = SnapCenterプラグインVMware vSphere
 :allow-uri-read: 
@@ -16,7 +16,7 @@ NetApp SnapCenter Plug-in for VMware vSphereのソフトウェアエンジニア
 * *サードパーティのコード通貨。*ソフトウェアの開発およびオープンソースソフトウェア（OSS）の使用の一環として、製品に組み込まれているOSSに関連するセキュリティの脆弱性に対処することが重要です。これは、OSSコンポーネントのバージョンに、いつでも新たに検出された脆弱性が報告される可能性があるため、継続的な取り組みです。
 * * 脆弱性スキャン。 * 脆弱性スキャンは、お客様にリリースされる前にネットアップ製品の一般的なセキュリティの脆弱性と既知のセキュリティの脆弱性を検出するためのものです。
 * *ペネトレーションテスト。*ペネトレーションテストは、システム、Webアプリケーション、またはネットワークを評価して、攻撃者によって悪用される可能性のあるセキュリティの脆弱性を検出するプロセスです。ネットアップでのペネトレーションテスト（ペンテスト）は、承認された信頼できる第三者企業のグループが実施します。このテスト範囲には、高度な攻撃方法やツールを使用した悪意のある侵入者やハッカーなどのアプリケーションやソフトウェアに対する攻撃の開始が含まれます。
-* *製品セキュリティインシデント対応活動。*セキュリティの脆弱性は、社内外で発見され、タイムリーに対処しないと、ネットアップの評判に深刻なリスクをもたらす可能性があります。このプロセスを容易にするために、Product Security Incident Response Team（PSIRT）は脆弱性を報告して追跡します。
+* *製品セキュリティインシデント対応アクティビティ。*セキュリティの脆弱性は社内外で発見され、タイムリーに対処しなければ、ネットアップの評判に深刻なリスクをもたらす可能性があります。このプロセスを容易にするために、Product Security Incident Response Team（PSIRT）は脆弱性を報告して追跡します。
 
 
 
@@ -43,7 +43,7 @@ individual files in /usr/share/doc/*/copyright.
 Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
 permitted by applicable law.
 ....
-* *ロールベースアクセス制御（RBAC）。*ネットアップのONTAP ツールには、次の2種類のRBAC制御が関連付けられています。
+* * ロールベースアクセス制御 (RBAC) 。 * ONTAP ツールには、次の 2 種類の RBAC 制御が関連付けられています。
 +
 ** vCenter Server標準の権限。
 ** VMware vCenterプラグインに固有の権限。詳細については、を参照してください https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/scpivs44_role_based_access_control.html["ロールベースアクセス制御（ RBAC ）"^]。

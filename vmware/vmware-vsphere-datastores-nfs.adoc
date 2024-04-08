@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmware-vsphere-datastores-nfs.html 
-keywords: vSphere, datastore, VMFS, FC, FCoE, NVMe/FC, iSCSI, NFS, vVols 
-summary: このページでは、 VMware vSphere 環境に NetApp ONTAP ストレージ解決策を実装するためのベストプラクティスについて説明します。 
+keywords: vSphere, datastore, VMFS, FC, FCoE, NVMe/FC, iSCSI, NFS, vVols, NFSv3, NFSv4.1 
+summary: このページでは、ONTAPおよびNFS接続のデータストアを使用してVMware vSphereを実装する際のベストプラクティスについて説明します。 
 ---
 = NFS
 :hardbreaks:
@@ -14,7 +14,7 @@ summary: このページでは、 VMware vSphere 環境に NetApp ONTAP スト�
 
 
 [role="lead"]
-vSphere を使用すると、エンタープライズクラスの NFS アレイを使用して、 ESXi クラスタ内のすべてのノードへのデータストアへの同時アクセスを提供できます。データストアのセクションで説明したように、 vSphere で NFS を使用すると、使いやすさが向上し、ストレージ効率を可視化できるというメリットがあります。
+NetApp ONTAPは、とりわけエンタープライズクラスのスケールアウトNASアレイです。ONTAPは、VMware vSphereを強化し、多数のESXiホストからNFS接続データストアに同時にアクセスできるようにします。VMFSファイルシステムの制限をはるかに超えています。vSphereでNFSを使用すると、使いやすさとストレージ効率の可視化のメリットが得られます。詳細については、 link:vmware-vsphere-datastores-top.html["データストア"] セクション。
 
 vSphere で ONTAP NFS を使用する際に推奨されるベストプラクティスは次のとおりです。
 
@@ -22,8 +22,8 @@ vSphere で ONTAP NFS を使用する際に推奨されるベストプラクテ�
 * VMware は、 VMware Infrastructure 3 以降で NFSv3 をサポートしています。vSphere 6.0 では NFSv4.1 がサポートされるようになり、 Kerberos セキュリティなどの高度な機能が使用できるようになりました。NFSv3 ではクライアント側のロックが使用され、 NFSv4.1 ではサーバ側のロックが使用されます。ONTAP ボリュームは両方のプロトコルでエクスポートできますが、 ESXi は 1 つのプロトコルでしかマウントできません。この単一プロトコルのマウントにより、他の ESXi ホストが同じデータストアを別のバージョンでマウントすることができるわけではありません。すべてのホストが同じバージョン、つまり同じロック形式を使用するように、マウント時に使用するプロトコルバージョンを指定してください。NFS のバージョンをホスト間で混在させないでください。可能であれば、ホストプロファイルを使用して準拠しているかどうかを確認します
 +
 ** NFSv3 と NFSv4.1 間ではデータストアが自動変換されないため、新しい NFSv4.1 データストアを作成し、 Storage vMotion を使用して新しいデータストアに VM を移行します。
-** に記載されている NFS v4.1 と相互運用性に関する表の注を参照してください https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] をサポートするには、特定の ESXi パッチレベルが必要です。
-** vSphere 8.0U2以降では、VMwareでNFSv3でのnconnectがサポートされます。nconnectの詳細については、 link:vmware-vsphere-network.html#nfs["こちらをご覧ください"]。
+** に記載されている NFS v4.1 と相互運用性に関する表の注を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] をサポートするには、特定の ESXi パッチレベルが必要です。
+** vSphere 8.0U2以降では、VMwareでNFSv3でのnconnectがサポートされます。nconnectの詳細については、 link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vmware-vsphere8-nfsv3-nconnect.html["NetAppおよびVMwareでのNFSv3 nconnect機能"]
 
 
 * NFS エクスポートポリシーは、 vSphere ホストによるアクセスの制御に使用されます。複数のボリューム（データストア）で 1 つのポリシーを使用できます。NFSv3 では、 ESXi で sys （ UNIX ）セキュリティ形式が使用され、 VM を実行するためにルートマウントオプションが必要となります。ONTAP では、このオプションはスーパーユーザと呼ばれます。スーパーユーザオプションを使用する場合は、匿名ユーザ ID を指定する必要はありません。の値が異なるエクスポートポリシールールに注意してください `-anon` および `-allow-suid` 原因 SVM検出がONTAP ツールで問題を検出できるかどうか。ポリシーの例を次に示します。

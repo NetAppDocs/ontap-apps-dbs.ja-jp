@@ -47,23 +47,23 @@ HAクラスタを設定するには、次の手順を実行します。
 . データセンターオブジェクトを右クリックし、[New Cluster]を選択します。[Basics]で、vSphere DRSとvSphere HAが有効になっていることを確認します。ウィザードの手順を実行します。
 
 
-image::../media/vmsc_3_1.png[概要が自動的に生成されたコンピュータのスクリーンショット,624,302]
+image::../media/vmsc_3_1.png[新規クラスタ,624,302]
 
 . クラスタを選択し、[Configure]タブに移動します。[vSphere HA]を選択し、[edit]をクリック
 . [Host Monitoring]で、[Enable Host Monitoring]オプションを選択します。
 
 
-image::../media/vmsc_3_2.png[概要が自動的に生成されたコンピュータのスクリーンショット,624,475]
+image::../media/vmsc_3_2.png[[Enable Host Monitoring]オプション,624,475]
 
 . [Failures and Responses]タブの[VM Monitoring]で、[VM Monitoring Only]オプションまたは[VM and Application Monitoring]オプションを選択します。
 
 
-image::../media/vmsc_3_3.png[概要が自動的に生成されたコンピュータのスクリーンショット,624,480]
+image::../media/vmsc_3_3.png[VMの監視,624,480]
 
 . [Admission Control]で、[HA Admission Control]オプションを[cluster resource reserve]に設定し、50%のCPU/MEMを使用します。
 
 
-image::../media/vmsc_3_4.png[概要が自動的に生成されたコンピュータのスクリーンショット,624,479]
+image::../media/vmsc_3_4.png[アドミッション制御,624,479]
 
 . [OK]をクリックします。
 . [DRS]を選択し、[編集]をクリックします。
@@ -236,22 +236,22 @@ image::../media/vmsc_3_8.png[概要が自動的に生成されたコンピュー
 * NetAppでは、移行が必要になるタイミングを管理者が判断して制御できるように、Storage DRSを手動モードで設定することを推奨しています。
 
 
-image::../media/vmsc_3_9.png[自動的に生成されたテキスト概要のクローズアップ,528,94]
+image::../media/vmsc_3_9.png[Storage DRS,528,94]
 
 . [Enable I/O Metric for SDRS Recommendations]チェックボックスがオンになっていることを確認します。メトリック設定はデフォルト値のままにできます。
 
 
-image::../media/vmsc_3_10.png[概要が自動的に生成されたコンピュータのスクリーンショット,624,241]
+image::../media/vmsc_3_10.png[SDRの推奨事項,624,241]
 
 . HAクラスタを選択し、[Next]をクリックします。
 
 
-image::../media/vmsc_3_11.png[概要が自動的に生成されたコンピュータのスクリーンショット,624,149]
+image::../media/vmsc_3_11.png[HAクラスタ,624,149]
 
 . サイトAに属するデータストアを選択し、[Next]をクリックします。
 
 
-image::../media/vmsc_3_12.png[概要が自動的に生成されたコンピュータのスクリーンショット,624,134]
+image::../media/vmsc_3_12.png[データストア,624,134]
 
 . オプションを確認し、[完了]をクリックします。
 . 同じ手順を繰り返してサイトBのデータストアクラスタを作成し、サイトBのデータストアのみが選択されていることを確認します。

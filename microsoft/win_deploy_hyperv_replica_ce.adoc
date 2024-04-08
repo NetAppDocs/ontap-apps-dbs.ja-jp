@@ -1,0 +1,65 @@
+---
+sidebar: sidebar 
+permalink: microsoft/win_deploy_hyperv_replica_ce.html 
+keywords: Windows,Hyper-V,VHDX,VM,Virtual 
+summary: Windows Serverフェイルオーバークラスタを使用してHyper-Vレプリカを導入および構成する方法について説明します。 
+---
+= クラスタ環境へのHyper-Vレプリカの導入
+:allow-uri-read: 
+
+
+[role="lead"]
+Windows Serverフェイルオーバークラスタを使用してHyper-Vレプリカを導入および構成する方法について説明します。
+
+
+
+== 前提条件
+
+* Hyper-Vクラスタを同じ場所または別の地理的な場所に配置し、プライマリクラスタとレプリカクラスタとして機能させる必要があります。セクションを確認します。link:\l["Hyper-Vクラスタリング"]」を参照してください。
+* 別 々 のサイトを使用する場合は、プライマリクラスタとレプリカクラスタ間の通信を許可するように各サイトのファイアウォールを設定する必要があります。
+* レプリカクラスタには、レプリケートされたワークロードを格納できるだけの十分なスペースが必要です。
+
+
+
+
+== 導入
+
+. クラスタのすべてのノードでファイアウォールルールを有効にします。プライマリクラスタとレプリカクラスタの両方のすべてのノードで、管理者権限で次のPowerShellコマンドレットを実行します。
++
+....
+# For Kerberos authentication
+get-clusternode | ForEach-Object \{Invoke-command -computername $_.name -scriptblock \{Enable-Netfirewallrule -displayname "Hyper-V Replica HTTP Listener (TCP-In)"}}
+....
++
+....
+ # For Certificate authentication
+get-clusternode | ForEach-Object \{Invoke-command -computername $_.name -scriptblock \{Enable-Netfirewallrule -displayname "Hyper-V Replica HTTPS Listener (TCP-In)"}}
+....
+. レプリカクラスタを構成します。
++
+.. レプリカクラスタとして使用されるクラスタへの接続ポイントとして使用するNetBIOS名とIPアドレスを使用して、Hyper-Vレプリカブローカーを設定します。
++
+... フェイルオーバークラスタマネージャを開きます。
+... クラスタを展開し、[Roles]をクリックして、[Actions]ペインで[Configure Role]をクリックします。
+... [Select Role]ページで[Hyper-V Replica Broker]を選択します。
+... クラスタ（クライアントアクセスポイント）への接続ポイントとして使用するNetBIOS名とIPアドレスを指定します。
+... このプロセスでは、Hyper-Vレプリカブローカーの役割が作成されます。正常にオンラインになったことを確認します。
+
+
+.. レプリケーション設定を構成します。
++
+... 前の手順で作成したレプリカブローカーを右クリックし、[Replication Settings]をクリックします。
+... [このクラスタをレプリカサーバとして有効にする]を選択します。
+... [Authentication and Ports]セクションで、認証方法とポートを選択します。
+... [Authorization and storage]セクションで、このクラスタへのVMのレプリケートを許可するサーバを選択します。また、レプリケートされたVMが格納されるデフォルトの場所を指定します。
+
+
+
+
+
+
+
+
+== レプリケーション
+
+レプリケーションは、で説明したプロセスと似ています。 link:win_deploy_hyperv_replica_oce["クラスタ環境外のレプリカ"]。

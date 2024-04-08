@@ -22,7 +22,7 @@ vSphere では、 VM 、仮想ディスク、 VVOL 、またはデータスト�
 
 次の図は、 ONTAP クローニングを示しています。
 
-image:vsphere_ontap_image5.png["エラー：グラフィックイメージがありません"]
+image:vsphere_ontap_image5.png["ONTAPクローニング"]
 
 クローニングは、 ONTAP ソフトウェアを実行するシステムに複数のメカニズムを使用してオフロードできます。通常は、 VM 、 VVol 、データストアのレベルでオフロードします。これには次のものが含まれます。
 

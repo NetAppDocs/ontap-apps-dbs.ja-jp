@@ -1,16 +1,16 @@
 ---
 sidebar: sidebar 
 permalink: mssql/mssql-data-security.html 
-keywords: MS-SQL,mssql,SQL Server, securing databases, security 
-summary: ONTAP上のMicrosoft SQL Server 
+keywords: MSSQL,SQL Server, securing databases on ONTAP, snaplock, multiadmin verification, backup, tamperproof snapshots 
+summary: ONTAP上のMicrosoft SQL Serverのセキュリティ保護 
 ---
-= データベースノセキュリティ
+= ONTAP上のMicrosoft SQL Serverのセキュリティ保護
 :allow-uri-read: 
 :imagesdir: ../media/
 
 
 [role="lead"]
-データベース環境のセキュリティ保護は、データベース自体の管理にとどまらない多次元的な作業です。NetAppには、データベースインフラのストレージを保護するために設計された独自の機能がいくつか用意されています。
+SQL Serverデータベース環境のセキュリティ保護は、データベース自体の管理にとどまらない多次元的な取り組みです。ONTAPには、データベースインフラのストレージを保護するために設計された独自の機能がいくつか用意されています。
 
 
 

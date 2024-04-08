@@ -1,0 +1,63 @@
+---
+sidebar: sidebar 
+permalink: microsoft/win_efficiency.html 
+keywords: Windows,Hyper-V,VHDX,VM,Virtual 
+summary: Microsoft Hyper-VによるONTAP Storage Efficiency 
+---
+= ストレージ効率
+:allow-uri-read: 
+
+
+[role="lead"]
+ONTAPは、Microsoft Hyper-Vをはじめとする仮想環境向けに、業界をリードするStorage Efficiencyテクノロジを提供します。NetAppでは、ストレージ容量削減保証プログラムも提供しています。
+
+
+
+== NetAppの重複排除機能
+
+NetApp重複排除は、ストレージボリュームレベルで重複ブロックを削除することで機能します。論理コピーの数に関係なく、物理コピーは1つだけ保存されます。そのため、重複排除機能を使用すると、そのブロックのコピーが多数あるという錯覚が生じます。重複排除は、ボリューム全体の4KBブロックレベルで重複データブロックを自動的に削除します。このプロセスでは、ディスクへの物理的な書き込み回数が減るため、ストレージが再利用されてスペースが確保され、パフォーマンスが削減される可能性があります。Hyper-V環境では、重複排除機能によってスペースを70%以上削減できます。
+
+
+
+== シンプロビジョニング
+
+シンプロビジョニングは、ストレージを事前に割り当てる必要がないため、効率的にストレージをプロビジョニングできます。つまり、シンプロビジョニングを使用してボリュームまたはLUNを作成した場合、ストレージシステム上のスペースは使用されません。スペースは、データがLUNまたはボリュームに書き込まれ、データの格納に必要なスペースだけが使用されるまで未使用のままです。NetAppでは、ボリュームでシンプロビジョニングを有効にし、LUNリザベーションを無効にすることを推奨します。
+
+
+
+== Quality of Service の略
+
+clustered ONTAPのストレージQoSを使用すると、ストレージオブジェクトをグループ化し、グループにスループットの制限を設定できます。ストレージQoSを使用すると、ワークロードに対するスループットを制限したり、ワークロードのパフォーマンスを監視したりできます。これにより、ストレージ管理者は、組織、アプリケーション、ビジネスユニット、本番環境や開発環境ごとにワークロードを分離できます。
+
+エンタープライズ環境では、ストレージQoSによって次のことが実現されます。
+
+* ユーザのワークロード間での影響を防止
+* IT-as-a-Service（ITaaS）環境で満たす必要がある特定の応答時間がある重要なアプリケーションを保護します。
+* テナント間での影響を防止
+* 新しいテナントを1つずつ追加することで、パフォーマンスの低下を回避できます。
+
+
+QoSを使用すると、SVM、フレキシブルボリューム、LUN、またはファイルに送信するI/Oの量を制限できます。I/Oは処理数または物理スループットによって制限される場合があります。
+
+次の図は、最大スループット制限を適用する独自のQoSポリシーが設定されたSVMを示しています。
+
+image:win_image13.png["独自のQoSポリシーを適用したStorage Virtual Machine（幅= 319、高さ= 341）"]
+
+SVMに独自のQoSポリシーを設定し、ポリシーグループを監視するには、ONTAPクラスタで次のコマンドを実行します。
+
+....
+# create a new policy group pg1 with a maximum throughput of 5,000 IOPS
+cluster::> qos policy-group create pg1 -vserver vs1 -max-throughput 5000iops
+....
+....
+# create a new policy group pg2 without a maximum throughput
+cluster::> qos policy-group create pg2 -vserver vs2
+....
+....
+# monitor policy group performance
+cluster::> qos statistics performance show
+....
+....
+# monitor workload performance
+cluster::> qos statistics workload performance show
+....

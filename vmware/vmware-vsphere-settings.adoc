@@ -1,8 +1,8 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmware-vsphere-settings.html 
-keywords:  
-summary:  
+keywords: VMware,vSphere,ESXi,settings,NFS,iSCSI,FC,FCP 
+summary: このドキュメントでは、推奨されるストレージとネットワーク設定を分類して列挙します。 
 ---
 = 推奨される ESXi ホストとその他の ONTAP 設定
 :hardbreaks:
@@ -14,7 +14,11 @@ summary:
 
 
 [role="lead"]
-ネットアップでは、 ONTAP を使用する際に適切に動作する ESXi ホストのマルチパスと HBA タイムアウトの設定を、テスト結果に基づいて作成しました。これらは、 VMware vSphere 用の ONTAP ツールを使用して簡単に設定できます。サマリダッシュボードで、ホストシステムポートレットの設定の編集をクリックするか、 vCenter でホストを右クリックして、 ONTAP ツール > 推奨値の設定を選択します。9.8 リリースで現在推奨されているホスト設定は次のとおりです。
+NetAppは、NFSプロトコルとブロックプロトコルの両方に最適なESXiホスト設定を開発しました。また、NetAppとVMwareの内部テストに基づいて、ONTAPで適切に動作するようにマルチパスとHBAタイムアウトを設定するための具体的なガイダンスも提供されます。
+
+これらの値は、ONTAP tools for VMware vSphereを使用して簡単に設定できます。[Summary]ダッシュボードで、[Host Systems]ポートレットの[Edit Settings]をクリックするか、vCenterでホストを右クリックし、ONTAP tools]>[Set Recommended Values]に移動します。
+
+ここでは、9.8~9.13リリースで推奨されるホスト設定を示します。
 
 |===
 
@@ -48,7 +52,7 @@ summary:
 
 
 | NFS.MaxVolumes の場合 | vSphere 6.0以降：256に設定
-他のすべての NFS 構成では、 64 に設定されます。 | いいえ 
+その他のNFS構成はすべて64に設定されます。 | いいえ 
 
 
 | NFS41.MaxVolumes | vSphere 6.0 以降では、 256 に設定されます。 | いいえ 
@@ -152,7 +156,7 @@ ONTAP ツールでは、 ONTAP FlexVol および LUN の作成時に特定のデ
 現在使用可能なONTAPツールでは設定されていませんが、NetAppでは次の設定オプションを推奨しています。
 
 * ハイパフォーマンスな環境で、または単一の LUN データストアでパフォーマンスをテストする場合は、ラウンドロビン（ VMW_PSP_RR ）パス選択ポリシー（ PSP ）の負荷分散設定をデフォルトの IOPS 設定 1000 から 1 に変更することを検討します。VMware の技術情報を参照 https://kb.vmware.com/s/article/2069356["2069356"^] 詳細については、
-* vSphere 6.7 Update 1 では、 VMware がラウンドロビン PSP 用に新しいレイテンシの負荷分散メカニズムを導入しました。新しいオプションでは、 I/O に最適なパスを選択する際に、 I/O 帯域幅とパスレイテンシが考慮されます1 つのパスに別のパスよりも多くのネットワークホップがある場合や、 NetApp All SAN Array システムを使用している場合など、パス接続に同等でない環境では、この方法を使用するとメリットが得られます。を参照してください https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-B7AD0CA0-CBE2-4DB4-A22C-AD323226A257.html?hWord=N4IghgNiBcIA4Gc4AIJgC4FMB2BjAniAL5A["パス選択プラグインとポリシー"^] を参照してください。
+* vSphere 6.7 Update 1 では、 VMware がラウンドロビン PSP 用に新しいレイテンシの負荷分散メカニズムを導入しました。新しいオプションでは、 I/O に最適なパスを選択する際に、 I/O 帯域幅とパスレイテンシが考慮されますパス接続が異なる環境（あるパスのネットワークホップ数が別のパスよりも多い場合など）や、NetAppオールSANアレイシステムを使用している場合など、パス接続が同等でない環境で使用するとメリットがあります。を参照してください https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.storage.doc/GUID-B7AD0CA0-CBE2-4DB4-A22C-AD323226A257.html?hWord=N4IghgNiBcIA4Gc4AIJgC4FMB2BjAniAL5A["パス選択プラグインとポリシー"^] を参照してください。
 
 
 

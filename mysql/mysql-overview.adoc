@@ -14,7 +14,7 @@ summary: ONTAPでのMySQLの運用
 MariaDBやPercona MySQLを含むMySQLとその変種は、世界で最も人気のあるデータベースです。
 
 
-NOTE: ONTAPとMySQLデータベースに関するこのドキュメントは、以前に公開されていた_TR-4722：『MySQL database on NetApp ONTAP best practices』に代わるものです。_
+NOTE: ONTAPとMySQLデータベースに関するこのドキュメントは、以前に公開されていた_TR-4722：『MySQL database on ONTAP best practices』に代わるものです。_
 
 ONTAPは文字通りデータベース向けに設計されているため、ONTAPはMySQLデータベースに最適なプラットフォームです。データベースワークロードのニーズに対応するために、高度なQuality of Service（QoS；サービス品質）機能や基本的なFlexClone機能に対するランダムI/Oレイテンシの最適化など、多数の機能が特別に開発されました。
 

@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: vmware/vmware_vmsc_resiliency.html 
 keywords: VMware, Data protection, MetroCluster, SMBC, SnapMirror active sync, vMSC 
-summary: NetApp ONTAPを使用したvSphere Metroストレージクラスタの詳細 
+summary: ONTAPを使用したvSphere Metroストレージクラスタの詳細 
 ---
 = 計画的イベントと計画外イベントの耐障害性
 :hardbreaks:

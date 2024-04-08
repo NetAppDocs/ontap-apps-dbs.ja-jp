@@ -2,9 +2,9 @@
 sidebar: sidebar 
 permalink: vmware/vmware_vmsc_overview.html 
 keywords: VMware, Data protection, MetroCluster, SMBC, SnapMirror active sync, vMSC 
-summary: NetApp ONTAPを使用したvSphere Metroストレージクラスタ 
+summary: ONTAPを使用したvSphere Metroストレージクラスタ 
 ---
-= NetApp ONTAPを使用したvSphere Metroストレージクラスタ
+= ONTAPを使用したvSphere Metroストレージクラスタ
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -22,7 +22,7 @@ vMSCソリューションは、NetApp®MetroCluster™とSnapMirrorアクティ�
 
 == vSphere環境向けの継続的可用性ソリューション
 
-NetApp ONTAPのアーキテクチャは、柔軟性と拡張性に優れたストレージプラットフォームであり、データストアにSAN（FCP、iSCSI、NVMe-oF）サービスとNAS（NFS v3およびv4.1）サービスを提供します。NetApp AFF、ASA、FASの各ストレージシステムは、ONTAPオペレーティングシステムを使用して、ゲストストレージアクセス用にS3、SMB / CIFSなどの追加プロトコルを提供します。
+ONTAPのアーキテクチャは、柔軟性と拡張性に優れたストレージプラットフォームであり、データストアにSAN（FCP、iSCSI、NVMe-oF）サービスとNAS（NFS v3およびv4.1）サービスを提供します。NetApp AFF、ASA、FASの各ストレージシステムは、ONTAPオペレーティングシステムを使用して、ゲストストレージアクセス用にS3、SMB / CIFSなどの追加プロトコルを提供します。
 
 NetApp MetroClusterは、ネットアップのHA（コントローラフェイルオーバーまたはCFO）機能を使用してコントローラ障害から保護します。また、ローカルSyncMirrorテクノロジ、災害時のクラスタフェイルオーバー（オンデマンドのコントローラフェイルオーバーまたはCFOD）、ハードウェアの冗長性、地理的な分離によって高レベルの可用性を実現します。SyncMirrorは、アクティブにデータを提供しているローカルプレックス（ローカルシェルフ上）と、通常はデータを提供していないリモートプレックス（リモートシェルフ上）の2つのプレックスにデータを書き込むことで、MetroCluster構成の2つの部分にわたってデータを同期的にミラーリングします。ハードウェアの冗長性は、コントローラ、ストレージ、ケーブル、スイッチ（ファブリックMetroClusterで使用）、アダプタなど、MetroClusterのすべてのコンポーネントで確保されています。
 

@@ -3,9 +3,13 @@ indexpage:
   title: ONTAPとエンタープライズアプリケーション
   summary: ONTAPは、多くのエンタープライズアプリケーションやデータベーステクノロジのデータ管理とデータ保護の基盤です。以降のページでは、ONTAPとエンタープライズアプリケーションおよびインフラのベストプラクティスと実装手順について説明します。
   keywords: VMware, vSphere, Oracle, SAP, HANA, SAP HANA, MSSQL, SQL Server, Postgres,
-    postgresql, mysql, mariadb
+    postgresql, mysql, mariadb, Hyper-V
   lead: ONTAPは、多くのエンタープライズアプリケーションやデータベーステクノロジのデータ管理とデータ保護の基盤です。以降のページでは、ONTAPとエンタープライズアプリケーションおよびインフラのベストプラクティスと実装手順について説明します。
   tiles:
+  - title: Microsoft Hyper-V
+    links:
+    - title: 導入ガイドラインとストレージのベストプラクティス
+      url: "/microsoft/win_overview.html"
   - title: Microsoft SQL Server の場合
     links:
     - title: ONTAP上のMicrosoft SQL Server
