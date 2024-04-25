@@ -5,7 +5,12 @@ keywords: Windows,Hyper-V,VHDX,VM,Virtual
 summary: ONTAPを使用したHyper-Vストレージインフラ 
 ---
 = NetApp上のHyper-Vストレージインフラ
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]
@@ -25,7 +30,7 @@ image:win_image5.png["ネットアップ上のHyper-Vストレージインフラ
 
 
 
-== NetApp CIFS共有上のHyper-Vストレージ
+== NetApp CIFS上のHyper-Vストレージ
 
 このセクションに記載されている手順を開始する前に、link:win_smb.html["SMB環境でのプロビジョニング"]」。 NetApp CIFS共有でHyper-Vストレージを設定するには、次の手順を実行します。
 
@@ -63,7 +68,7 @@ Hyper-Vの各VMには、物理ホストに提供されたNetApp LUNとCIFS共有
 
 
 
-=== 詳細はこちら
+=== さらに読みます
 
 * FC HBAの詳細については、を参照してください。 http://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix を参照してください"]。
 * 仮想ファイバチャネルの詳細については、Microsoftの https://technet.microsoft.com/en-us/library/hh831413.aspx["Hyper-V仮想ファイバチャネルの概要"] ページ
@@ -119,7 +124,7 @@ cluster::> set privilege admin
 
 
 
-=== 詳細はこちら
+=== さらに読みます
 
 ODXの詳細については、を参照してください。 https://docs.netapp.com/us-en/ontap/smb-admin/improve-microsoft-remote-copy-performance-concept.html["Microsoftリモートコピーのパフォーマンスの向上"] および https://docs.netapp.com/us-en/ontap/san-admin/microsoft-offloaded-data-transfer-odx-concept.html["Microsoftオフロードデータ転送"] 。
 
@@ -157,7 +162,7 @@ image:win_image6.png["Hyper-Vフェイルオーバークラスタとネットア
 
 
 
-=== 詳細はこちら
+=== さらに読みます
 
 Hyper-Vクラスタの導入については、「付録B： link:win_deploy_hyperv.html["Hyper-Vクラスタの導入"]。
 
@@ -185,7 +190,7 @@ image:win_image7.png["クラスタ環境でのライブマイグレーション�
 
 
 
-=== 詳細はこちら
+=== さらに読みます
 
 クラスタ環境へのライブマイグレーションの導入については、を参照してください。 link:win_deploy_hyperv_lmce.html["付録C：クラスタ環境へのHyper-Vライブマイグレーションの導入"]。
 
@@ -209,7 +214,7 @@ image:win_image10.png["非クラスタ環境でのLUNへのシェアードナッ
 
 
 
-=== 詳細はこちら
+=== さらに読みます
 
 クラスタ環境外へのライブマイグレーションの導入については、を参照してください。 link:win_deploy_hyperv_lmoce.html["付録D：クラスタ環境以外にHyper-Vライブマイグレーションを導入する"]。
 
@@ -252,7 +257,7 @@ image:win_image11.png["Hyper-Vストレージのライブマイグレーショ�
 
 
 
-=== 詳細はこちら
+=== さらに読みます
 
 ストレージライブマイグレーションの導入については、を参照してください。 link:win_deploy_hyperv_slm.html["付録E：Hyper-Vストレージライブマイグレーションの導入"]。
 
@@ -295,7 +300,7 @@ VMのレプリケーションを設定するときに、リカバリポイント
 
 
 
-=== 詳細はこちら
+=== さらに読みます
 
 * Hyper-Vレプリカをクラスタ環境外に導入する方法については、「link:win_deploy_hyperv_replica_oce.html["クラスタ環境外にHyper-Vレプリカを導入する"]. 」
 * クラスタ環境へのHyper-Vレプリカの導入については、「link:win_deploy_hyperv_replica_ce.html["クラスタ環境へのHyper-Vレプリカの導入"]. 」

@@ -4,8 +4,13 @@ permalink: microsoft/win_deploy_hyperv_lmoce.html
 keywords: Windows,Hyper-V,VHDX,VM,Virtual 
 summary: この付録では、クラスタ環境外でHyper-Vライブマイグレーションを使用する方法について説明します。 
 ---
-= クラスタ環境外でのHyper-Vライブマイグレーションの導入
+= クラスタ環境外へのHyper-Vライブマイグレーションの導入
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]

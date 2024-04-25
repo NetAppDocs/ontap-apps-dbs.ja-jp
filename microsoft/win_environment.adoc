@@ -4,8 +4,13 @@ permalink: microsoft/win_environment.html
 keywords: Windows,Hyper-V,VHDX,VM,Virtual 
 summary: NetAppストレージとWindowsサーバ環境の詳細 
 ---
-= NetAppストレージとWindowsサーバ環境
+= NetAppストレージおよびWindows Server環境
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]
@@ -86,7 +91,7 @@ NetApp PowerShell Toolkit（PSTK）は、NetApp ONTAPをエンドツーエンド
 
 
 
-=== 詳細はこちら
+=== さらに読みます
 
 * NetApp PowerShell Toolkitの詳細については、 https://mysupport.netapp.com/site/tools/tool-eula/ontap-powershell-toolkit["NetApp Support Site"]。
 * NetApp PowerShell Toolkitのベストプラクティスについては、を参照してください。 https://www.netapp.com/media/16861-tr-4475.pdf?v=93202073432AM["TR-4475：『NetApp PowerShell Toolkit Best Practices Guide』"]。

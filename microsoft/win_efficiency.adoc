@@ -5,7 +5,12 @@ keywords: Windows,Hyper-V,VHDX,VM,Virtual
 summary: Microsoft Hyper-VによるONTAP Storage Efficiency 
 ---
 = ストレージ効率
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]
@@ -13,7 +18,7 @@ ONTAPは、Microsoft Hyper-Vをはじめとする仮想環境向けに、業界�
 
 
 
-== NetAppの重複排除機能
+== NetApp重複排除
 
 NetApp重複排除は、ストレージボリュームレベルで重複ブロックを削除することで機能します。論理コピーの数に関係なく、物理コピーは1つだけ保存されます。そのため、重複排除機能を使用すると、そのブロックのコピーが多数あるという錯覚が生じます。重複排除は、ボリューム全体の4KBブロックレベルで重複データブロックを自動的に削除します。このプロセスでは、ディスクへの物理的な書き込み回数が減るため、ストレージが再利用されてスペースが確保され、パフォーマンスが削減される可能性があります。Hyper-V環境では、重複排除機能によってスペースを70%以上削減できます。
 

@@ -5,7 +5,12 @@ keywords: Windows,Hyper-V,VHDX,VM,Virtual
 summary: この付録では、高可用性Hyper-VクラスタをNetAppストレージに導入する方法について説明します。 
 ---
 = Hyper-Vクラスタの導入
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]

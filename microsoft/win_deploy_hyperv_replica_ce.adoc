@@ -5,7 +5,12 @@ keywords: Windows,Hyper-V,VHDX,VM,Virtual
 summary: Windows Serverフェイルオーバークラスタを使用してHyper-Vレプリカを導入および構成する方法について説明します。 
 ---
 = クラスタ環境へのHyper-Vレプリカの導入
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]
@@ -32,7 +37,7 @@ get-clusternode | ForEach-Object \{Invoke-command -computername $_.name -scriptb
 ....
 +
 ....
- # For Certificate authentication
+# For Certificate authentication
 get-clusternode | ForEach-Object \{Invoke-command -computername $_.name -scriptblock \{Enable-Netfirewallrule -displayname "Hyper-V Replica HTTPS Listener (TCP-In)"}}
 ....
 . レプリカクラスタを構成します。

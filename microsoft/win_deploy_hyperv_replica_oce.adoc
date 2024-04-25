@@ -5,7 +5,12 @@ keywords: Windows,Hyper-V,VHDX,VM,Virtual
 summary: この付録では、クラスタ環境の外部にHyper-Vレプリカを導入する方法について説明します。 
 ---
 = クラスタ環境外へのHyper-Vレプリカの導入
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]

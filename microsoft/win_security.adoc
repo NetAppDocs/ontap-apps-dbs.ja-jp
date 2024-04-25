@@ -5,7 +5,12 @@ keywords: Windows,Hyper-V,VHDX,VM,Virtual
 summary: Hyper-VによるONTAPストレージセキュリティ 
 ---
 = セキュリティ
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]
@@ -19,7 +24,7 @@ Windows Defenderは、Windows Serverにインストールされ、デフォル�
 
 
 
-=== 詳細はこちら
+=== さらに読みます
 
 詳細については、を参照してください。 https://technet.microsoft.com/windows-server-docs/security/windows-defender/windows-defender-overview-windows-server?f=255&MSPPError=-2147217396["Windows Defenderの概要"]。
 

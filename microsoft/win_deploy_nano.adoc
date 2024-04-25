@@ -4,8 +4,13 @@ permalink: microsoft/win_deploy_nano.html
 keywords: Windows,Hyper-V,VHDX,VM,Virtual 
 summary: Microsoft Windows Nano Serverの導入について 
 ---
-= Nanoサーバーの展開
+= Nanoサーバーの導入
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]

@@ -4,8 +4,13 @@ permalink: microsoft/win_deploy_hyperv_lmce.html
 keywords: Windows,Hyper-V,VHDX,VM,Virtual 
 summary: この付録では、クラスタ環境へのライブマイグレーションの導入について説明します。 
 ---
-= クラスタ環境でのHyper-Vライブマイグレーションの導入
+= クラスタ環境へのHyper-Vライブマイグレーションの導入
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]

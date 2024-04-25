@@ -5,7 +5,12 @@ keywords: Windows,Hyper-V,VHDX,VM,Virtual,SAN,LUN,NVMe
 summary: SAN環境でのWindowsおよびHyper-V用のONTAPストレージのプロビジョニング 
 ---
 = SAN環境でのプロビジョニング
+:hardbreaks:
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media
 
 
 [role="lead"]
@@ -51,21 +56,19 @@ Windows ServerのSAN環境でNetAppストレージを使用するには、次の
 . SVM LIFを使用して、iSCSIポートセットやFCポートセットを作成します。
 . 作成したポートセットを使用して、Windows用のiSCSIイニシエータ/ FCイニシエータグループを作成します。
 . イニシエータグループにイニシエータを追加します。イニシエータは、iSCSIのIQNとFCのWWPNです。Windows Serverからクエリを実行するには、PowerShellコマンドレットGet-InitiatorPortを実行します。
++
+....
+# Get the IQN for iSCSI
+Get-InitiatorPort | Where \{$_.ConnectionType -eq 'iSCSI'} | Select-Object -Property NodeAddress
+....
++
+....
+# Get the WWPN for FC
+Get-InitiatorPort | Where \{$_.ConnectionType -eq 'Fibre Channel'} | Select-Object -Property PortAddress
+....
++
+ # While adding initiator to the initiator group in case of FC, make sure to provide the initiator(PortAddress) in the standard WWPN format
 
-
-
-
-= iSCSI+のIQNを取得
-
-Get-InitiatorPort | WHERE \｛$_.ConnectionType -eq 'iscsi'｝| Select-Object - Property NodeAddress
-
-
-
-= FC+のWWPNの取得
-
-Get-InitiatorPort | WHERE \｛$_.ConnectionType -eq ' Fibre Channel '｝| Select-Object - property portaddress +
- [+]
-# FCの場合にイニシエータをイニシエータグループに追加するときは、イニシエータ（ポートアドレス）を標準のWWPN形式で指定してください
 
 Windows Server上のiSCSIのIQNは、iSCSIイニシエータプロパティの構成でも確認できます。
 
@@ -148,7 +151,7 @@ Windows ServerでiSCSIブロックストレージを検出するには、次の�
 
 
 
-=== ブロックストレージの検出
+=== ブロックストレージを検出
 
 Windows ServerでiSCSIまたはFCブロックストレージを検出するには、次の手順を実行します。
 
