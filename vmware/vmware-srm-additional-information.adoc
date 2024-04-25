@@ -17,17 +17,17 @@ summary: このドキュメントに記載されている情報の詳細につ�
 このドキュメントに記載されている情報の詳細については、以下のドキュメントや Web サイトを参照してください。
 
 * TR-4597 ：『 VMware vSphere for ONTAP 』
-link:vmware-vsphere-overview.html["https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-overview.html"^]
+link:vmware-vsphere-overview.html["https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vsphere-overview.html"]
 * TR-4400 ：『 VMware vSphere Virtual Volumes with ONTAP 』
-link:vmware-vvols-overview.html["https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vvols-overview.html"^]
+link:vmware-vvols-overview.html["https://docs.netapp.com/us-en/ontap-apps-dbs/vmware/vmware-vvols-overview.html"]
 * TR-4015 ：『 SnapMirror Configuration Best Practice Guide for ONTAP 9 』
-https://www.netapp.com/media/17229-tr4015.pdf?v=127202175503P[]
+link:https://www.netapp.com/media/17229-tr4015.pdf?v=127202175503P["https://www.netapp.com/media/17229-tr4015.pdf?v=127202175503P"]
 * RBAC User Creator for ONTAP の略
-https://mysupport.netapp.com/site/tools/tool-eula/rbac["https://mysupport.netapp.com/site/tools/tool-eula/rbac"^]
+link:https://mysupport.netapp.com/site/tools/tool-eula/rbac["https://mysupport.netapp.com/site/tools/tool-eula/rbac"]
 * VMware vSphere リソース用の ONTAP ツール
-https://mysupport.netapp.com/site/products/all/details/otv/docsandkb-tab["https://mysupport.netapp.com/site/products/all/details/otv/docsandkb-tab"^]
+link:https://mysupport.netapp.com/site/products/all/details/otv/docsandkb-tab["https://mysupport.netapp.com/site/products/all/details/otv/docsandkb-tab"]
 * VMware Site Recovery Manager のドキュメント
-https://docs.vmware.com/en/Site-Recovery-Manager/index.html["https://docs.vmware.com/en/Site-Recovery-Manager/index.html"^]
+link:https://docs.vmware.com/en/Site-Recovery-Manager/index.html["https://docs.vmware.com/en/Site-Recovery-Manager/index.html"]
 
 
-を参照してください http://mysupport.netapp.com/matrix["Interoperability Matrix Tool （ IMT ）"^] NetApp Support Siteで、本ドキュメントに記載されている製品や機能のバージョンがお客様の環境でサポートされるかどうかを確認してください。NetApp IMT には、ネットアップがサポートする構成を構築するために使用できる製品コンポーネントやバージョンが定義されています。サポートの可否は、お客様の実際のインストール環境が公表されている仕様に従っているかどうかによって異なります。
+を参照してください link:http://mysupport.netapp.com/matrix["Interoperability Matrix Tool （ IMT ）"] NetApp Support Siteで、本ドキュメントに記載されている製品や機能のバージョンがお客様の環境でサポートされるかどうかを確認してください。NetApp IMT には、ネットアップがサポートする構成を構築するために使用できる製品コンポーネントやバージョンが定義されています。サポートの可否は、お客様の実際のインストール環境が公表されている仕様に従っているかどうかによって異なります。

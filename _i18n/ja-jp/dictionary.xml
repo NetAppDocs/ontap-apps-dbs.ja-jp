@@ -3167,19 +3167,10 @@ VAAIを使用しない場合、NFS上のすべてのVMに対してこの設定�
   <block id="3e4627f6667f830baceaaf35890b575a" category="summary">このドキュメントに記載されている情報の詳細については、以下のドキュメントや Web サイトを参照してください。</block>
   <block id="092bf78f9c97ba171b8232ddff585392" category="doc">追加情報</block>
   <block id="7d5b957cd473f6eaf5ad335a9c63c4ff" category="paragraph">このドキュメントに記載されている情報の詳細については、以下のドキュメントや Web サイトを参照してください。</block>
-  <block id="18df8e05a5400abd9d0980b1c5bc9ef3" category="list-text">TR-4015 ：『 SnapMirror Configuration Best Practice Guide for ONTAP 9 』
-<block ref="e361bd9d6f7b20da762bc23fcb3d09c2" category="inline-link-rx"></block></block>
   <block id="cbe2f6eb2a73f4a2c871a06264f10dc7" category="inline-link"><block ref="cbe2f6eb2a73f4a2c871a06264f10dc7" category="inline-link-rx"></block></block>
-  <block id="249b98331fa56dc46bf6ba51dc6c39d5" category="list-text">RBAC User Creator for ONTAP の略
-<block ref="6b15b91279acfce2bbee060bdb17db43" category="inline-link-rx"></block></block>
   <block id="c88037eb28ae3cceb0e32c2cd3c322d7" category="inline-link"><block ref="c88037eb28ae3cceb0e32c2cd3c322d7" category="inline-link-rx"></block></block>
-  <block id="1a57e0f74e725c1a5e2d53b4d4b4460d" category="list-text">VMware vSphere リソース用の ONTAP ツール
-<block ref="80c496cd9ab75e5683007d8f66ca6fbf" category="inline-link-rx"></block></block>
   <block id="9aa6e8f8fac5c131e5924ee033660d29" category="inline-link"><block ref="9aa6e8f8fac5c131e5924ee033660d29" category="inline-link-rx"></block></block>
-  <block id="91a48e1708df22b7464bced79c745ad2" category="list-text">VMware Site Recovery Manager のドキュメント
-<block ref="92ad802ced4838839b492be6d0bf427d" category="inline-link-rx"></block></block>
   <block id="c9dd6bad4c7d561872f2e2d498a990bf" category="inline-link">Interoperability Matrix Tool （ IMT ）</block>
-  <block id="97cd1357ea4a16b44bd9e360127a1a9d" category="paragraph">を参照してください<block ref="99cfde592e1d7fa7832b186d73ee4002" category="inline-link-rx"></block> NetApp Support Siteで、本ドキュメントに記載されている製品や機能のバージョンがお客様の環境でサポートされるかどうかを確認してください。NetApp IMT には、ネットアップがサポートする構成を構築するために使用できる製品コンポーネントやバージョンが定義されています。サポートの可否は、お客様の実際のインストール環境が公表されている仕様に従っているかどうかによって異なります。</block>
   <block id="1f82b18dcba5f32a085bc502cdd0c6b7" category="summary">ONTAP では、 Storage Virtual Machine （ SVM ）の概念を採用して、セキュアなマルチテナント環境で厳密にセグメント化します。</block>
   <block id="7520e12a140ccf3de279fe2fd48889e4" category="doc">導入のベストプラクティス</block>
   <block id="1b4574c516231b685bb37b013b789b06" category="section-title">SMT の SVM のレイアウトとセグメント化</block>
@@ -4390,7 +4381,6 @@ cluster：：&gt; set -privilege diagnostic</block>
   <block id="4380a9c5c56776fad0f4492a0d3c63f5" category="list-text">VMを配置するクラスタからノードを選択します。</block>
   <block id="a8be7e73ae88a070ad15a4a6f6d515fe" category="list-text">[Virtual Machine Creation]ウィザードで、VMとそのディスクを格納するパスとして共有ストレージ（SMB共有またはCSV）を指定します。</block>
   <block id="9da4e10b0da989c65844cd59ed2a0991" category="list-text">Hyper-V Managerを使用して、VMとそのディスクをHyper-Vサーバ用に格納するためのデフォルトパスとして共有ストレージ（SMB共有またはCSV）を設定します。</block>
-  <block id="7bfcd2ed65eadd56b87a3ad2ccf40dff" category="list-text">計画的フェイルオーバーをテストする。ライブマイグレーション、クイックマイグレーション、またはストレージマイグレーション（移動）を使用して、VMを別のノードに移動します。セクションを確認します。<block ref="389dcc9a311ede7b2257b650a030a873" category="inline-link-macro-rx"></block>」を参照してください。</block>
   <block id="064cd683bf50cb65205de6b9298201b3" category="list-text">計画外フェイルオーバーをテストVMを所有するサーバでクラスタサービスを停止します。</block>
   <block id="c7bfaead2ee1aea320b1d91da7ba31d7" category="summary">NetAppストレージとWindowsサーバ環境の詳細</block>
   <block id="3654a2a95a62ead550b874d74dd4bbe8" category="doc">NetAppストレージとWindowsサーバ環境</block>
@@ -4455,15 +4445,6 @@ cluster：：&gt; set -privilege diagnostic</block>
   <block id="0d3e51fc3c7ecb31cb6dcf3ea104060c" category="list-text">NetAppでは、ライブマイグレーション用に冗長なネットワークパス（複数のスイッチ）を作成し、耐障害性とQoSを確保することを推奨しています。</block>
   <block id="72a46482f366b350b6b0215baa631137" category="summary">Microsoft WindowsおよびHyper-Vに関するその他のリソース</block>
   <block id="4bb047f8c530785002e490ef17fa725e" category="doc">追加情報の参照先</block>
-  <block id="654b5ef83fa66dad8993f3654a8bebb5" category="list-text">ONTAP の概念</block>
-  <block id="836022e29667128997850a15d18e8759" category="paragraph"><block ref="836022e29667128997850a15d18e8759" category="inline-link-rx"></block></block>
-  <block id="3c4676f4bca8b513c846ad2af3faccbd" category="list-text">最新SANのベストプラクティス</block>
-  <block id="49df8abaa6163afdde37b69f7f59185c" category="paragraph"><block ref="49df8abaa6163afdde37b69f7f59185c" category="inline-link-rx"></block></block>
-  <block id="162a16b6ce79384fa5f7280046025873" category="list-text">NetAppオールSANアレイデータの可用性とNetApp ASAとの整合性</block>
-  <block id="8f140ecff12b563e3c96a8cff991aedb" category="paragraph"><block ref="8f140ecff12b563e3c96a8cff991aedb" category="inline-link-rx"></block></block>
-  <block id="a5328e6434e6dca1eceeffb0159744e9" category="list-text">SMBプロトコルのベストプラクティス</block>
-  <block id="8dde74cc713b527ca86df68c5efea489" category="list-text"><block ref="136d5353e9c99477f1d3147e966df5af" category="inline-link-rx"></block> Nano Serverで開始+
-<block ref="abdd6de84336a7f761fbe384605879e9" category="inline-link-rx"></block></block>
   <block id="0650b34324cf33e3bf1ba6d5db9aa14c" category="list-text">Windows Server上のHyper-Vの新機能+
 <block ref="8508224d602483e88bde8402b5d1f2d1" category="inline-link-rx"></block></block>
   <block id="1139a59d4aa15acd59f31d05c5a9d642" category="summary">この付録では、クラスタ環境の外部にHyper-Vレプリカを導入する方法について説明します。</block>
@@ -4504,8 +4485,6 @@ cluster：：&gt; set -privilege diagnostic</block>
   <block id="94faab2d3840f3d8320e20ad4a90e6cd" category="list-text">[Failover]をクリックしてVMをフェイルオーバーします。</block>
   <block id="4be45953e45cfa5fc987ba108c1e5793" category="summary">この付録では、クラスタ環境へのライブマイグレーションの導入について説明します。</block>
   <block id="407f0c958d87180b9cc5045be0f28bd4" category="doc">クラスタ環境でのHyper-Vライブマイグレーションの導入</block>
-  <block id="9774bdda08aa75b382aa5e42ff0441b6" category="inline-link-macro">Hyper-Vクラスタリング</block>
-  <block id="a897bc62277be342ef178e68f04b5c92" category="paragraph">ライブマイグレーションを導入するには、共有ストレージを使用するフェイルオーバークラスタでHyper-Vサーバを構成する必要があります。セクションを確認します。 <block ref="2ba01ece72ad73715f4a19148fab7c67" category="inline-link-macro-rx"></block> 詳細：</block>
   <block id="388b92a1de3321595dcfbdc1c67ce749" category="paragraph">クラスタ環境でライブマイグレーションを使用するには、次の手順を実行します。</block>
   <block id="b66a6c742469f1d08a2d11bcf4f211ff" category="list-text">フェイルオーバークラスタマネージャで、クラスタを選択して展開します。クラスタが表示されない場合は、[Failover][Cluster Manager]をクリックし、[Connect to Cluster]をクリックしてクラスタ名を指定します。</block>
   <block id="e3883376513ba0aeb2f3d190d4e0377d" category="list-text">[Roles]をクリックします。クラスタで使用可能なすべてのVMが表示されます。</block>
@@ -4653,7 +4632,6 @@ cluster：：&gt; set -privilege diagnostic</block>
   <block id="8d9091beebb755bb6e68a4f04d3288f6" category="paragraph">BitLockerドライブ暗号化は、Windows Server 2012から引き継がれたデータ保護機能です。この暗号化により、物理ディスク、LUN、およびCSVが保護されます。</block>
   <block id="0494cad48bf6f5dd2105391f0426af1a" category="paragraph">BitLockerを有効にする前に、CSVをメンテナンスモードにする必要があります。そのため、NetAppでは、ダウンタイムを回避するために、CSV上にVMを作成する前に、BitLockerベースのセキュリティに関する決定を行うことを推奨しています。</block>
   <block id="e2e4ca1a6c3bcca61ed5ec3ea10c90c0" category="summary">Windows Serverフェイルオーバークラスタを使用してHyper-Vレプリカを導入および構成する方法について説明します。</block>
-  <block id="8127ab9fa104e0306d7d39fd7950c254" category="list-text">Hyper-Vクラスタを同じ場所または別の地理的な場所に配置し、プライマリクラスタとレプリカクラスタとして機能させる必要があります。セクションを確認します。<block ref="ea7aa0b79f69b4796e1e78e5a203a5d7" category="inline-link-macro-rx"></block>」を参照してください。</block>
   <block id="5674fdbee301f444dd0ca3836c682957" category="list-text">別 々 のサイトを使用する場合は、プライマリクラスタとレプリカクラスタ間の通信を許可するように各サイトのファイアウォールを設定する必要があります。</block>
   <block id="6cc66ed27b17f9c380f924d533e633d6" category="list-text">レプリカクラスタには、レプリケートされたワークロードを格納できるだけの十分なスペースが必要です。</block>
   <block id="ff71768b9e039ee5012c181eb29bdc39" category="list-text">クラスタのすべてのノードでファイアウォールルールを有効にします。プライマリクラスタとレプリカクラスタの両方のすべてのノードで、管理者権限で次のPowerShellコマンドレットを実行します。</block>
@@ -4914,11 +4892,7 @@ cluster：：&gt; set -privilege diagnostic</block>
   <block id="8e00c91ecf143f76c94e3aa1668fc92b" category="inline-image-macro">ONTAPクローニング</block>
   <block id="9c7295440be885852a164f5880627146" category="paragraph"><block ref="9c7295440be885852a164f5880627146" category="inline-image-macro-rx" type="image"></block></block>
   <block id="1eed6756a7834e04fb7716ee8d830425" category="inline-link-macro"><block ref="1eed6756a7834e04fb7716ee8d830425" category="inline-link-rx"></block></block>
-  <block id="8da9c2cbb1fa115b8d5d719e3db3375d" category="list-text">TR-4597 ：『 VMware vSphere for ONTAP 』
-<block ref="9e6a16c482927bdc7bc737986ae09658" category="inline-link-macro-rx"></block></block>
   <block id="0e4a75553a081fffff029a37e55f5d71" category="inline-link-macro"><block ref="0e4a75553a081fffff029a37e55f5d71" category="inline-link-rx"></block></block>
-  <block id="82ce198298a8d30a65e9e49a1e9328a4" category="list-text">TR-4400 ：『 VMware vSphere Virtual Volumes with ONTAP 』
-<block ref="4752e298e06276577ddb7ded2f908b71" category="inline-link-macro-rx"></block></block>
   <block id="2e633a7cd484b8152bb61b1eee51006b" category="paragraph">ONTAPでVVOLを使用するために必要な追加製品は、ONTAP Oneに付属のONTAP FlexCloneライセンスとONTAP toolsアプライアンスだけです。最近リリースされたONTAP toolsは、ESXi上で動作する単一の統合アプライアンスとして提供され、これまで3種類のアプライアンスとサーバの機能を提供します。VVOLの場合、vSphereのONTAP 機能の一般的な管理ツールおよびユーザインターフェイスとして、ONTAP toolsのvCenter UI拡張機能またはREST APIを、特定のVVOL機能を提供するVASA Providerとともに使用することが重要です。SRAコンポーネントは従来のデータストアに含まれていますが、VMware Site Recovery ManagerはvVolにSRAを使用せず、代わりにvVolレプリケーションにVASAプロバイダを利用する新しいサービスをSRM 8.3以降に実装します。</block>
   <block id="32fd58743bd2ce579949a47db1b95ca8" category="summary">VASAを使用したvVolレプリケーションには、SRAや従来のデータストアに比べて独自の機能があります。</block>
   <block id="daf6970022e96957e3a4ea5b6a599a27" category="list-text">ONTAP toolsとSRAはクラスタレベルとSVMレベルの両方のクレデンシャルをサポートしますが、VASA Providerではストレージシステムのクラスタレベルのクレデンシャルのみがサポートされます。これは、VVOLに使用されるAPIの多くがクラスタレベルでしか使用できないためです。そのため、VVOLを使用する場合は、クラスタを対象としたクレデンシャルを使用してONTAPクラスタを追加する必要があります。</block>
@@ -5026,4 +5000,35 @@ cluster：：&gt; set -privilege diagnostic</block>
   <block id="0726f4e9c3c98564af638f1b4cd17a9e" category="sidebar">クラスタ環境外でのHyper-Vライブマイグレーションの導入</block>
   <block id="1bbd09497cd931a02f8dc0ee3cfcf19d" category="sidebar">クラスタ環境外にHyper-Vレプリカを導入</block>
   <block id="832a116d7f9184d8880a539553a0cb52" category="sidebar">クラスタ環境へのHyper-Vレプリカの導入</block>
+  <block id="1a85c0d242c43eb56cc500e60d323331" category="paragraph">VMFS は、共有ストレージプールであるデータストアを提供する、高性能なクラスタファイルシステムです。VMFSデータストアは、FC、iSCSI、FCoEを使用してアクセスするLUN、またはNVMe/FCまたはNVMe/TCPプロトコルを使用してアクセスするNVMeネームスペースで構成できます。VMFSを使用すると、クラスタ内のすべてのESXサーバから同時にストレージにアクセスできます。ONTAP 9.12.1P2以降（およびASAシステムの以前のバージョン）では、一般に最大LUNサイズは128TBです。したがって、単一のLUNを使用して、64TBの最大サイズのVMFS 5または6データストアを作成できます。</block>
+  <block id="5d7771be7242d0b5e76913e2ea5d3dad" category="paragraph">ESXi 6 は、最大 256 個の LUN と、 LUN への最大 1 、 024 個の合計パスをサポートします。これらの制限を超えるLUNやパスはESXiで認識されません。最大数の LUN を使用した場合、 LUN あたりのパス数は最大 4 つです。大規模な ONTAP クラスタでは、 LUN 数の上限に達する前にパス数の制限に達する可能性があります。この制限に対処するため、 ONTAP では、リリース 8.3 以降の選択的 LUN マップ（ SLM ）がサポートされています。</block>
+  <block id="8983ee0717807e5385f3c8b2c70a177c" category="list-text">TR-4597 ：『 VMware vSphere for ONTAP 』
+<block ref="0bff808225ac084b8184e7670c17aa52" category="inline-link-macro-rx"></block></block>
+  <block id="1f7ff87198d4a8563ac0d42354d47052" category="list-text">TR-4400 ：『 VMware vSphere Virtual Volumes with ONTAP 』
+<block ref="57ea579fe6c0d333a496008248ad03e2" category="inline-link-macro-rx"></block></block>
+  <block id="ef8c76bd50596fa93881a13dac3f23b3" category="inline-link-macro"><block ref="ef8c76bd50596fa93881a13dac3f23b3" category="inline-link-rx"></block></block>
+  <block id="6e5923e0b2d91653ee7dd35aa5f48141" category="list-text">TR-4015 ：『 SnapMirror Configuration Best Practice Guide for ONTAP 9 』
+<block ref="6a851721cd10ebeb2f9cfa107f963956" category="inline-link-macro-rx"></block></block>
+  <block id="1e626dbc797733633cd43ac045564b36" category="list-text">RBAC User Creator for ONTAP の略
+<block ref="51416f5c8b6f7981eb23be678ab313ad" category="inline-link-macro-rx"></block></block>
+  <block id="eaef75afe923a97ffd4ccab86876f8da" category="list-text">VMware vSphere リソース用の ONTAP ツール
+<block ref="9d52dd6d1c195e015d4baef3146522a8" category="inline-link-macro-rx"></block></block>
+  <block id="58b39d11ffaef440efc4e3c365487610" category="list-text">VMware Site Recovery Manager のドキュメント
+<block ref="18c037ca2f7fe7180f506030fe7e514c" category="inline-link-macro-rx"></block></block>
+  <block id="bc11d67bfced1da7778c2cabee9e7615" category="paragraph">を参照してください <block ref="de89165a46abdf575eb9a1ba0995e131" category="inline-link-macro-rx"></block> NetApp Support Siteで、本ドキュメントに記載されている製品や機能のバージョンがお客様の環境でサポートされるかどうかを確認してください。NetApp IMT には、ネットアップがサポートする構成を構築するために使用できる製品コンポーネントやバージョンが定義されています。サポートの可否は、お客様の実際のインストール環境が公表されている仕様に従っているかどうかによって異なります。</block>
+  <block id="e651877073d877e1ee090d986eafc550" category="list-text">Hyper-Vクラスタを同じ場所または別の地理的な場所に配置し、プライマリクラスタとレプリカクラスタとして機能させる必要があります。レビュー <block ref="8a150f92c22920868769b8738759e23d" category="inline-link-macro-rx"></block> 詳細：</block>
+  <block id="8762adae157b34ee542f2e614401603a" category="list-text">ONTAP の概念
+<block ref="836022e29667128997850a15d18e8759" category="inline-link-rx"></block></block>
+  <block id="e7b3912abd11fa36935a211d0189ebc2" category="list-text">最新SANのベストプラクティス
+<block ref="49df8abaa6163afdde37b69f7f59185c" category="inline-link-rx"></block></block>
+  <block id="05c54431756e1b1a7114938bc6f4b199" category="list-text">NetAppオールSANアレイデータの可用性とNetApp ASAとの整合性
+<block ref="8f140ecff12b563e3c96a8cff991aedb" category="inline-link-rx"></block></block>
+  <block id="61eccac29e55aa58f22643ddd6cf3587" category="list-text">SMBプロトコルのベストプラクティス
+<block ref="63b1df1d0a5ff0e604f9987b8b1b21db" category="inline-link-rx"></block></block>
+  <block id="bc96f334e3988ce96701a7082c0e23b5" category="list-text">Nano Server入門+
+<block ref="abdd6de84336a7f761fbe384605879e9" category="inline-link-rx"></block></block>
+  <block id="0e660b82d6e28b6935041a5223ed1aed" category="paragraph">ライブマイグレーションを導入するには、共有ストレージを使用するフェイルオーバークラスタでHyper-Vサーバを構成する必要があります。レビュー <block ref="8a150f92c22920868769b8738759e23d" category="inline-link-macro-rx"></block> 詳細：</block>
+  <block id="1dd1e97374852e1f244963d9fdb0c414" category="list-text">計画的フェイルオーバーをテストする。ライブマイグレーション、クイックマイグレーション、またはストレージマイグレーション（移動）を使用して、VMを別のノードに移動します。レビュー <block ref="ba8afff2d0e4662eeb47d28935e79828" category="inline-link-macro-rx"></block> 詳細：</block>
+  <block id="8737a5d2bc43b0eb76ab5674d0fcb094" category="sidebar">SRMとONTAPの概要</block>
+  <block id="76f6daa4bfab6ca8a7350e46d3d6718f" category="sidebar">SRM用追加情報</block>
 </blocks>

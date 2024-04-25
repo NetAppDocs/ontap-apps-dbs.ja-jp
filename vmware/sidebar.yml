@@ -50,7 +50,7 @@ entries:
     url: "/vmware/vmware-vvols-resources.html"
 - title: VMware Site Recovery ManagerとONTAP
   entries:
-  - title: 概要
+  - title: SRMとONTAPの概要
     url: "/vmware/vmware-srm-overview.html"
   - title: 導入のベストプラクティス
     url: "/vmware/vmware-srm-deployment_best_practices.html"
@@ -60,6 +60,8 @@ entries:
     url: "/vmware/vmware-srm-replication_topologies.html"
   - title: VVol レプリケーションを使用する場合の SRM のトラブルシューティング
     url: "/vmware/vmware-srm-vvol-troubleshooting.html"
+  - title: SRM用追加情報
+    url: "/vmware/vmware-srm-additional-information.html"
 - title: ONTAPを使用したvSphere Metroストレージクラスタ
   entries:
   - title: vMSCノカイヨウ

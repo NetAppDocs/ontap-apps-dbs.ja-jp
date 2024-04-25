@@ -12,19 +12,14 @@ summary: Microsoft WindowsおよびHyper-Vに関するその他のリソース
 Microsoft WindowsおよびHyper-Vに関するその他のリソース
 
 * ONTAP の概念
-+
 https://docs.netapp.com/us-en/ontap/concepts/introducing-data-management-software-concept.html[]
-
 * 最新SANのベストプラクティス
-+
 https://www.netapp.com/media/10680-tr4080.pdf[]
-
 * NetAppオールSANアレイデータの可用性とNetApp ASAとの整合性
-+
 https://www.netapp.com/pdf.html?item=/media/85671-tr-4968.pdf[]
-
 * SMBプロトコルのベストプラクティス
-* https://www.netapp.com/pdf.html?item=/media/10678-tr-4543pdf.pdfGetting[] Nano Serverで開始+
+https://www.netapp.com/pdf.html?item=/media/10678-tr-4543pdf.pdf[]
+* Nano Server入門+
 https://technet.microsoft.com/library/mt126167.aspx[]
 * Windows Server上のHyper-Vの新機能+
 https://technet.microsoft.com/windows-server-docs/compute/hyper-v/what-s-new-in-hyper-v-on-windows[]
