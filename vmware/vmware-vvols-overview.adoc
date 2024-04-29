@@ -6,6 +6,10 @@ summary: ここでは、VMware vSphere Virtual Volume（VVOL）とONTAPの概要
 ---
 = 概要
 :allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
 
 
 [role="lead"]

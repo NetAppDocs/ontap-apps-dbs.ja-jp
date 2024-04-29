@@ -49,7 +49,7 @@ ONTAP tools 9.7.1を使用したSRMの初期リリースでは、FlexVolを事�
 
 === SRMを使用したvVolレプリケーション
 
-image:vvols-image17.png["SRMを使用したvVolレプリケーション、300"]
+image:vvols-image17.png["SRMを使用したvVolレプリケーション"]
 
 
 
@@ -91,7 +91,7 @@ SnapCenter Plugin for VMware vSphereは、vCenter拡張機能として登録さ�
 
 === SnapCenter アーキテクチャ
 
-image:vvols-image18.png["SnapCenter アーキテクチャ、300"]
+image:snapcenter_arch.png["SnapCenter アーキテクチャ"]
 
 本ドキュメントの執筆時点では、他のSnapCenterプラグインはまだVVOLをサポートしていないため、本ドキュメントではスタンドアロンの導入モデルについて説明します。
 
@@ -155,7 +155,7 @@ SnapCenter 環境を最大限に活用するには、次のベストプラクテ
 
 === リソースグループの通知オプション
 
-image:vvols-image19.png["リソースグループ通知オプション、300"]
+image:vvols-image19.png["リソースグループの通知オプション"]
 
 
 

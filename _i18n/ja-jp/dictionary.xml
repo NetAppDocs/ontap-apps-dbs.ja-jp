@@ -2440,8 +2440,6 @@ I/Oの中断はありません。</block>
   <block id="2803a799fd66056eff404a17ba640c2b" category="paragraph">ONTAP tools 9.7.1を使用したSRMの初期リリースでは、FlexVolを事前に作成し、それらをVVOLデータストアのバッキングボリュームとして使用する前にSnapMirror保護を有効にする必要がありました。ONTAP tools 9.10以降では、このプロセスは不要になりました。既存のバッキングボリュームにSnapMirror保護を追加し、VMのストレージポリシーを更新して、SRMに統合されたディザスタリカバリと移行のオーケストレーション、自動化機能を備えたポリシーベースの管理を活用できるようになりました。</block>
   <block id="8142fcf496d02a58ce02a17558db863e" category="paragraph">現在、ネットアップがサポートするvVol用のディザスタリカバリおよび移行自動化の解決策 はVMware SRMのみです。ONTAP ツールでは、vVolレプリケーションを有効にする前に、vCenterに登録されているSRM 8.3以降のサーバの有無が確認されます。 ONTAP ツールREST APIを活用して独自のサービスを作成することも可能です。</block>
   <block id="7d8e8eced8d8b1a50f20640ffb5d363a" category="section-title">SRMを使用したvVolレプリケーション</block>
-  <block id="4d30574e6d5bc9a71718858eeb30774c" category="inline-image-macro">SRMを使用したvVolレプリケーション、300</block>
-  <block id="5844b0ec1ad8db5185ec67effeb9a7b7" category="paragraph"><block ref="5844b0ec1ad8db5185ec67effeb9a7b7" category="inline-image-macro-rx" type="image"></block></block>
   <block id="c95aede1de7a41511c9d962deba49054" category="section-title">MetroCluster のサポート</block>
   <block id="3f15bb720adb42bd521a2ce1cb3a2974" category="paragraph">ONTAP toolsではMetroCluster のスイッチオーバーはトリガーされませんが、同じvSphere Metro Storage Cluster（vMSC）構成のVVol用NetApp MetroCluster システムではサポートされます。MetroCluster システムのスイッチオーバーは通常の方法で処理されます。</block>
   <block id="cde16c5ee89c209c821e120caf65bb81" category="paragraph">NetApp SnapMirrorビジネス継続性（SM-BC）はvMSC構成のベースとしても使用できますが、現時点ではVVOLではサポートされていません。</block>
@@ -2461,8 +2459,6 @@ I/Oの中断はありません。</block>
   <block id="02f41838319aab980999b60967d7fd53" category="paragraph">NetApp SnapCenterでは、タグやフォルダに基づいてvVolのリソースグループを作成し、vVolベースのVMに対してONTAPのFlexVolベースのSnapshotを自動的に利用できるようになりました。これにより、環境内で動的にプロビジョニングされたVMを自動的に保護するバックアップ/リカバリサービスを定義できます。</block>
   <block id="4549a2943666c4815098331d30a872da" category="paragraph">SnapCenter Plugin for VMware vSphereは、vCenter拡張機能として登録されたスタンドアロンアプライアンスとして導入され、vCenter UIまたはREST APIを使用して管理され、バックアップ/リカバリサービスの自動化が可能です。</block>
   <block id="26e2418d177df1dddb008e455ce28752" category="section-title">SnapCenter アーキテクチャ</block>
-  <block id="3b345c0fb5d2f0451ef84d991b21dcac" category="inline-image-macro">SnapCenter アーキテクチャ、300</block>
-  <block id="af9bca7d8452705ba7f607cd036dba01" category="paragraph"><block ref="af9bca7d8452705ba7f607cd036dba01" category="inline-image-macro-rx" type="image"></block></block>
   <block id="c32197281aa44f57ae568a9a42c7b3b6" category="paragraph">本ドキュメントの執筆時点では、他のSnapCenterプラグインはまだVVOLをサポートしていないため、本ドキュメントではスタンドアロンの導入モデルについて説明します。</block>
   <block id="6750052f2c0fb06d80a8efd7cb871190" category="paragraph">SnapCenter はONTAP FlexVol スナップショットを使用するため、vSphereへのオーバーヘッドは発生しません。また、vCenterで管理されているスナップショットを使用する従来のVMで発生する可能性のあるパフォーマンスの低下もありません。さらに、SCVの機能はREST APIを介して公開されるため、VMware ARIA Automation、Ansible、Terraformなどのツールや、標準のREST APIを使用できるその他のほぼすべての自動化ツールを使用して、自動化されたワークフローを簡単に作成できます。</block>
   <block id="0c889d77d71512ceb7241bd0f6d6ca23" category="inline-link">REST API の概要</block>
@@ -2480,8 +2476,6 @@ I/Oの中断はありません。</block>
   <block id="604eb779cbb9af378f7bda71633b5b31" category="list-text">組織で定義された目標復旧時点（RPO）を満たす保持設定を使用してバックアップポリシーを設計</block>
   <block id="067ff91a08d3ff453b59d81993b96182" category="list-text">バックアップの実行時にステータスが通知されるようにリソースグループに通知を設定します（下記の図10を参照）。</block>
   <block id="c3add00693172bbbb4dd864bf0ad9116" category="section-title">リソースグループの通知オプション</block>
-  <block id="c728df76dc3609672a7969e320e39e32" category="inline-image-macro">リソースグループ通知オプション、300</block>
-  <block id="45281309785094533b5880fe6d0fd1ea" category="paragraph"><block ref="45281309785094533b5880fe6d0fd1ea" category="inline-image-macro-rx" type="image"></block></block>
   <block id="6eae9510711f8df8f55a15e1761875d9" category="section-title">これらのドキュメントを使用して、SCVの使用を開始します</block>
   <block id="235a656535515ab3518937c09836e60d" category="inline-link">SnapCenter Plug-in for VMware vSphere について説明します</block>
   <block id="79eb02d2a96cc634df87bec5bd511bbe" category="paragraph"><block ref="79eb02d2a96cc634df87bec5bd511bbe" category="inline-link-rx"></block></block>
@@ -5027,4 +5021,7 @@ cluster：：&gt; set -privilege diagnostic</block>
   <block id="8f076395fe8f8f46c03efb655db313e6" category="section-title">FC直接接続</block>
   <block id="722830ffc5e46dbe206670f85cd1d889" category="paragraph">ONTAPおよびその他の一部のNetApp製品では、さまざまな方法を使用した多要素認証（MFA）がサポートされるようになりました。その結果、ユーザー名/パスワードだけでは、FOBやスマートフォンアプリなどの2番目の要因からのデータがないセキュリティスレッドではありません。</block>
   <block id="37c43820ab88f1340855c30955eec330" category="section-title">マルチ管理者認証（MAV）</block>
+  <block id="1910dc5a02cb649cc24df5670c631e34" category="paragraph"><block ref="1910dc5a02cb649cc24df5670c631e34" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="416d0d3efc5f3919abcdaaa2364738d9" category="paragraph"><block ref="416d0d3efc5f3919abcdaaa2364738d9" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="28c6217e46797f76e427c591070cf50c" category="paragraph"><block ref="28c6217e46797f76e427c591070cf50c" category="inline-image-macro-rx" type="image"></block></block>
 </blocks>
