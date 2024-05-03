@@ -66,6 +66,8 @@ entries:
       url: "/oracle/oracle-storage-san-config-lun-alignment.html"
     - title: LUNの数とサイズ
       url: "/oracle/oracle-storage-san-config-lun-sizing.html"
+    - title: LUNノハイチ
+      url: "/oracle/oracle-storage-san-config-lun-placement.html"
     - title: LUNのサイズ変更
       url: "/oracle/oracle-storage-san-config-lun-resizing.html"
     - title: LVMストライピング
