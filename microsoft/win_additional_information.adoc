@@ -22,8 +22,8 @@ https://docs.netapp.com/us-en/ontap/concepts/introducing-data-management-softwar
 https://www.netapp.com/media/10680-tr4080.pdf[]
 * NetAppオールSANアレイデータの可用性とNetApp ASAとの整合性
 https://www.netapp.com/pdf.html?item=/media/85671-tr-4968.pdf[]
-* SMBプロトコルのベストプラクティス
-https://www.netapp.com/pdf.html?item=/media/10678-tr-4543pdf.pdf[]
+* SMBのドキュメント
+https://docs.netapp.com/us-en/ontap/smb-admin/index.html[]
 * Nano Server入門+
 https://technet.microsoft.com/library/mt126167.aspx[]
 * Windows Server上のHyper-Vの新機能+
