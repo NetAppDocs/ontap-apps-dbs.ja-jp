@@ -1,0 +1,31 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-otv-hardening-ntp.html 
+keywords: VMware, Data protection, security, OTV, Hardening, ONTAP Tools 
+summary: 『Security Hardening Guide for ONTAP tools for VMware vSphere』で、NTPの設定を行います。 
+---
+= ネットワークタイムプロトコル（NTP）の設定
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ネットワーク時間設定の不一致が原因で、セキュリティの問題が発生する場合があります。このような問題を防ぐには、ネットワーク内のすべてのデバイスに正確な時間設定があることを確認することが重要です。
+
+
+
+== *仮想アプライアンス*
+
+NTPサーバは、仮想アプライアンスのメンテナンスコンソールから設定できます。  ユーザは、_System Configuration_=>_ Add new NTP Server_optionでNTPサーバの詳細を追加できます。
+
+デフォルトでは、NTPのサービスはntpdです。これはレガシーサービスであり、場合によっては仮想マシンでは適切に機能しません。
+
+
+
+== * Debian *
+
+Debianでは、ユーザは/etc/ntp.confファイルにアクセスしてNTPサーバの詳細を確認できます。

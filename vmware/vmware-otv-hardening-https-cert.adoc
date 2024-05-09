@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-otv-hardening-https-cert.html 
+keywords: VMware, Data protection, security, OTV, Hardening, ONTAP Tools 
+summary: 『Security Hardening Guide for ONTAP tools for VMware vSphere』、HTTPS証明書管理 
+---
+= ONTAP toolsのHTTPS証明書
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+デフォルトでは、ONTAP toolsは、Web UIへのHTTPSアクセスを保護するために、インストール時に自動的に作成される自己署名証明書を使用します。ONTAP toolsには次の機能があります。
+
+. HTTPS証明書の再生成
+
+
+ONTAP toolsのインストール時に、HTTPS CA証明書がインストールされ、証明書がキーストアに格納されます。ユーザは、maintコンソールを使用してHTTPS証明書を再生成することができます。
+
+上記のオプションは、_'アプリケーション設定'→'証明書の再生成'に移動することで_maint_consoleでアクセスできます。_

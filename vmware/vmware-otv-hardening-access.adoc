@@ -1,0 +1,56 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-otv-hardening-access.html 
+keywords: VMware, Data protection, security, ONTAP tools, Hardening, ONTAP Tools 
+summary: 『Security Hardening Guide for ONTAP tools for VMware vSphere、user access points』を参照してください。 
+---
+= ONTAP Tools for VMware vSphereアクセスポイント（ユーザ）
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP Tools for VMware vSphereをインストールすると、次の3種類のユーザが作成され、使用されます。
+
+. システムユーザ：rootユーザアカウント
+. アプリケーションユーザ：管理者ユーザ、maintユーザ、およびdbユーザアカウント
+. サポートユーザ：diagユーザアカウント
+
+
+
+
+== 1.システムユーザ
+
+システム(root)ユーザは、基盤となるオペレーティングシステム(Debian)にインストールされたONTAPツールによって作成されます。
+
+* ONTAP toolsのインストールにより、デフォルトのシステムユーザ"root"がDebian上に作成されます。デフォルトでは無効になっており、「メンテナンス」コンソールから個別に有効にすることができます。
+
+
+
+
+== 2.アプリケーションユーザ
+
+ONTAP toolsでは、アプリケーションユーザの名前はローカルユーザです。これらは、ONTAP toolsアプリケーションで作成されたユーザです。次の表に、アプリケーションユーザのタイプを示します。
+
+[cols="22%,78%"]
+|===
+| * ユーザー * | * 概要 * 
+
+
+| 管理者ユーザ | ONTAP toolsのインストール時に作成され、ONTAP toolsの導入時にユーザがクレデンシャルを指定します。ユーザは「maint」コンソールで「password」を変更できます。パスワードの有効期限は90日で、ユーザは同じパスワードを変更する必要があります。 
+
+
+| メンテナンスユーザ | ONTAP toolsのインストール時に作成され、ONTAP toolsの導入時にユーザがクレデンシャルを指定します。ユーザは「maint」コンソールで「password」を変更できます。これはメンテナンスユーザで、メンテナンスコンソールの処理を実行するために作成されます。 
+
+
+| データベースユーザ | ONTAP toolsのインストール時に作成され、ONTAP toolsの導入時にユーザがクレデンシャルを指定します。ユーザは「maint」コンソールで「password」を変更できます。パスワードの有効期限は90日で、ユーザは同じパスワードを変更する必要があります。 
+|===
+
+
+== 3.サポートユーザ（diagユーザ）
+
+ONTAP toolsのインストール中に、サポートユーザが作成されます。このユーザを使用して、サーバで問題や停止が発生した場合にONTAPツールにアクセスしたり、ログを収集したりできます。デフォルトでは、このユーザは無効になっていますが、「メンテナンス」コンソールからアドホックで有効にすることができます。このユーザーは一定期間後に自動的に無効になることに注意することが重要です。

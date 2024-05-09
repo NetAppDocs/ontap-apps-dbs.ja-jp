@@ -1,0 +1,68 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-otv-hardening-integrity.html 
+keywords: VMware, Data protection, security, OTV, Hardening, ONTAP Tools 
+summary: 『Security Hardening Guide for ONTAP tools for VMware vSphere、整合性検証』を参照してください。 
+---
+= ONTAP Tools for VMware vSphereインストールパッケージの整合性の検証
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP toolsインストールパッケージの整合性を検証するには、2つの方法があります。
+
+. チェックサムの確認
+. シグネチャの検証
+
+
+チェックサムは、OTVインストールパッケージのダウンロードページで提供されています。ダウンロードしたパッケージのチェックサムを、ダウンロードページに表示されているチェックサムと照合して確認する必要があります。
+
+
+
+== ONTAP tools OVAの署名の確認
+
+vAppインストールパッケージはtarball形式で提供されます。このtarballには、仮想アプライアンスの中間証明書とルート証明書、READMEファイル、OVAパッケージが含まれています。READMEファイルには、vApp OVAパッケージの整合性を検証する方法が記載されています。
+
+また、提供されたルート証明書と中間証明書をvCenterバージョン7.0U3E以降にアップロードする必要があります。  vCenterのバージョン7.0.1から7.0.U3Eの場合、証明書を検証する機能はVMwareではサポートされていません。vCenterバージョン6.xの証明書はアップロードする必要はありません。
+
+
+
+=== 信頼されたルート証明書のvCenterへのアップロード
+
+. VMware vSphere ClientでvCenter Serverにログインします。
+. administrator@vsphere.locaまたはvCenter Single Sign-On Administratorsグループの別のメンバーのユーザ名とパスワードを指定します。インストール時に別のドメインを指定した場合は、administrator@mydomainとしてログインします。
+. 証明書管理ユーザーインターフェイスに移動します。a.[ホーム]メニューから[管理]を選択します。B[証明書]で、[証明書管理]をクリックします。
+. プロンプトが表示されたら、vCenter Serverのクレデンシャルを入力します。
+. [信頼されたルート証明書]で、[追加]をクリックします。
+. [browse]をクリックし、証明書の.pemファイル（otv_ova_inter_root_cert_chain.pem）の場所を選択します。
+. 追加をクリックします。証明書がストアに追加されます。
+
+
+を参照してください link:https://docs.vmware.com/en/VMware-vSphere/7.0/com.vmware.vsphere.authentication.doc/GUID-B635BDD9-4F8A-4FD8-A4FE-7526272FC87D.html["証明書ストアへの信頼されたルート証明書の追加"] を参照してください。（OVAファイルを使用して）vAppを導入する際、vAppパッケージのデジタル署名は[Review details]ページで確認できます。ダウンロードしたvAppパッケージが正規のものである場合は、[発行者]列に[信頼された証明書]と表示されます（次のスクリーンショットを参照）。
+
+image:vmware-otv-hardening-trusted-publisher.png["信頼できる証明書"]
+
+
+
+== ONTAP tools ISOおよびSRA tar.gzの署名の確認
+
+NetAppは、製品ダウンロードページでコード署名証明書をお客様と共有し、OTV-ISOおよびsra.tgzの製品zipファイルも提供しています。
+
+コード署名証明書から、ユーザーは次のように公開鍵を抽出できます。
+
+ #> openssl x509 -in <code-sign-cert, pem file> -pubkey -noout > <public-key name>
+公開鍵を使用して、以下のようにISOおよびtgz製品zipの署名を検証する必要があります。
+
+ #> openssl dgst -sha256 -verify <public-key> -signature <signature-file>  <binary-name>
+例
+
+....
+#> openssl x509 -in OTV_ISO_CERT.pem -pubkey -noout > OTV_ISO.pub
+#> openssl dgst -sha256 -verify OTV_ISO.pub -signature netapp-ontap-tools-for-vmware-vsphere-9.12-upgrade-iso.sig netapp-ontap-tools-for-vmware-vsphere-9.12-upgrade.iso
+Verified OK  => response
+....

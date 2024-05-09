@@ -1,0 +1,59 @@
+---
+sidebar: sidebar 
+permalink: vmware/vmware-otv-hardening-mutual-tls.html 
+keywords: VMware, Data protection, security, OTV, Hardening, ONTAP Tools 
+summary: 『Security Hardening Guide for ONTAP tools for VMware vSphere』、ストレージ管理接続用の相互TLS暗号化。 
+---
+= 相互TLS（証明書ベースの認証）
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAPバージョン9.7以降では、相互TLS通信がサポートされます。ONTAP Tools for VMwareおよびvSphere 9.12以降では、新しく追加したクラスタとの通信に相互TLSが使用されます（ONTAPのバージョンによって異なります）。
+
+
+
+== ONTAP
+
+以前に追加されたすべてのストレージシステム：アップグレード中に、追加されたすべてのストレージシステムが自動信頼され、証明書ベースの認証メカニズムが設定されます。
+
+下のスクリーンショットのように、[クラスタセットアップ]ページには、各クラスタに対して設定されたMutual TLS（証明書ベースの認証）のステータスが表示されます。
+
+image:vmware-otv-hardening-mutual-tls-image2.png["画像2、幅=468、高さ=158"]
+
+
+
+=== *クラスタの追加*
+
+クラスタ追加のワークフロー中に、追加するクラスタがMTLSをサポートしている場合、MTLSはデフォルトで設定されます。ユーザはこの設定を行う必要はありません。次のスクリーンショットは、クラスタの追加時にユーザに表示される画面を示しています。
+
+image:vmware-otv-hardening-mutual-tls-image3.png["ストレージシステムの追加、幅= 450、高さ= 400"]
+
+image:vmware-otv-hardening-mutual-tls-image4.png["ストレージシステムの追加、幅=468、高さ=416"]
+
+image:vmware-otv-hardening-mutual-tls-image5.png["ストレージシステムの追加、幅= 450、高さ= 400"]
+
+image:vmware-otv-hardening-mutual-tls-image6.png["ストレージシステムの追加、幅=468、高さ=516"]
+
+
+
+=== クラスタの編集
+
+クラスタの編集処理には、次の2つのシナリオがあります。
+
+* ONTAP証明書の有効期限が切れた場合、ユーザは新しい証明書を取得してアップロードする必要があります。
+* OTV証明書の有効期限が切れた場合は、チェックボックスをオンにして証明書を再生成できます。
++
+** ONTAPの新しいクライアント証明書を生成します。_
+
+
+
+
+image:vmware-otv-hardening-mutual-tls-image7.png["ストレージシステムの変更、幅=468、高さ=461"]
+
+image:vmware-otv-hardening-mutual-tls-image8.png["ストレージシステムの変更、幅=468、高さ=461"]

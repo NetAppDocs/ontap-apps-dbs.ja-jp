@@ -80,3 +80,27 @@ entries:
     url: "/vmware/vmware-security-tools.html"
   - title: SnapCenter Plug-in for VMware vSphere
     url: "/vmware/vmware-security-snapcenter.html"
+- title: "『Security Hardening Guide for ONTAP tools for VMware vSphere』"
+  entries:
+  - title: ONTAP tools強化の概要
+    url: "/vmware/vmware-otv-hardening-overview.html"
+  - title: ONTAP toolsインストールパッケージの整合性の検証
+    url: "/vmware/vmware-otv-hardening-integrity.html"
+  - title: ポートとプロトコル
+    url: "/vmware/vmware-otv-hardening-ports.html"
+  - title: アクセスポイント（ユーザ）
+    url: "/vmware/vmware-otv-hardening-access.html"
+  - title: 相互TLS
+    url: "/vmware/vmware-otv-hardening-mutual-tls.html"
+  - title: HTTPS証明書
+    url: "/vmware/vmware-otv-hardening-https-cert.html"
+  - title: ログインバナー
+    url: "/vmware/vmware-otv-hardening-login-banner.html"
+  - title: 非アクティブ時のタイムアウト
+    url: "/vmware/vmware-otv-hardening-timeout.html"
+  - title: DoS攻撃
+    url: "/vmware/vmware-otv-hardening-dos.html"
+  - title: NTP構成
+    url: "/vmware/vmware-otv-hardening-ntp.html"
+  - title: パスワードポリシー
+    url: "/vmware/vmware-otv-hardening-passwords.html"
