@@ -49,7 +49,7 @@ indexpage:
     - title: ONTAP を使用した VMware vSphere
       url: "/vmware/vmware-vsphere-overview.html"
     - title: ONTAP tools for VMware vSphere向けセキュリティ強化ガイド
-      url: "/vmware/vmware-otv-hardening-overview.html.html"
+      url: "/vmware/vmware-otv-hardening-overview.html"
     - title: ONTAPを備えた仮想ボリューム（VVOL）
       url: "/vmware/vmware-vvols-overview.html"
     - title: VMware Site Recovery ManagerとONTAP
