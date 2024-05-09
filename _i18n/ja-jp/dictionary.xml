@@ -5175,9 +5175,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="90ab4fc7a1c530bceac36bda71efbc5f" category="paragraph">デフォルトでは、NTPのサービスはntpdです。これはレガシーサービスであり、場合によっては仮想マシンでは適切に機能しません。</block>
   <block id="6801ecdb823d018c7370042d27b5ee2c" category="section-title">* Debian *</block>
   <block id="dc3bb5166d38d2aec53765aca7c0d24c" category="paragraph">Debianでは、ユーザは/etc/ntp.confファイルにアクセスしてNTPサーバの詳細を確認できます。</block>
-  <block id="08fe6a0b481c7eba55985eb19ee19e1e" category="summary">『Security Hardening Guide for ONTAP tools for VMware vSphere』の概要と概要</block>
-  <block id="baecfb438214487bb004e49d325c66bf" category="doc">『Security Hardening Guide for ONTAP tools for VMware vSphere』</block>
-  <block id="8d1618af2c6a6379783e2978ba4a551c" category="paragraph">『ONTAP tools for VMware vSphereセキュリティ強化ガイド』には、最もセキュアな設定を行うための包括的な手順が記載されています。</block>
   <block id="fec65f0c33739368ce5845fadb6cb880" category="paragraph">これらのガイドは、アプライアンス自体のアプリケーションとゲストOSの両方に適用されます。</block>
   <block id="5aaf8fc9424d7872cf500fb7adcb3b97" category="summary">Security Hardening Guide for ONTAP tools for VMware vSphere、パスワードポリシーの設定</block>
   <block id="ca80b83fb98de16af35b38476df589c3" category="doc">パスワードポリシー</block>
@@ -5210,4 +5207,7 @@ SOAP over HTTPS接続に使用</block>
   <block id="cb197b06aa92a742d01e256d58d3e34b" category="sidebar">DoS攻撃</block>
   <block id="d870a4bd29f74339732a958574d2c4eb" category="sidebar">NTP構成</block>
   <block id="339ce1d4220ba7045e3a35ef35279ad3" category="sidebar">パスワードポリシー</block>
+  <block id="3698338a95ad1801e25ed154adaf1a70" category="summary">ONTAP Tools for VMware vSphereのセキュリティ強化ガイド、概要と概要</block>
+  <block id="47d29daaa26fbfa9c9a069d4cd023ac1" category="doc">ONTAP tools for VMware vSphere向けセキュリティ強化ガイド</block>
+  <block id="fe0e23a929284a636c245a362ada6472" category="paragraph">ONTAP tools for VMware vSphereのセキュリティ強化ガイドには、最も安全な設定を構成するための包括的な手順が記載されています。</block>
 </blocks>
