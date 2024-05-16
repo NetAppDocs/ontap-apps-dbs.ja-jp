@@ -128,7 +128,6 @@
   <block id="eee4f7a4e0ed3a8646a97bcf3e118fb9" category="paragraph">同期レプリケーションテクノロジの使用は、同期レプリケーション解決策を設計および管理するための最初のステップです。最も重要な考慮事項は、計画的および計画外のさまざまな障害シナリオで何が発生するかを理解することです。すべての同期レプリケーションソリューションが同じ機能を提供するわけではありません。Recovery Point Objective（RPO；目標復旧時点）がゼロ（つまりデータ損失ゼロ）の解決策が必要な場合は、すべての障害シナリオを考慮する必要があります。特に、サイト間の接続が失われてレプリケーションが不可能になった場合、どのような結果が予想されますか。</block>
   <block id="71554672a088c43ab21c759ddd161928" category="section-title">SyncMirrorデータの可用性</block>
   <block id="8646bb558f8f18a200cce2f70602627a" category="paragraph">リモートサイトに到達できない場合にSyncMirrorを同期モードからシームレスに切り替えることができるだけでなく、接続がリストアされたときにRPO=0状態に迅速に再同期することもできます。再同期中にリモートサイトにある古いデータコピーを使用可能な状態で保持することもできるため、データのローカルコピーとリモートコピーを常に維持できます。</block>
-  <block id="995f5151d2d1c0a4e8371b2b3c9b6e5b" category="paragraph">Dominoモードが必要な場合、NetAppはSnapMirror Synchronous（SM-S）を提供します。Oracle DataGuardや、ホスト側のディスクミラーリングのタイムアウト延長など、アプリケーションレベルのオプションもあります。追加情報とオプションについては、担当のNetAppまたはパートナーアカウントチームにお問い合わせください。</block>
   <block id="1d12d7a206d9b5337ae6fa442f23d377" category="doc">Snapshotのみ</block>
   <block id="64c29f2f2feedeb607ff588b13d9758b" category="paragraph">。<block ref="8805d416ce540c5f2df34af5b18d742b" prefix=" " category="inline-code"></block><block ref="964193481f440d73ce3474a7a09bc3ac" prefix=" " category="inline-code"></block> アクティブファイルシステムと共有されていないブロックにのみ適用されます。基本的には、データベースバックアップの階層化につながります。Snapshotが作成されてそのブロックが上書きされると、ブロックが階層化の候補となり、その結果、Snapshot内にのみ存在するブロックが作成されます。Aの前の遅延<block ref="8805d416ce540c5f2df34af5b18d742b" prefix=" " category="inline-code"></block> ブロックは冷却されていると見なされ、によって制御されます。<block ref="e5e88684921dd21f3f86c28343a3082f" prefix=" " category="inline-code"></block> ボリュームの設定。ONTAP 9.8で指定できる範囲は2～183日です。</block>
   <block id="ebd9889c847a7a3ddeccd2717ead46f2" category="paragraph">多くのデータセットは変更率が低いため、このポリシーによる削減効果は最小限に抑えられます。たとえば、ONTAPで観察される一般的なデータベースの変更率は、週あたり5%未満です。データベースのアーカイブログは大量のスペースを占有することがありますが、通常はアクティブファイルシステムに引き続き存在するため、このポリシーでは階層化の対象になりません。</block>
@@ -1547,20 +1546,13 @@ I/Oの中断はありません。</block>
   <block id="2623b589ddbc1cdb6184ba32aa06e83f" category="inline-link-macro">NVFail</block>
   <block id="a4feacea8b05d0f24e5a4612a164a055" category="paragraph">通常のベストプラクティスも引き続き適用され、必要なデータ保護がRPO=0の場合はMetroClusterで対応します。しかし、ほとんどのお客様は、RPO=0のデータ保護だけでなく、災害時のRTOを向上させ、サイトメンテナンス作業の一環として透過的なフェイルオーバーを実現するためにMetroClusterを使用しています。</block>
   <block id="3ff8bcf18c694581aa25b0a347508e0f" category="section-title">事前設定されたOSを使用したフェイルオーバー</block>
-  <block id="9bd9ad7f296a0e8ac3df804b3c6a392f" category="paragraph">SyncMirrorはディザスタリカバリサイトにデータの同期コピーを提供しますが、そのデータを利用できるようにするには、オペレーティングシステムと関連するアプリケーションが必要です。基本的な自動化により、環境全体のフェイルオーバー時間を大幅に短縮できます。Oracle RAC、Veritas Cluster Server（VCS）、VMware HAなどのClusterware製品は、サイト間でクラスタを作成するためによく使用されます。多くの場合、フェイルオーバープロセスは単純なスクリプトで実行できます。</block>
-  <block id="c5a2f3b867d990c681a218d29a55fcfa" category="paragraph">プライマリノードが失われた場合、代替サイトでアプリケーションをオンラインにするようにクラスタウェア（またはスクリプト）が設定されます。1つは、アプリケーションを構成するNFSリソースまたはSANリソース用に事前設定されたスタンバイサーバを作成する方法です。プライマリサイトに障害が発生すると、クラスタウェアまたはスクリプト化された代替サイトが次のような一連の処理を実行します。</block>
   <block id="442f34633164f1be348a442b2c62d29d" category="list-text">MetroClusterスイッチオーバーの強制実行</block>
   <block id="e081e79ea1b1040c51d4a452e46de76d" category="list-text">FC LUNの検出の実行（SANのみ）</block>
-  <block id="6f3fd86521759fc98ed93853eaf8a03a" category="list-text">ファイルシステムのマウント</block>
-  <block id="9d9ea7a9c532a3cec63305130018a45b" category="list-text">アプリケーションの起動</block>
-  <block id="b8eca7b573624230962095fcadb03ddf" category="paragraph">このアプローチの主な要件は、リモートサイトでOSを実行することです。アプリケーションバイナリを使用して事前に設定する必要があります。つまり、パッチ適用などのタスクをプライマリサイトとスタンバイサイトで実行する必要があります。また、災害が発生した場合は、アプリケーションバイナリをリモートサイトにミラーリングしてマウントすることもできます。</block>
   <block id="e60946bf73021e18706a6ac33386b376" category="paragraph">実際のアクティベーション手順は簡単です。LUN検出などのコマンドでは、FCポートあたりのコマンド数が少なくて済みます。ファイル・システムのマウントは'<block ref="19822b1b15d9eefc54c07ab49f87b100" prefix=" " category="inline-code"></block> コマンドを実行し、データベースとASMの両方をCLIで1つのコマンドで起動および停止できます。スイッチオーバーの前にディザスタリカバリサイトでボリュームとファイルシステムを使用していない場合は、<block ref="3b93661df04b698b1340ff2da3238d16" prefix=" " category="inline-code"></block> ボリューム：</block>
   <block id="486eed21f55b6fb544db5504294592e6" category="section-title">仮想OSによるフェイルオーバー</block>
   <block id="bf65e943f86f26b49698bfdac9b95f81" category="paragraph">データベース環境のフェイルオーバーを拡張して、オペレーティングシステム自体を含めることができます。理論的には、このフェイルオーバーはブートLUNで実行できますが、ほとんどの場合、仮想OSで実行されます。手順の手順は次のようになります。</block>
   <block id="7c37589384e83d2b43bba430c18a45aa" category="list-text">データベースサーバ仮想マシンをホストするデータストアのマウント</block>
   <block id="3d4d04d6cdab90b7ca0deb0344f04eec" category="list-text">仮想マシンの起動</block>
-  <block id="ba2f22f63087151f0a0694be5f35fcf2" category="list-text">データベースを手動で起動するか、またはデータベースを自動的に起動するように仮想マシンを設定する</block>
-  <block id="810078f3b19b93e24de8638d68f727b5" category="paragraph">たとえば、ESXクラスタが複数のサイトにまたがっているとします。災害が発生した場合は、スイッチオーバー後にディザスタリカバリサイトで仮想マシンをオンラインにすることができます。災害発生時に仮想データベースサーバをホストするデータストアが使用されていないかぎり、<block ref="3b93661df04b698b1340ff2da3238d16" prefix=" " category="inline-code"></block> 関連付けられているボリューム。</block>
   <block id="c702c387f07bcb4f18482e68d69a155a" category="paragraph">MetroClusterシステムを使用したOracleデータ保護の基盤となるのは、最大パフォーマンスのスケールアウト同期ミラーリングテクノロジであるSyncMirrorです。</block>
   <block id="9028b52caaa7bdbfb9be779eeb1fe00e" category="summary">MetroClusterを使用したOracle拡張RAC</block>
   <block id="dbcedb2fd86e6012347a3c9ad111f3a8" category="doc">MetroCluster上の拡張Oracle RAC</block>
@@ -5210,4 +5202,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="3698338a95ad1801e25ed154adaf1a70" category="summary">ONTAP Tools for VMware vSphereのセキュリティ強化ガイド、概要と概要</block>
   <block id="47d29daaa26fbfa9c9a069d4cd023ac1" category="doc">ONTAP tools for VMware vSphere向けセキュリティ強化ガイド</block>
   <block id="fe0e23a929284a636c245a362ada6472" category="paragraph">ONTAP tools for VMware vSphereのセキュリティ強化ガイドには、最も安全な設定を構成するための包括的な手順が記載されています。</block>
+  <block id="bc86ce4caa57368f9094a93dd72ffd28" category="paragraph">Dominoモードが必要な場合、NetAppはSnapMirror Synchronous（SM-S）を提供します。Oracle DataGuardやSQL Server Always On可用性グループなど、アプリケーションレベルのオプションも用意されています。オプションとして、OSレベルのディスクミラーリングを使用できます。追加情報とオプションについては、担当のNetAppまたはパートナーアカウントチームにお問い合わせください。</block>
+  <block id="ef0892c4d97bdcd9e4bada330c24ee8b" category="paragraph">MetroClusterは、サイト間のRPO=0の同期ミラーリングでOracleデータベースを保護するONTAPの機能です。また、単一のMetroClusterシステムで数百のデータベースをサポートするまでスケールアップできます。使い方も簡単です。MetroClusterを使用しても、エンタープライズアプリケーションやデータベースの運用に最適な条件が追加されたり変更されたりするとは限りません。</block>
 </blocks>
