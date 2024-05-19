@@ -30,6 +30,12 @@ entries:
     url: "/vmware/vmware-vsphere-dp.html"
   - title: QoS
     url: "/vmware/vmware-vsphere-qos.html"
+  - title: クラウドへの移行とバックアップ
+    url: "/vmware/vmware-vsphere-cloud_migration_backup.html"
+  - title: vSphere データの暗号化
+    url: "/vmware/vmware-vsphere-encryption.html"
+  - title: Active IQ Unified Manager
+    url: "/vmware/vmware-vsphere-aiqum.html"
   - title: ストレージポリシーベースの管理
     url: "/vmware/vmware-vsphere-policy-and-vvols.html"
   - title: VMware Storage Distributed Resource Scheduler の略

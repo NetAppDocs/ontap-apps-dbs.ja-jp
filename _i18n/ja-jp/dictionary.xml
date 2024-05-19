@@ -2478,8 +2478,6 @@ I/Oの中断はありません。</block>
   <block id="fff460b039580a1bd42725a397b4c8be" category="inline-link">_ NetApp Support Site _</block>
   <block id="897515b5a8a03f8d5cbed44fd47ef9f3" category="paragraph"><block ref="897515b5a8a03f8d5cbed44fd47ef9f3" category="inline-link-rx"></block></block>
   <block id="4020fd07f5ee2361dd23956e6a334ffd" category="paragraph">その他の解決策 ドキュメントは、次のURLから入手できます。</block>
-  <block id="503a41e1e31e362793f7e86af9102c41" category="inline-link">_仮想化向けネットアップソリューション_</block>
-  <block id="33d455bce1363bad4500664eb6208860" category="paragraph"><block ref="33d455bce1363bad4500664eb6208860" category="inline-link-rx"></block></block>
   <block id="baf17f6d2396be5fd3676baf863a331f" category="section-title">製品のトラブルシューティング</block>
   <block id="9d6d7fa1a5253698556ac2b0cda2207d" category="paragraph">vCenterプラグイン、VASA Provider、Storage Replication Adapterなど、ONTAP ツールのさまざまなコンポーネントは、いずれもネットアップのドキュメントリポジトリにまとめられています。ただし、それぞれにKnowledge Baseのサブセクションがあり、特定のトラブルシューティング手順が記載されている場合があります。これらは、VASA Providerで発生する可能性のある最も一般的な問題に対処します。</block>
   <block id="ae2a93a809929192ecc7b468f234af84" category="section-title">VASA ProviderのUIの問題</block>
@@ -2663,8 +2661,6 @@ I/Oの中断はありません。</block>
 他のすべてのNFS設定の場合は、30に設定されます</block>
   <block id="93cba07454f06a4a960172bbd6e2a435" category="cell">はい。</block>
   <block id="504e96cc79e7efe30a8271cea152d9d1" category="cell">Net.TcpipHeapMax</block>
-  <block id="a8af33a99dd728969fd947da27a2f69f" category="cell">vSphere 6.Xのほとんどのリリースでは512 MBに設定されています。
-6.5U3、6.7U3、7.0以降の場合は、1024MBに設定します。</block>
   <block id="5f1e7b6431061565550e292d05c73588" category="cell">NFS.MaxVolumes の場合</block>
   <block id="3058676a1cf088aa4a73312ac36f2a58" category="cell">NFS41.MaxVolumes</block>
   <block id="62c07f94c64184ee5d530e4c0917093f" category="cell">vSphere 6.0 以降では、 256 に設定されます。</block>
@@ -2845,8 +2841,6 @@ vSphere 8を使用したNVMe-oFの詳細については、を参照してくだ�
   <block id="45701e6ef9bc09dca07f8f4abe661dc6" category="cell">○（ vSphere 6.5 以降で拡張して、 AES 、 krb5i ）</block>
   <block id="76969a36155d2f41fc6cc3bd3faff244" category="cell">マルチパスのサポート</block>
   <block id="be0ec3d9251292dd856ea0924ecc6873" category="doc">サービス品質（ QoS ）</block>
-  <block id="8fdd6138f63aa45f1c51b48d9a01b19d" category="paragraph">スループット制限は、他のワークロードに影響しないように、導入前に未知のワークロードやテストワークロードを制御するのに役立ちます。また、 Bully ワークロードが特定された場合に、この 2 つを使用して抑制することもできます。ONTAP 9.2 では SAN オブジェクトに、 ONTAP 9.3 では NAS オブジェクトに一貫したパフォーマンスを提供するために、 IOPS に基づく最小サービスレベルもサポートされています。</block>
-  <block id="3e4a2dc31acddb628ba286d25b1bd36e" category="paragraph">NFS データストアの場合は、 QoS ポリシーを FlexVol 全体またはボリューム内の個々の VMDK ファイルに適用できます。ONTAP LUN を使用する VMFS データストアでは、 LUN を含む FlexVol ボリュームには QoS ポリシーを適用できますが、 ONTAP が VMFS ファイルシステムを認識しないため、個々の VMDK ファイルには適用できません。VVol を使用する場合は、ストレージ機能プロファイルと VM ストレージポリシーを使用して、個々の VM に最小 QoS と最大 QoS を設定できます。</block>
   <block id="534ecd446aac2f9c809eef9064f44aab" category="paragraph">オブジェクトに対する QoS の最大スループット制限は、 MBps と IOPS のいずれかまたは両方で設定できます。両方を使用する場合は、最初に到達した制限が ONTAP によって適用されます。ワークロードには複数のオブジェクトを含めることができ、 QoS ポリシーは 1 つ以上のワークロードに適用できます。ポリシーを複数のワークロードに適用した場合は、ポリシーの制限はワークロード全体に適用されます。ネストされたオブジェクトはサポートされません（たとえば、ボリューム内のファイルには個別のポリシーを設定することはできません）。QoS の最小値は IOPS 単位でのみ設定できます。</block>
   <block id="040f184b126879657b253b6d258661d9" category="paragraph">ONTAP QoS ポリシーの管理とオブジェクトへの適用に現在使用できるツールは次のとおりです。</block>
   <block id="de134183bea5df515a6756a539ce6f18" category="list-text">ONTAP CLI</block>
@@ -2856,12 +2850,9 @@ vSphere 8を使用したNVMe-oFの詳細については、を参照してくだ�
   <block id="8cc4e713850f67a131e9dbf8b997f61e" category="list-text">NetApp PowerShell Toolkit for ONTAP</block>
   <block id="fcdb48d0d22627e4910a8352c80bd87a" category="list-text">VMware vSphere VASA Provider 用の ONTAP ツール</block>
   <block id="e6defd03e0f49585b6d47614713e97f7" category="paragraph">NFS 上の VMDK に QoS ポリシーを割り当てる場合は、次のガイドラインに注意してください。</block>
-  <block id="10509998e8d4c4d7be30fc1d0b6b2a1e" category="list-text">ポリシーは、<block ref="a1bb63c284b58c32f1afb554a12e3e9a" prefix=" " category="inline-code"></block> ではなく、実際の仮想ディスクイメージが含まれています。<block ref="aa26c73336ecfd98ed727b3e249c7f90" prefix=" " category="inline-code"></block> （仮想ディスク記述ファイル）または<block ref="092eb4dd2ca488962f4c22b3e8cc4ca0" prefix=" " category="inline-code"></block> （VM記述ファイル）。</block>
   <block id="2175e0e29bc4b213fa8b9c7afd591b6b" category="list-text">仮想スワップファイルなど、他のVMファイルにポリシーを適用しない <block ref="aa33c3c1850a3f99cec7426e2c411d08" prefix="(" category="inline-code"></block>）。</block>
   <block id="8230e9b5c1e9862fedb2c69f7cc5d3d1" category="list-text">vSphere Web Clientを使用してファイルパスを検索する場合（[Datastore]&gt;[Files]）は、<block ref="f149d7424e10a266ec998ca5b32b81bb" prefix=" " category="inline-code"></block> および<block ref="4a78be158c13cd6b2dc2100a80bb7070" prefix=" " category="inline-code"></block> 1つのファイルが表示されます。このファイルには、<block ref="4a78be158c13cd6b2dc2100a80bb7070" prefix=" " category="inline-code"></block> しかしその大きさは<block ref="f149d7424e10a266ec998ca5b32b81bb" prefix=" " category="inline-code"></block>。追加（ Add ）<block ref="4fc4e556dbb9dcede037ccd80fabd784" prefix=" " category="inline-code"></block> ファイル名に入力して、正しいパスを取得します。</block>
   <block id="1d4614aca13104c98d5d8cc2d415b941" category="paragraph">VMFS と RDM 、 ONTAP SVM （ SVM として表示）、 LUN パス、シリアル番号などの LUN に QoS ポリシーを割り当てるには、 ONTAP Tools for VMware vSphere のホームページのストレージシステムメニューから QoS ポリシーを取得します。ストレージシステム（SVM）を選択し、[Related Objects]&gt;[SAN]を選択します。  この方法は、いずれかの ONTAP ツールを使用して QoS を指定する場合に使用します。</block>
-  <block id="cc97a1a52adc0bd6f188de1545eea887" category="paragraph">VVol ベースの VM には、 VMware vSphere または Virtual Storage Console 7.1 以降の ONTAP ツールを使用して、最大 QoS と最小 QoS を簡単に割り当てることができます。VVolコンテナのストレージ機能プロファイルを作成するときは、パフォーマンス機能で最大IOPSと最小IOPSの値を指定し、このSCPをVMのストレージポリシーで参照します。このポリシーは VM を作成するときに使用するか、ポリシーを既存の VM に適用します。</block>
-  <block id="421c9efa4ff1b039a5378be7bc1e2e49" category="paragraph">FlexGroup データストアでは、 ONTAP ツールを VMware vSphere 9.8 以降で使用する場合に、 QoS 機能が強化されています。QoS は、データストア内のすべての VM 、または特定の VM に簡単に設定できます。詳細については、本レポートの「 FlexGroup 」セクションを参照してください。</block>
   <block id="77bb2ba950959bd3f1c55da523ace0be" category="section-title">ONTAP の QoS と VMware の SIOC</block>
   <block id="b2e21dac6070ea83831ff6521a66a447" category="paragraph">ONTAP の QoS と VMware vSphere の Storage I/O Control （ SIOC ）は、 vSphere 管理者とストレージ管理者が組み合わせて、 ONTAP ソフトウェアを実行するシステムでホストされる vSphere VM のパフォーマンスを管理できる、相互に補完するテクノロジです。各ツールには、次の表に示すようにそれぞれの長所があります。VMware vCenter と ONTAP ではスコープが異なるため、一部のオブジェクトは一方のシステムで認識および管理でき、もう一方のシステムではできません。</block>
   <block id="5ad234cb2cde4266195252a23ca7d84e" category="cell">プロパティ（ Property ）</block>
@@ -2893,8 +2884,6 @@ vSphere 8を使用したNVMe-oFの詳細については、を参照してくだ�
   <block id="01e838e1c124042f75adb374a81f72a6" category="paragraph">VMware vSphere APIs for Storage Awareness （ VASA ）を使用すると、ストレージ管理者は、明確に定義された機能を使用してデータストアを簡単に設定でき、 VM 管理者は、相互にやり取りすることなく、いつでも VM をプロビジョニングするためのこれらの機能を使用できます。このアプローチを見て、仮想化ストレージの運用を合理化し、単純な作業の多くを回避する方法を確認することをお勧めします。</block>
   <block id="0ce8b0e3e0d7dc7f39c62fb74a28b3bf" category="section-title">クラウドへの移行とバックアップ</block>
   <block id="4fe11b4a91ff38ec9933009a15dd5b0b" category="paragraph">ONTAP のもう 1 つの強みは、ハイブリッドクラウドを幅広くサポートすることで、オンプレミスのプライベートクラウドのシステムとパブリッククラウドの機能を統合できることです。vSphere と組み合わせて使用できるネットアップのクラウドソリューションには、次のものがあります。</block>
-  <block id="e18ab5f123ad4ce169202479f07f3f0f" category="list-text">* Cloud Volumes。* NetApp Cloud Volumes Service for Amazon Web ServicesまたはGoogle Cloud PlatformとAzure NetApp Files for ANFは、主要なパブリッククラウド環境でハイパフォーマンスなマルチプロトコルマネージドストレージサービスを提供します。VMware Cloud VM ゲストで直接使用できます。</block>
-  <block id="2a11701c0c01affc0ce96eb0d0c16ed9" category="list-text">* Cloud Backup Service * 。クラウドサービスまたは SnapMirror クラウドを使用して、パブリッククラウドストレージを使用してオンプレミスシステムからデータを保護します。Cloud Sync を使用すると、 NAS 、オブジェクトストア、 Cloud Volumes Service ストレージ間でデータを移行し、同期を維持できます。</block>
   <block id="99c6c4d349151c1f4a6694e424aef741" category="inline-link">VMのより多くのスナップショットを保存</block>
   <block id="01fa297dbdab5aceb83a45a98161efe0" category="list-text">* ONTAP * FabricPool は、 FabricPool データの階層化を迅速かつ容易にします。コールドブロックは、パブリッククラウドまたはStorageGRIDのプライベートオブジェクトストアにあるオブジェクトストアに移行でき、ONTAPデータが再度アクセスされると自動的にリコールされます。または、 SnapVault ですでに管理されているデータの第 3 レベルの保護としてオブジェクト階層を使用することもできます。この方法を使用すると、を実行できます<block ref="60d027dbb3c3f076cbb70c6b246eb433" category="inline-link-rx"></block> プライマリおよびセカンダリ ONTAP ストレージシステム。</block>
   <block id="1a7072854c9dd945a98f4314b3f77408" category="list-text">* ONTAP Select * 。ネットアップの Software-Defined Storage を使用して、インターネット経由でプライベートクラウドをリモートの施設やオフィスに拡張できます。 ONTAP Select を使用すれば、ブロックサービスやファイルサービスのほか、エンタープライズデータセンターと同じ vSphere データ管理機能をサポートできます。</block>
@@ -3664,7 +3653,6 @@ SOAP over https 接続に使用されます</block>
   <block id="97db606ac6781989ea3b189d7be28bf2" category="section-title">直接接続ネットワーク</block>
   <block id="d078ae9a339971900f939db9e82f253d" category="paragraph">ストレージ管理者は、構成からネットワークスイッチを削除してインフラを簡易化したいと考える場合があります。これは一部のシナリオでサポートされます。</block>
   <block id="e817ecc2f82a2b78d828ec8704031da3" category="section-title">直接接続ネットワーク</block>
-  <block id="f437881fa7e42bf0e4563bbec8176f81" category="paragraph">ONTAP ソフトウェアを実行するシステムでは、 ONTAP ストレージ QoS 機能を使用して、ファイル、 LUN 、ボリューム、 SVM 全体などの異なるストレージオブジェクトに対するスループットを MBps や IOPS （ 1 秒あたりの I/O 数）で制限できます。</block>
   <block id="87e6f97c8ec2f31df616ef84401ffaf4" category="paragraph">追加情報 には、いくつかのトラブルシューティングリソースが用意されています。</block>
   <block id="52d04863ac62a6fa67e1b49a31086928" category="paragraph">以降のセクションでは、VMware SRMとONTAPストレージの運用に関するベストプラクティスについて説明します。</block>
   <block id="f24ef4a42850a2b3e3d77e610ae46fee" category="doc">計画的イベントと計画外イベントの耐障害性</block>
@@ -4915,8 +4903,6 @@ cluster：：&gt; set -privilege diagnostic</block>
   <block id="ff6fdc6e7749c69219fc26d54c625bd5" category="paragraph">NetAppは、NFSプロトコルとブロックプロトコルの両方に最適なESXiホスト設定を開発しました。また、NetAppとVMwareの内部テストに基づいて、ONTAPで適切に動作するようにマルチパスとHBAタイムアウトを設定するための具体的なガイダンスも提供されます。</block>
   <block id="bc25cf0638b9454338db449fa254150f" category="paragraph">これらの値は、ONTAP tools for VMware vSphereを使用して簡単に設定できます。[Summary]ダッシュボードで、[Host Systems]ポートレットの[Edit Settings]をクリックするか、vCenterでホストを右クリックし、ONTAP tools]&gt;[Set Recommended Values]に移動します。</block>
   <block id="8b31cb1f15553175f0c1621a39bdbb79" category="paragraph">ここでは、9.8~9.13リリースで推奨されるホスト設定を示します。</block>
-  <block id="e04f2f88f5ffb51e545bb057e058d8d3" category="cell">デフォルト（0）のままにしますが、必要に応じて変更できます。
-詳細については、を参照してください <block ref="68c2cf0ecb6a1c6abaf6e56c035d5866" category="inline-link-macro-rx"></block></block>
   <block id="baee97fad9d55c529dc7a7eb07fd1ba4" category="cell">vSphere 6.0以降：256に設定
 その他のNFS構成はすべて64に設定されます。</block>
   <block id="f52dc930699add83bc126704edf5400b" category="list-text">vSphere 6.7 Update 1 では、 VMware がラウンドロビン PSP 用に新しいレイテンシの負荷分散メカニズムを導入しました。新しいオプションでは、 I/O に最適なパスを選択する際に、 I/O 帯域幅とパスレイテンシが考慮されますパス接続が異なる環境（あるパスのネットワークホップ数が別のパスよりも多い場合など）や、NetAppオールSANアレイシステムを使用している場合など、パス接続が同等でない環境で使用するとメリットがあります。を参照してください<block ref="f5ecc69f2970e2e9c8638ad278ec38f7" category="inline-link-rx"></block> を参照してください。</block>
@@ -4975,7 +4961,6 @@ cluster：：&gt; set -privilege diagnostic</block>
   <block id="16ce478a465011bacaa6e508063c2648" category="section-title">覚えておくべきこと</block>
   <block id="83f04319244758f7531b398c51aa9f38" category="section-title">NanoサーバーでのSMB共有のプロビジョニング</block>
   <block id="2323e97f7cf2da464750911f1f3e1af6" category="doc">クラスタ環境へのHyper-Vレプリカの導入</block>
-  <block id="38792c1c1d72aaa53d18f0b79d2621aa" category="doc">Hyper-Vストレージのライブマイグレーションの導入</block>
   <block id="36b10adb4505559b63b091b53614af1f" category="section-title">NetApp重複排除</block>
   <block id="1ba5c1747d37a3d7ae84fd1dcac77603" category="section-title">さらに読みます</block>
   <block id="50802d3e5a25b93d471686a10da03dd8" category="section-title">ベストプラクティス</block>
@@ -5204,4 +5189,71 @@ SOAP over HTTPS接続に使用</block>
   <block id="fe0e23a929284a636c245a362ada6472" category="paragraph">ONTAP tools for VMware vSphereのセキュリティ強化ガイドには、最も安全な設定を構成するための包括的な手順が記載されています。</block>
   <block id="bc86ce4caa57368f9094a93dd72ffd28" category="paragraph">Dominoモードが必要な場合、NetAppはSnapMirror Synchronous（SM-S）を提供します。Oracle DataGuardやSQL Server Always On可用性グループなど、アプリケーションレベルのオプションも用意されています。オプションとして、OSレベルのディスクミラーリングを使用できます。追加情報とオプションについては、担当のNetAppまたはパートナーアカウントチームにお問い合わせください。</block>
   <block id="ef0892c4d97bdcd9e4bada330c24ee8b" category="paragraph">MetroClusterは、サイト間のRPO=0の同期ミラーリングでOracleデータベースを保護するONTAPの機能です。また、単一のMetroClusterシステムで数百のデータベースをサポートするまでスケールアップできます。使い方も簡単です。MetroClusterを使用しても、エンタープライズアプリケーションやデータベースの運用に最適な条件が追加されたり変更されたりするとは限りません。</block>
+  <block id="8059304404c995bd8a349056e7d40e32" category="inline-link">_BroadcomによるVMwareによる仮想化向けNetAppソリューション_</block>
+  <block id="cc5363f91541e771ebd890b2330cb8ba" category="paragraph"><block ref="cc5363f91541e771ebd890b2330cb8ba" category="inline-link-rx"></block></block>
+  <block id="c90946faf2ed37e17d936e0b3acde7a7" category="summary">保存データの暗号化は、従来のデータだけでなく、保存されているすべてのデータタイプにまで及び、ますます求められています。</block>
+  <block id="b1e1676a19b222da72a55b95aa86d3e9" category="paragraph">セキュリティトピックの詳細については、次のリソースを参照してください。</block>
+  <block id="e6bd708199eed7d8bf33ef8308be0b3e" category="inline-link-macro">セキュリティテクニカルレポート</block>
+  <block id="fb7f6edb08c080e81bd91a922a9d08f8" category="list-text"><block ref="fb7f6edb08c080e81bd91a922a9d08f8" category="inline-link-macro-rx"></block></block>
+  <block id="ff8c9f0959eb84d21416835c3f9c89d6" category="inline-link-macro">セキュリティ強化ガイド</block>
+  <block id="589b1ebfaed268e1548717208be6131f" category="list-text"><block ref="589b1ebfaed268e1548717208be6131f" category="inline-link-macro-rx"></block></block>
+  <block id="e44de13cc4b452eccde9961bbe9da42b" category="inline-link-macro">ONTAPセキュリティとデータ暗号化の製品ドキュメント</block>
+  <block id="c76e848365d3a2199dfced47ddbf8690" category="list-text"><block ref="c76e848365d3a2199dfced47ddbf8690" category="inline-link-macro-rx"></block></block>
+  <block id="b0451de97a6470424561bcadeb5893bd" category="summary">ONTAPソフトウェアは、ハイブリッドクラウドを幅広くサポートしています。</block>
+  <block id="0e8f1228bcea37dc870b3c00ddfebb6b" category="list-text">*ファーストパーティ製品。* Amazon FSx for NetApp ONTAP、Google Cloud NetApp Volumes、Azure NetApp Files for ANFは、主要なパブリッククラウド環境でハイパフォーマンスなマルチプロトコルマネージドストレージサービスを提供します。VMware Cloud on AWS（VMC on AWS）、Azure VMware Solution（AVS）、Google Cloud VMware Engine（GCVE）で、ゲストオペレーティングシステム（GOS）およびコンピューティングインスタンスのデータストアまたはストレージとして直接使用できます。</block>
+  <block id="2c95b4b56070479502ffc85344c7d8b2" category="list-text">*クラウドサービス。* BlueXPのバックアップとリカバリまたはSnapMirror Cloudを使用して、パブリッククラウドストレージを使用してオンプレミスシステムからデータを保護します。Cloud Sync を使用すると、 NAS 、オブジェクトストア、 Cloud Volumes Service ストレージ間でデータを移行し、同期を維持できます。BlueXPのディザスタリカバリは、対費用効果の高い効率的な解決策を提供し、堅牢で高機能なディザスタリカバリ解決策の基盤としてNetAppテクノロジを活用して、クラウドへのDR、オンプレミスからオンプレミスへのDRを実現します。</block>
+  <block id="1a523ba4ece9125275b92ebb41e3cf23" category="inline-link-macro">Cloud Volumes ONTAP のドキュメント</block>
+  <block id="e4501a9ef639002a658af0113906add9" category="list-text"><block ref="e4501a9ef639002a658af0113906add9" category="inline-link-macro-rx"></block></block>
+  <block id="7436b418bed093768e360d32105591d2" category="inline-link-macro">ONTAP Select のドキュメント</block>
+  <block id="82fe32c89de73116e2188701ca735c39" category="list-text"><block ref="82fe32c89de73116e2188701ca735c39" category="inline-link-macro-rx"></block></block>
+  <block id="c756b6b1ba6b752239a8d49eda5ad2a4" category="inline-link-macro">BlueXPのバックアップとリカバリに関するドキュメント</block>
+  <block id="f99b2e5828a20fe99efc9b8c25b42d83" category="list-text"><block ref="f99b2e5828a20fe99efc9b8c25b42d83" category="inline-link-macro-rx"></block></block>
+  <block id="b044111e167403664c9e3432eca1f25a" category="inline-link-macro">BlueXPディザスタリカバリドキュメント</block>
+  <block id="ec39a9c8e559c87efc4a1ac3c8dfd136" category="list-text"><block ref="ec39a9c8e559c87efc4a1ac3c8dfd136" category="inline-link-macro-rx"></block></block>
+  <block id="f5c286d9dc4cdaffcb8e5c86388e6ed8" category="list-text"><block ref="f5c286d9dc4cdaffcb8e5c86388e6ed8" category="inline-link-macro-rx"></block></block>
+  <block id="4dab2f9796b0af6304d00e21e2b9dfb4" category="inline-link-macro">AWS 上の VMware Cloud</block>
+  <block id="560d5b2cd40977bd7b77b31d7088f657" category="list-text"><block ref="560d5b2cd40977bd7b77b31d7088f657" category="inline-link-macro-rx"></block></block>
+  <block id="e6aa20b5d3923ee0466f5d7e7bfed821" category="inline-link-macro">Azure NetApp Filesとは
+</block>
+  <block id="810dc5c2e801b56b11325dd2aca0775c" category="list-text"><block ref="810dc5c2e801b56b11325dd2aca0775c" category="inline-link-macro-rx"></block></block>
+  <block id="9789f0612fda153726aa8ad87265e4b9" category="inline-link-macro">Azure VMware 解決策の略</block>
+  <block id="f068ad668d317d445bc0da61125c318f" category="list-text"><block ref="f068ad668d317d445bc0da61125c318f" category="inline-link-macro-rx"></block></block>
+  <block id="8cb69aa5b1609d0a39f0fcd576c07df6" category="inline-link-macro">Google Cloud VMware Engine</block>
+  <block id="dadb2f85467c159b9d8387744cdd0ce6" category="list-text"><block ref="dadb2f85467c159b9d8387744cdd0ce6" category="inline-link-macro-rx"></block></block>
+  <block id="e6288bb2b93ca74537fbff66317f01d9" category="inline-link-macro">Google Cloud NetApp Volumeとは</block>
+  <block id="e19aa8cca2f701dba5fc123376bebdb5" category="list-text"><block ref="e19aa8cca2f701dba5fc123376bebdb5" category="inline-link-macro-rx"></block></block>
+  <block id="fe0d13586251492122aca2ce92a53779" category="cell">デフォルト（0）のままにしますが、必要に応じて変更できます。
+詳細については、を参照してください <block ref="b982e0cf7a2ddd8de49cd5a4b5cefbd7" category="inline-link-macro-rx"></block></block>
+  <block id="b44c4aa4ed40a2c01a89549bc8746cbd" category="cell">vSphere 6.Xのほとんどのリリースでは512 MBに設定されています。
+6.5U3、6.7U3、および7.0以降ではデフォルト（1024MB）に設定されます。</block>
+  <block id="f3c4f211a4831f8f7c223705b0fccd5d" category="paragraph">スループット制限は、サービスレベルの制御や不明なワークロードの管理に役立ちます。また、導入前にアプリケーションをテストして、本番環境の他のワークロードに影響しないようにするのに役立ちます。また、 Bully ワークロードが特定された場合に、この 2 つを使用して抑制することもできます。</block>
+  <block id="5ab12aefceb83851b73081a686bd30ab" category="section-title">ONTAP QoSポリシーのサポート</block>
+  <block id="3efec0f095dea3c3f13e003eafd76710" category="paragraph">ONTAPソフトウェアを実行しているシステムでは、ストレージQoS機能を使用して、ファイル、LUN、ボリューム、SVM全体などのさまざまなストレージオブジェクトのスループットをMBpsやIOPS（1秒あたりのI/O数）で制限できます。</block>
+  <block id="8aa45e69fd8330d5e4d2f6e16309ff41" category="paragraph">ONTAP 9.2 では SAN オブジェクトに、 ONTAP 9.3 では NAS オブジェクトに一貫したパフォーマンスを提供するために、 IOPS に基づく最小サービスレベルもサポートされています。</block>
+  <block id="98d229565d14d4d286f57a588a784c1e" category="inline-link-macro">パフォーマンスの監視と管理の概要</block>
+  <block id="b7629a90716592b8dcae7480ad66d224" category="paragraph">を参照してください <block ref="de4b907e949a377b72cd0f0b0595d155" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="81eba6b819a671b6c8962061afd13a78" category="section-title">VVOL以外のNFSデータストア</block>
+  <block id="5bafceb9f14cf4b07086992cd31326a5" category="paragraph">ONTAP QoSポリシーは、データストア全体またはデータストア内の個 々 のVMDKファイルに適用できます。ただし、従来の（VVOL以外の）NFSデータストア上のすべてのVMが、特定のホストの共通のI/Oキューを共有していることを理解しておくことが重要です。ONTAP QoSポリシーで調整されているVMがある場合、実際にはそのホストでは、そのデータストアのすべてのI/Oが調整されているように見えます。</block>
+  <block id="1520a4910ffa6efc27379931cc307d0b" category="paragraph">* 例： *
+*ホストESXi-01によって従来のNFSデータストアとしてマウントされているボリュームに対して、vm1.vmdkにQoS制限を設定します。
+*同じホスト（esxi-01）がVM2.vmdkを使用しており、同じボリューム上にあります。
+*vm1.vmdkがスロットルされると、vm1.vmdkと同じIOキューを共有するため、vm2.vmdkもスロットルされているように見えます。</block>
+  <block id="7105e6aafd96e59bb7664db98d24dcfc" category="paragraph">*注：* VVOLには適用されません。</block>
+  <block id="caf18b31d986fc095c3c0cd6a1f19f9e" category="paragraph">vSphere 6.5以降では、Storage I/O Control（SIOC）v2を使用したStorage Policy-Based Management（SPBM）を使用して、VVol以外のデータストアに対するファイル単位の制限を管理できます。</block>
+  <block id="c28029445f9803e209550517678387a9" category="paragraph">SIOCポリシーとSPBMポリシーを使用したパフォーマンスの管理の詳細については、次のリンクを参照してください。</block>
+  <block id="8bef032522908e987555b77fb50dbb85" category="inline-link-macro">SPBMのホストベースルール：SIOC v2</block>
+  <block id="98a7507b3e8be801707c07e336bc5506" category="inline-link-macro">vSphereによるストレージI/Oリソースの管理</block>
+  <block id="37b0c263c77e85e59d9f00438e870fa4" category="paragraph"><block ref="ea373db41b8c05446b96b46f4bbe1141" category="inline-link-macro-rx"></block>
+<block ref="c5badf4fd27434d786395fe52801b533" category="inline-link-macro-rx"></block></block>
+  <block id="cd6af799ac31b0fbf81bcbba1d3d6bf1" category="list-text">ポリシーは、<block ref="3b9aef0680339707b430261c2f800255" prefix=" " category="inline-code"></block> ではなく、実際の仮想ディスクイメージが含まれています。<block ref="aa26c73336ecfd98ed727b3e249c7f90" prefix=" " category="inline-code"></block> （仮想ディスク記述ファイル）または<block ref="092eb4dd2ca488962f4c22b3e8cc4ca0" prefix=" " category="inline-code"></block> （VM記述ファイル）。</block>
+  <block id="9aa28dc739b66a86d9f73ba24b9dd4c2" category="paragraph">FlexGroup データストアでは、 ONTAP ツールを VMware vSphere 9.8 以降で使用する場合に、 QoS 機能が強化されています。QoS は、データストア内のすべての VM 、または特定の VM に簡単に設定できます。詳細については、本レポートの「 FlexGroup 」セクションを参照してください。従来のNFSデータストアでは、前述したQoSの制限が引き続き適用されることに注意してください。</block>
+  <block id="b5380e34617914719b059f6d55b97b66" category="section-title">VMFSテタストア</block>
+  <block id="b74c42e3de8c5b901769e263bf236711" category="paragraph">ONTAP LUNを使用すると、LUNを含むFlexVolボリュームまたは個 々 のLUNにQoSポリシーを適用できますが、ONTAPではVMFSファイルシステムが認識されないため、個 々 のVMDKファイルには適用できません。</block>
+  <block id="e122a7a507ac1f580cc5b9f2632a851c" category="section-title">vVolテエタストア</block>
+  <block id="be1ca5bcad3b34c08e2b2d7bfc8a95e3" category="paragraph">最小/最大QoSは、Storage Policy-Based ManagementとVVOLを使用することで、他のVMやVMDKに影響を与えることなく、個 々 のVMやVMDKに簡単に設定できます。</block>
+  <block id="f5ac983ee93a7017d283971566bc828e" category="paragraph">VVolコンテナのストレージ機能プロファイルを作成するときは、パフォーマンス機能で最大IOPSと最小IOPSの値を指定し、このSCPをVMのストレージポリシーで参照します。このポリシーは VM を作成するときに使用するか、ポリシーを既存の VM に適用します。</block>
+  <block id="1f23e960871a0a77a49731a6b47646c5" category="inline-link-macro">VMware vSphere Virtual Volume（VVOL）とONTAP</block>
+  <block id="136d0794411ea29f9fb5130ec2655f35" category="paragraph">*注：* VVOLを使用するには、VASA Provider for ONTAPとして機能するONTAP Tools for VMware vSphereを使用する必要があります。を参照してください <block ref="2486a36e844a24e9d1cf22351b1f1514" category="inline-link-macro-rx"></block> を参照してください。</block>
+  <block id="8743b08c4d707cd145a4e7acce189480" category="cell">○（データストアは調整可能）</block>
+  <block id="b2891bc898f2a418aa349b623568299e" category="summary">Active IQ Unified Managerを使用すると、VMware vSphere環境におけるNetAppのストレージやパフォーマンスの問題の監視とトラブルシューティングを行うことができます。</block>
 </blocks>

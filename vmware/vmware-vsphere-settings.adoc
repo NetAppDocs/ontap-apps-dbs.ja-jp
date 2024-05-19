@@ -33,7 +33,7 @@ NetAppは、NFSプロトコルとブロックプロトコルの両方に最適�
 
 
 | VMFS3.EnableBlockDelete の 2 つのオプションがあります | デフォルト（0）のままにしますが、必要に応じて変更できます。
-詳細については、を参照してください link:https://kb.vmware.com/selfservice/microsites/search.do?language=en_US&cmd=displayKC&externalId=2007427["VMware KB 2007427"] | いいえ 
+詳細については、を参照してください link:https://knowledge.broadcom.com/external/article?legacyId=2007427["VMware KB 2007427"] | いいえ 
 
 
 | VMFS3.EnableVMFS6Unmap | デフォルトのまま（1）
@@ -48,7 +48,7 @@ NetAppは、NFSプロトコルとブロックプロトコルの両方に最適�
 
 
 | Net.TcpipHeapMax | vSphere 6.Xのほとんどのリリースでは512 MBに設定されています。
-6.5U3、6.7U3、7.0以降の場合は、1024MBに設定します。 | はい。 
+6.5U3、6.7U3、および7.0以降ではデフォルト（1024MB）に設定されます。 | はい。 
 
 
 | NFS.MaxVolumes の場合 | vSphere 6.0以降：256に設定

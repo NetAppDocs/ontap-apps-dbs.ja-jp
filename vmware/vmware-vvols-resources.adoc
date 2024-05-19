@@ -25,7 +25,7 @@ https://mysupport.netapp.com/site/products/all/details/otv/docs-tab["_ NetApp Su
 
 その他の解決策 ドキュメントは、次のURLから入手できます。
 
-https://docs.netapp.com/us-en/netapp-solutions/virtualization/index.html["_仮想化向けネットアップソリューション_"]
+https://docs.netapp.com/us-en/netapp-solutions/vmware/index.html["_BroadcomによるVMwareによる仮想化向けNetAppソリューション_"]
 
 
 
