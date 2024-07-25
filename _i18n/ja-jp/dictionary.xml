@@ -2377,7 +2377,6 @@ I/Oの中断はありません。</block>
   <block id="f0d0f0a6174a5a9dde27782042e22ccf" category="paragraph">VMのプロビジョニングが完了すると、VASA Providerは準拠状況を継続的にチェックし、元のボリュームがポリシーに準拠しなくなったときにvCenterでアラームを生成してVM管理者に通知します（図2）。</block>
   <block id="941431bc1cecb0ec5e89e78e9a5a96fc" category="section-title">VMストレージポリシーへの準拠</block>
   <block id="bfd6dec22a6a1724ff1b67f1f289cdfc" category="image-alt">仮想マシンストレージポリシーへの準拠</block>
-  <block id="e08bc5b354c3e8058003a662e0f7cade" category="section-title">NetApp VVOLのサポート</block>
   <block id="9fe1fd556b933358881222d5c3da127c" category="paragraph">本書の発行時点では、ハイパースケーラ環境は従来のNFS v3データストアに限定されているため、VVOLは、オンプレミスのONTAP システム、または世界中のネットアップパートナーやサービスプロバイダがホストするオンプレミスシステムのすべての機能を提供するクラウド接続システムでのみ使用できます。</block>
   <block id="274bc582ca884fc158ea9ac9f79f9067" category="inline-link">ONTAP 製品ドキュメント</block>
   <block id="5ca60fe92dec435059ba5acefa4ce2c9" category="paragraph">ONTAP の詳細については、を参照してください<block ref="8a9b15dc18a16e0b1acfa438e27f6aa6" category="inline-link-rx"></block>_</block>
@@ -2389,7 +2388,6 @@ I/Oの中断はありません。</block>
   <block id="3f4dbd6687bd0d55bf69fe5fdd0137c4" category="list-text">*よりスマートなプロビジョニング。*ストレージシステムの機能をVASA APIを通じて公開できるため、VM管理者がストレージシステムの管理方法を理解しなくても、プロビジョニングワークフローで高度な機能を活用できます。</block>
   <block id="a13fcc9220d042cae454e9ac073636ca" category="list-text">*プロビジョニングの高速化。* 1つのデータストアでさまざまなストレージ機能をサポートし、VMポリシーに基づいてVMに応じて自動的に選択できます。</block>
   <block id="eb4c052226108afebf26e670208b9a55" category="list-text">*間違いを避けてください。*ストレージとVMのポリシーは事前に開発され、必要に応じて適用されます。VMをプロビジョニングするたびにストレージをカスタマイズする必要はありません。コンプライアンスアラームは、定義されたポリシーからストレージ機能が逸脱すると生成されます。前述したように、SCPは初期プロビジョニングを予測可能かつ反復可能にし、SCPに基づいてVMストレージポリシーを設定することで正確な配置を保証します。</block>
-  <block id="9c520768a1d84268417335cf19a423b9" category="list-text">*容量管理の向上。* VASAおよびONTAP ツールを使用すると、必要に応じてストレージ容量を業界単位のアグリゲートレベルまで表示し、容量が不足し始めた場合に複数のレイヤからアラートを受け取ることができます。</block>
   <block id="f9878e32fdf258284c007eaae38773cd" category="section-title">最新のSANでVMをきめ細かく管理</block>
   <block id="7e673a7c12cc256f29bcd7b2028d9d5a" category="paragraph">VMwareでは、ファイバチャネルとiSCSIを使用するSANストレージシステムが最初にESX向けにサポートされましたが、ストレージシステムから個 々 のVMファイルとディスクを管理する機能はありませんでした。代わりに、LUNがプロビジョニングされ、VMFSが個 々 のファイルを管理します。そのため、個 々 のVMストレージのパフォーマンス、クローニング、保護をストレージシステムで直接管理することは困難です。VVOLは、ONTAP の堅牢でパフォーマンスに優れたSAN機能により、NFSストレージを使用しているお客様がすでに利用しているストレージをきめ細かく制御します。</block>
   <block id="25a46370807e0eab0dfe3853abfb9b6e" category="paragraph">現在、vSphere 8とONTAP Tools for VMware vSphere 9.12以降では、従来のSCSIベースのプロトコルにVVOLで使用されていたきめ細かな制御機能が、NVMe over Fabricsを使用した最新のファイバチャネルSANで利用できるようになり、大規模環境でのパフォーマンスをさらに向上させることができます。vSphere 8.0 Update 1では、ハイパーバイザーストレージスタックでI/O変換を行うことなく、VVOLを使用して完全なエンドツーエンドのNVMe解決策 を導入できるようになりました。</block>
@@ -5255,4 +5253,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="5a4857ad48868097d482a4a448f48bd9" category="doc">ユーザあたりの最大同時要求数（ネットワークセキュリティ保護/DOS攻撃）</block>
   <block id="0af211d5cda5cc4bb17dd7751e741595" category="doc">ネットワークタイムプロトコル（NTP）の設定</block>
   <block id="c1fac7a72cd91bcd345e567f6d6d93a3" category="sidebar">MetroClusterでのOracleフェイルオーバー</block>
+  <block id="273eb98a312e607888044e87e0210015" category="section-title">NetApp VVOLのサポート</block>
+  <block id="551e3b0a48f99995daac658b17a1de62" category="list-text">*より優れた容量管理*VASAツールとONTAPツールを使用すると、必要に応じて個 々 のアグリゲートレベルまでストレージ容量を表示し、容量が少なくなり始めた場合に複数のレイヤからアラートを受け取ることができます。</block>
 </blocks>
