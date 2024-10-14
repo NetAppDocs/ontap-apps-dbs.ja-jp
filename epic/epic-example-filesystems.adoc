@@ -1,0 +1,27 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-example-filesystems.html 
+keywords: epic,cache,iris 
+summary: ONTAPでのEpicの導入例-ファイルシステム 
+---
+= ONTAPでのEpicの導入例-ファイルシステム
+:allow-uri-read: 
+
+
+[role="lead"]
+LUNのマウント、ボリュームグループと論理ボリュームの作成、およびファイルシステムの設定については、『Epic Storage Configuration Quick Reference Guide』を参照してください。次のサンプルコマンドを使用して、Epic ProductionサーバーをRHEL用に設定します。
+
+
+
+== ファイルシステムとマウントオプション
+
+LUNを作成してマッピングし、ゾーニングが完了したら、次の手順に従ってサーバにストレージを接続します。
+
+
+NOTE: この例では、DBに1、024GBのLUNを8個、ジャーナルに1、024GBのLUNを2個、アプリケーションのインストールに1、024GBのLUNを2個使用しています。
+
+
+
+== 非同期I/O
+
+『Epic SAN Considerations』ホワイトペーパーおよび『Storage Configuration Quick Reference』には、ホストを設定してストレージに接続する方法の詳細が記載されています。このセクションでは、Red Hat Enterprise Linuxホストのセットアップ方法を確認します。AIXの詳細については、参照ドキュメントを参照してください。

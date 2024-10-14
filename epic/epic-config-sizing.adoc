@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-config-sizing.html 
+keywords: epic,cache,iris 
+summary: Epicのストレージサイジング 
+---
+= Epicのストレージサイジング
+:allow-uri-read: 
+
+
+[role="lead"]
+Epicの設計を確認するには、Epicアライアンスチームと協力してください。チームはEpic @ NetApp .comで連絡することができます。すべての導入では、EpicとNetAppが推奨するベストプラクティスに準拠しながら、お客様の要望に対応する必要があります。
+
+NetAppサイジングツールを使用して、Epicソフトウェア環境のストレージに必要なRAIDグループの正しいサイズと数を判断する方法については、（NetAppへのログインが必要）を参照してくださいlink:https://fieldportal.netapp.com/content/192412?assetComponentId=192510["TR-3930i ：『 NetApp Sizing Guidelines for Epic 』"^]。
+
+
+NOTE: NetApp Field Portalへのアクセスが必要です。

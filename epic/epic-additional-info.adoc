@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-additional-info.html 
+keywords: epic,cache,iris 
+summary: Epic on ONTAPに関する追加情報 
+---
+= Epic on ONTAPに関する追加情報
+:allow-uri-read: 
+
+
+[role="lead"]
+このドキュメントに記載されている情報の詳細については、以下のドキュメントや Web サイトを参照してください。
+
+* link:https://www.netapp.com/us/documentation/index.aspx["ネットアップの製品マニュアル"^]
+* link:https://docs.netapp.com/us-en/ontap/index.html["ONTAP 9ドキュメント"^]
+* link:https://docs.netapp.com/us-en/ontap/consistency-groups/#learn-about-consistency-groups["整合性グループ"^]
+* link:https://www.netapp.com/us/documentation/ontap-and-oncommand-system-manager.aspx["ONTAP および ONTAP System Manager のドキュメントリソース"^]
+* link:https://fieldportal.netapp.com/content/192412?assetComponentId=192510["TR-3930i ：『 NetApp Sizing Guidelines for Epic 』"^]（NetAppへのログインが必要）
+
+
+
+
+== Epicのお客様向けガイダンスドキュメント
+
+Epicでは、サーバ、ストレージ、ネットワークに関するガイダンスとして、次のドキュメントをお客様に提供しています。本テクニカルレポートでは、これらのドキュメントを参照しています。
+
+* ストレージエリアネットワークに関する考慮事項
+* ビジネス継続性テクニカルソリューションガイド
+* オールフラッシュリファレンスアーキテクチャ戦略ハンドブック
+* ストレージ製品とテクノロジのステータス
+* Epicクラウドに関する考慮事項
+* ハードウェア構成ガイド（お客様に合わせた）
+* データベースストレージレイアウトに関する推奨事項（お客様固有）
+

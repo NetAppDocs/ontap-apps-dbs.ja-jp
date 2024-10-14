@@ -1,0 +1,58 @@
+---
+section: epic
+title: エピック
+entries:
+- title: 概要
+  url: "/epic/epic-overview.html"
+- title: ONTAPのEpic
+  entries:
+  - title: 概要
+    url: "/epic/epic-ontap-overview.html"
+  - title: 可用性
+    url: "/epic/epic-ontap-availability.html"
+  - title: 統合
+    url: "/epic/epic-ontap-consolidation.html"
+  - title: 効率性
+    url: "/epic/epic-ontap-efficiency.html"
+  - title: パフォーマンス
+    url: "/epic/epic-ontap-performance.html"
+  - title: 拡張性
+    url: "/epic/epic-ontap-scalability.html"
+  - title: Snapshotとクローニング
+    url: "/epic/epic-ontap-snapshots.html"
+  - title: セキュリティ
+    url: "/epic/epic-ontap-security.html"
+- title: EPICのアーキテクチャと設計
+  entries:
+  - title: 概要
+    url: "/epic/epic-arch-overview.html"
+  - title: サイジング
+    url: "/epic/epic-arch-sizing.html"
+  - title: ストレージ要件
+    url: "/epic/epic-arch-storage.html"
+  - title: 4ノードアーキテクチャ
+    url: "/epic/epic-arch-4node.html"
+  - title: 6ノードアーキテクチャ
+    url: "/epic/epic-arch-6node.html"
+  - title: 8ノードアーキテクチャ
+    url: "/epic/epic-arch-8node.html"
+- title: 構成とベストプラクティス
+  entries:
+  - title: ホストユーティリティ
+    url: "/epic/epic-config-huk.html"
+  - title: LUNとボリュームの構成
+    url: "/epic/epic-config-lunvol.html"
+  - title: ファイルサービス
+    url: "/epic/epic-config-files.html"
+  - title: パフォーマンス
+    url: "/epic/epic-config-performance.html"
+  - title: プロトコル
+    url: "/epic/epic-config-protocols.html"
+  - title: ストレージ効率
+    url: "/epic/epic-config-efficiency.html"
+  - title: 整合グループ
+    url: "/epic/epic-config-cgs.html"
+  - title: ストレージのサイジング
+    url: "/epic/epic-config-sizing.html"
+- title: 追加情報の参照先
+  url: "/epic/epic-additional-info.html"

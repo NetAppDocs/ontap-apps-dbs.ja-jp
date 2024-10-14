@@ -10,7 +10,7 @@ summary: ONTAPを使用したMicrosoft WindowsとHyper-Vの仮想化の概要
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -19,7 +19,7 @@ Microsoft Windows Serverは、ネットワーク、セキュリティ、仮想�
 
 NOTE: *このドキュメントは、以前に公開されていたテクニカルレポート_TR-4568：『NetApp Deployment Guidelines and Storage Best Practices for Windows Server_*』の内容を置き換えます。
 
-.NetApp ONTAP(R)管理ソフトウェアは、NetAppストレージコントローラ上で動作します。複数の形式で使用できます。
+.ONTAPはNetAppストレージコントローラで実行されます。複数の形式で使用できます。
 * ファイル、オブジェクト、ブロックの各プロトコルをサポートするユニファイドアーキテクチャ。これにより、ストレージコントローラがNASデバイスとSANデバイスの両方、およびオブジェクトストアとして機能できるようになります。
 * ブロックプロトコルのみに重点を置き、接続ホストに対称アクティブ/アクティブマルチパスを追加することでI/O再開時間（IORT）を最適化するオールSANアレイ（ASA）
 * ソフトウェア定義型のユニファイドアーキテクチャ

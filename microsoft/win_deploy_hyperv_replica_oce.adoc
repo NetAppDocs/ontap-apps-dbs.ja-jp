@@ -10,7 +10,7 @@ summary: この付録では、クラスタ環境の外部にHyper-Vレプリカ�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]

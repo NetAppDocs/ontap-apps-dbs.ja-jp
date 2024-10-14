@@ -1,0 +1,26 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-arch-6node.html 
+keywords: epic,cache,iris 
+summary: Epic 6ノードアーキテクチャ 
+---
+= Epic 6ノードアーキテクチャ
+:allow-uri-read: 
+
+
+[role="lead"]
+お客様は、6ノード設計から始めたり、需要の拡大に合わせて4ノードから6ノードへシームレスにスケールアウトしたりすることができます。スケールアウトでは、システムを停止することなくノード間でワークロードを移動し、クラスタ全体でリバランシングできます。
+
+このアーキテクチャは、クラスタで最適なパフォーマンスと容量のバランスを提供します。Epic Production、Epic Report、およびEpic Testはすべて、最初のHAペアで実行されます。2つ目のHAペアは、Clarity、HyperSpace、VMware、NAS1、および残りのEpicワークロードに使用されます。ディザスタリカバリは、前のセクションで説明した4ノードアーキテクチャと同じです。
+
+
+
+== 6ノードアーキテクチャ
+
+image:epic-6node.png["Epic 6ノードアーキテクチャ"]
+
+
+
+== 6ノードのワークロードの配置
+
+image:epic-6node-design.png["Epicの6ノード配置"]

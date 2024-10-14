@@ -146,7 +146,7 @@ vserver1  800DT$HuVWBn /vol/new_lvm/LUN8 2
 vserver1  800DT$HuVWBo /vol/new_lvm/LUN9 2
 20 entries were displayed.
 ....
-オフラインプロセスが必要な場合は、サービスの再検出または再開を `lun import show` コマンドは、すべての移行が正常に完了したことを示します。その後、移行プロセスを完了できます（を参照）。 link:../migration/migration_options.html#foreign-lun-import-fli["Foreign LUN Import—完了"]。
+オフラインプロセスが必要な場合は、コマンドがすべての移行が正常に完了したことを示すまで、サービスの再検出または再開を遅らせて `lun import show`ください。その後、の説明に従って移行プロセスを完了できますlink:oracle-migration-fli-completion.html["Foreign LUN Import—完了"]。
 
 オンライン移行が必要な場合は、新しいホーム内のLUNの再検出に進み、サービスを起動します。
 

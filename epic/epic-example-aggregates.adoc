@@ -1,0 +1,15 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-example-aggregates.html 
+keywords: epic,cache,iris 
+summary: Epic on ONTAPの導入例-アグリゲート 
+---
+= Epic on ONTAPの導入例-アグリゲート
+:allow-uri-read: 
+
+
+[role="lead"]
+アグリゲートのプロビジョニングに関する最新のドキュメントについては、をクリックしてlink:https://docs.netapp.com/us-en/ontap/disks-aggregates/manage-local-tiers-overview-concept.html["こちらをご覧ください"^]ください。
+
+
+NOTE: デフォルト設定では、パフォーマンスと容量が最適化されます。大容量アグリゲートがノードごとに1つ作成されます。

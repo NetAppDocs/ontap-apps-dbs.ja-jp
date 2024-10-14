@@ -1,0 +1,16 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-ontap-consolidation.html 
+keywords: epic,cache,iris 
+summary: ONTAP統合におけるEpic 
+---
+= ONTAP統合におけるEpic
+:allow-uri-read: 
+
+
+[role="lead"]
+医療における大きな課題の1つは、サイロ化した環境の非効率性です。
+
+複数の点解は、進歩を妨げるさまざまなグループによって作成されます。データ管理の戦略を統合することで、効率性を高め、変革を加速できます。電子カルテ、ランサムウェア、生成型AIのデジタル化など、画期的なテクノロジがすべて統合の必要性を高めています。
+
+ONTAPを使用すると、ファイル/ブロック/オブジェクトと、階層0 / 1 / 2 / 3の各ワークロードをオンプレミスとクラウドで統合し、すべてONTAPで実行できます。

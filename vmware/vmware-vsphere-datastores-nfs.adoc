@@ -14,7 +14,7 @@ summary: このページでは、ONTAPおよびNFS接続のデータストアを
 
 
 [role="lead"]
-NetApp ONTAPは、とりわけエンタープライズクラスのスケールアウトNASアレイです。ONTAPは、VMware vSphereを強化し、多数のESXiホストからNFS接続データストアに同時にアクセスできるようにします。VMFSファイルシステムの制限をはるかに超えています。vSphereでNFSを使用すると、使いやすさとストレージ効率の可視化のメリットが得られます。詳細については、 link:vmware-vsphere-datastores-top.html["データストア"] セクション。
+ONTAPは、とりわけエンタープライズクラスのスケールアウトNASアレイです。ONTAPは、VMware vSphereを強化し、多数のESXiホストからNFS接続データストアに同時にアクセスできるようにします。VMFSファイルシステムの制限をはるかに超えています。vSphereでNFSを使用すると、操作が容易になり、ストレージ効率を可視化できるというメリットがあります（を参照link:vmware-vsphere-datastores-top.html["データストア"]）。
 
 vSphere で ONTAP NFS を使用する際に推奨されるベストプラクティスは次のとおりです。
 

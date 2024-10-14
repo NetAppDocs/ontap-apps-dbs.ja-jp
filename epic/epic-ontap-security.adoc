@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-ontap-security.html 
+keywords: epic,cache,iris 
+summary: Epic on ONTAPセキュリティ 
+---
+= Epic on ONTAPセキュリティ
+:allow-uri-read: 
+
+
+[role="lead"]
+セキュリティは、今日の組織や医療機関の幹部にとって最大の懸念事項です。管理はかつてないほど難しく、コンプライアンス、データガバナンス、ウィルス対策保護、ランサムウェア対策という課題に直面しています。
+
+Epicとストレージのセキュリティに関する完全なガイドはこのドキュメントの範囲外ですが、ONTAPで利用できる広範で高度なセキュリティ機能の詳細については説明していlink:https://docs.netapp.com/us-en/ontap/ontap-security-hardening/security-hardening-overview.html["『Security Hardening Guide for ONTAP』"^]ます。
+
+NetApp Active IQ Unified Managerは、に含まれる情報に基づいてセキュリティ違反を監視しlink:https://docs.netapp.com/us-en/ontap/ontap-security-hardening/security-hardening-overview.html["TR-4569"^]、ダッシュボードに報告することで、セキュリティ管理を簡素化します。これらのツールは、組織が攻撃から保護、検出、修復するためのセキュリティ目標を達成するのに役立ちます。
+
+NetAppは、セキュリティ製品を強化するためにソフトウェアを介した統合を提供するために、セキュリティベンダーとも提携していlink:https://docs.netapp.com/us-en/ontap/ontap-security-hardening/create-fpolicy.html["NetApp FPolicy"^]ます。さらに、link:https://docs.netapp.com/us-en/ontap/authentication/mfa-overview.html["多要素（MFA）認証"^]を追加して、漏洩したクレデンシャルによる不正アクセスからEpic環境を保護することもできます。
+
+さらに、ONTAPネイティブのSnapshotコピーと改ざん不可能なSnapLockテクノロジを使用してlink:https://docs.netapp.com/us-en/netapp-solutions/cyber-vault/ontap-cyber-vault-overview.html["ONTAPサイバーボールト"^]、独自のエアギャップ機能を使用して、ランサムウェアから電子カルテを保護できます。のNetAppのドキュメントを参照してくださいlink:https://docs.netapp.com/us-en/ontap/ransomware-solutions/ransomware-overview.html["NetApp Solution for Ransomware"^]。セキュリティに対するより戦略的なアプローチについては、を参照してくださいlink:https://docs.netapp.com/us-en/ontap/zero-trust/zero-trust-overview.html["NetAppとゼロトラスト"^]。

@@ -1,0 +1,28 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-arch-4node.html 
+keywords: epic,cache,iris 
+summary: Epic 4ノードアーキテクチャ 
+---
+= Epic 4ノードアーキテクチャ
+:allow-uri-read: 
+
+
+[role="lead"]
+次の図は、4ノードアーキテクチャ（本番環境のHAペアとディザスタリカバリ環境のHAペア）のストレージレイアウトを示しています。コントローラのサイズとディスク数は、後者のサイジングイメージに基づいています。
+
+NetAppは、SLMが推奨するAQoSポリシーを受け入れることで、下限レベルの最小パフォーマンスを保証します。Epicは、ONTAP上のストレージプールを大幅に少ないハードウェアに統合することをサポートしています。詳細については、Epic Quarterly Spatsドキュメントを参照してください。基本的に、プール1、プール2、およびNAS1（『Epic Hardware Configuration Guide』を参照）は、ワークロードが2台のコントローラに均等に分散された単一のHAペアですべて実行できます。ディザスタリカバリでは、Epicプール3とNAS 3もHAペアの2つのコントローラに分割されます。
+
+テスト用フルコピー環境（SUP、REL、PJXなど）は、Epic Production、Epic Report、Epic Disaster Recoveryのいずれかからクローニングされます。Epicのバックアップと更新については、「データ管理」のセクションを参照してください。
+
+
+
+== 4ノードアーキテクチャ
+
+image:epic-4node.png["Epic 4ノードアーキテクチャ"]
+
+
+
+== 4ノードのワークロードの配置
+
+image:epic-4node-design.png["Epicの4ノード配置"]

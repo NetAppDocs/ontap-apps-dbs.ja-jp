@@ -10,7 +10,7 @@ summary: Microsoft Windows Nano Serverの導入について
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]

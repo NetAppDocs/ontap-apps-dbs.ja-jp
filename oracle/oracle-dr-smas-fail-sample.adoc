@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-dr-smas-fail-sample.html 
+keywords: Oracle, SnapMirror active sync, SMBC, failover 
+summary: OracleとSnapMirrorのアクティブな同期フェイルオーバー 
+---
+= OracleとSnapMirror Active Syncのサンプルアーキテクチャ
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+このセクションで示す障害の詳細な例は、次のアーキテクチャに基づいています。
+
+
+NOTE: これは、SnapMirrorアクティブ同期でOracleデータベースを使用する場合のオプションの1つにすぎません。この設計は、いくつかのより複雑なシナリオを説明するために選択されました。
+
+この設計では、サイトAがに設定されていると仮定しlink:oracle-dr-smas-preferred-site.html["優先サイト"]ます。
+
+image:smas-fail-example.png["SM-AS設計上のOracleの例"]

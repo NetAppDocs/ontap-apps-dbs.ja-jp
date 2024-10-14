@@ -10,13 +10,13 @@ summary: NetAppストレージとWindowsサーバ環境の詳細
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]
 に記載されているように link:win_overview.html["概要"]NetAppストレージコントローラは、ファイル、ブロック、オブジェクトの各プロトコルをサポートする真のユニファイドアーキテクチャを提供します。これには、SMB / CIFS、NFS、NVMe/TCP、NVMe/FC、iSCSI、 FC（FCP）とS3が統合され、クライアントとホストのアクセスが統合されます。同じストレージコントローラで、NFSやSMB / CIFSと同様にSAN LUNとファイルサービスという形式のブロックストレージサービスを同時に提供できます。ONTAPは、iSCSIおよびFCPとの対称アクティブ/アクティブマルチパスによってホストアクセスを最適化するオールSANアレイ（ASA）としても利用できますが、Unified ONTAPシステムでは非対称アクティブ/アクティブマルチパスが使用されます。どちらのモードでも、ONTAPはNVMe over Fabrics（NVMe-oF）マルチパス管理にANAを使用します。
 
-ONTAPソフトウェアを実行するNetAppストレージコントローラは、Windows Server環境で次のワークロードをサポートします。
+ONTAPを実行するNetAppストレージコントローラは、Windows Server環境で次のワークロードをサポートします。
 
 * 継続的可用性を備えたSMB 3.0共有でホストされるVM
 * iSCSIまたはFCで実行されているCluster Shared Volume（CSV；クラスタ共有ボリューム）LUNでホストされているVM
@@ -77,7 +77,7 @@ Windows Server 2016からNetAppストレージに接続、構成、および管�
 
 == NetApp PowerShellツールキット
 
-NetApp PowerShell Toolkit（PSTK）は、NetApp ONTAPをエンドツーエンドで自動化し、ストレージ管理を可能にするPowerShellモジュールです。ONTAPモジュールには2、000を超えるコマンドレットが含まれており、FAS、NetApp All Flash FAS（AFF）、コモディティハードウェア、クラウドリソースの管理に役立ちます。
+NetApp PowerShell Toolkit（PSTK）は、ONTAPをエンドツーエンドで自動化し、ストレージ管理を可能にするPowerShellモジュールです。ONTAPモジュールには2、000を超えるコマンドレットが含まれており、FAS、NetApp All Flash FAS（AFF）、コモディティハードウェア、クラウドリソースの管理に役立ちます。
 
 
 

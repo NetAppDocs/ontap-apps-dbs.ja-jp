@@ -10,7 +10,7 @@ summary: SnapCenterおよびT-SQLコマンドを使用したONTAP上のMicrosoft
 
 
 [role="lead"]
-データベースのバックアップは、ビジネス要件に基づいて計画します。ONTAPのNetApp Snapshotテクノロジを組み合わせ、Microsoft SQL Server APIを活用することで、ユーザデータベースのサイズに関係なく、アプリケーションと整合性のあるバックアップを迅速に作成できます。より高度なデータ管理やスケールアウトデータ管理の要件に対応するために、NetAppはSnapCenterを提供しています。
+データベースのバックアップ戦略は、理論的な機能ではなく、特定されたビジネス要件に基づいて行う必要があります。ONTAPのSnapshotテクノロジとMicrosoft SQL Server APIを組み合わせることで、ユーザデータベースのサイズに関係なく、アプリケーションと整合性のあるバックアップを迅速に作成できます。より高度なデータ管理やスケールアウトデータ管理の要件に対応するために、NetAppはSnapCenterを提供しています。
 
 
 
@@ -22,7 +22,7 @@ SQL Serverインスタンスは、スタンドアロンセットアップ、フ�
 
 
 TIP: * NetAppでは* SnapCenterを使用してSnapshotコピーを作成することを推奨しています。以下に示すT-SQL方式も機能しますが、SnapCenterでは、バックアップ、リストア、クローニングのプロセスを完全に自動化できます。また、検出を実行して、正しいSnapshotが作成されていることを確認します。事前設定は必要ありません。
-な...何だ?
+
 また、SQL Serverでは、作成時にSnapshotに正しいデータが存在するように、OSとストレージの間で調整を行う必要があります。ほとんどの場合、これを行う唯一の安全な方法は、SnapCenterまたはT-SQLを使用することです。この追加の調整なしで作成されたSnapshotは、確実にリカバリできない可能性があります。
 
 SQL Server Plug-in for SnapCenterの詳細については、を参照してください。 link:https://www.netapp.com/pdf.html?item=/media/12400-tr4714.pdf["TR-4714：『Best Practice Guide for SQL Server using NetApp SnapCenter』"^]。

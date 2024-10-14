@@ -1,0 +1,21 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-example-volumes.html 
+keywords: epic,cache,iris 
+summary: ONTAPでのEpicの導入例-ボリューム 
+---
+= ONTAPでのEpicの導入例-ボリューム
+:allow-uri-read: 
+
+
+[role="lead"]
+ボリュームを作成するには、「 https://docs.netapp.com/us-en/ontap-cli-9141//volume-create.html[]
+
+
+NOTE: NVEライセンスがあり、オンボードまたは外部のキー管理を使用している場合、ONTAP 9 .7以降ではアグリゲートとボリュームの暗号化がデフォルトで有効になります。ボリュームレベルの重複排除を有効にするには、volume create / modifyコマンドにadd-encryptエラーを設定します（NVEライセンスがある場合）。
+
+
+
+== Snapshotの自動削除
+
+Snapshotの自動削除は、次の手順で行います。 https://docs.netapp.com/us-en/ontap-cli-9141//volume-snapshot-autodelete-modify.html[]

@@ -29,6 +29,34 @@ entries:
 - title: データ保護
   url: "/mssql/mssql-data-protection.html"
 - title: ディザスタリカバリ
-  url: "/mssql/mssql-disaster-recovery.html"
+  entries:
+  - title: 概要
+    url: "/mssql/mssql-disaster-recovery.html"
+  - title: SnapMirror
+    url: "/mssql/mssql-dr-snapmirror.html"
+  - title: MetroCluster
+    entries:
+    - title: MetroClusterのアーキテクチャ
+      url: "/mssql/mssql-dr-mcc-overview.html"
+    - title: SQL ServerとMetroCluster
+      url: "/mssql/mssql-dr-mcc-sql.html"
+  - title: SnapMirrorアクティブ同期
+    entries:
+    - title: 概要
+      url: "/mssql/mssql-dr-smas-overview.html"
+    - title: ONTAPメディエーター
+      url: "/mssql/mssql-dr-smas-mediator.html"
+    - title: 優先サイト
+      url: "/mssql/mssql-dr-smas-preferred-site.html"
+    - title: ネットワークトポロジ
+      entries:
+      - title: 均一なアクセス
+        url: "/mssql/mssql-dr-smas-uniform.html"
+      - title: 不均一なアクセス
+        url: "/mssql/mssql-dr-smas-nonuniform.html"
+    - title: SM-ASを使用したSQL Server
+      url: "/mssql/mssql-dr-smas-sql.html"
+    - title: 障害シナリオ
+      url: "/mssql/mssql-dr-smas-failure-scenarios.html"
 - title: データセキュリティ
   url: "/mssql/mssql-data-security.html"

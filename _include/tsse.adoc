@@ -6,4 +6,4 @@
 
 === 温度に基づくストレージ効率
 
-ONTAP 9.8以降で利用できるTemperature Sensitive Storage Efficiency（TSSE）は、ブロックアクセスのヒートマップを利用してアクセス頻度の低いブロックを特定し、圧縮して効率を高めます。
+Temperature Sensitive Storage Efficiency（TSSE）は、ONTAP 9 .8以降で使用できます。ブロックアクセスのヒートマップを使用して、アクセス頻度の低いブロックを特定し、より効率的に圧縮します。

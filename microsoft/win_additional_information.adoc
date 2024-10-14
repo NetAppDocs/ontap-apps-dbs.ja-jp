@@ -10,7 +10,7 @@ summary: Microsoft WindowsおよびHyper-Vに関するその他のリソース
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]

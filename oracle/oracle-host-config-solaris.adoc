@@ -87,9 +87,13 @@ NetAppでは、ロギングマウントオプションを使用して、Solaris�
 
 === mvector
 
-Solaris 11では、大規模なI/O処理の処理方法が変更され、SANストレージアレイのパフォーマンスに重大な問題が発生する可能性がありました。この問題の詳細については、NetAppバグレポート630173「Solaris 11 ZFSパフォーマンスの回帰」を参照してください。"The解決策is to change a OS parameter called `zfs_mvector_max_size`。
+Solaris 11では、大規模なI/O処理の処理方法が変更され、SANストレージアレイのパフォーマンスに重大な問題が発生する可能性がありました。この問題は、NetApp追跡バグレポート630173「Solaris 11 ZFSパフォーマンスの回帰」で文書化されています。
 
-rootとして次のコマンドを実行します。
+これはONTAPのバグではありません。これはSolarisの障害であり、Solarisの障害7199305および7082975で追跡されます。
+
+使用しているSolaris 11のバージョンが影響を受けるかどうかを確認するには、Oracleサポートを参照してください。また、より小さい値に変更して回避策をテストすることもできます `zfs_mvector_max_size`。
+
+これを行うには、ルートとして次のコマンドを実行します。
 
 ....
 [root@host1 ~]# echo "zfs_mvector_max_size/W 0t131072" |mdb -kw

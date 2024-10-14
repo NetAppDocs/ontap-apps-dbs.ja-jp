@@ -10,7 +10,7 @@ summary: SMB3を使用したHyper-V向けONTAP NASストレージ
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]
@@ -61,7 +61,7 @@ cluster::> system services ntp server create â€“server $domainControllerIP
 
 . 新しいSVMを作成してNASプロトコルCIFSを有効にします。新しいSVMは次のいずれかの方法で作成できます。
 +
-** NetApp ONTAPノCLIコマント
+** ONTAPノCLIコマント
 ** System Manager の略
 ** NetApp PowerShellツールキット
 
@@ -84,14 +84,14 @@ cluster::> system services ntp server create â€“server $domainControllerIP
 
 === ホスト統合
 
-NASプロトコルCIFSは、ONTAPに標準で統合されています。したがって、Windows Serverは、NetApp ONTAP上のデータにアクセスするために追加のクライアントソフトウェアを必要としません。NetAppストレージコントローラは、ネットワーク上でネイティブファイルサーバとして認識され、Microsoft Active Directory認証をサポートします。
+NASプロトコルCIFSは、ONTAPに標準で統合されています。したがって、Windows Serverは、ONTAP上のデータにアクセスするために追加のクライアントソフトウェアを必要としません。NetAppストレージコントローラは、ネットワーク上でネイティブファイルサーバとして認識され、Microsoft Active Directory認証をサポートします。
 
 Windows Serverで作成したCIFS共有を検出するには、次の手順を実行します。
 
 . 管理者グループのメンバーとしてWindows Serverにログインします。
 . run.exeに移動し、共有にアクセスするために作成したCIFS共有の完全パスを入力します。
 . 共有をWindows Serverに永続的にマッピングするには、[This PC]を右クリックし、[Map Network Drive]をクリックして、CIFS共有のパスを指定します。
-. 一部のCIFS管理タスクは、Microsoft管理コンソール（MMC）を使用して実行できます。これらのタスクを実行する前に、MMCメニューコマンドを使用してMMCをNetApp ONTAPストレージに接続する必要があります。
+. 一部のCIFS管理タスクは、Microsoft管理コンソール（MMC）を使用して実行できます。これらのタスクを実行する前に、MMCメニューコマンドを使用してMMCをONTAPストレージに接続する必要があります。
 +
 .. Windows ServerでMMCを開くには、サーバーマネージャの[ツール]セクションで[コンピュータの管理]をクリックします。
 .. [その他の操作]をクリックして[別のコンピュータに接続]をクリックすると、[コンピュータの選択]ダイアログが開きます。
@@ -108,7 +108,7 @@ Windows Serverで作成したCIFS共有を検出するには、次の手順を�
 * NetAppでは、ボリュームがあるノードから別のノードに移動されたときやノードで障害が発生したときにダウンタイムが発生しないことを確認するために、ファイル共有でcontinuous availabilityオプションを有効にすることを推奨しています。
 * Hyper-V over SMB環境用にVMをプロビジョニングする場合はNetApp、ストレージシステムでコピーオフロードを有効にすることを推奨します。これにより、VMのプロビジョニング時間が短縮されます。
 * ストレージクラスタでSQL Server、Hyper-V、CIFSサーバなどの複数のSMBワークロードをホストするNetApp場合は、別 々 のアグリゲートにある別 々 のSVMで異なるSMBワークロードをホストすることを推奨します。この構成は、各ワークロードに固有のストレージネットワークとボリュームレイアウトが必要になるため、有益です。
-* NetAppでは、Hyper-VホストとNetApp ONTAPストレージを10GBのネットワーク（使用可能な場合）で接続することを推奨しています。1GBのネットワーク接続の場合、NetAppでは、複数の1GBポートで構成されるインターフェイスグループを作成することを推奨します。
+* NetAppでは、Hyper-VホストとONTAPストレージを10GBのネットワーク（使用可能な場合）で接続することを推奨しています。1GBのネットワーク接続の場合、NetAppでは、複数の1GBポートで構成されるインターフェイスグループを作成することを推奨します。
 * NetAppでは、あるSMB 3.0共有から別の共有にVMを移行する際に、移行時間を短縮するために、ストレージシステムでCIFSコピーオフロード機能を有効にすることを推奨しています。
 
 

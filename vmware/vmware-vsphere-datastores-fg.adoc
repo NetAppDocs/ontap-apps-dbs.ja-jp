@@ -18,8 +18,6 @@ VMware vSphereでONTAPボリュームとFlexGroupボリュームを使用すれ�
 
 ONTAP 9.8、ONTAP Tools for VMware vSphere 9.8、SnapCenterプラグインfor VMware 4.4リリースに加えて、vSphereでのFlexGroupボリュームベースデータストアのサポートが追加されました。FlexGroupボリュームは大規模なデータストアの作成を簡易化し、必要な分散コンスティチュエントボリュームをONTAPクラスタ全体に自動的に作成して、ONTAPシステムのパフォーマンスを最大限に引き出します。
 
-FlexGroupボリュームに関する詳細情報 link:../nas-containers.html["『FlexCache and FlexGroup Volume Technical Report』を参照してください"]。
-
 ONTAPクラスタ全体の機能を備えた拡張性に優れた単一のvSphereデータストアが必要な場合や、非常に大規模なクローニングワークロードがあり、新しいFlexGroupクローニングメカニズムのメリットがある場合は、vSphereでFlexGroupボリュームを使用します。
 
 

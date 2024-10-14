@@ -20,7 +20,7 @@ summary: SnapCenter では、複数のジョブに適用可能なバックアッ
 
 == ONTAP QoSポリシーのサポート
 
-ONTAPソフトウェアを実行しているシステムでは、ストレージQoS機能を使用して、ファイル、LUN、ボリューム、SVM全体などのさまざまなストレージオブジェクトのスループットをMBpsやIOPS（1秒あたりのI/O数）で制限できます。
+ONTAPを実行しているシステムでは、ストレージQoS機能を使用して、ファイル、LUN、ボリューム、SVM全体などのさまざまなストレージオブジェクトのスループットをMBpsやIOPS（1秒あたりのI/O数）で制限できます。
 
 ONTAP 9.2 では SAN オブジェクトに、 ONTAP 9.3 では NAS オブジェクトに一貫したパフォーマンスを提供するために、 IOPS に基づく最小サービスレベルもサポートされています。
 
@@ -51,7 +51,8 @@ ONTAP QoSポリシーは、データストア全体またはデータストア�
 *同じホスト（esxi-01）がVM2.vmdkを使用しており、同じボリューム上にあります。
 *vm1.vmdkがスロットルされると、vm1.vmdkと同じIOキューを共有するため、vm2.vmdkもスロットルされているように見えます。
 
-*注：* VVOLには適用されません。
+
+NOTE: VVOLには適用されません。
 
 vSphere 6.5以降では、Storage I/O Control（SIOC）v2を使用したStorage Policy-Based Management（SPBM）を使用して、VVol以外のデータストアに対するファイル単位の制限を管理できます。
 
@@ -83,13 +84,14 @@ ONTAP LUNを使用すると、LUNを含むFlexVolボリュームまたは個 々
 
 VVolコンテナのストレージ機能プロファイルを作成するときは、パフォーマンス機能で最大IOPSと最小IOPSの値を指定し、このSCPをVMのストレージポリシーで参照します。このポリシーは VM を作成するときに使用するか、ポリシーを既存の VM に適用します。
 
-*注：* VVOLを使用するには、VASA Provider for ONTAPとして機能するONTAP Tools for VMware vSphereを使用する必要があります。を参照してください link:/vmware/vmware-vvols-overview.html["VMware vSphere Virtual Volume（VVOL）とONTAP"] を参照してください。
+
+NOTE: VVOLを使用するには、VASA Provider for ONTAPとして機能するONTAP Tools for VMware vSphereを使用する必要があります。VVOLのベストプラクティスについては、を参照してlink:/vmware/vmware-vvols-overview.html["VMware vSphere Virtual Volume（VVOL）とONTAP"]ください。
 
 
 
 == ONTAP の QoS と VMware の SIOC
 
-ONTAP の QoS と VMware vSphere の Storage I/O Control （ SIOC ）は、 vSphere 管理者とストレージ管理者が組み合わせて、 ONTAP ソフトウェアを実行するシステムでホストされる vSphere VM のパフォーマンスを管理できる、相互に補完するテクノロジです。各ツールには、次の表に示すようにそれぞれの長所があります。VMware vCenter と ONTAP ではスコープが異なるため、一部のオブジェクトは一方のシステムで認識および管理でき、もう一方のシステムではできません。
+ONTAP QoSとVMware vSphere Storage I/O Control（SIOC）は、vSphere管理者とストレージ管理者が連携して使用し、ONTAPを実行するシステムでホストされているvSphere VMのパフォーマンスを管理できる、相互に補完するテクノロジです。各ツールには、次の表に示すようにそれぞれの長所があります。VMware vCenter と ONTAP ではスコープが異なるため、一部のオブジェクトは一方のシステムで認識および管理でき、もう一方のシステムではできません。
 
 |===
 | プロパティ（ Property ） | ONTAP QoS | VMware SIOC 

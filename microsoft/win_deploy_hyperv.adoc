@@ -10,7 +10,7 @@ summary: この付録では、高可用性Hyper-VクラスタをNetAppストレ�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]

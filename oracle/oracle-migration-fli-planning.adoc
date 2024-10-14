@@ -14,7 +14,7 @@ summary: FLIによるOracleの移行計画
 
 
 [role="lead"]
-FLIを使用してSANリソースを移行する手順については、NetAppを参照してください。 http://www.netapp.com/us/media/tr-4380.pdf["TR-4380：『SAN Migration Using Foreign LUN Import』"^]。
+FLIを使用してSANリソースを移行する手順については、NetAppを参照して https://docs.netapp.com/us-en/ontap-fli/index.html["ONTAP Foreign LUN Import に関するドキュメント"^]ください。
 
 データベースとホストの観点からは、特別な手順は必要ありません。FCゾーンが更新されてLUNがONTAPで使用可能になると、LVMはLUNからLVMメタデータを読み取れるようになります。また、ボリュームグループを使用するための準備が整い、それ以上の設定手順は必要ありません。まれに、以前のストレージアレイへの参照がハードコーディングされた構成ファイルが環境に含まれることがあります。例えばLinuxシステムには `/etc/multipath.conf` 特定のデバイスのWWNを参照するルールは、FLIで導入された変更を反映するように更新する必要があります。
 

@@ -28,4 +28,4 @@ image:vsphere_ontap_image4.png["SnapCenter導入"]
 
 ディザスタリカバリ機能を強化するには、 ONTAP 用 NetApp SRA と VMware Site Recovery Manager の使用を検討してください。DR サイトへのデータストアのレプリケーションをサポートするだけでなく、レプリケートしたデータストアをクローニングすることで DR 環境を無停止でテストすることもできます。SRA に組み込まれている自動化機能を使用すると、災害からのリカバリや、システム停止が解決したあとの本番環境の再保護も簡単に実行できます。
 
-最後に、最高レベルのデータ保護を実現するために、 NetApp MetroCluster を使用した VMware vSphere Metro Storage Cluster （ vMSC ）設定を検討してください。vMSC は、同期レプリケーションとアレイベースのクラスタリングを組み合わせた VMware 認定の解決策です。高可用性クラスタと同じメリットを提供しますが、複数のサイトに分散してサイト障害から保護します。NetApp MetroCluster は、同期レプリケーション向けの対費用効果の高い構成を提供します。ストレージコンポーネントのあらゆる単一障害から透過的にリカバリでき、サイト障害時にコマンド 1 つでリカバリできます。vMSC の詳細については、を参照してください http://www.netapp.com/us/media/tr-4128.pdf["TR-4128"^]。
+最後に、最高レベルのデータ保護を実現するために、NetApp MetroClusterを使用したVMware vSphere Metro Storage Cluster（vMSC）構成を検討してください。vMSCは、同期レプリケーションとアレイベースのクラスタリングを組み合わせたVMware認定ソリューションです。高可用性クラスタと同じメリットを提供しながら、別 々 のサイトに分散してサイト障害から保護します。NetApp MetroClusterは、同期レプリケーション用のコスト効率に優れた構成を提供し、ストレージコンポーネントの単一障害からの透過的なリカバリと、サイト障害発生時のコマンド1つでのリカバリを実現します。vMSCの詳細については、を参照してください。 https://www.netapp.com/pdf.html?item=/media/19773-tr-4128.pdf["TR-4128"^]

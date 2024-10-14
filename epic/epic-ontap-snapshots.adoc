@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-ontap-snapshots.html 
+keywords: epic,cache,iris 
+summary: Epicスナップショットとクローン作成 
+---
+= EpicのStorage Efficiency設定
+:allow-uri-read: 
+
+
+[role="lead"]
+Snapshotは、読み取り専用のボリュームのポイントインタイムコピーです。
+
+Snapshotを作成すると、アクティブファイルシステムのすべてのブロックが論理的にロックされます。NetApp ONTAP Snapshotコピーはほぼ瞬時に作成され、追加のストレージは使用されません。
+
+Write Anwhereファイルレイアウト（WAFL）は書き込み専用のファイルシステムであり、上書きされる前にSnapshotで保護されたブロック内のデータをコピーするなど、追加のIOを実行しません。データは移動されないため、Snapshotはストレージ容量やパフォーマンスには影響しません。Snapshotを使用すると、バックアップソリューションを強化しながら、ストレージを大幅に節約できます。
+
+
+
+== FlexClone
+
+NetApp ONTAP FlexCloneボリュームは、既存のボリュームのクローン、または既存のボリュームのSnapshotです。それ以外の場合はONTAPボリュームであり、クローニング、Snapshotによる保護、QoSポリシーによる設定が可能です。
+
+Snapshotと同様に、FlexCloneボリュームの作成時に追加のスペースは必要ありません。追加の容量が必要になるのは、クローンに対する変更のみです。
+
+Epicでは、ストリーミングバックアップ、整合性チェック、ステージングアップグレード環境など、さまざまな運用要件に対応するために、本番データベースのコピーが10~30個必要です。より頻繁なアップグレードへの移行に伴い、FlexCloneボリュームを基盤としたソリューションに対するニーズが高まっています。
+
+
+NOTE: 完全に自動化されたEpicバックアップソリューションとEpic更新ソリューションは、ソリューションの一部としてNetAppとネイティブのNetAppツールを使用して提供されます。

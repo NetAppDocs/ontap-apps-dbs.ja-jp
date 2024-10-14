@@ -1,0 +1,29 @@
+---
+sidebar: sidebar 
+permalink: mssql/mssql-dr-mcc-sql.html 
+keywords: MSSQL,SQL Server, MetroCluster 
+summary: Microsoft SQL ServerとNetApp MetroCluster 
+---
+= Microsoft SQL ServerとMetroCluster
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+SQL ServerデータベースをゼロRPOで保護する方法の1つに、MetroClusterがあります。MetroClusterは、シンプルでハイパフォーマンスなRPO=0レプリケーションテクノロジで、インフラ全体をサイト間で簡単にレプリケートできます。
+
+SQL Serverは、1つのMetroClusterシステムで数千のデータベースまでスケールアップできます。SQL Serverのスタンドアロンインスタンスやフェイルオーバークラスタインスタンスが存在する場合もあります。MetroClusterシステムでは、データベース管理のベストプラクティスを追加したり、ベストプラクティスを変更したりする必要はありません。
+
+MetroClusterの完全な説明は、このドキュメントの範囲外ですが、原則は簡単です。MetroClusterは、迅速なフェイルオーバーを備えたRPO=0レプリケーションソリューションを提供します。この基盤の上に何を構築するかは、要件によって異なります。
+
+たとえば、サイトが突然停止した場合の基本的な高速DR手順は、次の基本的な手順を使用します。
+
+* MetroClusterスイッチオーバーを強制的に実行する
+* FC / iSCSI LUNの検出の実行（SANのみ）
+* ファイルシステムをマウント
+* SQLサービスの開始
+
+
+このアプローチの主な要件は、リモートサイトでOSを実行することです。SQL Serverのセットアップ時に事前に設定し、同等のビルドバージョンで更新する必要があります。SQL Serverシステムデータベースは、災害が発生した場合にリモートサイトにミラーリングしてマウントすることもできます。
+
+仮想データベースをホストするボリューム、ファイルシステム、およびデータストアが、スイッチオーバー前にディザスタリカバリサイトで使用されていない場合は、関連するボリュームでを設定する必要はありません `dr-force- nvfail`。

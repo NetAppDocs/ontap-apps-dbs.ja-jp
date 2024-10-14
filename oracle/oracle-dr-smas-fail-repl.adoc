@@ -1,0 +1,40 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-dr-smas-fail-repl.html 
+keywords: Oracle, SnapMirror active sync, SMBC, failover 
+summary: OracleとSnapMirrorのアクティブな同期フェイルオーバー 
+---
+= SnapMirror Active Sync -接続が完全に失われる
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+サイト間のレプリケーションリンクが完全に失われると、SnapMirrorアクティブ同期とOracle RAC接続の両方が中断されます。
+
+Oracle RACのスプリットブレイン検出は、Oracle RACストレージのハートビートに依存します。サイト間の接続が失われてRACネットワークハートビートとストレージレプリケーションサービスの両方が同時に失われると、RACサイトはRACインターコネクトまたはRAC投票ディスクを介してサイト間通信できなくなります。その結果、ノード数が偶数になると、両方のサイトがデフォルト設定で削除される可能性があります。正確な動作は、イベントのシーケンス、RACネットワークおよびディスクハートビートポーリングのタイミングによって異なります。
+
+2サイト停止のリスクには、2つの方法で対処できます。まず、link:oracle-dr-smas-arch-tiebreaker.html["Tiebreaker"]構成を使用できます。
+
+3つ目のサイトが利用できない場合は、RACクラスタでmiscountパラメータを調整することでこのリスクに対処できます。デフォルトでは、RACネットワークハートビートタイムアウトは30秒です。通常、RACは障害が発生したRACノードを特定してクラスタから削除するために使用します。また、投票ディスクハートビートにも接続されています。
+
+たとえば、Oracle RACとストレージレプリケーションサービスの両方でサイト間トラフィックを伝送するコンジットがバックホーでカットされると、30秒間のミスカウントのカウントダウンが開始されます。RAC優先サイトノードが30秒以内に反対サイトとの接続を再確立できない場合、および同じ30秒以内に反対サイトが停止していることを投票ディスクを使用して確認できない場合、優先サイトノードも削除されます。その結果、データベースが完全に停止します。
+
+ミスマウントポーリングが発生したタイミングによっては、30秒でSnapMirrorアクティブ同期がタイムアウトし、優先サイトのストレージでサービスが再開されるまでに30秒では不十分な場合があります。この30秒のウィンドウは増やすことができます。
+
+....
+[root@jfs12 ~]# /grid/bin/crsctl set css misscount 100
+CRS-4684: Successful set of parameter misscount to 100 for Cluster Synchronization Services.
+....
+この値を指定すると、優先サイト上のストレージシステムは、ミスカウントのタイムアウトが切れる前に処理を再開できます。その結果、LUNパスを削除したサイトのノードのみが削除されます。以下の例：
+
+....
+2024-09-12 09:50:59.352 [ONMD(681360)]CRS-1612: Network communication with node jfs13 (2) has been missing for 50% of the timeout interval.  If this persists, removal of this node from cluster will occur in 49.570 seconds
+2024-09-12 09:51:10.082 [CRSD(682669)]CRS-7503: The Oracle Grid Infrastructure process 'crsd' observed communication issues between node 'jfs12' and node 'jfs13', interface list of local node 'jfs12' is '192.168.30.1:46039;', interface list of remote node 'jfs13' is '192.168.30.2:42037;'.
+2024-09-12 09:51:24.356 [ONMD(681360)]CRS-1611: Network communication with node jfs13 (2) has been missing for 75% of the timeout interval.  If this persists, removal of this node from cluster will occur in 24.560 seconds
+2024-09-12 09:51:39.359 [ONMD(681360)]CRS-1610: Network communication with node jfs13 (2) has been missing for 90% of the timeout interval.  If this persists, removal of this node from cluster will occur in 9.560 seconds
+2024-09-12 09:51:47.527 [OHASD(680884)]CRS-8011: reboot advisory message from host: jfs13, component: cssagent, with time stamp: L-2024-09-12-09:51:47.451
+2024-09-12 09:51:47.527 [OHASD(680884)]CRS-8013: reboot advisory message text: oracssdagent is about to reboot this node due to unknown reason as it did not receive local heartbeats for 10470 ms amount of time
+2024-09-12 09:51:48.925 [ONMD(681360)]CRS-1632: Node jfs13 is being removed from the cluster in cluster incarnation 621596607
+....
+Oracleサポートでは、設定の問題を解決するために、miscountパラメータやdisktimeoutパラメータを変更することを強く推奨していません。ただし、SANブート、仮想化、ストレージレプリケーションの構成など、多くの場合、これらのパラメータの変更は保証され、やむを得ない場合があります。たとえば、SANまたはIPネットワークの安定性に問題があり、その結果RACが削除された場合は、原因となっている問題を修正し、ミスカウントやdisktimeoutの値を加算しないでください。構成エラーに対処するためにタイムアウトを変更すると、問題がマスキングされ、問題が解決されません。基盤となるインフラの設計要素に基づいてRAC環境を適切に設定するためにこれらのパラメータを変更することは異なり、Oracleのサポートステートメントと一致しています。SANブートでは、disktimeoutに合わせて最大200までミスカウントを調整するのが一般的です。詳細については、を参照してくださいlink:oracle-app-config-rac.html["リンクをクリックしてください"]。

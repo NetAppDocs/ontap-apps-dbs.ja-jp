@@ -24,7 +24,7 @@ vSphere では、 VM 、仮想ディスク、 VVOL 、またはデータスト�
 
 image:vsphere_ontap_image5.png["ONTAPクローニング"]
 
-クローニングは、 ONTAP ソフトウェアを実行するシステムに複数のメカニズムを使用してオフロードできます。通常は、 VM 、 VVol 、データストアのレベルでオフロードします。これには次のものが含まれます。
+クローニングは、ONTAPを実行するシステムにいくつかのメカニズムを使用してオフロードできます。通常はVM、VVol、データストアのレベルでオフロードできます。これには次のものが含まれます。
 
 * NetApp vSphere APIs for Storage Awareness （ VASA ） Provider を使用した VVol のクローニング。  vCenterで管理されるVVol Snapshotをサポートするために、ONTAPクローンを使用します。VVol Snapshotの作成や削除によるI/Oへの影響は最小限で、スペース効率に優れています。  VM のクローニングは vCenter を使用して行うこともでき、 1 つのデータストア / ボリューム内かデータストア / ボリューム間かに関係なく、 ONTAP にオフロードされます。
 * vSphere APIs – Array Integration （ VAAI ）を使用した vSphere のクローニングと移行：SAN 環境と NAS 環境の両方で、 VM のクローニング処理を ONTAP にオフロードできます（ネットアップでは、 NFS 用の VAAI を有効にするために ESXi プラグインを提供しています）。  vSphere は、 NAS データストア内のコールド（電源オフ） VM にのみオフロードします。一方、ホット VM （クローニングと Storage vMotion ）の処理も SAN にオフロードされます。ONTAP では、ソース、デスティネーション、インストールされている製品ライセンスに基づいて最も効率的なアプローチを採用しています。この機能は VMware Horizon View でも使用されています。

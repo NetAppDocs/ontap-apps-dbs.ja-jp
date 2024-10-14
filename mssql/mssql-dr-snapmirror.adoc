@@ -1,0 +1,22 @@
+---
+sidebar: sidebar 
+permalink: mssql/mssql-dr-snapmirror.html 
+keywords: MSSQL,SQL Server, disaster recovery, snapmirror 
+summary: ONTAPを使用したMicrosoft SQL Serverディザスタリカバリ 
+---
+= SnapMirrorを使用したMicrosoft SQL Serverディザスタリカバリ
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapMirror for SQL Serverの推奨事項は次のとおりです。
+
+* SMBを使用する場合は、デスティネーションSVMがソースSVMと同じActive Directoryドメインのメンバーである必要があります。これにより、NASファイルに格納されているアクセス制御リスト（ACL）が災害からのリカバリ時に破損しないようになります。
+* ソースボリューム名と同じデスティネーションボリューム名を使用する必要はありませんが、デスティネーションボリュームをデスティネーションにマウントするプロセスを管理しやすくすることができます。SMBを使用する場合は、デスティネーションNASネームスペースをソースネームスペースとパスおよびディレクトリ構造で同一にする必要があります。
+* 整合性を確保するために、コントローラからのSnapMirror更新のスケジュールを設定しないでください。代わりに、フルバックアップまたはログバックアップの完了後にSnapCenterからのSnapMirror更新を有効にしてSnapMirrorを更新します。
+* SQL Serverデータを含むボリュームをクラスタ内の複数のノードに分散して、すべてのクラスタノードでSnapMirrorレプリケーションアクティビティを共有できるようにします。この分散により、ノードリソースの使用が最適化されます。
+* 高速データリカバリのニーズが高い場合は同期レプリケーションを使用し、RPOの柔軟性を確保するために非同期ソリューションを使用します。
+
+
+SnapMirrorの詳細については、を参照してください。 link:https://www.netapp.com/us/media/tr-4015.pdf["TR-4015：『SnapMirrorの設定およびベストプラクティスガイド- ONTAP 9』"^]。

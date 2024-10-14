@@ -1,0 +1,20 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-config-huk.html 
+keywords: epic,cache,iris 
+summary: ONTAPでのEPIC - Host Utilities 
+---
+= ONTAPでのEPIC - Host Utilities
+:allow-uri-read: 
+
+
+[role="lead"]
+NetApp Host Utilitiesは、各種オペレーティングシステム用のソフトウェアパッケージで、CLIバイナリ、マルチパスドライバ、およびSANの適切な運用に必要なその他の重要なファイルなどの管理ユーティリティが含まれてい `sanlun`ます。
+
+[TIP]
+====
+* NetAppでは* NetAppストレージシステムに接続されてアクセスするホストにNetApp Host Utilitiesをインストールすることを推奨しています。詳細については、およびlink:https://docs.netapp.com/us-en/ontap-sanhost/["SANホスト"^]のマニュアルを参照してlink:https://imt.netapp.com/matrix/["Interoperability Matrix Tool で確認してください"^]ください。
+
+====
+
+NOTE: AIXでは、LUNを検出する前にHost Utilitiesをインストールしておくことが特に重要です。これにより、LUNのマルチパスの動作が正しく設定されます。Host Utilitiesを使用せずに検出を実行した場合は、コマンドを使用してLUNの設定を解除し、またはリブートして再検出する `cfgmgr`必要があり `rmdev -dl`ます。

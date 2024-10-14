@@ -158,16 +158,48 @@ entries:
       url: "/oracle/oracle-dr-mcc-rac.html"
   - title: SnapMirrorアクティブ同期
     entries:
-    - title: アーキテクチャ
-      url: "/oracle/oracle-dr-smbc-architecture.html"
-    - title: フェイルオーバー
-      url: "/oracle/oracle-dr-smbc-failover.html"
-    - title: Oracle SIとSnapMirrorのアクティブな同期
-      url: "/oracle/oracle-dr-smbc-si.html"
-    - title: Oracle RACとSnapMirrorのアクティブな同期
-      url: "/oracle/oracle-dr-smbc-rac.html"
+    - title: 概要
+      url: "/oracle/oracle-dr-smas-overview.html"
+    - title: ONTAPメディエーター
+      url: "/oracle/oracle-dr-smas-mediator.html"
+    - title: 優先サイト
+      url: "/oracle/oracle-dr-smas-preferred-site.html"
+    - title: ネットワークトポロジ
+      entries:
+      - title: 均一なアクセス
+        url: "/oracle/oracle-dr-smas-uniform.html"
+      - title: 不均一なアクセス
+        url: "/oracle/oracle-dr-smas-nonuniform.html"
+    - title: Oracleの構成
+      entries:
+      - title: 概要
+        url: "/oracle/oracle-dr-smas-arch-overview.html"
+      - title: Oracle単一インスタンス
+        url: "/oracle/oracle-dr-smas-arch-si.html"
+      - title: Oracle RAC
+        url: "/oracle/oracle-dr-smas-arch-rac.html"
+      - title: Oracle RACとタイブレーカー
+        url: "/oracle/oracle-dr-smas-arch-tiebreaker.html"
     - title: 障害シナリオ
-      url: "/oracle/oracle-dr-smbc-failure-scenarios.html"
+      entries:
+      - title: 概要
+        url: "/oracle/oracle-dr-smas-fail-overview.html"
+      - title: サンプルアーキテクチャ
+        url: "/oracle/oracle-dr-smas-fail-sample.html"
+      - title: RACインターコネクト障害
+        url: "/oracle/oracle-dr-smas-fail-interconnect.html"
+      - title: SnapMirror通信障害
+        url: "/oracle/oracle-dr-smas-fail-snapmirror.html"
+      - title: ネットワークインターコネクト全体の障害
+        url: "/oracle/oracle-dr-smas-fail-repl.html"
+      - title: サイト障害
+        url: "/oracle/oracle-dr-smas-fail-site.html"
+      - title: メディエーター障害
+        url: "/oracle/oracle-dr-smas-fail-mediator.html"
+      - title: 障害後のサービスの復元
+        url: "/oracle/oracle-dr-smas-fail-restore.html"
+      - title: シュドウフェイルオーバー
+        url: "/oracle/oracle-dr-smas-fail-manual.html"
 - title: Oracleデータベースの移行
   entries:
   - title: 概要

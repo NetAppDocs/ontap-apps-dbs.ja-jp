@@ -1,0 +1,53 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-dr-smas-fail-manual.html 
+keywords: Oracle, SnapMirror active sync, SMBC, failover 
+summary: OracleとSnapMirrorのアクティブな同期-手動フェイルオーバー 
+---
+= OracleとSnapMirrorのアクティブな同期-手動フェイルオーバー
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+「フェイルオーバー」という用語は、双方向のレプリケーションテクノロジであるため、SnapMirror Active Syncを使用したレプリケーションの方向を指していません。代わりに、「failover」とは、障害発生時にどのストレージシステムが優先サイトになるかを意味します。
+
+たとえば、メンテナンスのためにサイトをシャットダウンする前やDRテストを実行する前に、フェイルオーバーを実行して優先サイトを変更できます。
+
+優先サイトを変更するには、簡単な操作が必要です。クラスタ間でレプリケーション動作の権限が切り替わるため、IOは1~2秒間停止しますが、それ以外の場合はIOには影響しません。
+
+GUI の例：
+
+image:smas-preferred-site.png["SM-AS優先サイトのSystemManagerクリップ"]
+
+CLIを使用して元に戻す例：
+
+....
+Cluster2::> snapmirror failover start -destination-path jfs_as2:/cg/jfsAA
+[Job 9575] Job is queued: SnapMirror failover for destination "jfs_as2:/cg/jfsAA                      ".
+
+Cluster2::> snapmirror failover show
+
+Source    Destination                                          Error
+Path      Path        Type     Status    start-time end-time   Reason
+-------- -----------  -------- --------- ---------- ---------- ----------
+jfs_as1:/cg/jfsAA
+         jfs_as2:/cg/jfsAA
+                      planned  completed 9/11/2024  9/11/2024
+                                         09:29:22   09:29:32
+
+The new destination path can be verified as follows:
+
+
+Cluster1::> snapmirror show -destination-path jfs_as1:/cg/jfsAA
+
+                            Source Path: jfs_as2:/cg/jfsAA
+                       Destination Path: jfs_as1:/cg/jfsAA
+                      Relationship Type: XDP
+                Relationship Group Type: consistencygroup
+                 SnapMirror Policy Type: automated-failover-duplex
+                      SnapMirror Policy: AutomatedFailOverDuplex
+                            Tries Limit: -
+                           Mirror State: Snapmirrored
+                    Relationship Status: InSync
+....

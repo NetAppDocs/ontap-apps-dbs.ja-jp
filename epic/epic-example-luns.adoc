@@ -1,0 +1,26 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-example-luns.html 
+keywords: epic,cache,iris 
+summary: ONTAPでのEpicの導入例- LUN 
+---
+= ONTAPでのEpicの導入例- LUN
+:allow-uri-read: 
+
+
+[role="lead"]
+>>説明的な先行文または段落のプレースホルダ
+
+LUNの作成
+
+LUNを作成する方法は次のとおりです。 https://docs.netapp.com/us-en/ontap-cli-9141//lun-create.html[]
+
+CGへのボリュームの追加
+
+コンシステンシ・グループを作成または変更するには'次の手順に従います https://docs.netapp.com/us-en/ontap/smbc/smbc_admin_add_and_remove_volumes_in_consistency_groups.html[]
+
+LUNをマッピング
+
+LUNをマッピングする手順は次のとおりです。 https://docs.netapp.com/us-en/ontap-cli-9141//lun-mapping-create.html[]
+
+ONTAPのバージョンによっては、ボリュームのフラクショナルリザーブのデフォルト設定が100%になることがあります。この設定は0に設定する必要があります。

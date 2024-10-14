@@ -1,0 +1,21 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-config-protocols.html 
+keywords: epic,cache,iris 
+summary: ONTAPプロトコルでのEpic 
+---
+= ONTAPプロトコルでのEpic
+:allow-uri-read: 
+
+
+[role="lead"]
+LUNの提供にはFCPを推奨します。
+
+[TIP]
+====
+* NetAppの推奨事項*シングルイニシエータゾーニング：Worldwide Port Name（WWPN；ワールドワイドポート名）を使用するストレージ上のすべての必要なターゲットポートを備えたゾーンごとに1つのイニシエータを使用します。1つのゾーンに複数のイニシエータが存在すると、HBAのクロストークが断続的に発生し、重大なシステム停止が発生する可能性があります。
+
+====
+LUNを作成したら、ホストのWWPNを含むイニシエータグループ（igroup）にLUNをマッピングしてアクセスを有効にします。
+
+NetAppでは、NVMe/FCの使用もサポートされ（対応するAIXおよびRHELオペレーティングシステムのバージョンがある場合）、パフォーマンスが向上します。FCPとNVMe/FCは同じファブリックに共存できます。

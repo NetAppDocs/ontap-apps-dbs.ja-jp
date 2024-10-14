@@ -10,7 +10,7 @@ summary: この付録では、クラスタ環境外でHyper-Vライブマイグ�
 :nofooter: 
 :icons: font
 :linkattrs: 
-:imagesdir: ../media
+:imagesdir: ../media/
 
 
 [role="lead"]

@@ -42,4 +42,4 @@ dNFSでラウンドロビン方式の名前解決（DNS、DDNS、NISなど）を
 マウントオプションを変更するのは、（a）dNFSが使用されていて、（b）問題がファイルが参照可能になるまでの遅延が原因で発生した場合のみにしてください。dNFSを使用していない場合は、シングルインスタンスデータベースでOracle RACマウントオプションを使用すると、パフォーマンスが低下します。
 
 
-NOTE: 次の注を参照： `nosharecache` インチ link:../host-configuration/linux.html#linux-direct-nfs["Linux NFSのマウントオプション"] 通常とは異なる結果を生成する可能性があるLinux固有のdNFS問題の場合。
+NOTE: 通常とは異なる結果になる可能性のあるLinux固有のdNFSの問題については、のlink:oracle-host-config-linux.html#linux-direct-nfs["Linux NFSのマウントオプション"]注を参照してください `nosharecache`。

@@ -1,0 +1,17 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-dr-smas-fail-restore.html 
+keywords: Oracle, SnapMirror active sync, SMBC, failover 
+summary: OracleとSnapMirrorのアクティブな同期サービスリストア 
+---
+= OracleとSnapMirrorのアクティブな同期サービスリストア
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapMirrorは自己回復型です。SnapMirrorのアクティブな同期では、レプリケーション関係に問題があることを自動的に検出し、RPO=0の状態に戻します。同期レプリケーションが再確立されると、パスは再びオンラインになります。
+
+多くの場合、クラスタ化されたアプリケーションは障害が発生したパスの復帰を自動的に検出し、それらのアプリケーションもオンラインに戻ります。また、ホストレベルのSANスキャンが必要な場合や、アプリケーションを手動でオンラインに戻す必要がある場合もあります。
+
+アプリケーションとその構成方法によって異なり、一般的にこのようなタスクは簡単に自動化できます。SnapMirrorのアクティブな同期自体は自己修復機能であり、電源と接続が復旧した時点でRPO=0のストレージ処理を再開するためにユーザの介入は必要ありません。

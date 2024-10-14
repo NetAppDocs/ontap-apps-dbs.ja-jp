@@ -1,0 +1,19 @@
+---
+sidebar: sidebar 
+permalink: epic/epic-config-files.html 
+keywords: epic,cache,iris 
+summary: EPICとファイルプロトコル 
+---
+= EPICとファイルプロトコル
+:allow-uri-read: 
+
+
+[role="lead"]
+同じオールフラッシュアレイでNASとSANを組み合わせることができます。
+
+[TIP]
+====
+* NetAppでは* WebBLOBなどのNAS共有にはFlexGroupボリュームを使用することを推奨しています（利用可能な場合）。
+
+====
+WebBLOBは、最大95%のコールドデータです。必要に応じて、ONTAPの機能を使用してオールフラッシュアレイのスペースを解放し、オンプレミスまたはクラウドのオブジェクトストレージにバックアップとコールドデータを階層化できますlink:https://docs.netapp.com/us-en/ontap/fabricpool/index.html["FabricPool"^]。これらはすべて、パフォーマンスに顕著な影響を与えることなく達成できます。FabricPoolはONTAPに含まれている機能です。コールドデータ（アクセス頻度の低いデータ）レポートを生成して、FabricPoolを有効にすることで実現できるメリットを確認できます。ポリシーを使用して階層化するデータの経過時間を設定できます。Epicのお客様は、この機能によって大幅なコスト削減を実現しています。
