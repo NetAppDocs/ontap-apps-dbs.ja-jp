@@ -5140,7 +5140,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="9fad44ede04fb95c16ea64be5e51836c" category="paragraph">多くの場合、サイト間リンク経由でストレージにアクセスするアプリケーションによるレイテンシのオーバーヘッドは許容できません。つまり、サイトのストレージが失われると、障害が発生したサイトのサービスをシャットダウンする必要が生じるため、統一されたネットワークの可用性の向上は最小限で済みます。</block>
   <block id="15da96ce40136a3259e04ae0dc25fc95" category="paragraph">この図では、わかりやすいように、ローカルクラスタを経由する冗長パスを示していません。ONTAPストレージシステム自体はHAであるため、コントローラ障害が発生してもサイト障害は発生しません。影響を受けるサイトで使用されるローカルパスが変更されるだけです。</block>
   <block id="bb12626aefb7c36f9b13694d35dadd5d" category="paragraph">SM-ASの重要な機能の1つは、ホストがどこにあるかを認識するようにストレージシステムを設定できることです。LUNを特定のホストにマッピングするときに、LUNが特定のストレージシステムに近接しているかどうかを指定できます。</block>
-  <block id="dbd84b1ad340aea47672fb898893f86a" category="paragraph">AFFシステムでは、パスは次のように表示されます。</block>
   <block id="4590bab77464ba1a9c8ee6b8095eef60" category="inline-image-macro">SnapMirrorアクティブ同期AFFユニフォームネットワーク</block>
   <block id="988f5836c7a60d1374a4804da23d51e4" category="paragraph"><block ref="988f5836c7a60d1374a4804da23d51e4" category="inline-image-macro-rx" type="image"></block></block>
   <block id="2b2fdfa824f1319cc47992b1277faa78" category="paragraph">通常の運用では、すべてのIOがローカルIOになります。読み取りと書き込みはローカルストレージアレイから処理されます。もちろん、書き込みIOも確認応答の前にローカルコントローラでリモートシステムにレプリケートする必要がありますが、すべての読み取りIOはローカルで処理されるため、サイト間のSANリンクを経由して余分なレイテンシが発生することはありません。</block>
@@ -5602,7 +5601,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="6fda40460e9cbbefd704b9c01ea2c18c" category="summary">Microsoft SQL ServerおよびSM-AS優先サイト</block>
   <block id="ac420a2d1b21182a80148191683bc9f7" category="paragraph">SnapMirrorのアクティブな同期の動作は対称ですが、重要な例外が1つあります（推奨サイト構成）。</block>
   <block id="309d61d5c343d8fd53c2c585c64587b6" category="doc">Microsoft SQL ServerとSnapMirrorのアクティブな同期</block>
-  <block id="05862d500fc3267b33f0cc75e23b6200" category="paragraph">SQL Serverは、SnapMirror ACTIVEと連携するようにいくつかの方法で設定できます。適切な答えは、使用可能なネットワーク接続、RPOの要件、可用性の要件によって異なります。</block>
   <block id="3ccf31c781c6df95109107d66199a8f6" category="section-title">SQL Serverのスタンドアロンインスタンス</block>
   <block id="bd53ef250bf6f7a012cc7ed01c62f8cd" category="inline-link-macro">ONTAP上のSQL Server</block>
   <block id="d0d5aa4f66a3624a91ad4b11bbc2250f" category="paragraph">ファイルレイアウトとサーバ設定のベストプラクティスは、ドキュメントで推奨されているものと同じ<block ref="c89905de54b32eb552c83786b7590df9" category="inline-link-macro-rx"></block>です。</block>
@@ -5870,4 +5868,12 @@ SOAP over HTTPS接続に使用</block>
   <block id="29a8ec19326654cdf89bb8516725720a" category="sidebar">メディエーター障害</block>
   <block id="38ea1deaf691187fc38ab915566310c5" category="sidebar">障害後のサービスの復元</block>
   <block id="9132b772b1437e64c8acac2be79a7a0f" category="sidebar">シュドウフェイルオーバー</block>
+  <block id="05b66cacce7105ad4a548ef5054997f0" category="doc">近接設定</block>
+  <block id="eccafd14420b568fff639755b251d1bd" category="paragraph">プロキシミティとは、特定のホストWWNまたはiSCSIイニシエータIDがローカルホストに属していることを示すクラスタ単位の構成を指します。これは、LUNアクセスを設定するための2番目のオプションの手順です。</block>
+  <block id="d99ea4fad7d0a9010283969d9ddf89aa" category="paragraph">最初の手順では、通常のigroup設定を行います。各LUNは、そのLUNにアクセスする必要があるホストのWWN/iSCSI IDを含むigroupにマッピングする必要があります。これは、どのホストがLUNに_access_toを持つかを制御します。</block>
+  <block id="bba32ce1a7b85dd9ba50c49b1a53fe4c" category="paragraph">2番目のオプション手順は、ホストプロキシミティを設定することです。これはアクセスを制御するのではなく、_priority_を制御します。</block>
+  <block id="98271aec6138a28e374c8f3724a535b6" category="paragraph">たとえば、サイトAのホストがSnapMirror Active Syncで保護されているLUNにアクセスするように設定されている場合、SANがサイト間で拡張されるため、サイトAのストレージまたはサイトBのストレージを使用してそのLUNへのパスを使用できます。</block>
+  <block id="81959299f52ddb567fd902f3e1ae5311" category="paragraph">近接設定を使用しない場合、両方のストレージシステムがアクティブな最適パスをアドバタイズするため、そのホストは両方のストレージシステムを均等に使用します。SANのレイテンシやサイト間の帯域幅に制限がある場合は、この設定を解除できない可能性があります。また、通常動作中に各ホストがローカルストレージシステムへのパスを優先的に使用するように設定することもできます。これは、ホストWWN/iSCSI IDをローカルクラスタに近接ホストとして追加することで設定します。これは、CLIまたはSystemManagerで実行できます。</block>
+  <block id="f08670cf73640d447fb34d01b0f6418f" category="paragraph">AFFシステムでホストプロキシミティが設定されている場合、パスは次のように表示されます。</block>
+  <block id="85a2564342597a065a3926228b7e9fcd" category="paragraph">SQL Serverは、いくつかの方法でSnapMirrorアクティブ同期と連携するように設定できます。適切な答えは、使用可能なネットワーク接続、RPOの要件、可用性の要件によって異なります。</block>
 </blocks>

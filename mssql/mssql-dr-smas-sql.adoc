@@ -10,7 +10,7 @@ summary: Microsoft SQL ServerとSnapMirrorのアクティブな同期
 
 
 [role="lead"]
-SQL Serverは、SnapMirror ACTIVEと連携するようにいくつかの方法で設定できます。適切な答えは、使用可能なネットワーク接続、RPOの要件、可用性の要件によって異なります。
+SQL Serverは、いくつかの方法でSnapMirrorアクティブ同期と連携するように設定できます。適切な答えは、使用可能なネットワーク接続、RPOの要件、可用性の要件によって異なります。
 
 
 
