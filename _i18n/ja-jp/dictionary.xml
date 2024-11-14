@@ -1664,9 +1664,6 @@ REDO ログ</block>
   <block id="09b6f386094bd895d3c9694f28bfdf65" category="paragraph">NFSv4サーバの電源が突然再投入された場合。再起動すると、IOを再開しようとするクライアントは、基本的に「リース/ロック情報が失われました。ロックを再登録しますか？" これが猶予期間の始まりですONTAPではデフォルトで45秒です。</block>
   <block id="e4f8aa90af36d76254e2f02e56232aed" category="paragraph">その結果、再起動後、すべてのクライアントがリースとロックを再要求する間、コントローラはIOを一時停止します。猶予期間が終了すると、サーバはIO処理を再開します。</block>
   <block id="bb2b26fdcb4e947cda6f8e38724ecfc9" category="section-title">リースタイムアウトと猶予期間</block>
-  <block id="563494d7f0f6ebcb6698cac7f9705aaa" category="paragraph">猶予期間とリース期間が接続されます。前述したように、デフォルトのリースタイムアウトは30秒です。つまり、NFSv4クライアントは少なくとも30秒ごとにサーバにチェックインする必要があります。そうしないと、リースとロックが失われます。この猶予期間はNFSサーバがリース/ロックデータを再構築できるようにするためのもので、デフォルトは45秒です。ONTAPでは、猶予期間をリース期間より15秒長くする必要があります。これにより、リースを30秒以上更新するように設計されたNFSクライアント環境では、再起動後にサーバにチェックインできます。猶予期間を45秒に設定することで、少なくとも30秒ごとにリースを更新することを期待するすべてのクライアントが確実に更新する機会を得ることができます。</block>
-  <block id="5e6b60906bbbb9a41b140c0749591489" category="paragraph">30秒のタイムアウトが許容されない場合は、リース期間を延長することもできます。60秒のネットワーク停止に耐えるためにリースタイムアウトを60秒に延長する場合は、猶予期間を少なくとも75秒に延長する必要があります。ONTAPでは、リース期間より15秒長くする必要があります。つまり、コントローラフェイルオーバー中にIOが一時停止する時間が長くなります。</block>
-  <block id="4611c7c931fc15a6feba513fe72e22de" category="paragraph">これは通常は問題ではありません。一般的なユーザはONTAPコントローラを年に1~2回更新するだけで、ハードウェア障害による計画外フェイルオーバーは非常にまれです。また、ネットワークに60秒のネットワーク停止が発生する可能性があり、リースタイムアウトを60秒にする必要がある場合は、まれにストレージシステムのフェイルオーバーに異議を唱えず、75秒の一時停止も発生する可能性があります。ネットワークが60秒以上頻繁に一時停止していることをすでに認識しています。</block>
   <block id="c4fb6f7d31d205bc07dbff47d0ae4bb3" category="summary">Oracle Direct NFS</block>
   <block id="f58bdad9659176e411f064fdb414233f" category="doc">Oracle directNFS</block>
   <block id="1bd6ec1185ba67395dc6f9cd2b458ec8" category="paragraph">Oracleデータベースでは、NFSを2つの方法で使用できます。</block>
@@ -1889,7 +1886,6 @@ REDO ログ</block>
   <block id="322e1f85910dfc206274f8bd58a54a9d" category="list-text">特定のサイトのドライブセットは、ミラーリングを使用することなく、1つ以上の完全に冗長化されたRAID-DPまたはRAID-TECグループとして自動的に構成されます。これにより、サイトが失われても継続的なデータ保護が実現します。</block>
   <block id="dee2dfce5ab0c47301b3c12970a57aa6" category="paragraph">上の図は、SyncMirror構成の例を示しています。24ドライブのアグリゲートをコントローラに作成しました。このアグリゲートは、サイトAで割り当てられたシェルフの12本のドライブと、サイトBで割り当てられたシェルフの12本のドライブで構成されています。ドライブは2つのミラーRAIDグループにグループ化されました。RAIDグループ0には、サイトAの6ドライブプレックスが含まれており、サイトBの6ドライブプレックスにミラーリングされています。同様に、RAIDグループ1にはサイトAの6ドライブプレックスが含まれており、サイトBの6ドライブプレックスにミラーリングされています。</block>
   <block id="4fbc0abe91c0c1381d0a742f58b4e537" category="paragraph">SyncMirrorは通常、MetroClusterシステムにリモートミラーリングを提供するために使用され、各サイトにデータのコピーが1つずつ配置されます。場合によっては、1つのシステムで追加レベルの冗長性を提供するために使用されます。特に、シェルフレベルの冗長性を提供します。ドライブシェルフにはすでにデュアル電源装置とコントローラが搭載されており、全体的には板金をほとんど使用していませんが、場合によっては追加の保護が保証されることがあります。たとえば、あるNetAppのお客様は、自動車テストで使用するモバイルリアルタイム分析プラットフォームにSyncMirrorを導入しています。システムは、独立したUPSシステムからの独立した電源供給によって供給される2つの物理ラックに分割されました。</block>
-  <block id="95a3cc99b05998d49d8e035b994815bc" category="paragraph">==チェックサム</block>
   <block id="0cac56685de94a3ef0e1fd2bfca0c112" category="paragraph">チェックサムのトピックは、Oracle RMANのストリーミングバックアップをSnapshotベースのバックアップに移行することに慣れているDBAにとって特に関心があります。RMANの機能の1つは、バックアップ処理中に整合性チェックを実行することです。この機能には何らかの価値がありますが、その最大のメリットは、データベースが最新のストレージアレイで使用されていないことです。Oracleデータベースに物理ドライブが使用されている場合、ドライブの使用年数が経つと最終的にはほぼ確実に破損します。この問題は、真のストレージアレイではアレイベースのチェックサムによって解決されます。</block>
   <block id="58d7088c13cf2013ef373d85e3c27de7" category="paragraph">実際のストレージアレイでは、複数のレベルでチェックサムを使用してデータの整合性が保護されます。IPベースのネットワークでデータが破損した場合、Transmission Control Protocol（TCP）レイヤはパケットデータを拒否し、再送信を要求します。FCプロトコルには、カプセル化されたSCSIデータと同様にチェックサムが含まれます。アレイに配置されたONTAPは、RAIDとチェックサムによる保護を備えています。破損は発生する可能性がありますが、ほとんどのエンタープライズアレイと同様に検出されて修正されます。通常、ドライブ全体に障害が発生してRAIDのリビルドが要求され、データベースの整合性は影響を受けません。ONTAPがチェックサムエラーを検出することもあります。これは、ドライブ上のデータが破損していることを意味します。ドライブが故障し、RAIDのリビルドが開始されます。繰り返しになりますが、データの整合性には影響はありません。</block>
   <block id="8b7b33533c2b36c157a0a482bdd52a8e" category="paragraph">OracleのデータファイルとRedoログのアーキテクチャも、極度の状況下でも可能な限り最高レベルのデータ整合性を提供するように設計されています。最も基本的なレベルでは、Oracleのブロックにはチェックサムが含まれており、ほぼすべてのI/Oについて基本的な論理チェックが実行されます。Oracleがクラッシュしたり表領域がオフラインになったりしていない場合、データはそのまま維持されます。データ整合性チェックの程度は調整可能で、書き込みを確認するようにOracleを設定することもできます。その結果、クラッシュや障害のほぼすべてのシナリオをリカバリでき、非常にまれにリカバリ不能な状況が発生した場合は、破損がすぐに検出されます。</block>
@@ -3930,7 +3926,6 @@ SOAP over https 接続に使用されます</block>
   <block id="0c5284e14535835121effc8afb702b28" category="summary">ONTAPによるOracleデータベースのディザスタリカバリ</block>
   <block id="2ba21d57ee7f1d78a405b9e80c6aaf6b" category="paragraph">ほとんどのお客様にとって、DRに必要なのはデータのリモートコピーだけではなく、そのデータを迅速に利用できることです。NetAppは、このニーズに対応する2つのテクノロジを提供します。MetroClusterとSnapMirrorのアクティブ同期です。</block>
   <block id="107bcc34799abe752a088be24869419c" category="paragraph">SnapMirrorアクティブ同期はSnapMirror Synchronousに基づいています。MetroClusterでは、各ONTAPコントローラがドライブデータをリモートサイトにレプリケートします。SnapMirrorアクティブ同期を使用すると、基本的には2つの異なるONTAPシステムでLUNデータの独立したコピーを維持しながら、このLUNの単一インスタンスを提供できます。ホストの観点からは、単一のLUNエンティティです。</block>
-  <block id="d8f57e6104c0329961c4d91e154c4f27" category="paragraph">SnapMirrorアクティブ同期とMetroClusterの内部的な動作は大きく異なりますが、ホストにとってはほぼ同じ結果になります。主な違いは粒度です。同期レプリケートするワークロードのみを選択する場合は、SnapMirrorアクティブ同期が適しています。環境全体やデータセンターをレプリケートする必要がある場合は、MetroClusterをお勧めします。また、SnapMirrorアクティブ同期は現在SAN専用ですが、MetroClusterはSAN、NFS、SMBなどのマルチプロトコルです。</block>
   <block id="50ae143b75fc238e91c09c750cf211c1" category="summary">Oracleデータベースのパラメータ- filesystemio_options</block>
   <block id="23c61da1d42f69597a6ab97e333a560f" category="doc">Oracleデータベースパラメータ:filesystemio_options</block>
   <block id="cf451e0aed3c944d3f1c761387762e56" category="summary">Linuxを使用したOracleデータベース</block>
@@ -5553,12 +5548,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="97e73fdb42ddecb63ed519a484ff3c9b" category="paragraph">また、SQL Serverでは、作成時にSnapshotに正しいデータが存在するように、OSとストレージの間で調整を行う必要があります。ほとんどの場合、これを行う唯一の安全な方法は、SnapCenterまたはT-SQLを使用することです。この追加の調整なしで作成されたSnapshotは、確実にリカバリできない可能性があります。</block>
   <block id="9d831cc4c73b8a2915ce6d8928d55915" category="paragraph">SQL Server Always-On可用性グループレプリケーション機能は優れたオプションであり、NetAppには、データ保護とAlways-Onを統合するためのオプションが用意されています。ただし、ONTAPレプリケーションテクノロジを検討する必要がある場合もあります。3つの基本的なオプションがあります。</block>
   <block id="dd432f8769e4d3db8acf8bf9df94680a" category="paragraph">SnapMirrorテクノロジーは、LANおよびWAN経由でデータを複製するための高速で柔軟なエンタープライズソリューションを提供します。最初のミラーリングの作成後は、変更されたデータブロックのみがデスティネーションに転送されるため、必要なネットワーク帯域幅が大幅に削減されますSnapMirror。同期モードまたは非同期モードのいずれかで設定できます。</block>
-  <block id="164fe74cfbca9ef543331e42b891cf2c" category="section-title">NetApp MetroCluster</block>
-  <block id="919724e89015426f80bc09648382f128" category="paragraph">MetroCluster構成は、アプリケーション、データベース、仮想化プラットフォームに高可用性とデータ損失ゼロのストレージソリューションを提供するのに役立ちます。このソリューションは、アレイベースのクラスタリングと同期レプリケーションを組み合わせて実装され、ストレージおよびホスト環境全体の保護レイヤを強化します。</block>
-  <block id="6d2c492dffc0bf60de97e63a6009479e" category="section-title">SnapMirrorアクティブ同期（旧称SnapMirrorビジネス継続性）</block>
-  <block id="123164a12a3f4d85ba9b3ada5527d5bd" category="paragraph">SnapMirrorアクティブ同期は、SnapMirror同期に基づいており、書き込み順序の整合性を維持しながら複数のLUNをレプリカストレージにレプリケートする機能を備えています。MetroClusterでは、ネットワーク構成を含むONTAPコントローラがサイト間で同一である必要があります。SnapMirrorアクティブ同期を使用すると、基本的には2つの異なるONTAPシステムでLUNデータの独立したコピーを維持しながら、このLUNの単一インスタンスを提供できます。ホストの観点からは、単一のLUNエンティティです。</block>
-  <block id="b98b6a092261c39c119882f3184a9389" category="paragraph">MetroClusterとSnapMirrorのアクティブ同期の主な違いは、きめ細かさと拡張性です。特定のワークロードのみを同期レプリケーション対象として選択する必要がある場合や、LUNを両方のサイトで読み取り/書き込み処理できるようにする必要がある場合は、SnapMirrorアクティブ同期が適しています。環境全体やデータセンターをレプリケートする必要がある場合は、MetroClusterをお勧めします。また、SnapMirrorアクティブ同期は現在SAN専用ですが、MetroClusterはSAN、NFS、SMBなどのマルチプロトコルです。</block>
-  <block id="ad92b482f7ca3e4927337deb7a2139be" category="paragraph">SnapMirrorの詳細については、を参照してください<block ref="7b9bb0f7fafd9178d92ab3dea0b9cbc5" category="inline-link-macro-rx"></block>。</block>
   <block id="fce5f84d02dbd5c9e3cfedf18e809644" category="summary">Microsoft SQL ServerおよびNetApp MetroCluster</block>
   <block id="6d65b4d9884a5fae6940ac158045781c" category="doc">MetroClusterの概要とアーキテクチャ</block>
   <block id="41900c1c2eb669e401e4abee9091b40b" category="paragraph">MetroCluster環境でMicrosoft SQL Serverを導入するには、MetroClusterシステムの物理設計について説明する必要があります。</block>
@@ -5876,4 +5865,34 @@ SOAP over HTTPS接続に使用</block>
   <block id="81959299f52ddb567fd902f3e1ae5311" category="paragraph">近接設定を使用しない場合、両方のストレージシステムがアクティブな最適パスをアドバタイズするため、そのホストは両方のストレージシステムを均等に使用します。SANのレイテンシやサイト間の帯域幅に制限がある場合は、この設定を解除できない可能性があります。また、通常動作中に各ホストがローカルストレージシステムへのパスを優先的に使用するように設定することもできます。これは、ホストWWN/iSCSI IDをローカルクラスタに近接ホストとして追加することで設定します。これは、CLIまたはSystemManagerで実行できます。</block>
   <block id="f08670cf73640d447fb34d01b0f6418f" category="paragraph">AFFシステムでホストプロキシミティが設定されている場合、パスは次のように表示されます。</block>
   <block id="85a2564342597a065a3926228b7e9fcd" category="paragraph">SQL Serverは、いくつかの方法でSnapMirrorアクティブ同期と連携するように設定できます。適切な答えは、使用可能なネットワーク接続、RPOの要件、可用性の要件によって異なります。</block>
+  <block id="d60999416cfb11e4fa51f3dbe7386d64" category="paragraph">SM-ASとMetroClusterは全体的な機能が似ていますが、RPO=0レプリケーションの実装方法と管理方法には重要な違いがあります。SnapMirrorの非同期および同期はDR計画の一部としても使用できますが、HAレプリケーションテクノロジとしては設計されていません。</block>
+  <block id="e122442a5a5728cd45ffc4ddd170a36f" category="list-text">MetroCluster構成は、複数のサイトにノードが分散された統合クラスタのようなものです。SM-ASは、同期的にレプリケートされるRPO=0のLUNにサービスを提供する独立した2つのクラスタのように動作します。</block>
+  <block id="dbbbd9519f58f000ae618fd3a3f2f38c" category="list-text">MetroCluster構成のデータには、常に1つの特定のサイトからしかアクセスできません。データの2つ目のコピーは反対側のサイトに存在しますが、データはパッシブです。ストレージシステムのフェイルオーバーがないとアクセスできません。</block>
+  <block id="72d2ba33caf4a678d0b02c7a4a562662" category="list-text">MetroClusterとSM-ASによるミラーリングは、さまざまなレベルで実行されます。MetroClusterミラーリングはRAIDレイヤで実行されます。下位レベルのデータは、SyncMirrorを使用してミラーリングされた形式で格納されます。ミラーリングは、LUN、ボリューム、プロトコルの各レイヤでは実質的に使用されません。</block>
+  <block id="33613d29368b0b312d33bd204505f12b" category="list-text">一方、SM-ASミラーリングはプロトコルレイヤで行われます。2つのクラスタは、全体的に独立したクラスタです。データの2つのコピーが同期されると、2つのクラスタは書き込みをミラーリングするだけで済みます。一方のクラスタで書き込みが発生すると、もう一方のクラスタにレプリケートされます。書き込みの確認応答がホストに送信されるのは、両方のサイトで書き込みが完了した場合だけです。このプロトコルスプリット動作以外では、2つのクラスタは通常のONTAPクラスタです。</block>
+  <block id="c6ce2d48c3feb0ac105233b1d47d6785" category="list-text">MetroClusterの主な役割は大規模なレプリケーションです。RPO=0でRTOがほぼゼロのアレイ全体をレプリケートできます。フェイルオーバーが1つしかなく、容量とIOPSの点で非常に適切に拡張できるため、フェイルオーバープロセスが簡易化されます。</block>
+  <block id="22c8f7d4250a7117dcec5e795cf01979" category="list-text">SM-ASの主なユースケースの1つに、きめ細かなレプリケーションがあります。すべてのデータを1つのユニットとしてレプリケートしたくない場合や、特定のワークロードを選択的にフェイルオーバーできる必要がある場合があります。</block>
+  <block id="466f5e6d5af96a45aba533d742d1f30e" category="list-text">SM-ASのもう1つの主なユースケースは、アクティブ/アクティブ処理です。アクティブ/アクティブ処理では、データの完全に使用可能なコピーを、同じパフォーマンス特性を持つ2つの異なるクラスタに配置し、必要に応じてSANをサイト間で拡張する必要がありません。アプリケーションを両方のサイトで実行しておくことで、フェイルオーバー処理中の全体的なRTOを短縮できます。</block>
+  <block id="3ab2196c18fe1cd72bf252059597387b" category="section-title">NetApp MetroClusterとSnapMirrorのアクティブな同期</block>
+  <block id="95da439be4f858e05c58cde4b5946324" category="paragraph">多くのお客様にとって、DRに必要なのはデータのリモートコピーだけではなく、そのデータを迅速に活用できることです。NetAppは、このニーズに対応する2つのテクノロジを提供します。MetroClusterとSnapMirrorのアクティブ同期です。</block>
+  <block id="3e6b18011054436086bb6cf813b0cb23" category="section-title">SM-ASとMCCの比較</block>
+  <block id="4ab72a69aa303ab33d610a6f6e594e68" category="section-title">チエツクサム</block>
+  <block id="0a4a3e3ef29b5fc4ea4e557f166532b4" category="paragraph">SnapMirrorアクティブ同期（SM-AS）はSnapMirror同期に基づいています。MetroClusterでは、各ONTAPコントローラがドライブデータをリモートサイトにレプリケートします。SnapMirrorアクティブ同期を使用すると、基本的には2つの異なるONTAPシステムでLUNデータの独立したコピーを維持しながら、このLUNの単一インスタンスを提供できます。ホストの観点からは、単一のLUNエンティティです。</block>
+  <block id="2f589372957b08ce09879b8a2ab6e58c" category="section-title">dNFSノユウコウカ</block>
+  <block id="1a89d30b5bb0e2de334e029001a92f8a" category="paragraph">Oracle dNFSは、dNFSライブラリを有効にする以外の設定は必要ありませんが（必要なコマンドについてはOracleのマニュアルを参照してください）、dNFSで接続を確立できない場合は、カーネルNFSクライアントにサイレントに戻すことができます。この場合、パフォーマンスに重大な影響を与える可能性があります。</block>
+  <block id="9cb0e5a02b9facf3c0e654f08ceceda4" category="paragraph">NFSv4.Xで複数のインターフェイス間でdNFSの多重化を使用する場合、または暗号化を使用する場合は、oranfstabファイルを設定する必要があります。構文は非常に厳格です。ファイルに小さなエラーがあると、起動がハングしたり、oranfstabファイルがバイパスされたりする可能性があります。</block>
+  <block id="3c04631b254b4b0e971a2c82517f50cb" category="paragraph">dNFSが期待どおりに動作することを確認する唯一の方法は、v$dnfsテーブルを照会することです。</block>
+  <block id="21986e459426718105f7dc1a16e88bd0" category="paragraph">以下は、/etcにあるサンプルoranfstabファイルです。これは、oranfstabファイルを配置できる複数の場所の1つです。</block>
+  <block id="1d4338d2de6e933a6941c8605def3a39" category="paragraph">最初に、指定したファイルシステムでdNFSが動作していることを確認します。</block>
+  <block id="75bc8bd82bedf61e91351f8667b97e13" category="paragraph">この出力は、これら2つのファイルシステムでdNFSが使用されていることを示していますが、oranfstabが動作していることを意味するわけではない*。エラーが発生していた場合、dNFSはホストのNFSファイルシステムを自動検出しますが、このコマンドからも同じ出力が表示されることがあります。</block>
+  <block id="f4327e73856b2069e10b045605d3fbe9" category="paragraph">マルチパスは次のようにチェックできます。</block>
+  <block id="99dc2d8bc11eb27fb0b920ca969e43e1" category="paragraph">これらはdNFSが使用している接続です。SVRNAMEエントリごとに2つのパスとチャネルが表示されます。これは、マルチパスが機能していること、つまりoranfstabファイルが認識されて処理されたことを意味します。</block>
+  <block id="d99de907aa06fa04c7b19ffceff68307" category="admonition">次のセクションは、ONTAP 9 .15.1の時点で最新のものですが、リースとロックの動作、チューニングオプションはバージョンごとに変更される可能性があります。NFSv4リース/ロックのタイムアウトを調整する必要がある場合は、NetAppサポートで最新情報を確認してください。</block>
+  <block id="4bf95f1ea9ecf4f42a7b323970405bb4" category="paragraph">この猶予期間は、ネットワークインターフェイスの変更時のリース再生を制御しますが、ストレージフェイルオーバー時のリース再生を制御する2つ目の猶予期間があります<block ref="d75aeb1a8759ea7475fe0ddcd2058ca1" prefix=" " category="inline-code"></block>。これはノードレベルのオプションです。</block>
+  <block id="0ba7c8a7759adb519c715ac93fdee2a6" category="paragraph">たとえば、LIFのフェイルオーバーを頻繁に実行する必要があり、猶予期間を短縮する必要がある場合は、を変更します<block ref="b1280b7c6d986647dff33b87ce276327" prefix=" " category="inline-code"></block>。コントローラフェイルオーバー時のIO再開時間を短縮するには、を変更する必要があります<block ref="d75aeb1a8759ea7475fe0ddcd2058ca1" prefix=" " category="inline-code"></block>。</block>
+  <block id="3f3edac1c3ed7bfad53f9d42b9a0c5a7" category="paragraph">これらの値は、リスクと結果を十分に理解した上で慎重に変更してください。NFSv4.Xでのフェイルオーバー処理や移行処理でのIOの一時停止を完全に回避することはできません。ロック、リース、猶予期間はNFS RFCの一部です。多くのお客様には、フェイルオーバーにかかる時間が短縮されるため、NFSv3を使用することを推奨します。</block>
+  <block id="167503c08e9285f5c4a4a61a0123897b" category="paragraph">猶予期間とリース期間が接続されます。前述したように、デフォルトのリースタイムアウトは30秒です。つまり、NFSv4クライアントは少なくとも30秒ごとにサーバにチェックインする必要があります。そうしないと、リースとロックが失われます。この猶予期間はNFSサーバがリース/ロックデータを再構築できるようにするためのもので、デフォルトは45秒です。猶予期間はリース期間よりも長くする必要があります。これにより、リースを30秒以上更新するように設計されたNFSクライアント環境では、再起動後にサーバにチェックインできます。猶予期間を45秒に設定することで、少なくとも30秒ごとにリースを更新することを期待するすべてのクライアントが確実に更新する機会を得ることができます。</block>
+  <block id="6be050126f2df5ae7cd944ce446241c2" category="paragraph">30秒のタイムアウトが許容されない場合は、リース期間を延長することもできます。</block>
+  <block id="38d530634a8d32e8775a37109fc08542" category="paragraph">60秒のネットワーク停止に耐えるためにリースタイムアウトを60秒に延長する場合は、猶予期間も延長する必要があります。つまり、コントローラフェイルオーバー中にIOが一時停止する時間が長くなります。</block>
+  <block id="ac76821692fdb2dae1d98babe804fb8f" category="paragraph">これは通常は問題ではありません。一般的なユーザはONTAPコントローラを年に1~2回更新するだけで、ハードウェア障害による計画外フェイルオーバーは非常にまれです。また、ネットワークに60秒のネットワーク停止が発生する可能性があり、リースタイムアウトを60秒にする必要がある場合は、まれにストレージシステムのフェイルオーバーに異議を唱えず、61秒の一時停止も発生する可能性があります。ネットワークが60秒以上頻繁に一時停止していることをすでに認識しています。</block>
 </blocks>

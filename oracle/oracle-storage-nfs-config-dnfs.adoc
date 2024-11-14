@@ -33,7 +33,110 @@ dNFSでラウンドロビン方式の名前解決（DNS、DDNS、NISなど）を
 
 
 
-=== Direct NFSとホストファイルシステムへのアクセス
+=== dNFSノユウコウカ
+
+Oracle dNFSは、dNFSライブラリを有効にする以外の設定は必要ありませんが（必要なコマンドについてはOracleのマニュアルを参照してください）、dNFSで接続を確立できない場合は、カーネルNFSクライアントにサイレントに戻すことができます。この場合、パフォーマンスに重大な影響を与える可能性があります。
+
+NFSv4.Xで複数のインターフェイス間でdNFSの多重化を使用する場合、または暗号化を使用する場合は、oranfstabファイルを設定する必要があります。構文は非常に厳格です。ファイルに小さなエラーがあると、起動がハングしたり、oranfstabファイルがバイパスされたりする可能性があります。
+
+dNFSが期待どおりに動作することを確認する唯一の方法は、v$dnfsテーブルを照会することです。
+
+以下は、/etcにあるサンプルoranfstabファイルです。これは、oranfstabファイルを配置できる複数の場所の1つです。
+
+....
+[root@jfs11 trace]# cat /etc/oranfstab
+server: NFSv3test
+path: jfs_svmdr-nfs1
+path: jfs_svmdr-nfs2
+export: /dbf mount: /oradata
+export: /logs mount: /logs
+nfs_version: NFSv3
+....
+最初に、指定したファイルシステムでdNFSが動作していることを確認します。
+
+....
+SQL> select dirname,nfsversion from v$dnfs_servers;
+
+DIRNAME
+------------------------------------
+NFSVERSION
+----------------
+/logs
+NFSv3.0
+
+/dbf
+NFSv3.0
+....
+この出力は、これら2つのファイルシステムでdNFSが使用されていることを示していますが、oranfstabが動作していることを意味するわけではない*。エラーが発生していた場合、dNFSはホストのNFSファイルシステムを自動検出しますが、このコマンドからも同じ出力が表示されることがあります。
+
+マルチパスは次のようにチェックできます。
+
+....
+SQL> select svrname,path,ch_id from v$dnfs_channels;
+
+SVRNAME
+------------------------------------
+PATH
+------------------------------------
+     CH_ID
+----------
+NFSv3test
+jfs_svmdr-nfs1
+         0
+
+NFSv3test
+jfs_svmdr-nfs2
+         1
+
+SVRNAME
+------------------------------------
+PATH
+------------------------------------
+     CH_ID
+----------
+
+NFSv3test
+jfs_svmdr-nfs1
+         0
+
+NFSv3test
+jfs_svmdr-nfs2
+
+[output truncated]
+
+SVRNAME
+------------------------------------
+PATH
+------------------------------------
+     CH_ID
+----------
+NFSv3test
+jfs_svmdr-nfs2
+         1
+
+NFSv3test
+jfs_svmdr-nfs1
+         0
+
+SVRNAME
+------------------------------------
+PATH
+------------------------------------
+     CH_ID
+----------
+
+NFSv3test
+jfs_svmdr-nfs2
+         1
+
+
+66 rows selected.
+....
+これらはdNFSが使用している接続です。SVRNAMEエントリごとに2つのパスとチャネルが表示されます。これは、マルチパスが機能していること、つまりoranfstabファイルが認識されて処理されたことを意味します。
+
+
+
+== Direct NFSとホストファイルシステムへのアクセス
 
 アプリケーションやユーザのアクティビティが、ホストにマウントされた参照可能なファイルシステムに依存している場合、dNFSを使用すると原因の問題が発生することがあります。これは、dNFSクライアントがホストOSの帯域外でファイルシステムにアクセスするためです。dNFSクライアントは、OSが認識されていなくてもファイルの作成、削除、および変更を行うことができます。
 
