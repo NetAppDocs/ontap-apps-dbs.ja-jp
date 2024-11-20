@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-ontap-config-raid.html 
 keywords: oracle,raid,mirroring 
 summary: RAIDとOracleデータベース 
+searchtitle: RAIDデータベースとOracleデータベース 
 ---
-= RAIDデータベースとOracleデータベース
+= RAID の場合
 :allow-uri-read: 
 
 

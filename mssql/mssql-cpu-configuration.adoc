@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mssql/mssql-cpu-configuration.html 
 keywords: MSSQL,SQL Server, CPU, ONTAP 
 summary: Microsoft SQL ServerのCPU構成 
+searchtitle: = Microsoft SQL ServerのCPU構成 
 ---
-= Microsoft SQL ServerのCPU構成
+= CPU構成
 :allow-uri-read: 
 :imagesdir: ../media/
 

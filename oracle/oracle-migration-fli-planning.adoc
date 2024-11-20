@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-migration-fli-planning.html 
 keywords: migration, oracle, fli 
 summary: FLIによるOracleの移行計画 
+searchtitle: FLIによるOracleの移行計画 
 ---
-= FLIによるOracleの移行計画
+= 計画
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

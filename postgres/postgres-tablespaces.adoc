@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: postgres/postgres-tablespaces.html 
 keywords: PostgreSQL,database,postgres 
 summary: PostgreSQLテーブルスペース 
+searchtitle: PostgreSQLテーブルスペース 
 ---
-= PostgreSQLテーブルスペース
+= 表領域
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

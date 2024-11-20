@@ -2,9 +2,10 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dr-mcc-failover.html 
 keywords: Metrocluster, mcc, MCC-IP 
-summary: MetroClusterによるOracleデータベースのフェイルオーバー 
+summary: MetroClusterを使用したOracleデータベースのDR 
+searchtitle: MetroClusterを使用したOracleデータベースのDR 
 ---
-= MetroClusterによるOracleデータベースのフェイルオーバー
+= MetroClusterによるディザスタリカバリ
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

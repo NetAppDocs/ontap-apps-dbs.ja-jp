@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-tiering-policies.html 
 keywords: tiering, fabricpool 
 summary: Oracle Database FabricPool階層化ポリシー 
+searchtitle: Oracle Database FabricPool階層化ポリシー 
 ---
-= Oracle Database FabricPool階層化ポリシー
+= 階層化ポリシー
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

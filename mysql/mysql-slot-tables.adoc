@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mysql/mysql-slot-tables.html 
 keywords: MySQL,MariaDB,TR-4722 
 summary: MySQLとNFSv3のスロットテーブル 
+searchtitle: MySQLとNFSv3のスロットテーブル 
 ---
-= MySQLとNFSv3のスロットテーブル
+= NFSv3スロットテーブル
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

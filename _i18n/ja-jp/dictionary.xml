@@ -584,7 +584,6 @@
   <block id="030a270970f70c1bd91d3689b6f95f3f" category="inline-link-macro">max worker threadsサーバ設定オプションの設定</block>
   <block id="2a0c648df721b9bc2643d59c4a3a310a" category="paragraph">より多くのワーカースレッドを使用するようにSQL Serverを設定する必要があるのはいつですか？各スケジューラの平均ワークキューの長さが1を超える場合は、負荷がCPUに制限されていないか、その他の重い待機時間が発生している場合にのみ、システムにスレッドを追加することでメリットが得られます。これらのいずれかが発生している場合、スレッドを追加しても、他のシステムボトルネックを待つことになるため、効果はありません。最大ワーカースレッド数の詳細については、を参照してください。 <block ref="77c391df5f9f06cdf367c2a7314ce351" category="inline-link-macro-rx"></block>。</block>
   <block id="29d04e616d2293c4c7538dd6226feac5" category="section-title">SQL Server Management Studioを使用した最大ワーカースレッド数の設定。</block>
-  <block id="5962130d833e0408cf58a87e342bc1f9" category="doc">Microsoft SQL Server tempdbフアイル</block>
   <block id="44dbc82801d84781083ed9e23b63be00" category="list-text">8コア以下の場合：tempdbデータファイル=コア数</block>
   <block id="6203fcdbdad10bb603fd00edd2f0fcf5" category="list-text">8コアを超える場合：8個のtempdbデータファイル</block>
   <block id="b9f341e4fb0e6b384aa7ec0b5c33f964" category="paragraph">次のスクリプト例は、8つのtempdbファイルを作成し、tempdbをマウントポイントに移動することで、tempdbを変更します。<block ref="ae6fbe62f3ddc46fa9a9885244d23675" prefix=" " category="inline-code"></block> （SQL Server 2012以降）。</block>
@@ -1476,7 +1475,6 @@ REDO ログ</block>
   <block id="3d4d04d6cdab90b7ca0deb0344f04eec" category="list-text">仮想マシンの起動</block>
   <block id="c702c387f07bcb4f18482e68d69a155a" category="paragraph">MetroClusterシステムを使用したOracleデータ保護の基盤となるのは、最大パフォーマンスのスケールアウト同期ミラーリングテクノロジであるSyncMirrorです。</block>
   <block id="9028b52caaa7bdbfb9be779eeb1fe00e" category="summary">MetroClusterを使用したOracle拡張RAC</block>
-  <block id="dbcedb2fd86e6012347a3c9ad111f3a8" category="doc">MetroCluster上の拡張Oracle RAC</block>
   <block id="4d4d8a609e5b2ac58e622eb1e90f9e39" category="paragraph">多くのお客様が、Oracle RACクラスタを複数のサイトにまたがって構成し、完全なアクティブ/アクティブ構成を実現することで、RTOを最適化しています。Oracle RACのクォーラム管理を含める必要があるため、設計全体が複雑になります。また、データは両方のサイトからアクセスされるため、強制的スイッチオーバーによって古いデータコピーが使用される可能性があります。</block>
   <block id="89ffaa1a7d089080e9a1ce912bb8c2d3" category="paragraph">データのコピーは両方のサイトに存在しますが、データを提供できるのはアグリゲートを現在所有しているコントローラだけです。そのため、拡張RACクラスタでは、リモートのノードがサイト間接続でI/Oを実行する必要があります。その結果、I/Oレイテンシが増加しますが、このレイテンシは一般的には問題になりません。RACインターコネクトネットワークは複数のサイトにまたがって拡張する必要があるため、とにかく高速で低レイテンシのネットワークが必要です。レイテンシが増加して原因に問題が発生した場合は、クラスタをアクティブ/パッシブで運用できます。I/O負荷の高い処理は、アグリゲートを所有するコントローラに対してローカルなRACノードに対して実行する必要があります。リモートノードは、より軽いI/O処理を実行するか、純粋にウォームスタンバイサーバとして使用されます。</block>
   <block id="f441d5fdc388f3419fb87e071534f3ce" category="inline-link-macro">ONTAPを使用したOracle RAC</block>
@@ -1665,7 +1663,6 @@ REDO ログ</block>
   <block id="e4f8aa90af36d76254e2f02e56232aed" category="paragraph">その結果、再起動後、すべてのクライアントがリースとロックを再要求する間、コントローラはIOを一時停止します。猶予期間が終了すると、サーバはIO処理を再開します。</block>
   <block id="bb2b26fdcb4e947cda6f8e38724ecfc9" category="section-title">リースタイムアウトと猶予期間</block>
   <block id="c4fb6f7d31d205bc07dbff47d0ae4bb3" category="summary">Oracle Direct NFS</block>
-  <block id="f58bdad9659176e411f064fdb414233f" category="doc">Oracle directNFS</block>
   <block id="1bd6ec1185ba67395dc6f9cd2b458ec8" category="paragraph">Oracleデータベースでは、NFSを2つの方法で使用できます。</block>
   <block id="96997ca5c577dd19a3ba5f7ff771f27a" category="paragraph">まず、オペレーティングシステムの一部であるネイティブのNFSクライアントを使用してマウントされたファイルシステムを使用できます。これはカーネルNFS（kNFS）と呼ばれることもあります。NFSファイルシステムは、NFSファイルシステムを使用する他のアプリケーションとまったく同じように、Oracleデータベースによってマウントされ、使用されます。</block>
   <block id="95c17c63df7ceea39a175b1d96955bb7" category="paragraph">2つ目の方法はOracle Direct NFS（dNFS）です。これは、OracleデータベースソフトウェアにNFS標準を実装したものです。DBAによるOracleデータベースの設定や管理方法は変更されません。ストレージシステム自体に正しい設定があるかぎり、DBAチームやエンドユーザはdNFSを透過的に使用できなければなりません。</block>
@@ -1887,7 +1884,6 @@ REDO ログ</block>
   <block id="dee2dfce5ab0c47301b3c12970a57aa6" category="paragraph">上の図は、SyncMirror構成の例を示しています。24ドライブのアグリゲートをコントローラに作成しました。このアグリゲートは、サイトAで割り当てられたシェルフの12本のドライブと、サイトBで割り当てられたシェルフの12本のドライブで構成されています。ドライブは2つのミラーRAIDグループにグループ化されました。RAIDグループ0には、サイトAの6ドライブプレックスが含まれており、サイトBの6ドライブプレックスにミラーリングされています。同様に、RAIDグループ1にはサイトAの6ドライブプレックスが含まれており、サイトBの6ドライブプレックスにミラーリングされています。</block>
   <block id="4fbc0abe91c0c1381d0a742f58b4e537" category="paragraph">SyncMirrorは通常、MetroClusterシステムにリモートミラーリングを提供するために使用され、各サイトにデータのコピーが1つずつ配置されます。場合によっては、1つのシステムで追加レベルの冗長性を提供するために使用されます。特に、シェルフレベルの冗長性を提供します。ドライブシェルフにはすでにデュアル電源装置とコントローラが搭載されており、全体的には板金をほとんど使用していませんが、場合によっては追加の保護が保証されることがあります。たとえば、あるNetAppのお客様は、自動車テストで使用するモバイルリアルタイム分析プラットフォームにSyncMirrorを導入しています。システムは、独立したUPSシステムからの独立した電源供給によって供給される2つの物理ラックに分割されました。</block>
   <block id="0cac56685de94a3ef0e1fd2bfca0c112" category="paragraph">チェックサムのトピックは、Oracle RMANのストリーミングバックアップをSnapshotベースのバックアップに移行することに慣れているDBAにとって特に関心があります。RMANの機能の1つは、バックアップ処理中に整合性チェックを実行することです。この機能には何らかの価値がありますが、その最大のメリットは、データベースが最新のストレージアレイで使用されていないことです。Oracleデータベースに物理ドライブが使用されている場合、ドライブの使用年数が経つと最終的にはほぼ確実に破損します。この問題は、真のストレージアレイではアレイベースのチェックサムによって解決されます。</block>
-  <block id="58d7088c13cf2013ef373d85e3c27de7" category="paragraph">実際のストレージアレイでは、複数のレベルでチェックサムを使用してデータの整合性が保護されます。IPベースのネットワークでデータが破損した場合、Transmission Control Protocol（TCP）レイヤはパケットデータを拒否し、再送信を要求します。FCプロトコルには、カプセル化されたSCSIデータと同様にチェックサムが含まれます。アレイに配置されたONTAPは、RAIDとチェックサムによる保護を備えています。破損は発生する可能性がありますが、ほとんどのエンタープライズアレイと同様に検出されて修正されます。通常、ドライブ全体に障害が発生してRAIDのリビルドが要求され、データベースの整合性は影響を受けません。ONTAPがチェックサムエラーを検出することもあります。これは、ドライブ上のデータが破損していることを意味します。ドライブが故障し、RAIDのリビルドが開始されます。繰り返しになりますが、データの整合性には影響はありません。</block>
   <block id="8b7b33533c2b36c157a0a482bdd52a8e" category="paragraph">OracleのデータファイルとRedoログのアーキテクチャも、極度の状況下でも可能な限り最高レベルのデータ整合性を提供するように設計されています。最も基本的なレベルでは、Oracleのブロックにはチェックサムが含まれており、ほぼすべてのI/Oについて基本的な論理チェックが実行されます。Oracleがクラッシュしたり表領域がオフラインになったりしていない場合、データはそのまま維持されます。データ整合性チェックの程度は調整可能で、書き込みを確認するようにOracleを設定することもできます。その結果、クラッシュや障害のほぼすべてのシナリオをリカバリでき、非常にまれにリカバリ不能な状況が発生した場合は、破損がすぐに検出されます。</block>
   <block id="4066c36b811913c85aa86346e30cee4d" category="paragraph">Oracleデータベースを使用しているNetAppのお客様のほとんどは'スナップショット・ベースのバックアップに移行すると'RMANなどのバックアップ製品の使用を中止しますRMANを使用してSnapCenterでブロックレベルのリカバリを実行できるオプションはまだあります。ただし、日常的には、RMAN、NetBackup、およびその他の製品は、月次または四半期ごとのアーカイブコピーの作成にのみ使用されます。</block>
   <block id="d0cf0e689669c61d564607d2ef7deb79" category="paragraph">お客様の中には、<block ref="d308cbfce7e270e5b41a84d84385645f" prefix=" " category="inline-code"></block> 既存のデータベースの整合性チェックを定期的に実行します。NetAppでは、不必要なI/O負荷が発生するため、この方法は推奨されません。前述したように、データベースに以前に問題が発生していなかった場合、<block ref="d308cbfce7e270e5b41a84d84385645f" prefix=" " category="inline-code"></block> 問題の検出はほぼゼロです。このユーティリティは、ネットワークおよびストレージシステムに非常に高いシーケンシャルI/O負荷を生成します。Oracleの既知のバグにさらされるなど、破損が存在すると信じる理由がないかぎり、<block ref="d308cbfce7e270e5b41a84d84385645f" prefix=" " category="inline-code"></block>。</block>
@@ -2125,7 +2121,6 @@ REDO ログ</block>
   <block id="d3d92f87c5235ad11c8bc69e85fb2fd0" category="section-title">Redoロギング</block>
   <block id="162b54d51a30629d78e153f8da201780" category="paragraph">ここで説明する手順はデータファイルに適用できます。OracleのREDOログとアーカイブログでは、I/Oパターンが異なります。たとえば、Redoロギングでは、単一ファイルを繰り返し上書きします。デフォルトの512バイトのブロックサイズを使用する場合、書き込み統計は次のようになります。</block>
   <block id="d36dbaa617441d3308f5a9b50cb6f5ca" category="paragraph">I/Oはすべてのヒストグラムバケットに分散されますが、これはパフォーマンス上の問題ではありません。ただし、4KBのブロックサイズを使用すると、Redoロギング率が非常に高くなる場合があります。この場合は、RedoロギングLUNが適切にアライメントされていることを確認することを推奨します。ただし、これは優れたパフォーマンスにとってデータファイルのアライメントほど重要ではありません。</block>
-  <block id="91d9710c9fee248ae3e9c4b810ae704f" category="doc">古いNFSv3ロックとOracleデータベース</block>
   <block id="3f9e1e3abd12ad7445baea4b681b9ceb" category="paragraph">Oracleデータベースサーバがクラッシュすると、再起動時に古いNFSロックで問題が発生する可能性があります。この問題は、サーバの名前解決を注意深く設定することで回避できます。</block>
   <block id="288ebefc25180862eb0448b786b1b9fc" category="paragraph">この問題は、ロックの作成とロックの解除で使用される名前解決方法がわずかに異なるために発生します。Network Lock Manager（NLM；ネットワークロックマネージャ）とNFSクライアントの2つのプロセスが関係しています。NLMでは、<block ref="e5caaf154dfeed411b9eec65b903a22a" prefix=" " category="inline-code"></block> ホスト名を確認するには、<block ref="d49331f31f40041ebcee19fca74fd9d4" prefix=" " category="inline-code"></block> プロセスの用途<block ref="330c4316ae6124616389eb1ca9912f7a" prefix=" " category="inline-code"></block>。OSが古いロックを適切に解除するには、これらのホスト名が一致している必要があります。たとえば、ホストで所有されているロックが検索されているとします。<block ref="c7169a6dd344d0f0a38071a1262e4973" prefix=" " category="inline-code"></block>が、ロックはホストによって次のように登録されています。<block ref="0c32c65f5ac66d0bdb4e63bd5fde7f75" prefix=" " category="inline-code"></block>。状況<block ref="330c4316ae6124616389eb1ca9912f7a" prefix=" " category="inline-code"></block> と同じ値を返さない<block ref="5c020b5bb8d1ce1ace51c2a2f4c06fc2" prefix=" " category="inline-code"></block>をクリックすると、ロック解除プロセスが成功しませんでした。</block>
   <block id="19b9a1f540971d74c69042125bab2abc" category="paragraph">次のサンプルスクリプトは、名前解決が完全に一貫しているかどうかを検証します。</block>
@@ -3242,7 +3237,6 @@ SOAP over https 接続に使用されます</block>
   <block id="038b11d42ee14bd77b6370c575c63b16" category="admonition">ワークロードに対して低い値では不十分であることを証明した場合を除き、20、000以上などの極端な値は使用しないでください。</block>
   <block id="62385f5ceb285bca676cb0561555d719" category="paragraph">innodb_io_capacityパラメータは、フラッシュ速度と関連するI/Oを調整します。</block>
   <block id="c957ef06af970a7526a73e741b47fef1" category="admonition">このパラメータまたはinnodb_io_capacity_maxパラメータを設定すると、パフォーマンスに深刻な影響を与える可能性があります。このパラメータが高すぎて、早期フラッシュでI/O処理が無駄になります。</block>
-  <block id="d32067c550345cae14e678b4def6aa22" category="doc">SAN経由のMySQL</block>
   <block id="b238d5dd75fe5ed855c5b3047e074050" category="paragraph">通常の2ボリュームモデルを使用してSANでMySQLを構成するには、2つのオプションがあります。</block>
   <block id="58d94bb6e53e154e2f4b16efa09f4c0d" category="paragraph">I/Oと容量の要件が単一のLUNファイルシステムの制限内であれば、小規模なデータベースを標準LUNのペアに配置できます。たとえば、約2、000 IOPSのランダムIOPSを必要とするデータベースを、1つのLUN上の単一のファイルシステムでホストできます。同様に、サイズが100GBしかないデータベースでも、1つのLUNに収まります。管理上の問題は発生しません。</block>
   <block id="c33bcb4f520265bb106616e844397ffb" category="paragraph">大規模なデータベースには複数のLUNが必要です。たとえば、10万IOPSを必要とするデータベースには、少なくとも8つのLUNが必要です。ドライブへのSCSIチャネルの数が不十分なため、1つのLUNがボトルネックになります。同じように、10TBのデータベースを1つの10TB LUNで管理するのは困難です。論理ボリュームマネージャは、複数のLUNのパフォーマンス機能と容量機能を結合して、パフォーマンスと管理性を向上させるように設計されています。</block>
@@ -3265,7 +3259,6 @@ SOAP over https 接続に使用されます</block>
   <block id="86fc8cb3bf2cae621315896a94b35f67" category="paragraph">NetApp LUNは4KBの物理ブロックにデータを格納するため、512バイトの論理ブロックが8個生成されます。</block>
   <block id="5f441ceabc94de2a9cced94d9f53a2d0" category="paragraph">同じブロックサイズを設定しないと、I/Oは物理ブロックと正しくアライメントされず、RAIDグループ内の2つの異なるドライブに書き込みが行われてレイテンシが発生する可能性があります。</block>
   <block id="236ac851d05b8822524001920948f23d" category="admonition">スムーズな読み取り/書き込み処理を実現するためには、I/Oのアライメントが重要です。ただし、物理ブロックの先頭以外の論理ブロックからI/Oが開始されると、I/Oはミスアライメントされます。I/O処理がアライメントされるのは、I/O処理が論理ブロック（物理ブロック内の最初の論理ブロック）で開始されたときだけです。</block>
-  <block id="282155126a94a0702cfd80daf38d4362" category="doc">設定の概要</block>
   <block id="3225a10b07f1580f10dee4abc3779e6c" category="cell">パラメータ</block>
   <block id="c82a6100dace2b41087ba6cf99a5976a" category="cell">値</block>
   <block id="b10db909b8fda84e70bf9b308d0938d9" category="cell">2億5、600万</block>
@@ -3301,7 +3294,6 @@ SOAP over https 接続に使用されます</block>
   <block id="0561a3b014eef0e5125fa63e1626cf57" category="paragraph">このレイアウトは、データ保護のポリシーと戦略の設計にも役立ちます。</block>
   <block id="9166d970028a28a614af39e6286371b7" category="paragraph">このパラメータは、次のコマンドで無効にできます。<block ref="8cafbd8d9096941261e87f4f9152ab92" prefix=" " category="inline-code"></block> ベンチマークの場合や、データの整合性や障害の可能性よりも最高のパフォーマンスに関心がある場合。InnoDBでは、ダブルライトと呼ばれるファイルフラッシュ技術が使用されています。InnoDBは、ページをデータファイルに書き込む前に、ダブル書き込みバッファと呼ばれる連続領域にページを書き込みます。書き込みとダブル書き込みバッファへのフラッシュが完了すると、InnoDBはページをデータファイル内の適切な位置に書き込みます。ページの書き込み中にオペレーティングシステムまたはmysqldプロセスがクラッシュした場合、InnoDBは後でクラッシュリカバリ中にダブルライトバッファからページの適切なコピーを見つけることができます。</block>
   <block id="3dfd4b9a526f8a8cf17021e34638b375" category="admonition">* NetAppでは、ダブル書き込みバッファを無効にすることを推奨しています。ONTAP NVRAMは同じ機能を果たします。ダブルバッファリングは不必要にパフォーマンスを低下させます。</block>
-  <block id="dd5a2a602f713562e0f9f0fd8385660e" category="doc">NFS経由のMySQL</block>
   <block id="0e5e83102103fcdd25af430bf7327034" category="paragraph">MySQLのドキュメントでは、NAS環境にはNFSv4を使用することを推奨しています。</block>
   <block id="ca0d9fdc80b88e73b548638af421788f" category="section-title">ONTAP NFS転送サイズ</block>
   <block id="efcd0ba3fcbee9896a25804677e70b4b" category="paragraph">ONTAPでは、デフォルトでNFS IOサイズが64Kに制限されます。MySQLデータベースでランダムIOを使用する場合、ブロックサイズは64Kの最大値よりもはるかに小さくなります。ラージブロックIOは通常並列化されるため、64Kの最大値も制限ではありません。</block>
@@ -3333,7 +3325,6 @@ SOAP over https 接続に使用されます</block>
   <block id="2d2eef88dbdd0c34bde24e2632d9944f" category="sidebar">SAP HANAとAnyDB</block>
   <block id="399bd1ee587245ecac6f39beaa99886f" category="sidebar">PostgreSQL</block>
   <block id="f4f70727dc34561dfde1a3c529b6205c" category="sidebar">設定</block>
-  <block id="c476a4701643b158f9f5d57bcc91951d" category="sidebar">Snapshotテクノロジ</block>
   <block id="7d219314ccabde6609510141bb175a6c" category="sidebar">共有インスタンスと専用インスタンス</block>
   <block id="d5363ae19ecaede49e2ced297df7737a" category="sidebar">メモリ構成</block>
   <block id="500c09aa1bb9af431f2c18348e69bfd0" category="sidebar">tempdbフアイル</block>
@@ -3500,7 +3491,6 @@ SOAP over https 接続に使用されます</block>
   <block id="c4f52498c0db572381512887d7584e53" category="summary">PostgreSQLデータベースとストレージスナップショット</block>
   <block id="b0792163c858a7c221b236d84619b5ef" category="summary">PostgreSQLデータベースNFSとONTAP</block>
   <block id="189950ed46e5e8b7e92941531a5bb88b" category="doc">NFSファイルシステムを使用したPostgreSQLデータベース</block>
-  <block id="504cd1fb60a8eb7918484270e743ae3a" category="summary">PostgreSQLデータ保護P</block>
   <block id="6cabd4dcf3582d38c441228705da3bda" category="doc">PostgreSQLのデータ保護</block>
   <block id="383a6a5241ecfc558b9fec1d7cff5239" category="summary">PostgreSQLテーブルスペース</block>
   <block id="20d0e2519b3555a0a2927c8914c17280" category="summary">PostgreSQLデータ保護ソフトウェア</block>
@@ -3524,8 +3514,6 @@ SOAP over https 接続に使用されます</block>
   <block id="d5ef0a45fe252b03f538bfd134b168db" category="summary">MySQLおよびInnoDB_LRU_SCAN_DEPTH</block>
   <block id="df657260453f6ef228ee0ca22dd7a415" category="summary">MySQLのコンテナ化</block>
   <block id="885b1b5a90f898c89b664ec58a42121c" category="doc">MySQLのコンテナ化</block>
-  <block id="2cbac38815d492c0afc5e7d7229601df" category="doc">MySQLとInnoDB</block>
-  <block id="1115aaa86f0065e0a105795d33ef4731" category="summary">MySQLフアイルノシキイチ</block>
   <block id="2828450fc6669c8df75f937e227996f1" category="doc">MySQLフアイルキシユツシ</block>
   <block id="9420010a756fb6d3ddeadfa63d2170f6" category="paragraph">MySQLサーバを実行するにはファイル記述子が必要であり、デフォルト値では不十分です。</block>
   <block id="62414a5a9c0e2fc12a8d028ad29164b8" category="summary">MySQLとinnodb_io_capacity</block>
@@ -3840,12 +3828,10 @@ SOAP over https 接続に使用されます</block>
   <block id="70b29c8dabeb7a16884003c35e163f96" category="sidebar">vMSC設計</block>
   <block id="6c4755219197ce467bf892a552c8663a" category="sidebar">vMSCノタイショウガイ</block>
   <block id="13376e3e9b02a56731aa64aeb10947b2" category="sidebar">MCCを使用するvMSCのシナリオ</block>
-  <block id="7f38ad8ab5454e76108c14e424240237" category="doc">OracleテタヘスヨウノFCノセツテイ</block>
   <block id="f0a36f02b824ef55cbd63aa2700a4ec9" category="summary">OracleデータベースのSnapshotベースのバックアップとリカバリ</block>
   <block id="77243afc69ab08d8277d0e23dda813d9" category="doc">Oracleデータベースのオンラインバックアップ</block>
   <block id="4ac7e99e454283880f5bdf93e9d59eb9" category="summary">OracleデータベースのファイルFabricPoolのフル階層化</block>
   <block id="3dd6786160916127fc2f6fc2ec955bbe" category="summary">ASM再利用ユーティリティとONTAPゼロブロック検出</block>
-  <block id="bd2f93a60ac38752d2c10a0bdbc6ea07" category="doc">ASM再生ユーティリティとONTAPゼロブロック検出</block>
   <block id="89c60635365825dfa13d154785577592" category="summary">OracleおよびTCP/IPおよびイーサネット構成</block>
   <block id="aaa024a70ffabce1e14fdc1a4b17fe8d" category="doc">Oracleデータベース用のTCP/IPおよびイーサネット構成</block>
   <block id="665de76ea0059ac13982f04e19e74216" category="summary">Microsoft Windowsを使用したOracleデータベース</block>
@@ -3855,7 +3841,6 @@ SOAP over https 接続に使用されます</block>
   <block id="33c729820ffa60f55745fa3c259e273c" category="doc">Oracleデータベース整合性グループのバックアップ</block>
   <block id="56abf0735f338713ce53e8cdecd6994e" category="paragraph">バックアップを最もシンプルにするには、Oracleデータベース全体を1つのONTAPボリュームに配置するだけです。</block>
   <block id="190d2bad1c6e231bc18c33e002e663c7" category="summary">Oracleデータベースと直接接続のONTAP接続</block>
-  <block id="0953588ff4980e20b797cd3bb6d1260f" category="summary">MetroClusterによるOracleデータベースのフェイルオーバー</block>
   <block id="4a3f422632f7d08bf0e6c05affea24e4" category="summary">OracleデータベースとSyncMirror</block>
   <block id="5bbdf1e19bb3f7b70de51a3764fc5f19" category="doc">Oracle DatabaseストレージのSnapshotによる最適化されたバックアップ</block>
   <block id="a962af081661ee46d4ef879de33c841e" category="paragraph">Oracle 12cがリリースされた時点では、データベースをホットバックアップモードにする必要がないため、Snapshotベースのバックアップとリカバリはさらにシンプルになりました。そのため、Snapshotベースのバックアップをストレージシステム上で直接スケジュール設定しても、完全なリカバリやポイントインタイムリカバリを引き続き実行できます。</block>
@@ -3884,7 +3869,6 @@ SOAP over https 接続に使用されます</block>
   <block id="4bc550014af4fefad8f4cc8f0827c4b5" category="doc">OracleデータベースとSnapshotベースのバックアップ</block>
   <block id="cf5bc9d838fb937caa7978b4a9b0f98a" category="paragraph">ONTAPでのOracleデータベースのデータ保護の基盤となるのが、NetAppのSnapshotテクノロジです。</block>
   <block id="ba5a23e78f51c1bcb1b82efbe1797502" category="summary">Oracleデータベースパラメータ- db_file_multiblock_read_count</block>
-  <block id="085e756798c73ce14f874c6f323311dc" category="doc">Oracleデータベースパラメータ：db_file_multiblock_read_count</block>
   <block id="ea84db84607112a0d40fca3ff45dfffa" category="summary">ONTAP QoSによるOracleデータベースのパフォーマンス管理</block>
   <block id="0af83eb081b1a831789867d7f0867610" category="summary">Oracleデータベースの管理と自動化のためのツール</block>
   <block id="7c58d5a62a9c29d2a846b210deea95f2" category="paragraph">Oracleデータベース環境におけるONTAPの主な価値は、瞬時のSnapshotコピー、シンプルなSnapMirrorレプリケーション、効率的なFlexCloneボリュームの作成など、ONTAPのコアテクノロジにあります。</block>
@@ -3899,7 +3883,6 @@ SOAP over https 接続に使用されます</block>
   <block id="9688c9c1c1d15e2f91a3a5b8e5f14bd4" category="doc">ONTAPによるOracleデータベースの可用性</block>
   <block id="44e95a6c3878f189a550b4c0314d3b33" category="paragraph">NetAppは、最もミッションクリティカルなデータがデータベースに含まれていることを認識しています。</block>
   <block id="7aa93b5fc17b83fc9e4816155f8f59ab" category="summary">Oracleデータベースのパフォーマンステスト</block>
-  <block id="f0d314849d584b208a69d7a0dc70ac03" category="doc">Oracleデータベースのパフォーマンス最適化とベンチマーク手順</block>
   <block id="0b3a030b64747fb3830c79e1ffbef7ee" category="summary">Oracleデータベースとオブジェクトストアへのアクセスの中断</block>
   <block id="99a1755be2504777b7e266ed14b33168" category="doc">OracleデータベースとONTAPコントローラのフェイルオーバー/スイッチオーバー</block>
   <block id="8dbb58cb7fbd4c7db3f14b9674e7d4e6" category="summary">SnapRestoreによるOracleデータベースの高速リカバリ</block>
@@ -3922,17 +3905,14 @@ SOAP over https 接続に使用されます</block>
   <block id="494900ae2c2cdb5abdba3806f4dfaeb0" category="doc">ASMLib/AFD（ASM Filter Driver）を使用するOracleデータベース</block>
   <block id="afae47e326854c63cbc85989720416e0" category="summary">FLIによるOracleの移行計画</block>
   <block id="85cef7bf4ac9d983cf8e1e11785eeef1" category="summary">FLIを使用したOracle移行の完了</block>
-  <block id="a92eff1aa9c637ada9c5a8c7c71a5edc" category="doc">OracleデータベースのLUNのサイズ変更とLVMベースのサイズ変更</block>
   <block id="0c5284e14535835121effc8afb702b28" category="summary">ONTAPによるOracleデータベースのディザスタリカバリ</block>
   <block id="2ba21d57ee7f1d78a405b9e80c6aaf6b" category="paragraph">ほとんどのお客様にとって、DRに必要なのはデータのリモートコピーだけではなく、そのデータを迅速に利用できることです。NetAppは、このニーズに対応する2つのテクノロジを提供します。MetroClusterとSnapMirrorのアクティブ同期です。</block>
   <block id="107bcc34799abe752a088be24869419c" category="paragraph">SnapMirrorアクティブ同期はSnapMirror Synchronousに基づいています。MetroClusterでは、各ONTAPコントローラがドライブデータをリモートサイトにレプリケートします。SnapMirrorアクティブ同期を使用すると、基本的には2つの異なるONTAPシステムでLUNデータの独立したコピーを維持しながら、このLUNの単一インスタンスを提供できます。ホストの観点からは、単一のLUNエンティティです。</block>
   <block id="50ae143b75fc238e91c09c750cf211c1" category="summary">Oracleデータベースのパラメータ- filesystemio_options</block>
-  <block id="23c61da1d42f69597a6ab97e333a560f" category="doc">Oracleデータベースパラメータ:filesystemio_options</block>
   <block id="cf451e0aed3c944d3f1c761387762e56" category="summary">Linuxを使用したOracleデータベース</block>
   <block id="e712ed441aacc4eeecb5656d5493c99c" category="summary">HP-UXを使用したOracleデータベース</block>
   <block id="c36ae718fe9d7978c8781b19d0b3dee0" category="paragraph">ONTAPを使用したHP-UX上のOracleデータベースの設定に関するトピック。</block>
   <block id="45df37151f6a0fd8a3b55d0423459f82" category="doc">OracleデータベースI/OのLUNアライメント</block>
-  <block id="a73cbc9997ca90c0cc5b6d9e9b475272" category="summary">OracleデータベースFabricPoolの階層化の概要</block>
   <block id="857a8adc9eda2d9e197a52323daca558" category="doc">Oracle Database FabricPoolの階層化の概要</block>
   <block id="fd73b1ca3b942a1514078a7e59c7433b" category="summary">Oracleデータベースと古いNFSv3ロック</block>
   <block id="102aeb54bf1a69403672f53090c52878" category="summary">ログ配布によるOracleデータベースDR</block>
@@ -3948,7 +3928,6 @@ SOAP over https 接続に使用されます</block>
   <block id="eed7df980a6ae17f8e0fecdecf0e25f4" category="doc">Oracle移行手順のサンプルスクリプト</block>
   <block id="fac6d6b61dd6bd3ee73d5b425bc5a3b7" category="doc">Oracleデータベースのシンプロビジョニング</block>
   <block id="35ebaedc3385b350dff13e0cfa869c9f" category="summary">Oracle RACタイムアウト</block>
-  <block id="a920434a7bcd979e2ece4092cd8b8a19" category="doc">Oracle Real Application Clusters（RAC）タイムアウト</block>
   <block id="710cf627a103721a0452cb72494ea742" category="admonition">Storage Efficiencyとフラクショナルリザベーションの連動については、シンプロビジョニングに関する以下のセクションを参照してください。</block>
   <block id="8bc1cc1880ea3a623cb9b80b8cbb7b72" category="paragraph">データを圧縮する方法はいくつかあります。多くのデータベースには独自の圧縮機能が搭載されていますが、お客様の環境ではこのような圧縮機能はほとんど見られません。その理由は、通常、圧縮データを*変更*するとパフォーマンスが低下することに加え、一部のアプリケーションではデータベースレベルの圧縮のライセンスコストが高くなることにあります。最後に、データベース処理のパフォーマンスが全体的に低下します。実際のデータベース作業ではなく、データの圧縮と解凍を実行するCPUに、高いCPU単位のライセンスコストを支払うことはほとんど意味がありません。より適切な方法は、圧縮処理をストレージシステムにオフロードすることです。</block>
   <block id="3e98696b9bb83904c14603458a8c3728" category="admonition">適応圧縮で使用されるブロックサイズは、最大32KBまで拡張できます。これによりストレージ効率が向上する可能性があります。このようなデータがアレイに大量に格納されている場合は、トランザクションログやバックアップファイルなどの静止ファイルについて検討する必要があります。状況によっては、適応圧縮のブロックサイズをそれに合わせて増やすことで、16KBまたは32KBのブロックサイズを使用するアクティブデータベースでもメリットが得られる場合があります。この方法がお客様のワークロードに適しているかどうかについては、NetAppまたはパートナーの担当者にお問い合わせください。</block>
@@ -3998,7 +3977,6 @@ SOAP over https 接続に使用されます</block>
   <block id="cc3873d6002920194cf7e9dd493c5863" category="paragraph">パフォーマンスの問題が発生しない限り、プロセッサアフィニティのデフォルトを変更する必要はありませんが、その内容と動作を理解する価値はあります。</block>
   <block id="4317f0d20ae625ae3139762a94175cbd" category="paragraph">デフォルトでは、プロセッサ単位のコアライセンスが選択されている場合、SQL Serverはクエリの実行中に使用可能なすべてのCPUを使用します。</block>
   <block id="ff03ad08d7a38270e44c8c74372d0e7c" category="summary">SnapCenterおよびT-SQLコマンドを使用したONTAP上のMicrosoft SQL Serverデータベースの保護</block>
-  <block id="027202a07b43ba49311d98b7812a6c84" category="doc">NetApp管理ソフトウェアによるMicrosoft SQL Serverデータ保護</block>
   <block id="a72812111b6cfc428e19135820c476bc" category="paragraph">SnapCenterは、エンタープライズアプリケーション向けのNetAppデータ保護ソフトウェアです。SnapCenter Plug-in for SQL Serverや、SnapCenter Plug-in for Microsoft Windowsで管理されるOS処理を使用して、SQL Serverデータベースを迅速かつ簡単に保護できます。</block>
   <block id="62c187efa0cd9f4191b84ae987d522c9" category="paragraph">SQL Serverインスタンスは、スタンドアロンセットアップ、フェイルオーバークラスタインスタンス、または常時稼働の可用性グループにすることができます。その結果、データベースの保護、クローニング、リストアをプライマリコピーまたはセカンダリコピーから単一コンソールで実行できます。SnapCenterでは、SQL Serverデータベースをオンプレミス、クラウド、ハイブリッド構成の両方で管理できます。また、開発やレポート作成のために、元のホストまたは代替ホストに数分でデータベースコピーを作成することもできます。</block>
   <block id="8a3aceb6ed4b21af2f2c00ecb032f75f" category="paragraph">SQL Server 2022では、MicrosoftがT-SQLスナップショットを導入しました。これにより、バックアップ処理のスクリプト作成と自動化を行うことができます。フルサイズのコピーを実行する代わりに、Snapshot用にデータベースを準備できます。データベースのバックアップ準備が完了したら、ONTAP REST APIを使用してSnapshotを作成できます。</block>
@@ -5062,7 +5040,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="872cba2a662a784946eb48675276dee2" category="doc">相互TLS（証明書ベースの認証）</block>
   <block id="5a4857ad48868097d482a4a448f48bd9" category="doc">ユーザあたりの最大同時要求数（ネットワークセキュリティ保護/DOS攻撃）</block>
   <block id="0af211d5cda5cc4bb17dd7751e741595" category="doc">ネットワークタイムプロトコル（NTP）の設定</block>
-  <block id="c1fac7a72cd91bcd345e567f6d6d93a3" category="sidebar">MetroClusterでのOracleフェイルオーバー</block>
   <block id="273eb98a312e607888044e87e0210015" category="section-title">NetApp VVOLのサポート</block>
   <block id="551e3b0a48f99995daac658b17a1de62" category="list-text">*より優れた容量管理*VASAツールとONTAPツールを使用すると、必要に応じて個 々 のアグリゲートレベルまでストレージ容量を表示し、容量が少なくなり始めた場合に複数のレイヤからアラートを受け取ることができます。</block>
   <block id="38653f1dd04b13c5276f4f4a82e8506f" category="admonition">「接続」という用語は、サイト間レプリケーションに使用されるクラスタ接続を指します。ホストプロトコルを指しているわけではありません。MetroCluster構成では、クラスタ間通信に使用される接続の種類に関係なく、すべてのホスト側プロトコルが通常どおりサポートされます。</block>
@@ -5549,7 +5526,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="9d831cc4c73b8a2915ce6d8928d55915" category="paragraph">SQL Server Always-On可用性グループレプリケーション機能は優れたオプションであり、NetAppには、データ保護とAlways-Onを統合するためのオプションが用意されています。ただし、ONTAPレプリケーションテクノロジを検討する必要がある場合もあります。3つの基本的なオプションがあります。</block>
   <block id="dd432f8769e4d3db8acf8bf9df94680a" category="paragraph">SnapMirrorテクノロジーは、LANおよびWAN経由でデータを複製するための高速で柔軟なエンタープライズソリューションを提供します。最初のミラーリングの作成後は、変更されたデータブロックのみがデスティネーションに転送されるため、必要なネットワーク帯域幅が大幅に削減されますSnapMirror。同期モードまたは非同期モードのいずれかで設定できます。</block>
   <block id="fce5f84d02dbd5c9e3cfedf18e809644" category="summary">Microsoft SQL ServerおよびNetApp MetroCluster</block>
-  <block id="6d65b4d9884a5fae6940ac158045781c" category="doc">MetroClusterの概要とアーキテクチャ</block>
   <block id="41900c1c2eb669e401e4abee9091b40b" category="paragraph">MetroCluster環境でMicrosoft SQL Serverを導入するには、MetroClusterシステムの物理設計について説明する必要があります。</block>
   <block id="60359402d81f6673550c3df489efb034" category="paragraph">MetroClusterは、別 々 の場所または障害ドメインにある2つのONTAPクラスタ間でデータと設定を同期的にミラーリングします。MetroClusterは、次の2つの目的を自動的に管理することで、アプリケーションに継続的可用性を提供します。</block>
   <block id="abf0aedf685f58c3cf3abe3e41ca549c" category="list-text">クラスタに書き込まれたデータを同期的にミラーリングすることで、Recovery Point Objective（RPO；目標復旧時点）がゼロになります。</block>
@@ -5557,7 +5533,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="9aa45379205d52916f2958359e92c1c8" category="paragraph">MetroClusterは、2つのサイトにある2つの独立したクラスタ間でデータと構成を自動的にミラーリングすることで、シンプルな作業を実現します。1つのクラスタ内でストレージがプロビジョニングされると、2つ目のサイトの2つ目のクラスタに自動的にミラーリングされます。NetApp SyncMirror®は、すべてのデータの完全なコピーをゼロRPOで提供します。つまり、1つのサイトのワークロードをいつでも反対側のサイトに切り替えて、データを損失することなくデータの提供を継続できます。MetroClusterは、2番目のサイトでNASおよびSANでプロビジョニングされたデータへのアクセスを提供するスイッチオーバープロセスを管理します。検証済みソリューションとしてのMetroClusterの設計には、プロトコルのタイムアウト期間内またはそれよりも早く（通常は120秒未満）スイッチオーバーを実行できるようにサイジングと設定が含まれています。その結果、RPOがほぼゼロになり、アプリケーションは障害を発生させることなくデータへのアクセスを継続できます。MetroClusterには、バックエンドストレージファブリックで定義されたいくつかのバリエーションがあります。</block>
   <block id="47985b72c36de8197de21d06517f1a03" category="paragraph">MetroClusterを使用したSQL Serverの保護は、最大パフォーマンスのスケールアウト同期ミラーリングテクノロジを提供するSyncMirrorに基づいています。</block>
   <block id="96a36329b3e96b1619b1d635a806bb3f" category="summary">Microsoft SQL ServerとNetApp MetroCluster</block>
-  <block id="bde226c7f65dad7eb996a1eb0ee152ec" category="doc">Microsoft SQL ServerとMetroCluster</block>
   <block id="9fcf1f7a4c16b536048dc5875b61d4b1" category="paragraph">SQL ServerデータベースをゼロRPOで保護する方法の1つに、MetroClusterがあります。MetroClusterは、シンプルでハイパフォーマンスなRPO=0レプリケーションテクノロジで、インフラ全体をサイト間で簡単にレプリケートできます。</block>
   <block id="8a7f9ca86b522c62318d9b1eb5b51625" category="paragraph">SQL Serverは、1つのMetroClusterシステムで数千のデータベースまでスケールアップできます。SQL Serverのスタンドアロンインスタンスやフェイルオーバークラスタインスタンスが存在する場合もあります。MetroClusterシステムでは、データベース管理のベストプラクティスを追加したり、ベストプラクティスを変更したりする必要はありません。</block>
   <block id="43135677cc98d0d6872d9ec24bef82e4" category="paragraph">MetroClusterの完全な説明は、このドキュメントの範囲外ですが、原則は簡単です。MetroClusterは、迅速なフェイルオーバーを備えたRPO=0レプリケーションソリューションを提供します。この基盤の上に何を構築するかは、要件によって異なります。</block>
@@ -5750,20 +5725,17 @@ SOAP over HTTPS接続に使用</block>
   <block id="93d235b3b3adb1fcc631cc9720911156" category="paragraph">この設計では、サイトAがに設定されていると仮定し<block ref="0a07e9e6141ed78f0b7013768c76c4a9" category="inline-link-macro-rx"></block>ます。</block>
   <block id="3f35d87b783da3d0c6ab04c2222e88cc" category="inline-image-macro">SM-AS設計上のOracleの例</block>
   <block id="65d5312cbb5d7497db9571af7d19e76d" category="paragraph"><block ref="65d5312cbb5d7497db9571af7d19e76d" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="1526748ec7d98ab0b9113ed80ada8aea" category="summary">OracleとSnapMirrorのアクティブな同期-接続が完全に失われる</block>
   <block id="af82c537bd0f6778b9916dc78da8c55a" category="paragraph">ストレージシステムまたはサイト障害の結果は、レプリケーションリンクが失われた場合とほぼ同じです。サバイバーサイトでは、書き込み時のIOポーズが約15秒になります。その15秒が経過すると、IOは通常どおりそのサイトで再開されます。</block>
   <block id="24f2945a7c742e126cdf5dcdfb08ec89" category="paragraph">ストレージシステムのみが影響を受けた場合、障害が発生したサイトのOracle RACノードはストレージサービスを失い、削除とその後のリブートの前に同じ200秒のディスクタイムアウトカウントダウンを入力します。</block>
   <block id="0cff2ae5f5c305f11d8d8a333bd1da2c" category="paragraph">ストレージサービスが失われたRACノードのSANパスの状態は次のようになります。</block>
   <block id="e33921fb5e166f433573176882c09294" category="paragraph">Linuxホストはパスの損失を200秒よりもはるかに早く検出しましたが、データベースに関しては、障害が発生したサイトのホストへのクライアント接続は、デフォルトのOracle RAC設定で200秒間フリーズします。フルデータベース処理は削除が完了するまで再開されません。</block>
   <block id="db34db4ac9bd7910a9eded83e1ff30f9" category="paragraph">一方、反対側のサイトのOracle RACノードでは、もう一方のRACノードの損失が記録されます。それ以外の場合は、通常どおり動作し続けます。</block>
-  <block id="79fdeb5bad7fdaa67ac32cdf3b8f3bfd" category="doc">SnapMirrorアクティブ同期- SnapMirror接続が失われました</block>
   <block id="ad08bdae586fc05e13eff6bd6d9f0ee2" category="paragraph">SnapMirrorのアクティブな同期レプリケーションリンクの場合、クラスタが反対側のサイトに変更をレプリケートできないため、書き込みIOを完了できません。</block>
   <block id="564a95e2696af68aa1c3a4953ecd1ce9" category="section-title">サイトA</block>
   <block id="18fe52a46fad1fa4c9873ea81b6e885f" category="paragraph">レプリケーションリンク障害が発生したサイトAでは、レプリケーションリンクが本当に動作不能であると判断される前に、ONTAPが書き込みをレプリケートしようとするため、書き込みIO処理が約15秒間中断されます。15秒が経過すると、サイトAのONTAPクラスタが読み取りと書き込みのIO処理を再開します。SANパスは変更されず、LUNはオンラインのままです。</block>
   <block id="657e60cc43634129c8f9314afdd5c48b" category="paragraph">レプリケーションリンクはタイムスタンプ15：19：44でカットされました。Oracle RACからの最初の警告は、200秒のタイムアウト（Oracle RACパラメータdisktimeoutで制御）が近づくと、100秒後に通知されます。</block>
   <block id="f29d4b902de1f9de93b8673047367cb3" category="paragraph">200秒の投票ディスクタイムアウトに達すると、このOracle RACノードはクラスタから削除され、リブートされます。</block>
   <block id="b864ca7c3ca6173547e4a66ba059c688" category="summary">Oracle、SM-AS、アクティブな同期、メディエーター</block>
-  <block id="4a39cd880cb1fd0c6ef8d8c4be8d1535" category="doc">OracleとONTAPメディエーター</block>
   <block id="01682ebdcacbc827e3ef8083e7b4c060" category="summary">OracleとSM-ASの不統一アクセス</block>
   <block id="f6dbb06140585fe45ddeaf49cae9418e" category="summary">OracleとSnapMirrorのアクティブな同期</block>
   <block id="d6e7dde9799f39cece01cbc4b2728cdf" category="paragraph">SnapMirror Active Syncを使用すると、非常に高可用性のOracleデータベース環境を構築できます。この環境では、2つの異なるストレージクラスタからLUNを使用できます。</block>
@@ -5772,7 +5744,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="d1a363496283d60774ff9c9c51ffe653" category="paragraph">通常の運用では、1つの例外を除いて、SnapMirrorアクティブ同期は常にRPO=0同期レプリカを提供します。データをレプリケートできない場合、ONTAPでは、データのレプリケートという要件が解除され、一方のサイトのLUNがオフラインになる間に、一方のサイトでIOの提供が再開されます。</block>
   <block id="72f31f711b37dc7ce7b34e00dd56b5ae" category="paragraph">ONTAPメディエーターは、NetAppサポートからダウンロードするソフトウェアアプリケーションで、通常は小規模な仮想マシンに導入されます。ONTAPメディエーターは、SnapMirrorのアクティブな同期ではTiebreakerになりません。これは、SnapMirrorのアクティブな同期レプリケーションに含まれる2つのクラスタの代替通信チャネルです。自動処理は、パートナーから直接接続またはメディエーター経由で受け取った応答に基づいてONTAPによって実行されます。</block>
   <block id="b06e5b68abe4f23a716133f1fa1a4472" category="summary">OracleおよびSM-AS優先サイト</block>
-  <block id="eb6b2d88c5e066cdcb4eb45167707940" category="summary">OracleとSM-ASのユニフォームアクセス</block>
   <block id="6d14548094c3b2a5b0a69049f8497fa8" category="doc">OracleとSM-ASの統一されたアクセス</block>
   <block id="36ba939f32969ddc6751427944e3569d" category="paragraph">最も重要な要件は、データファイルを1つ以上の専用ボリュームに分離することです。これらのファイルは、他のファイルタイプによって汚染されていない必要があります。これは、データファイルのレプリケーションが、アーカイブログなどの他のデータタイプのレプリケーションから完全に独立していることを確認するためです。ファイルレイアウトの詳細、およびストレージレイアウトがスナップショットに適していることを確認するための重要な詳細については、を参照してください<block ref="c87a7212960b8cc2aca49adb1795e291" category="inline-link-macro-rx"></block>。</block>
   <block id="64c93f87be857cf43f66e341a377693a" category="paragraph">OSは、とが<block ref="1da707b60c3b55bd01cb7df7c171a368" prefix=" " category="inline-code"></block>同じボリューム（同じソースファイルシステム）に存在することを検出できます<block ref="9ad16912cc0ba54a259b1a15d233c264" prefix=" " category="inline-code"></block>。その後、OSは同じデバイスハンドルを使用してデータにアクセスします。これにより、OSキャッシングなどの特定の処理の使用が改善されますが、DNFSの妨げになります。DNFSがの<block ref="1da707b60c3b55bd01cb7df7c171a368" prefix=" " category="inline-code"></block>ようなファイルにアクセスする必要がある場合<block ref="1737629d60b511cf45957529a8f046e2" prefix=" " category="inline-code"></block>、誤ってデータへの間違ったパスを使用しようとする可能性があります。その結果、I/O処理が失敗します。このような構成では、ソースボリュームをそのホスト上の別のNFSファイルシステムと共有するすべてのNFSファイルシステムに、マウントオプションを追加します<block ref="4740c034d97ca90a96b8050082816605" prefix=" " category="inline-code"></block>。これにより、Linux OSはそのファイルシステムに独立したデバイスハンドルを割り当てるようになります。</block>
@@ -5895,4 +5866,65 @@ SOAP over HTTPS接続に使用</block>
   <block id="6be050126f2df5ae7cd944ce446241c2" category="paragraph">30秒のタイムアウトが許容されない場合は、リース期間を延長することもできます。</block>
   <block id="38d530634a8d32e8775a37109fc08542" category="paragraph">60秒のネットワーク停止に耐えるためにリースタイムアウトを60秒に延長する場合は、猶予期間も延長する必要があります。つまり、コントローラフェイルオーバー中にIOが一時停止する時間が長くなります。</block>
   <block id="ac76821692fdb2dae1d98babe804fb8f" category="paragraph">これは通常は問題ではありません。一般的なユーザはONTAPコントローラを年に1~2回更新するだけで、ハードウェア障害による計画外フェイルオーバーは非常にまれです。また、ネットワークに60秒のネットワーク停止が発生する可能性があり、リースタイムアウトを60秒にする必要がある場合は、まれにストレージシステムのフェイルオーバーに異議を唱えず、61秒の一時停止も発生する可能性があります。ネットワークが60秒以上頻繁に一時停止していることをすでに認識しています。</block>
+  <block id="66bb028b9d7030985c1ce3bb4f5a27e9" category="searchtitle">= Microsoft SQL ServerのCPU構成</block>
+  <block id="73f7848a74f8a1b6c78ac0dfbca44874" category="searchtitle">NetApp管理ソフトウェアによるMicrosoft SQL Serverデータ保護</block>
+  <block id="fa67fb4719e92db117cccfc693cf2a40" category="searchtitle">MicrosoftSQL Server tempdbファイル</block>
+  <block id="3a80e1e29c96d0837b12aef65785a41a" category="doc">設定パラメータ</block>
+  <block id="4bb9f72180425717a416a5037a100cca" category="searchtitle">MySQLとInnoDBのファイル構造</block>
+  <block id="9a41c04f55c43c1bfac6d1e3fb0992de" category="doc">NFSv3スロットテーブル</block>
+  <block id="dce12836eeccf070f53590dc5d86633d" category="doc">ブロックサイズ</block>
+  <block id="b4aa7c0127688b4c623685cfeed4ab97" category="searchtitle">Oracle Real Application Clustersタイムアウト</block>
+  <block id="6fae8d228f324e0e0a9c817b746b9bd0" category="doc">RACタイムアウト</block>
+  <block id="b64e3a0dc81f710f886a442e1a397bb9" category="doc">データベース管理と自動化のためのツール</block>
+  <block id="87921e5ee2cf87589874871f0d361694" category="doc">データベースの可用性</block>
+  <block id="accd3900cbd3e4d55a38c8518052015c" category="doc">チェックサムとデータ整合性</block>
+  <block id="5611150a7a2a706d09d267b466f083d6" category="paragraph">実際のストレージアレイでは、複数のレベルでチェックサムを使用してデータの整合性が保護されます。IPベースのネットワークでデータが破損した場合、Transmission Control Protocol（TCP）レイヤはパケットデータを拒否し、再送信を要求します。FCプロトコルには、カプセル化されたSCSIデータと同様にチェックサムが含まれます。アレイに配置されたONTAPは、RAIDとチェックサムによる保護を備えています。破損は発生する可能性がありますが、ほとんどのエンタープライズアレイと同様に検出されて修正されます。通常、ドライブ全体に障害が発生してRAIDのリビルドが要求され、データベースの整合性は影響を受けません。ドライブ上の個 々 のバイトが宇宙線やフラッシュセルの故障によって損傷を受ける可能性があります。この場合、パリティチェックが失敗し、ドライブが故障し、RAIDのリビルドが開始されます。繰り返しになりますが、データの整合性には影響はありません。最後の防御線はチェックサムの使用です。たとえば、ドライブの致命的なファームウェアエラーが原因でRAIDパリティチェックで検出されなかった方法でデータが破損した場合、チェックサムは一致しません。ONTAPは破損したブロックをOracleデータベースが受信する前に転送を阻止します。</block>
+  <block id="cd985f59320d95026288fa5ff6dcf58a" category="doc">オンラインハツクアツフ</block>
+  <block id="9c030078e0f444e80ad1c24e215220a4" category="doc">ONTAPによるデータ保護</block>
+  <block id="6bb9a5aec98309d1414b32f7e0751415" category="doc">データ保護計画</block>
+  <block id="06db8225d3ec2b43755ddc9358302450" category="doc">RTO、RPO、SLA計画</block>
+  <block id="5d827e5d4c92779310224878dc408813" category="summary">MetroClusterを使用したOracleデータベースのDR</block>
+  <block id="f0b223afb696335287bc2ed9501b5b33" category="doc">MetroClusterによるディザスタリカバリ</block>
+  <block id="67be2475945283126e261087dcc833b7" category="doc">MetroClusterとNVFAIL</block>
+  <block id="13262509535baae73d0cc7ab06de1fc6" category="searchtitle">MetroCluster上のOracle拡張RAC</block>
+  <block id="7993038617c805a663d50702c4494b68" category="doc">Oracle拡張RAC</block>
+  <block id="75b233b87417347976ef489e09961c77" category="doc">Oracleシングルインスタンス</block>
+  <block id="aa51324dbf5137dc80d29f127e7265f1" category="doc">Oracleシングルインスタンス</block>
+  <block id="254742fbeffe659f98f802792b541c45" category="doc">RAC Tiebreaker</block>
+  <block id="aeee9c92b22d6f18b8670c9f330ea7c9" category="doc">ネットワーク相互接続の全体的な障害</block>
+  <block id="0ef819e6ae8a74f9c8ac0158a24b1627" category="doc">サービスの復旧</block>
+  <block id="8367f9ef79397d7d8f1367cb4392c602" category="summary">OracleとSnapMirrorのアクティブな同期サイトの障害</block>
+  <block id="5c8784e46ac32f6b1c9b78f954c1a473" category="summary">SnapMirrorアクティブ同期- SnapMirror通信障害</block>
+  <block id="7ed82538ab967cd6e2949aa971158dc9" category="searchtitle">Oracle、SnapMirrorのアクティブな同期、ONTAPメディエーター</block>
+  <block id="db2170f38b52c13c31e0572c709b6f8a" category="searchtitle">OracleとSnapMirrorのアクティブ同期の概要</block>
+  <block id="e9a673980d8df30ed4173e4b7c4ecd2c" category="searchtitle">OracleとSnapMirrorのアクティブ同期優先サイト</block>
+  <block id="45d97b0c2ca342ad882153a1245f9897" category="doc">SnapMirrorアクティブ同期優先サイト</block>
+  <block id="0bb4536e921f4d96dd701c1afe746457" category="doc">ASMlib/AFD（ASMフィルタドライバ）</block>
+  <block id="3ee9e6a595247d1965be0d0c6cd0f22e" category="doc">データファイルの移行</block>
+  <block id="a9761df551af398a0fc2974288502d8a" category="doc">ホストデータのコピー</block>
+  <block id="d437e7d8b6513f91bbd58e0b1e08c90b" category="doc">移行計画</block>
+  <block id="4c7e0d612a5f0e09f272083633991979" category="doc">TCP/IPおよびイーサネット構成</block>
+  <block id="9f2dc5f476d250d879dc58a583f93fd1" category="searchtitle">Oracleデータベース用のFC SANの構成</block>
+  <block id="08f606415b4ad7fb864651eac04fcd8e" category="searchtitle">Oracleデータベースのパフォーマンスの最適化とベンチマーク</block>
+  <block id="b30e3ef968d39d109aea4a92750c9792" category="doc">古いNFSv3ロック</block>
+  <block id="1d19e21de0f93b11f5ceb8b535a3afc2" category="doc">容量管理</block>
+  <block id="8d409dbefa8e76403d7adf4cbd315d3d" category="doc">ONTAPフェイルオーバー/スイッチオーバー</block>
+  <block id="0f03a4e25b68a1a67d3be8f0d989ef8b" category="doc">ONTAP QoSによるパフォーマンス管理</block>
+  <block id="555472a0fed2f80e0848845e538a08af" category="doc">Oracle Direct NFS（dNFS）</block>
+  <block id="92d0288d9e0c6ed5ffd8dcd2e0900101" category="paragraph">本書の執筆時点では、最新バージョンのOracle DatabaseであるNFSv4.1では、dNFSマルチパスは機能しません。プロトコルとしてNFSv4.1を指定するoranfstabファイルでは、特定のエクスポートに対して1つのpathステートメントのみを使用できます。これは、ONTAPがclientIDトランキングをサポートしていないためです。この制限を解決するOracle Databaseパッチは、将来提供される可能性があります。</block>
+  <block id="3fdf18c0210b51691df97c8be74021a3" category="doc">ASM Reclamation Utility（ASMRU）</block>
+  <block id="d63f66214ae30c5b9b10653f1e503492" category="doc">LUNアライメント</block>
+  <block id="38baeef7dc11ad9438aa5b211745d9f6" category="searchtitle">OracleデータベースのLUNのサイズ変更とLVMのサイズ変更</block>
+  <block id="f447f8c9180e11bc4219ace93e7431fb" category="doc">LUNのサイズ変更とLVMのサイズ変更</block>
+  <block id="c8d869d733bd5299001f9d90b9f00d90" category="doc">LUNのサイジングとLUN数</block>
+  <block id="4ee97146242ed12473141d7ecad00ee1" category="doc">バックアップの階層化</block>
+  <block id="e7cba09a05ca3e6ccdd30a1aa0a7d3af" category="doc">アーカイブログの階層化</block>
+  <block id="c1affdf2bd2e606557f2bf12c69af8f8" category="doc">部分的なファイル階層化</block>
+  <block id="3bf6f5a455b1889775d79713ad4e19ed" category="doc">読み出しポリシー</block>
+  <block id="636d94f9e0fb52c5d7560661b059b203" category="doc">Snapshotの階層化</block>
+  <block id="bf5f70c9080724ef27b09203705b1abc" category="doc">完全なファイル階層化</block>
+  <block id="acf5662e9defb6f8df644e0d8b4caa28" category="doc">初期化パラメータ</block>
+  <block id="03095e209912bbf8e40f883c88befe49" category="searchtitle">PostgreSQL標準のデータ保護</block>
+  <block id="300e5ea4a0c7d02b8a4efeba5a1f6faf" category="doc">ネイティブのDdta保護</block>
+  <block id="1c3ee6977dcad0709502549dd7b111f3" category="sidebar">MetroClusterを使用したOracle DR</block>
 </blocks>

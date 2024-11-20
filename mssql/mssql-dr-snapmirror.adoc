@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mssql/mssql-dr-snapmirror.html 
 keywords: MSSQL,SQL Server, disaster recovery, snapmirror 
 summary: ONTAPを使用したMicrosoft SQL Serverディザスタリカバリ 
+searchtitle: SnapMirrorを使用したMicrosoft SQL Serverディザスタリカバリ 
 ---
-= SnapMirrorを使用したMicrosoft SQL Serverディザスタリカバリ
+= SnapMirror
 :allow-uri-read: 
 :imagesdir: ../media/
 

@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-network-config-fc.html 
 keywords: SAN, zoning 
 summary: Oracleデータベース用のFCネットワーク構成 
+searchtitle: Oracleデータベース用のFC SANの構成 
 ---
-= OracleテタヘスヨウノFCノセツテイ
+= FC SAN構成
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

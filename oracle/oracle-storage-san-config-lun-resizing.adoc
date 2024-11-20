@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-storage-san-config-lun-resizing.html 
 keywords: SAN, ASM, LVM 
 summary: Oracleデータベースを含むLUNおよびLVMのサイズ変更 
+searchtitle: OracleデータベースのLUNのサイズ変更とLVMのサイズ変更 
 ---
-= OracleデータベースのLUNのサイズ変更とLVMベースのサイズ変更
+= LUNのサイズ変更とLVMのサイズ変更
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

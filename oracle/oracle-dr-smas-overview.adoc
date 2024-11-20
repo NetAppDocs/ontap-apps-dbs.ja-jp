@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-smas-overview.html 
 keywords: Oracle,SM-as,active sync 
 summary: OracleとSnapMirrorのアクティブな同期 
+searchtitle: OracleとSnapMirrorのアクティブ同期の概要 
 ---
-= OracleとSnapMirrorのアクティブな同期
+= 概要
 :allow-uri-read: 
 :imagesdir: ../media/
 

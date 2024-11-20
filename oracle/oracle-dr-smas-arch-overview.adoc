@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-smas-arch-overview.html 
 keywords: oracle, active sync, mcc, MCC-IP 
 summary: Oracleシングルインスタンス（SnapMirrorアクティブ同期あり） 
+searchtitle: OracleとSnapMirrorのアクティブな同期 
 ---
-= OracleとSnapMirrorのアクティブな同期
+= 概要
 :allow-uri-read: 
 
 

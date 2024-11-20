@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mysql/mysql-containers.html 
 keywords: MySQL,MariaDB,containers,trident 
 summary: MySQLのコンテナ化 
+searchtitle: MySQLのコンテナ化 
 ---
-= MySQLのコンテナ化
+= コンテナ化
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

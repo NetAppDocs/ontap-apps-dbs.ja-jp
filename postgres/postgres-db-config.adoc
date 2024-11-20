@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: postgres/postgres-db-config.html 
 keywords: PostgreSQL,database,postgres 
 summary: ONTAPを使用したPostgreSQLデータベースの設定 
+searchtitle: ONTAPを使用したPostgreSQLデータベースの設定 
 ---
-= ONTAPを使用したPostgreSQLデータベースの設定
+= 設定
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

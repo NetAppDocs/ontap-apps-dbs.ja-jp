@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: postgres/postgres-initialization.html 
 keywords: PostgreSQL,database,postgres 
 summary: PostgreSQL初期化パラメータ 
+searchtitle: PostgreSQL初期化パラメータ 
 ---
-= PostgreSQL初期化パラメータ
+= 初期化パラメータ
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

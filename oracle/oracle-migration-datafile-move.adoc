@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-migration-datafile-move.html 
 keywords: migration, oracle, move datafile 
 summary: 個 々 のOracleデータファイルの移行 
+searchtitle: Oracleデータファイルの移行 
 ---
-= Oracleデータファイルの移行
+= データファイルの移行
 :allow-uri-read: 
 
 

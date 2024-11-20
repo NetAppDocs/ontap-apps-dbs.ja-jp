@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-storage-nfs-config-leases-and-locks.html 
 keywords: NFS, lease 
 summary: OracleデータベースとNFSのリースとロック 
+searchtitle: OracleデータベースとNFSのリースとロック 
 ---
-= OracleデータベースとNFSのリースとロック
+= NFSのリースとロック
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

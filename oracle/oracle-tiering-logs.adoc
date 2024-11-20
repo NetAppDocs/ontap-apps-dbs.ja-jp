@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-tiering-logs.html 
 keywords: tiering, fabricpool 
 summary: Oracleアーカイブログの階層化 
+searchtitle: Oracleデータベースのアーカイブログの階層化 
 ---
-= Oracleデータベースのアーカイブログの階層化
+= アーカイブログの階層化
 :allow-uri-read: 
 :nofooter: 
 :icons: font

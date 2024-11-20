@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-migration-procedures-overview.html 
 keywords: migration, oracle 
 summary: Oracleの移行手順 
+searchtitle: Oracle移行手順の概要 
 ---
-= Oracle移行手順の概要
+= 概要
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

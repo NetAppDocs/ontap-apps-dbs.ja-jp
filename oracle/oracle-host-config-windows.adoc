@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-host-config-windows.html 
 keywords: oracle, database, ontap, windows 
 summary: Microsoft Windowsを使用したOracleデータベース 
+searchtitle: Microsoft Windowsを使用したOracleデータベース 
 ---
-= Microsoft Windowsを使用したOracleデータベース
+= Microsoft Windows の場合
 :allow-uri-read: 
 
 

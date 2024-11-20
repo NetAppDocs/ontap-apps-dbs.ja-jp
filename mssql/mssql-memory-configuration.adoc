@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mssql/mssql-memory-configuration.html 
 keywords: MSSQL,SQL Server, memory 
 summary: Microsoft SQL Serverのメモリ構成 
+searchtitle: Microsoft SQL Serverのメモリ構成 
 ---
-= Microsoft SQL Serverのメモリ構成
+= メモリ構成
 :allow-uri-read: 
 :imagesdir: ../media/
 

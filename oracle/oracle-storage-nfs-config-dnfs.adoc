@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-storage-nfs-config-dnfs.html 
 keywords: oracle, database, ontap, nfs, ADR, dNFS 
 summary: Oracle Direct NFS 
+searchtitle: Oracle Direct NFS 
 ---
-= Oracle directNFS
+= Oracle Direct NFS（dNFS）
 :allow-uri-read: 
 
 
@@ -38,6 +39,8 @@ dNFSでラウンドロビン方式の名前解決（DNS、DDNS、NISなど）を
 Oracle dNFSは、dNFSライブラリを有効にする以外の設定は必要ありませんが（必要なコマンドについてはOracleのマニュアルを参照してください）、dNFSで接続を確立できない場合は、カーネルNFSクライアントにサイレントに戻すことができます。この場合、パフォーマンスに重大な影響を与える可能性があります。
 
 NFSv4.Xで複数のインターフェイス間でdNFSの多重化を使用する場合、または暗号化を使用する場合は、oranfstabファイルを設定する必要があります。構文は非常に厳格です。ファイルに小さなエラーがあると、起動がハングしたり、oranfstabファイルがバイパスされたりする可能性があります。
+
+本書の執筆時点では、最新バージョンのOracle DatabaseであるNFSv4.1では、dNFSマルチパスは機能しません。プロトコルとしてNFSv4.1を指定するoranfstabファイルでは、特定のエクスポートに対して1つのpathステートメントのみを使用できます。これは、ONTAPがclientIDトランキングをサポートしていないためです。この制限を解決するOracle Databaseパッチは、将来提供される可能性があります。
 
 dNFSが期待どおりに動作することを確認する唯一の方法は、v$dnfsテーブルを照会することです。
 

@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-overview.html 
 keywords: metrocluster, syncmirror, oracle 
 summary: ONTAPによるOracleデータベースのディザスタリカバリ 
+searchtitle: ONTAPによるOracleデータベースのディザスタリカバリ 
 ---
-= ONTAPによるOracleデータベースのディザスタリカバリ
+= 概要
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mysql/mysql-configuration.html 
 keywords: MySQL,MariaDB 
 summary: MySQLセツテイハラメエタ 
+searchtitle: MySQLセツテイハラメエタ 
 ---
-= MySQLセツテイハラメエタ
+= 設定パラメータ
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

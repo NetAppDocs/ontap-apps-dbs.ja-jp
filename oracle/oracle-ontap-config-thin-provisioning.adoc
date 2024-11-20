@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-ontap-config-thin-provisioning.html 
 keywords: thin provisioning, oracle 
 summary: OracleとONTAPのシンプロビジョニング 
+searchtitle: Oracleデータベースのシンプロビジョニング 
 ---
-= Oracleデータベースのシンプロビジョニング
+= シンプロビジョニング
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

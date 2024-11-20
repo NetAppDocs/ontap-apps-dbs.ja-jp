@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-smas-fail-interconnect.html 
 keywords: Oracle, SnapMirror active sync, SMBC, failover 
 summary: OracleとSnapMirrorのアクティブな同期フェイルオーバー 
+searchtitle: SnapMirrorアクティブ同期- Oracle RACレプリケーションが停止 
 ---
-= SnapMirrorアクティブ同期- Oracle RACレプリケーションが停止
+= RACインターコネクト障害
 :allow-uri-read: 
 :imagesdir: ../media/
 

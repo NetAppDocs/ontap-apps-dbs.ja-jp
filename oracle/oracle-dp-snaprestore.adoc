@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dp-snaprestore.html 
 keywords: ontap, snaprestore 
 summary: SnapRestoreによるOracleデータベースの高速リカバリ 
+searchtitle: SnapRestoreによるOracleデータベースの高速リカバリ 
 ---
-= SnapRestoreによるOracleデータベースの高速リカバリ
+= SnapRestore
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

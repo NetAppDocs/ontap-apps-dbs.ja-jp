@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mysql/mysql-overview.html 
 keywords: MySQL,MariaDB,TR-4722 
 summary: ONTAPでのMySQLの運用 
+searchtitle: ONTAPノMySQLテタヘス 
 ---
-= ONTAPノMySQLテタヘス
+= 概要
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

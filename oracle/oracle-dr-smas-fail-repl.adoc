@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-smas-fail-repl.html 
 keywords: Oracle, SnapMirror active sync, SMBC, failover 
 summary: OracleとSnapMirrorのアクティブな同期フェイルオーバー 
+searchtitle: SnapMirror Active Sync -接続が完全に失われる 
 ---
-= SnapMirror Active Sync -接続が完全に失われる
+= ネットワーク相互接続の全体的な障害
 :allow-uri-read: 
 :imagesdir: ../media/
 

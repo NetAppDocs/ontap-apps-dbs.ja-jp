@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-network-config-lifs.html 
 keywords: LIF, multipath, multipathing 
 summary: Oracleデータベース向けの論理インターフェイス設計 
+searchtitle: Oracleデータベース向けの論理インターフェイス設計 
 ---
-= Oracleデータベース向けの論理インターフェイス設計
+= 論理インターフェイス
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

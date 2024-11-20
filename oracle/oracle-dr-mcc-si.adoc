@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-mcc-si.html 
 keywords: oracle, metrocluster, mcc, MCC-IP 
 summary: MetroCluster上のOracle単一インスタンス 
+searchtitle: MetroCluster上のOracle単一インスタンス 
 ---
-= MetroCluster上のOracle単一インスタンス
+= Oracleシングルインスタンス
 :allow-uri-read: 
 
 

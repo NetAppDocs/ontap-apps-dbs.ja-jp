@@ -27,7 +27,7 @@ entries:
   entries:
   - title: 標準搭載のデータ保護
     url: "/postgres/postgres-native-dp.html"
-  - title: Snapshotテクノロジ
+  - title: Snapshot
     url: "/postgres/postgres-snapshot-dp.html"
   - title: データ保護ソフトウェア
     url: "/postgres/postgres-snapcenter-dp.html"

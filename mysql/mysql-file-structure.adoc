@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mysql/mysql-file-structure.html 
 keywords: MySQL,MariaDB 
 summary: MySQLフアイルノコウソウ 
+searchtitle: MySQLとInnoDBのファイル構造 
 ---
-= MySQLとInnoDB
+= ファイル構造
 :allow-uri-read: 
 :icons: font
 :imagesdir: ../media/

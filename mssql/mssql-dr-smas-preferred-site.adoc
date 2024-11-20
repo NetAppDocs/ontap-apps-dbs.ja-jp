@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: mssql/mssql-dr-smas-preferred-site.html 
 keywords: MSSQL,SQL Server, SnapMirror active sync, SMBC, overview 
 summary: Microsoft SQL ServerおよびSM-AS優先サイト 
+searchtitle: Microsoft SQL ServerおよびSM-AS優先サイト 
 ---
-= Microsoft SQL ServerおよびSM-AS優先サイト
+= 優先サイト
 :allow-uri-read: 
 :imagesdir: ../media/
 

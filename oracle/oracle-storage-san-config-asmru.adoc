@@ -4,7 +4,7 @@ permalink: oracle/oracle-storage-san-config-asmru.html
 keywords: ontap, thin provisioning 
 summary: ASM再利用ユーティリティとONTAPゼロブロック検出 
 ---
-= ASM再生ユーティリティとONTAPゼロブロック検出
+= ASM Reclamation Utility（ASMRU）
 :allow-uri-read: 
 
 

@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-smas-fail-manual.html 
 keywords: Oracle, SnapMirror active sync, SMBC, failover 
 summary: OracleとSnapMirrorのアクティブな同期-手動フェイルオーバー 
+searchtitle: OracleとSnapMirrorのアクティブな同期-手動フェイルオーバー 
 ---
-= OracleとSnapMirrorのアクティブな同期-手動フェイルオーバー
+= 手動フェイルオーバー
 :allow-uri-read: 
 :imagesdir: ../media/
 

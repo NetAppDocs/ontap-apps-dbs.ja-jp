@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dp-snapshots.html 
 keywords: oracle, database, ontap, snapshots 
 summary: ONTAP上のOracleデータベースとSnapshotの役割 
+searchtitle: OracleデータベースとSnapshotベースのバックアップ 
 ---
-= OracleデータベースとSnapshotベースのバックアップ
+= Snapshotベースのバックアップ
 :allow-uri-read: 
 
 

@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-tiering-whole-file.html 
 keywords: tiering, fabricpool 
 summary: OracleデータベースのファイルFabricPoolのフル階層化 
+searchtitle: OracleデータベースのファイルFabricPoolのフル階層化 
 ---
-= OracleデータベースのファイルFabricPoolのフル階層化
+= 完全なファイル階層化
 :allow-uri-read: 
 
 

@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-storage-nfs-config-overview.html 
 keywords: NFS 
 summary: OracleテタヘスヨウノNFSノセツテイ 
+searchtitle: OracleテタヘスヨウノNFSノセツテイ 
 ---
-= OracleテタヘスヨウノNFSノセツテイ
+= 概要
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

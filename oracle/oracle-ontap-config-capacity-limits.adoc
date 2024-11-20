@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-ontap-config-capacity-limits.html 
 keywords: capacity 
 summary: データベースとONTAPのストレージ容量と空きスペース 
+searchtitle: Oracleデータベースとストレージ容量の管理 
 ---
-= Oracleデータベースとストレージ容量の管理
+= 容量管理
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

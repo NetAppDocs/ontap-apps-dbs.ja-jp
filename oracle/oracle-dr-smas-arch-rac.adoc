@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-smas-arch-rac.html 
 keywords: oracle, active sync, extended rac, RAC 
 summary: SnapMirrorアクティブ同期を使用したOracle拡張RAC 
+searchtitle: SnapMirrorアクティブ同期を使用したOracle拡張RAC 
 ---
-= SnapMirrorアクティブ同期を使用したOracle拡張RAC
+= Oracle拡張RAC
 :allow-uri-read: 
 
 

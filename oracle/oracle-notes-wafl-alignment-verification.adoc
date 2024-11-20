@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-notes-wafl-alignment-verification.html 
 keywords: oracle, database, ontap, wafl, alignment 
 summary: Oracleデータベースに対するWAFLのアライメント 
+searchtitle: OracleデータベースのWAFLアライメント検証 
 ---
-= OracleデータベースのWAFLアライメント検証
+= WAFLアライメントの検証
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

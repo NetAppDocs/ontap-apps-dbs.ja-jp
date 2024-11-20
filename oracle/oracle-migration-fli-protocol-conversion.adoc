@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-migration-fli-protocol-conversion.html 
 keywords: migration, oracle, FLI 
 summary: FLIプロトコル変換を使用したOracle移行 
+searchtitle: FLIプロトコル変換を使用したOracle移行 
 ---
-= FLIプロトコル変換を使用したOracle移行
+= プロトコル変更
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

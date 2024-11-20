@@ -2,9 +2,10 @@
 sidebar: sidebar 
 permalink: oracle/oracle-dr-smas-uniform.html 
 keywords: Oracle,SM-as,active sync,uniform 
-summary: OracleとSM-ASのユニフォームアクセス 
+summary: OracleとSM-ASの統一されたアクセス 
+searchtitle: OracleとSM-ASの統一されたアクセス 
 ---
-= OracleとSM-ASの統一されたアクセス
+= 均一なアクセス
 :allow-uri-read: 
 :imagesdir: ../media/
 

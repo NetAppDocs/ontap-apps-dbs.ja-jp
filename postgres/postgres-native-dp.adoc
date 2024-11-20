@@ -2,9 +2,10 @@
 sidebar: sidebar 
 permalink: postgres/postgres-native-dp.html 
 keywords: PostgreSQL,database,postgres 
-summary: PostgreSQLデータ保護P 
+summary: PostgreSQLのデータ保護 
+searchtitle: PostgreSQL標準のデータ保護 
 ---
-= PostgreSQLのデータ保護
+= ネイティブのDdta保護
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

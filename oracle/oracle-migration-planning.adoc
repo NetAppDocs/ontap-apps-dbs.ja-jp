@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-migration-planning.html 
 keywords: migration, oracle 
 summary: Oracleデータベースの移行計画 
+searchtitle: Oracleデータベースの移行計画 
 ---
-= Oracleデータベースの移行計画
+= 移行計画
 :allow-uri-read: 
 
 

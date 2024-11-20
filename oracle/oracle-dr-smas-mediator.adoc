@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-smas-mediator.html 
 keywords: MSSQL,SQL Server, SnapMirror active sync, SMBC, overview 
 summary: Oracle、SM-AS、アクティブな同期、メディエーター 
+searchtitle: Oracle、SnapMirrorのアクティブな同期、ONTAPメディエーター 
 ---
-= OracleとONTAPメディエーター
+= ONTAPメディエーター
 :allow-uri-read: 
 :imagesdir: ../media/
 

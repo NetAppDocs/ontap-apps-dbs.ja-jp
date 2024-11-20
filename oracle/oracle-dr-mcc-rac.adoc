@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-dr-mcc-rac.html 
 keywords: oracle, metrocluster, extended rac, RAC 
 summary: MetroClusterを使用したOracle拡張RAC 
+searchtitle: MetroCluster上のOracle拡張RAC 
 ---
-= MetroCluster上の拡張Oracle RAC
+= Oracle拡張RAC
 :allow-uri-read: 
 
 

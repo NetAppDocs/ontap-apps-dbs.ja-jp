@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-host-config-linux.html 
 keywords: oracle, database, ontap, linux, nfs, xfs, ext4, slot tables 
 summary: Linuxを使用したOracleデータベース 
+searchtitle: Linuxを使用したOracleデータベース 
 ---
-= Linuxを使用したOracleデータベース
+= Linux の場合
 :allow-uri-read: 
 
 

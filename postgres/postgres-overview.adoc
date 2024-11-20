@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: postgres/postgres-overview.html 
 keywords: PostgreSQL,database,postgres 
 summary: ONTAP上のPostgreSQLデータベース 
+searchtitle: ONTAP上のPostgreSQLデータベース 
 ---
-= ONTAP上のPostgreSQLデータベース
+= 概要
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

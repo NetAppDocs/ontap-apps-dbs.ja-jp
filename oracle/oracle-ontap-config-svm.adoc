@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-ontap-config-svm.html 
 keywords: svm 
 summary: Oracleデータベース用のSVMプロビジョニング 
+searchtitle: OracleデータベースとStorage Virtual Machine 
 ---
-= OracleデータベースとStorage Virtual Machine
+= Storage Virtual Machine
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 

@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-host-config-solaris.html 
 keywords: oracle, database, ontap, solaris, zfs 
 summary: Solarisを使用したOracleデータベース 
+searchtitle: Solarisを使用したOracleデータベース 
 ---
-= Solarisを使用したOracleデータベース
+= Solaris の場合
 :allow-uri-read: 
 
 

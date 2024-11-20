@@ -3,8 +3,9 @@ sidebar: sidebar
 permalink: oracle/oracle-migration-sample-scripts.html 
 keywords: oracle, Scripts 
 summary: Oracle移行処理を自動化するサンプルスクリプト 
+searchtitle: Oracle移行手順のサンプルスクリプト 
 ---
-= Oracle移行手順のサンプルスクリプト
+= サンプルスクリプト
 :allow-uri-read: 
 
 

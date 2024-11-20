@@ -9,7 +9,7 @@ entries:
   entries:
   - title: ファイル構造
     url: "/mysql/mysql-file-structure.html"
-  - title: 設定の概要
+  - title: 設定パラメータ
     url: "/mysql/mysql-configuration.html"
   - title: innodb_log_file_size
     url: "/mysql/mysql-innodb_log_file_size.html"
@@ -41,7 +41,7 @@ entries:
 - title: ストレージ構成
   pdf-filename: MySQLヨウノストレエシセツテイ
   entries:
-  - title: NFS経由のMySQL
+  - title: NFS
     url: "/mysql/mysql-mysql-over-nfs.html"
-  - title: SAN経由のMySQL
+  - title: SAN
     url: "/mysql/mysql-mysql-over-san.html"
