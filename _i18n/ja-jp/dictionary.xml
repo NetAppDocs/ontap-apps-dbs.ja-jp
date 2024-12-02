@@ -5272,25 +5272,12 @@ SOAP over HTTPS接続に使用</block>
   <block id="e7a8be60cff2fec7b8ed793c4d2dddfe" category="summary">Epic LUNおよびボリューム構成</block>
   <block id="acdbb325faec5e3e2d86b3dbbaf90c54" category="paragraph">各データベースのLUNのサイズと数については、Epic Database Storage Layout Recommendationsを参照してください。</block>
   <block id="a620ecf0a73eb209a145eb913a29bc5a" category="paragraph">Epic DBAとEpicのサポートを受けて本ドキュメントを確認し、必要に応じてLUNの数とLUNサイズを決定することが重要です。これらのストレージの推奨事項は、HBAのキュー深度、ストレージパフォーマンス、運用のしやすさ、および拡張のしやすさにとって重要です。</block>
-  <block id="4442aab15395384af6aee974a5a581bc" category="paragraph">サーバOSのキュー深度を考慮する場合は、データベースに少なくとも8つのLUN（ボリュームごとに1つのLUN）を使用します。LUNの数を8の倍数に増やします。大規模な環境では、より多くのLUNが必要になる場合があります。同じ数のボリューム（合計8個、ノードあたり4個）を使用し、8の倍数でLUNを追加します。Epicでは、LUNを8 TB未満、LUNの数を32未満に保つことを推奨しています。このアプローチにより、Epic環境を簡単に拡張できます。</block>
   <block id="21ebeea1f14a138dfebb1b9599a4c3dd" category="paragraph">Epic ODBやClarityなどのワークロードのパフォーマンスを最大化するには、各レイアウトがNetAppストレージに最適です。8個のボリュームを使用することで、書き込みIOがコントローラ間で均等に分散され、CPU利用率が最大化されます。レプリケーションとバックアップでは、運用を簡易化するために、ボリューム数を8個に制限することを推奨します。</block>
   <block id="90adf331b7868c7af46ad6e035e93844" category="section-title">スケーリングオプション</block>
-  <block id="68b3c97d7d89bcf19218f4db828d1f62" category="paragraph">サーバでストレージの追加が必要な場合は、ボリュームを含むLUNを拡張するのが最も簡単な方法です。2つ目の方法は、一度に8の倍数（既存のボリュームごとに1つ）でボリュームグループにLUNを追加する方法です。LUNを1つまたは2つ追加するだけでホットスポットが作成され、パフォーマンスに影響する可能性があります。</block>
   <block id="b323bb297a66afc2eea7b89dd4019798" category="section-title">ボリュームと8 LUNのレイアウト</block>
   <block id="66d125e77a6185ef5cf43b2a6bffea80" category="inline-image-macro">Epic 8 LUNレイアウト</block>
   <block id="99a54ac1eaa5bd57b4c4c29d6a63f1ac" category="paragraph"><block ref="99a54ac1eaa5bd57b4c4c29d6a63f1ac" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="671393f63bb9ef1dfab4931884d7598d" category="section-title">ボリュームと16 LUNのレイアウト</block>
-  <block id="0c02643253fbb18be382d4c1ad110e4f" category="inline-image-macro">Epic 16 LUNレイアウト</block>
-  <block id="3a69aefd67fab9412b92fa902b37d20e" category="paragraph"><block ref="3a69aefd67fab9412b92fa902b37d20e" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="f7b18cfcf87c0f98b439b4c7b3c92c97" category="section-title">ボリュームと24 LUNのレイアウト</block>
-  <block id="6fc8903e912275e630ffd2c72a17adcb" category="inline-image-macro">Epic 24 LUNレイアウト</block>
-  <block id="c07e1713e37928ebf0d4e02dbd302844" category="paragraph"><block ref="c07e1713e37928ebf0d4e02dbd302844" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="b7e595df4f29c46e9a8f1aa1c32fd1bf" category="section-title">ボリュームと32 LUNのレイアウト</block>
-  <block id="7ae005614524eafc3188227a0e2095bb" category="inline-image-macro">EPIC 32-LUNレイアウト</block>
-  <block id="45c0c385be9c9d903ed267e0455dc156" category="paragraph"><block ref="45c0c385be9c9d903ed267e0455dc156" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="3d120048605480bd8cf2a834fe477bb8" category="list-text">8個のボリュームで8個、16個、24個、または32個のLUNを使用します。</block>
   <block id="bad4d79343f04d8b64999875ad328086" category="list-text">HAペア間でワークロードを分散して、パフォーマンスと効率を最大化します。</block>
-  <block id="cd4b8ea65e0732fcfa8614a31fb02e8f" category="list-text">LUN拡張の制限が10倍になるのを避けるため、3年間の拡張が想定されるサイズでLUNを作成します。</block>
   <block id="26b591a32a8a235db7f742995589a455" category="list-text">シンプロビジョニングされたボリュームとLUNを使用する。</block>
   <block id="9fb0aaeb125238e83485971ae6b7e2fc" category="list-text">少なくとも8つのDB LUN、2つのジャーナルLUN、2つのアプリケーションLUNを使用します。この構成により、ストレージパフォーマンスとOSのキュー深度を最大限に高めることができます。容量やその他の理由で必要に応じて、より多くのものを使用できます。</block>
   <block id="ba5e00554d1ba1b8ca0fc2eaeda44672" category="list-text">ボリュームグループにLUNを追加する必要がある場合は、一度に8個のLUNを追加します。</block>
@@ -5927,4 +5914,14 @@ SOAP over HTTPS接続に使用</block>
   <block id="03095e209912bbf8e40f883c88befe49" category="searchtitle">PostgreSQL標準のデータ保護</block>
   <block id="300e5ea4a0c7d02b8a4efeba5a1f6faf" category="doc">ネイティブのDdta保護</block>
   <block id="1c3ee6977dcad0709502549dd7b111f3" category="sidebar">MetroClusterを使用したOracle DR</block>
+  <block id="662637dadb14be675de52ed993629bcd" category="paragraph">サーバOSのキュー深度を考慮する場合は、データベースに少なくとも8つのLUN（ボリュームごとに1つのLUN）を使用します。ONTAPクラスタのノードの数だけLUNの数を増やします。たとえば、4ノード（2つのHAペア）クラスタを使用している場合は、LUNを4つ追加します。大規模な環境では、より多くのLUNが必要になる場合があります。同じ数のボリューム（合計8個、ストレージノードに分散）を使用し、クラスタノードおよびボリューム全体でLUNを2の倍数で追加します。このアプローチにより、Epic環境を簡単に拡張できます。</block>
+  <block id="f73f987e4ea887ccfd1bf297bad46e22" category="paragraph">*例1：2ノードのONTAPクラスタ*</block>
+  <block id="f08ea6531fe21723a28ec9f89ea3e451" category="paragraph">2ノード、1 HAペア8ボリューム、ノードあたり4ボリューム8 LUN、ボリュームあたり1 LUN追加のLUNを2つ追加します（volume01のNode01に1つ、volume02のNode02に1つ）。</block>
+  <block id="fd52d4fb0b6e3cfb46cae3e012d26c20" category="paragraph">*例2：4ノードのONTAPクラスタ*</block>
+  <block id="489d5412107ca7c901de568b7c7dcce3" category="paragraph">4ノード、2 HAペア8ボリューム、ノードあたり2ボリュームLUN、ボリュームあたり1つ追加のLUNを4つ追加します。1つはvolume01のNode01に、もう1つはvolume02のNode02に、もう1つはvolume03のnode03に、もう1つはvolume04のnode04にです。</block>
+  <block id="2feec0f4e37d9566d4cf292116430adb" category="paragraph">サーバでストレージの追加が必要な場合は、ボリュームを含むLUNを拡張するのが最も簡単な方法です。2つ目の方法は、一度に2の倍数（各ノードのボリュームごとに1つ）でボリュームグループにLUNを追加する方法です。</block>
+  <block id="c338b7a4eb0c6f0bb88b444f6c195b01" category="admonition">4ノードまたは8個以上のLUNが必要な大規模な環境では、EpicアライアンスチームにLUNの設計を確認してください。チームはEpic @ NetApp .comで連絡することができます。</block>
+  <block id="e9afc81d3b8e2990f966bb247fa75a6b" category="list-text">8個のボリュームで8個のLUNを使用して開始し、クラスタのすべてのノードで一度に2個のLUNを追加します。</block>
+  <block id="eb75aeb3b4b2b9734ba3e52f5483f0b2" category="inline-link-macro">ONTAPのドキュメント</block>
+  <block id="c5432110ad66f4e2e624118b88a48126" category="list-text">3年間の拡張が想定されるサイズでLUNを作成します。（LUNの最大サイズについては、を参照して<block ref="2a57767dbf71d600f009b2fefab6360d" category="inline-link-macro-rx"></block>ください）。</block>
 </blocks>
