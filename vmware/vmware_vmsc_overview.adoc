@@ -66,4 +66,4 @@ SnapMirror Active Syncは、2つの方法で導入することもできます。
 
 image::../media/vmsc_1_2.png[MCCを使用したvMSCの図,624,485]
 
-を参照してください https://docs.netapp.com/us-en/ontap/smbc/index.html["ネットアップのドキュメント"] を参照し、SnapMirror Active Syncの設計と導入に関する情報を確認してください。
+対称型または非対称型の設計および配置の利点の詳細については、を参照してください https://docs.netapp.com/us-en/ontap/smbc/index.html["SnapMirror Active Syncドキュメント"]。
