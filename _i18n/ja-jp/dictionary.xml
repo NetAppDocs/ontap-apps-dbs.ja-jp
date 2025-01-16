@@ -586,7 +586,6 @@
   <block id="29d04e616d2293c4c7538dd6226feac5" category="section-title">SQL Server Management Studioを使用した最大ワーカースレッド数の設定。</block>
   <block id="44dbc82801d84781083ed9e23b63be00" category="list-text">8コア以下の場合：tempdbデータファイル=コア数</block>
   <block id="6203fcdbdad10bb603fd00edd2f0fcf5" category="list-text">8コアを超える場合：8個のtempdbデータファイル</block>
-  <block id="b9f341e4fb0e6b384aa7ec0b5c33f964" category="paragraph">次のスクリプト例は、8つのtempdbファイルを作成し、tempdbをマウントポイントに移動することで、tempdbを変更します。<block ref="ae6fbe62f3ddc46fa9a9885244d23675" prefix=" " category="inline-code"></block> （SQL Server 2012以降）。</block>
   <block id="0424163d6b24f29436021dfd7072863b" category="paragraph">SQL Server 2016以降では、インストール時にオペレーティングシステムが認識できるCPUコアの数が自動的に検出され、その数に基づいて、最適なパフォーマンスを実現するために必要なtempdbファイルの数が計算および設定されます。</block>
   <block id="3b5b2ca12603a36517ce602ffe47361c" category="list-text">バックアップソフトウェアとしてのNetApp SnapCenterには、次のものが含まれます。</block>
   <block id="36a92a010308100e1efc10d9eb98c369" category="list-text">SnapCenter Plug-in for Microsoft Windows の略</block>
@@ -605,7 +604,6 @@
   <block id="17fce39141e6fa457c789ce2c3239b0c" category="section-title">ボリュームの設計に関する考慮事項</block>
   <block id="d1c9fdbcdbb8521971decf35c6d1c0c8" category="paragraph">データベースボリュームの設計を作成する前に、SQL ServerのI/Oパターンと特性がワークロードやバックアップとリカバリの要件に応じてどのように変わるかを理解しておくことが重要です。フレキシブルボリュームについては、NetAppに関する次の推奨事項を参照してください。</block>
   <block id="674343739e297abb52c536a453ebaad0" category="list-text">ドライブレターではなくNTFSマウントポイントを使用して、Windowsのドライブレターの制限（26文字）を超えます。ボリュームマウントポイントを使用する場合は、ボリュームラベルにマウントポイントと同じ名前を付けることを一般的に推奨します。</block>
-  <block id="d5fe4f7f1c47df1ec78c926d21498f73" category="list-text">必要に応じて、スペース不足が発生しないようにボリュームのオートサイズポリシーを設定します。17 ONTAPを使用したMicrosoft SQL Serverのベストプラクティスガイド©2022 NetApp、Inc. 無断転載を禁じます。</block>
   <block id="4176288dbc134524f79476ba4e57e3aa" category="list-text">tempdbは、特にI/O負荷の高いDBCC CHECKDB処理のために、SQL Serverが一時的なワークスペースとして使用するシステムデータベースです。したがって、このデータベースは、独立したスピンドルセットを持つ専用ボリュームに配置します。ボリューム数が課題となる大規模な環境では、慎重に計画を立てたあと、tempdbを少数のボリュームに統合し、他のシステムデータベースと同じボリュームに格納できます。tempdbのデータ保護は、SQL Serverを再起動するたびにこのデータベースが再作成されるため、優先度の高いものではありません。</block>
   <block id="b703a2ceaabee81dd9dfcfb3a4b738ee" category="list-text">ユーザデータベースファイルとログバックアップを格納するログディレクトリが別 々 のボリュームにあることを確認して、SnapVaultテクノロジでSnapshotが使用されている場合に保持ポリシーによって上書きされないようにしてください。</block>
   <block id="ae72f885471636cbfd0dbe902ddf24e1" category="list-text">DiskManagerなどのツールを使用してLUNを作成する場合は、LUNをフォーマットするときに、パーティションの割り当て単位サイズが64Kに設定されていることを確認してください。</block>
@@ -3939,7 +3937,6 @@ SOAP over https 接続に使用されます</block>
   <block id="60654048dbcae98cde53dc0449c8e47b" category="summary">Microsoft SQL Serverストレージに関する考慮事項</block>
   <block id="71cc52562b241f23c0f5c74c589fc56c" category="paragraph">アグリゲートは、NetAppストレージ構成の最下位レベルのストレージコンテナです。一部のレガシードキュメントはインターネット上に存在し、異なるドライブセットにIOを分離することを推奨しています。これはONTAPでは推奨されません。NetAppは、データファイルとトランザクションログファイルを分離した共有アグリゲートと専用アグリゲートを使用して、さまざまなI/Oワークロードの特性評価テストを実施してきました。このテストでは、1つの大規模アグリゲートに複数のRAIDグループとドライブを配置することで、ストレージのパフォーマンスが最適化され、向上し、管理者が管理しやすくなることがわかりました。その理由は次の2つです。</block>
   <block id="994dbcbb2492daba25572c539cc12968" category="list-text">1つの大きなアグリゲートで、すべてのドライブのI/O機能をすべてのファイルで使用できます。</block>
-  <block id="8e6ab064c04f3cf4f6cfb70d8db3132c" category="list-text">ホスト間でのボリュームの共有は避けてください。たとえば、1つのボリュームに2つのLUNを作成し、各LUNを別のホストで共有することは可能ですが、管理が複雑になる可能性があるため、この方法は避けてください。</block>
   <block id="900188651b4134e36897865047c3fb5b" category="list-text">運用面からの監視を容易にするために、ボリュームのスナップショット予約値をゼロに設定します。</block>
   <block id="27d9533edb3ad60370502d101cd38d2b" category="list-text">Snapshotスケジュールと保持ポリシーを無効にします。代わりに、SnapCenterを使用してSQL ServerデータボリュームのSnapshotコピーを調整します。</block>
   <block id="a09a2d9023a555d2d5a72621bf3395b3" category="list-text">SQL Serverシステムデータベースを専用ボリュームに配置します。</block>
@@ -5583,10 +5580,8 @@ SOAP over HTTPS接続に使用</block>
   <block id="64999620676d7bc615f88fabe256272f" category="list-text">SQL ServerをSMB共有にインストールする場合は、フォルダを作成するためにSMBボリュームでUnicodeが有効になっていることを確認してください。</block>
   <block id="b0874893f6e3e7030833ec488dc9da90" category="list-text"><block ref="937f38432beb92fdba3d47780720bdf7" prefix="(" category="inline-code"></block>ランダムな読み取り/書き込みワークロードであるため、ユーザデータファイルを別 々 のボリュームに配置します。トランザクションログバックアップは、データベースバックアップよりも頻繁に作成するのが一般的です。このため、トランザクションログファイル<block ref="cb15b9539ae0d984ff8740c68b52561c" prefix="(" category="inline-code"></block>）をデータファイルとは別のボリュームまたはVMDKに配置して、それぞれに個別のバックアップスケジュールを作成できるようにします。また、この分離により、ログファイルのシーケンシャルライトI/Oとデータファイルのランダムリード/ライトI/Oが分離され、SQL Serverのパフォーマンスが大幅に向上します。</block>
   <block id="f7f1cb17ab4960f1a8e4c28a7fbccb0d" category="list-text">データベースファイルとデータベース以外のファイル（フルテキスト検索関連ファイルなど）を同じLUNに混在させないでください。</block>
-  <block id="42f55cb17aa10ac3e6774a14ecdda568" category="list-text">データベースのセカンダリファイルを（ファイルグループの一部として）別 々 のボリュームに配置すると、SQL Serverデータベースのパフォーマンスが向上します。この分離は、データベースのファイルがLUNを他のファイルと共有していない<block ref="937f38432beb92fdba3d47780720bdf7" prefix=" " category="inline-code"></block>場合にのみ有効<block ref="772b0ad30c2d9d895a7319f2110cc750" prefix=" " category="inline-code"></block>です。</block>
   <block id="58ccb3e2006ffa82c78944061df94b30" category="paragraph">ONTAPのStorage Efficiencyは、パフォーマンスに影響を与えることなく消費するストレージスペースを最小限に抑えてSQL Serverデータを格納、管理できるように最適化されています。</block>
   <block id="f250d23ef016c3e48436a679c5dab1df" category="list-text">バックアップから単一ボリュームへのデータベースのリストアなど、同じデータのコピーがボリュームに複数含まれていることがわかっている場合を除き、SQL Serverデータファイルを含むボリュームで重複排除を有効にしないでください。</block>
-  <block id="1bf0b8f469689ae42fe419468737011f" category="paragraph">Tempdbデータベースは大量に利用できます。ONTAPへのユーザデータベースファイルの最適な配置に加えて、割り当ての競合を軽減するためには、tempdbデータファイルの配置も重要です。</block>
   <block id="6f80e9146e2184b9ec3c46b6d7dd903f" category="paragraph">ページ競合は、SQL Serverが新しいオブジェクトを割り当てるために特別なシステムページに書き込む必要がある場合に、Global Allocation Map（GAM）、Shared Global Allocation Map（SGAM）、またはPage Free Space（PFS）ページで発生する可能性があります。ラッチによってこれらのページがメモリにロックされます。ビジー状態のSQL Serverインスタンスでは、tempdbのシステムページでラッチを取得するのに時間がかかることがあります。その結果、クエリの実行時間が長くなり、ラッチ競合と呼ばれます。tempdbデータファイルを作成する場合は、次のベストプラクティスを参照してください。</block>
   <block id="255bd5c00b8de4b2f998369f766b2b5e" category="paragraph">ここでは、セキュアなオフサイトストレージとディザスタリカバリを目的として、データをリモートサイトにレプリケートするリモートデータ保護について説明します。これらのテーブルは、同期ミラーリングのデータ保護には対応していません。この要件については、およびを含むNetApp MetroClusterのドキュメントを参照してください。<block ref="06d0604733fc7f7e3f9befaa1239278d" category="inline-link-macro-rx"></block><block ref="87f167af2516b222ddeec7405581e8b8" category="inline-link-macro-rx"></block></block>
   <block id="ad8d77efdce72d372a83929b50a127d1" category="paragraph">データセットのcrash-consistentバックアップとは、ある時点におけるデータセット構造全体のキャプチャです。データセットが単一のボリュームに格納されている場合は、Snapshotはいつでも作成できるため、このプロセスは簡単です。データセットが複数のボリュームにまたがっている場合は、整合性グループ（CG）Snapshotを作成する必要があります。CG Snapshotを作成するには、NetApp SnapCenterソフトウェア、ONTAPのネイティブ整合グループ機能、ユーザが管理するスクリプトなど、いくつかのオプションがあります。</block>
@@ -5837,9 +5832,7 @@ SOAP over HTTPS接続に使用</block>
   <block id="6be050126f2df5ae7cd944ce446241c2" category="paragraph">30秒のタイムアウトが許容されない場合は、リース期間を延長することもできます。</block>
   <block id="38d530634a8d32e8775a37109fc08542" category="paragraph">60秒のネットワーク停止に耐えるためにリースタイムアウトを60秒に延長する場合は、猶予期間も延長する必要があります。つまり、コントローラフェイルオーバー中にIOが一時停止する時間が長くなります。</block>
   <block id="ac76821692fdb2dae1d98babe804fb8f" category="paragraph">これは通常は問題ではありません。一般的なユーザはONTAPコントローラを年に1~2回更新するだけで、ハードウェア障害による計画外フェイルオーバーは非常にまれです。また、ネットワークに60秒のネットワーク停止が発生する可能性があり、リースタイムアウトを60秒にする必要がある場合は、まれにストレージシステムのフェイルオーバーに異議を唱えず、61秒の一時停止も発生する可能性があります。ネットワークが60秒以上頻繁に一時停止していることをすでに認識しています。</block>
-  <block id="66bb028b9d7030985c1ce3bb4f5a27e9" category="searchtitle">= Microsoft SQL ServerのCPU構成</block>
   <block id="73f7848a74f8a1b6c78ac0dfbca44874" category="searchtitle">NetApp管理ソフトウェアによるMicrosoft SQL Serverデータ保護</block>
-  <block id="fa67fb4719e92db117cccfc693cf2a40" category="searchtitle">MicrosoftSQL Server tempdbファイル</block>
   <block id="3a80e1e29c96d0837b12aef65785a41a" category="doc">設定パラメータ</block>
   <block id="4bb9f72180425717a416a5037a100cca" category="searchtitle">MySQLとInnoDBのファイル構造</block>
   <block id="9a41c04f55c43c1bfac6d1e3fb0992de" category="doc">NFSv3スロットテーブル</block>
@@ -5930,4 +5923,11 @@ SOAP over HTTPS接続に使用</block>
   <block id="7b9dbbe3099a486a2a81a7e43267d3af" category="paragraph">^4^これらのデバイスには管理用に独自のIPアドレスがありますが、ESXiストレージネットワークのコンテキストでは使用されません。</block>
   <block id="76538e55d69b12bb4a71177e6f12d7af" category="inline-link">SnapMirror Active Syncドキュメント</block>
   <block id="07bd30b0e378d86a9efeda3dff8dd07c" category="paragraph">対称型または非対称型の設計および配置の利点の詳細については、を参照してください<block ref="8b3398c42964cdf57fc4298373a78cfc" category="inline-link-rx"></block>。</block>
+  <block id="d4b27e1b61577e2e3dfeebd3b8129da5" category="list-text">ホスト間でのボリュームの共有は避けてください。たとえば、1つのボリュームに2つのLUNを作成し、各LUNを別のホストで共有することは可能ですが、管理が複雑になる可能性があるため、この方法は避けてください。同じホストで複数のSQL Serverインスタンスを実行する場合は、ノードのボリューム制限に近い場合を除き、ボリュームの共有は避け、データ管理を容易にするためにホストごとにインスタンスごとに個別のボリュームを作成してください。</block>
+  <block id="e3ea9105e22caf8aa06aee0279a968bb" category="list-text">必要に応じて、スペース不足が発生しないようにボリュームのオートサイズポリシーを設定します。</block>
+  <block id="72a9733bd5929d30a93ea680e0c3fad1" category="list-text">データベースのセカンダリファイルを（ファイルグループの一部として）別 々 のボリュームに配置すると、SQL Serverデータベースのパフォーマンスが向上します。この分離は、データベースのファイルがLUNを他のファイルと共有していない<block ref="937f38432beb92fdba3d47780720bdf7" prefix=" " category="inline-code"></block>場合にのみ有効<block ref="937f38432beb92fdba3d47780720bdf7" prefix=" " category="inline-code"></block>です。</block>
+  <block id="5962130d833e0408cf58a87e342bc1f9" category="searchtitle">Microsoft SQL Server tempdbフアイル</block>
+  <block id="82d9655a27436534991360ea4c0dc680" category="paragraph">Tempdbデータベースは大量に利用できます。ユーザデータベースファイルをONTAPに最適に配置することに加えて、割り当ての競合を軽減するためには、tempdbデータファイルの配置も重要です。tempdbは別のディスクに配置し、ユーザデータファイルとは共有しないでください。</block>
+  <block id="5c4a7832da0e9f8799089fdc985bb9b3" category="list-text">tempdbデータファイルは同じサイズで作成する必要があります。</block>
+  <block id="20453a1c8627ad0bc536be210636fa41" category="paragraph">次のスクリプト例は、同じサイズのtempdbファイルを8つ作成し、tempdbをSQL Server 2012以降のマウントポイントに移動することで、tempdbを変更します。<block ref="ae6fbe62f3ddc46fa9a9885244d23675" prefix=" " category="inline-code"></block></block>
 </blocks>

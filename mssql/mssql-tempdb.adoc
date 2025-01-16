@@ -3,7 +3,7 @@ sidebar: sidebar
 permalink: mssql/mssql-tempdb.html 
 keywords: MSSQL,SQL Server, tempdb, ONTAP 
 summary: ONTAPでのMicrosoft SQL Server tempdbの配置 
-searchtitle: MicrosoftSQL Server tempdbファイル 
+searchtitle: Microsoft SQL Server tempdbフアイル 
 ---
 = tempdbフアイル
 :allow-uri-read: 
@@ -11,15 +11,16 @@ searchtitle: MicrosoftSQL Server tempdbファイル
 
 
 [role="lead"]
-Tempdbデータベースは大量に利用できます。ONTAPへのユーザデータベースファイルの最適な配置に加えて、割り当ての競合を軽減するためには、tempdbデータファイルの配置も重要です。
+Tempdbデータベースは大量に利用できます。ユーザデータベースファイルをONTAPに最適に配置することに加えて、割り当ての競合を軽減するためには、tempdbデータファイルの配置も重要です。tempdbは別のディスクに配置し、ユーザデータファイルとは共有しないでください。
 
 ページ競合は、SQL Serverが新しいオブジェクトを割り当てるために特別なシステムページに書き込む必要がある場合に、Global Allocation Map（GAM）、Shared Global Allocation Map（SGAM）、またはPage Free Space（PFS）ページで発生する可能性があります。ラッチによってこれらのページがメモリにロックされます。ビジー状態のSQL Serverインスタンスでは、tempdbのシステムページでラッチを取得するのに時間がかかることがあります。その結果、クエリの実行時間が長くなり、ラッチ競合と呼ばれます。tempdbデータファイルを作成する場合は、次のベストプラクティスを参照してください。
 
 * 8コア以下の場合：tempdbデータファイル=コア数
 * 8コアを超える場合：8個のtempdbデータファイル
+* tempdbデータファイルは同じサイズで作成する必要があります。
 
 
-次のスクリプト例は、8つのtempdbファイルを作成し、tempdbをマウントポイントに移動することで、tempdbを変更します。 `C:\MSSQL\tempdb` （SQL Server 2012以降）。
+次のスクリプト例は、同じサイズのtempdbファイルを8つ作成し、tempdbをSQL Server 2012以降のマウントポイントに移動することで、tempdbを変更します。 `C:\MSSQL\tempdb`
 
 ....
 use master
