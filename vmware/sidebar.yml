@@ -42,10 +42,12 @@ entries:
     url: "/vmware/vmware-vsphere-sdrs.html"
   - title: 推奨設定
     url: "/vmware/vmware-vsphere-settings.html"
-- title: ONTAPを備えた仮想ボリューム（VVOL）
+- title: ONTAP toolsを使用した仮想ボリューム（VVol）10
   entries:
   - title: 概要
     url: "/vmware/vmware-vvols-overview.html"
+  - title: ONTAP toolsのインストールチェックリスト
+    url: "/vmware/vmware-vvols-checklist.html"
   - title: ONTAP でVVOLを使用する
     url: "/vmware/vmware-vvols-ontap.html"
   - title: VVOLストレージの導入

@@ -26,7 +26,7 @@ VMware vSphereをONTAPを実行するシステム上のデータストアに接�
 
 FCP、NVMe/FC、NVMe/TCP、およびiSCSIはブロックプロトコルで、vSphere Virtual Machine File System（VMFS）を使用して、ONTAP FlexVol volumeに含まれるONTAP LUNまたはNVMeネームスペースにVMを格納します。NFS はファイルプロトコルで、 VM をデータストア（ ONTAP ボリューム）に配置し、 VMFS を必要としません。SMB（CIFS）、iSCSI、NVMe/FC、NFSもゲストOSからONTAP に直接使用できます。
 
-次の表に、vSphereがサポートするONTAPの従来のデータストア機能を示します。この情報はVVOLデータストアには該当しませんが、通常は、サポートされているONTAP リリースを使用する環境 vSphere 6.x以降のリリースで使用されます。特定のvSphereリリースについて、具体的な制限を確認することもできますlink:https://www.vmware.com/support/pubs/["VMwareコウセイノサイダイスウ"^]。
+次の表に、vSphereがサポートするONTAPの従来のデータストア機能を示します。この情報はVVOLデータストアには該当しませんが、通常は、サポートされているONTAP リリースを使用する環境 vSphere 6.x以降のリリースで使用されます。特定のvSphereリリースのを参照して、固有の制限を確認することもできますlink:https://configmax.broadcom.com/guest?vmwareproduct=vSphere&release=vSphere%208.0&categories=2-0["VMware Configuration Maximumsツール"^]。
 
 |===
 | 機能 / 特徴 | FC | iSCSI | NVMe-oF | NFS 
@@ -129,9 +129,9 @@ VAAIを使用しない場合、NFS上のすべてのVMに対してこの設定�
 
 | NDMP の単位 | データストア | データストア | データストア | データストアまたはVM 
 |===
-^1^* NetAppでは、マルチライター対応のVMDKをVMFSデータストアで使用するのではなく、Microsoftクラスタにゲスト内iSCSIを使用することを推奨しています*。このアプローチはMicrosoftとVMwareによって完全にサポートされており、ONTAP（オンプレミスまたはクラウドのONTAPシステムへのSnapMirror）で優れた柔軟性を提供し、設定と自動化が簡単で、SnapCenterで保護できます。vSphere 7には、新しいclustered VMDKオプションが追加されています。これは、マルチライター対応のVMDKとは異なります。マルチライター対応のVMDKを使用するには、クラスタ化されたVMDKをサポートするFCプロトコルを介して提供されるデータストアが必要です。その他の制限が適用されます。構成のガイドラインについては、VMwareのドキュメントを参照してください https://docs.vmware.com/en/VMware-vSphere/7.0/vsphere-esxi-vcenter-server-70-setup-wsfc.pdf["Windows Server フェールオーバークラスタリングのセットアップ"^]。
+^1^* NetAppでは、マルチライター対応のVMDKをVMFSデータストアで使用するのではなく、Microsoftクラスタにゲスト内iSCSIを使用することを推奨しています*。このアプローチはMicrosoftとVMwareによって完全にサポートされており、ONTAP（オンプレミスまたはクラウドのONTAPシステムへのSnapMirror）で優れた柔軟性を提供し、設定と自動化が簡単で、SnapCenterで保護できます。vSphere 7には、新しいclustered VMDKオプションが追加されています。これは、マルチライター対応のVMDKとは異なります。マルチライター対応のVMDKを使用するには、クラスタ化されたVMDKをサポートするFCプロトコルを介して提供されるデータストアが必要です。その他の制限が適用されます。構成のガイドラインについては、VMwareのドキュメントを参照してくださいlink:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/setup-for-windows-server-failover-clustering.html["Windows Server フェールオーバークラスタリングのセットアップ"^]。
 
-^2^NVMe-oFおよびNFS v4.1を使用するデータストアでは、vSphereレプリケーションが必要です。アレイベースのレプリケーションはSRMではサポートされていません。
+^2^NVMe-oFおよびNFS v4.1を使用するデータストアでは、vSphereレプリケーションが必要です。NFS v4.1のアレイベースのレプリケーションは、現在SRMでサポートされていません。NVMe-oFを使用したアレイベースのレプリケーションは、現在ONTAP tools for VMware vSphere Storage Replication Adapter（SRA）ではサポートされていません。
 
 
 

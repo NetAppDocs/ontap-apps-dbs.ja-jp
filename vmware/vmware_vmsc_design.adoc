@@ -20,17 +20,19 @@ summary: vMSC設計および実装ガイドライン
 
 == NetAppストレージ構成
 
-NetApp MetroCluster（MCC構成）のセットアップ手順については、次のWebサイトを参照してください。 https://docs.netapp.com/us-en/ontap-metrocluster/["MetroCluster のドキュメント"]。SnapMirrorアクティブ同期の手順については、 https://docs.netapp.com/us-en/ontap/smbc/index.html["SnapMirror のビジネス継続性機能の概要"]。
+NetApp MetroCluster（MCC構成）のセットアップ手順については、を参照してください https://docs.netapp.com/us-en/ontap-metrocluster/["MetroCluster のドキュメント"]。SnapMirror Active Sync（SMA）の手順については、を参照してください https://docs.netapp.com/us-en/ontap/smbc/index.html["SnapMirror のビジネス継続性機能の概要"]。
 
 一度MetroClusterを設定すると、従来のONTAP環境を管理するようなものになります。Storage Virtual Machine（SVM）は、コマンドラインインターフェイス（CLI）、System Manager、Ansibleなどのさまざまなツールを使用してセットアップできます。SVMを設定したら、通常の運用に使用する論理インターフェイス（LIF）、ボリューム、論理ユニット番号（LUN）をクラスタに作成します。これらのオブジェクトは、クラスタピアリングネットワークを使用してもう一方のクラスタに自動的にレプリケートされます。
 
-MetroClusterを使用していない場合は、SnapMirrorアクティブ同期を使用して、異なる障害ドメインにある複数のONTAPクラスタ間で、データストア単位でのきめ細かな保護とアクティブ/アクティブアクセスを実現できます。SnapMirrorアクティブ同期では、整合グループを使用して1つ以上のデータストア間で書き込み順序の整合性が確保されます。また、アプリケーションとデータストアの要件に応じて、複数の整合グループを作成することもできます。整合グループは、複数のデータストア間でのデータ同期が必要なアプリケーションに特に役立ちます。SnapMirror Active Syncでは、rawデバイスマッピング（RDM）とゲスト内iSCSIイニシエータを使用するゲスト接続ストレージもサポートされます。整合グループの詳細については、を参照してください。 https://docs.netapp.com/us-en/ontap/consistency-groups/index.html["整合グループの概要"]。
+MetroClusterを使用していない場合は、SnapMirrorアクティブ同期を使用して、異なる障害ドメインにある複数のONTAPクラスタ間で、データストア単位でのきめ細かな保護とアクティブ/アクティブアクセスを実現できます。SMAでは、整合グループ（CG）を使用して1つ以上のデータストア間で書き込み順序の整合性が確保されます。また、アプリケーションとデータストアの要件に応じて、複数のCGを作成することもできます。整合グループは、複数のデータストア間でのデータ同期が必要なアプリケーションに特に役立ちます。SMAは、Raw Device Mapping（RDM；rawデバイスマッピング）とゲスト内iSCSIイニシエータを使用するゲスト接続ストレージもサポートしています。整合グループの詳細については、を参照してください https://docs.netapp.com/us-en/ontap/consistency-groups/index.html["整合グループの概要"]。
 
-SnapMirrorアクティブ同期を使用するvMSC構成の管理は、MetroClusterとは多少異なります。まず、これはSANのみの構成であり、SnapMirrorのアクティブな同期でNFSデータストアを保護することはできません。次に、両方の障害ドメインのレプリケートされたデータストアにアクセスできるように、両方のLUNのコピーをESXiホストにマッピングする必要があります。
+ONTAP toolsで、vMSCのSnapMirrorアクティブ同期を簡単に設定できるようになりました。ONTAP tools vCenterプラグインを使用して、2つのONTAPクラスタ間にSnapMirrorのアクティブな同期関係を作成および管理できます。プラグインのシンプルでわかりやすいインターフェイスを使用して、2つのONTAPクラスタ間のSnapMirrorのアクティブな同期関係を作成および管理できます。ONTAP tools vCenterプラグインの詳細については、を参照 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["VMware vSphere 用の ONTAP ツール"]するか、にジャンプし https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/protect-cluster.html["ホストクラスタの保護を使用した保護"]ます。
+
+SnapMirrorアクティブ同期を使用するvMSC構成の管理は、MetroClusterとは多少異なります。まず、SMAはSANのみの構成であり、SnapMirrorのアクティブな同期でNFSデータストアを保護することはできません。次に、両方の障害ドメインのレプリケートされたデータストアにアクセスできるように、両方のLUNのコピーをESXiホストにマッピングする必要があります。
 
 
 
-== VMware vSphere HA の場合
+== VMware vSphereの設定
 
 
 
@@ -39,7 +41,7 @@ SnapMirrorアクティブ同期を使用するvMSC構成の管理は、MetroClus
 vSphere HAクラスタの作成は複数の手順で構成されます。詳細については、を参照してください。 https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-esxi-management/GUID-F7818000-26E3-4E2A-93D2-FCDCE7114508.html["docs.vmware.comのvSphere Clientでクラスタを作成および構成する方法"]。つまり、最初に空のクラスタを作成してから、vCenterを使用してホストを追加し、クラスタのvSphere HAなどの設定を指定する必要があります。
 
 
-NOTE: このドキュメントに記載されている内容は、 https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-recommended-practices["VMware vSphere Metro Storage Cluster Recommended Practices"]
+NOTE: このドキュメントに記載されている内容は優先され https://www.vmware.com/docs/vmw-vmware-vsphere-metro-storage-cluster-recommended-practices["VMware vSphere Metro Storage Cluster Recommended Practices"]ません。このコンテンツは参照しやすいように提供されており、VMwareの公式ドキュメントに代わるものではありません。
 
 HAクラスタを設定するには、次の手順を実行します。
 
@@ -133,8 +135,6 @@ image::../media/vmsc_3_6.png[概要が自動的に生成されたコンピュー
 
 === 詳細オプションの設定
 
-*ホスト障害の検出*
-
 HAクラスタ内のホストがネットワークまたはクラスタ内の他のホストに接続できなくなると、分離イベントが発生します。デフォルトでは、vSphere HAは管理ネットワークのデフォルトゲートウェイをデフォルトの分離アドレスとして使用します。ただし、ホストがpingを実行するための追加の隔離アドレスを指定して、隔離応答をトリガーするかどうかを判断することができます。pingを実行できる隔離IPをサイトごとに1つずつ追加します。ゲートウェイIPは使用しないでください。使用するvSphere HAの詳細設定はdas.isolationaddressです。この目的には、ONTAPまたはメディエーターのIPアドレスを使用できます。
 
 を参照してください https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-recommended-practices#sec2-sub5["core.vmware.com"] 詳細については、_____を参照してください。
@@ -149,18 +149,13 @@ NetApp MetroCluster向けVMware DRSアフィニティ
 
 このセクションでは、MetroCluster環境内のサイト/クラスタごとに、VMとホストのDRSグループを作成します。次に、VMホストアフィニティをローカルストレージリソースとアライメントするようにVM\Hostルールを設定します。たとえば、サイトAのVMがVMグループsitea_vmsに属し、サイトAのホストがホストグループsitea_hostsに属しているとします。次に、VM\Hostルールで、sitea_vmsをsitea_hostsのホストで実行するように記述します。
 
-
-
-=== _ベストプラクティス_
-
+[TIP]
+====
 * NetAppでは、「Must Run on Hosts in Group」という仕様ではなく、「Should Run on Hosts in Group」という仕様を使用することを強く推奨しています。サイトAのホストで障害が発生した場合、vSphere HAを使用してサイトAのVMをサイトBのホストで再起動する必要がありますが、後者の仕様では、HAがサイトBのVMを再起動することは難しいルールであるため許可されていません。前者の仕様はソフトルールであり、HAが発生した場合は違反となるため、パフォーマンスではなく可用性が確保されます。
+* 仮想マシンがVMとホストのアフィニティルールに違反したときにトリガーされるイベントベースのアラームを作成できます。vSphere Clientで、仮想マシンの新しいアラームを追加し、イベントトリガーとして[VM is violating VM-Host Affinity Rule]を選択します。アラームの作成と編集の詳細については、のドキュメントを参照してlink:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-monitoring-and-performance-8-0.html["vSphereの監視とパフォーマンス"^]ください。
 
 
-*[メモ]
-
-* 仮想マシンがVMとホストのアフィニティルールに違反したときにトリガーされるイベントベースのアラームを作成できます。vSphere Clientで、仮想マシンの新しいアラームを追加し、イベントトリガーとして[VM is violating VM-Host Affinity Rule]を選択します。アラームの作成と編集の詳細については、のドキュメントを参照して http://pubs.vmware.com/vsphere-51/topic/com.vmware.ICbase/PDF/vsphere-esxi-vcenter-server-51-monitoring-performance-guide.pdf["vSphereの監視とパフォーマンス"]ください。
-
-
+====
 
 
 === DRSホストグループの作成
@@ -219,33 +214,25 @@ image::../media/vmsc_3_8.png[概要が自動的に生成されたコンピュー
 
 
 
-== NetApp MetroCluster向けVMware vSphere Storage DRS
-
-
-
-=== データストアクラスタの作成
+== 必要に応じてデータストアクラスタを作成
 
 各サイトのデータストアクラスタを設定するには、次の手順を実行します。
 
 . vSphere Web Clientを使用して、[Storage]の下にあるHAクラスタが配置されているデータセンターに移動します。
 . データセンターオブジェクトを右クリックし、[Storage]>[New Datastore Cluster]を選択します。
-. [Turn on Storage DRS]オプションを選択し、[Next]をクリックします。
-. すべてのオプションを[No Automation（Manual Mode）]に設定し、[Next]をクリックします。
 
 
+[TIP]
+====
+* ONTAPストレージを使用する場合は、Storage DRSを無効にすることを推奨します。
+
+* Storage DRSは通常、ONTAPストレージシステムでの使用には必要ありません。推奨もされません。
+* ONTAPには、重複排除、圧縮、コンパクションなど、Storage DRSの影響を受ける独自のStorage Efficiency機能が用意されています。
+* ONTAPスナップショットを使用している場合、Storage vMotionによってスナップショットにVMのコピーが残されるため、ストレージ利用率が向上し、VMとそのONTAPスナップショットを追跡するNetApp SnapCenterなどのバックアップアプリケーションに影響が及ぶ可能性があります。
 
 
-==== _ベストプラクティス_
-
-* NetAppでは、移行が必要になるタイミングを管理者が判断して制御できるように、Storage DRSを手動モードで設定することを推奨しています。
-
-
+====
 image::../media/vmsc_3_9.png[Storage DRS,528,94]
-
-. [Enable I/O Metric for SDRS Recommendations]チェックボックスがオンになっていることを確認します。メトリック設定はデフォルト値のままにできます。
-
-
-image::../media/vmsc_3_10.png[SDRの推奨事項,624,241]
 
 . HAクラスタを選択し、[Next]をクリックします。
 
