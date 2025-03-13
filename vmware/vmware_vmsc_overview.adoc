@@ -32,7 +32,7 @@ NetApp SnapMirrorアクティブ同期は、FCPおよびiSCSI SANプロトコル
 
 を参照してください https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-esxi-management/GUID-F7818000-26E3-4E2A-93D2-FCDCE7114508.html["vSphere Clientでクラスタを作成および構成する方法"] をクリックしてvCenter HAを設定します。
 
-また、 https://core.vmware.com/resource/vmware-vsphere-metro-storage-cluster-recommended-practices["VMware vSphere Metro Storage Cluster Recommended Practices"]。
+も参照してください https://www.vmware.com/docs/vmw-vmware-vsphere-metro-storage-cluster-recommended-practices["VMware vSphere Metro Storage Cluster Recommended Practices"]。
 
 
 

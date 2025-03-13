@@ -2360,8 +2360,6 @@ REDO ログ</block>
   <block id="1b50110aedae4d8d2043a4eb9beb20af" category="cell">VMFS3.EnableBlockDelete の 2 つのオプションがあります</block>
   <block id="316084648bbafe451240702bd19c6ee9" category="cell">VMFS3.EnableVMFS6Unmap</block>
   <block id="befd90cd01403237f6fdf296822efbee" category="inline-link-macro">VMware vSphere API：アレイ統合（VAAI）</block>
-  <block id="e385d2442208cc1e23ca841b1f217380" category="cell">デフォルトのまま（1）
-詳細については、を参照してください <block ref="d124e203790e5f214a195f69cd068c6d" category="inline-link-macro-rx"></block></block>
   <block id="571cc1d48c6d1ff3cf7e3a54cb035753" category="cell">* NFS設定*</block>
   <block id="c3b49a515dd0046685e06092642aa139" category="cell">Net.TcpipHeapSize の場合</block>
   <block id="875f6b98e20edfecb56f9013d00987f6" category="cell">vSphere 6.0 以降： 32 に設定
@@ -3422,8 +3420,6 @@ SOAP over https 接続に使用されます</block>
   <block id="fc66ba7317ceb4220dc88aa267db085d" category="list-text">vCenterで使用するデータストアを両方のサイトから選択し、[OK]を押します。</block>
   <block id="1d2b14769d080b9214d9e407dfc92a64" category="section-title">詳細オプションの設定</block>
   <block id="a9316d69e5abcfaffc56fc8f5e645412" category="paragraph">HAクラスタ内のホストがネットワークまたはクラスタ内の他のホストに接続できなくなると、分離イベントが発生します。デフォルトでは、vSphere HAは管理ネットワークのデフォルトゲートウェイをデフォルトの分離アドレスとして使用します。ただし、ホストがpingを実行するための追加の隔離アドレスを指定して、隔離応答をトリガーするかどうかを判断することができます。pingを実行できる隔離IPをサイトごとに1つずつ追加します。ゲートウェイIPは使用しないでください。使用するvSphere HAの詳細設定はdas.isolationaddressです。この目的には、ONTAPまたはメディエーターのIPアドレスを使用できます。</block>
-  <block id="102d7879ceca393c309ef492c958e19d" category="inline-link">core.vmware.com</block>
-  <block id="27e2292ff6db48ed2e6d50b256eae43e" category="paragraph">を参照してください<block ref="43057df4f3a6b5f2fffe8b7c5a490646" category="inline-link-rx"></block> 詳細については、_____を参照してください。</block>
   <block id="3f44bb4a3b9420d495e400b9afbda2c7" category="paragraph">das.heartbeatDsPerHostという詳細設定を追加すると、ハートビートデータストアの数を増やすことができます。4つのハートビートデータストア（HB DSS）（サイトごとに2つ）を使用します。[Select from List but complent]オプションを使用します。これは、1つのサイトで障害が発生してもHB DSSが2つ必要になるためです。ただし、MCCやSnapMirrorのアクティブな同期で保護する必要はありません。</block>
   <block id="eaa1dfe3982e06655ce64e240c139b81" category="paragraph">NetApp MetroCluster向けVMware DRSアフィニティ</block>
   <block id="e32221c52eb3b0bbeb3ca79aad6c90f6" category="paragraph">このセクションでは、MetroCluster環境内のサイト/クラスタごとに、VMとホストのDRSグループを作成します。次に、VMホストアフィニティをローカルストレージリソースとアライメントするようにVM\Hostルールを設定します。たとえば、サイトAのVMがVMグループsitea_vmsに属し、サイトAのホストがホストグループsitea_hostsに属しているとします。次に、VM\Hostルールで、sitea_vmsをsitea_hostsのホストで実行するように記述します。</block>
@@ -3470,7 +3466,6 @@ SOAP over https 接続に使用されます</block>
   <block id="d3e911c902a6b066f9c31d471d16fb21" category="paragraph">2つのサイトにVMware HA / DRSクラスタを作成するために、ESXiホストをvCenter Server Appliance（vCSA）で使用および管理します。vSphere管理ネットワーク、vMotion®ネットワーク、および仮想マシンネットワークは、2つのサイト間の冗長ネットワークを介して接続されます。HA / DRSクラスタを管理するvCenter Serverは両方のサイトのESXiホストに接続でき、vCenter HAを使用して設定する必要があります。</block>
   <block id="da76be2bc20d4e043d9a2019b817214f" category="inline-link">vSphere Clientでクラスタを作成および構成する方法</block>
   <block id="e02f3e9258a23204655bd512ec53911d" category="paragraph">を参照してください<block ref="c06ae090600e7aa086edfa28514435e7" category="inline-link-rx"></block> をクリックしてvCenter HAを設定します。</block>
-  <block id="bdd88c75f085534f6e2cdc7726cf1dd6" category="paragraph">また、<block ref="3a8301f60ad04eb873ae8dea15ee0495" category="inline-link-rx"></block>。</block>
   <block id="38910d3dab2318849fd5f1a1dfbe0152" category="inline-link">VMwareストレージ互換性ガイド</block>
   <block id="838b66b875df1b432ac420a98cba3db6" category="paragraph">vSphere Metro Storage Clusterの設計ガイドラインの詳細については、次のドキュメントを参照してください。</block>
   <block id="07aaf2aebfd07b8763284018d1ebbf57" category="inline-link">NetApp MetroClusterによるVMware vSphereのサポート</block>
@@ -5732,7 +5727,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="18f5114f4a595ad26525bf20f301ce19" category="list-text"><block ref="20462cf0cb6f4e0f9c91cc66c831d98e" category="inline-link-rx"></block>ONTAP toolsのOVA、および必要に応じてSRAのtar.gzファイル。</block>
   <block id="aada29daee1d64ed0fe907043855cb7e" category="inline-image-macro">2つ</block>
   <block id="770c8023395525bc05b5a8fc2e6efa8b" category="list-title"><block ref="54f425ce8d89f4ed6b8a546561af5d60" category="inline-image-macro-rx" type="image"></block>IPアドレスとDNSレコードのプロビジョニング</block>
-  <block id="b63e31bbf24a6eef701dc39672946405" category="list-text">ネットワークチームに次のIP情報を要求します。最初の3つのIPアドレスが必要です。ノード2とノード3はスケールアウトハイアベイラビリティ（HA）環境に使用されます。DNSホストレコードが必要で、すべてのアドレスが同じVLAN上にある必要があります。</block>
   <block id="08b0c7e27d2f1780fce59893f12e7642" category="list-text">ONTAPツールのアプリケーションアドレスは_____________です。_________________。_________________。\\_____________</block>
   <block id="6bb090d29a0e3de8cc001d02c1e8a7b3" category="list-text">内部サービスのアドレスは_____________です。_________________。_________________。\\_____________</block>
   <block id="e32a9122e97bf17560b53c6993301629" category="list-text">ノード1のDNSホスト名__________________________________________________________________________</block>
@@ -5752,7 +5746,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="76841410d8f9a6881e0b96f150e9cedf" category="inline-link">ポートの要件</block>
   <block id="1cb44e38b7d534b49fb7ce15d6726cb0" category="list-text">ネットワークファイアウォールで、上記のIPアドレスに必要なポートを開きます。最新のアップデートについては、を参照してください<block ref="d75d54fbd8f18143d683ed6f5389e615" category="inline-link-rx"></block>。</block>
   <block id="981b8fcee42e1e726a67a2b9a98ea6e9" category="inline-image-macro">4つ</block>
-  <block id="fe2367acaa1f51e55b545df54a8794d7" category="list-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block>アプライアンスサービスの設定（オプション）</block>
   <block id="640e990f06389e4b49f54086ba1aba46" category="inline-link">アプライアンスの設定を編集してVASAサービスを有効にする</block>
   <block id="49b964c1f288e8e75650b3e86683914d" category="list-text">VVOLを使用するには、最初に行う必要があり<block ref="c9f7d482e0b51df808dc044e3e43f591" category="inline-link-rx"></block>ます。同時に、次の2つの項目を確認します。</block>
   <block id="8ba46a1826b102cd1b8b0fb75a241176" category="inline-link">高可用性を実現</block>
@@ -5760,23 +5753,19 @@ SOAP over HTTPS接続に使用</block>
   <block id="fddd8f455515e6a6de8e8d876641e0c5" category="inline-link">SRAサービスを有効にする</block>
   <block id="777b715f4e7db3295048bd9409cb3a0f" category="list-text">VMware Site Recovery ManagerまたはLive Site Recovery用のONTAP tools Storage Replication Adapter（SRA）を使用する場合は、を参照してください<block ref="9eb793199b56cb94f5df0c657a62ea9e" category="inline-link-rx"></block>。</block>
   <block id="e5d9de39f7ca1ba2637e5640af3ae8aa" category="inline-image-macro">5 つ</block>
-  <block id="fdf409c5a691a69cd744dfc08ae641b5" category="list-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block>証明書（オプション）</block>
   <block id="e03ec7d1e46f44c47e1547f8c19fdbb5" category="list-text">VMwareで複数のvCenterでVVOLを使用する場合は、CA署名証明書が必要です。</block>
   <block id="777f90dea67a6de19d7e4287d6d65525" category="list-text">VASAサービス\\___________________________________________________</block>
   <block id="50261e7dc97594e1ef47d1913fadd642" category="list-text">管理サービス\\___________________________________________________________</block>
   <block id="e6fbc0b9673f8c86726688d7607fc8f5" category="inline-image-macro">6</block>
-  <block id="45109aee8db55f9962ba496902ac47d1" category="list-title"><block ref="ef78558f80439832e0f51cc22cee8b8c" category="inline-image-macro-rx" type="image"></block>ストレージ</block>
   <block id="96c44f7328270a7b9e72a07f78739ecf" category="list-text">共有ストレージデバイス上にデータストアが必要です。必要に応じて、ノード1と同じデータストア上のコンテンツライブラリを使用して、VAAIでテンプレートをすばやくクローニングすることができます。</block>
   <block id="656b82abf6edc190097506cd4d1d585b" category="list-text">コンテンツライブラリ（HAにのみ必要）\\________________________________________________________________________________________________________________</block>
   <block id="99325facb7679dc357733bd909532cfc" category="list-text">ノード1のデータストア______________________________________________________________</block>
   <block id="f669e2c7e65edea7adca0c4006b6cf36" category="list-text">ノード2のデータストア（オプションですがHA用に推奨）\\________________________________________________________________________________________________________________________</block>
   <block id="5ba1096fffa0ecfd4695651916c48133" category="list-text">ノード3のデータストア（オプションですがHAには推奨）\\____________________________________________________________________________________________________________________</block>
   <block id="12e67aac3e7f9227cc35f8f047d7dc74" category="inline-image-macro">7</block>
-  <block id="34e299878c510a313972dbf8e915aa70" category="list-title"><block ref="36915574c413876eaa75cbd48f69fd00" category="inline-image-macro-rx" type="image"></block>OVAの導入</block>
   <block id="db5321854b38ff4107ff88c3d3fb2602" category="inline-link">OVAの導入</block>
   <block id="62386ee2b40ea01fd147eb04a3da8b17" category="list-text"><block ref="2b093a8e786abd40836246bfb87e05bd" category="inline-link-rx"></block>vSphere Clientを使用する。</block>
   <block id="baca0ca6729684fd54206793ae4b5bd5" category="inline-image-macro">8</block>
-  <block id="3af4c2c51fab2d80844fbb6e10989de8" category="list-title"><block ref="430057c670c01688e904ed2ba129a0b5" category="inline-image-macro-rx" type="image"></block>導入後のタスク</block>
   <block id="d40a477cc61e319a78ef1bb36d8ea566" category="list-text">HA環境でVMの非アフィニティルールを作成します。</block>
   <block id="4695b076293ddedd5434ae5a73b57ae2" category="list-text">HAを使用している場合は、Storage vMotionノード2と3を別 々 のデータストアに接続します（オプションですが推奨）。</block>
   <block id="fde3f7a850bbaaac2a3706bf8c7df54c" category="inline-link">ONTAPユーザのロールと権限の設定</block>
@@ -5786,10 +5775,7 @@ SOAP over HTTPS接続に使用</block>
   <block id="6245e46af5a3bdaf57696763c4214c70" category="inline-link">vCenter Serverインスタンスの追加</block>
   <block id="427d083edfb4d6df118817492fea1fea" category="list-text"><block ref="9271e724c67dd3dffeb4e3ddaf43b80d" category="inline-link-rx"></block>ONTAPツールマネージャ。</block>
   <block id="75299228e38c6c56354b3fbc53bd01db" category="inline-link">オンホオトクラスタ</block>
-  <block id="3a4a4867d2582a3fc7b55ad4df5113f7" category="list-text">マルチテナントSVMを使用している場合は<block ref="ea2efd531a0984091e8158139d5ccc0c" category="inline-link-rx"></block>、ONTAP tools ManagerでvCenterに関連付けます。</block>
   <block id="0583aea4353aeb5998071022ebbb79ae" category="inline-link">オンボードSVM</block>
-  <block id="8ad9f2408218e1b63c20ae491c20ce60" category="list-text">マルチテナントSVMを使用している場合は、ONTAP tools vCenter UIで操作し<block ref="d765a6bb593f5e86f1e69993d841269b" category="inline-link-rx"></block>ます。</block>
-  <block id="d7788ac532a6f39741dcd93fd04481e6" category="list-text">マルチテナントSVMを使用していない*場合は、ONTAP toolsのvCenter UIから直接入力し<block ref="ea2efd531a0984091e8158139d5ccc0c" category="inline-link-rx"></block>ます。または、このシナリオでは、VVOLを使用していないSVMを直接追加することもできます。</block>
   <block id="4d5a9665c20fe0f045d612f3d7c14c3a" category="inline-link">VMware Live Site RecoveryアプライアンスでのSRAの設定</block>
   <block id="74d3c40ee5d2741e75390e90d13a881a" category="list-text">SRM / VLSRに対してSRAを有効にして従来のデータストアを保護した場合は、<block ref="ae14a63430307f4358dbb1aa0a6215ef" category="inline-link-rx"></block>。</block>
   <block id="56b3d744b9b4be462a3690ae4544597f" category="inline-link">ほぼゼロRPO</block>
@@ -5951,4 +5937,24 @@ SOAP over HTTPS接続に使用</block>
   <block id="c50c3de11b39aab15ac6b3b860691105" category="paragraph">VMware Storage DRS機能を使用すると、データストアを1つのユニットに集約し、Storage I/O Control（SIOC）のしきい値を超えた場合に仮想マシンディスクのバランスを調整できます。</block>
   <block id="a6389705a0010980a83767268763aa53" category="sidebar">ONTAP toolsを使用した仮想ボリューム（VVol）10</block>
   <block id="d858ab232a556e2be473d51d09bc0c3d" category="sidebar">ONTAP toolsのインストールチェックリスト</block>
+  <block id="2e0a1393be1d4f990f277513b8384831" category="cell">デフォルトのままにする（1）詳細については、を参照してください。<block ref="3b98534d1167689d42f2d1a533484036" category="inline-link-macro-rx"></block></block>
+  <block id="79a22fb066bcc86a371f557f30051d43" category="inline-link">ゾーニングの設定</block>
+  <block id="b5d661217ddfecce129a41707ffa9fa9" category="list-text">ストレージ接続にFibre Channel（FC；ファイバチャネル）を使用するかどうかを決定します。その場合は、FCスイッチでESXiホストとSVMのFC LIFの間の接続を有効にする必要があります<block ref="1ce5ae0107fd362eacaa4ef5b56c5d82" category="inline-link-rx"></block>。</block>
+  <block id="49e1b0dac188727de519431ac2068825" category="list-text">ネットワークチームに次のIP情報を要求します。最初の3つのIPアドレスが必要です。ノード2とノード3はスケールアウトハイアベイラビリティ（HA）環境に使用されます。DNSホストレコードは必須であり、すべてのノード名とすべてのアドレスは同じVLANおよびサブネット上にある必要があります。</block>
+  <block id="7be8dd6dbcd142349f300df69f6a63d2" category="list-title"><block ref="beadfa85a2fdca06b91edc1131c603e6" category="inline-image-macro-rx" type="image"></block>ストレージ</block>
+  <block id="829d9899725b36358387edfa5df0e486" category="list-title"><block ref="99e8b2f00e172bfcff96afdce69907bc" category="inline-image-macro-rx" type="image"></block>OVAの導入</block>
+  <block id="2c63315a0e6899fa3f810f1b06553689" category="list-title"><block ref="ef78558f80439832e0f51cc22cee8b8c" category="inline-image-macro-rx" type="image"></block>ONTAPツールへのvCenterの追加</block>
+  <block id="0547f403694814dca82327ab77f95205" category="list-title"><block ref="36915574c413876eaa75cbd48f69fd00" category="inline-image-macro-rx" type="image"></block>ONTAPツールにストレージバックエンドを追加</block>
+  <block id="3317c36267d6f484693b29dbd86b1e79" category="list-text">SVMでストレージマルチテナンシーを使用する場合に使用</block>
+  <block id="5abf46747a299bb4d24d81d3a3f343aa" category="list-text"><block ref="40ea307f91b1c1591600230b15a0b728" category="inline-link-rx"></block>ONTAP tools Managerを使用し、vCenterに関連付けます。</block>
+  <block id="e69b3c58a2b1480f291387c690bf92b4" category="list-text"><block ref="9f5477aac946ec407262cd052d80864d" category="inline-link-rx"></block>ONTAP toolsのvCenter UIで、</block>
+  <block id="1ca4d08fe4d0cced2e4ebb5629b6613c" category="list-text">マルチテナントSVMを使用している場合*</block>
+  <block id="9e80f1d38a7781fc49c6800d20337ec2" category="list-text"><block ref="40ea307f91b1c1591600230b15a0b728" category="inline-link-rx"></block>ONTAP toolsのvCenter UIで直接実行できます。または、このシナリオでは、VVOLを使用していないSVMを直接追加することもできます。</block>
+  <block id="421bdf5be659af6d75aab31df92b7907" category="list-title"><block ref="430057c670c01688e904ed2ba129a0b5" category="inline-image-macro-rx" type="image"></block>アプライアンスサービスの設定（オプション）</block>
+  <block id="24db11216549ee55172c33cf3def2f3f" category="inline-image-macro">9つ</block>
+  <block id="8a339db13a88428ad39d370cfdd1129a" category="list-title"><block ref="b37b448eff4f65237cf47b29bdd2817c" category="inline-image-macro-rx" type="image"></block>証明書（オプション）</block>
+  <block id="a185c3c138dca5ef46afc33288a67d1f" category="inline-image-macro">テン</block>
+  <block id="71fc21799db94f8cae72c8732659492c" category="list-title"><block ref="6097494f0af631df68e3dcb7a6da8d2a" category="inline-image-macro-rx" type="image"></block>導入後のその他のタスク</block>
+  <block id="93da9d9a3842b9e17ab9de43211bf697" category="paragraph">詳細については、を参照してください<block ref="0802e50581eb79c07178f36fed073afc" category="inline-link-rx"></block>。</block>
+  <block id="275507174f3ab21b1a65c1d5e8446001" category="paragraph">も参照してください<block ref="0802e50581eb79c07178f36fed073afc" category="inline-link-rx"></block>。</block>
 </blocks>

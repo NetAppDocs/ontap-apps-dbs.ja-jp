@@ -35,8 +35,7 @@ NetAppは、NFSプロトコルとブロックプロトコルの両方に最適�
 | VMFS3.EnableBlockDelete の 2 つのオプションがあります | デフォルト（0）のままにしますが、必要に応じて変更できます。詳細については、を参照してください。 link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-storage-8-0/storage-provisioning-and-space-reclamation-in-vsphere/storage-space-reclamation-in-vsphere/space-reclamation-for-guest-operating-systems.html["VMFS5仮想マシンのスペース再生"] | いいえ 
 
 
-| VMFS3.EnableVMFS6Unmap | デフォルトのまま（1）
-詳細については、を参照してください link:https://core.vmware.com/resource/vmware-vsphere-apis-array-integration-vaai#sec9426-sub4["VMware vSphere API：アレイ統合（VAAI）"] | いいえ 
+| VMFS3.EnableVMFS6Unmap | デフォルトのままにする（1）詳細については、を参照してください。link:https://www.vmware.com/docs/vmw-vmware-vsphere-apis-array-integration-vaai["VMware vSphere API：アレイ統合（VAAI）"] | いいえ 
 
 
 3+| * NFS設定* 
