@@ -61,7 +61,11 @@ summary: ONTAP tools 10のインストールチェックリスト
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-5.png["5 つ"]OVAの導入
 [role="quick-margin-list"]
+* この手順の完了には最大45分かかることがあります。
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/deploy/ontap-tools-deployment.html["OVAの導入"]vSphere Clientを使用する。
+* OVA導入のステップ3で、[customize this virtual machines's hardware]オプションを選択し、ステップ10で以下を設定します。
+* "CPUホットアドを有効にする"
+* "メモリホットプラグ"
 
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-6.png["6"]ONTAPツールへのvCenterの追加
@@ -71,6 +75,7 @@ summary: ONTAP tools 10のインストールチェックリスト
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["7"]ONTAPツールにストレージバックエンドを追加
 [role="quick-margin-list"]
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/configure-user-role-and-privileges.html["ONTAPユーザのロールと権限の設定"]管理者を使用しない場合は、含まれているJSONファイルを使用します。
 * SVMでストレージマルチテナンシーを使用する場合に使用
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["オンホオトクラスタ"]ONTAP tools Managerを使用し、vCenterに関連付けます。
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["オンボードSVM"]ONTAP toolsのvCenter UIで、
@@ -96,7 +101,6 @@ summary: ONTAP tools 10のインストールチェックリスト
 [role="quick-margin-list"]
 * HA環境でVMの非アフィニティルールを作成します。
 * HAを使用している場合は、Storage vMotionノード2と3を別 々 のデータストアに接続します（オプションですが推奨）。
-* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/configure-user-role-and-privileges.html["ONTAPユーザのロールと権限の設定"]含まれているJSONファイルを使用します。
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/certificate-manage.html["証明書の管理を使用する"]ONTAP tools Managerで、必要なCA署名証明書をインストールします。
 * SRM / VLSRに対してSRAを有効にして従来のデータストアを保護した場合は、 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/protect/configure-on-srm-appliance.html["VMware Live Site RecoveryアプライアンスでのSRAの設定"]。
 * のネイティブバックアップを設定し https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/enable-backup.html["ほぼゼロRPO"]ます。

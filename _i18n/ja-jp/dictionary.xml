@@ -2171,7 +2171,6 @@ REDO ログ</block>
   <block id="70532c0374111d897ef1176b34b6396c" category="inline-link">NVMeと仮想ボリューム</block>
   <block id="50ec55042a7f4e8c2c66219ac096cfb3" category="inline-link">VMware.com</block>
   <block id="113c9d4e642d1ba4cc469267fb7fd0de" category="paragraph">詳細については、を参照してください<block ref="f8d477cd77073d731aafe4f52026608a" category="inline-link-rx"></block> オン<block ref="1f1565cca975c4a703345d21e7f273b8" category="inline-link-rx"></block></block>
-  <block id="9664cdf7951789389813facac649fec1" category="cell">VVOLは、VVOLデータストアに格納される実際の仮想マシンのファイルとディスクです。VVOL（単一）という用語は、単一の特定のファイル、LUN、またはネームスペースを指します。ONTAP は、データストアが使用するプロトコルに応じて、NVMeネームスペース、LUN、またはファイルを作成します。VVOLにはいくつかの異なるタイプがあり、最も一般的なものは、Config（メタデータファイル）、Data（仮想ディスクまたはVMDK）、Swap（VMの電源投入時に作成）です。VMware VM暗号化で保護されるvVolのタイプはOTHERになります。VMware VMの暗号化とONTAP ボリュームまたはアグリゲートの暗号化を混同しないでください。</block>
   <block id="937251054fa0c1a7b946f8928cc857b9" category="section-title">ポリシーベースの管理</block>
   <block id="2ce0d6ec59cca7e0b6e0bdc389301e63" category="section-title">ストレージポリシーを使用してVMを導入します</block>
   <block id="e0795f8b847058e171dec5a519757ece" category="image-alt">ストレージポリシーを使用して仮想マシンを導入します</block>
@@ -2207,7 +2206,6 @@ REDO ログ</block>
   <block id="858d314810762abccaa7baf230e3dc18" category="list-text">トレーニング環境</block>
   <block id="ab7bbc294bf0f0354980a3014e8f4219" category="section-title">VVOLの一般的なメリット</block>
   <block id="ccd6ea8c57e93a5401d07aab9c60f371" category="paragraph">VVOLを最大限に活用すると（上記のユースケースなど）、具体的に次のような機能強化が実現します。</block>
-  <block id="13491b3af50183642ea0035b2d1f95f9" category="list-text">クローンは、1つのボリューム内またはONTAP クラスタ内の複数のボリューム間ですばやく作成されます。これは、VAAIが有効な従来のクローンと比較して有利です。また、ストレージ効率にも優れています。ボリューム内のクローンには、ONTAPファイルクローンが使用されます。FlexCloneボリュームと同様に、ソースのVVOLファイル/ LUN /ネームスペースからの変更のみが格納されます。本番環境やその他のアプリケーションを目的とした長期的なVMを短時間で作成し、最小限のスペースでVMレベルの保護（VMware vSphere向けNetApp SnapCenter プラグイン、VMware管理スナップショットまたはVADPバックアップを使用）とパフォーマンス管理（ONTAP QoSを使用）を実現できます。</block>
   <block id="1c21847cdc5616af138ba0c03aad7adb" category="list-text">VVOLは、vSphere CSIでTKGを使用する場合に理想的なストレージテクノロジであり、vCenter管理者が管理する個別のストレージクラスと容量を提供します。</block>
   <block id="d5f068caef73978a5483badd927a7e98" category="list-text">Amazon EBSに似たサービスは、FCDを介して提供できます。FCD VMDKは、その名前が示すように、vSphereのファーストクラスの市民であり、ライフサイクルが割り当てられているVMとは別に個別に管理できるためです。</block>
   <block id="7e7040600922b2a78715f856613a3c08" category="doc">VVOLを保護する</block>
@@ -5769,7 +5767,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="d40a477cc61e319a78ef1bb36d8ea566" category="list-text">HA環境でVMの非アフィニティルールを作成します。</block>
   <block id="4695b076293ddedd5434ae5a73b57ae2" category="list-text">HAを使用している場合は、Storage vMotionノード2と3を別 々 のデータストアに接続します（オプションですが推奨）。</block>
   <block id="fde3f7a850bbaaac2a3706bf8c7df54c" category="inline-link">ONTAPユーザのロールと権限の設定</block>
-  <block id="881528aac1f478bd0dc0bcfa47b5bb31" category="list-text"><block ref="4ccf4d83bac775854f5f0cfb549c6d86" category="inline-link-rx"></block>含まれているJSONファイルを使用します。</block>
   <block id="064719d8b0308f2a4bc89590c3becdab" category="inline-link">証明書の管理を使用する</block>
   <block id="d59a2f6a46dd460183ac2d0c23cf6f75" category="list-text"><block ref="53fb9f19112a80479a138e84ac0182c6" category="inline-link-rx"></block>ONTAP tools Managerで、必要なCA署名証明書をインストールします。</block>
   <block id="6245e46af5a3bdaf57696763c4214c70" category="inline-link">vCenter Serverインスタンスの追加</block>
@@ -5902,7 +5899,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="256a688cc49c759f4698b8d5d1dd7b6a" category="paragraph">ASA R2システムでは、ボリュームやアグリゲートの概念がユーザから抽象化されるため、この複雑さは解消されます。動的配置は自動的に処理され、必要に応じてプロトコルエンドポイントが作成されます。追加の拡張が必要な場合は、追加のプロトコルエンドポイントをその場で自動的に作成できます。</block>
   <block id="66a77b29a2cc0bdf1aa1bf8f6d4dac96" category="paragraph">*十分な数のデータLIFがあることを確認してください。*を参照してください <block ref="d7e84668ac8db4130d4662ae6bde9c89" category="inline-link-macro-rx"></block>。</block>
   <block id="3518579aa5aedcfb4f4b83a6ccbe9cb6" category="admonition">本ドキュメントが更新され、vSphere 8.0 Update 3およびONTAP tools 10.3リリースの新しいvVol機能が追加されました。</block>
-  <block id="c79161a37daeef2304a0236280cff223" category="paragraph">ネットアップは2012年にVMwareとの連携を開始し、vSphere APIs for Storage Awareness（VASA）for vSphere 5のサポートを開始しました。この初期のVASA Providerでは、プロファイルにストレージ機能を定義することができました。このプロファイルを使用すると、プロビジョニング時やポリシーへの準拠状況の確認時にデータストアをフィルタリングできます。時間の経過とともに、プロビジョニングの自動化を可能にする新しい機能が追加されたり、仮想ボリューム（VVol）が追加されたりして、個 々 のストレージオブジェクトが仮想マシンファイルと仮想ディスクに使用されたりします。これらのオブジェクトにはLUNやファイルが含まれ、現在はvSphere 8-NVMeネームスペースに対応しています。NetAppは、2015年にvSphere 6でリリースされたVVOLのリファレンスパートナーとしてVMwareと緊密に連携し、またvSphere 8でNVMe over Fabricsを使用したVVOLの設計パートナーとしても協力しました。ネットアップでは、ONTAP の最新機能を活用できるように、VVOLの機能を継続的に強化しています。</block>
   <block id="b2dd36bd4918e00f8b2e15e6d62a4b94" category="section-title">VASA Provider</block>
   <block id="0a4ba68e118d83e29ea66516a02f1b48" category="section-title">プロトコルエンドポイント（PE）</block>
   <block id="974863a1395a284a680d09e18cf6c9cc" category="section-title">仮想プロトコルエンドポイント（VPE）</block>
@@ -5911,7 +5907,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="3d947d83ddfd03d217cdfcc09be70c32" category="paragraph">VMware vSphere APIs for Storage Awareness（VASA）を使用すると、VM管理者は、ストレージチームとやり取りすることなく、VMのプロビジョニングに必要なストレージ機能を簡単に使用できます。VASAがリリースされるまではVM管理者はVMストレージポリシーを定義できましたが、適切なデータストアを特定するためにはストレージ管理者と協力しなければなりませんでした。多くの場合、ドキュメントや命名規則を使用していました。VASAを使用すると、適切な権限を持つvCenter管理者は、vCenterユーザがVMのプロビジョニングに使用できる一連のストレージ機能を定義できます。VMストレージポリシーとデータストア機能をマッピングすることで、vCenterで互換性のあるデータストアのリストを表示して選択できるほか、ARIA（旧vRealize）AutomationやTanzu Kubernetes Gridなどの他のテクノロジを有効にして、割り当てられたポリシーからストレージを自動的に選択できます。このアプローチは、ストレージポリシーベースの管理と呼ばれます。VASA ProviderのルールとVMストレージポリシーは従来のデータストアでも使用できますが、ここではVVOLデータストアに焦点を当てます。</block>
   <block id="9f1893d8db5ceaf62726d1a0aa228224" category="section-title">VMストレージ ポリシー</block>
   <block id="0aa8052a92097a4f8ec3114e7249a0e1" category="paragraph">仮想マシンストレージポリシーは、vCenterの[Policies and Profiles]に作成されます。VVOLの場合は、NetApp VVOLストレージタイププロバイダから提供されるルールを使用してルールセットを作成します。ONTAP tools 10.Xでは、VMストレージポリシー自体にストレージ属性を直接指定できるため、ONTAP tools 9.Xよりもシンプルなアプローチが採用されています。</block>
-  <block id="6f8bbed3f609d6b6a41c94fa3692df52" category="paragraph">前述したように、ポリシーを使用すると、ボリュームのプロビジョニングタスクを合理化できます。適切なポリシーを選択するだけで、そのポリシーをサポートするvVolデータストアがVASA Providerに表示され、準拠している個 々 のFlexVol volumeにvVolが配置されます。</block>
   <block id="2efad47a2579a212fb659be8b8101b3c" category="paragraph">VMのプロビジョニングが完了すると、VASA Providerは準拠状況を継続的にチェックし、元のボリュームがポリシーに準拠しなくなるとvCenterでアラームをVM管理者に通知します。</block>
   <block id="ede8e2fa9dea87dd87a82bda2b2cf090" category="paragraph">NetApp MetroCluster（MCC構成）のセットアップ手順については、を参照してください<block ref="2c736bccede87dae47dcf61108f083c4" category="inline-link-rx"></block>。SnapMirror Active Sync（SMA）の手順については、を参照してください<block ref="14203840309dd1b6e13f73373477bb9d" category="inline-link-rx"></block>。</block>
   <block id="ea27eb943310e6748735c2b98c65f5fd" category="paragraph">MetroClusterを使用していない場合は、SnapMirrorアクティブ同期を使用して、異なる障害ドメインにある複数のONTAPクラスタ間で、データストア単位でのきめ細かな保護とアクティブ/アクティブアクセスを実現できます。SMAでは、整合グループ（CG）を使用して1つ以上のデータストア間で書き込み順序の整合性が確保されます。また、アプリケーションとデータストアの要件に応じて、複数のCGを作成することもできます。整合グループは、複数のデータストア間でのデータ同期が必要なアプリケーションに特に役立ちます。SMAは、Raw Device Mapping（RDM；rawデバイスマッピング）とゲスト内iSCSIイニシエータを使用するゲスト接続ストレージもサポートしています。整合グループの詳細については、を参照してください<block ref="8bba9b5b97dba092834d7a48a07f102d" category="inline-link-rx"></block>。</block>
@@ -5957,4 +5952,13 @@ SOAP over HTTPS接続に使用</block>
   <block id="71fc21799db94f8cae72c8732659492c" category="list-title"><block ref="6097494f0af631df68e3dcb7a6da8d2a" category="inline-image-macro-rx" type="image"></block>導入後のその他のタスク</block>
   <block id="93da9d9a3842b9e17ab9de43211bf697" category="paragraph">詳細については、を参照してください<block ref="0802e50581eb79c07178f36fed073afc" category="inline-link-rx"></block>。</block>
   <block id="275507174f3ab21b1a65c1d5e8446001" category="paragraph">も参照してください<block ref="0802e50581eb79c07178f36fed073afc" category="inline-link-rx"></block>。</block>
+  <block id="c44625cf01f743c720301c28e8461709" category="list-text">この手順の完了には最大45分かかることがあります。</block>
+  <block id="7747c50f7bb3ac05c39d999f8d5ce43e" category="list-text">OVA導入のステップ3で、[customize this virtual machines's hardware]オプションを選択し、ステップ10で以下を設定します。</block>
+  <block id="a7510781f5c52d40e5706471809518f0" category="list-text">"CPUホットアドを有効にする"</block>
+  <block id="5b1ae3ca31ee580e9664ebf0949a302c" category="list-text">"メモリホットプラグ"</block>
+  <block id="2cd9adcb9e8de7c58834011ca647797d" category="list-text"><block ref="4ccf4d83bac775854f5f0cfb549c6d86" category="inline-link-rx"></block>管理者を使用しない場合は、含まれているJSONファイルを使用します。</block>
+  <block id="067561a3b92d67321174249eb7de567d" category="paragraph">ネットアップは2012年にVMwareとの連携を開始し、vSphere APIs for Storage Awareness（VASA）for vSphere 5のサポートを開始しました。この初期のVASA Providerでは、プロファイルにストレージ機能を定義することができました。このプロファイルを使用すると、プロビジョニング時やポリシーへの準拠状況の確認時にデータストアをフィルタリングできます。時間の経過とともに、プロビジョニングの自動化を可能にする新しい機能が追加されたり、仮想ボリューム（VVol）が追加されたりして、個 々 のストレージオブジェクトが仮想マシンファイルと仮想ディスクに使用されたりします。これらのオブジェクトには、LUN、ファイルが含まれ、vSphere 8-NVMeネームスペース（ONTAP tools 9.13P2で使用）に対応できるようになりました。NetAppは、2015年にvSphere 6でリリースされたVVOLのリファレンスパートナーとしてVMwareと緊密に連携し、またvSphere 8でNVMe over Fabricsを使用したVVOLの設計パートナーとしても協力しました。ネットアップでは、ONTAP の最新機能を活用できるように、VVOLの機能を継続的に強化しています。</block>
+  <block id="e867f73e9a09d015c82be5c45264cda9" category="paragraph">VVOLは、VVOLデータストアに格納される実際の仮想マシンのファイルとディスクです。VVOL（単一）という用語は、単一の特定のファイル、LUN、またはネームスペースを指します。ONTAP は、データストアが使用するプロトコルに応じて、NVMeネームスペース、LUN、またはファイルを作成します。VVOLにはいくつかのタイプがあります。最も一般的なものは、Config（VMFSが搭載されている唯一のもので、VMのVMXファイルなどのメタデータファイルが含まれています）、データ（仮想ディスクまたはVMDK）、スワップ（VMの電源オン時に作成されます）です。VMware VMの暗号化によって保護されるVVOLのタイプは、OTHERになります。VMware VMの暗号化とONTAP ボリュームまたはアグリゲートの暗号化を混同しないでください。</block>
+  <block id="f615a85ee8b4ffd3bdd64ab72c2cf934" category="paragraph">前述したように、ポリシーを使用すると、VMまたはVMDKのプロビジョニングタスクを合理化できます。適切なポリシーを選択するだけで、そのポリシーをサポートするvVolデータストアがVASA Providerに表示され、準拠している個 々 のFlexVol volumeにvVolが配置されます。</block>
+  <block id="d5938f26039c87ff0b18251b9b89e0ec" category="list-text">クローンは、1つのボリューム内またはONTAP クラスタ内の複数のボリューム間ですばやく作成されます。これは、VAAIが有効な従来のクローンと比較して有利です。また、ストレージ効率にも優れています。ボリューム内のクローンには、ONTAPファイルクローンが使用されます。FlexCloneボリュームと同様に、ソースのVVOLファイル/ LUN /ネームスペースからの変更のみが格納されます。本番環境やその他のアプリケーションを目的とした長期的なVMを短時間で作成し、最小限のスペースでVMレベルの保護（VMware vSphere向けNetApp SnapCenter プラグイン、VMware管理スナップショットまたはVADPバックアップを使用）とパフォーマンス管理（ONTAP QoSを使用）を実現できます。ボリューム間のクローンは、VAAIよりもVVOLを使用する方がはるかに高速です。VASAを使用すると、コピーが完了する前にクローンを作成し、デスティネーションでクローンにアクセスできるようになります。データブロックはバックグラウンドプロセスとしてコピーされ、デスティネーションVVOLにデータが入力されます。これは、従来のLUNに対してONTAPの無停止でのLUN移動を実行する方法と似ています。</block>
 </blocks>
