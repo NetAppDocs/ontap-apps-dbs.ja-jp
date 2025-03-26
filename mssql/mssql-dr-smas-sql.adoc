@@ -6,7 +6,10 @@ summary: Microsoft SQL ServerとSnapMirrorのアクティブな同期
 searchtitle: Microsoft SQL ServerとSnapMirrorのアクティブな同期 
 ---
 = 概要
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 
@@ -21,7 +24,7 @@ SQL Serverは、いくつかの方法でSnapMirrorアクティブ同期と連携
 
 スタンドアロン構成では、SQL Serverを1つのサイトでのみ実行できます。おそらくlink:mssql-dr-smas-uniform.html["均一（ Uniform ）"]アクセスが使用されます。
 
-image:smas-onehost.png["アクセスが統一された単一のホスト"]
+image:../media/smas-onehost.png["アクセスが統一された単一のホスト"]
 
 アクセス方法が統一されていれば、どちらかのサイトでストレージ障害が発生してもデータベースの処理は中断されません。データベース・サーバを含むサイトで完全なサイト障害が発生すると'当然'システム停止が発生します
 

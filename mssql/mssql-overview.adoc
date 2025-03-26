@@ -6,7 +6,10 @@ summary: ONTAP上のMicrosoft SQL Server
 searchtitle: ONTAP上のMicrosoft SQL Server 
 ---
 = 概要
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

@@ -14,7 +14,7 @@ SnapMirror Active Syncでは、計画的フェイルオーバーと計画外フ�
 
 緑の線はアクティブなパスですが、そのパスのIOをSnapMirrorのアクティブな同期パス経由で渡す必要があるため、レイテンシが高くなります。追加のレイテンシは、SnapMirrorアクティブ同期に使用されるサイト間のインターコネクトの速度によって異なります。
 
-image:smas-failover-1.png["エラー：グラフィックイメージがありません"]
+image:../media/smas-failover-1.png["SnapMirrorアクティブ同期の通常動作"]
 
 
 
@@ -22,7 +22,7 @@ image:smas-failover-1.png["エラー：グラフィックイメージがあり�
 
 計画的フェイルオーバーまたは計画外フェイルオーバーのためにアクティブなミラーコピーを使用できなくなった場合は、明らかに使用できなくなります。ただし、リモートシステムには同期レプリカがあり、リモートサイトへのSANパスはすでに存在します。リモートシステムは、そのLUNのIOを処理できます。
 
-image:smas-failover-2.png["エラー：グラフィックイメージがありません"]
+image:../media/smas-failover-2.png["SnapMirrorアクティブ同期エラー"]
 
 
 
@@ -30,7 +30,7 @@ image:smas-failover-2.png["エラー：グラフィックイメージがあり�
 
 フェイルオーバーを実行すると、リモートコピーがアクティブコピーになります。パスが[Active]から[Active]/[Optimized]に変更され、IOは引き続きデータ損失なしで処理されます。
 
-image:smas-failover-3.png["エラー：グラフィックイメージがありません"]
+image:../media/smas-failover-3.png["SnapMirrorアクティブ同期フェイルオーバー"]
 
 
 
@@ -38,7 +38,7 @@ image:smas-failover-3.png["エラー：グラフィックイメージがあり�
 
 ソースシステムが稼働状態に戻ると、SnapMirrorアクティブ同期はレプリケーションを再同期できますが、逆方向に実行されます。現在の構成は、アクティブミラーサイトが反転されている点を除き、基本的には開始点と同じです。
 
-image:smas-failover-4.png["エラー：グラフィックイメージがありません"]
+image:../media/smas-failover-4.png["SnapMirrorアクティブ同期の修復"]
 
 
 
@@ -46,4 +46,4 @@ image:smas-failover-4.png["エラー：グラフィックイメージがあり�
 
 必要に応じて、管理者はフェイルバックを実行し、LUNのアクティブコピーを元のコントローラに戻すことができます。
 
-image:smas-failover-1.png["エラー：グラフィックイメージがありません"]
+image:../media/smas-failover-1.png["SnapMirrorアクティブ同期フェイルバック"]

@@ -6,7 +6,10 @@ summary: ONTAPを使用したMicrosoft SQL Serverディザスタリカバリ
 searchtitle: ONTAPを使用したMicrosoft SQL Serverディザスタリカバリ 
 ---
 = ディザスタリカバリ
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

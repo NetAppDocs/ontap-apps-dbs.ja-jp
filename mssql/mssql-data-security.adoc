@@ -1,17 +1,20 @@
 ---
 sidebar: sidebar 
 permalink: mssql/mssql-data-security.html 
-keywords: MSSQL,SQL Server, securing databases on ONTAP, snaplock, multiadmin verification, backup, tamperproof snapshots 
+keywords: MSSQL, SQL Server, securing databases on ONTAP, snaplock, multiadmin verification, backup, tamperproof snapshots 
 summary: ONTAP上のMicrosoft SQL Serverのセキュリティ保護 
 searchtitle: ONTAP上のMicrosoft SQL Serverのセキュリティ保護 
 ---
 = データセキュリティ
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 
 [role="lead"]
-SQL Serverデータベース環境のセキュリティ保護は、データベース自体の管理にとどまらない多次元的な取り組みです。ONTAPには、データベースインフラのストレージを保護するために設計された独自の機能がいくつか用意されています。
+SQL Serverデータベース環境の保護は、データベース自体の管理にとどまらない多次元的な取り組みです。ONTAPには、データベースインフラのストレージを保護するために設計された独自の機能がいくつか用意されています。
 
 
 
@@ -21,39 +24,45 @@ SQL Serverデータベース環境のセキュリティ保護は、データベ�
 
 場合によっては、ONTAPで直接Snapshotのスケジュールを設定できます。また、スナップショットを作成する前に、SnapCenterなどのソフトウェアでアプリケーションやOSの処理をオーケストレーションしなければならない場合もあります。ワークロードに最適なアプローチにかかわらず、アグレッシブなスナップショット戦略を使用すると、ブートLUNからミッションクリティカルなデータベースまで、すべてのバックアップに頻繁かつ簡単にアクセスできるため、データのセキュリティを確保できます。
 
-*注*：ONTAPフレキシブルボリューム、つまり、ボリュームはLUNと同義ではありません。ボリュームは、ファイルやLUNなどのデータ用の管理コンテナです。たとえば、データベースを8 LUNのストライプセットに配置し、すべてのLUNを1つのボリュームに格納するとします。
+[NOTE]
+====
+ONTAPフレキシブルボリューム、つまり、ボリュームはLUNと同義ではありません。ボリュームは、ファイルやLUNなどのデータ用の管理コンテナです。たとえば、データベースを8 LUNのストライプセットに配置し、すべてのLUNを1つのボリュームに格納するとします。
 
-スナップショットの詳細については、 link:https://docs.netapp.com/us-en/ontap/data-protection/manage-local-snapshot-copies-concept.html["こちらをご覧ください。"]
+====
+スナップショットの詳細については、を参照してください。link:https://docs.netapp.com/us-en/ontap/data-protection/manage-local-snapshot-copies-concept.html["ONTAPのドキュメント"]
 
 
 
 == スナップショットの改ざん防止
 
-ONTAP 9.12.1以降では、Snapshotは読み取り専用であるだけでなく、偶発的または意図的な削除からも保護できます。この機能は改ざん防止スナップショットと呼ばれます。保持期間は、Snapshotポリシーを使用して設定および適用できます。作成されたスナップショットは、有効期限に達するまで削除できません。管理またはサポートセンターのオーバーライドはありません。
+ONTAP 9.12.1以降では、スナップショットは読み取り専用であるだけでなく、偶発的または意図的な削除からも保護できます。この機能は改ざん防止スナップショットと呼ばれます。保持期間は、Snapshotポリシーを使用して設定および適用できます。作成されたスナップショットは、有効期限に達するまで削除できません。管理またはサポートセンターのオーバーライドはありません。
 
 これにより、侵入者、悪意のある内部者、さらにはランサムウェア攻撃さえも、バックアップが原因でONTAPシステム自体にアクセスできたとしても、バックアップを侵害することはできません。頻繁なSnapshotスケジュールと組み合わせることで、非常に強力なデータ保護と非常に低いRPOを実現できます。
 
-改ざん防止スナップショットの詳細については、 link:https://docs.netapp.com/us-en/ontap/snaplock/snapshot-lock-concept.html["こちらをご覧ください。"]
+
+NOTE: 改ざん防止スナップショットは、ファブリックプールを使用して階層化できません。
+
+改ざん防止スナップショットの詳細については、link:https://docs.netapp.com/us-en/ontap/snaplock/snapshot-lock-concept.html["ONTAPのドキュメント"]
 
 
 
 == SnapMirror レプリケーション
 
-Snapshotはリモートシステムにレプリケートすることもできます。これには改ざん防止Snapshotも含まれます。このSnapshotでは、リモートシステムに保持期間が適用され、適用されます。その結果、ローカルSnapshotと同じデータ保護のメリットが得られますが、データは2つ目のストレージアレイに配置されます。これにより、元のアレイを破棄してもバックアップが損なわれることはありません。
+Snapshotはリモートシステムにレプリケートすることもできます。これには改ざん防止スナップショットが含まれます。このスナップショットでは、リモートシステムに保持期間が適用され、適用されます。その結果、ローカルSnapshotと同じデータ保護のメリットが得られますが、データは2つ目のストレージアレイに配置されます。これにより、元のアレイを破棄してもバックアップが損なわれることはありません。
 
 2つ目のシステムでは、管理セキュリティのための新しいオプションも開きます。たとえば、NetAppのお客様によっては、プライマリストレージシステムとセカンダリストレージシステムの認証クレデンシャルを分離している場合があります。1人の管理ユーザが両方のシステムにアクセスできることはないため、悪意のある管理者がデータのすべてのコピーを削除することはできません。
 
-SnapMirrorの詳細については、 link:https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-unified-replication-concept.html["こちらをご覧ください。"]
+SnapMirrorの詳細については、link:https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-unified-replication-concept.html["ONTAPのドキュメント"]
 
 
 
 == Storage Virtual Machine
 
-新しく構成したONTAPストレージシステムは、新しくプロビジョニングしたVMware ESXサーバと似ています。これは、仮想マシンが作成されるまで、どちらもユーザをサポートできないためです。ONTAPでは、ストレージ管理の最も基本的な単位となるStorage Virtual Machine（SVM）を作成します。各SVMには、独自のストレージリソース、プロトコル構成、IPアドレス、FCP WWNがあります。  これがONTAPマルチテナンシーの基盤です。
+新しく構成したONTAPストレージシステムは、新しくプロビジョニングしたVMware ESXサーバと似ています。これは、仮想マシンが作成されるまで、どちらもユーザをサポートできないためです。ONTAPでは、ストレージ管理の最も基本的な単位となるStorage Virtual Machine（SVM）を作成します。各SVMには、独自のストレージリソース、プロトコル構成、IPアドレス、FCP WWNがあります。これがONTAPマルチテナンシーの基盤です。
 
 たとえば、重要な本番環境のワークロード用に1つのSVMを設定し、開発アクティビティ用にもう1つのSVMを別のネットワークセグメントに設定できます。これにより、本番用SVMへのアクセスを特定の管理者に制限し、開発者は開発用SVM内のストレージリソースをより広範に制御できるようになります。また、特に重要な目に見えるデータを格納するために、財務チームや人事チームに3つ目のSVMを用意しなければならない場合もあります。
 
-SVMの詳細については、 link:https://docs.netapp.com/us-en/ontap/concepts/storage-virtualization-concept.html["こちらをご覧ください。"]
+SVMの詳細については、を参照してください。link:https://docs.netapp.com/us-en/ontap/concepts/storage-virtualization-concept.html["ONTAPのドキュメント"]
 
 
 
@@ -61,15 +70,15 @@ SVMの詳細については、 link:https://docs.netapp.com/us-en/ontap/concepts
 
 ONTAPには、管理者ログイン用の強力なロールベースアクセス制御（RBAC）が用意されています。クラスタへのフルアクセスが必要な管理者もいれば、特定のSVMへのアクセスのみが必要な管理者もいます。高度なヘルプデスク担当者は、ボリュームのサイズを増やす機能を必要とする場合があります。その結果、管理者ユーザに、職務を遂行するために必要なアクセス権を付与するだけでなく、それ以上のアクセス権を付与することができます。さらに、さまざまなベンダーのPKIを使用してこれらのログインを保護し、sshキーのみへのアクセスを制限し、失敗したログイン試行のロックアウトを強制できます。
 
-管理アクセス制御の詳細については、 link:https://docs.netapp.com/us-en/ontap/authentication/manage-access-control-roles-concept.html["こちらをご覧ください。"]
+管理アクセス制御の詳細については、を参照してください。link:https://docs.netapp.com/us-en/ontap/authentication/manage-access-control-roles-concept.html["ONTAPのドキュメント"]
 
 
 
-== マルチファクタ認証
+== 多要素認証（MFA）
 
 ONTAPおよびその他の一部のNetApp製品では、さまざまな方法を使用した多要素認証（MFA）がサポートされるようになりました。その結果、ユーザー名/パスワードだけでは、FOBやスマートフォンアプリなどの2番目の要因からのデータがないセキュリティスレッドではありません。
 
-詳細については、をクリックしてください link:https://docs.netapp.com/us-en/ontap/authentication/mfa-overview.html["こちらをご覧ください。"]
+多要素認証（MFA）の詳細については、link:https://docs.netapp.com/us-en/ontap/authentication/mfa-overview.html["ONTAPのドキュメント"]
 
 
 
@@ -77,7 +86,7 @@ ONTAPおよびその他の一部のNetApp製品では、さまざまな方法を
 
 自動化にはAPI呼び出しが必要ですが、すべてのツールにフル管理アクセスが必要となるわけではありません。自動化システムを保護するために、APIレベルでRBACを使用することもできます。自動化ユーザアカウントは、必要なAPI呼び出しだけに制限できます。たとえば、監視ソフトウェアには変更アクセスは必要なく、読み取りアクセスのみが必要です。ストレージをプロビジョニングするワークフローでは、ストレージを削除する機能は必要ありません。
 
-詳細については、c https://docs.netapp.com/us-en/ontap-automation/rest/rbac_overview.html[here.]
+API RBACの詳細については、link:https://docs.netapp.com/us-en/ontap-automation/rest/rbac_overview.html["ONTAPのドキュメント"]
 
 
 
@@ -85,4 +94,4 @@ ONTAPおよびその他の一部のNetApp製品では、さまざまな方法を
 
 特定のアクティビティを承認するために、それぞれ独自のクレデンシャルを持つ2人の異なる管理者を要求することで、多要素認証をさらに進めることができます。これには、ログイン権限の変更、診断コマンドの実行、データの削除が含まれます。
 
-マルチ管理者認証（MAV）の詳細については、 link:https://docs.netapp.com/us-en/ontap/multi-admin-verify/index.html["こちらをご覧ください"]
+マルチ管理者認証（MAV）の詳細については、link:https://docs.netapp.com/us-en/ontap/multi-admin-verify/index.html["ONTAPのドキュメント"]

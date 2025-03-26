@@ -140,7 +140,6 @@
   <block id="1c237d1ebcdeff13ae0145c741d9401d" category="admonition">このアプローチは、バックアップに必要なスペースをより効率的に管理するのに役立ちますが、FabricPool自体はバックアップテクノロジではありません。バックアップファイルをオブジェクトストアに階層化すると、ファイルは元のストレージシステムに引き続き表示されるため、管理が簡易化されますが、オブジェクトストアデスティネーションのデータブロックは元のストレージシステムに依存します。ソースボリュームが失われると、オブジェクトストアのデータを使用できなくなります。</block>
   <block id="a19665c8f7c0210f96ad2934ad0ee361" category="paragraph">ONTAPシステムでは、ストレージは4KB単位で編成されます。データベースまたはファイルシステムの8KBブロックは、4KBブロック2個に正確にマッピングする必要があります。LUNの構成エラーによってアライメントがいずれかの方向に1KBずれた場合、8KBの各ブロックは、4KBのストレージブロックが2つではなく3つに配置されます。このようにすると、原因によってレイテンシが増加し、ストレージシステム内で実行される原因の追加I/Oが発生します。</block>
   <block id="211a9fe299057fe8665b591dddbac56d" category="paragraph">アライメントはLVMアーキテクチャにも影響します。論理ボリュームグループ内の物理ボリュームがドライブデバイス全体に定義されている場合（パーティションは作成されません）、LUN上の最初の4KBブロックがストレージシステム上の最初の4KBブロックとアライメントされます。これは正しいアライメントです。パーティションで問題が発生するのは、OSがLUNを使用する開始場所が変わるためです。オフセットが4KB単位でずれているかぎり、LUNはアライメントされます。</block>
-  <block id="7c8a0aad1f59988f8160921a07203bb4" category="paragraph">Linux環境では、ドライブデバイス全体に論理ボリュームグループを構築します。パーティションが必要な場合は、次のコマンドを実行してアライメントを確認します。<block ref="16ae8c2dc7757a3180ce37bad780251a" prefix=" " category="inline-code"></block> 各パーティションの開始が8の倍数であることを確認します。つまり、パーティションは8の倍数の512バイトセクター（4KB）から開始されます。</block>
   <block id="e98a692d783d8d778aab49ed4c55e214" category="doc">サイト障害からの保護：NVRAMとMetroCluster</block>
   <block id="186577daf29184ed8a55cf899ba2979c" category="paragraph">MetroClusterは、次の方法でNVRAMデータ保護を拡張します。</block>
   <block id="679f5a5873d7d3378cf4b3035fd5cb13" category="list-text">2ノード構成では、NVRAMデータがスイッチ間リンク（ISL）を使用してリモートパートナーにレプリケートされます。</block>
@@ -184,10 +183,8 @@
   <block id="8e7705fe4aea384d7f6a99ab6dc0f408" category="section-title">ファブリック接続MetroClusterを使用したMetroCluster Tiebreaker</block>
   <block id="897b7698cb343dbc3452e845705ab0f3" category="inline-link">NetApp MetroCluster Tiebreaker</block>
   <block id="9c093f14319e8253b8c9b37290597239" category="inline-link">NetApp Support Site</block>
-  <block id="a1d9fc4fb49119a9fe9b39abec0a769b" category="paragraph">。<block ref="9332969062716487f0feefe076babf99" category="inline-link-rx"></block> ソフトウェアを第3のサイトで実行して、MetroCluster環境の健全性を監視し、通知を送信し、必要に応じて災害時にスイッチオーバーを強制的に実行できます。Tiebreakerの完全な概要は、<block ref="c21658567f794984b03c21186a56713d" category="inline-link-rx"></block>ただし、MetroCluster Tiebreakerの主な目的はサイトの損失を検出することです。また、サイトの損失と接続の損失を区別する必要があります。たとえば、Tiebreakerがプライマリサイトに到達できなかったためにスイッチオーバーが発生しないようにします。そのため、Tiebreakerはリモートサイトがプライマリサイトに接続する能力も監視します。</block>
   <block id="6f29b1849750ceee5eb7f6f02d100e6b" category="paragraph">AUSOによる自動スイッチオーバーもMCTBと互換性があります。AUSOは、特定の障害イベントを検出し、NVRAMとSyncMirrorのプレックスが同期されている場合にのみスイッチオーバーを実行するように設計されているため、非常に迅速に対応します。</block>
   <block id="6f5c7ae76595eca2ca83c5dd30cd8e9f" category="paragraph">一方、Tiebreakerはリモートに配置されているため、サイトの停止を宣言する前にタイマーが経過するのを待つ必要があります。Tiebreakerは最終的にAUSOの対象となるコントローラ障害を検出しますが、一般的にはAUSOがスイッチオーバーを開始しており、Tiebreakerが機能する前にスイッチオーバーを完了している可能性があります。Tiebreakerから送信される2つ目のswitchoverコマンドは拒否されます。</block>
-  <block id="842547e1622bb12d9201167b0c39cf6d" category="paragraph">*注意：* MCTBソフトウェアは、強制的なスイッチオーバー時にNVRAMが同期されていること、またはプレックスが同期されていることを確認しません。メンテナンス作業中に自動スイッチオーバーが設定されている場合は無効にして、NVRAMまたはSyncMirrorプレックスの同期が失われるようにしてください。</block>
   <block id="7110edd59c3d0f25a584723f6fea26a0" category="paragraph">また、MCTBは、次の一連のイベントにつながるローリングディザスタに対応できない場合があります。</block>
   <block id="93d732b784eaf1a323f191e75c10f233" category="list-text">サイト間の接続が30秒以上中断されます。</block>
   <block id="81d4275cc3534a9fa8cfdcdb5172eb94" category="list-text">SyncMirrorレプリケーションがタイムアウトし、プライマリサイトで処理が続行されるため、リモートレプリカは古くなります。</block>
@@ -196,12 +193,10 @@
   <block id="86de4e3737e3d871dacf8ffef353fc31" category="list-text">サバイバーサイトのアプリケーションで、サイト障害時にプライマリサイトのストレージリソースを使用していた場合、データがキャッシュされている可能性があります。スイッチオーバーでは、キャッシュと一致しない古いバージョンのデータが生成されます。</block>
   <block id="dbb2a01afe28c8310daf781bb80b795f" category="list-text">サバイバーサイトのオペレーティングシステムで、サイト障害時にプライマリサイトのストレージリソースを使用していた場合、キャッシュデータがある可能性があります。スイッチオーバーでは、キャッシュと一致しない古いバージョンのデータが生成されます。最も安全な方法は、Tiebreakerがサイト障害を検出した場合にアラートを送信するように設定し、スイッチオーバーを強制的に実行するかどうかを決定することです。キャッシュされたデータを消去するには、アプリケーションやオペレーティングシステムのシャットダウンが必要になる場合があります。さらに、NVFAIL設定を使用して保護を強化し、フェイルオーバープロセスを合理化することもできます。</block>
   <block id="ec6b0ea9c511479c118aa0f028f6519d" category="section-title">MetroCluster IPを使用したONTAPメディエーター</block>
-  <block id="8ada6a626a475d631df231bbb3a88ac9" category="paragraph">ONTAPメディエーターは、MetroCluster IPおよびその他の特定のONTAPソリューションで使用されます。これは、前述のMetroCluster Tiebreakerソフトウェアと同様に従来のTiebreakerサービスとして機能しますが、自動無人スイッチオーバーの実行という重要な機能も備えています。</block>
   <block id="991d7d7d7388ccdd87c65ca09aa804f2" category="paragraph">ファブリック接続MetroClusterは、反対側のサイトのストレージデバイスに直接アクセスできます。これにより、一方のMetroClusterコントローラがドライブからハートビートデータを読み取ることで、他のコントローラの健常性を監視できます。これにより、一方のコントローラがもう一方のコントローラの障害を認識し、スイッチオーバーを実行できるようになります。</block>
   <block id="db2e932a11478bcf14c75d38e8b9a170" category="paragraph">一方、MetroCluster IPアーキテクチャでは、すべてのI/Oがコントローラとコントローラの接続を介して排他的にルーティングされるため、リモートサイトのストレージデバイスに直接アクセスすることはありません。これにより、コントローラで障害を検出してスイッチオーバーを実行する機能が制限されます。そのため、サイトの損失を検出して自動的にスイッチオーバーを実行するためには、ONTAPメディエーターがTiebreakerデバイスとして必要になります。</block>
   <block id="8004e6d63f487a456290225b74768a6c" category="section-title">ClusterLionを使用した3番目の仮想サイト</block>
   <block id="f1d5a7305654a402a719675fbec810e7" category="paragraph">ClusterLionは、仮想の第3サイトとして機能する高度なMetroCluster監視アプライアンスです。このアプローチにより、完全に自動化されたスイッチオーバー機能により、MetroClusterを2サイト構成で安全に導入できます。さらに、ClusterLionでは、追加のネットワークレベル監視を実行し、スイッチオーバー後の処理を実行できます。完全なドキュメントはProLionから入手できます。</block>
-  <block id="a60b8f728a13371898fea9947ef1e0dc" category="paragraph"><block ref="a60b8f728a13371898fea9947ef1e0dc" category="inline-image-macro-rx" type="image"></block></block>
   <block id="f8aae92ec17ec82868ef9ffc767dbd03" category="list-text">ClusterLionアプライアンスは、直接接続されたイーサネットケーブルとシリアルケーブルでコントローラの健常性を監視します。</block>
   <block id="c5f8963a91e3d8e7ac0abda2eab9f17d" category="list-text">2つのアプライアンスは、冗長3Gワイヤレス接続で相互に接続されています。</block>
   <block id="24de16a13a1b584832d19117982cbfa6" category="list-text">ONTAPコントローラへの電源は、内部リレーを介して配線されます。サイト障害が発生すると、内部UPSシステムを搭載したClusterLionによって電源接続が切断されてからスイッチオーバーが実行されます。このプロセスにより、スプリットブレイン状態が発生しないようにします。</block>
@@ -227,10 +222,6 @@
   <block id="8a467b35326e4738b1bd39865c3b21a0" category="admonition">データにアクセスすると、ヒートマップデータがリセットされます。ウィルススキャン、インデックス作成、さらにはソースファイルを読み取るバックアップ処理も行われるため、<block ref="e5e88684921dd21f3f86c28343a3082f" prefix=" " category="inline-code"></block> しきい値に達していません。</block>
   <block id="7a1920d61156abc05a60135aefe8bc67" category="doc">デフォルト</block>
   <block id="5ba46d288640832c345e169b04a7458a" category="paragraph">すべてのFabricPoolボリュームの初期設定は<block ref="c21f969b5f03d33d43e04f8f136e7682" prefix=" " category="inline-code"></block>これは、動作が「cloud-retrieval-policy」によって制御されることを意味します。'正確な動作は、使用する階層化ポリシーによって異なります。</block>
-  <block id="5ec354970d7934d92ba67ccaa0de0121" category="list-text"><block ref="9df22f196a33acd0b372fe502de51211" prefix="" category="inline-code"></block>–ランダムリードデータのみを取得</block>
-  <block id="74092cfa5efab8e6ddc5c2991ee2cfc9" category="list-text"><block ref="8805d416ce540c5f2df34af5b18d742b" prefix="" category="inline-code"></block>–すべてのシーケンシャルまたはランダムリード・データを取得</block>
-  <block id="2de036541477f953c6fd33d14a8db0e8" category="list-text"><block ref="334c4a4c42fdb79d7ebc3e73b517e6f8" prefix="" category="inline-code"></block>–すべてのシーケンシャルまたはランダムリード・データを取得</block>
-  <block id="b6ffdb7ccf86e99ecf73899ec23bdd46" category="list-text"><block ref="a181a603769c1f98ad927e7367c7aa51" prefix="" category="inline-code"></block>–大容量階層からデータを取得しない</block>
   <block id="d556a0d2cad80695d1d803ebb49de9cd" category="section-title">オンリード</block>
   <block id="7c39eb141ca855e5a211b468bd67636c" category="paragraph">設定<block ref="d253e682212338dd6cbe577947f0511e" prefix=" " category="inline-code"></block> をオンリードに設定するとデフォルトの動作が無効になるため、階層化されたデータが読み取られた場合、そのデータはパフォーマンス階層に返されます。</block>
   <block id="e07df43ea07fecb178484ef278644eb2" category="paragraph">たとえば、ボリュームは、<block ref="9df22f196a33acd0b372fe502de51211" prefix=" " category="inline-code"></block> 階層化ポリシーとほとんどのブロックが階層化されます。</block>
@@ -244,7 +235,6 @@
   <block id="2d242bb36ec91b32005f9296ff03a912" category="doc">アーキテクチャ</block>
   <block id="ac30d4a74ecef302adab70e9669a4bf2" category="paragraph">FabricPoolは、ブロックをホットまたはクールに分類し、最も適切なストレージ階層に配置する階層化テクノロジです。ほとんどの場合、パフォーマンス階層はSSDストレージに配置され、ホットデータブロックをホストします。大容量階層はオブジェクトストアに配置され、クールデータブロックをホストします。サポートされるオブジェクトストレージには、NetApp StorageGRID、ONTAP S3、Microsoft Azure Blobストレージ、Alibaba Cloud Object Storageサービス、IBM Cloud Object Storage、Google Cloudストレージ、Amazon AWS S3などがあります。</block>
   <block id="f9f5fe2f7456d37c955f3291744c93b6" category="paragraph">ブロックをホットまたはクールに分類する方法を制御する複数の階層化ポリシーを使用できます。ポリシーはボリューム単位で設定し、必要に応じて変更できます。パフォーマンス階層と大容量階層の間で移動されるのはデータブロックのみです。LUNとファイルシステムの構造を定義するメタデータは、常にパフォーマンス階層に残ります。そのため、管理はONTAPに一元化されます。ファイルとLUNは、他のONTAP構成に格納されているデータと変わりません。NetApp AFFコントローラまたはFASコントローラが定義されたポリシーを適用して、データを適切な階層に移動します。</block>
-  <block id="156a1cf692c4ba9a4f9574fb16428b01" category="paragraph"><block ref="156a1cf692c4ba9a4f9574fb16428b01" category="inline-image-macro-rx" type="image"></block></block>
   <block id="616ce0475334fe37834d13972a168ca5" category="section-title">オブジェクトストレージプロバイダ</block>
   <block id="71e79501cc067e6b35ac3d3e97c940a4" category="paragraph">オブジェクトストレージプロトコルでは、単純なHTTP要求またはHTTPS要求を使用して大量のデータオブジェクトを格納します。ONTAPからのデータアクセスは要求の迅速な処理に依存するため、オブジェクトストレージへのアクセスは信頼できるものでなければなりません。オプションには、Amazon S3の[Standard and InFrequent Access]オプション、Microsoft Azure Hot and Cool Blob Storage、IBM Cloud、Google Cloudなどがあります。Amazon GlacierやAmazon Archiveなどのアーカイブオプションはサポートされていません。データの読み出しに要する時間がホストのオペレーティングシステムやアプリケーションの許容範囲を超える可能性があるためです。</block>
   <block id="e114e830308285cd9085063fad91662c" category="paragraph">NetApp StorageGRIDもサポートされており、最適なエンタープライズクラスの解決策です。ハイパフォーマンス、拡張性、セキュリティに優れたオブジェクトストレージシステムであり、FabricPoolデータだけでなく、エンタープライズアプリケーション環境に組み込まれる可能性が高まるその他のオブジェクトストレージアプリケーションにも、地理的な冗長性を提供します。</block>
@@ -276,7 +266,6 @@
   <block id="32aeb47267cb2045610b468115f3ae0e" category="section-title">効率性とシンプロビジョニング</block>
   <block id="3381946611f34fb44ad8a38a0c44e0a8" category="paragraph">効率化機能はシンプロビジョニングの一形態です。たとえば、100GBのボリュームを使用している100GBのLUNを50GBに圧縮するとします。ボリュームが100GBのままなので、実際の削減はまだ実現されていません。削減されたスペースをシステムの他の場所で使用できるように、まずボリュームのサイズを縮小する必要があります。100GBのLUNにあとから変更した結果、データの圧縮率が低下すると、LUNのサイズが大きくなり、ボリュームがいっぱいになる可能性があります。</block>
   <block id="38ef8b6f2fc332958c293d93c61d7756" category="paragraph">一部のお客様は、特定のワークロードにシックプロビジョニングを使用するか、一般的には確立された運用と調達の手法に基づいてシックプロビジョニングを使用します。</block>
-  <block id="f8ea8eaa5ca0e58c6a43ec0117b7bd8d" category="paragraph">*注意：*ボリュームがシックプロビジョニングされている場合は、ボリュームの圧縮解除や重複排除の削除など、そのボリュームのすべての効率化機能を完全に無効にするように注意する必要があります。<block ref="3cfeff511a11b8c5f54ce9749a719a58" prefix=" " category="inline-code"></block> コマンドを実行しますボリュームが<block ref="df899f2d908ec33afe1d01ee26b3dd47" prefix=" " category="inline-code"></block> 出力。有効になっている場合、ボリュームはまだ部分的に効率化機能用に設定されています。その結果、オーバーライトギャランティの動作が異なります。そのため、設定で原因が見落とされてボリュームのスペースが予期せず不足し、データベースI/Oエラーが発生する可能性が高くなります。</block>
   <block id="0e7c78164adb6d4650ea685a79d8e99e" category="section-title">効率化のベストプラクティス</block>
   <block id="ec499ad25fa5a765ba43ec2c87819623" category="section-title">AFFのデフォルト</block>
   <block id="9f7127e69d50bf7b844ff3723b86fbd1" category="section-title">一般的な推奨事項</block>
@@ -325,17 +314,14 @@
   <block id="b28c5a429800ea9669a191a402a72b49" category="paragraph">サイト間接続はコントローラのみであるため、アーキテクチャもシンプルです。FC SAN接続MetroClusterでは、コントローラが反対側サイトのドライブに直接書き込むため、追加のSAN接続、スイッチ、およびブリッジが必要になります。一方、IP構成のコントローラは、コントローラを介して反対側のドライブに書き込みます。</block>
   <block id="457b0075e8f0333975a8e2aaeaceb149" category="inline-link">MetroCluster IP 解決策のアーキテクチャと設計</block>
   <block id="82aa44c8aa5ebe78f1496c8fc80cb954" category="paragraph">追加情報については、ONTAPの公式ドキュメントを参照してください。<block ref="03a3c76178d2d43147a2756857a0985e" category="inline-link-rx"></block>。</block>
-  <block id="68cf128ce140240c63e9a47e2a82a333" category="paragraph"><block ref="68cf128ce140240c63e9a47e2a82a333" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0d2d438a72f6c558744351265fa49a62" category="section-title">HAペアFC SAN接続MetroCluster</block>
   <block id="3e9133ff590581b29a911d9631ab1737" category="paragraph">HAペアMetroCluster FC構成では、サイトごとに2ノードまたは4ノードを使用します。この設定オプションを使用すると、2ノードオプションに比べて複雑さとコストが増加しますが、サイト内の冗長性という重要なメリットがあります。単純なコントローラ障害では、WAN経由のデータアクセスは必要ありません。データアクセスは、代替ローカルコントローラを介してローカルのままです。</block>
-  <block id="7ea740801794ba8a2ce3f87db010c319" category="paragraph"><block ref="7ea740801794ba8a2ce3f87db010c319" category="inline-image-macro-rx" type="image"></block></block>
   <block id="4bc2926f030255369db3e4435de5c774" category="paragraph">一部のマルチサイトインフラは、アクティブ/アクティブ運用向けに設計されたものではなく、プライマリサイトやディザスタリカバリサイトとして使用されます。この場合、一般にHAペアMetroClusterオプションが推奨される理由は次のとおりです。</block>
   <block id="5f49f48dd22b405a813e2ef7cc02e9f8" category="list-text">2ノードMetroClusterクラスタはHAシステムですが、コントローラに予期しない障害が発生した場合や計画的メンテナンスを行う場合は、反対側のサイトでデータサービスをオンラインにする必要があります。サイト間のネットワーク接続が必要な帯域幅をサポートできない場合は、パフォーマンスが低下します。唯一の選択肢は、さまざまなホストOSと関連サービスを代替サイトにフェイルオーバーすることです。HAペアMetroClusterクラスタでは、コントローラが停止すると同じサイト内で単純なフェイルオーバーが発生するため、この問題は解消されます。</block>
   <block id="0ce798a4f2e77d6aa1a6e0d718fa8e98" category="list-text">一部のネットワークトポロジは、サイト間アクセス用に設計されていませんが、異なるサブネットまたは分離されたFC SANを使用します。この場合、代替コントローラが反対側のサイトのサーバにデータを提供できないため、2ノードMetroClusterクラスタはHAシステムとして機能しなくなります。完全な冗長性を実現するには、HAペアMetroClusterオプションが必要です。</block>
   <block id="098fa44ef37572e0f8ea717199ac72e6" category="list-text">2サイトインフラを単一の高可用性インフラとみなす場合は、2ノードMetroCluster構成が適しています。ただし、サイト障害後もシステムが長時間機能しなければならない場合は、HAペアが推奨されます。HAペアは、単一サイト内でHAを提供し続けるためです。</block>
   <block id="ea8bb3e5a357ca97851352f6944342c9" category="section-title">2ノードFC SAN接続MetroCluster</block>
   <block id="b759079fef92c80eca80e7349bf84363" category="paragraph">2ノードMetroCluster構成では、サイトごとに1つのノードのみが使用されます。設定とメンテナンスが必要なコンポーネントが少ないため、HAペアオプションよりもシンプルな設計になっています。また、ケーブル配線やFCスイッチの点でインフラストラクチャの必要性も軽減されています。最後に、コストを削減します。</block>
-  <block id="5bfcbf762ac959212294cdf71bbec2b5" category="paragraph"><block ref="5bfcbf762ac959212294cdf71bbec2b5" category="inline-image-macro-rx" type="image"></block></block>
   <block id="bcf549481eb36a62594e938bca6a10bb" category="paragraph">この設計の明らかな影響は、1つのサイトでコントローラに障害が発生した場合、反対側のサイトからデータを利用できることです。この制限は必ずしも問題ではありません。多くの企業は、本質的に単一のインフラとして機能する、拡張された高速で低レイテンシのネットワークを使用したマルチサイトデータセンター運用を行っています。このような場合は、2ノードバージョンのMetroClusterが推奨されます。2ノードシステムは現在、複数のサービスプロバイダでペタバイト規模で使用されています。</block>
   <block id="78558542e724655ba80fc4879399f103" category="section-title">MetroClusterの耐障害性機能</block>
   <block id="5427d2eb91f25a425f13544e56fb12c4" category="paragraph">MetroCluster 解決策 には単一点障害（Single Point of Failure）はありません。</block>
@@ -456,7 +442,6 @@
   <block id="0c2f3b2ec9d90baa0a0a0b6fb673a113" category="paragraph">高いパフォーマンスを必要とするアプリケーションI/Oは、ほとんどの場合（a）基本ブロックサイズの単位または（b）1メガバイトのいずれかです。</block>
   <block id="804d5b1f06570b4d242be0c2f0c3392c" category="paragraph">ストライピング構成の主な目的は、シングルファイルI/Oを1つのユニットとして実行し、マルチブロックI/O（サイズは1MB）をストライピングされたボリューム内のすべてのLUNで均等に並列化できるようにすることです。つまり、ストライプ・サイズはデータベース・ブロック・サイズより小さくすることはできず、ストライプ・サイズにLUN数を掛けたサイズは1MBにする必要があります。</block>
   <block id="0598f393baefd05d48b48076cc7df606" category="paragraph">次の図に、ストライプサイズと幅の調整に使用できる3つのオプションを示します。LUNの数は、前述のパフォーマンス要件を満たすように選択されますが、いずれの場合も、1つのストライプ内の総データ量は1MBです。</block>
-  <block id="9ca503fae9ccd4d6d8e67806b23adfa0" category="paragraph"><block ref="9ca503fae9ccd4d6d8e67806b23adfa0" category="inline-image-macro-rx" type="image"></block></block>
   <block id="0353522b39b87d54d40d3f09ec668851" category="doc">ONTAP構成</block>
   <block id="8e52de0d4b03d5fe87dc88da09616c7f" category="inline-link-macro">こちらをご覧ください。</block>
   <block id="337c62c6b6eb7319bae58701105e889c" category="doc">階層化</block>
@@ -547,7 +532,6 @@
   <block id="0a01e6837f5c691536f0b6cbdd0232ec" category="inline-link-macro">TR-4015：『SnapMirrorの設定およびベストプラクティスガイド- ONTAP 9』</block>
   <block id="1cca1a3fad8c6dd7e2dadbd2aa08bf07" category="paragraph">SnapMirrorの詳細については、を参照してください。 <block ref="64b916f792bad525a069a243c092b62e" category="inline-link-macro-rx"></block>。</block>
   <block id="77641f4a3e4406855e878235cbd89b87" category="doc">CPU構成</block>
-  <block id="a51adad5719779145ac252822e328611" category="section-title">ハイパースレッディング</block>
   <block id="673c216e20d1cf8827f347c01dace664" category="paragraph">ここで注意すべき点は、SQL Serverの各バージョンには、使用できるコンピューティング能力に独自の制限があることです。詳細については、「SQL Serverのエディション別のコンピューティング容量制限」を参照してください。</block>
   <block id="cf0e2551e639758cc3c4d82df655eccd" category="inline-link-macro">SQL Server 2022：最新データプラットフォームを実現</block>
   <block id="809c9e1f6ce0bc82bf42fae361c6f43e" category="paragraph">したがって、すべてのCPUを使用するには、プロセッサ単位のコアライセンスを使用する必要があります。SQL Serverのライセンスの詳細については、を参照してください。 <block ref="457abfaf1083b1cbfc49f2783069c6cd" category="inline-link-macro-rx"></block>。</block>
@@ -559,8 +543,6 @@
   <block id="a99f7ebb3b0f5b0ecea93ed586b2a17d" category="section-title">ワーカースレッドの最大数</block>
   <block id="aff27140f50a549b1331add8d5025f7e" category="paragraph">最大ワーカースレッド数オプションは、多数のクライアントがSQL Serverに接続されている場合にパフォーマンスを最適化するのに役立ちます。</block>
   <block id="decd79137325e1efbc7b994f946ea24f" category="paragraph">デフォルト値は0で、SQL Serverは起動時にワーカースレッド数を自動的に設定できます。これはほとんどのシステムで機能します。ワーカースレッドの最大数は高度なオプションであり、経験豊富なデータベース管理者（DBA）の支援なしに変更しないでください。</block>
-  <block id="030a270970f70c1bd91d3689b6f95f3f" category="inline-link-macro">max worker threadsサーバ設定オプションの設定</block>
-  <block id="2a0c648df721b9bc2643d59c4a3a310a" category="paragraph">より多くのワーカースレッドを使用するようにSQL Serverを設定する必要があるのはいつですか？各スケジューラの平均ワークキューの長さが1を超える場合は、負荷がCPUに制限されていないか、その他の重い待機時間が発生している場合にのみ、システムにスレッドを追加することでメリットが得られます。これらのいずれかが発生している場合、スレッドを追加しても、他のシステムボトルネックを待つことになるため、効果はありません。最大ワーカースレッド数の詳細については、を参照してください。 <block ref="77c391df5f9f06cdf367c2a7314ce351" category="inline-link-macro-rx"></block>。</block>
   <block id="29d04e616d2293c4c7538dd6226feac5" category="section-title">SQL Server Management Studioを使用した最大ワーカースレッド数の設定。</block>
   <block id="44dbc82801d84781083ed9e23b63be00" category="list-text">8コア以下の場合：tempdbデータファイル=コア数</block>
   <block id="6203fcdbdad10bb603fd00edd2f0fcf5" category="list-text">8コアを超える場合：8個のtempdbデータファイル</block>
@@ -628,7 +610,6 @@
   <block id="a7a2496066febda8d325e0964e434481" category="inline-link-macro">T-SQLスナップショットについて知るためのMicrosoftのドキュメント</block>
   <block id="bf06f3f95c5b653499bb4ac53ba44c95" category="paragraph">詳細については、を参照してください <block ref="2ba8392a398067f6d2e5f6e4167e9d00" category="inline-link-macro-rx"></block>。</block>
   <block id="450eb6d84ec721a20f17b7778b24b457" category="doc">Microsoft SQL Serverのワークロード</block>
-  <block id="1b1b4c822e9c1b28b845dcc038fec08e" category="doc">Microsoft SQL Serverデータベースファイルおよびファイルグループ</block>
   <block id="5306de2e4bff067a10c1c9b5aafe5920" category="paragraph">理論的には、SQL Server（64ビット）ではインスタンスあたり32、767個のデータベースと524、272TBのデータベースサイズがサポートされますが、通常のインストールでは複数のデータベースが使用されます。ただし、SQL Serverで処理できるデータベースの数は、負荷とハードウェアによって異なります。SQL Serverインスタンスでは、数十、数百、場合によっては数千の小規模データベースをホストしていることも珍しくありません。</block>
   <block id="9a3f42cec243006996ab4580d3ce5d56" category="paragraph">各データベースは、1つ以上のデータファイルと1つ以上のトランザクションログファイルで構成されます。トランザクションログには、データベーストランザクションに関する情報と、各セッションで行われたすべてのデータ変更が格納されます。データが変更されるたびに、SQL Serverはトランザクションログに十分な情報を格納して、アクションを元に戻す（ロールバックする）か、やり直す（再生する）かを指定します。SQL Serverトランザクションログは、データの整合性と堅牢性に関するSQL Serverの評価に不可欠な要素です。トランザクションログは、SQL Serverの不可分性、整合性、分離、耐久性（ACID）機能に不可欠です。SQL Serverは、データページが変更されるとすぐにトランザクションログに書き込みます。すべてのData Manipulation Language（DML）ステートメント（SELECT、INSERT、UPDATE、DELETEなど）は完全なトランザクションであり、トランザクションログによってセットベースの操作全体が確実に実行され、トランザクションの不可分性が保証されます。</block>
   <block id="cbe6958e46fbab53cdbdb9deb2d75938" category="paragraph">各データベースには1つのプライマリデータファイルがあり、デフォルトでは.mdf拡張子が付いています。また、各データベースにセカンダリデータベースファイルを含めることもできます。これらのファイルには、デフォルトで.ndf拡張子が付いています。</block>
@@ -641,7 +622,6 @@
   <block id="2b222ad4000e6e966783fd7bc480180e" category="paragraph">インスタントファイルの初期化を有効にするには、「ボリュームメンテナンスタスクの実行」とも呼ばれるSA_MANAGE_VOLUME_name権限をSQL Serverスタートアップアカウントに追加します。これは、次の図に示すように、ローカルセキュリティポリシー管理アプリケーション（secpol.msc）で実行できます。「Perform volume maintenance task」権限のプロパティを開き、SQL Serverスタートアップアカウントをユーザのリストに追加します。</block>
   <block id="c622e0142ed854a10f98fcaa8b3487f8" category="paragraph">権限が有効になっているかどうかを確認するには、次の例のコードを使用します。このコードは、SQL Serverがエラーログに追加情報を書き込み、小さなデータベースを作成し、ログの内容を読み取るように強制する2つのトレースフラグを設定します。</block>
   <block id="eba8c32bde087b29aaa1fe0d3bb32ef3" category="paragraph">インスタントファイルの初期化が有効になっていない場合、次の例に示すように、SQL Serverのエラーログには、LDFログファイルの初期化に加えてMDFデータファイルが初期化されていることが示されます。インスタントファイルの初期化を有効にすると、ログファイルの初期化のみが表示されます。</block>
-  <block id="3b6c913908f5844ccb31a4d3775cb34e" category="doc">Microsoft SQL Server共有インスタンスと専用インスタンス</block>
   <block id="37fbf1be337695452699ab9df948aa25" category="paragraph">どのインスタンスがルート原因であるかを把握する必要があるため、パフォーマンスの問題のトラブルシューティングは複雑になります。この質問は、オペレーティングシステムライセンスとSQL Serverライセンスのコストと比較して検討されます。アプリケーションのパフォーマンスを最優先する場合は、専用インスタンスを使用することを推奨します。</block>
   <block id="c840abede1d1bcf78e7b3e30048c08b1" category="paragraph">Microsoftでは、SQL Serverのライセンスは、インスタンス単位ではなく、コア単位でサーバレベルで付与されます。このため、データベース管理者は、ライセンスコストを削減するために、サーバで処理できる数のSQL Serverインスタンスをインストールしようとします。これは、後で大きなパフォーマンスの問題につながる可能性があります。</block>
   <block id="8a77155b45f0f2313c8ebf3d755463e5" category="admonition">* NetAppでは、最適なパフォーマンスを得るために、可能な限り専用のSQL Serverインスタンスを選択することを推奨しています。</block>
@@ -2952,7 +2932,6 @@ SOAP over https 接続に使用されます</block>
   <block id="b61bad6f7bf48bf9abda0c86c9beed79" category="paragraph">ファイルに記録されるトランザクションの数が非常に多いため、書き込み処理ではログファイルのサイズが重要になります。レコードが変更されても、変更はすぐにはテーブルスペースに書き込まれません。代わりに、変更はログファイルの最後に記録され、ページはダーティとしてマークされます。InnoDBはログを使用してランダムI/OをシーケンシャルI/Oに変換します。</block>
   <block id="e87d83a3c0af4df83efb4784b5182f8f" category="paragraph">ログがいっぱいになると、ダーティページが順番にテーブルスペースに書き込まれ、ログファイルのスペースが解放されます。たとえば、トランザクションの途中でサーバがクラッシュし、書き込み処理のみがログファイルに記録されるとします。サーバを再び稼働させるには、ログファイルに記録された変更が再生されるリカバリフェーズを実行する必要があります。ログファイル内のエントリ数が多いほど、サーバのリカバリにかかる時間が長くなります。</block>
   <block id="8321756b7fedf72543a1b0917bf92613" category="paragraph">この例では、ログファイルのサイズがリカバリ時間と書き込みパフォーマンスの両方に影響します。ログファイルのサイズに適切な数を選択する場合は、リカバリ時間と書き込みパフォーマンスのバランスを取ります。通常、128Mから512Mの間の値は良い値です。</block>
-  <block id="d4ae77cd65c244ceb4277b27553d6931" category="doc">ONTAPノMySQLテタヘス</block>
   <block id="598132a821e8cc696fbbae934047d991" category="paragraph">MariaDBやPercona MySQLを含むMySQLとその変種は、世界で最も人気のあるデータベースです。</block>
   <block id="35701e1bcd40c8e1a520fc33d0e14842" category="doc">innodb_flush_method</block>
   <block id="138738e11d5fda5c496edaa92e32e158" category="paragraph">innodb_flush_methodパラメータは、InnoDBがログファイルとデータファイルを開いてフラッシュする方法を指定します。</block>
@@ -3006,8 +2985,6 @@ SOAP over https 接続に使用されます</block>
   <block id="668b6acc98c3469094062ed50b43e43a" category="admonition">* NetAppでは*この設定をNFSで使用する場合は、IOPSのテスト結果（SysBench / Fio）を分析し、それに応じてパラメータを設定することを推奨します。InnoDBバッファプールで必要以上に変更されたページやダーティなページが表示されない場合は、フラッシュとパージにできるだけ小さい値を使用してください。</block>
   <block id="038b11d42ee14bd77b6370c575c63b16" category="admonition">ワークロードに対して低い値では不十分であることを証明した場合を除き、20、000以上などの極端な値は使用しないでください。</block>
   <block id="62385f5ceb285bca676cb0561555d719" category="paragraph">innodb_io_capacityパラメータは、フラッシュ速度と関連するI/Oを調整します。</block>
-  <block id="c957ef06af970a7526a73e741b47fef1" category="admonition">このパラメータまたはinnodb_io_capacity_maxパラメータを設定すると、パフォーマンスに深刻な影響を与える可能性があります。このパラメータが高すぎて、早期フラッシュでI/O処理が無駄になります。</block>
-  <block id="b238d5dd75fe5ed855c5b3047e074050" category="paragraph">通常の2ボリュームモデルを使用してSANでMySQLを構成するには、2つのオプションがあります。</block>
   <block id="58d94bb6e53e154e2f4b16efa09f4c0d" category="paragraph">I/Oと容量の要件が単一のLUNファイルシステムの制限内であれば、小規模なデータベースを標準LUNのペアに配置できます。たとえば、約2、000 IOPSのランダムIOPSを必要とするデータベースを、1つのLUN上の単一のファイルシステムでホストできます。同様に、サイズが100GBしかないデータベースでも、1つのLUNに収まります。管理上の問題は発生しません。</block>
   <block id="c33bcb4f520265bb106616e844397ffb" category="paragraph">大規模なデータベースには複数のLUNが必要です。たとえば、10万IOPSを必要とするデータベースには、少なくとも8つのLUNが必要です。ドライブへのSCSIチャネルの数が不十分なため、1つのLUNがボトルネックになります。同じように、10TBのデータベースを1つの10TB LUNで管理するのは困難です。論理ボリュームマネージャは、複数のLUNのパフォーマンス機能と容量機能を結合して、パフォーマンスと管理性を向上させるように設計されています。</block>
   <block id="428e88a1415b00f5eb396829b4bd9a2c" category="paragraph">どちらの場合も、ONTAPボリュームのペアで十分です。単純な設定では、ログLUNと同様に、データファイルLUNも専用ボリュームに配置されます。論理ボリュームマネージャ構成の場合、データファイルボリュームグループ内のすべてのLUNは専用ボリュームに配置され、ログボリュームグループのLUNは2つ目の専用ボリュームに配置されます。</block>
@@ -3048,7 +3025,6 @@ SOAP over https 接続に使用されます</block>
   <block id="b8c3891a902a70c4f7f774363652f4b4" category="summary">MySQLフアイルノコウソウ</block>
   <block id="5713a921d815fd7d19875846450f8ea8" category="doc">ファイル構造</block>
   <block id="4955922857da5499a2f1be602a96b0ff" category="paragraph">InnoDBはストレージとMySQLサーバの中間層として機能し、データをドライブに格納します。</block>
-  <block id="8a6fab0b8bb36427eda4071adfd7780b" category="inline-image-macro">エラー：グラフィックイメージが見つかりません</block>
   <block id="5d416cf65dd1e2c908bf430f957c89f8" category="paragraph">MySQL I/Oは次の2つのタイプに分類されます。</block>
   <block id="e8a320970c929abda9ae744b0b9e8f5f" category="list-text">ランダムファイルI/O</block>
   <block id="85430c0aa096ec282f2a14156baa312e" category="list-text">シーケンシャルファイルI/O</block>
@@ -3154,8 +3130,6 @@ SOAP over https 接続に使用されます</block>
   <block id="7f1a6761f7160e33a32105202e47303b" category="sidebar">コンテナ化</block>
   <block id="dee28dd6d1a9ef7bf399f642fd9d588f" category="section-title">NFSテンソウサイス</block>
   <block id="d8299d00f914e35b80644e5781e47a77" category="paragraph"><block ref="d8299d00f914e35b80644e5781e47a77" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="861f074a1ecd9d1cc088d2fe81903565" category="paragraph"><block ref="861f074a1ecd9d1cc088d2fe81903565" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="710e9cd79e3865d47122a799f425b31f" category="paragraph"><block ref="710e9cd79e3865d47122a799f425b31f" category="inline-image-macro-rx" type="image"></block></block>
   <block id="5a656ddcc72bacc3a5900c23edf7a08e" category="paragraph"><block ref="5a656ddcc72bacc3a5900c23edf7a08e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="073ce0a0568adc64d52dd9b1d8c02c54" category="paragraph"><block ref="073ce0a0568adc64d52dd9b1d8c02c54" category="inline-image-macro-rx" type="image"></block></block>
   <block id="3401a9880dfc322da8a56c4d632361f6" category="paragraph"><block ref="3401a9880dfc322da8a56c4d632361f6" category="inline-image-macro-rx" type="image"></block></block>
@@ -3164,8 +3138,6 @@ SOAP over https 接続に使用されます</block>
   <block id="3105b4c0642b9710179c18edcf8e8718" category="paragraph"><block ref="3105b4c0642b9710179c18edcf8e8718" category="inline-image-macro-rx" type="image"></block></block>
   <block id="1a43000eb9893bff7ab7b1ce1d3fd6a8" category="paragraph"><block ref="1a43000eb9893bff7ab7b1ce1d3fd6a8" category="inline-image-macro-rx" type="image"></block></block>
   <block id="4b7a8562c98b8c652bdfb6aa79788222" category="paragraph"><block ref="4b7a8562c98b8c652bdfb6aa79788222" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="38ac6f4e1538397bd4f659237ec03ebf" category="paragraph"><block ref="38ac6f4e1538397bd4f659237ec03ebf" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="f01518e5f3b18a9ea241bc63a3475dbd" category="paragraph"><block ref="f01518e5f3b18a9ea241bc63a3475dbd" category="inline-image-macro-rx" type="image"></block></block>
   <block id="acce752526553bfa73c92799accd9cb8" category="summary">Oracleのデータ保護の概要</block>
   <block id="deb8cb7644231cae002f5f37c725b86f" category="paragraph">長距離の移行では、通常、ログ配布プロセスなど、より創造的なアプローチが必要になります。詳細については、を参照してください。 <block ref="86efe12ea0d3a769a4b7cfc2b6362f49" category="inline-link-macro-rx"></block>。長距離IPネットワークでは、LANやSANの速度に近い場所で帯域幅が使用されることはほとんどありません。あるケースでは、アーカイブログの生成頻度が非常に高い220TBデータベースの長距離移行をNetAppが支援しました。データ転送のために選択されたアプローチは、可能な限り最大の帯域幅を提供するため、テープの毎日の出荷でした。</block>
   <block id="055362c7082175c34483772a43b776cf" category="paragraph">たとえば、10TBのデータベースのコピーには、通常、約7時間かかります。ビジネスニーズが7時間の停止を許容している場合、ファイルのコピーは簡単で安全な移行オプションです。5時間で対応できない場合は、シンプルなログ配布プロセス（ <block ref="eee8a7589b6555fc3411165c58a62ca5" category="inline-link-macro-rx"></block>最小限の労力でセットアップでき、カットオーバー時間を約15分に短縮できます。この間、データベース管理者はプロセスを完了できます。許容できない時間が15分であった場合は、スクリプトを使用して最終カットオーバープロセスを自動化し、カットオーバー時間をわずか数分に短縮できます。移行はいつでも高速化できますが、そのためには時間と労力がかかります。カットオーバーの所要時間は、ビジネス部門が許容できる範囲で決定する必要があります。</block>
@@ -3205,29 +3177,17 @@ SOAP over https 接続に使用されます</block>
   <block id="92d0a1aef2134a70d5c0f0279dc22ec6" category="doc">Snapshot コピー</block>
   <block id="0c47b4eb567b018e3d2e5882b88eaca9" category="paragraph">ストレージスナップショットは、ターゲットデータのポイントインタイムレプリカです。ONTAPには、さまざまなポリシーを設定し、ボリュームあたり最大1024個のSnapshotを格納する機能が実装されています。ONTAPのSnapshotはスペース効率に優れています。スペースが消費されるのは、元のデータセットが変更されたときだけです。また、読み取り専用です。Snapshotは削除できますが、変更することはできません。</block>
   <block id="7986a4827296ca9cd0b991ded9f8a10d" category="paragraph">場合によっては、ONTAPで直接Snapshotのスケジュールを設定できます。また、スナップショットを作成する前に、SnapCenterなどのソフトウェアでアプリケーションやOSの処理をオーケストレーションしなければならない場合もあります。ワークロードに最適なアプローチにかかわらず、アグレッシブなスナップショット戦略を使用すると、ブートLUNからミッションクリティカルなデータベースまで、すべてのバックアップに頻繁かつ簡単にアクセスできるため、データのセキュリティを確保できます。</block>
-  <block id="210c45246ad11e0b53bdb20b64266780" category="paragraph">*注*：ONTAPフレキシブルボリューム、つまり、ボリュームはLUNと同義ではありません。ボリュームは、ファイルやLUNなどのデータ用の管理コンテナです。たとえば、データベースを8 LUNのストライプセットに配置し、すべてのLUNを1つのボリュームに格納するとします。</block>
-  <block id="ad590deba1cd4423ee565e822c3a91d1" category="paragraph">スナップショットの詳細については、 <block ref="211d7effcac0cb0488144c6fc8b3cb7c" category="inline-link-macro-rx"></block></block>
   <block id="c4bf0f56feeec9a45e973768fbc4f47e" category="section-title">スナップショットの改ざん防止</block>
-  <block id="d2e783db61d20da61c761d4d473bed14" category="paragraph">ONTAP 9.12.1以降では、Snapshotは読み取り専用であるだけでなく、偶発的または意図的な削除からも保護できます。この機能は改ざん防止スナップショットと呼ばれます。保持期間は、Snapshotポリシーを使用して設定および適用できます。作成されたスナップショットは、有効期限に達するまで削除できません。管理またはサポートセンターのオーバーライドはありません。</block>
   <block id="38fef959179f8d3eb79a68a5ce747bdc" category="paragraph">これにより、侵入者、悪意のある内部者、さらにはランサムウェア攻撃さえも、バックアップが原因でONTAPシステム自体にアクセスできたとしても、バックアップを侵害することはできません。頻繁なSnapshotスケジュールと組み合わせることで、非常に強力なデータ保護と非常に低いRPOを実現できます。</block>
-  <block id="c64db0c79e66c1c0e5b932c5d2dedfea" category="paragraph">改ざん防止スナップショットの詳細については、 <block ref="134603be635c039f9224bff191c6103c" category="inline-link-macro-rx"></block></block>
   <block id="a1f41e52e9ddbd9f87ecd032c237b1c0" category="section-title">SnapMirror レプリケーション</block>
-  <block id="1bb837ddfb635c39a6c6e23d847823f9" category="paragraph">Snapshotはリモートシステムにレプリケートすることもできます。これには改ざん防止Snapshotも含まれます。このSnapshotでは、リモートシステムに保持期間が適用され、適用されます。その結果、ローカルSnapshotと同じデータ保護のメリットが得られますが、データは2つ目のストレージアレイに配置されます。これにより、元のアレイを破棄してもバックアップが損なわれることはありません。</block>
   <block id="18d315ae923785b3f9c5234724b0ab42" category="paragraph">2つ目のシステムでは、管理セキュリティのための新しいオプションも開きます。たとえば、NetAppのお客様によっては、プライマリストレージシステムとセカンダリストレージシステムの認証クレデンシャルを分離している場合があります。1人の管理ユーザが両方のシステムにアクセスできることはないため、悪意のある管理者がデータのすべてのコピーを削除することはできません。</block>
-  <block id="e805272dcce51c35975e830e5ee9ecaf" category="paragraph">SnapMirrorの詳細については、 <block ref="9abdfd5d94773cf0a996248d1d722cac" category="inline-link-macro-rx"></block></block>
   <block id="500569e3cc0764260a592cb176921ca3" category="section-title">Storage Virtual Machine</block>
-  <block id="d5174dd4c760ef1a826b3e5bc22215e5" category="paragraph">新しく構成したONTAPストレージシステムは、新しくプロビジョニングしたVMware ESXサーバと似ています。これは、仮想マシンが作成されるまで、どちらもユーザをサポートできないためです。ONTAPでは、ストレージ管理の最も基本的な単位となるStorage Virtual Machine（SVM）を作成します。各SVMには、独自のストレージリソース、プロトコル構成、IPアドレス、FCP WWNがあります。  これがONTAPマルチテナンシーの基盤です。</block>
   <block id="597cb258dd509add7cd999794c60d430" category="paragraph">たとえば、重要な本番環境のワークロード用に1つのSVMを設定し、開発アクティビティ用にもう1つのSVMを別のネットワークセグメントに設定できます。これにより、本番用SVMへのアクセスを特定の管理者に制限し、開発者は開発用SVM内のストレージリソースをより広範に制御できるようになります。また、特に重要な目に見えるデータを格納するために、財務チームや人事チームに3つ目のSVMを用意しなければならない場合もあります。</block>
-  <block id="18519d16720b1e13890c2639657b5bf8" category="paragraph">SVMの詳細については、 <block ref="a06a0fd566387240178b1c926e07cb7b" category="inline-link-macro-rx"></block></block>
   <block id="7d0fc71fe28e011ca49b06214469d484" category="section-title">カンリRBAC</block>
   <block id="4f0dae2ba2fd11c533349d6ade4f81de" category="paragraph">ONTAPには、管理者ログイン用の強力なロールベースアクセス制御（RBAC）が用意されています。クラスタへのフルアクセスが必要な管理者もいれば、特定のSVMへのアクセスのみが必要な管理者もいます。高度なヘルプデスク担当者は、ボリュームのサイズを増やす機能を必要とする場合があります。その結果、管理者ユーザに、職務を遂行するために必要なアクセス権を付与するだけでなく、それ以上のアクセス権を付与することができます。さらに、さまざまなベンダーのPKIを使用してこれらのログインを保護し、sshキーのみへのアクセスを制限し、失敗したログイン試行のロックアウトを強制できます。</block>
-  <block id="6ae13b0198daa7d13d79a8631297e64d" category="paragraph">管理アクセス制御の詳細については、 <block ref="db5be08b697b5ef26e0e94da1d5f4970" category="inline-link-macro-rx"></block></block>
-  <block id="671a94a08dff3cf44fad087e2346c8b0" category="section-title">マルチファクタ認証</block>
-  <block id="945c88a63c229c39ee73ab5592b3ef63" category="paragraph">詳細については、をクリックしてください <block ref="03628d0cd13b6640ef56c399aa1c2070" category="inline-link-macro-rx"></block></block>
   <block id="852741d2a7fb0a8a1a5dd748dbbd6734" category="section-title">API RBAC</block>
   <block id="bbbea5fec67f15424fa77aa563754c49" category="paragraph">自動化にはAPI呼び出しが必要ですが、すべてのツールにフル管理アクセスが必要となるわけではありません。自動化システムを保護するために、APIレベルでRBACを使用することもできます。自動化ユーザアカウントは、必要なAPI呼び出しだけに制限できます。たとえば、監視ソフトウェアには変更アクセスは必要なく、読み取りアクセスのみが必要です。ストレージをプロビジョニングするワークフローでは、ストレージを削除する機能は必要ありません。</block>
   <block id="7604bad489eaec7e27d112c63d3e2936" category="paragraph">特定のアクティビティを承認するために、それぞれ独自のクレデンシャルを持つ2人の異なる管理者を要求することで、多要素認証をさらに進めることができます。これには、ログイン権限の変更、診断コマンドの実行、データの削除が含まれます。</block>
-  <block id="e890d04cd745ac382688bbb307655e81" category="paragraph">マルチ管理者認証（MAV）の詳細については、 <block ref="88f84d4fec0424d978600980bf11baf0" category="inline-link-macro-rx"></block></block>
   <block id="b39c0496b44447232912303246b46aaa" category="paragraph">大量のシーケンシャルIOが予想される場合は、次のセクションの説明に従ってNFS転送サイズを増やすことができます。</block>
   <block id="959e8f746f4ff03f6225b95cf646e65f" category="admonition">このドキュメントは、以前に公開されたテクニカルレポート_TR-4590：『Best Practice Guide for Microsoft SQL Server with ONTAP』の内容を置き換えます。</block>
   <block id="36d72286c0ef70108b2f7791b73fdc6d" category="list-text">以前のガイドでは、データの局所性にLIFを作成することを推奨つまり、必ず、ボリュームを物理的に所有するノード上の LIF を使用してデータストアをマウントします。これは、 ONTAP 9 の最新バージョンでは必須ではなくなりました。可能なかぎり、クラスタを対象としたクレデンシャルを指定した場合でも、ONTAPツールではデータに対してローカルなLIF間で負荷を分散するように選択されますが、高可用性やパフォーマンスを確保するための必須要件ではありません。</block>
@@ -3276,11 +3236,9 @@ SOAP over https 接続に使用されます</block>
   <block id="ae14ab6d1e5edd0e782d8897d1721eb4" category="summary">MySQLとInnoDB_doublewrite</block>
   <block id="689c52e3f5db5d2dafccd7d93cf1abc4" category="summary">MySQLおよびInnodb_flush_log_at_trx_commi</block>
   <block id="639600080c225673dfdfa012fdbd6146" category="summary">MySQLおよびIOスケジューラ</block>
-  <block id="32e3724e2b54692cbef969373fbfe040" category="doc">I/OスケジューラとMySQL</block>
   <block id="72985ac51e91797345b2437088a4362e" category="summary">MySQLとSAN</block>
   <block id="d5ef0a45fe252b03f538bfd134b168db" category="summary">MySQLおよびInnoDB_LRU_SCAN_DEPTH</block>
   <block id="df657260453f6ef228ee0ca22dd7a415" category="summary">MySQLのコンテナ化</block>
-  <block id="885b1b5a90f898c89b664ec58a42121c" category="doc">MySQLのコンテナ化</block>
   <block id="2828450fc6669c8df75f937e227996f1" category="doc">MySQLフアイルキシユツシ</block>
   <block id="9420010a756fb6d3ddeadfa63d2170f6" category="paragraph">MySQLサーバを実行するにはファイル記述子が必要であり、デフォルト値では不十分です。</block>
   <block id="62414a5a9c0e2fc12a8d028ad29164b8" category="summary">MySQLとinnodb_io_capacity</block>
@@ -3594,11 +3552,7 @@ SOAP over https 接続に使用されます</block>
   <block id="ea7df930bd6bec6222e23d2b3af02a50" category="paragraph">SnapMirror Active Syncでは、計画的フェイルオーバーと計画外フェイルオーバーの2種類のストレージフェイルオーバー処理がサポートされます。どちらの処理も多少異なります。計画的フェイルオーバーは、リモートサイトへの迅速なスイッチオーバーのために管理者が手動で開始し、計画外フェイルオーバーは3番目のサイトのメディエーターによって自動的に開始されます。計画的フェイルオーバーの主な目的は、パッチ適用とアップグレードの差分実行、ディザスタリカバリテストの実行、または完全なアクティブ同期機能を実証するためのサイト間の運用の切り替えという正式なポリシーの採用です。</block>
   <block id="f7c8b0ba16967990d91c2ca78d655eaa" category="paragraph">次の図は、通常、フェイルオーバー、フェイルバックの各処理中に何が発生するかを示しています。わかりやすいように、レプリケートされたLUNを表しています。実際のSnapMirrorアクティブ同期構成では、レプリケーションはボリュームに基づいて行われます。各ボリュームには1つ以上のLUNが含まれていますが、わかりやすくするためにボリュームレイヤは削除されています。</block>
   <block id="cfa86460b638615878bbee89b1b6d4c7" category="paragraph">緑の線はアクティブなパスですが、そのパスのIOをSnapMirrorのアクティブな同期パス経由で渡す必要があるため、レイテンシが高くなります。追加のレイテンシは、SnapMirrorアクティブ同期に使用されるサイト間のインターコネクトの速度によって異なります。</block>
-  <block id="175d350addf4717d454787f950938adf" category="paragraph"><block ref="175d350addf4717d454787f950938adf" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="033e21b9b80fa06986d25123f3025db5" category="paragraph"><block ref="033e21b9b80fa06986d25123f3025db5" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="f4d4f8b4d1153d0a9894be19e1f52e4e" category="paragraph"><block ref="f4d4f8b4d1153d0a9894be19e1f52e4e" category="inline-image-macro-rx" type="image"></block></block>
   <block id="22ea45ef5d49a1b807d571799d80613d" category="paragraph">ソースシステムが稼働状態に戻ると、SnapMirrorアクティブ同期はレプリケーションを再同期できますが、逆方向に実行されます。現在の構成は、アクティブミラーサイトが反転されている点を除き、基本的には開始点と同じです。</block>
-  <block id="3dd37fdc28ae50bae909f461c8eae979" category="paragraph"><block ref="3dd37fdc28ae50bae909f461c8eae979" category="inline-image-macro-rx" type="image"></block></block>
   <block id="2702e101c97ce9a58738b1a4089319df" category="summary">MetroCluster論理アーキテクチャとOracleデータベース</block>
   <block id="784fdd6bf0ebb9c00eaefafc3f9a9cee" category="doc">RAIDデータベースとOracleデータベース</block>
   <block id="204d288bf0e9d1ee9912d68d6282d7a9" category="summary">AIXを使用したOracleデータベース</block>
@@ -3682,15 +3636,12 @@ SOAP over https 接続に使用されます</block>
   <block id="82116b39cd4d0d1920fab1ab4515603b" category="paragraph">得られる削減効果の程度はさまざまです。すでに圧縮または暗号化されているデータは、通常それ以上圧縮することはできないため、コンパクションによるメリットはありません。一方、初期化されたばかりのデータファイルで、ブロックメタデータとゼロブロックしか含まれていない場合は、最大80：1まで圧縮できます。</block>
   <block id="2608473fa5767385d01f256eccbc1cc4" category="paragraph">競合するアレイの多くは、データベースが複数回コピーされていると仮定して、データベースの重複排除機能があると主張しています。この点では、NetAppの重複排除も使用できますが、ONTAPにはNetApp FlexCloneテクノロジというより優れたオプションがあります。最終的な結果は同じで、基盤となる物理ブロックの大部分を共有するデータベースのコピーが複数作成されます。FlexCloneを使用すると、時間をかけてデータベースファイルをコピーしてから重複を排除するよりも、はるかに効率的です。重複は最初から作成されないため、実際には重複排除ではなく重複排除です。</block>
   <block id="7e96c1b651af3f28c27b78807f0310e2" category="paragraph">シンプロビジョニングは、管理を簡易化しながら、使用可能な容量を大幅に改善し、コストを削減できるため、強く推奨されます。これは、単純なデータベース環境では、多くの場合、空のスペース、多数のボリュームやLUN、圧縮可能なデータが含まれているためです。シックプロビジョニングでは、ボリュームとLUNのストレージにスペースがリザーブされます。これは、100%フルになり、100%圧縮不可能なデータが含まれる場合に限られます。これは起こりそうもないことですシンプロビジョニングを使用すると、スペースを他の場所で再生して使用できます。また、容量の管理は、多数の小さいボリュームやLUNではなく、ストレージシステム自体に基づいて行うことができます。</block>
-  <block id="0f55b43344575cc268bf51ae032d47c2" category="paragraph">NetAppの推奨事項は次のとおりです。</block>
   <block id="f67b854e2d644480b0ec40d7de2b773d" category="paragraph">オールフラッシュAFFシステムで実行されているONTAPで作成されたボリュームは、すべてのインライン効率化機能が有効になった状態でシンプロビジョニングされます。一般にデータベースには重複排除機能はなく、圧縮不可能なデータも含まれている可能性がありますが、デフォルト設定はほとんどすべてのワークロードに適しています。ONTAPは、あらゆる種類のデータとI/Oパターンを効率的に処理するように設計されており、削減効果があるかどうかは関係ありません。デフォルトは、理由が完全に理解されていて、逸脱するメリットがある場合にのみ変更する必要があります。</block>
   <block id="649141c6b8267ea3df10949a853d22cb" category="list-text">データベースバックアップでは、32KBの圧縮機能と重複排除機能の両方を使用しないでください。を参照してください <block ref="57ee2712afc5e59236f86db0537b05dc" category="inline-xref-macro-rx"></block> を参照してください。</block>
   <block id="5059ada12bae6c7e7fac9338d88301b5" category="doc">Oracleデータベースのアーカイブログの階層化</block>
-  <block id="b7e89b3a1ff13c93cc5c038440e48f58" category="paragraph">詳細については、c https://docs.netapp.com/us-en/ontap-automation/rest/rbac_overview.html[here.]</block>
   <block id="4abda684ecc952239d7800547dcf2995" category="sidebar">MetroCluster上のOracle SI</block>
   <block id="bdebc59bb8c11012c00a4be61b8bdb5d" category="summary">Microsoft SQL Serverインスタンスの導入</block>
   <block id="030194212f0e1890126b205fdbcfe852" category="summary">ONTAP上のMicrosoft SQL Serverのセキュリティ保護</block>
-  <block id="76e6e519036ed33c414d681e342c73be" category="paragraph">SQL Serverデータベース環境のセキュリティ保護は、データベース自体の管理にとどまらない多次元的な取り組みです。ONTAPには、データベースインフラのストレージを保護するために設計された独自の機能がいくつか用意されています。</block>
   <block id="972d09960af01a5f3831f2eac1c75d12" category="summary">ONTAPを使用したMicrosoft SQL Serverディザスタリカバリ</block>
   <block id="db78788a721b9a9a669c4935d455a593" category="paragraph">エンタープライズデータベースやアプリケーションインフラでは、自然災害や予期しないビジネスの中断からダウンタイムを最小限に抑えて保護するために、レプリケーションが必要になることがよくあります。</block>
   <block id="fad02ab7a45b438ba1a4c024b9edb2be" category="paragraph">SnapMirror for SQL Serverの推奨事項は次のとおりです。</block>
@@ -3708,7 +3659,6 @@ SOAP over https 接続に使用されます</block>
   <block id="d8969d8106a5ac08f38277a3c0b813dc" category="paragraph">ファイルグループ内に複数のデータファイルを配置できるため、複数のストレージデバイスに負荷を分散して、システムのI/Oパフォーマンスを向上させることができます。一方、SQL Serverはトランザクションログにシーケンシャルに書き込むため、トランザクションログには複数のファイルを使用するメリットはありません。</block>
   <block id="bd87ed7f70b7f9173319df18e5b5b751" category="paragraph">SQL Serverは、ファイルを拡張するたびに、新しく割り当てられたスペースをゼロでいっぱいにします。このプロセスは、対応するファイルへの書き込みが必要なすべてのセッションをブロックします。トランザクションログが増加した場合は、トランザクションログレコードを生成します。</block>
   <block id="7a64f7e9c9b5737a434bdcc8f935c5ce" category="summary">Microsoft SQL ServerとONTAPのStorage Efficiency</block>
-  <block id="20f0346a9d65f2fba1523d3343d7c6e7" category="doc">Microsoft SQL ServerとStorage Efficiency</block>
   <block id="9df29e7c756637e30b37f014d02117ef" category="paragraph">SQL Server自体には、データを圧縮して効率的に管理する機能もあります。SQL Serverでは現在、行圧縮とページ圧縮の2種類のデータ圧縮がサポートされています。</block>
   <block id="09ddfa236e0fa1173f8d86a5ad0c148f" category="summary">Microsoft SQL Serverログディレクトリ</block>
   <block id="cc2c23339c0ad05c5ae1704b4a0ecb37" category="paragraph">ログディレクトリは、トランザクションログバックアップデータをホストレベルで格納するためにSQL Serverで指定します。SnapCenterを使用してログファイルをバックアップする場合は、SnapCenterで使用される各SQL Serverホストに、ログバックアップを実行するようにホストログディレクトリを設定する必要があります。SnapCenter にはデータベースリポジトリがあるため、バックアップ、リストア、クローニングの処理に関連するメタデータは中央のデータベースリポジトリに格納されます。</block>
@@ -3725,7 +3675,6 @@ SOAP over https 接続に使用されます</block>
   <block id="8a3aceb6ed4b21af2f2c00ecb032f75f" category="paragraph">SQL Server 2022では、MicrosoftがT-SQLスナップショットを導入しました。これにより、バックアップ処理のスクリプト作成と自動化を行うことができます。フルサイズのコピーを実行する代わりに、Snapshot用にデータベースを準備できます。データベースのバックアップ準備が完了したら、ONTAP REST APIを使用してSnapshotを作成できます。</block>
   <block id="eeeb4e610a7896c1b1f2e2ea9b3f52a0" category="list-text">ALTERコマンドを使用してデータベースをフリーズします。これにより、基盤となるストレージ上で整合性のあるSnapshotを作成するためのデータベースが準備されます。フリーズ後、backupコマンドを使用してデータベースをフリーズ解除し、スナップショットを記録できます。</block>
   <block id="fd95362fecccbbb7b017317e8bede3b5" category="admonition">ONTAPとMySQLデータベースに関するこのドキュメントは、以前に公開されていた_TR-4722：『MySQL database on ONTAP best practices』に代わるものです。_</block>
-  <block id="03591504f4566055ad54d9422f8a0488" category="paragraph">NetAppは、ストレージの高度な管理機能を提供するAstra Tridentを提供しています。たとえば、Astra Tridentを使用すると、Kubernetesで作成されたコンテナは、適切な階層にストレージを自動的にプロビジョニングしたり、エクスポートポリシーを適用したり、Snapshotポリシーを設定したり、コンテナを別の階層にクローニングしたりできます。追加情報の場合は、を参照してください <block ref="2b8a155fc083396b96b18cee0ba5eab0" category="inline-link-macro-rx"></block>。</block>
   <block id="887757e2405372a0b9e17cc054ab38f3" category="paragraph">SnapRestoreがこれほど迅速かつ効率的に機能するのは、Snapshotの性質によるものです。Snapshotは本質的には、特定の時点におけるボリュームの内容を読み取り専用で並行して表示する機能です。アクティブブロックは変更可能な実際のブロックですが、Snapshotは、Snapshot作成時のファイルおよびLUNを構成するブロックの状態を読み取り専用で表示します。</block>
   <block id="f9b673452d1da030fef3f976bbbbb103" category="paragraph">この例では、ソースデータベースはONTAPシステム上にあります。データベースのバックアップを作成する最も簡単な方法は、Snapshotを使用する方法です。データベースがホットバックアップモードになるまでの数秒間、<block ref="252ce13e6c150af4d3e7eea5fca266bc" prefix=" " category="inline-code"></block> この処理は、データファイルをホストしているボリュームで実行されます。</block>
   <block id="630a571b99791968d41f9caba4a3e39c" category="paragraph">その結果、という名前のディスク上のスナップショットが作成されます。<block ref="a8b3bc9f12cd194b80d404c30e9015ee" prefix=" " category="inline-code"></block> ホットバックアップモード時のデータファイルのイメージを含むデータファイルを展開します。適切なアーカイブログと組み合わせてデータファイルの整合性を確保すると、このSnapshot内のデータをリストアまたはクローンのベースとして使用できます。この場合、新しいサーバに複製されます。</block>
@@ -4772,7 +4721,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="afe62727c9717a186ce014753f902c8a" category="paragraph">優先サイトを変更するには、簡単な操作が必要です。クラスタ間でレプリケーション動作の権限が切り替わるため、IOは1~2秒間停止しますが、それ以外の場合はIOには影響しません。</block>
   <block id="2d430e41b39275608ed6816ee435f2c4" category="paragraph">メディエーターは実際にはTiebreakerではありませんが、それは事実上それが提供する機能です。処理は行われず、代わりにクラスタ間の通信用の代替通信チャネルを提供します。</block>
   <block id="caeb8c810d4965bfc8ad369332977e54" category="inline-image-macro">メディエーターを使用したSnapMirrorのアクティブな同期の図</block>
-  <block id="4c67fbe8dcb303fbb7a06384a1e166ff" category="paragraph"><block ref="4c67fbe8dcb303fbb7a06384a1e166ff" category="inline-image-macro-rx" type="image"></block></block>
   <block id="2767cf2bbeaf5540c1e615745cfead81" category="paragraph">自動フェイルオーバーの最大の課題はスプリットブレインの問題であり、この問題は2つのサイト間の接続が失われた場合に発生します。何が起こるべきでしょうか? 2つの異なるサイトがデータのサバイバーコピーとして自分自身を指定する必要はありませんが、1つのサイトでは、反対側のサイトが実際に失われたことと、反対側のサイトと通信できないことを区別するにはどうすればよいでしょうか。</block>
   <block id="661d0a9679d7d1af0f76f646c941e5cc" category="paragraph">ここでメディエーターが写真に入ります3番目のサイトに配置され、各サイトからそのサイトへの個別のネットワーク接続がある場合は、他のサイトの正常性を検証するための追加のパスが各サイトに用意されています。上の図をもう一度見て、次のシナリオを検討してください。</block>
   <block id="d0c23d9c3fc0a960d3362e7ba10243f5" category="list-text">一方または両方のサイトからメディエーターに障害が発生した場合、またはメディエーターに到達できない場合はどうなりますか？</block>
@@ -4790,10 +4738,8 @@ SOAP over HTTPS接続に使用</block>
   <block id="700cb79deb6ef819c0aacbb228c5a16b" category="paragraph">SnapMirrorアクティブ同期（SM-AS）は、SnapMirror同期に基づいています。どちらもRPO=0の同期データレプリケーションを実現できますが、SM-ASはSANデータのRTOをほぼゼロにすることで、ソリューションをさらに強化します。これは、SANパスを自動化してデータの可用性を維持することで実現されます。サイト、コントローラ、通信の障害は、すべてONTAPで自動的に処理されます。</block>
   <block id="c159224eea5fb4a30b3cc9be6e90cd6c" category="paragraph">SnapMirror Active Syncは、2つの異なるサイトに存在するLUNを提供します。通常の運用では、「source」または「destination」はありません。方向は双方向です。特定のLUNパスに対するすべての読み取りIOは、データのローカルコピーを使用してローカルコントローラによって処理されます。すべての書き込みがリモートパートナーにレプリケートされ、確認応答の前にローカルに書き込まれます。</block>
   <block id="4a85397e66688e4e619ffe832e627548" category="inline-image-macro">SnapMirrorアクティブ同期の概要</block>
-  <block id="773253d9f54d4d8d3d596bef999303fa" category="paragraph"><block ref="773253d9f54d4d8d3d596bef999303fa" category="inline-image-macro-rx" type="image"></block></block>
   <block id="ddc1e5dc440806435445e7a532ad1198" category="paragraph">論理的には、この動作は単一のLUNセットのようなものです。IOは、2つの異なるクラスタ上に存在するSANパスを介してこれらの論理LUNに転送できますが、データは常に同じです。IOの動作は対称的であり、多くのアクティブ/アクティブアプリケーション構成ではこれが重要です。</block>
   <block id="ddc5ca7c74db522011a3b2ddccda5b40" category="inline-image-macro">SnapMirrorアクティブ同期論理設計</block>
-  <block id="a91ae760520ff89a08c2f2db6a6c2ebd" category="paragraph"><block ref="a91ae760520ff89a08c2f2db6a6c2ebd" category="inline-image-macro-rx" type="image"></block></block>
   <block id="daadd24f5163a10f9a2f016019883886" category="section-title">パス管理</block>
   <block id="9bb9bee58b329761e36c7d9bf8900d6f" category="paragraph">SnapMirror同期ネットワークトポロジには、均一型と非均一型の2つのアプローチがあります。均一アクセスと非均一アクセスのどちらを選択するかを選択する際の重要な考慮事項は、SANをサイト間で拡張できるかどうか、または拡張する必要があるかどうかです。SnapMirrorアクティブ同期はどちらの状況でも使用できます。</block>
   <block id="1f46c4a6c97a8add22ae7c23181c23d8" category="paragraph">ONTAPメディエーターは、NetAppサポートサイトからダウンロードするソフトウェアアプリケーションで、通常は仮想マシンに導入されます。</block>
@@ -4803,24 +4749,19 @@ SOAP over HTTPS接続に使用</block>
   <block id="e5086daa5843466ff5f04f20d4c19d74" category="paragraph"><block ref="36cd38f49b9afa08222c0dc9ebfe35eb" prefix=" " category="inline-code"></block>指定は、優先サイトを制御します。レプリケーションリンクが失われた場合、ソースコピー上のLUNパスは引き続きデータを提供しますが、デスティネーションコピー上のLUNパスは、レプリケーションが再確立されてSnapMirrorが同期状態に戻るまで使用できなくなります。その後、パスでデータの提供が再開されます。</block>
   <block id="a0bbe7bd1e93252f1267d98703905552" category="paragraph">ソース/デスティネーションの設定はSystemManagerで確認できます。</block>
   <block id="13d0a54956b2dd09d5e909acadfb1694" category="inline-image-macro">SM-ASソースのSMスクリーンショット</block>
-  <block id="70547bc22a604012e7d30f238d3ab5c8" category="paragraph"><block ref="70547bc22a604012e7d30f238d3ab5c8" category="inline-image-macro-rx" type="image"></block></block>
   <block id="5b53b7d18b58af25bcf47dc21678038f" category="paragraph">または、CLIで次の操作を行います。</block>
   <block id="498b1bbe0e017f1ad405fe4c77fb8ea1" category="paragraph">重要なのは、ソースがcluster1のSVMであることです。前述のように、「ソース」と「デスティネーション」という用語は、レプリケートされたデータのフローを表していません。両方のサイトが書き込みを処理し、反対側のサイトにレプリケートできます。実際には、両方のクラスタがソースとデスティネーションです。1つのクラスタをソースとして指定すると、レプリケーションリンクが失われた場合に、どのクラスタが読み取り/書き込みストレージシステムとして残っているかが制御されます。</block>
   <block id="18a07170e14f5cbc26533f0a136dfdd0" category="inline-image-macro">SnapMirrorアクティブ同期の不均一ネットワーク</block>
-  <block id="9347dda18b33bf2c717916c013eb47bc" category="paragraph"><block ref="9347dda18b33bf2c717916c013eb47bc" category="inline-image-macro-rx" type="image"></block></block>
   <block id="9532c9e7afcd43c7d9bb5740695fc259" category="paragraph">このアプローチの主なメリットはSANのシンプルさです。SANをネットワーク経由で拡張する必要がなくなります。お客様によっては、サイト間の接続遅延が十分でない場合や、サイト間ネットワーク経由でFC SANトラフィックをトンネリングするためのインフラストラクチャが不足している場合があります。</block>
   <block id="439caacb19fa16f2c21563703ed645d7" category="paragraph">不均一なアクセスの欠点は、レプリケーションリンクの喪失などの特定の障害シナリオで、一部のホストがストレージにアクセスできなくなることです。ローカルストレージの接続が失われると、単一のホストでのみ実行されている非クラスタデータベースなど、単一インスタンスとして実行されるアプリケーションは失敗します。データは保護されますが'データベース・サーバはアクセスできなくなりますリモートサイトで、できれば自動化されたプロセスを使用して再起動する必要があります。たとえば、VMware HAは、あるサーバでオールパスダウン状態を検出し、パスが使用可能な別のサーバでVMを再起動できます。</block>
-  <block id="5a2e2e33df9734d8ef57bcb93643d89a" category="paragraph">一方、Oracle RACなどのクラスタ化されたアプリケーションは、2つの異なるサイトで同時に利用可能なサービスを提供できます。サイトが失われても、アプリケーションサービス全体が失われるわけではありません。サバイバーサイトでは、引き続きインスタンスを使用して実行できます。</block>
   <block id="9fad44ede04fb95c16ea64be5e51836c" category="paragraph">多くの場合、サイト間リンク経由でストレージにアクセスするアプリケーションによるレイテンシのオーバーヘッドは許容できません。つまり、サイトのストレージが失われると、障害が発生したサイトのサービスをシャットダウンする必要が生じるため、統一されたネットワークの可用性の向上は最小限で済みます。</block>
   <block id="15da96ce40136a3259e04ae0dc25fc95" category="paragraph">この図では、わかりやすいように、ローカルクラスタを経由する冗長パスを示していません。ONTAPストレージシステム自体はHAであるため、コントローラ障害が発生してもサイト障害は発生しません。影響を受けるサイトで使用されるローカルパスが変更されるだけです。</block>
   <block id="bb12626aefb7c36f9b13694d35dadd5d" category="paragraph">SM-ASの重要な機能の1つは、ホストがどこにあるかを認識するようにストレージシステムを設定できることです。LUNを特定のホストにマッピングするときに、LUNが特定のストレージシステムに近接しているかどうかを指定できます。</block>
   <block id="4590bab77464ba1a9c8ee6b8095eef60" category="inline-image-macro">SnapMirrorアクティブ同期AFFユニフォームネットワーク</block>
-  <block id="988f5836c7a60d1374a4804da23d51e4" category="paragraph"><block ref="988f5836c7a60d1374a4804da23d51e4" category="inline-image-macro-rx" type="image"></block></block>
   <block id="2b2fdfa824f1319cc47992b1277faa78" category="paragraph">通常の運用では、すべてのIOがローカルIOになります。読み取りと書き込みはローカルストレージアレイから処理されます。もちろん、書き込みIOも確認応答の前にローカルコントローラでリモートシステムにレプリケートする必要がありますが、すべての読み取りIOはローカルで処理されるため、サイト間のSANリンクを経由して余分なレイテンシが発生することはありません。</block>
   <block id="97b2bb0cfbae3fe49433caf537e819ec" category="paragraph">非最適パスが使用されるのは、すべてのアクティブ/最適パスが失われた場合だけです。たとえば、サイトAのアレイ全体に電力が供給されなくなっても、サイトAのホストはサイトBのアレイへのパスに引き続きアクセスできるため、レイテンシは高くなりますが運用を継続できます。</block>
   <block id="5ab085bf88338486e590861594d3947a" category="paragraph">NetApp ASAシステムは、クラスタ上のすべてのパスでアクティブ/アクティブマルチパスを提供します。これはSM-AS設定にも適用されます。</block>
   <block id="6511f0e2589c08e82bc8dd3e9bc93185" category="inline-image-macro">SnapMirrorアクティブ同期ASAユニフォームネットワーク</block>
-  <block id="1d818a68fead665559afc9e582394a7d" category="paragraph"><block ref="1d818a68fead665559afc9e582394a7d" category="inline-image-macro-rx" type="image"></block></block>
   <block id="c3fe6771b27ffcb15a75ae88f6d57c4b" category="paragraph">アクセスが不均一なASA構成は、AFFの場合とほとんど同じように機能します。アクセスが統一されている場合、IOはWANを通過します。これは望ましい場合とそうでない場合があります。</block>
   <block id="498a9faf271a73dcf026b1041b66ef2a" category="paragraph">2つのサイトがファイバ接続で100m離れている場合、WANを経由する追加のレイテンシは検出されませんが、サイト間の距離が離れていると、両方のサイトで読み取りパフォーマンスが低下します。対照的に、AFFでは、これらのWAN交差パスは使用可能なローカルパスがない場合にのみ使用され、すべてのIOがローカルIOになるため、日 々 のパフォーマンスが向上します。不均一なアクセスネットワークを使用するASAは、サイト間の遅延アクセスペナルティを発生させることなく、ASAのコストと機能のメリットを得るためのオプションです。</block>
   <block id="15ab92b8042738f6acc912e2d98ae17a" category="paragraph">低レイテンシ構成でSM-ASを使用するASAには、2つの興味深い利点があります。まず、I/Oは2倍のパスを使用して2倍のコントローラで処理できるため、1台のホストのパフォーマンスが実質的に2倍になります。2つ目は、単一サイト環境では、ホストへのアクセスを中断することなくストレージシステム全体が失われる可能性があるため、非常に高い可用性を提供することです。</block>
@@ -5199,13 +5140,10 @@ SOAP over HTTPS接続に使用</block>
   <block id="ab2d1dd1b024fd7be648c22c4a43997b" category="list-text">一部のCIFS管理タスクは、Microsoft管理コンソール（MMC）を使用して実行できます。これらのタスクを実行する前に、MMCメニューコマンドを使用してMMCをONTAPストレージに接続する必要があります。</block>
   <block id="1d5ba6202d85466a95188b58c37dccc8" category="list-text">NetAppでは、Hyper-VホストとONTAPストレージを10GBのネットワーク（使用可能な場合）で接続することを推奨しています。1GBのネットワーク接続の場合、NetAppでは、複数の1GBポートで構成されるインターフェイスグループを作成することを推奨します。</block>
   <block id="79d467fa842b9015f2f12ada4fa1c7fc" category="paragraph">SQL Serverのパフォーマンスは、CPUとコアの構成にさまざまな依存関係があります。</block>
-  <block id="dcfe06c0ddbb3b395286872a95182eb3" category="paragraph">ハイパースレッディングとは、x86プロセッサで実行される計算の並列化を改善する同時マルチスレッド（SMT）の実装のことです。SMTはIntelプロセッサとAMDプロセッサの両方で使用できます。</block>
-  <block id="2e84c18998d7c7a831a62718e10a98c5" category="paragraph">ハイパースレッディングにより、論理CPUが物理CPUとしてオペレーティングシステムに認識されます。SQL Serverは、これらの追加CPUを認識し、物理的に存在するよりも多くのコアがあるかのように使用します。これにより、並列化を増やすことでパフォーマンスを大幅に向上させることができます。</block>
   <block id="4403546c5938500562a9d8677deb1c38" category="section-title">コアとライセンス</block>
   <block id="c325fde2d51a1ea2ddd8c9dd51cfdf9c" category="paragraph">次の図は、起動後のSQL Serverログメッセージを示しています。これは、コア制限の適用を示しています。</block>
   <block id="e59dc8056170cddb696ba9bff812c325" category="paragraph">SQL Serverは、オペレーティングシステムで使用可能なすべてのCPUを使用します（プロセッサ単位のコアライセンスが選択されている場合）。また、各CPUに対してスケジューラf0rを作成し、特定のワークロードでリソースを最大限に活用します。マルチタスクを実行する場合、オペレーティングシステムやサーバー上のその他のアプリケーションは、プロセススレッドをプロセッサ間で切り替えることができます。SQL Serverはリソースを大量に消費するアプリケーションであるため、この状況が発生するとパフォーマンスに影響する可能性があります。影響を最小限に抑えるには、SQL Serverのすべての負荷が事前に選択されたプロセッサグループに送られるようにプロセッサを構成します。これは、CPUアフィニティマスクを使用することによって実現されます。</block>
   <block id="e40a45aed8142e74026f5aa7a6ee1122" category="paragraph">アフィニティI/Oマスクオプションは、SQL ServerディスクI/OをCPUのサブセットにバインドします。SQL Server OLTP環境では、この拡張により、I/O処理を実行するSQL Serverスレッドのパフォーマンスが大幅に向上します。</block>
-  <block id="a58930419c1b1a276791665c876f8f80" category="paragraph">これは大規模なクエリには役立ちますが、原因のパフォーマンスが低下し、同時実行数が制限される可能性があります。1つのCPUソケット内の物理コアの数に並列処理を制限する方法が適しています。たとえば、ソケットあたり12コアの物理CPUソケットが2つあるサーバでは、ハイパースレッディングに関係なく、<block ref="1abedc5f6ab369ab9fcd16d6b7990638" prefix=" " category="inline-code"></block>12に設定する必要があります。<block ref="1abedc5f6ab369ab9fcd16d6b7990638" prefix=" " category="inline-code"></block>使用するCPUを制限したり、指定したりすることはできません。代わりに、単一のバッチクエリで使用できるCPUの数を制限します。</block>
   <block id="16dce493fdad96fe48148f47dc552bfb" category="admonition">* NetAppでは、データウェアハウスなどのDSSの場合、50から始めて、必要に応じてチューニングアップまたはチューニングダウンを検討することを推奨してい<block ref="1abedc5f6ab369ab9fcd16d6b7990638" prefix=" " category="inline-code"></block>ます。変更を加えるときは、必ずアプリケーション内の重要なクエリを測定してください。</block>
   <block id="0add8d6e7be42a854cd7e0161c7f9bcc" category="paragraph">通常、クエリごとに個別のオペレーティングシステムスレッドが作成されます。SQL Serverへの同時接続数が数百に達すると、クエリごとに1つのスレッド構成で大量のシステムリソースが消費される可能性があります。このオプションを使用する<block ref="a9233738c364090bbc418d8a0e08a79e" prefix=" " category="inline-code"></block>と、多数のクエリ要求をまとめて処理できるワーカースレッドのプールをSQL Serverで作成できるようになるため、パフォーマンスが向上します。</block>
   <block id="29daf9697a41a463dbe76855a2053a87" category="paragraph">次に、T-SQLを使用してmax work threadsオプションを設定する例を示します。</block>
@@ -5231,36 +5169,27 @@ SOAP over HTTPS接続に使用</block>
   <block id="89c617c4ed9cac275e572a67b1c52b29" category="list-text">ファイルシステムをマウント</block>
   <block id="f08329445e69fa49a8223bf365f09e47" category="list-text">SQLサービスの開始</block>
   <block id="b7aabeea5e06b7371d4372fd7f698f88" category="paragraph">このアプローチの主な要件は、リモートサイトでOSを実行することです。SQL Serverのセットアップ時に事前に設定し、同等のビルドバージョンで更新する必要があります。SQL Serverシステムデータベースは、災害が発生した場合にリモートサイトにミラーリングしてマウントすることもできます。</block>
-  <block id="a61003199d91214045b9d3344f527cbd" category="paragraph">仮想データベースをホストするボリューム、ファイルシステム、およびデータストアが、スイッチオーバー前にディザスタリカバリサイトで使用されていない場合は、関連するボリュームでを設定する必要はありません<block ref="3b93661df04b698b1340ff2da3238d16" prefix=" " category="inline-code"></block>。</block>
   <block id="2b963bb5f627aa0ffda026b4d97b6474" category="summary">Microsoft SQL ServerおよびSM-ASのフェイルオーバーシナリオ</block>
-  <block id="bdd8b094b65ec8544e0ad9724a1984ad" category="doc">Microsoft SQL ServerとSnapMirrorのアクティブ同期フェイルオーバー</block>
   <block id="b0bb805a1ea68ad43ceacf65954b4b4b" category="paragraph">完全なSnapMirrorアクティブ同期アプリケーションアーキテクチャを計画するには、さまざまな計画的フェイルオーバーシナリオと計画外フェイルオーバーシナリオでSM-ASがどのように対応するかを理解する必要があります。</block>
-  <block id="3fc36a3b35bb877723ed17d69c3d57fb" category="summary">Microsoft SQL ServerとONTAPメディエーター</block>
   <block id="511d40fa1b50f901027391480dff9c67" category="paragraph">フェイルオーバーを安全に自動化するにはメディエーターが必要です。理想的には、独立した3つ目のサイトに配置しますが、レプリケーションに参加しているクラスタの1つと同じ場所に配置すれば、ほとんどのニーズに対応できます。</block>
   <block id="cef962a099d3ff2b834420d0c97f5bc1" category="summary">Microsoft SQL ServerおよびSM-ASの不統一アクセス</block>
   <block id="3ef2650b3e4d89df6ea0248f432e6c2c" category="paragraph">非ユニフォームアクセスネットワークとは、各ホストがローカルストレージシステム上のポートにしかアクセスできないことを意味します。SANを複数のサイト（または同じサイト内の障害ドメイン）に拡張することはできません。</block>
   <block id="7c58b14cf1e27ff24a5b6a0656848380" category="summary">Microsoft SQL ServerとSnapMirrorのアクティブな同期</block>
-  <block id="a87e788e43169f3df56a7eee4e9bd79c" category="doc">SQL ServerとSnapMirrorのアクティブな同期</block>
   <block id="64affc06244780af1f97a68438460989" category="paragraph">SnapMirror Active Syncを使用すると、ストレージやネットワークが停止しても、個 々 のSQL Serverデータベースとアプリケーションの運用を継続できます。透過的なストレージフェイルオーバーにより、手動操作は不要です。</block>
   <block id="0a19f1ca74616d0d4972b2c02c3f7fee" category="paragraph">ONTAP 9 .15.1以降、SnapMirrorアクティブ同期では、既存の非対称構成に加えて、対称アクティブ/アクティブアーキテクチャがサポートされます。対称アクティブ/アクティブ機能により、ビジネス継続性とディザスタリカバリのための同期双方向レプリケーションを提供します。複数の障害ドメインにわたるデータへの同時読み取り/書き込みアクセスにより、重要なSANワークロードのデータアクセスを保護し、運用を中断させず、災害やシステム障害時のダウンタイムを最小限に抑えることができます。</block>
   <block id="d17dae030927ab027095c1e44df8fbf1" category="paragraph">SQL Serverホストは、ファイバチャネル（FC）LUNまたはiSCSI LUNを使用してストレージにアクセスします。レプリケートされたデータのコピーをホストする各クラスタ間のレプリケーション。この機能はストレージレベルのレプリケーションであるため、スタンドアロンホストインスタンスまたはフェイルオーバークラスタインスタンス上で実行されているSQL Serverインスタンスは、どちらのクラスタでも読み取り/書き込み処理を実行できます。計画と設定の手順については、を参照してください<block ref="44f5d8051247437425911d96f84db248" category="inline-link-macro-rx"></block>。</block>
-  <block id="3fa280b2a8840046be265109ff9f0696" category="section-title">対称アクティブ/アクティブとSnapMirrorアクティブのアーキテクチャ</block>
-  <block id="a93a13dd139e6bb0629cd0ace446c595" category="paragraph"><block ref="a93a13dd139e6bb0629cd0ace446c595" category="inline-image-macro-rx" type="image"></block></block>
   <block id="b2f689709f901a51858096aaf9637eb4" category="paragraph">**同期レプリケーション**</block>
   <block id="71ed2e619a97a27f6fe533714a412725" category="paragraph">通常運用時には、1つの例外を除き、各コピーは常にRPO=0の同期レプリカになります。データをレプリケートできない場合、ONTAPでは、データのレプリケートという要件が解除され、一方のサイトのLUNがオフラインになる間に、一方のサイトでIOの提供が再開されます。</block>
   <block id="331b5c7e8c01ec1e37b60de5a5efba6c" category="paragraph">**ストレージハードウェア**</block>
-  <block id="c2048364072b2c53688aeb273047e068" category="paragraph">** ONTAPメディエーター**</block>
   <block id="588068838f06fe39dec548e2210ddf2f" category="paragraph">ONTAPメディエーターは、NetAppサポートからダウンロードするソフトウェアアプリケーションで、通常は小規模な仮想マシンに導入されます。ONTAPメディエーターはTiebreakerではありません。これは、SnapMirrorのアクティブな同期レプリケーションに含まれる2つのクラスタの代替通信チャネルです。自動処理は、パートナーから直接接続またはメディエーター経由で受け取った応答に基づいてONTAPによって実行されます。</block>
   <block id="6fda40460e9cbbefd704b9c01ea2c18c" category="summary">Microsoft SQL ServerおよびSM-AS優先サイト</block>
   <block id="ac420a2d1b21182a80148191683bc9f7" category="paragraph">SnapMirrorのアクティブな同期の動作は対称ですが、重要な例外が1つあります（推奨サイト構成）。</block>
-  <block id="309d61d5c343d8fd53c2c585c64587b6" category="doc">Microsoft SQL ServerとSnapMirrorのアクティブな同期</block>
   <block id="3ccf31c781c6df95109107d66199a8f6" category="section-title">SQL Serverのスタンドアロンインスタンス</block>
   <block id="bd53ef250bf6f7a012cc7ed01c62f8cd" category="inline-link-macro">ONTAP上のSQL Server</block>
   <block id="d0d5aa4f66a3624a91ad4b11bbc2250f" category="paragraph">ファイルレイアウトとサーバ設定のベストプラクティスは、ドキュメントで推奨されているものと同じ<block ref="c89905de54b32eb552c83786b7590df9" category="inline-link-macro-rx"></block>です。</block>
   <block id="a489ffed938ef1b9e86889bc413501ee" category="inline-link-macro">均一（ Uniform ）</block>
   <block id="ee289d07b4c3d14dcc9cc162df065f99" category="paragraph">スタンドアロン構成では、SQL Serverを1つのサイトでのみ実行できます。おそらく<block ref="b88135502d93a28469d0c520f73e7e7d" category="inline-link-macro-rx"></block>アクセスが使用されます。</block>
   <block id="50c137c2af8db8930fd9881b4ece5d99" category="inline-image-macro">アクセスが統一された単一のホスト</block>
-  <block id="60ee5124219a8203e5bacd7d5a1f38fa" category="paragraph"><block ref="60ee5124219a8203e5bacd7d5a1f38fa" category="inline-image-macro-rx" type="image"></block></block>
   <block id="327efeeabe7ad30552ef39a61284b93b" category="paragraph">アクセス方法が統一されていれば、どちらかのサイトでストレージ障害が発生してもデータベースの処理は中断されません。データベース・サーバを含むサイトで完全なサイト障害が発生すると'当然'システム停止が発生します</block>
   <block id="5bc465d840f8a329d264340f938ab253" category="paragraph">一部のお客様は、リモートサイトで実行されているOSを、構成済みのSQL Serverセットアップで構成し、本番インスタンスと同等のビルドバージョンで更新することもできます。フェイルオーバーを実行するには、代替サイトでSQL Serverのスタンドアロンインスタンスをアクティブ化し、LUNを検出して、データベースを起動する必要があります。ストレージ側からの操作が不要なため、Windows PowerShellコマンドレットを使用して完全なプロセスを自動化できます。</block>
   <block id="ea7bbefe18f9ad7af62904dd6da19c33" category="inline-link-macro">不均一</block>
@@ -5270,7 +5199,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="21fd4631916f5c0e63ef67f98d413d6a" category="paragraph">SQL Serverフェイルオーバーインスタンスは、物理サーバまたは仮想サーバ上でゲストオペレーティングシステムとして実行されているWindowsフェイルオーバークラスタでホストすることもできます。このマルチホストアーキテクチャは、SQL Serverインスタンスとストレージの耐障害性を提供します。このような導入は、強化されたパフォーマンスを維持しながら堅牢なフェイルオーバープロセスを必要とする、負荷の高い環境に役立ちます。フェイルオーバークラスタのセットアップでは、ホストまたはプライマリストレージが影響を受けると、SQLサービスがセカンダリホストにフェイルオーバーされ、同時にセカンダリストレージがIOを処理できるようになります。自動化スクリプトや管理者の介入は必要ありません。</block>
   <block id="58daef667c5e83ded89d712a683c532b" category="summary">Microsoft SQL ServerおよびSM-ASのユニフォームアクセス</block>
   <block id="b8c5c455d22a62b43bd58615af0a569e" category="paragraph">統一されたアクセスネットワークとは、ホストが両方のサイト（または同じサイト内の障害ドメイン）のパスにアクセスできることを意味します。</block>
-  <block id="b7986b8213ecdd63004689cc2dedb163" category="doc">SnapMirrorを使用したMicrosoft SQL Serverディザスタリカバリ</block>
   <block id="fdbd6bb11fa9bf15b9e53c8f359e821c" category="list-text">SMBを使用する場合は、デスティネーションSVMがソースSVMと同じActive Directoryドメインのメンバーである必要があります。これにより、NASファイルに格納されているアクセス制御リスト（ACL）が災害からのリカバリ時に破損しないようになります。</block>
   <block id="d5a7d81e3f495111d65621aede2e26a4" category="list-text">ソースボリューム名と同じデスティネーションボリューム名を使用する必要はありませんが、デスティネーションボリュームをデスティネーションにマウントするプロセスを管理しやすくすることができます。SMBを使用する場合は、デスティネーションNASネームスペースをソースネームスペースとパスおよびディレクトリ構造で同一にする必要があります。</block>
   <block id="4dd0779e2b7f46c37eb5ec38cdde3bb6" category="list-text">高速データリカバリのニーズが高い場合は同期レプリケーションを使用し、RPOの柔軟性を確保するために非同期ソリューションを使用します。</block>
@@ -5545,7 +5473,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="6be050126f2df5ae7cd944ce446241c2" category="paragraph">30秒のタイムアウトが許容されない場合は、リース期間を延長することもできます。</block>
   <block id="38d530634a8d32e8775a37109fc08542" category="paragraph">60秒のネットワーク停止に耐えるためにリースタイムアウトを60秒に延長する場合は、猶予期間も延長する必要があります。つまり、コントローラフェイルオーバー中にIOが一時停止する時間が長くなります。</block>
   <block id="ac76821692fdb2dae1d98babe804fb8f" category="paragraph">これは通常は問題ではありません。一般的なユーザはONTAPコントローラを年に1~2回更新するだけで、ハードウェア障害による計画外フェイルオーバーは非常にまれです。また、ネットワークに60秒のネットワーク停止が発生する可能性があり、リースタイムアウトを60秒にする必要がある場合は、まれにストレージシステムのフェイルオーバーに異議を唱えず、61秒の一時停止も発生する可能性があります。ネットワークが60秒以上頻繁に一時停止していることをすでに認識しています。</block>
-  <block id="73f7848a74f8a1b6c78ac0dfbca44874" category="searchtitle">NetApp管理ソフトウェアによるMicrosoft SQL Serverデータ保護</block>
   <block id="3a80e1e29c96d0837b12aef65785a41a" category="doc">設定パラメータ</block>
   <block id="4bb9f72180425717a416a5037a100cca" category="searchtitle">MySQLとInnoDBのファイル構造</block>
   <block id="9a41c04f55c43c1bfac6d1e3fb0992de" category="doc">NFSv3スロットテーブル</block>
@@ -5634,7 +5561,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="d4b27e1b61577e2e3dfeebd3b8129da5" category="list-text">ホスト間でのボリュームの共有は避けてください。たとえば、1つのボリュームに2つのLUNを作成し、各LUNを別のホストで共有することは可能ですが、管理が複雑になる可能性があるため、この方法は避けてください。同じホストで複数のSQL Serverインスタンスを実行する場合は、ノードのボリューム制限に近い場合を除き、ボリュームの共有は避け、データ管理を容易にするためにホストごとにインスタンスごとに個別のボリュームを作成してください。</block>
   <block id="e3ea9105e22caf8aa06aee0279a968bb" category="list-text">必要に応じて、スペース不足が発生しないようにボリュームのオートサイズポリシーを設定します。</block>
   <block id="72a9733bd5929d30a93ea680e0c3fad1" category="list-text">データベースのセカンダリファイルを（ファイルグループの一部として）別 々 のボリュームに配置すると、SQL Serverデータベースのパフォーマンスが向上します。この分離は、データベースのファイルがLUNを他のファイルと共有していない<block ref="937f38432beb92fdba3d47780720bdf7" prefix=" " category="inline-code"></block>場合にのみ有効<block ref="937f38432beb92fdba3d47780720bdf7" prefix=" " category="inline-code"></block>です。</block>
-  <block id="5962130d833e0408cf58a87e342bc1f9" category="searchtitle">Microsoft SQL Server tempdbフアイル</block>
   <block id="82d9655a27436534991360ea4c0dc680" category="paragraph">Tempdbデータベースは大量に利用できます。ユーザデータベースファイルをONTAPに最適に配置することに加えて、割り当ての競合を軽減するためには、tempdbデータファイルの配置も重要です。tempdbは別のディスクに配置し、ユーザデータファイルとは共有しないでください。</block>
   <block id="5c4a7832da0e9f8799089fdc985bb9b3" category="list-text">tempdbデータファイルは同じサイズで作成する必要があります。</block>
   <block id="20453a1c8627ad0bc536be210636fa41" category="paragraph">次のスクリプト例は、同じサイズのtempdbファイルを8つ作成し、tempdbをSQL Server 2012以降のマウントポイントに移動することで、tempdbを変更します。<block ref="ae6fbe62f3ddc46fa9a9885244d23675" prefix=" " category="inline-code"></block></block>
@@ -5961,4 +5887,84 @@ SOAP over HTTPS接続に使用</block>
   <block id="e867f73e9a09d015c82be5c45264cda9" category="paragraph">VVOLは、VVOLデータストアに格納される実際の仮想マシンのファイルとディスクです。VVOL（単一）という用語は、単一の特定のファイル、LUN、またはネームスペースを指します。ONTAP は、データストアが使用するプロトコルに応じて、NVMeネームスペース、LUN、またはファイルを作成します。VVOLにはいくつかのタイプがあります。最も一般的なものは、Config（VMFSが搭載されている唯一のもので、VMのVMXファイルなどのメタデータファイルが含まれています）、データ（仮想ディスクまたはVMDK）、スワップ（VMの電源オン時に作成されます）です。VMware VMの暗号化によって保護されるVVOLのタイプは、OTHERになります。VMware VMの暗号化とONTAP ボリュームまたはアグリゲートの暗号化を混同しないでください。</block>
   <block id="f615a85ee8b4ffd3bdd64ab72c2cf934" category="paragraph">前述したように、ポリシーを使用すると、VMまたはVMDKのプロビジョニングタスクを合理化できます。適切なポリシーを選択するだけで、そのポリシーをサポートするvVolデータストアがVASA Providerに表示され、準拠している個 々 のFlexVol volumeにvVolが配置されます。</block>
   <block id="d5938f26039c87ff0b18251b9b89e0ec" category="list-text">クローンは、1つのボリューム内またはONTAP クラスタ内の複数のボリューム間ですばやく作成されます。これは、VAAIが有効な従来のクローンと比較して有利です。また、ストレージ効率にも優れています。ボリューム内のクローンには、ONTAPファイルクローンが使用されます。FlexCloneボリュームと同様に、ソースのVVOLファイル/ LUN /ネームスペースからの変更のみが格納されます。本番環境やその他のアプリケーションを目的とした長期的なVMを短時間で作成し、最小限のスペースでVMレベルの保護（VMware vSphere向けNetApp SnapCenter プラグイン、VMware管理スナップショットまたはVADPバックアップを使用）とパフォーマンス管理（ONTAP QoSを使用）を実現できます。ボリューム間のクローンは、VAAIよりもVVOLを使用する方がはるかに高速です。VASAを使用すると、コピーが完了する前にクローンを作成し、デスティネーションでクローンにアクセスできるようになります。データブロックはバックグラウンドプロセスとしてコピーされ、デスティネーションVVOLにデータが入力されます。これは、従来のLUNに対してONTAPの無停止でのLUN移動を実行する方法と似ています。</block>
+  <block id="5c2620ed6abb266a7824246fc409e405" category="admonition">ボリュームがシックプロビジョニングされている場合は、コマンドを使用した解凍や重複排除の削除など、そのボリュームのすべての効率化機能を完全に無効にするように注意する必要があります<block ref="3cfeff511a11b8c5f54ce9749a719a58" prefix=" " category="inline-code"></block>。ボリュームは出力に表示されません<block ref="df899f2d908ec33afe1d01ee26b3dd47" prefix=" " category="inline-code"></block>。有効になっている場合、ボリュームはまだ部分的に効率化機能用に設定されています。その結果、オーバーライトギャランティの動作が異なります。そのため、設定がオーバーサイトされるとボリュームが予期せずスペース不足になり、データベースI/Oエラーが発生する可能性が高くなります。</block>
+  <block id="d276d666f03c049a59433c8727efaa6e" category="paragraph">Linux環境では、ドライブデバイス全体に論理ボリュームグループを構築します。パーティションが必要な場合は、アライメントをチェックするためにを実行し、各パーティションが8の倍数で開始されていることを確認します<block ref="ab425294b9ef9f9c8acbc3f08f92b37d" prefix=" " category="inline-code"></block>。つまり、パーティションは8の倍数の512バイトセクター（4KB）から開始されます。</block>
+  <block id="e23f5b5639a79ab22ace94b51b47872d" category="paragraph"><block ref="e23f5b5639a79ab22ace94b51b47872d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="39e45e79eb595c951cff8267572302f1" category="inline-image-macro">SyncMirror構成</block>
+  <block id="8c91b2538377a2c3400ec4694ba15e2e" category="paragraph"><block ref="8c91b2538377a2c3400ec4694ba15e2e" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="073b52a996437eabf93f7783b02e2fe9" category="paragraph">この<block ref="fe3ee14511b9b1e5dfd5af1f82ac3216" category="inline-link-macro-rx"></block>ソフトウェアを第3のサイトで実行すると、MetroCluster環境の健全性を監視し、通知を送信できます。また、災害時にオプションでスイッチオーバーを強制的に実行することもできます。Tiebreakerの詳細についてはを参照して<block ref="2acc94a061be1196588f7f734d193bf6" category="inline-link-macro-rx"></block>ください。MetroCluster Tiebreakerの主な目的はサイトの損失を検出することです。また、サイトの損失と接続の損失を区別する必要があります。たとえば、Tiebreakerがプライマリサイトに到達できなかったためにスイッチオーバーが発生しないようにします。そのため、Tiebreakerはリモートサイトがプライマリサイトに接続する能力も監視します。</block>
+  <block id="007bfe897ab1dfc6713daff4c13130e2" category="admonition">MCTBソフトウェアは、強制的なスイッチオーバー時に、NVRAM WASまたはプレックス（あるいはその両方）が同期されていることを検証しません。メンテナンス作業中に自動スイッチオーバーが設定されている場合は無効にして、NVRAMまたはSyncMirrorプレックスの同期が失われるようにしてください。</block>
+  <block id="d5e917df8e0b7f1db3996ead2cbeb2ac" category="paragraph">ONTAPメディエーターは、MetroCluster IPおよびその他の特定のONTAPソリューションで使用されます。これは、前述のMetroCluster Tiebreakerソフトウェアと同様に従来のTiebreakerサービスとして機能しますが、重要な機能を実行する自動無人スイッチオーバーも含まれています。</block>
+  <block id="bf74d7de09985a8ef553e5122b5d0f7c" category="inline-image-macro">ClusterLionの図</block>
+  <block id="0354d54d7a567ab0e86cd8a04f4919a1" category="paragraph"><block ref="0354d54d7a567ab0e86cd8a04f4919a1" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="0db380344593268d0331dffbd0e53491" category="inline-image-macro">MetroCluster IPアーキテクチャ</block>
+  <block id="207f169ffa50efdada53e61e95be500f" category="paragraph"><block ref="207f169ffa50efdada53e61e95be500f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="d012707a79628e35e35aa78aae04ba03" category="inline-image-macro">4ノードMetroCluster</block>
+  <block id="d2d10d2707ff9930a55b8735ba28ca8b" category="paragraph"><block ref="d2d10d2707ff9930a55b8735ba28ca8b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f76fa4fd08c3d58e5591281c16d5c61b" category="inline-image-macro">2ノードMetroCluster</block>
+  <block id="4cc7f7e2eae466068330e3136b2e786f" category="paragraph"><block ref="4cc7f7e2eae466068330e3136b2e786f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="57d3154f4afcd986d4f30b4e06c1c434" category="paragraph">ONTAPフレキシブルボリューム、つまり、ボリュームはLUNと同義ではありません。ボリュームは、ファイルやLUNなどのデータ用の管理コンテナです。たとえば、データベースを8 LUNのストライプセットに配置し、すべてのLUNを1つのボリュームに格納するとします。</block>
+  <block id="05ef9b22209f0e35efc9b6f875ad3c55" category="inline-link-macro">ONTAPのドキュメント</block>
+  <block id="a9f5ed6c3fb24e75b9bbfde2801f43c5" category="paragraph">スナップショットの詳細については、を参照してください。<block ref="8f47a9b0ccec19c7f5d940ab138ea0b4" category="inline-link-macro-rx"></block></block>
+  <block id="7509bd2cfd7821f433d962315cc50a57" category="paragraph">ONTAP 9.12.1以降では、スナップショットは読み取り専用であるだけでなく、偶発的または意図的な削除からも保護できます。この機能は改ざん防止スナップショットと呼ばれます。保持期間は、Snapshotポリシーを使用して設定および適用できます。作成されたスナップショットは、有効期限に達するまで削除できません。管理またはサポートセンターのオーバーライドはありません。</block>
+  <block id="287130f9ebd13d6ed68dd04d8d2a295e" category="admonition">改ざん防止スナップショットは、ファブリックプールを使用して階層化できません。</block>
+  <block id="c2f55c662895ff4fac4100a2a0852e43" category="paragraph">改ざん防止スナップショットの詳細については、<block ref="fd5bfd16d2f3d4d67a500529a5ee8cad" category="inline-link-macro-rx"></block></block>
+  <block id="be7dc70d98bcb6099a5c94c0eb263502" category="paragraph">Snapshotはリモートシステムにレプリケートすることもできます。これには改ざん防止スナップショットが含まれます。このスナップショットでは、リモートシステムに保持期間が適用され、適用されます。その結果、ローカルSnapshotと同じデータ保護のメリットが得られますが、データは2つ目のストレージアレイに配置されます。これにより、元のアレイを破棄してもバックアップが損なわれることはありません。</block>
+  <block id="170814cc5599dd2691018c487b6c756b" category="paragraph">SnapMirrorの詳細については、<block ref="3a921b7bc4d1ecfb45f8d64003b59241" category="inline-link-macro-rx"></block></block>
+  <block id="f1e054edf08e67911f64f3d6bc85055c" category="paragraph">新しく構成したONTAPストレージシステムは、新しくプロビジョニングしたVMware ESXサーバと似ています。これは、仮想マシンが作成されるまで、どちらもユーザをサポートできないためです。ONTAPでは、ストレージ管理の最も基本的な単位となるStorage Virtual Machine（SVM）を作成します。各SVMには、独自のストレージリソース、プロトコル構成、IPアドレス、FCP WWNがあります。これがONTAPマルチテナンシーの基盤です。</block>
+  <block id="9f531561663c2d70601e59d0a2a97e22" category="paragraph">SVMの詳細については、を参照してください。<block ref="49f63552efbf93d6a834173c0aa523ad" category="inline-link-macro-rx"></block></block>
+  <block id="7995495e3afeef685b0a0bcf51360d6c" category="paragraph">管理アクセス制御の詳細については、を参照してください。<block ref="a0740fbcbe9ba6690a7ab99ab89cd2c9" category="inline-link-macro-rx"></block></block>
+  <block id="19fd31cbf45473230fbcebf8392cc91e" category="section-title">多要素認証（MFA）</block>
+  <block id="96654aef2c50a23153b1537b5229776f" category="paragraph">多要素認証（MFA）の詳細については、<block ref="1786169af27633b737f29186948225e1" category="inline-link-macro-rx"></block></block>
+  <block id="e888b1b74bec5238c3c604159ac1d53a" category="paragraph">API RBACの詳細については、<block ref="e61ba9faf8dbe169378ea875c9b479b4" category="inline-link-macro-rx"></block></block>
+  <block id="6e09a67fb21def2cb508cbfe0d7c0794" category="paragraph">マルチ管理者認証（MAV）の詳細については、<block ref="88147b7c4319c7463e1de20879284ceb" category="inline-link-macro-rx"></block></block>
+  <block id="d682e5055f8368ad42d44e0de5e75ed3" category="inline-image-macro">SnapMirrorアクティブ同期の通常動作</block>
+  <block id="a61d348ee21d7fdf1a9da822a79df846" category="paragraph"><block ref="a61d348ee21d7fdf1a9da822a79df846" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3fe281f607d85b52408e82cb2d7aef71" category="inline-image-macro">SnapMirrorアクティブ同期エラー</block>
+  <block id="c5ff28a15762db1ce9589bc45fe42a83" category="paragraph"><block ref="c5ff28a15762db1ce9589bc45fe42a83" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="a98433bfbc9755650778888be2e155c8" category="inline-image-macro">SnapMirrorアクティブ同期フェイルオーバー</block>
+  <block id="5fe2be834f0686a9a02a2872ecb20f91" category="paragraph"><block ref="5fe2be834f0686a9a02a2872ecb20f91" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="40685542fb725d5516910c5721538340" category="inline-image-macro">SnapMirrorアクティブ同期の修復</block>
+  <block id="67e60a13c39559320bab1f6f456824d0" category="paragraph"><block ref="67e60a13c39559320bab1f6f456824d0" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="217536ed57b639cdf05f688cf8ddaca1" category="inline-image-macro">SnapMirrorアクティブ同期フェイルバック</block>
+  <block id="362b862a6b72622be34b2904dcbf413b" category="paragraph"><block ref="362b862a6b72622be34b2904dcbf413b" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f060f17ec7a3fc2a182a4759545d4cb3" category="paragraph"><block ref="f060f17ec7a3fc2a182a4759545d4cb3" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="3d25a1eebebf538e68ea79a21fdeb31c" category="paragraph"><block ref="3d25a1eebebf538e68ea79a21fdeb31c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="1cf9d22584fea5a10f4ed164a871a45f" category="paragraph"><block ref="1cf9d22584fea5a10f4ed164a871a45f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="4be3d396256a7548ce446a9a03183122" category="paragraph"><block ref="4be3d396256a7548ce446a9a03183122" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="05933557921f3e80d9d78fff7d9532d6" category="paragraph"><block ref="05933557921f3e80d9d78fff7d9532d6" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="2a5e066e529edd11b35f46c161170620" category="paragraph">一方、Oracle RACなどのクラスタ化されたアプリケーションは、2つの異なるサイトで同時に利用可能なサービスを提供できます。サイトが失われても、アプリケーションサービス全体が失われるわけではありません。サバイバーサイトでは、引き続きインスタンスを使用して実行できます。</block>
+  <block id="d629eadf33041c24ee81c3752a895f8d" category="paragraph"><block ref="d629eadf33041c24ee81c3752a895f8d" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="267017761cb9de7ce4e0ea9f0e078628" category="paragraph"><block ref="267017761cb9de7ce4e0ea9f0e078628" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="fd994146b555ce2a39038a16098a6e3e" category="list-text"><block ref="9df22f196a33acd0b372fe502de51211" prefix="" category="inline-code"></block>-ランダムリードデータのみを取得</block>
+  <block id="0c65a737281c49235c3058020e81f7b9" category="list-text"><block ref="8805d416ce540c5f2df34af5b18d742b" prefix="" category="inline-code"></block>-すべてのシーケンシャルまたはランダムリードデータを取得</block>
+  <block id="deea309eeb62f907bfa37ca436857255" category="list-text"><block ref="334c4a4c42fdb79d7ebc3e73b517e6f8" prefix="" category="inline-code"></block>-すべてのシーケンシャルまたはランダムリードデータを取得</block>
+  <block id="c4216ce97dadec9cf3de76609a5a07de" category="list-text"><block ref="a181a603769c1f98ad927e7367c7aa51" prefix="" category="inline-code"></block>-大容量階層からデータを取得しない</block>
+  <block id="47f64097ec44c9f18f4025941f2e4436" category="inline-image-macro">FabricPool による階層化</block>
+  <block id="0a5778c8b17c5df28190c8f022c4e11a" category="paragraph"><block ref="0a5778c8b17c5df28190c8f022c4e11a" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="e6edcd80dc55ce70fb5c4fa1c13c9bc6" category="section-title">ハイパースレッディング</block>
+  <block id="7e4c522ec8e0c58e24f493765888ed54" category="paragraph">ハイパースレッディングとは、同時マルチスレッド（SMT）の実装のことで、x86プロセッサで実行される計算の並列化を改善します。SMTはIntelプロセッサとAMDプロセッサの両方で使用できます。</block>
+  <block id="4114d233d42e1381db8a36ed5a76930b" category="paragraph">ハイパースレッディングにより、論理CPUが物理CPUとしてオペレーティングシステムに認識されます。SQL Serverは、これらの追加CPUを認識し、物理的に存在するよりも多くのコアがあるかのように使用します。これにより、並列化を増やすことでパフォーマンスを大幅に向上させることができます。</block>
+  <block id="fbb6d18b081bfa69df40139eb4b0213b" category="inline-image-macro">SQL Serverのログメッセージ</block>
+  <block id="d78202a5fb91002bb31924c80636beee" category="paragraph"><block ref="d78202a5fb91002bb31924c80636beee" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="8f2b07811863589142fb500958a93aef" category="paragraph">これは大規模なクエリには役立ちますが、原因のパフォーマンスが低下し、同時実行数が制限される可能性があります。1つのCPUソケット内の物理コアの数に並列処理を制限する方法が適しています。たとえば、1ソケットあたり12コアの物理CPUソケットが2つあるサーバでは、ハイパースレッディングに関係なく、<block ref="1abedc5f6ab369ab9fcd16d6b7990638" prefix=" " category="inline-code"></block>12に設定する必要があります。<block ref="1abedc5f6ab369ab9fcd16d6b7990638" prefix=" " category="inline-code"></block>使用するCPUを制限したり、指定したりすることはできません。代わりに、単一のバッチクエリで使用できるCPUの数を制限します。</block>
+  <block id="2bcdfd16d227f0659d58f9c368f92311" category="inline-link-macro">max worker threadsサーバ構成オプションの設定</block>
+  <block id="784d03ae991a0cc4ef7f8b5318d0643e" category="paragraph">より多くのワーカースレッドを使用するようにSQL Serverを設定する必要があるのはいつですか？各スケジューラの平均ワークキューの長さが1を超える場合は、負荷がCPUに制限されていないか、その他の重い待機時間が発生している場合にのみ、システムにスレッドを追加することでメリットが得られます。これらのいずれかが発生している場合、スレッドを追加しても、他のシステムボトルネックを待つことになるため、効果はありません。最大ワーカースレッド数の詳細については、を参照してください<block ref="516f4431a9f331f442450f80b5638a9d" category="inline-link-macro-rx"></block>。</block>
+  <block id="a5ee78f6f06a355d893076bd00799f33" category="inline-image-macro">ワーカースレッドの最大数</block>
+  <block id="06a7934dd21e03f634b6cd9fc8dfafd5" category="paragraph"><block ref="06a7934dd21e03f634b6cd9fc8dfafd5" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="c7acc2cdcff9c9156a99e4f37871f0b3" category="searchtitle">SnapCenterおよびT-SQLコマンドを使用したONTAP上のMicrosoft SQL Serverデータベースの保護</block>
+  <block id="d56a13248537a908d7fb7730827a3ea8" category="paragraph">SQL Serverデータベース環境の保護は、データベース自体の管理にとどまらない多次元的な取り組みです。ONTAPには、データベースインフラのストレージを保護するために設計された独自の機能がいくつか用意されています。</block>
+  <block id="1fdd8a4c4832d13ddabbb02c424cf87d" category="paragraph">仮想データベースをホストするボリューム、ファイルシステム、およびデータストアが、スイッチオーバー前にディザスタリカバリサイトで使用されていない場合は、関連するボリュームでを設定する必要はありません<block ref="a2626552f293b2377efe829e69d14daa" prefix=" " category="inline-code"></block>。</block>
+  <block id="358f73eb3e0830400b47b849dd1ff244" category="summary">Microsoft SQL ServerとONTAPメディエーター</block>
+  <block id="d7b47db08dce16a62f9ea97613e8f704" category="paragraph">フェイルオーバーを安全に自動化するにはMediatorが必要です。理想的には、独立した3つ目のサイトに配置しますが、レプリケーションに参加しているクラスタの1つと同じ場所に配置すれば、ほとんどのニーズに対応できます。</block>
+  <block id="f9619e52c7cdde4c0b1a97530a47dd35" category="section-title">対称アクティブ/アクティブ構成のSnapMirrorアクティブ同期アーキテクチャ</block>
+  <block id="19faeb7ab81d5f28227fc1778d55ff90" category="inline-image-macro">SnapMirror Active Syncアーキテクチャ</block>
+  <block id="133eca4b24d6c05606859c2288c8ac7f" category="paragraph"><block ref="133eca4b24d6c05606859c2288c8ac7f" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="441756ba9f536a754940c70c53cb3b13" category="paragraph">** ONTAPメディエーター**</block>
+  <block id="b41efcb6893de373f77e07be9a8e0d32" category="paragraph"><block ref="b41efcb6893de373f77e07be9a8e0d32" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="f830e7995cd120ac203db751bdb1174b" category="paragraph">NetAppは、ストレージの高度な管理機能を提供するAstra Tridentを提供しています。たとえば、Astra Tridentを使用すると、Kubernetesで作成されたコンテナは、適切な階層にストレージを自動的にプロビジョニングしたり、エクスポートポリシーを適用したり、Snapshotポリシーを設定したり、コンテナを別の階層にクローニングしたりできます。詳細については、を参照して<block ref="d243cca937364184efa824b0525b876a" category="inline-link-macro-rx"></block>ください。</block>
+  <block id="e5f3f995b3e054f0d6bfdd13c3597e2c" category="paragraph"><block ref="e5f3f995b3e054f0d6bfdd13c3597e2c" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="9b87cb3e85b59ad2d04537560673f94b" category="inline-image-macro">I/Oタイプ</block>
+  <block id="977d1017b39374152ac0d18ac3267ca2" category="paragraph"><block ref="977d1017b39374152ac0d18ac3267ca2" category="inline-image-macro-rx" type="image"></block></block>
+  <block id="77ea00d93c10244a077ab55be57f5c28" category="admonition">このパラメータまたはinnodb_io_capacity_maxパラメータを高すぎて無駄にすると、パフォーマンスに深刻な影響を与える可能性があります。</block>
 </blocks>

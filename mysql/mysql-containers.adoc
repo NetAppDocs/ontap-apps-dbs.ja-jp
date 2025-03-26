@@ -6,8 +6,10 @@ summary: MySQLのコンテナ化
 searchtitle: MySQLのコンテナ化 
 ---
 = コンテナ化
+:hardbreaks:
 :allow-uri-read: 
 :icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 
@@ -16,4 +18,4 @@ MySQLデータベースのコンテナ化はますます普及しています。
 
 低レベルのコンテナ管理は、ほとんどの場合Dockerを使用して実行されます。OpenShiftやKubernetesなどのコンテナ管理プラットフォームを使用すると、大規模なコンテナ環境の管理がさらに簡単になります。コンテナ化のメリットとしては、ハイパーバイザーのライセンスが不要なため、コストの削減が挙げられます。また、コンテナを使用すると、基盤となる同じカーネルとオペレーティングシステムを共有しながら、複数のデータベースを互いに分離して実行できます。コンテナはマイクロ秒単位でプロビジョニングできます。
 
-NetAppは、ストレージの高度な管理機能を提供するAstra Tridentを提供しています。たとえば、Astra Tridentを使用すると、Kubernetesで作成されたコンテナは、適切な階層にストレージを自動的にプロビジョニングしたり、エクスポートポリシーを適用したり、Snapshotポリシーを設定したり、コンテナを別の階層にクローニングしたりできます。追加情報の場合は、を参照してください link:https://docs.netapp.com/us-en/trident/index.html["Astra Trident のドキュメント"]。
+NetAppは、ストレージの高度な管理機能を提供するAstra Tridentを提供しています。たとえば、Astra Tridentを使用すると、Kubernetesで作成されたコンテナは、適切な階層にストレージを自動的にプロビジョニングしたり、エクスポートポリシーを適用したり、Snapshotポリシーを設定したり、コンテナを別の階層にクローニングしたりできます。詳細については、を参照してlink:https://docs.netapp.com/us-en/trident/index.html["Astra Trident のドキュメント"^]ください。

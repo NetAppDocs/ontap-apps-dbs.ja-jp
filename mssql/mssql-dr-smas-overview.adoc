@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mssql/mssql-dr-smas-overview.html 
 keywords: MSSQL,SQL Server, SnapMirror active sync, SMBC, overview 
 summary: Microsoft SQL ServerとSnapMirrorのアクティブな同期 
-searchtitle: SQL ServerとSnapMirrorのアクティブな同期 
+searchtitle: Microsoft SQL ServerとSnapMirrorのアクティブな同期 
 ---
 = 概要
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 
@@ -19,9 +22,9 @@ SQL Serverホストは、ファイバチャネル（FC）LUNまたはiSCSI LUN�
 
 
 
-== 対称アクティブ/アクティブとSnapMirrorアクティブのアーキテクチャ
+== 対称アクティブ/アクティブ構成のSnapMirrorアクティブ同期アーキテクチャ
 
-image:mssql-smas-architecture.png["エラー：グラフィックイメージがありません"]
+image:../media/mssql-smas-architecture.png["SnapMirror Active Syncアーキテクチャ"]
 
 **同期レプリケーション**
 

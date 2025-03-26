@@ -19,7 +19,7 @@ SnapMirrorアクティブ同期では、一方のサイトが「ソース」で�
 
 ソース/デスティネーションの設定はSystemManagerで確認できます。
 
-image:smas-source-systemmanager.png["SM-ASソースのSMスクリーンショット"]
+image:../media/smas-source-systemmanager.png["SM-ASソースのSMスクリーンショット"]
 
 または、CLIで次の操作を行います。
 

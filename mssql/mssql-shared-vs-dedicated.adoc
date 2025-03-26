@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mssql/mssql-shared-vs-dedicated.html 
 keywords: MSSQL,SQL Server, multiple instances, dedicated instance, ONTAP 
 summary: Microsoft SQL Serverインスタンスの導入 
-searchtitle: Microsoft SQL Server共有インスタンスと専用インスタンス 
+searchtitle: Microsoft SQL Serverインスタンスの導入 
 ---
 = 共有インスタンスと専用インスタンス
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

@@ -16,11 +16,11 @@ SnapMirrorアクティブ同期（SM-AS）は、SnapMirror同期に基づいて�
 
 SnapMirror Active Syncは、2つの異なるサイトに存在するLUNを提供します。通常の運用では、「source」または「destination」はありません。方向は双方向です。特定のLUNパスに対するすべての読み取りIOは、データのローカルコピーを使用してローカルコントローラによって処理されます。すべての書き込みがリモートパートナーにレプリケートされ、確認応答の前にローカルに書き込まれます。
 
-image:smas-overview.png["SnapMirrorアクティブ同期の概要"]
+image:../media/smas-overview.png["SnapMirrorアクティブ同期の概要"]
 
 論理的には、この動作は単一のLUNセットのようなものです。IOは、2つの異なるクラスタ上に存在するSANパスを介してこれらの論理LUNに転送できますが、データは常に同じです。IOの動作は対称的であり、多くのアクティブ/アクティブアプリケーション構成ではこれが重要です。
 
-image:smas-logical.png["SnapMirrorアクティブ同期論理設計"]
+image:../media/smas-logical.png["SnapMirrorアクティブ同期論理設計"]
 
 
 

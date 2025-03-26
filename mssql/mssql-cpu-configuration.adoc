@@ -1,12 +1,15 @@
 ---
 sidebar: sidebar 
 permalink: mssql/mssql-cpu-configuration.html 
-keywords: MSSQL,SQL Server, CPU, ONTAP 
+keywords: MSSQL, SQL Server, CPU, ONTAP 
 summary: Microsoft SQL ServerのCPU構成 
 searchtitle: Microsoft SQL ServerのCPU構成 
 ---
 = CPU構成
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 
@@ -17,7 +20,7 @@ SQL Serverのパフォーマンスは、CPUとコアの構成にさまざまな�
 
 == ハイパースレッディング
 
-ハイパースレッディングとは、x86プロセッサで実行される計算の並列化を改善する同時マルチスレッド（SMT）の実装のことです。SMTはIntelプロセッサとAMDプロセッサの両方で使用できます。
+ハイパースレッディングとは、同時マルチスレッド（SMT）の実装のことで、x86プロセッサで実行される計算の並列化を改善します。SMTはIntelプロセッサとAMDプロセッサの両方で使用できます。
 
 ハイパースレッディングにより、論理CPUが物理CPUとしてオペレーティングシステムに認識されます。SQL Serverは、これらの追加CPUを認識し、物理的に存在するよりも多くのコアがあるかのように使用します。これにより、並列化を増やすことでパフォーマンスを大幅に向上させることができます。
 
@@ -31,7 +34,7 @@ SQL Serverのライセンスには2つのオプションがあります。1つ�
 
 次の図は、起動後のSQL Serverログメッセージを示しています。これは、コア制限の適用を示しています。
 
-image:mssql-hyperthreading.png["エラー：グラフィックイメージがありません"]
+image:../media/mssql-hyperthreading.png["SQL Serverのログメッセージ"]
 
 したがって、すべてのCPUを使用するには、プロセッサ単位のコアライセンスを使用する必要があります。SQL Serverのライセンスの詳細については、を参照してください。 link:https://www.microsoft.com/en-us/sql-server/sql-server-2022-comparison["SQL Server 2022：最新データプラットフォームを実現"^]。
 
@@ -57,7 +60,7 @@ SQL Serverは、オペレーティングシステムで使用可能なすべて�
 
 デフォルトでは、プロセッサ単位のコアライセンスが選択されている場合、SQL Serverはクエリの実行中に使用可能なすべてのCPUを使用します。
 
-これは大規模なクエリには役立ちますが、原因のパフォーマンスが低下し、同時実行数が制限される可能性があります。1つのCPUソケット内の物理コアの数に並列処理を制限する方法が適しています。たとえば、ソケットあたり12コアの物理CPUソケットが2つあるサーバでは、ハイパースレッディングに関係なく、 `MAXDOP`12に設定する必要があります。 `MAXDOP`使用するCPUを制限したり、指定したりすることはできません。代わりに、単一のバッチクエリで使用できるCPUの数を制限します。
+これは大規模なクエリには役立ちますが、原因のパフォーマンスが低下し、同時実行数が制限される可能性があります。1つのCPUソケット内の物理コアの数に並列処理を制限する方法が適しています。たとえば、1ソケットあたり12コアの物理CPUソケットが2つあるサーバでは、ハイパースレッディングに関係なく、 `MAXDOP`12に設定する必要があります。 `MAXDOP`使用するCPUを制限したり、指定したりすることはできません。代わりに、単一のバッチクエリで使用できるCPUの数を制限します。
 
 
 TIP: * NetAppでは、データウェアハウスなどのDSSの場合、50から始めて、必要に応じてチューニングアップまたはチューニングダウンを検討することを推奨してい `MAXDOP`ます。変更を加えるときは、必ずアプリケーション内の重要なクエリを測定してください。
@@ -72,9 +75,9 @@ TIP: * NetAppでは、データウェアハウスなどのDSSの場合、50か�
 
 デフォルト値は0で、SQL Serverは起動時にワーカースレッド数を自動的に設定できます。これはほとんどのシステムで機能します。ワーカースレッドの最大数は高度なオプションであり、経験豊富なデータベース管理者（DBA）の支援なしに変更しないでください。
 
-より多くのワーカースレッドを使用するようにSQL Serverを設定する必要があるのはいつですか？各スケジューラの平均ワークキューの長さが1を超える場合は、負荷がCPUに制限されていないか、その他の重い待機時間が発生している場合にのみ、システムにスレッドを追加することでメリットが得られます。これらのいずれかが発生している場合、スレッドを追加しても、他のシステムボトルネックを待つことになるため、効果はありません。最大ワーカースレッド数の詳細については、を参照してください。 link:https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-max-worker-threads-server-configuration-option?view=sql-server-ver16&redirectedfrom=MSDN["max worker threadsサーバ設定オプションの設定"^]。
+より多くのワーカースレッドを使用するようにSQL Serverを設定する必要があるのはいつですか？各スケジューラの平均ワークキューの長さが1を超える場合は、負荷がCPUに制限されていないか、その他の重い待機時間が発生している場合にのみ、システムにスレッドを追加することでメリットが得られます。これらのいずれかが発生している場合、スレッドを追加しても、他のシステムボトルネックを待つことになるため、効果はありません。最大ワーカースレッド数の詳細については、を参照してくださいlink:https://learn.microsoft.com/en-us/sql/database-engine/configure-windows/configure-the-max-worker-threads-server-configuration-option?view=sql-server-ver16&redirectedfrom=MSDN["max worker threadsサーバ構成オプションの設定"^]。
 
-image:mssql-max-worker-threads.png["エラー：グラフィックイメージがありません"]
+image:../media/mssql-max-worker-threads.png["ワーカースレッドの最大数"]
 
 
 

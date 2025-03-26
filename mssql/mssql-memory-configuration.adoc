@@ -6,7 +6,10 @@ summary: Microsoft SQL Serverのメモリ構成
 searchtitle: Microsoft SQL Serverのメモリ構成 
 ---
 = メモリ構成
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

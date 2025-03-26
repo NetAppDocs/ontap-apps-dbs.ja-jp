@@ -6,7 +6,10 @@ summary: Microsoft SQL Serverストレージに関する考慮事項
 searchtitle: Microsoft SQL Serverストレージに関する考慮事項 
 ---
 = 概要
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

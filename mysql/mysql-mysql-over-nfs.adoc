@@ -6,8 +6,10 @@ summary: MySQLとNFS
 searchtitle: MySQLとNFS 
 ---
 = NFS
+:hardbreaks:
 :allow-uri-read: 
 :icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

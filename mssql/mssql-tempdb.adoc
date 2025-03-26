@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mssql/mssql-tempdb.html 
 keywords: MSSQL,SQL Server, tempdb, ONTAP 
 summary: ONTAPでのMicrosoft SQL Server tempdbの配置 
-searchtitle: Microsoft SQL Server tempdbフアイル 
+searchtitle: ONTAPでのMicrosoft SQL Server tempdbの配置 
 ---
 = tempdbフアイル
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

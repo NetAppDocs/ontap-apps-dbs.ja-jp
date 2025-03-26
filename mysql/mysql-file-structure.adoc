@@ -14,7 +14,7 @@ searchtitle: MySQLとInnoDBのファイル構造
 [role="lead"]
 InnoDBはストレージとMySQLサーバの中間層として機能し、データをドライブに格納します。
 
-image:mysql-file-structure1.png["エラー：グラフィックイメージが見つかりません"]
+image:../media/mysql-file-structure1.png["MySQLフアイルノコウソウ"]
 
 MySQL I/Oは次の2つのタイプに分類されます。
 
@@ -22,7 +22,7 @@ MySQL I/Oは次の2つのタイプに分類されます。
 * シーケンシャルファイルI/O
 
 
-image:mysql-file-structure2.png["エラー：グラフィックイメージが見つかりません"]
+image:../media/mysql-file-structure2.png["I/Oタイプ"]
 
 データファイルはランダムに読み取りおよび上書きされるため、IOPSが高くなります。そのため、SSDストレージを推奨します。
 

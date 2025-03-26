@@ -6,8 +6,10 @@ summary: MySQLフアイルキシユツシ
 searchtitle: MySQLフアイルキシユツシ 
 ---
 = ファイル記述子
+:hardbreaks:
 :allow-uri-read: 
 :icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

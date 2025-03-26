@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mysql/mysql-innodb_io_capacity.html 
 keywords: MySQL,MariaDB,innodb_io_capacity 
 summary: MySQLとinnodb_io_capacity 
+searchtitle: MySQLとinnodb_io_capacity 
 ---
 = innodb_io_capacity
+:hardbreaks:
 :allow-uri-read: 
 :icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 
@@ -26,4 +29,4 @@ CAUTION: ワークロードに対して低い値では不十分であること�
 innodb_io_capacityパラメータは、フラッシュ速度と関連するI/Oを調整します。
 
 
-CAUTION: このパラメータまたはinnodb_io_capacity_maxパラメータを設定すると、パフォーマンスに深刻な影響を与える可能性があります。このパラメータが高すぎて、早期フラッシュでI/O処理が無駄になります。
+CAUTION: このパラメータまたはinnodb_io_capacity_maxパラメータを高すぎて無駄にすると、パフォーマンスに深刻な影響を与える可能性があります。

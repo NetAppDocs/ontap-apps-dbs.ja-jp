@@ -6,7 +6,10 @@ summary: Microsoft SQL Serverログディレクトリ
 searchtitle: Microsoft SQL Serverログディレクトリ 
 ---
 = ログディレクトリ
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

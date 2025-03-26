@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mssql/mssql-storage-efficiency.html 
 keywords: MSSQL,SQL Server, efficiency, compression, deduplication 
 summary: Microsoft SQL ServerとONTAPのStorage Efficiency 
-searchtitle: Microsoft SQL ServerとStorage Efficiency 
+searchtitle: Microsoft SQL ServerとONTAPのStorage Efficiency 
 ---
 = ストレージ効率
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 
@@ -94,13 +97,14 @@ VMwareゲストブートLUNなどのデータは、同じオペレーティン�
 
 一部のお客様は、特定のワークロードにシックプロビジョニングを使用するか、一般的には確立された運用と調達の手法に基づいてシックプロビジョニングを使用します。
 
-*注意：*ボリュームがシックプロビジョニングされている場合は、ボリュームの圧縮解除や重複排除の削除など、そのボリュームのすべての効率化機能を完全に無効にするように注意する必要があります。 `sis undo` コマンドを実行しますボリュームが `volume efficiency show` 出力。有効になっている場合、ボリュームはまだ部分的に効率化機能用に設定されています。その結果、オーバーライトギャランティの動作が異なります。そのため、設定で原因が見落とされてボリュームのスペースが予期せず不足し、データベースI/Oエラーが発生する可能性が高くなります。
+
+CAUTION: ボリュームがシックプロビジョニングされている場合は、コマンドを使用した解凍や重複排除の削除など、そのボリュームのすべての効率化機能を完全に無効にするように注意する必要があります `sis undo`。ボリュームは出力に表示されません `volume efficiency show`。有効になっている場合、ボリュームはまだ部分的に効率化機能用に設定されています。その結果、オーバーライトギャランティの動作が異なります。そのため、設定がオーバーサイトされるとボリュームが予期せずスペース不足になり、データベースI/Oエラーが発生する可能性が高くなります。
 
 
 
 == 効率化のベストプラクティス
 
-NetAppの推奨事項は次のとおりです。
+* NetAppの推奨事項*：
 
 
 

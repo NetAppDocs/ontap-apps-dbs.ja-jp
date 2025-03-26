@@ -6,8 +6,10 @@ summary: MySQLセツテイハラメエタ
 searchtitle: MySQLセツテイハラメエタ 
 ---
 = 設定パラメータ
+:hardbreaks:
 :allow-uri-read: 
 :icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 

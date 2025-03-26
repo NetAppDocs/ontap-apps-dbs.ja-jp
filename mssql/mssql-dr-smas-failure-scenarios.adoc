@@ -3,10 +3,13 @@ sidebar: sidebar
 permalink: mssql/mssql-dr-smas-failure-scenarios.html 
 keywords: MSSQL,SQL Server, SnapMirror active sync, SMBC, failover 
 summary: Microsoft SQL ServerおよびSM-ASのフェイルオーバーシナリオ 
-searchtitle: Microsoft SQL ServerとSnapMirrorのアクティブ同期フェイルオーバー 
+searchtitle: Microsoft SQL ServerおよびSM-ASのフェイルオーバーシナリオ 
 ---
 = 障害シナリオ
+:hardbreaks:
 :allow-uri-read: 
+:icons: font
+:linkattrs: 
 :imagesdir: ../media/
 
 
@@ -23,7 +26,7 @@ SM-ASレプリケーションが中断されると、クラスタが反対側の
 
 
 
-=== サイトA（優先サイト）
+== サイトA（優先サイト）
 
 優先サイトでのレプリケーションリンク障害の結果、レプリケーションリンクが本当に到達不能であると判断される前に、ONTAPがレプリケートされた書き込み処理を再試行するため、書き込みIO処理が約15秒間中断されます。15秒が経過すると、サイトAのシステムが読み取りと書き込みのIO処理を再開します。SANパスは変更されず、LUNはオンラインのままです。
 
