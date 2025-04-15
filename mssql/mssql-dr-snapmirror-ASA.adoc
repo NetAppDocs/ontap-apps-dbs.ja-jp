@@ -1,0 +1,21 @@
+---
+sidebar: sidebar 
+permalink: mssql/mssql-dr-snapmirror-ASA.html 
+keywords: MSSQL,SQL Server, disaster recovery, snapmirror 
+summary: ONTAPを使用したMicrosoft SQL Serverディザスタリカバリ 
+searchtitle: SnapMirrorを使用したMicrosoft SQL Serverディザスタリカバリ 
+---
+= SnapMirror
+:allow-uri-read: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+SnapMirror for SQL Serverの推奨事項は次のとおりです。
+
+* 迅速なデータリカバリのニーズが高い場合は、SnapMirrorアクティブ同期を使用した同期レプリケーションを使用し、RPOの柔軟性を高める非同期ソリューションを使用します。
+* SnapCenterを使用してデータベースをバックアップし、Snapshotをリモートクラスタにレプリケートする場合は、整合性を確保するためにコントローラからのSnapMirror更新のスケジュールを設定しないでください。代わりに、フルバックアップまたはログバックアップの完了後にSnapCenterからのSnapMirror更新を有効にしてSnapMirrorを更新します。
+* SQL Serverデータを含むストレージユニットをクラスタ内の複数のノードに分散して、すべてのクラスタノードでSnapMirrorレプリケーションアクティビティを共有できるようにします。この分散により、ノードリソースの使用が最適化されます。
+
+
+SnapMirrorの詳細については、を参照してください。 link:https://www.netapp.com/us/media/tr-4015.pdf["TR-4015：『SnapMirrorの設定およびベストプラクティスガイド- ONTAP 9』"^]。

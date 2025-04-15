@@ -24,7 +24,7 @@ SQL Serverのパフォーマンスは、CPUとコアの構成にさまざまな�
 
 ハイパースレッディングにより、論理CPUが物理CPUとしてオペレーティングシステムに認識されます。SQL Serverは、これらの追加CPUを認識し、物理的に存在するよりも多くのコアがあるかのように使用します。これにより、並列化を増やすことでパフォーマンスを大幅に向上させることができます。
 
-ここで注意すべき点は、SQL Serverの各バージョンには、使用できるコンピューティング能力に独自の制限があることです。詳細については、「SQL Serverのエディション別のコンピューティング容量制限」を参照してください。
+ここで注意すべき点は、SQL Serverの各バージョンには、使用できるコンピューティング能力に独自の制限があることです。詳細については、を参照してください link:https://learn.microsoft.com/en-us/sql/sql-server/compute-capacity-limits-by-edition-of-sql-server?view=sql-server-ver16&redirectedfrom=MSDN["SQL Serverのエディション別のコンピューティング容量の制限"]。
 
 
 

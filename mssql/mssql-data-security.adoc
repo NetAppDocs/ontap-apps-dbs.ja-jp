@@ -45,6 +45,9 @@ NOTE: 改ざん防止スナップショットは、ファブリックプール�
 改ざん防止スナップショットの詳細については、link:https://docs.netapp.com/us-en/ontap/snaplock/snapshot-lock-concept.html["ONTAPのドキュメント"]
 
 
+NOTE: 新しいASAプラットフォームで、_vault_policyを使用してSnapshotをリモートクラスタにレプリケートし、デスティネーションをロックしてSnapshotの改ざんを防止します。
+
+
 
 == SnapMirror レプリケーション
 

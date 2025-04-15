@@ -13,50 +13,81 @@ entries:
     url: "/mssql/mssql-memory-configuration.html"
   - title: 共有インスタンスと専用インスタンス
     url: "/mssql/mssql-shared-vs-dedicated.html"
-- title: ストレージ構成
-  pdf-filename: Microsoft SQL Server向けのストレージ構成
+  - title: tempdbフアイル
+    url: "/mssql/mssql-tempdb.html"
+- title: AFF / FASシステムでのストレージ構成
+  pdf-filename: AFF / FASシステム上のMicrosoft SQL Server
   entries:
   - title: 概要
     url: "/mssql/mssql-storage-considerations.html"
   - title: データベースファイルとファイルグループ
     url: "/mssql/mssql-files-and-filegroups.html"
-  - title: ログディレクトリ
-    url: "/mssql/mssql-log-directory.html"
-  - title: tempdbフアイル
-    url: "/mssql/mssql-tempdb.html"
   - title: ストレージ効率
     url: "/mssql/mssql-storage-efficiency.html"
-- title: データ保護
-  url: "/mssql/mssql-data-protection.html"
-- title: ディザスタリカバリ
-  entries:
-  - title: 概要
-    url: "/mssql/mssql-disaster-recovery.html"
-  - title: SnapMirror
-    url: "/mssql/mssql-dr-snapmirror.html"
-  - title: MetroCluster
-    entries:
-    - title: MetroClusterのアーキテクチャ
-      url: "/mssql/mssql-dr-mcc-overview.html"
-    - title: SQL ServerとMetroCluster
-      url: "/mssql/mssql-dr-mcc-sql.html"
-  - title: SnapMirrorアクティブ同期
+  - title: データ保護
+    url: "/mssql/mssql-data-protection.html"
+  - title: ディザスタリカバリ
     entries:
     - title: 概要
-      url: "/mssql/mssql-dr-smas-overview.html"
-    - title: ONTAPメディエーター
-      url: "/mssql/mssql-dr-smas-mediator.html"
-    - title: 優先サイト
-      url: "/mssql/mssql-dr-smas-preferred-site.html"
-    - title: ネットワークトポロジ
+      url: "/mssql/mssql-disaster-recovery.html"
+    - title: SnapMirror
+      url: "/mssql/mssql-dr-snapmirror.html"
+    - title: MetroCluster
       entries:
-      - title: 均一なアクセス
-        url: "/mssql/mssql-dr-smas-uniform.html"
-      - title: 不均一なアクセス
-        url: "/mssql/mssql-dr-smas-nonuniform.html"
-    - title: SM-ASを使用したSQL Server
-      url: "/mssql/mssql-dr-smas-sql.html"
-    - title: 障害シナリオ
-      url: "/mssql/mssql-dr-smas-failure-scenarios.html"
+      - title: MetroClusterのアーキテクチャ
+        url: "/mssql/mssql-dr-mcc-overview.html"
+      - title: SQL ServerとMetroCluster
+        url: "/mssql/mssql-dr-mcc-sql.html"
+    - title: SnapMirrorアクティブ同期
+      entries:
+      - title: 概要
+        url: "/mssql/mssql-dr-smas-overview.html"
+      - title: ONTAPメディエーター
+        url: "/mssql/mssql-dr-smas-mediator.html"
+      - title: 優先サイト
+        url: "/mssql/mssql-dr-smas-preferred-site.html"
+      - title: ネットワークトポロジ
+        entries:
+        - title: 均一なアクセス
+          url: "/mssql/mssql-dr-smas-uniform.html"
+        - title: 不均一なアクセス
+          url: "/mssql/mssql-dr-smas-nonuniform.html"
+      - title: SM-ASを使用したSQL Server
+        url: "/mssql/mssql-dr-smas-sql.html"
+      - title: 障害シナリオ
+        url: "/mssql/mssql-dr-smas-failure-scenarios.html"
+- title: ASA R2システムでのストレージ構成
+  pdf-filename: ASAシステム上のMicrosoft SQL Server
+  entries:
+  - title: 概要
+    url: "/mssql/mssql-storage-considerations-ASA.html"
+  - title: データベースファイルとファイルグループ
+    url: "/mssql/mssql-files-and-filegroups-ASA.html"
+  - title: データ保護
+    url: "/mssql/mssql-data-protection-ASA.html"
+  - title: ディザスタリカバリ
+    entries:
+    - title: 概要
+      url: "/mssql/mssql-disaster-recovery-ASA.html"
+    - title: SnapMirror
+      url: "/mssql/mssql-dr-snapmirror-ASA.html"
+    - title: SnapMirrorアクティブ同期
+      entries:
+      - title: 概要
+        url: "/mssql/mssql-dr-smas-overview-ASA.html"
+      - title: ONTAPメディエーター
+        url: "/mssql/mssql-dr-smas-mediator-ASA.html"
+      - title: 優先サイト
+        url: "/mssql/mssql-dr-smas-preferred-site-ASA.html"
+      - title: ネットワークトポロジ
+        entries:
+        - title: 均一なアクセス
+          url: "/mssql/mssql-dr-smas-uniform-ASA.html"
+        - title: 不均一なアクセス
+          url: "/mssql/mssql-dr-smas-nonuniform-ASA.html"
+      - title: SM-ASを使用したSQL Server
+        url: "/mssql/mssql-dr-smas-sql-ASA.html"
+      - title: 障害シナリオ
+        url: "/mssql/mssql-dr-smas-failure-scenarios-ASA.html"
 - title: データセキュリティ
   url: "/mssql/mssql-data-security.html"

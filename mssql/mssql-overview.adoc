@@ -23,7 +23,6 @@ NetAppは、読者が以下について実用的な知識を持っているこ�
 
 * ONTAP
 * Microsoft SQL Serverのアーキテクチャと管理
-* SnapCenterバックアップソフトウェア（次のコンポーネントを含む）
 * バックアップソフトウェアとしてのNetApp SnapCenterには、次のものが含まれます。
 +
 ** SnapCenter Plug-in for Microsoft Windows の略

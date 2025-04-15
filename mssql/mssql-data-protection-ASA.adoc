@@ -1,15 +1,12 @@
 ---
 sidebar: sidebar 
-permalink: mssql/mssql-data-protection.html 
+permalink: mssql/mssql-data-protection-ASA.html 
 keywords: MSSQL,SQL Server, SnapCenter, data protection, app-consistent backup, ONTAP 
 summary: SnapCenterおよびT-SQLコマンドを使用したONTAP上のMicrosoft SQL Serverデータベースの保護 
-searchtitle: SnapCenterおよびT-SQLコマンドを使用したONTAP上のMicrosoft SQL Serverデータベースの保護 
+searchtitle: NetApp管理ソフトウェアによるMicrosoft SQL Serverデータ保護 
 ---
 = データ保護
-:hardbreaks:
 :allow-uri-read: 
-:icons: font
-:linkattrs: 
 :imagesdir: ../media/
 
 
@@ -37,7 +34,8 @@ SQL Server 2022では、MicrosoftがT-SQLスナップショットを導入しま
 次に、バックアップワークフローの例を示します。
 
 . ALTERコマンドを使用してデータベースをフリーズします。これにより、基盤となるストレージ上で整合性のあるSnapshotを作成するためのデータベースが準備されます。フリーズ後、backupコマンドを使用してデータベースをフリーズ解除し、スナップショットを記録できます。
-. 新しいbackup groupコマンドとbackup serverコマンドを使用して、ストレージボリューム上の複数のデータベースのスナップショットを同時に実行します。
+. 新しいbackup groupコマンドとbackup serverコマンドを使用して、ストレージユニット上の複数のデータベースのスナップショットを同時に実行します。
+. データベースワークロードが複数のストレージユニットにまたがっている場合は、整合グループを作成して管理タスクを簡易化します。整合グループは、単一ユニットとして管理されるストレージユニットの集まりです。
 . フルバックアップまたはCOPY_ONLYフルバックアップを実行します。これらのバックアップもmsdbに記録されます。
 . スナップショットフルバックアップ後に通常のストリーミング方式で作成されたログバックアップを使用して、ポイントインタイムリカバリを実行します。必要に応じて、ストリーミング差分バックアップもサポートされます。
 
@@ -45,4 +43,7 @@ SQL Server 2022では、MicrosoftがT-SQLスナップショットを導入しま
 詳細については、を参照してください link:https://learn.microsoft.com/en-us/sql/relational-databases/databases/create-a-database-snapshot-transact-sql?view=sql-server-ver16["T-SQLスナップショットについて知るためのMicrosoftのドキュメント"^]。
 
 
-TIP: * NetAppでは* SnapCenterを使用してSnapshotコピーを作成することを推奨しています。前述のT-SQL方式も機能しますが、SnapCenterでは、バックアップ、リストア、クローニングのプロセスを完全に自動化できます。また、検出を実行して、正しいSnapshotが作成されていることを確認します。事前設定は必要ありません。
+TIP: * NetAppでは* SnapCenterを使用してSnapshotコピーを作成することを推奨しています。前述のT-SQL方式も機能しますが、SnapCenterでは、バックアップ、リストア、クローニングのプロセスを完全に自動化できます。また、検出を実行して、正しいSnapshotが作成されていることを確認します。
+
+
+NOTE: SnapCenterは、SQL ServerデータベースがVMware仮想環境で実行されている仮想ディスクでホストされている場合に使用します。データベースがベアメタル物理サーバまたはゲスト接続SCSIでホストされている場合は、T-SQL snapshotコマンドを使用してデータベースをバックアップします。
