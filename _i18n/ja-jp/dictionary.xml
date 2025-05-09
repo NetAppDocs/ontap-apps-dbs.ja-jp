@@ -269,7 +269,6 @@
   <block id="0e7c78164adb6d4650ea685a79d8e99e" category="section-title">効率化のベストプラクティス</block>
   <block id="ec499ad25fa5a765ba43ec2c87819623" category="section-title">AFFのデフォルト</block>
   <block id="9f7127e69d50bf7b844ff3723b86fbd1" category="section-title">一般的な推奨事項</block>
-  <block id="2c24e4751310e03f119a4df187a3bc08" category="list-text">ボリュームやLUNがシンプロビジョニングされていない場合は、すべての効率化設定を無効にする必要があります。これらの機能を使用しても削減は得られず、シックプロビジョニングとスペース効率化が有効になっていると、スペース不足エラーなどの予期しない動作が原因に発生する可能性があるためです。</block>
   <block id="4922fe547c351d6a121465da036d478e" category="list-text">バックアップやデータベーストランザクションログなどでデータが上書きされない場合は、クーリング期間を短くしてTSSEを有効にすることで、効率を高めることができます。</block>
   <block id="e75fd383e4106eb78482b18896975daf" category="list-text">アプリケーションレベルで圧縮がすでに有効になっているファイルが暗号化されている場合など、一部のファイルには圧縮不可能なデータが大量に含まれていることがあります。上記のいずれかに該当する場合は、圧縮可能なデータを含む他のボリュームでより効率的に処理できるように、圧縮を無効にすることを検討してください。</block>
   <block id="64d5def835c194cac8afe4fafded756e" category="doc">ポリシー-ローカルSnapshot</block>
@@ -5225,7 +5224,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="b0874893f6e3e7030833ec488dc9da90" category="list-text"><block ref="937f38432beb92fdba3d47780720bdf7" prefix="(" category="inline-code"></block>ランダムな読み取り/書き込みワークロードであるため、ユーザデータファイルを別 々 のボリュームに配置します。トランザクションログバックアップは、データベースバックアップよりも頻繁に作成するのが一般的です。このため、トランザクションログファイル<block ref="cb15b9539ae0d984ff8740c68b52561c" prefix="(" category="inline-code"></block>）をデータファイルとは別のボリュームまたはVMDKに配置して、それぞれに個別のバックアップスケジュールを作成できるようにします。また、この分離により、ログファイルのシーケンシャルライトI/Oとデータファイルのランダムリード/ライトI/Oが分離され、SQL Serverのパフォーマンスが大幅に向上します。</block>
   <block id="f7f1cb17ab4960f1a8e4c28a7fbccb0d" category="list-text">データベースファイルとデータベース以外のファイル（フルテキスト検索関連ファイルなど）を同じLUNに混在させないでください。</block>
   <block id="58ccb3e2006ffa82c78944061df94b30" category="paragraph">ONTAPのStorage Efficiencyは、パフォーマンスに影響を与えることなく消費するストレージスペースを最小限に抑えてSQL Serverデータを格納、管理できるように最適化されています。</block>
-  <block id="f250d23ef016c3e48436a679c5dab1df" category="list-text">バックアップから単一ボリュームへのデータベースのリストアなど、同じデータのコピーがボリュームに複数含まれていることがわかっている場合を除き、SQL Serverデータファイルを含むボリュームで重複排除を有効にしないでください。</block>
   <block id="6f80e9146e2184b9ec3c46b6d7dd903f" category="paragraph">ページ競合は、SQL Serverが新しいオブジェクトを割り当てるために特別なシステムページに書き込む必要がある場合に、Global Allocation Map（GAM）、Shared Global Allocation Map（SGAM）、またはPage Free Space（PFS）ページで発生する可能性があります。ラッチによってこれらのページがメモリにロックされます。ビジー状態のSQL Serverインスタンスでは、tempdbのシステムページでラッチを取得するのに時間がかかることがあります。その結果、クエリの実行時間が長くなり、ラッチ競合と呼ばれます。tempdbデータファイルを作成する場合は、次のベストプラクティスを参照してください。</block>
   <block id="255bd5c00b8de4b2f998369f766b2b5e" category="paragraph">ここでは、セキュアなオフサイトストレージとディザスタリカバリを目的として、データをリモートサイトにレプリケートするリモートデータ保護について説明します。これらのテーブルは、同期ミラーリングのデータ保護には対応していません。この要件については、およびを含むNetApp MetroClusterのドキュメントを参照してください。<block ref="06d0604733fc7f7e3f9befaa1239278d" category="inline-link-macro-rx"></block><block ref="87f167af2516b222ddeec7405581e8b8" category="inline-link-macro-rx"></block></block>
   <block id="ad8d77efdce72d372a83929b50a127d1" category="paragraph">データセットのcrash-consistentバックアップとは、ある時点におけるデータセット構造全体のキャプチャです。データセットが単一のボリュームに格納されている場合は、Snapshotはいつでも作成できるため、このプロセスは簡単です。データセットが複数のボリュームにまたがっている場合は、整合性グループ（CG）Snapshotを作成する必要があります。CG Snapshotを作成するには、NetApp SnapCenterソフトウェア、ONTAPのネイティブ整合グループ機能、ユーザが管理するスクリプトなど、いくつかのオプションがあります。</block>
@@ -6040,4 +6038,29 @@ SOAP over HTTPS接続に使用</block>
   <block id="120f8cb87e8ceb36804a526419a5803a" category="sidebar">AFF / FASシステム上のMicrosoft SQL Server</block>
   <block id="fc5b2b3c5350dcd6f3cc1cc3cdf1a13f" category="sidebar">ASA R2システムでのストレージ構成</block>
   <block id="8bdbdec629db36efc1c9bdbf743dd56a" category="sidebar">ASAシステム上のMicrosoft SQL Server</block>
+  <block id="3e2b4674c9afc41f9c3a0311b458ed23" category="list-text">ボリュームやLUNがシンプロビジョニングされていない場合は、すべての効率化設定を無効にする必要があります。これらの機能を使用しても削減は得られず、シックプロビジョニングとスペース効率化が有効になっていると、スペース不足エラーなどの予期しない動作が発生する可能性があるためです。</block>
+  <block id="c2dc7d465f4be5df7a663820063fe07c" category="summary">SnapCenterを使用したMicrosoft SQL Server可用性グループ</block>
+  <block id="b474dc2fb6ce60c11ecdfbe0a373bf34" category="doc">SnapCenterを使用したSQL Server可用性グループ</block>
+  <block id="0a1151b962e7b34ea7fa78538961cc63" category="paragraph">SnapCenterでは、Windowsフェイルオーバークラスタで構成されたSQL Server可用性グループデータベースのバックアップがサポートされます。</block>
+  <block id="55876228853abf632dec9346a4f372ec" category="inline-link-macro">ドキュメント</block>
+  <block id="19bc77c28d506c79f4e3acd767956f68" category="paragraph">SnapCenter Plugin for Microsoft SQL Serverは、Windowsサーバフェイルオーバークラスタのすべてのノードにインストールする必要があります。SnapCenterプラグインをセットアップするための前提条件と手順を参照してください<block ref="7ea17b48fc658598752bd1b70818d0c2" category="inline-link-macro-rx"></block>。</block>
+  <block id="878026ceb11256fd34df776a768794b2" category="paragraph">SnapCenterでは、Windowsホスト内のすべてのデータベース、インスタンス、および可用性グループが検出され、SnapCenterのリソースページにリソースが列挙されます。</block>
+  <block id="feb288d4161a267b78f781ef497c33f6" category="section-title">Always-On可用性グループのデータベースの保護</block>
+  <block id="6493759953e55bc95c88e42046f8c8e1" category="paragraph">可用性グループ内のデータベースは、複数の方法で保護できます。</block>
+  <block id="71903a5ca626286195e8839f74b46627" category="list-text">データベースレベルのバックアップ：データベースリソースページの可用性データベースを選択し、フル/ログバックアップを含むポリシーを追加し、バックアップをスケジュールします。SnapCenterは、プライマリレプリカであるかセカンダリレプリカであるかに関係なく、データベースのロールに関係なくバックアップを実行します。リソースグループにデータベースを追加して保護を設定することもできます。</block>
+  <block id="402962f18d83fc2e3da0155e7c85d340" category="list-text">インスタンスレベルのバックアップ：インスタンスを選択すると、選択したポリシーに基づいてインスタンスで実行されているすべてのデータベースが保護されます。プライマリレプリカまたはセカンダリレプリカとして実行されている可用性データベースを含め、すべてのデータベースがSnapCenterを使用してバックアップされます。リソースグループにインスタンスを追加して保護を設定することもできます。</block>
+  <block id="4eea6cb4e656587b45ce878e96aced6c" category="list-text">可用性グループレベルのバックアップ：ポリシーの設定時に、SnapCenterには可用性グループレベルのバックアップの詳細オプションがあります。ポリシーの可用性グループ設定を使用すると、バックアップのレプリカ設定を選択できます。プライマリレプリカ、セカンダリレプリカ、またはそれらのすべてを選択できます。デフォルトのオプションは、SQL Server可用性グループ構成のバックアップレプリカセットに基づいています。</block>
+  <block id="df79a1b2903886af697a431a42cecd61" category="paragraph">SnapCenterポリシーの可用性グループ設定は、可用性グループレベルのバックアップが可用性グループデータベースの保護に使用されている場合にのみ適用され、データベースレベルまたはインスタンスレベルのバックアップには適用されません。</block>
+  <block id="2b371d66d8eda6963cd085c7a884f4d7" category="admonition">* NetAppでは、可用性レベルのバックアップを使用して、NetApp ONTAPストレージで実行されているすべてのレプリカをバックアップすることを推奨しています。</block>
+  <block id="5c0ae1f6e89ffad82dfe5e7773da2fd6" category="section-title">SnapCenterでのログバックアップの設定</block>
+  <block id="b3b9b1046ddf8efb1b774f35855a0d1c" category="paragraph">可用性グループをスタンドアロンSQL Serverセットアップでセットアップする場合は、Windowsサーバフェイルオーバークラスタの各ノードに専用ディスクをマウントする必要があります。トランザクションログバックアップを保存するログディレクトリを設定するには、専用ディスクを使用する必要があります。</block>
+  <block id="ac3f0583ff584e6a0d60cd070d6edce2" category="paragraph">SQL Serverフェイルオーバークラスタで可用性グループが設定されている場合は、SQL Serverフェイルオーバークラスタインスタンス上にホストログディレクトリへのクラスタディスクを作成する必要があります。</block>
+  <block id="57194431a839a253461e94f7d15e0d30" category="section-title">SnapCenterを使用した可用性グループセットアップでのデータベースのリストア</block>
+  <block id="cb66b1b1ce1e9f56d0a1572ba3dcccdd" category="list-text">SnapCenterには再シードオプションがあり、セカンダリレプリカにある最新のSnapshotからデータベースを自動的にリカバリできます。再シード処理を実行すると、データベースバックアップが自動的にリストアされて可用性グループに追加されます。</block>
+  <block id="4c25cf6fd81e138392692e0a7e5523f3" category="list-text">可用性グループ内のレプリカデータベースをリストアするもう1つの方法は、可用性グループを解除し、完全なフルリストアとログリストアを実行することです。SnapCenterを使用してデータベースをノーリカバリモードでリストアし、SQL Server Management StudioまたはT-SQLを使用してデータベースを可用性グループに戻します。</block>
+  <block id="533d3de92f8337e84aa0eccec7e4698f" category="list-text">データのサブセットだけをリカバリするには、SnapCenterのクローニング機能を使用してデータベースのクローンコピーを作成します。データベースのコピーは、SnapCenterを使用して数分以内に作成され、SQL Serverのネイティブツールを使用してプライマリレプリカにデータをエクスポートします。</block>
+  <block id="f652b77e8bd5ef106d3fbeec02a874c5" category="inline-link-macro">TR-4714：NetApp SnapCenterを使用したMicrosoft SQL Serverのベストプラクティス</block>
+  <block id="9cc210a8901b58403ed2b299b9f87ac9" category="paragraph">RTOとRPOの要件を満たすようにデータベースストレージレイアウトを設定するためのベストプラクティスについては、を参照してください<block ref="4619ebf0116b8a67a7bd991a2d661c12" category="inline-link-macro-rx"></block>。</block>
+  <block id="724394156ac637a07abed4b02026424a" category="admonition">SnapCenterでは、分散可用性グループと含まれる可用性グループはサポートされません。</block>
+  <block id="f9feae8e1753d6486bf95d4403f7d5a7" category="list-text">バックアップから単一ボリュームへのデータベースのリストアなど、同じデータのコピーがボリュームに複数含まれていることがわかっている場合を除き、SQL Serverデータファイルを含むFAS上のボリュームで重複排除を有効にしないでください。</block>
 </blocks>

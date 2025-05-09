@@ -26,6 +26,9 @@ entries:
     url: "/mssql/mssql-storage-efficiency.html"
   - title: データ保護
     url: "/mssql/mssql-data-protection.html"
+    entries:
+    - title: SnapCenterを使用したSQL Server可用性グループ
+      url: "/mssql/mssql-ag-snapcenter.html"
   - title: ディザスタリカバリ
     entries:
     - title: 概要
