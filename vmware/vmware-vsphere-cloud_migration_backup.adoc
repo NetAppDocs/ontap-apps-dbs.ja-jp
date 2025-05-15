@@ -16,9 +16,9 @@ summary: ONTAPはハイブリッドクラウドを幅広くサポートしてい
 [role="lead"]
 ONTAP のもう 1 つの強みは、ハイブリッドクラウドを幅広くサポートすることで、オンプレミスのプライベートクラウドのシステムとパブリッククラウドの機能を統合できることです。vSphere と組み合わせて使用できるネットアップのクラウドソリューションには、次のものがあります。
 
-* *ファーストパーティ製品。* Amazon FSx for NetApp ONTAP、Google Cloud NetApp Volumes、Azure NetApp Files for ANFは、主要なパブリッククラウド環境でハイパフォーマンスなマルチプロトコルマネージドストレージサービスを提供します。VMware Cloud on AWS（VMC on AWS）、Azure VMware Solution（AVS）、Google Cloud VMware Engine（GCVE）で、ゲストオペレーティングシステム（GOS）およびコンピューティングインスタンスのデータストアまたはストレージとして直接使用できます。
+* *ファーストパーティ製品。*Amazon FSx for NetApp ONTAP、Google Cloud NetApp Volumes、Azure NetApp Filesは、主要なパブリッククラウド環境でハイパフォーマンスなマルチプロトコルマネージドストレージサービスを提供します。VMware Cloud on AWS（VMC on AWS）、Azure VMware Solution（AVS）、Google Cloud VMware Engine（GCVE）で、ゲストオペレーティングシステム（GOS）およびコンピューティングインスタンスのデータストアまたはストレージとして直接使用できます。
 * * Cloud Volumes ONTAP 。 * NetApp Cloud Volumes ONTAP データ管理ソフトウェアは、お客様が選択したクラウド上のデータを管理、保護、柔軟性、効率性で保護します。Cloud Volumes ONTAPは、ONTAPストレージ上に構築されたクラウドネイティブのデータ管理ソフトウェアです。Cloud Volumes ONTAP インスタンスをオンプレミスの ONTAP システムと一緒に導入、管理する際には、 Cloud Manager と組み合わせて使用できます。NASおよびiSCSI SANの高度な機能と、スナップショットやSnapMirrorレプリケーションなどの統合データ管理機能を活用できます。
-* *クラウドサービス。* BlueXPのバックアップとリカバリまたはSnapMirror Cloudを使用して、パブリッククラウドストレージを使用してオンプレミスシステムからデータを保護します。Cloud Sync を使用すると、 NAS 、オブジェクトストア、 Cloud Volumes Service ストレージ間でデータを移行し、同期を維持できます。BlueXPのディザスタリカバリは、対費用効果の高い効率的な解決策を提供し、堅牢で高機能なディザスタリカバリ解決策の基盤としてNetAppテクノロジを活用して、クラウドへのDR、オンプレミスからオンプレミスへのDRを実現します。
+* *クラウドサービス*BlueXP  バックアップとリカバリまたはSnapMirrorクラウドを使用して、パブリッククラウドストレージを使用してオンプレミスシステムからデータを保護します。Cloud Syncを使用すると、NAS、オブジェクトストア、Cloud Volumes Serviceストレージ間でデータを移行し、常に同期させることができます。BlueXPのディザスタリカバリは、対費用効果の高い効率的な解決策を提供し、堅牢で高機能なディザスタリカバリ解決策の基盤としてNetAppテクノロジを活用して、クラウドへのDR、オンプレミスからオンプレミスへのDRを実現します。
 * * ONTAP * FabricPool は、 FabricPool データの階層化を迅速かつ容易にします。コールドブロックは、パブリッククラウドまたはStorageGRIDのプライベートオブジェクトストアにあるオブジェクトストアに移行でき、ONTAPデータが再度アクセスされると自動的にリコールされます。または、 SnapVault ですでに管理されているデータの第 3 レベルの保護としてオブジェクト階層を使用することもできます。この方法を使用すると、を実行できます https://www.linkedin.com/pulse/rethink-vmware-backup-again-keith-aasen/["VMのより多くのスナップショットを保存"^] プライマリおよびセカンダリ ONTAP ストレージシステム。
 * * ONTAP Select * 。ネットアップの Software-Defined Storage を使用して、インターネット経由でプライベートクラウドをリモートの施設やオフィスに拡張できます。 ONTAP Select を使用すれば、ブロックサービスやファイルサービスのほか、エンタープライズデータセンターと同じ vSphere データ管理機能をサポートできます。
 

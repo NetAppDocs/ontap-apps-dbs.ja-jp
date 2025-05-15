@@ -16,17 +16,17 @@ summary: このページでは、VMware vSphere環境にONTAP FlexGroupボリュ
 [role="lead"]
 VMware vSphereでONTAPボリュームとFlexGroupボリュームを使用すれば、ONTAPクラスタ全体の能力を最大限に活用できるシンプルで拡張性に優れたデータストアを構築できます。
 
-ONTAP 9.8、ONTAP Tools for VMware vSphere 9.8、SnapCenterプラグインfor VMware 4.4リリースに加えて、vSphereでのFlexGroupボリュームベースデータストアのサポートが追加されました。FlexGroupボリュームは大規模なデータストアの作成を簡易化し、必要な分散コンスティチュエントボリュームをONTAPクラスタ全体に自動的に作成して、ONTAPシステムのパフォーマンスを最大限に引き出します。
+ONTAP 9.8、ONTAP Tools for VMware vSphere 9.8-9.13、およびSnapCenterプラグインfor VMware 4.4以降のリリースでは、vSphereでFlexGroupボリュームベースのデータストアがサポートされるようになりました。FlexGroupボリュームは大規模なデータストアの作成を簡易化し、必要な分散コンスティチュエントボリュームをONTAPクラスタ全体に自動的に作成して、ONTAPシステムのパフォーマンスを最大限に引き出します。
 
-ONTAPクラスタ全体の機能を備えた拡張性に優れた単一のvSphereデータストアが必要な場合や、非常に大規模なクローニングワークロードがあり、新しいFlexGroupクローニングメカニズムのメリットがある場合は、vSphereでFlexGroupボリュームを使用します。
+完全なONTAPクラスタの機能を備えた拡張性に優れた単一のvSphereデータストアが必要な場合や、クローンキャッシュを常にウォームアップすることでFlexGroupクローニングメカニズムのメリットが得られる非常に大規模なクローニングワークロードがある場合は、vSphereでFlexGroupボリュームを使用します。
 
 
 
 == コピーオフロード
 
-ONTAP 9.8では、vSphereワークロードを使用した広範なシステムテストに加えて、FlexGroupデータストア用の新しいコピーオフロードメカニズムが追加されました。この新しいシステムでは、強化されたコピーエンジンを使用して、ソースとデスティネーションの両方へのアクセスを許可しながら、バックグラウンドでコンスティチュエント間でファイルをレプリケートします。このローカルキャッシュを使用して、VMクローンをオンデマンドで迅速にインスタンス化します。
+ONTAP 9.8では、vSphereワークロードを使用した広範なシステムテストに加えて、FlexGroupデータストア用の新しいコピーオフロードメカニズムが追加されました。この新しいシステムでは、強化されたコピーエンジンを使用して、ソースとデスティネーションの両方へのアクセスを許可しながら、バックグラウンドでコンスティチュエント間でファイルをレプリケートします。このコンスティチュエントローカルキャッシュを使用して、VMクローンをオンデマンドで迅速にインスタンス化します。
 
-FlexGroup最適化コピーオフロードを有効にする方法については、を参照してください。 https://kb.netapp.com/onprem/ontap/dm/VAAI/How_to_Configure_ONTAP_FlexGroups_to_allow_VAAI_copy_offload["VAAIコピーオフロードを許可するようにONTAP FlexGroupを設定する方法"]
+FlexGroup最適化コピーオフロードを有効にする方法については、を参照してください。 https://kb.netapp.com/onprem/ontap/dm/VAAI/How_to_Configure_ONTAP_FlexGroups_to_allow_VAAI_copy_offload["VAAIコピーオフロードを許可するようにONTAP FlexGroupボリュームを設定する方法"]
 
 VAAIクローニングを使用していても、キャッシュをウォームアップするのに十分なクローンを作成しないと、ホストベースのコピーよりも高速ではない場合があります。その場合は、必要に応じてキャッシュタイムアウトを調整できます。
 
@@ -40,7 +40,7 @@ VAAIクローニングを使用していても、キャッシュをウォーム�
 
 ボリュームが新しいクローンジョブを受信するたびに、タイムアウトがリセットされます。この例のFlexGroup内のコンスティチュエントボリュームがタイムアウトまでにクローン要求を受信しなかった場合、そのVMのキャッシュはクリアされ、ボリュームに再度データを入力する必要があります。また、元のクローンのソースが変更された場合（テンプレートを更新した場合など）、競合を防ぐために各構成要素のローカルキャッシュが無効になります。前述したように、キャッシュは調整可能であり、環境のニーズに合わせて設定できます。
 
-VAAIでFlexGroupを使用する方法の詳細については、次の技術情報アーティクルを参照してください。 https://kb.netapp.com/?title=onprem%2Fontap%2Fdm%2FVAAI%2FVAAI%3A_How_does_caching_work_with_FlexGroups%253F["VAAI：FlexGroupボリュームでのキャッシュの仕組みを教えてください。"^]
+VAAIでFlexGroupボリュームを使用する方法の詳細については、次の技術情報アーティクルを参照してください。 https://kb.netapp.com/?title=onprem%2Fontap%2Fdm%2FVAAI%2FVAAI%3A_How_does_caching_work_with_FlexGroups%253F["VAAI：FlexGroupボリュームでのキャッシュの仕組みを教えてください。"^]
 
 FlexGroupキャッシュを十分に活用できないものの、ボリューム間での高速クローニングが必要な環境では、VVOLの使用を検討してください。VVolを使用したボリューム間クローニングは、従来のデータストアよりもはるかに高速で、キャッシュに依存しません。
 
@@ -52,7 +52,7 @@ ONTAP System Managerまたはクラスタシェルを使用してFlexGroupレベ
 
 QoS（最大/最小IOPS）は、vCenter UIまたはREST APIを使用して、個 々 のVMまたはデータストア内のすべてのVMに対して設定できますONTAP。すべての VM に QoS を設定すると、 VM ごとに個別に設定する必要がなくなります。今後は、新規または移行された VM には適用されません。新しい VM に QoS を設定するか、データストア内のすべての VM に QoS を再適用してください。
 
-VMware vSphereでは、NFSデータストアのすべてのIOがホストごとに単一のキューとして扱われるため、1つのVMでのQoS調整が、同じデータストア内の他のVMのパフォーマンスに影響する可能性があることに注意してください。これに対し、VVOLでは、別のデータストアに移行してもQoSポリシーの設定を維持でき、調整しても他のVMのIOに影響しません。
+VMware vSphereでは、NFSデータストアのすべてのIOがホストごとに単一のキューとして扱われるため、1つのVMでのQoS調整が、そのホストの同じデータストア内の他のVMのパフォーマンスに影響する可能性があることに注意してください。これに対し、VVOLでは、別のデータストアに移行してもQoSポリシーの設定を維持でき、調整しても他のVMのIOに影響しません。
 
 
 
@@ -66,8 +66,8 @@ VMware vSphereでは、NFSデータストアのすべてのIOがホストごと�
 
 * ONTAPツールを使用してFlexGroupデータストアを作成すると、FlexGroupが最適に作成され、vSphere環境に合わせてエクスポートポリシーが設定されます。ただし、ONTAP toolsを使用してFlexGroupボリュームを作成すると、vSphereクラスタ内のすべてのノードが1つのIPアドレスを使用してデータストアをマウントすることがわかります。その結果、ネットワークポートがボトルネックになる可能性があります。この問題を回避するには、データストアをアンマウントし、SVM上のLIF間でロードバランシングを行うラウンドロビンDNS名を使用して標準のvSphereデータストアウィザードを使用して再マウントします。再マウントが完了すると、ONTAP toolsは再びデータストアを管理できるようになります。ONTAP toolsを使用できない場合は、FlexGroupのデフォルト値を使用し、のガイドラインに従ってエクスポートポリシーを作成します。 link:vmware-vsphere-datastores-nfs.html["データストアとプロトコル- NFS"]。
 * FlexGroup データストアのサイジングを行う場合、 FlexVol は、より大容量のネームスペースを作成する複数の小さい FlexGroup で構成されることに注意してください。そのため、データストアのサイズは、最大のVMDKファイルのサイズの8倍以上（デフォルトのコンスティチュエントが8つの場合）、さらに10~20%の未使用のヘッドルームを使用して、リバランシングを柔軟に実行できるようにします。たとえば、環境に6TBのVMDKがある場合は、FlexGroupデータストアのサイズを52.8TB（6x8+10%）以上に設定します。
-* ONTAP 9.14.1以降では、VMwareとNetAppでNFSv4.1セッショントランキングがサポートされます。特定のバージョンの詳細については、NetApp NFS 4.1のInteroperability Matrixの注意事項を参照してください。NFSv3では、ボリュームへの複数の物理パスはサポートされませんが、vSphere 8.0U2以降ではnconnectがサポートされます。nconnectの詳細については、 link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vmware-vsphere8-nfsv3-nconnect.html["NetAppおよびVMwareでのNFSv3 nconnect機能"]。
-* コピーオフロードには、 NFS Plug-in for VMware VAAI を使用します。前述したように、クローニングはFlexGroupデータストア内で強化されますが、FlexVolボリュームとFlexGroupボリュームの間でVMをコピーする場合、ONTAPはESXiホストのコピーに比べてパフォーマンス上の大きなメリットはありません。そのため、VAAIとFlexGroupのどちらを使用するかを決定する際は、ワークロードのクローニングを検討してください。コンスティチュエントボリュームの数の変更は、FlexGroupベースのクローニングを最適化する1つの方法です。前述のキャッシュタイムアウトの調整と同様に、
-* ONTAP tools for VMware vSphere 9.8以降を使用して、ONTAP指標（ダッシュボードとVMレポート）を使用してFlexGroup VMのパフォーマンスを監視し、個 々 のVMのQoSを管理します。現時点では、これらの指標は ONTAP コマンドや API では使用できません。
+* ONTAP 9.14.1以降では、VMwareとNetAppでNFSv4.1セッショントランキングがサポートされます。特定のバージョンの詳細については、NetApp NFS 4.1のInteroperability Matrix Tool（IMT）に関する注意事項を参照してください。NFSv3では、ボリュームへの複数の物理パスはサポートされませんが、vSphere 8.0U2以降ではnconnectがサポートされます。nconnectの詳細については、を参照してlink:https://docs.netapp.com/us-en/netapp-solutions/vmware/vmware-vsphere8-nfs-nconnect.html["NetAppおよびVMwareでのNFSv3 nconnect機能"]ください。
+* コピーオフロードには、 NFS Plug-in for VMware VAAI を使用します。前述したように、クローニングはFlexGroupデータストア内で強化されますが、FlexVolボリュームとFlexGroupボリュームの間でVMをコピーする場合、ONTAPはESXiホストのコピーに比べてパフォーマンス上の大きなメリットはありません。そのため、VAAIボリュームとFlexGroupボリュームのどちらを使用するかを決定する際は、ワークロードのクローニングを検討してください。コンスティチュエントボリュームの数の変更は、FlexGroupベースのクローニングを最適化する1つの方法です。前述のキャッシュタイムアウトの調整と同様に、
+* ONTAP Tools for VMware vSphere 9.8-9.13を使用して、ONTAP指標（ダッシュボードおよびVMレポート）を使用してFlexGroup VMのパフォーマンスを監視し、個 々 のVMのQoSを管理します。現時点では、これらの指標は ONTAP コマンドや API では使用できません。
 * SnapCenter Plug-in for VMware vSphereリリース4.4以降では、プライマリストレージシステム上のFlexGroupデータストアのVMのバックアップとリカバリがサポートされます。SCV 4.6では、FlexGroupベースのデータストアに対するSnapMirrorのサポートが追加されています。アレイベースのスナップショットとレプリケーションを使用することは、データを保護する最も効率的な方法です。
 

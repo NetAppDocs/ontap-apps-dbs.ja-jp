@@ -16,13 +16,11 @@ summary: このドキュメントでは、推奨されるストレージとネ�
 [role="lead"]
 NetAppは、NFSプロトコルとブロックプロトコルの両方に最適なESXiホスト設定を開発しました。また、NetAppとVMwareの内部テストに基づいて、ONTAPで適切に動作するようにマルチパスとHBAタイムアウトを設定するための具体的なガイダンスも提供されます。
 
-これらの値は、ONTAP tools for VMware vSphereを使用して簡単に設定できます。[Summary]ダッシュボードで、[Host Systems]ポートレットの[Edit Settings]をクリックするか、vCenterでホストを右クリックし、ONTAP tools]>[Set Recommended Values]に移動します。
+これらの値は、ONTAP tools for VMware vSphereを使用して簡単に設定できます。ONTAP toolsの概要ページで、下にスクロールして[ESXi Host compliance]ポートレットの[Apply Recommended Settings]をクリックします。
 
 現在サポートされているすべてのバージョンのONTAPに推奨されるホスト設定を次に示します。
 
 |===
-
-
 | *ホスト設定* | *ネットアップが推奨する値* | *再起動が必要です* 
 
 
@@ -39,6 +37,9 @@ NetAppは、NFSプロトコルとブロックプロトコルの両方に最適�
 
 
 3+| * NFS設定* 
+
+
+| newSyncInterval | vSphere CSI for Kubernetesを使用していない場合は、 https://knowledge.broadcom.com/external/article/386364/reducing-excessive-vsan-cnssync-warnings.html["VMware KB 386364"^] | いいえ 
 
 
 | Net.TcpipHeapSize の場合 | vSphere 6.0 以降： 32 に設定
@@ -108,7 +109,7 @@ FIXED は、 ALUA に対応していない従来の構成用の値で、プロ�
 この値を設定すると、 I/O エラーの防止に役立ちます。 | いいえ 
 |===
 
-NOTE: VMware vSphere ESXi 7.0.1およびVMware vSphere ESXi 7.0.2を使用する場合、1-NFSの高度な設定オプションMaxQueueDepthが想定どおりに機能しないことがあります。参照してください link:https://kb.vmware.com/s/article/86331?lang=en_US["VMware KB 86331"] を参照してください。
+NOTE: VMware vSphere ESXi 7.0.1およびVMware vSphere ESXi 7.0.2を使用している場合、NFSの詳細設定オプションMaxQueueDepthが意図したとおりに機能しないことがあります。詳細については、を参照link:https://kb.vmware.com/s/article/86331?lang=en_US["VMware KB 86331"]してください。
 
 ONTAP ツールでは、 ONTAP FlexVol および LUN の作成時に特定のデフォルト設定も指定されます。
 

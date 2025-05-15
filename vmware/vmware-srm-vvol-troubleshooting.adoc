@@ -1,10 +1,10 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmware-srm-vvol-troubleshooting.html 
-keywords: vmware, site, recovery manager, vsrm, hybrid, cloud, srm, vvols, replication 
+keywords: vmware, site, recovery manager, vlsr, hybrid, cloud, srm, vvols, replication 
 summary: VASAを使用したvVolレプリケーションには、SRAや従来のデータストアに比べて独自の機能があります。 
 ---
-= VVol レプリケーションを使用する場合の SRM のトラブルシューティング
+= vVolレプリケーション使用時のVLSRM / SRMのトラブルシューティング
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: VASAを使用したvVolレプリケーションには、SRAや従来の
 
 
 [role="lead"]
-SRM で VVOL レプリケーションを使用する場合、 SRA と従来のデータストアで使用するワークフローは大きく異なります。たとえば、アレイマネージャの概念はありません。そのため、 `discoverarrays` および `discoverdevices` コマンドは表示されません。
+ONTAP tools 9.13P2を使用している場合、vVolレプリケーションを使用している場合は、SRAおよび従来のデータストアで使用される場合とは、VLSRおよびSRMでのワークフローが大きく異なります。たとえば、アレイマネージャの概念はありません。そのため、 `discoverarrays`コマンドや `discoverdevices`コマンドは表示されません。
 
 トラブルシューティングを行う場合は、以下に示す新しいワークフローについて理解しておくと役立ちます。
 

@@ -19,7 +19,7 @@ summary: VVOLに関するその他のリソース
 
 == NetApp Support Site
 
-NetApp Support Site には、ネットアップの仮想化製品に関するさまざまな技術情報アーティクルのほかに、の便利なランディングページも用意されています https://mysupport.netapp.com/site/products/all/details/otv/docs-tab["VMware vSphere 用の ONTAP ツール"] 製品：このポータルには、ネットアップコミュニティの記事、ダウンロード、テクニカルレポート、VMwareソリューションに関するディスカッションへのリンクが掲載されています。次のURLから入手できます。
+NetAppサポートサイトでは、NetApp仮想化製品に関するさまざまなナレッジベース記事に加えて、製品の便利なランディングページも提供して https://mysupport.netapp.com/site/products/all/details/otv/docs-tab["VMware vSphere 用の ONTAP ツール"]います。このポータルには、ネットアップコミュニティの記事、ダウンロード、テクニカルレポート、VMwareソリューションに関するディスカッションへのリンクが掲載されています。次のURLから入手できます。
 
 https://mysupport.netapp.com/site/products/all/details/otv/docs-tab["_ NetApp Support Site _"]
 

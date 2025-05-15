@@ -47,7 +47,7 @@ image:vvols-image5.png["ONTAP tools VASA Providerのアーキテクチャ、240"
 相互依存関係の競合を避けるために、ONTAPツールとvCenterアプライアンスを従来のNFSまたはVMFSデータストアに格納することを推奨します。VVOLの処理ではvCenterとONTAPの両方のツールが相互に通信する必要があるため、ONTAP toolsアプライアンスまたはvCenter Serverアプライアンス（vCSA）を管理しているVVOLストレージにインストールしたり移動したりしないでください。この場合、vCenterまたはONTAP toolsアプライアンスをリブートすると、コントロールプレーンへのアクセスが中断し、アプライアンスをブートできなくなる可能性があります。
 
 ====
-ONTAP toolsのインプレースアップグレードは、NetAppサポートサイトからダウンロード可能なアップグレードISOファイルを使用してサポートされ https://mysupport.netapp.com/site/products/all/details/otv10/downloads-tab["ONTAP Tools for VMware vSphere 10 -ダウンロード"]ます（NSS-loginが必要です）。ガイドの手順に従って、 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/upgrade/upgrade-ontap-tools.html["ONTAP Tools for VMware vSphere 10.xから10.3へのアップグレード"]アプライアンスをアップグレードします。ONTAP tools 9.13から10.3へのアップグレードを並行して実行することもできます。このテーマの詳細については、を参照して https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/migrate/migrate-to-latest-ontaptools.html["ONTAP Tools for VMware vSphere 9.xから10.3への移行"]ください。
+ONTAP toolsのインプレースアップグレードは、NetAppサポートサイトからダウンロード可能なアップグレードISOファイルを使用してサポートされ https://mysupport.netapp.com/site/products/all/details/otv10/downloads-tab["ONTAP Tools for VMware vSphere 10 -ダウンロード"]ます（ログインが必要です）。ガイドの手順に従って、 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/upgrade/upgrade-ontap-tools.html["ONTAP Tools for VMware vSphere 10.xから10.3へのアップグレード"]アプライアンスをアップグレードします。ONTAP tools 9.13から10.3へのアップグレードを並行して実行することもできます。このテーマの詳細については、を参照して https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/migrate/migrate-to-latest-ontaptools.html["ONTAP Tools for VMware vSphere 9.xから10.3への移行"]ください。
 
 仮想アプライアンスのサイジングと構成の制限については、を参照してください。 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/deploy/prerequisites.html#configuration-limits-to-deploy-ontap-tools-for-vmware-vsphere["ONTAP tools for VMware vSphereを導入するための構成の制限"^]
 
@@ -73,7 +73,7 @@ https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["ONTAP To
 
 ==== ONTAP ツールを使用する
 
-* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/create-vvols-datastore.html["データストアのプロビジョニング"^]
+* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/create-datastore.html["データストアのプロビジョニング"^]
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/configure-user-role-and-privileges.html["ロールベースアクセス制御を設定する"^]
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/edit-appliance-settings.html["ハイアベイラビリティを設定する"^]
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/edit-esxi-host-settings.html["ESXiホストの設定を変更"^]
@@ -130,7 +130,7 @@ https://www.netapp.com/media/10680-tr4080.pdf["_TR-4080『Best Practices for Mod
 
 https://www.netapp.com/pdf.html?item=/media/10681-tr4684.pdf["_TR-4684『Implementing and Configuring Modern SANs with NVMe-oF』を参照してください"^]
 
-*あなたの必要性に応じてあなたのバッキングFlexVolを計画しなさい。*
+*必要に応じて、元のFlexVolボリュームを計画します。*
 
 ASA R2以外のシステムでは、複数の元のボリュームをvVolデータストアに追加して、ONTAPクラスタ全体にワークロードを分散したり、さまざまなポリシーオプションをサポートしたり、許可されるLUNやファイルの数を増やしたりすることができます。ただし、最大限のストレージ効率が必要な場合は、すべてのバッキングボリュームを1つのアグリゲートに配置してください。また、クローニングのパフォーマンスを最大限に高める必要がある場合は、単一のFlexVol ボリュームを使用し、テンプレートまたはコンテンツライブラリを同じボリューム内に維持することを検討してください。VASA Providerは、移行、クローニング、Snapshotなど、多くのVVOLストレージ処理をONTAP にオフロードします。単一のFlexVol ボリューム内で実行すると、スペース効率に優れたファイルクローンが使用され、ほぼ瞬時に使用できます。この処理をFlexVol ボリューム間で実行すると、コピーをすぐに使用でき、インラインの重複排除と圧縮が使用されます。ただし、バックグラウンドの重複排除と圧縮を使用するボリュームでバックグラウンドジョブが実行されるまで、最大限のストレージ効率が回復されることはありません。ソースとデスティネーションによっては、一部の効率が低下する場合があります。
 

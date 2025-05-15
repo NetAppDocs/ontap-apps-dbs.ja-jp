@@ -14,18 +14,56 @@ summary: SnapCenter では、複数のジョブに適用可能なバックアッ
 
 
 [role="lead"]
-VM のバックアップと迅速なリカバリは、 ONTAP for vSphere の大きな特長の 1 つです。この機能は、 SnapCenter Plug-in for VMware vSphere を使用して vCenter 内で簡単に管理できます。
+ONTAP for vSphereを使用する主なメリットは、仮想マシン（VM）のバックアップと迅速なリカバリです。この機能は、SnapCenter Plug-in for VMware vSphereを使用してvCenter内で簡単に管理できます。多くのお客様は、SnapCenterを使用してサードパーティ製バックアップソリューションを強化し、ONTAPのスナップショットテクノロジを活用しています。これは、ONTAPを使用してVMを迅速かつ簡単にリカバリできるためです。ONTAP Oneライセンスをお持ちのお客様は、SnapCenterを無料でご利用いただけます。その他のライセンスバンドルもご利用いただけます。
+
+さらに、SnapCenter Plug-in for VMwareはと統合できる https://docs.netapp.com/us-en/bluexp-backup-recovery/concept-protect-vm-data.html["BlueXP ：仮想マシンのバックアップとリカバリに使用"^]ため、ほとんどのONTAPシステムで3-2-1の効果的なバックアップソリューションを実現できます。追加のバックアップストレージ用のオブジェクトストアなど、プレミアムサービスを備えた仮想マシンでBlueXP  バックアップ/リカバリを使用する場合は、一部の料金が適用されることがあります。このセクションでは、VMとデータストアを保護するためのさまざまなオプションについて説明します。
+
+
+
+== NetApp ONTAPホリユウムノSnapshot
 
 Snapshotを使用すると、パフォーマンスに影響を与えずにVMやデータストアのコピーをすばやく作成でき、SnapMirrorを使用してセカンダリシステムに送信することで、オフサイトでの長期的なデータ保護を実現できます。このアプローチでは、変更された情報のみを格納することで、ストレージスペースとネットワーク帯域幅を最小限に抑えます。
 
-SnapCenter では、複数のジョブに適用可能なバックアップポリシーを作成できます。これらのポリシーでは、スケジュール、保持、レプリケーションなどの機能を定義できます。VMwareスナップショットを作成する前にI/Oを休止するハイパーバイザーの機能を活用して、VMと整合性のあるスナップショットをオプションで選択できます。ただし、 VMware スナップショットはパフォーマンスへの影響があるため、ゲストファイルシステムを休止する必要がないかぎり、一般には推奨されません。代わりに、スナップショットを使用して一般的な保護を行い、SnapCenterプラグインなどのアプリケーションツールを使用してSQL ServerやOracleなどのトランザクションデータを保護します。これらのスナップショットはVMware（整合性）スナップショットとは異なり、長期的な保護に適しています。VMwareスナップショットは、パフォーマンスなどの理由から短期的な使用にのみ推奨されます。link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/snapshot-limitations.html["Snapshotの制限事項"^]詳細については、を参照してください。
+SnapshotはONTAPの重要な機能であり、データのポイントインタイムコピーを作成できます。スペース効率に優れ、短時間で作成できるため、VMやデータストアの保護に最適です。スナップショットは、バックアップ、リカバリ、テストなど、さまざまな目的に使用できます。これらのスナップショットはVMware（整合性）スナップショットとは異なり、長期的な保護に適しています。VMwareのvCenterで管理されるスナップショットは、パフォーマンスやその他の影響のため、短期的な使用にのみ推奨されます。link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/snapshot-limitations.html["Snapshotの制限事項"^]詳細については、を参照してください。
 
-これらのプラグインは、物理環境と仮想環境の両方でデータベースを保護する拡張機能を提供します。vSphere では、これらのプロトコルを使用して、 RDM LUN 、ゲスト OS に直接接続された iSCSI LUN 、 VMFS または NFS データストア上の VMDK ファイルにデータが格納されている SQL Server または Oracle データベースを保護できます。プラグインを使用すると、さまざまなタイプのデータベースバックアップを指定したり、オンラインまたはオフラインのバックアップをサポートしたり、データベースファイルとログファイルを保護したりできます。このプラグインでは、バックアップとリカバリに加えて、開発やテストを目的としたデータベースのクローニングもサポートされています。
+Snapshotはボリュームレベルで作成され、そのボリューム内のすべてのVMとデータストアを保護するために使用できます。つまり、データストア内のすべてのVMを含むデータストア全体のスナップショットを作成できます。
+
+NFSデータストアの場合は、.snapshotsディレクトリを参照することで、Snapshot内のVMファイルを簡単に表示できます。これにより、特定のバックアップソリューションを使用することなく、スナップショットからファイルにすばやくアクセスしてリストアできます。
+
+VMFSデータストアの場合は、必要なSnapshotに基づいてデータストアのFlexCloneを作成できます。これにより、Snapshotに基づく新しいデータストアを作成し、テストや開発に使用できます。FlexCloneは、Snapshotの作成後に行われた変更に対してのみスペースを消費するため、スペース効率に優れた方法でデータストアのコピーを作成できます。FlexCloneを作成したら、通常のデータストアと同様に、LUNまたはネームスペースをESXiホストにマッピングできます。これにより、特定のVMファイルをリストアできるだけでなく、本番環境のパフォーマンスに影響を与えることなく、本番データに基づいてテスト環境や開発環境を迅速に作成できます。
+
+スナップショットの詳細については、ONTAPのドキュメントを参照してください。詳細については、次のリンクを参照してください。https://docs.netapp.com/us-en/ontap/data-protection/manage-local-snapshot-copies-concept.html["ONTAPローカルSnapshotコピー"^] https://docs.netapp.com/us-en/ontap/data-protection/manage-snapmirror-replication.html["ONTAP SnapMirrorレプリケーション"^]
+
+
+
+== VMware vSphere向けSnapCenterプラグイン
+
+SnapCenter では、複数のジョブに適用可能なバックアップポリシーを作成できます。これらのポリシーでは、スケジュール、保持、レプリケーションなどの機能を定義できます。VMwareスナップショットを作成する前にI/Oを休止するハイパーバイザーの機能を活用して、VMと整合性のあるスナップショットをオプションで選択できます。ただし、 VMware スナップショットはパフォーマンスへの影響があるため、ゲストファイルシステムを休止する必要がないかぎり、一般には推奨されません。代わりに、スナップショットを使用して一般的な保護を行い、SnapCenterアプリケーションプラグインなどのアプリケーションツールを使用してSQL ServerやOracleなどのトランザクションデータを保護します。
+
+これらのプラグインは、物理環境と仮想環境の両方でデータベースを保護する拡張機能を提供します。vSphereでは、vSphereを使用して、データがRDM LUN、VVOL、NVMe/TCPネームスペース、ゲストOSに直接接続されたiSCSI LUN、またはVMFSデータストアまたはNFSデータストア上のVMDKファイルに格納されているSQL ServerデータベースやOracleデータベースを保護できます。プラグインを使用すると、さまざまなタイプのデータベースバックアップを指定したり、オンラインまたはオフラインのバックアップをサポートしたり、データベースファイルとログファイルを保護したりできます。このプラグインでは、バックアップとリカバリに加えて、開発やテストを目的としたデータベースのクローニングもサポートされています。
 
 次の図は、 SnapCenter の導入例を示しています。
 
 image:vsphere_ontap_image4.png["SnapCenter導入"]
 
-ディザスタリカバリ機能を強化するには、 ONTAP 用 NetApp SRA と VMware Site Recovery Manager の使用を検討してください。DR サイトへのデータストアのレプリケーションをサポートするだけでなく、レプリケートしたデータストアをクローニングすることで DR 環境を無停止でテストすることもできます。SRA に組み込まれている自動化機能を使用すると、災害からのリカバリや、システム停止が解決したあとの本番環境の再保護も簡単に実行できます。
+サイジング情報については、 https://kb.netapp.com/data-mgmt/SnapCenter/SC_KBs/SCV__Sizing_Guide_for_SnapCenter_Plugin_for_VMware_vSphere["VMware vSphere向けSnapCenterプラグインサイジングガイド"^]
 
-最後に、最高レベルのデータ保護を実現するために、NetApp MetroClusterを使用したVMware vSphere Metro Storage Cluster（vMSC）構成を検討してください。vMSCは、同期レプリケーションとアレイベースのクラスタリングを組み合わせたVMware認定ソリューションです。高可用性クラスタと同じメリットを提供しながら、別 々 のサイトに分散してサイト障害から保護します。NetApp MetroClusterは、同期レプリケーション用のコスト効率に優れた構成を提供し、ストレージコンポーネントの単一障害からの透過的なリカバリと、サイト障害発生時のコマンド1つでのリカバリを実現します。vMSCの詳細については、を参照してください。 https://www.netapp.com/pdf.html?item=/media/19773-tr-4128.pdf["TR-4128"^]
+
+
+== VMware vSphere向けONTAPツールとVMware Live Site Recovery
+
+ONTAP Tools for VMware vSphere（OT4VS）は、VMware vSphereとNetApp ONTAPをシームレスに統合するための無償プラグインです。vSphere Web ClientからONTAPストレージを直接管理できるため、ストレージのプロビジョニング、レプリケーションの管理、パフォーマンスの監視などのタスクを簡単に実行できます。
+
+ディザスタリカバリ機能を強化するには、VMware Live Site Recovery（旧称Site Recovery Manager）とともに、VMware vSphere向けONTAPツールの一部であるNetApp SRA for ONTAPを利用することを検討してください。このツールでは、SnapMirrorを使用したディザスタリカバリサイトへのデータストアのレプリケーションがサポートされているだけでなく、レプリケートされたデータストアをクローニングしてDR環境で無停止でテストを実行できます。また、災害からのリカバリや、システム停止を解決したあとの本番環境の再保護も、組み込みの自動化機能により合理化されています。
+
+
+
+== BlueXP  ディザスタリカバリ
+
+BlueXP  ディザスタリカバリ（DR）は、災害発生時にデータとアプリケーションを保護するための包括的なソリューションを提供するクラウドベースのサービスです。自動フェイルオーバーとフェイルバック、複数のポイントインタイムリカバリポイント、アプリケーションと整合性のあるディザスタリカバリ、オンプレミスとクラウドの両方のONTAPシステムのサポートなど、さまざまな機能を提供します。BlueXP  DRは、ONTAPおよびVMware vSphere環境とシームレスに連携するように設計されており、ディザスタリカバリのためのユニファイドソリューションを提供します。
+
+
+
+== vSphere Metro Storage Cluster（vMSC）とNetApp MetroClusterおよびSnapMirrorのアクティブな同期
+
+最後に、最高レベルのデータ保護を実現するために、NetApp MetroClusterを使用したVMware vSphere Metro Storage Cluster（vMSC）構成を検討してください。vMSCは、同期レプリケーションを使用するVMware認定のNetAppサポートソリューションです。高可用性クラスタと同じメリットを提供しながら、別 々 のサイトに分散してサイト障害から保護します。NetApp SnapMirrorアクティブ同期（ASAおよびAFFを使用）、およびAFFを使用したMetroClusterでは、同期レプリケーションのコスト効率に優れた構成が提供され、単一のストレージコンポーネント障害からの透過的なリカバリ、SnapMirrorアクティブ同期の場合の透過的なリカバリ、またはMetroClusterを使用したサイト障害発生時の単一コマンドによるリカバリが可能です。vMSCの詳細については、を参照してください。 https://www.netapp.com/pdf.html?item=/media/19773-tr-4128.pdf["TR-4128"^]

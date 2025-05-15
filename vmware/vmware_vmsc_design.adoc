@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmware_vmsc_design.html 
-keywords: VMware, Data protection, MetroCluster, SMBC, SnapMirror active sync, vMSC 
+keywords: VMware, Data protection, MetroCluster, SMBC, SMas, SnapMirror active sync, vMSC, metro storage cluster, vSphere, vCenter, business continuity, disaster recovery, ONTAP 
 summary: vMSC設計および実装ガイドライン 
 ---
 = vMSC設計および実装ガイドライン
@@ -20,15 +20,19 @@ summary: vMSC設計および実装ガイドライン
 
 == NetAppストレージ構成
 
-NetApp MetroCluster（MCC構成）のセットアップ手順については、を参照してください https://docs.netapp.com/us-en/ontap-metrocluster/["MetroCluster のドキュメント"]。SnapMirror Active Sync（SMA）の手順については、を参照してください https://docs.netapp.com/us-en/ontap/smbc/index.html["SnapMirror のビジネス継続性機能の概要"]。
+NetApp MetroClusterのセットアップ手順については、を参照してください https://docs.netapp.com/us-en/ontap-metrocluster/["MetroCluster のドキュメント"]。SnapMirror Active Sync（SMA）の手順については、を参照してください https://docs.netapp.com/us-en/ontap/smbc/index.html["SnapMirror のビジネス継続性機能の概要"]。
 
 一度MetroClusterを設定すると、従来のONTAP環境を管理するようなものになります。Storage Virtual Machine（SVM）は、コマンドラインインターフェイス（CLI）、System Manager、Ansibleなどのさまざまなツールを使用してセットアップできます。SVMを設定したら、通常の運用に使用する論理インターフェイス（LIF）、ボリューム、論理ユニット番号（LUN）をクラスタに作成します。これらのオブジェクトは、クラスタピアリングネットワークを使用してもう一方のクラスタに自動的にレプリケートされます。
 
-MetroClusterを使用していない場合は、SnapMirrorアクティブ同期を使用して、異なる障害ドメインにある複数のONTAPクラスタ間で、データストア単位でのきめ細かな保護とアクティブ/アクティブアクセスを実現できます。SMAでは、整合グループ（CG）を使用して1つ以上のデータストア間で書き込み順序の整合性が確保されます。また、アプリケーションとデータストアの要件に応じて、複数のCGを作成することもできます。整合グループは、複数のデータストア間でのデータ同期が必要なアプリケーションに特に役立ちます。SMAは、Raw Device Mapping（RDM；rawデバイスマッピング）とゲスト内iSCSIイニシエータを使用するゲスト接続ストレージもサポートしています。整合グループの詳細については、を参照してください https://docs.netapp.com/us-en/ontap/consistency-groups/index.html["整合グループの概要"]。
+MetroClusterを使用していない場合や、MetroClusterでサポートされていないONTAPシステム（ASA R2システムなど）を使用している場合は、SnapMirrorアクティブ同期を使用して、異なる障害ドメイン内の複数のONTAPクラスタ間でデータストアのきめ細かな保護とアクティブ/アクティブアクセスを提供できます。SMAでは、整合グループ（CG）を使用して1つ以上のデータストア間で書き込み順序の整合性が確保されます。また、アプリケーションとデータストアの要件に応じて、複数のCGを作成することもできます。整合グループは、複数のデータストア間でのデータ同期が必要なアプリケーションに特に役立ちます。たとえば、データストア間でゲストLVMを分散した場合などです。SMAは、Raw Device Mapping（RDM；rawデバイスマッピング）とゲスト内iSCSIイニシエータを使用するゲスト接続ストレージもサポートしています。整合グループの詳細については、を参照してください https://docs.netapp.com/us-en/ontap/consistency-groups/index.html["整合グループの概要"]。
 
-ONTAP toolsで、vMSCのSnapMirrorアクティブ同期を簡単に設定できるようになりました。ONTAP tools vCenterプラグインを使用して、2つのONTAPクラスタ間にSnapMirrorのアクティブな同期関係を作成および管理できます。プラグインのシンプルでわかりやすいインターフェイスを使用して、2つのONTAPクラスタ間のSnapMirrorのアクティブな同期関係を作成および管理できます。ONTAP tools vCenterプラグインの詳細については、を参照 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["VMware vSphere 用の ONTAP ツール"]するか、にジャンプし https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/protect-cluster.html["ホストクラスタの保護を使用した保護"]ます。
+SnapMirrorアクティブ同期を使用するvMSC構成の管理は、MetroClusterとは多少異なります。まず、SMAはSANのみの構成であり、SnapMirrorのアクティブな同期でNFSデータストアを保護することはできません。次に、両方の障害ドメインのレプリケートされたデータストアにアクセスできるように、両方のLUNのコピーをESXiホストにマッピングする必要があります。次に、SnapMirrorのアクティブな同期で保護するデータストアの整合グループを1つ以上作成する必要があります。最後に、作成した整合グループのSnapMirrorポリシーを作成する必要があります。これらはすべて、ONTAP tools vCenterプラグインの「クラスタの保護」ウィザードを使用して簡単に実行できます。また、ONTAP CLIまたはSystem Managerを使用して手動で実行することもできます。
 
-SnapMirrorアクティブ同期を使用するvMSC構成の管理は、MetroClusterとは多少異なります。まず、SMAはSANのみの構成であり、SnapMirrorのアクティブな同期でNFSデータストアを保護することはできません。次に、両方の障害ドメインのレプリケートされたデータストアにアクセスできるように、両方のLUNのコピーをESXiホストにマッピングする必要があります。
+
+
+== SnapMirror Active Sync用ONTAPツールvCenterプラグインの使用
+
+ONTAP tools vCenterプラグインを使用すると、vMSCのSnapMirrorアクティブ同期をシンプルかつ直感的に設定できます。ONTAP tools vCenterプラグインを使用して、2つのONTAPクラスタ間にSnapMirrorのアクティブな同期関係を作成および管理できます。このプラグインは、これらの関係を効率的に確立および管理するための使いやすいインターフェイスを提供します。ONTAP tools vCenterプラグインの詳細については、を参照 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["VMware vSphere 用の ONTAP ツール"]するか、にジャンプし https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/protect-cluster.html["ホストクラスタの保護を使用した保護"]ます。
 
 
 
@@ -76,7 +80,7 @@ image::../media/vmsc_3_4.png[アドミッション制御,624,479]
 image::../media/vmsc_3_5.png[vmsc 3 5,624,336]
 
 . VMコンポーネント保護を有効にします。を参照してください。 https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-availability/GUID-F01F7EB8-FF9D-45E2-A093-5F56A788D027.html["docs.vmware.com"]。
-. MCCを使用するvMSCでは、次のvSphere HAの追加設定が推奨されます。
+. MetroClusterを備えたvMSCでは、次のvSphere HAの追加設定が推奨されます。
 
 
 [cols="50%,50%"]
@@ -141,7 +145,7 @@ HAクラスタ内のホストがネットワークまたはクラスタ内の他
 
 image::../media/vmsc_3_7.png[概要が自動的に生成されたコンピュータのスクリーンショット,624,545]
 
-das.heartbeatDsPerHostという詳細設定を追加すると、ハートビートデータストアの数を増やすことができます。4つのハートビートデータストア（HB DSS）（サイトごとに2つ）を使用します。[Select from List but complent]オプションを使用します。これは、1つのサイトで障害が発生してもHB DSSが2つ必要になるためです。ただし、MCCやSnapMirrorのアクティブな同期で保護する必要はありません。
+das.heartbeatDsPerHostという詳細設定を追加すると、ハートビートデータストアの数を増やすことができます。4つのハートビートデータストア（HB DSS）（サイトごとに2つ）を使用します。[Select from List but complent]オプションを使用します。これは、1つのサイトで障害が発生してもHB DSSが2つ必要になるためです。ただし、これらは、MetroClusterやSnapMirrorのアクティブな同期で保護する必要はありません。
 
 詳細については、を参照してください https://www.vmware.com/docs/vmw-vmware-vsphere-metro-storage-cluster-recommended-practices["VMware vSphere Metro Storage Cluster Recommended Practices"]。
 

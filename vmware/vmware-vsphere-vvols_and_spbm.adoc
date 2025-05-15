@@ -16,7 +16,8 @@ summary: このページでは、VMware vSphere環境にONTAPストレージ解�
 [role="lead"]
 2012年に最初に発表されたNetAppは、VMware vSphere APIs for Storage Awareness（VASA）の開発におけるVMwareの初期の設計パートナーであり、エンタープライズストレージアレイを使用するストレージポリシーベース管理（SPBM）の基盤となっています。このアプローチにより、VMFSおよびNFSストレージでVMのきめ細かなストレージ管理が制限されました。
 
- As a technology design partner, NetApp provided architectural input and in 2015 announced support for vVols. This new technology now enabled the automation of VM-granular and truly array-native storage provisioning through SPBM.
+テクノロジ設計パートナーとして、NetAppはアーキテクチャに関する情報を提供し、2015年にVVOLのサポートを発表しました。この新しいテクノロジにより、SPBMを使用してVM単位で真にアレイネイティブなストレージプロビジョニングを自動化できるようになりました。
+
 
 
 == 仮想ボリューム（VVol）
@@ -41,9 +42,9 @@ NetApp ONTAPはVVOLの規模でストレージ業界をリードしており、1
 
 前述したように、VM管理者は容量をストレージプールとして利用できるということです。これには、vSphereで論理データストアとして表されるストレージコンテナを使用します。
 
-ストレージコンテナは、ストレージ管理者が作成し、VM管理者が使用できるストレージリソースをグループ化するために使用されます。ストレージコンテナは、使用しているONTAPシステムのタイプに応じて作成できます。従来型のONTAP 9クラスタでは、コンテナに1つ以上のバッキングFlexVolが割り当てられ、それらがストレージプールを形成します。ASA R2システムでは、クラスタ全体がストレージプールになります。
+ストレージコンテナは、ストレージ管理者が作成し、VM管理者が使用できるストレージリソースをグループ化するために使用されます。ストレージコンテナは、使用しているONTAPシステムのタイプに応じて作成できます。従来のONTAP 9クラスタでは、コンテナに1つ以上の元のFlexVolボリュームが割り当てられ、ストレージプールを形成します。ASA R2システムでは、クラスタ全体がストレージプールになります。
 
 
 NOTE: VMware vSphere Virtual Volumes 、 SPBM 、および ONTAP の詳細については、を参照してください link:vmware-vvols-overview.html["TR-4400 ：『 VMware vSphere Virtual Volumes with ONTAP 』"^]。
 
- \* Depending on platform and protocol
+*プラットフォームとプロトコルによって異なる

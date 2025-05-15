@@ -81,9 +81,9 @@ Windows Server上のiSCSIのIQNは、iSCSIイニシエータプロパティの�
 
 Windows Serverでは、Asymmetrical Logical Unit Access（ALUA；非対称論理ユニットアクセス）拡張MPIOを使用して、LUNへの直接パスと間接パスを決定します。SVMが所有するすべてのLIFはLUNの読み取り/書き込み要求を受け入れますが、そのLUNの元となるディスクを実際に所有しているクラスタノードは常に1つだけです。これにより、次の図に示すように、LUNへの使用可能なパスが直接パスと間接パスの2種類に分けられます。
 
-LUNの直接パスとは、SVMのLIFとアクセス対象のLUNが同じノードにあるパスです。物理ターゲットポートからディスクに移動する場合、クラスタネットワークを経由する必要はありません。
+LUNの直接パスとは、SVMのLIFとアクセス対象のLUNが同じノードにあるパスです。物理ターゲットポートからディスクに移動する場合、クラスタインターコネクトを経由する必要はありません。
 
-間接パスは、SVMのLIFとアクセス対象のLUNが別 々 のノードにあるデータパスです。物理ターゲットポートからディスクに移動するには、データがクラスタネットワークを経由する必要があります。
+間接パスは、SVMのLIFとアクセス対象のLUNが別 々 のノードにあるデータパスです。物理ターゲットポートからディスクに移動するには、データがクラスタインターコネクトを経由する必要があります。
 
 image:win_image3.png["SAN環境での複数パス、幅=624、高さ=232"]
 
@@ -196,7 +196,7 @@ Start-Service msiscsi
 +
 ....
 # Create a new iSCSI target portal
-New-IscsiTargetPortal â€“TargetPortalAddress <SVM LIF>
+New-IscsiTargetPortal -TargetPortalAddress <SVM LIF>
 ....
 +
 ....
@@ -242,12 +242,12 @@ Enable-WindowsOptionalFeature -Online -FeatureName MultipathIo
 +
 ....
 # Get the Network adapters and their IPs
-Get-NetIPAddress â€“AddressFamily IPv4 â€“PrefixOrigin <Dhcp or Manual>
+Get-NetIPAddress -AddressFamily IPv4 -PrefixOrigin <Dhcp or Manual>
 ....
 +
 ....
 # Create one MPIO-enabled iSCSI connection per network adapter
-Connect-IscsiTarget -NodeAddress <NodeAddress> -IsPersistent $True â€“IsMultipathEnabled $True â€“InitiatorPortalAddress <IP Address of ethernet adapter>
+Connect-IscsiTarget -NodeAddress <NodeAddress> -IsPersistent $True -IsMultipathEnabled $True -InitiatorPortalAddress <IP Address of ethernet adapter>
 ....
 +
 ....

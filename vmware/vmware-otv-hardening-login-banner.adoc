@@ -4,7 +4,7 @@ permalink: vmware/vmware-otv-hardening-login-banner.html
 keywords: VMware, Data protection, security, OTV, Hardening, ONTAP Tools 
 summary: 『Security Hardening Guide for ONTAP tools for VMware vSphere』のログインバナー。 
 ---
-= ログインバナー
+= ONTAP tools 9.13のログインバナー
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -14,7 +14,7 @@ summary: 『Security Hardening Guide for ONTAP tools for VMware vSphere』のロ
 
 
 [role="lead"]
-ユーザがログインプロンプトにユーザ名を入力すると、次のログインバナーが表示されます。SSHはデフォルトで無効になっており、VMコンソールから有効にすると1回限りのログインしか許可されないことに注意してください。
+ユーザがログインプロンプトにユーザ名を入力すると、次のログインバナーが表示されます。SSHはデフォルトでは無効になっており、VMコンソールから有効にした場合は1回限りのログインが許可されます。
 
 ....
 WARNING: Unauthorized access to this system is forbidden and will be

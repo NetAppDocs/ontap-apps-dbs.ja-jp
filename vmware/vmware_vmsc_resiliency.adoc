@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmware_vmsc_resiliency.html 
-keywords: VMware, Data protection, MetroCluster, SMBC, SnapMirror active sync, vMSC 
+keywords: VMware, Data protection, MetroCluster, SMBC, SMas, SnapMirror active sync, vMSC, metro storage cluster, vSphere, vCenter, business continuity, disaster recovery, ONTAP 
 summary: ONTAPを使用したvSphere Metroストレージクラスタの詳細 
 ---
 = 計画的イベントと計画外イベントの耐障害性
@@ -16,7 +16,7 @@ summary: ONTAPを使用したvSphere Metroストレージクラスタの詳細
 [role="lead"]
 NetApp MetroClusterとSnapMirrorのアクティブ同期は、NetAppハードウェアとONTAP®ソフトウェアの高可用性とノンストップオペレーションを強化する強力なツールです。
 
-これらのツールは、ストレージ環境全体をサイト全体で保護し、データの可用性を確保します。スタンドアロンサーバ、高可用性サーバクラスタ、Dockerコンテナ、仮想サーバのいずれを使用している場合でも、NetAppテクノロジは、停電、冷却装置の障害、ネットワーク接続の障害、ストレージアレイのシャットダウン、または運用上のエラーが原因で全体が停止した場合でも、ストレージの可用性をシームレスに維持します。
+これらのツールは、ストレージ環境全体をサイト全体で保護し、データの可用性を確保します。スタンドアロンサーバ、高可用性サーバクラスタ、コンテナ、仮想サーバのいずれを使用している場合でも、NetAppテクノロジは、停電、冷却装置の喪失、ネットワーク接続の喪失、ストレージアレイのシャットダウン、または運用上のエラーが原因で全体が停止した場合でも、ストレージの可用性をシームレスに維持します。
 
 MetroClusterとSnapMirrorのアクティブな同期では、計画的または計画外のイベントが発生した場合に、次の3つの基本的な方法でデータを継続できます。
 
@@ -31,10 +31,10 @@ MetroClusterとSnapMirrorのアクティブな同期では、計画的または�
 
 テイクオーバーは、データサービスを維持するために一方のノードがもう一方のノードのストレージをテイクオーバーする自動プロセスです。ギブバックは、通常動作に戻る逆のプロセスです。テイクオーバーは、ハードウェアのメンテナンス時やONTAPのアップグレード時などに計画的に行うことも、ノードのパニックやハードウェア障害による計画外で行うこともできます。
 
-テイクオーバー時に、MetroCluster構成のネットワーク接続型ストレージ論理インターフェイス（NAS LIF）が自動的にフェイルオーバーされます。ただし、ストレージエリアネットワークLIF（SAN LIF）はフェイルオーバーせず、引き続き論理ユニット番号（LUN）への直接パスを使用します。
+テイクオーバー中は、MetroCluster構成のNAS LIFが自動的にフェイルオーバーされます。ただし、SAN LIFはフェイルオーバーせず、引き続き論理ユニット番号（LUN）への直接パスを使用します。
 
-HAのテイクオーバーとギブバックの詳細については、 https://docs.netapp.com/us-en/ontap/high-availability/index.html["HAペアの管理の概要"]。この機能は、MetroClusterまたはSnapMirrorのアクティブな同期に固有ではないことに注意してください。
+HAのテイクオーバーとギブバックの詳細については、を参照して https://docs.netapp.com/us-en/ontap/high-availability/index.html["HAペアの管理の概要"]ください。この機能は、MetroClusterまたはSnapMirrorのアクティブな同期に固有ではないことに注意してください。
 
 MetroClusterによるサイトのスイッチオーバーは、一方のサイトがオフラインになった場合、またはサイト全体のメンテナンスのために計画的に実行された場合に実行されます。オフラインになったクラスタのストレージリソース（ディスクおよびアグリゲート）の所有権がもう一方のサイトに引き継がれ、障害が発生したサイトのSVMがディザスタサイトでオンラインになって再起動されます。その際、クライアントとホストのアクセス用にIDは保持されます。
 
-SnapMirrorのアクティブな同期では、両方のコピーが同時にアクティブに使用されるため、既存のホストは引き続き動作します。サイトのフェイルオーバーを正しく実行するには、NetAppメディエーターが必要です。
+SnapMirrorのアクティブな同期では、両方のコピーが同時にアクティブに使用されるため、既存のホストは引き続き動作します。サイトのフェイルオーバーを正しく実行するには、ONTAPメディエーターが必要です。

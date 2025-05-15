@@ -53,7 +53,7 @@ CIFSのセットアップが正しく機能するためには、NetAppストレ�
 
 ....
 $domainControllerIP = "<input IP Address of windows domain controller>"
-cluster::> system services ntp server create â€“server $domainControllerIP
+cluster::> system services ntp server create -server $domainControllerIP
 ....
 
 

@@ -6,6 +6,8 @@ entries:
   entries:
   - title: 概要
     url: "/vmware/vmware-vsphere-overview.html"
+  - title: ONTAP for VMwareを選ぶ理由
+    url: "/vmware/vmware-vsphere-why.html"
   - title: ユニファイドストレージ
     url: "/vmware/vmware-vsphere-unified.html"
   - title: 仮想化ツール

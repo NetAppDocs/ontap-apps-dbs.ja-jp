@@ -14,19 +14,19 @@ summary: ONTAP は、仮想化に使用されるすべての主要なストレ�
 
 
 [role="lead"]
-ネットアップでは、 ONTAP および vSphere と組み合わせて使用し、仮想環境を管理できるスタンドアロンのソフトウェアツールをいくつか提供しています。
+NetAppには、従来のONTAPシステムとASAシステムの両方と互換性のあるスタンドアロンのソフトウェアツールがいくつか用意されており、vSphereを統合して仮想環境を効果的に管理できます。
 
-ONTAP ライセンスには、追加コストなしで次のツールが含まれています。vSphere 環境でこれらのツールがどのように連携するかについては、図 1 を参照してください。
+次のツールは、ONTAP Oneライセンスに含まれています。追加料金はかかりません。vSphere 環境でこれらのツールがどのように連携するかについては、図 1 を参照してください。
 
 
 
 == VMware vSphere 用の ONTAP ツール
 
-VMware vSphere 用の ONTAP ツールは、 vSphere とともに ONTAP ストレージを使用するための一連のツールです。vCenter プラグインは、以前 Virtual Storage Console （ VSC ）と呼ばれていたもので、 SAN と NAS のどちらを使用している場合でも、ストレージ管理と効率化機能の簡易化、可用性の向上、ストレージコストと運用オーバーヘッドの削減を実現します。データストアのプロビジョニングのベストプラクティスを使用して、 NFS 環境およびブロックストレージ環境用の ESXi ホスト設定を最適化します。これらすべてのメリットについて、NetAppでは、ONTAPを実行しているシステムでvSphereを使用する際のベストプラクティスとして、これらのONTAPツールの使用を推奨しています。サーバアプライアンス、vCenter、VASA Provider、Storage Replication Adapterのユーザインターフェイス拡張機能が含まれています。ONTAP ツールのほぼすべてを、最新の自動化ツールで利用できるシンプルなREST APIを使用して自動化できます。
+https://mysupport.netapp.com/site/products/all/details/otv10/docs-tab["VMware vSphere 用の ONTAP ツール"]は、ONTAPストレージとvSphereを併用するための一連のツールです。vCenter プラグインは、以前 Virtual Storage Console （ VSC ）と呼ばれていたもので、 SAN と NAS のどちらを使用している場合でも、ストレージ管理と効率化機能の簡易化、可用性の向上、ストレージコストと運用オーバーヘッドの削減を実現します。データストアのプロビジョニングのベストプラクティスを使用して、 NFS 環境およびブロックストレージ環境用の ESXi ホスト設定を最適化します。これらすべてのメリットについて、NetAppでは、ONTAPを実行しているシステムでvSphereを使用する際のベストプラクティスとして、これらのONTAPツールの使用を推奨しています。サーバアプライアンス、vCenter、VASA Provider、Storage Replication Adapter向けのUI拡張機能が含まれています。ONTAP ツールのほぼすべてを、最新の自動化ツールで利用できるシンプルなREST APIを使用して自動化できます。
 
-* * vCenter UIの拡張機能* ONTAP ツールのUI拡張機能は、vCenter UIにホストとストレージを管理するための使いやすいコンテキスト依存メニュー、情報ポートレット、およびネイティブアラート機能を直接組み込み、ワークフローを合理化することで、運用チームやvCenter管理者の業務を簡素化します。
+* * vCenter UI拡張機能*ONTAP toolsのUI拡張機能は、ホストとストレージを管理するための使いやすいコンテキストメニュー、情報ポートレット、および標準のアラート機能をvCenter UIに直接組み込むことで、運用チームやvCenter管理者の作業を簡易化し、ワークフローを合理化します。
 * * VASA Provider for ONTAP 。* VASA Provider for ONTAP は、VMware vStorage APIs for Storage Awareness（VASA）フレームワークをサポートしています。VMware vSphere 用の ONTAP ツールの一部として提供され、導入を容易にする単一の仮想アプライアンスとして提供されます。VASA Provider では、 VM ストレージのプロビジョニングと監視に役立つように vCenter Server と ONTAP を接続します。VMware Virtual Volumes （ VVol ）のサポート、ストレージ機能プロファイルと個々の VM VVol のパフォーマンスの管理、およびプロファイルの容量と準拠状況の監視用アラームが可能になります。
-* * Storage Replication Adapter. SRAは、VMware Site Recovery Manager（SRM）と併用して、本番サイトと災害復旧サイト間のデータ複製を管理し、DRレプリカを無停止でテストします。検出、リカバリ、再保護のタスクを自動化します。Windows SRM サーバおよび SRM アプライアンス用の SRA サーバアプライアンスと SRA アダプタの両方が含まれています。
+* * Storage Replication Adapter *SRAは、VMware Live Site Recovery（VLSR）/ Site Recovery Manager（SRM）と一緒に使用され、アレイベースのレプリケーションにSnapMirrorを使用して本番サイトとディザスタリカバリサイト間のデータレプリケーションを管理します。災害発生時のフェイルオーバータスクを自動化したり、DRレプリカを無停止でテストしてDRソリューションの信頼性を確保したりできます。
 
 
 次の図は、 vSphere 用の ONTAP ツールを示しています。
@@ -35,6 +35,18 @@ image:vsphere_ontap_image1.png["vSphere向けONTAPツール"]
 
 
 
+== VMware vSphere向けSnapCenterプラグイン
+
+は https://mysupport.netapp.com/site/products/all/details/scv/docs-tab["VMware vSphere向けSnapCenterプラグイン"]vCenter Server向けのプラグインで、仮想マシン（VM）とデータストアのバックアップとリストアを管理できます。単一のインターフェイスで、複数のONTAPシステムのVMとデータストアのバックアップ、リストア、クローンを管理できます。SnapCenterは、SnapMirrorを使用したセカンダリサイトへのレプリケーションとセカンダリサイトからのリカバリをサポートします。最新バージョンは、クラウドへのSnapMirror（S3）、改ざん防止スナップショット、SnapLock、SnapMirrorアクティブ同期もサポートしています。SnapCenter Plug-in for VMware vSphereをSnapCenterアプリケーションプラグインと統合することで、アプリケーションと整合性のあるバックアップを作成できます。
+
+
+
 == NFS Plug-in for VMware VAAI のこと
 
-NetApp NFS Plug-in for VMware VAAIはESXiホスト向けのプラグインで、ONTAP 上のNFSデータストアでVAAI機能を使用できます。クローン処理、シック仮想ディスクファイルのスペースリザベーション、およびスナップショットオフロードのコピーオフロードをサポートします。コピー処理をストレージにオフロードしても、完了までの時間が必ずしも短縮されるとは限りませんが、ネットワーク帯域幅の要件が軽減され、CPUサイクル、バッファ、キューなどのホストリソースがオフロードされます。VMware vSphere用のONTAP ツールを使用して、ESXiホストまたはサポートされている場合はvSphere Lifecycle Manager（VLCM）にプラグインをインストールできます。
+は、 https://mysupport.netapp.com/site/products/all/details/nfsplugin-vmware-vaai/about-tab["NetApp NFS Plug-in for VMware VAAI"]ESXiホストがONTAP上のNFSデータストアでVAAI機能を使用できるようにするプラグインです。クローン処理、シック仮想ディスクファイルのスペースリザベーション、およびスナップショットオフロードのコピーオフロードをサポートします。コピー処理をストレージにオフロードしても、完了までの時間が必ずしも短縮されるとは限りませんが、ネットワーク帯域幅の要件が軽減され、CPUサイクル、バッファ、キューなどのホストリソースがオフロードされます。VMware vSphere用のONTAP ツールを使用して、ESXiホストまたはサポートされている場合はvSphere Lifecycle Manager（VLCM）にプラグインをインストールできます。
+
+
+
+== Premiumソフトウェアオプション
+
+次のプレミアムソフトウェア製品がNetAppから入手できます。ONTAP Oneライセンスには含まれていないため、別途購入する必要があります。* https://www.netapp.com/data-services/disaster-recovery/["BlueXP  ディザスタリカバリ（DR）"] VMware vSphereの場合。VMware環境向けにディザスタリカバリとバックアップを提供するクラウドベースのサービスです。SnapCenterの有無にかかわらず使用でき、SANまたはNASを使用してオンプレミスからオンプレミスへのDRをサポートし、サポートされている場合はNFSを使用してオンプレミスとクラウド間のDRをサポートします。 https://www.netapp.com/data-infrastructure-insights/["Data Infrastructure Insights（DII）"]*。VMware環境の監視と分析を行うクラウドベースのサービスです。異機種混在ストレージ環境の他のストレージベンダーに加え、複数のスイッチベンダーやその他のハイパーバイザーもサポートします。DIIは、VMware環境のパフォーマンス、容量、健全性に関する包括的なエンドツーエンドのインサイトを提供します。

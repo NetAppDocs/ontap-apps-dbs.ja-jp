@@ -4,7 +4,7 @@ permalink: vmware/vmware-otv-hardening-integrity.html
 keywords: VMware, Data protection, security, OTV, Hardening, ONTAP Tools 
 summary: 『Security Hardening Guide for ONTAP tools for VMware vSphere、整合性検証』を参照してください。 
 ---
-= ONTAP Tools for VMware vSphereインストールパッケージの整合性の検証
+= ONTAP Tools for VMware vSphere 9.13インストールパッケージの整合性の検証
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
@@ -36,7 +36,7 @@ vAppインストールパッケージはtarball形式で提供されます。こ
 
 . VMware vSphere ClientでvCenter Serverにログインします。
 . administrator@vsphere.locaまたはvCenter Single Sign-On Administratorsグループの別のメンバーのユーザ名とパスワードを指定します。インストール時に別のドメインを指定した場合は、administrator@mydomainとしてログインします。
-. 証明書管理ユーザーインターフェイスに移動します。a.[ホーム]メニューから[管理]を選択します。B[証明書]で、[証明書管理]をクリックします。
+. 証明書管理UIに移動します。a.[ホーム]メニューから[管理]を選択します。b.[証明書]で、[証明書管理]をクリックします。
 . プロンプトが表示されたら、vCenter Serverのクレデンシャルを入力します。
 . [信頼されたルート証明書]で、[追加]をクリックします。
 . [browse]をクリックし、証明書の.pemファイル（otv_ova_inter_root_cert_chain.pem）の場所を選択します。

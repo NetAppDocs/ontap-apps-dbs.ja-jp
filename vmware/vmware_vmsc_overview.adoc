@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmware_vmsc_overview.html 
-keywords: VMware, Data protection, MetroCluster, SMBC, SnapMirror active sync, vMSC 
+keywords: VMware, Data protection, MetroCluster, SMBC, SMas, SnapMirror active sync, vMSC, metro storage cluster, vSphere, vCenter, business continuity, disaster recovery, ONTAP 
 summary: ONTAPを使用したvSphere Metroストレージクラスタ 
 ---
 = ONTAPを使用したvSphere Metroストレージクラスタ
@@ -19,14 +19,17 @@ VMwareの業界をリードするvSphereハイパーバイザーは、vSphere Me
 vMSCソリューションは、NetApp®MetroCluster™とSnapMirrorアクティブ同期（旧称SnapMirrorビジネス継続性（SMBC））の両方でサポートされており、1つ以上の障害ドメインで全体的な停止が発生した場合に高度なビジネス継続性を提供します。さまざまな障害モードへの耐障害性は、どの設定オプションを選択するかによって異なります。
 
 
+NOTE: このドキュメントは、以前に公開されたテクニカルレポート（TR-4128：『vSphere on NetApp MetroCluster _』）を差し替えます。
+
+
 
 == vSphere環境向けの継続的可用性ソリューション
 
 ONTAPのアーキテクチャは、柔軟性と拡張性に優れたストレージプラットフォームであり、データストアにSAN（FCP、iSCSI、NVMe-oF）サービスとNAS（NFS v3およびv4.1）サービスを提供します。NetApp AFF、ASA、FASの各ストレージシステムは、ONTAPオペレーティングシステムを使用して、ゲストストレージアクセス用にS3、SMB / CIFSなどの追加プロトコルを提供します。
 
-NetApp MetroClusterは、ネットアップのHA（コントローラフェイルオーバーまたはCFO）機能を使用してコントローラ障害から保護します。また、ローカルSyncMirrorテクノロジ、災害時のクラスタフェイルオーバー（オンデマンドのコントローラフェイルオーバーまたはCFOD）、ハードウェアの冗長性、地理的な分離によって高レベルの可用性を実現します。SyncMirrorは、アクティブにデータを提供しているローカルプレックス（ローカルシェルフ上）と、通常はデータを提供していないリモートプレックス（リモートシェルフ上）の2つのプレックスにデータを書き込むことで、MetroCluster構成の2つの部分にわたってデータを同期的にミラーリングします。ハードウェアの冗長性は、コントローラ、ストレージ、ケーブル、スイッチ（ファブリックMetroClusterで使用）、アダプタなど、MetroClusterのすべてのコンポーネントで確保されています。
+NetApp MetroClusterは、ネットアップのHA（コントローラフェイルオーバーまたはCFO）機能を使用してコントローラ障害から保護します。また、ローカルSyncMirrorテクノロジ、災害時のクラスタフェイルオーバー（災害時のクラスタフェイルオーバーまたはCFOD）、ハードウェアの冗長性、および高レベルの可用性を実現する地理的な分離も含まれます。SyncMirrorは、アクティブにデータを提供しているローカルプレックス（ローカルシェルフ上）と、通常はデータを提供していないリモートプレックス（リモートシェルフ上）の2つのプレックスにデータを書き込むことで、MetroCluster構成の2つの部分にわたってデータを同期的にミラーリングします。ハードウェアの冗長性は、コントローラ、ストレージ、ケーブル、スイッチ（ファブリックMetroClusterで使用）、アダプタなど、MetroClusterのすべてのコンポーネントで確保されています。
 
-NetApp SnapMirrorアクティブ同期は、FCPおよびiSCSI SANプロトコルを使用してデータストアをきめ細かく保護するため、優先度の高いワークロードのみを選択的に保護できます。アクティブ/スタンバイ解決策であるNetApp MetroClusterとは異なり、ローカルサイトとリモートサイトの両方にアクティブ/アクティブアクセスを提供します。ONTAP 9.15.1以降ではSnapMirror、対称アクティブ/アクティブ機能がサポートされます。これにより、双方向同期レプリケーションによって、保護されたLUNの両方のコピーからの読み取りおよび書き込みI/O処理が可能になり、両方のLUNコピーがローカルでI/O処理を処理できるようになります。ONTAP 9.15.1より前のバージョンでは、SnapMirrorのアクティブ同期でサポートされるのは非対称アクティブ/アクティブ構成のみで、セカンダリサイトのデータがLUNにプロキシされます。
+非MetroClusterシステムおよびASA R2システムで使用できるNetApp SnapMirrorアクティブ同期は、FCPおよびiSCSI SANプロトコルを使用してデータストアをきめ細かく保護します。vMSC全体を保護することも、優先度の高いワークロードを選択的に保護することもできます。アクティブ/スタンバイ解決策であるNetApp MetroClusterとは異なり、ローカルサイトとリモートサイトの両方にアクティブ/アクティブアクセスを提供します。ONTAP 9.15.1以降ではSnapMirror、対称アクティブ/アクティブ機能がサポートされます。これにより、双方向同期レプリケーションによって、保護されたLUNの両方のコピーからの読み取りおよび書き込みI/O処理が可能になり、両方のLUNコピーがローカルでI/O処理を処理できるようになります。ONTAP 9.15.1より前のバージョンでは、SnapMirrorのアクティブ同期でサポートされるのは非対称アクティブ/アクティブ構成のみです。この構成では、セカンダリサイトのデータがLUNのプライマリコピーにプロキシされます。
 
 2つのサイトにVMware HA / DRSクラスタを作成するために、ESXiホストをvCenter Server Appliance（vCSA）で使用および管理します。vSphere管理ネットワーク、vMotion®ネットワーク、および仮想マシンネットワークは、2つのサイト間の冗長ネットワークを介して接続されます。HA / DRSクラスタを管理するvCenter Serverは両方のサイトのESXiホストに接続でき、vCenter HAを使用して設定する必要があります。
 
@@ -38,7 +41,7 @@ NetApp SnapMirrorアクティブ同期は、FCPおよびiSCSI SANプロトコル
 
 == vSphere Metro Storage Clusterとは
 
-vSphere Metro Storage Cluster（vMSC）は、仮想マシン（VM）とコンテナを障害から保護する認定済みの構成です。これは、ストレッチストレージの概念とESXiホストのクラスタを使用して実現されます。ESXiホストは、ラック、建物、キャンパス、さらには都市など、さまざまな障害ドメインに分散されます。NetApp MetroClusterとSnapMirrorのアクティブな同期ストレージテクノロジは、それぞれホストクラスタに対してRPO=0またはRPO=0の保護を提供するために使用されます。vMSCの構成は、物理的または論理的な「サイト」全体に障害が発生した場合でも、データを常に利用できるように設計されています。vMSC構成に含まれるストレージデバイスは、vMSC認定プロセスを完了したあとに認定されている必要があります。サポートされているすべてのストレージデバイスについては、を https://www.vmware.com/resources/compatibility/search.php["VMwareストレージ互換性ガイド"]参照してください。
+vSphere Metro Storage Cluster（vMSC）は、仮想マシン（VM）とコンテナを障害から保護する認定済みの構成です。これは、ストレッチストレージの概念とESXiホストのクラスタを使用して実現されます。ESXiホストは、ラック、建物、キャンパス、さらには都市など、さまざまな障害ドメインに分散されます。NetApp MetroClusterとSnapMirrorのアクティブ同期ストレージテクノロジは、ホストクラスタに目標復旧時点ゼロ（RPO=0）の保護を提供するために使用されます。vMSC構成は、完全な物理サイトまたは論理サイトに障害が発生した場合でも、データを常に利用できるように設計されています。vMSC構成に含まれるストレージデバイスは、vMSC認定プロセスを完了したあとに認定されている必要があります。サポートされているすべてのストレージデバイスについては、を https://www.vmware.com/resources/compatibility/search.php["VMwareストレージ互換性ガイド"]参照してください。
 
 vSphere Metro Storage Clusterの設計ガイドラインの詳細については、次のドキュメントを参照してください。
 
@@ -46,7 +49,7 @@ vSphere Metro Storage Clusterの設計ガイドラインの詳細については
 * https://kb.vmware.com/s/article/83370["NetApp SnapMirrorビジネス継続性によるVMware vSphereのサポート"] （SnapMirrorアクティブ同期）
 
 
-レイテンシの考慮事項に応じて、NetApp MetroClusterを導入してvSphereで使用できます。
+NetApp MetroClusterは、vSphereで使用する2種類の構成で導入できます。
 
 * ストレッチMetroCluster
 * ファブリックMetroCluster
@@ -54,7 +57,7 @@ vSphere Metro Storage Clusterの設計ガイドラインの詳細については
 
 次の図は、ストレッチMetroClusterのトポロジ図の概要を示しています。
 
-image::../media/vmsc_mcc_overview.png[MCCを使用したvMSCの図]
+image::../media/vmsc_mcc_overview.png[MetroClusterを使用したvMSCの図]
 
 を参照してください https://www.netapp.com/support-and-training/documentation/metrocluster/["MetroCluster のドキュメント"] を参照してくださいMetroCluster。
 
@@ -64,6 +67,6 @@ SnapMirror Active Syncは、2つの方法で導入することもできます。
 * 対称Active Sync（ONTAP 9.15.1）
 
 
-image::../media/vmsc_smas_mediator.png[MSAとメディエーターを使用したvMSCの図]
+image::../media/vmsc_smas_mediator.png[MSAとONTAP Mediatorを使用したvMSCの図]
 
 SnapMirrorアクティブ同期の特定の設計および配置情報については、を参照してください https://docs.netapp.com/us-en/ontap/smbc/index.html["ネットアップのドキュメント"]。

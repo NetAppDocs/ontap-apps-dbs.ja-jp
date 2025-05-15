@@ -54,10 +54,10 @@ summary: この付録では、高可用性Hyper-VクラスタをNetAppストレ�
 +
 ... LUNをオンラインにし、ディスクを初期化し、新しいシンプルボリュームを作成し、NTFSまたはReFSを使用してフォーマットします。
 ... フェイルオーバークラスタマネージャで、クラスタを展開し、ストレージを展開し、ディスクを右クリックして、ディスクの追加をクリックします。追加すると、クラスタへのディスクの追加ウィザードが開き、LUNがディスクとして表示されます。[OK]をクリックしてLUNをディスクとして追加します。
-... これで、LUNの名前がClustered Diskになり、[Disks]に[Available Storage]と表示されます。
+... これで、LUNの名前が「Clustered Disk」になり、[Disks]の下に[Available Storage]と表示されます。
 
 
-.. LUN（クラスタディスク）を右クリックし、[Add to Cluster Shared Volumes]をクリックします。これで、LUNがCSVとして表示されます。
+.. LUN（「クラスタディスク」）を右クリックし、[Add to Cluster Shared Volumes]をクリックします。これで、LUNがCSVとして表示されます。
 .. CSVは、ローカルの場所C：\ClusterStorage\にあるフェイルオーバークラスタのすべてのHyper-Vサーバから同時に認識およびアクセスできます。
 
 

@@ -17,7 +17,7 @@ summary: ONTAP tools 10のインストールチェックリスト
 
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-1.png["1つ"]初期計画
 [role="quick-margin-list"]
-* インストールを開始する前に、を確認して、導入が認定されていることを確認する必要があり https://imt.netapp.com/matrix/#search["Interoperability Matrix Tool で確認してください"]ます。
+* インストールを開始する前に、を確認して、導入が認定されていることを確認する必要があり https://imt.netapp.com/matrix/#search["Interoperability Matrix Tool （ IMT ）"^]ます。
 * 環境に必要なONTAP toolsの設定のサイズとタイプを確認します。詳細については、を参照して https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/deploy/prerequisites.html["ONTAP tools for VMware vSphereを導入するための構成の制限"]ください。
 * マルチテナントSVMを使用するか、クラスタへのフルアクセスを許可するかを決定します。マルチテナントSVMを使用する場合は、使用するSVMごとにSVM管理LIFが必要です。このLIFには、ONTAP toolsからポート443経由で到達できる必要があります。
 * ストレージ接続にFibre Channel（FC；ファイバチャネル）を使用するかどうかを決定します。その場合は、FCスイッチでESXiホストとSVMのFC LIFの間の接続を有効にする必要があります https://docs.netapp.com/us-en/ontap/san-config/fibre-channel-fcoe-zoning-concept.html["ゾーニングの設定"]。

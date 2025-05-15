@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmware-vsphere-datastores-nfs.html 
-keywords: vSphere, datastore, VMFS, FC, FCoE, NVMe/FC, iSCSI, NFS, vVols, NFSv3, NFSv4.1 
+keywords: vSphere, datastore, NFS, vVols, NFSv3, NFSv4.1 
 summary: このページでは、ONTAPおよびNFS接続のデータストアを使用してVMware vSphereを実装する際のベストプラクティスについて説明します。 
 ---
 = NFS
@@ -27,6 +27,7 @@ vSphere で ONTAP NFS を使用する際に推奨されるベストプラクテ�
 
 
 * ONTAP クラスタ内の各ノードの各 SVM で、 1 つの論理インターフェイス（ LIF ）を使用します。データストアごとの LIF の過去の推奨事項は不要になりました。直接アクセス（LIFとデータストアが同じノード上にある場合）を推奨しますが、一般にパフォーマンスへの影響は最小限（マイクロ秒）であるため、間接アクセスについて心配する必要はありません。
+* fpolicyを使用する場合は、必ず.lckファイルを除外してください。これらのファイルは、VMの電源がオンになっているときにvSphereでロックするために使用されます。
 * 現在サポートされているすべてのバージョンのVMware vSphereで、NFS v3とv4.1の両方を使用できます。nconnectの公式サポートは、NFS v3ではvSphere 8.0 Update 2、NFS v4.1ではUpdate 3に追加されました。NFS v4.1のvSphereは、セッショントランキング、Kerberos認証、整合性を維持したKerberos認証を引き続きサポートします。セッショントランキングにはONTAP 9.14.1以降のバージョンが必要であることに注意してください。nconnect機能の詳細と、nconnect機能によってパフォーマンスがどのように向上するかについては、を参照link:https://docs.netapp.com/us-en/netapp-solutions/virtualization/vmware-vsphere8-nfsv3-nconnect.html["NetAppおよびVMwareでのNFSv3 nconnect機能"]してください。
 
 
@@ -42,9 +43,10 @@ vSphere で ONTAP NFS を使用する際に推奨されるベストプラクテ�
 * NFSv3とNFSv4.1では、異なるロックメカニズムが使用されていることに注目してください。NFSv3ではクライアント側ロックが使用され、NFSv4.1ではサーバ側ロックが使用されます。ONTAPボリュームは両方のプロトコルでエクスポートできますが、ESXiは1つのプロトコルでしかデータストアをマウントできません。ただしこれは、他のESXiホストが異なるバージョンを使用して同じデータストアをマウントできないという意味ではありません。問題を回避するには、マウント時に使用するプロトコルのバージョンを指定して、すべてのホストで同じバージョン、つまり同じロック形式を使用するようにする必要があります。NFSバージョンをホスト間で混在させないことが重要です。可能であれば、ホストプロファイルを使用して準拠を確認します。
 +
 ** NFSv3 と NFSv4.1 間ではデータストアが自動変換されないため、新しい NFSv4.1 データストアを作成し、 Storage vMotion を使用して新しいデータストアに VM を移行します。
-** に記載されている NFS v4.1 と相互運用性に関する表の注を参照してください link:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^] をサポートするには、特定の ESXi パッチレベルが必要です。
+** サポートに必要なESXiのパッチレベルについては、でNFS v4.1のInteroperabilityテーブルに関する注意事項を参照してlink:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]ください。
 
 
+* で説明したように、link:vmware/vmware-vsphere-settings.html["設定"]vSphere CSI for Kubernetesを使用していない場合は、 https://knowledge.broadcom.com/external/article/386364/reducing-excessive-vsan-cnssync-warnings.html["VMware KB 386364"^]
 * NFSエクスポートポリシールールは、vSphereホストによるアクセスの制御に使用されます。複数のボリューム（データストア）で 1 つのポリシーを使用できます。NFSの場合、ESXiではsys（UNIX）セキュリティ形式が使用され、VMを実行するにはルートマウントオプションが必要です。ONTAP では、このオプションはスーパーユーザと呼ばれます。スーパーユーザオプションを使用する場合は、匿名ユーザ ID を指定する必要はありません。との `-allow-suid`値が異なるエクスポートポリシールールが設定されていると、ONTAP toolsでSVM検出の問題が発生する可能性があることに注意して `-anon`ください。IPアドレスをカンマで区切って指定し、データストアをマウントするvmkernelポートアドレスをスペースなしで指定する必要があります。ポリシールールの例を次に示します。
 +
 ** Access Protocol：nfs（nfs3とnfs4の両方を含む）

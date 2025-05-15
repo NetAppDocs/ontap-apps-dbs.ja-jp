@@ -23,10 +23,10 @@ Microsoft Windows Nano Serverの導入について説明します。
 Nano ServerをHyper-Vホストとして導入するには、次の手順を実行します。
 
 . 管理者グループのメンバーとしてWindows Serverにログインします。
-. Windows Server ISOの\NanoServerフォルダからNanoServerImageGeneratorフォルダをローカルハードドライブにコピーします。
+. Windows Server ISOの\NanoServerフォルダからNanoServerImageGeneratorフォルダをローカルハードディスクにコピーします。
 . Nano Server VHD/VHDXを作成するには、次の手順を実行します。
 +
-.. Windows PowerShellを管理者として起動し、ローカルハードドライブ上のコピーされたNanoServerImageGeneratorフォルダに移動して、次のコマンドレットを実行します。
+.. Windows PowerShellを管理者として起動し、ローカルハードディスク上のコピーされたNanoServerImageGeneratorフォルダに移動して、次のコマンドレットを実行します。
 +
 ....
 Set-ExecutionPolicy RemoteSigned
