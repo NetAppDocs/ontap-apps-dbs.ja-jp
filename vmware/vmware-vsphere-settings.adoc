@@ -69,7 +69,7 @@ NetAppは、NFSプロトコルとブロックプロトコルの両方に最適�
 | nfs.HeartbeatTimeout | すべてのNFS構成で5に設定されます。 | いいえ 
 
 
-| SunRPC.MaxConnPerIP | vSphere 7.0 以降では 128 に設定されます。 | いいえ 
+| SunRPC.MaxConnPerIP | vSphere 7.0 ～ 8.0 の場合、128 に設定。この設定は、ESXi 8.0 以降のリリースでは無視されます。 | いいえ 
 
 
 3+| * FC / FCoE 設定 * 
@@ -154,8 +154,8 @@ ONTAP ツールでは、 ONTAP FlexVol および LUN の作成時に特定のデ
 
 現在使用可能なONTAPツールでは設定されていませんが、NetAppでは次の設定オプションを推奨しています。
 
-* ハイパフォーマンスな環境で、または単一の LUN データストアでパフォーマンスをテストする場合は、ラウンドロビン（ VMW_PSP_RR ）パス選択ポリシー（ PSP ）の負荷分散設定をデフォルトの IOPS 設定 1000 から 1 に変更することを検討します。詳細については、を参照してくださいlink:https://knowledge.broadcom.com/external/article?legacyId=2069356["VMware KB 2069356"^]。
-* vSphere 6.7 Update 1 では、 VMware がラウンドロビン PSP 用に新しいレイテンシの負荷分散メカニズムを導入しました。新しいオプションでは、 I/O に最適なパスを選択する際に、 I/O 帯域幅とパスレイテンシが考慮されますパス接続が異なる環境（あるパスのネットワークホップ数が別のパスよりも多い場合など）や、NetAppオールSANアレイ（ASA）システムを使用している場合など、パス接続が同等でない環境で使用するとメリットがあります。詳細については、を参照してください https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-storage-8-0/understanding-multipathing-and-failover-in-the-esxi-environment/viewing-and-managing-storage-paths-on-esxi-hosts.html#GUID-1940AE9E-04CF-40BE-BB71-398621F0642E-en["レイテンシラウンドロビンのデフォルトパラメータを変更"^] 。
+* 高パフォーマンス環境でASA以外のシステムを使用する場合、または単一の LUN データストアでパフォーマンスをテストする場合は、ラウンドロビン (VMW_PSP_RR) パス選択ポリシー (PSP) の負荷分散設定を、デフォルトの IOPS 設定の 1000 から値 1 に変更することを検討してください。見るlink:https://knowledge.broadcom.com/external/article?legacyId=2069356["VMware KB 2069356"^]詳細については。
+* vSphere 6.7 Update 1 では、VMware はラウンド ロビン PSP 用の新しいレイテンシ ロード バランス メカニズムを導入しました。レイテンシ オプションは、NVMe 名前空間で HPP (高パフォーマンス プラグイン) を使用する場合、および vSphere 8.0u2 以降で iSCSI および FCP 接続された LUN を使用する場合にも利用できるようになりました。新しいオプションでは、I/O に最適なパスを選択する際に、I/O 帯域幅とパスのレイテンシを考慮します。 NetApp、あるパスのネットワーク ホップが他のパスよりも多い場合や、 NetApp ASAシステムを使用している場合など、パス接続が等しくない環境では、レイテンシ オプションを使用することをお勧めします。見る https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-storage-8-0/understanding-multipathing-and-failover-in-the-esxi-environment/viewing-and-managing-storage-paths-on-esxi-hosts.html#GUID-1940AE9E-04CF-40BE-BB71-398621F0642E-en["レイテンシラウンドロビンのデフォルトパラメータを変更"^]詳細についてはこちらをご覧ください。
 
 
 
