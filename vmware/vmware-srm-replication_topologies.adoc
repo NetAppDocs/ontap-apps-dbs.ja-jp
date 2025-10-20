@@ -16,7 +16,7 @@ summary: ONTAPとSnapMirror、VMware VLSR、SRMを使用したレプリケーシ
 [role="lead"]
 ONTAP 9 では、クラスタの物理コンポーネントはクラスタ管理者には見えますが、クラスタを使用しているアプリケーションやホストからは直接見えません。物理コンポーネントは共有リソースのプールを提供し、このリソースプールから論理クラスタリソースが構築されます。アプリケーションとホストは、ボリュームと LIF を含む SVM 経由でのみデータにアクセスします。
 
-VMware vCenter Site Recovery Manager では、各 NetApp SVM がアレイとして扱われます。VLSR は、特定のアレイ間（または SVM から SVM ）のレプリケーションレイアウトをサポートしています。
+各NetApp SVM は、Site Recovery Manager では一意のアレイとして扱われます。VLSR は、特定のアレイ間 (または SVM 間) のレプリケーション レイアウトをサポートします。
 
 1 つの VM が、次の理由から、複数の VLSR アレイ上で仮想マシンディスク（ VMDK ）または RDM を所有することはできません。
 
@@ -43,6 +43,20 @@ image:vsrm-ontap9_image8.png["SnapMirror関係のレイアウト"]
 image:vsrm-ontap9_image9.png["SnapMirror関係のレイアウト"]
 
 image:vsrm-ontap9_image10.png["SnapMirror関係のレイアウト"]
+
+
+
+== SnapMirror Active Sync による VMFS サポート
+
+ONTAPツール 10.3 以降では、 SnapMirror Active Sync (SMAs) を使用した VMFS データストアの保護もサポートされています。これにより、比較的近接する 2 つのデータセンター (障害ドメインと呼ばれる) 間でのビジネス継続性のための透過的なフェイルオーバーが可能になります。その後、 ONTAPツール SRA と VLSR を介してSnapMirror非同期を使用して、長距離災害復旧を調整できます。
+
+https://docs.netapp.com/us-en/ontap/snapmirror-active-sync/["ONTAP SnapMirrorアクティブ同期について学ぶ"]
+
+データストアは整合性グループ (CG) に集められ、すべてのデータストアにわたる VM は同じ CG のメンバーとして書き込み順序の一貫性を維持します。
+
+たとえば、ベルリンとハンブルクのサイトを SMas で保護し、3 番目のサイトのレプリカをSnapMirror非同期を使用して VLSR で保護することが考えられます。もう 1 つの例としては、SMas を使用してニューヨークとニュージャージーのサイトを保護し、3 番目のサイトをシカゴに置くことが挙げられます。
+
+image:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-104/media/fan-out-protection.png["SMasレイアウト"]
 
 
 

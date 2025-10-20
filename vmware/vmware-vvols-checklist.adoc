@@ -76,10 +76,10 @@ summary: ONTAP tools 10のインストールチェックリスト
 .image:https://raw.githubusercontent.com/NetAppDocs/common/main/media/number-7.png["7"]ONTAPツールにストレージバックエンドを追加
 [role="quick-margin-list"]
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/configure-user-role-and-privileges.html["ONTAPユーザのロールと権限の設定"]管理者を使用しない場合は、含まれているJSONファイルを使用します。
-* SVMでストレージマルチテナンシーを使用する場合に使用
+* vCenter でONTAPクラスタ認証情報を使用するのではなく、ストレージ マルチテナンシーを使用して特定の SVM を vCenter に割り当てる場合は、次の手順に従ってください。
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["オンホオトクラスタ"]ONTAP tools Managerを使用し、vCenterに関連付けます。
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["オンボードSVM"]ONTAP toolsのvCenter UIで、
-* マルチテナントSVMを使用している場合*
+* vCenter 内でマルチテナント SVM を使用していない*場合*:
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["オンホオトクラスタ"]ONTAP toolsのvCenter UIで直接実行できます。または、このシナリオでは、VVOLを使用していないSVMを直接追加することもできます。
 
 

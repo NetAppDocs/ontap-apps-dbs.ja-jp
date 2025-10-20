@@ -26,7 +26,7 @@ https://mysupport.netapp.com/site/products/all/details/otv10/docs-tab["VMware vS
 
 * * vCenter UI拡張機能*ONTAP toolsのUI拡張機能は、ホストとストレージを管理するための使いやすいコンテキストメニュー、情報ポートレット、および標準のアラート機能をvCenter UIに直接組み込むことで、運用チームやvCenter管理者の作業を簡易化し、ワークフローを合理化します。
 * * VASA Provider for ONTAP 。* VASA Provider for ONTAP は、VMware vStorage APIs for Storage Awareness（VASA）フレームワークをサポートしています。VMware vSphere 用の ONTAP ツールの一部として提供され、導入を容易にする単一の仮想アプライアンスとして提供されます。VASA Provider では、 VM ストレージのプロビジョニングと監視に役立つように vCenter Server と ONTAP を接続します。VMware Virtual Volumes （ VVol ）のサポート、ストレージ機能プロファイルと個々の VM VVol のパフォーマンスの管理、およびプロファイルの容量と準拠状況の監視用アラームが可能になります。
-* * Storage Replication Adapter *SRAは、VMware Live Site Recovery（VLSR）/ Site Recovery Manager（SRM）と一緒に使用され、アレイベースのレプリケーションにSnapMirrorを使用して本番サイトとディザスタリカバリサイト間のデータレプリケーションを管理します。災害発生時のフェイルオーバータスクを自動化したり、DRレプリカを無停止でテストしてDRソリューションの信頼性を確保したりできます。
+* *ストレージ レプリケーション アダプタ*SRA は、VMware Live Site Recovery (VLSR)/Site Recovery Manager (SRM) と併用され、アレイベースのレプリケーションにSnapMirror を使用して、運用サイトと災害復旧サイト間のデータ レプリケーションを管理します。災害発生時のフェイルオーバー タスクを自動化し、DR レプリカを中断なくテストして DR ソリューションの信頼性を確保することができます。
 
 
 次の図は、 vSphere 用の ONTAP ツールを示しています。
@@ -37,7 +37,7 @@ image:vsphere_ontap_image1.png["vSphere向けONTAPツール"]
 
 == VMware vSphere向けSnapCenterプラグイン
 
-は https://mysupport.netapp.com/site/products/all/details/scv/docs-tab["VMware vSphere向けSnapCenterプラグイン"]vCenter Server向けのプラグインで、仮想マシン（VM）とデータストアのバックアップとリストアを管理できます。単一のインターフェイスで、複数のONTAPシステムのVMとデータストアのバックアップ、リストア、クローンを管理できます。SnapCenterは、SnapMirrorを使用したセカンダリサイトへのレプリケーションとセカンダリサイトからのリカバリをサポートします。最新バージョンは、クラウドへのSnapMirror（S3）、改ざん防止スナップショット、SnapLock、SnapMirrorアクティブ同期もサポートしています。SnapCenter Plug-in for VMware vSphereをSnapCenterアプリケーションプラグインと統合することで、アプリケーションと整合性のあるバックアップを作成できます。
+その https://mysupport.netapp.com/site/products/all/details/scv/docs-tab["VMware vSphere向けSnapCenterプラグイン"] は、仮想マシン (VM) とデータストアのバックアップと復元を管理できる vCenter Server のプラグインです。複数のONTAPシステムにわたる VM およびデータストアのバックアップ、リストア、クローンを管理するための単一のインターフェイスを提供します。SnapCenter は、 SnapMirrorを使用してセカンダリ サイトへのレプリケーションとセカンダリ サイトからのリカバリをサポートします。最新バージョンでは、クラウド (S3) へのSnapMirror 、改ざん防止スナップショット、 SnapLock、 SnapMirrorアクティブ同期もサポートされています。VMware vSphere 用のSnapCenterプラグインは、 SnapCenterアプリケーション プラグインと統合して、アプリケーション整合性のあるバックアップを提供できます。
 
 
 
@@ -49,4 +49,4 @@ image:vsphere_ontap_image1.png["vSphere向けONTAPツール"]
 
 == Premiumソフトウェアオプション
 
-次のプレミアムソフトウェア製品がNetAppから入手できます。ONTAP Oneライセンスには含まれていないため、別途購入する必要があります。* https://www.netapp.com/data-services/disaster-recovery/["BlueXP  ディザスタリカバリ（DR）"] VMware vSphereの場合。VMware環境向けにディザスタリカバリとバックアップを提供するクラウドベースのサービスです。SnapCenterの有無にかかわらず使用でき、SANまたはNASを使用してオンプレミスからオンプレミスへのDRをサポートし、サポートされている場合はNFSを使用してオンプレミスとクラウド間のDRをサポートします。 https://www.netapp.com/data-infrastructure-insights/["Data Infrastructure Insights（DII）"]*。VMware環境の監視と分析を行うクラウドベースのサービスです。異機種混在ストレージ環境の他のストレージベンダーに加え、複数のスイッチベンダーやその他のハイパーバイザーもサポートします。DIIは、VMware環境のパフォーマンス、容量、健全性に関する包括的なエンドツーエンドのインサイトを提供します。
+NetAppからは、次のプレミアム ソフトウェア製品が提供されています。これらはONTAP One ライセンスには含まれていないため、別途購入する必要があります。* https://www.netapp.com/data-services/disaster-recovery/["NetApp Disaster Recovery(DR)"] VMware vSphere 用。これは、VMware 環境の災害復旧とバックアップを提供するクラウドベースのサービスです。SnapCenterの有無にかかわらず使用でき、SAN または NAS を使用したオンプレミス間の DR、および NFS を使用したオンプレミスとクラウド間の DR (サポートされている場合) をサポートします。* https://www.netapp.com/data-infrastructure-insights/["Data Infrastructure Insights（DII）"]。これは、VMware 環境の監視と分析を提供するクラウドベースのサービスです。異機種ストレージ環境における他のストレージ ベンダー、複数のスイッチ ベンダー、およびその他のハイパーバイザーをサポートします。DII は、VMware 環境のパフォーマンス、容量、健全性に関する完全なエンドツーエンドの分析情報を提供します。
