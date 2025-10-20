@@ -16,9 +16,8 @@ summary: ONTAPはハイブリッドクラウドを幅広くサポートしてい
 [role="lead"]
 ONTAP のもう 1 つの強みは、ハイブリッドクラウドを幅広くサポートすることで、オンプレミスのプライベートクラウドのシステムとパブリッククラウドの機能を統合できることです。vSphere と組み合わせて使用できるネットアップのクラウドソリューションには、次のものがあります。
 
-* *ファーストパーティ製品*Amazon FSx for NetApp ONTAP、 Google Cloud NetApp Volumes、 Azure NetApp Files は、主要なパブリッククラウド環境で高性能なマルチプロトコルのマネージド ストレージ サービスを提供します。これらは、VMware Cloud on AWS (VMC on AWS)、Azure VMware Solution (AVS)、Google Cloud VMware Engine (GCVE) によって、ゲスト オペレーティング システム (GOS) およびコンピューティング インスタンスのデータストアまたはストレージとして直接使用できます。
-* * Cloud Volumes ONTAP 。 * NetApp Cloud Volumes ONTAP データ管理ソフトウェアは、お客様が選択したクラウド上のデータを管理、保護、柔軟性、効率性で保護します。Cloud Volumes ONTAPは、ONTAPストレージ上に構築されたクラウドネイティブのデータ管理ソフトウェアです。Cloud Volumes ONTAP インスタンスをオンプレミスの ONTAP システムと一緒に導入、管理する際には、 Cloud Manager と組み合わせて使用できます。NASおよびiSCSI SANの高度な機能と、スナップショットやSnapMirrorレプリケーションなどの統合データ管理機能を活用できます。
-* *クラウド サービス*NetApp Backup and RecoveryまたはSnapMirror Cloud を使用して、パブリック クラウド ストレージを使用するオンプレミス システムからデータを保護します。Cloud Sync は、NAS、オブジェクト ストア、 Cloud Volumes Serviceストレージ間でデータを移行し、同期を維持するのに役立ちます。NetApp Disaster Recovery は、クラウドへの DR、オンプレミスへの DR、オンプレミス間の DR に対応した堅牢で高性能な災害復旧ソリューションの基盤としてNetAppテクノロジーを活用する、コスト効率が高く効率的なソリューションを提供します。
+* *ファーストパーティ製品*Amazon FSx for NetApp ONTAP、 Google Cloud NetApp Volumes、 Azure NetApp Files は、主要なパブリッククラウド環境で高性能なマルチプロトコルのマネージド ストレージ サービスを提供します。これらは、VMware Cloud on AWS (VMC on AWS)、Azure VMware Solution (AVS)、Google Cloud VMware Engine (GCVE) で、ゲスト オペレーティング システム (GOS) およびコンピューティング インスタンスのデータストアまたはストレージとして直接使用できます。
+* *クラウド サービス*NetApp Backup and RecoveryまたはSnapMirror Cloud を使用して、パブリック クラウド ストレージを使用するオンプレミス システムからデータを保護します。NetApp Copy and Sync は、 NAS およびオブジェクト ストア間でのデータの移行と同期に役立ちます。NetApp Disaster Recovery は、クラウドへの DR、オンプレミスへの DR、オンプレミス間の DR に対応した堅牢で高性能な災害復旧ソリューションの基盤としてNetAppテクノロジーを活用する、コスト効率が高く効率的なソリューションを提供します。
 * * ONTAP * FabricPool は、 FabricPool データの階層化を迅速かつ容易にします。コールドブロックは、パブリッククラウドまたはStorageGRIDのプライベートオブジェクトストアにあるオブジェクトストアに移行でき、ONTAPデータが再度アクセスされると自動的にリコールされます。または、 SnapVault ですでに管理されているデータの第 3 レベルの保護としてオブジェクト階層を使用することもできます。この方法を使用すると、を実行できます https://www.linkedin.com/pulse/rethink-vmware-backup-again-keith-aasen/["VMのより多くのスナップショットを保存"^] プライマリおよびセカンダリ ONTAP ストレージシステム。
 * * ONTAP Select * 。ネットアップの Software-Defined Storage を使用して、インターネット経由でプライベートクラウドをリモートの施設やオフィスに拡張できます。 ONTAP Select を使用すれば、ブロックサービスやファイルサービスのほか、エンタープライズデータセンターと同じ vSphere データ管理機能をサポートできます。
 
@@ -27,14 +26,12 @@ VM ベースのアプリケーションを設計するときは、将来のク�
 
 セキュリティトピックの詳細については、次のリソースを参照してください。
 
-* link:https://docs.netapp.com/us-en/storage-management-cloud-volumes-ontap/index.html["Cloud Volumes ONTAP のドキュメント"]
 * link:https://docs.netapp.com/us-en/ontap-select/["ONTAP Select のドキュメント"]
 * link:https://docs.netapp.com/us-en/data-services-backup-recovery/index.html["バックアップとリカバリのドキュメント"]
 * link:https://docs.netapp.com/us-en/data-services-disaster-recovery/index.html["災害復旧ドキュメント"]
 * link:https://aws.amazon.com/fsx/netapp-ontap/["NetApp ONTAP 対応の Amazon FSX"]
 * link:https://www.vmware.com/products/vmc-on-aws.html["AWS 上の VMware Cloud"]
-* link:https://learn.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-introduction["Azure NetApp Filesとは
-"]
+* link:https://learn.microsoft.com/en-us/azure/azure-netapp-files/azure-netapp-files-introduction["Azure NetApp Filesとは何ですか?"]
 * link:https://azure.microsoft.com/en-us/products/azure-vmware/["Azure VMware 解決策の略"]
 * link:https://cloud.google.com/vmware-engine["Google Cloud VMware Engine"]
 * link:https://cloud.google.com/netapp/volumes/docs/discover/overview["Google Cloud NetApp Volumeとは"]

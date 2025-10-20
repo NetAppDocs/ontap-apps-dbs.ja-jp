@@ -105,7 +105,7 @@ ONTAPは、2012年の最初のリリースからVASA仕様をサポートして�
 
 === ONTAP
 
-NetAppは、AFF、ASA、FASシステムでのONTAP 9に加えて、ONTAP SelectでのVMwareワークロード、VMware Cloud on AWSでのAmazon FSx for NetApp、Azure VMware解決策でのNetApp、Google Cloud VMware EngineでのCloud Volumes Service、EquinixでのAzure NetApp Filesプライベートストレージをサポートしています。 ただし、特定の機能は、サービスプロバイダーおよび使用可能なネットワーク接続によって異なる場合があります。vSphereゲストから、これらの構成に格納されたデータやCloud Volumes ONTAP にアクセスすることもできます。
+NetApp は、 AFF、 ASA、 FASシステム上のONTAP 9 に加えて、 ONTAP Select、VMware Cloud on AWS を使用したAmazon FSx for NetApp 、Azure VMware Solution を使用したAzure NetApp Files 、 Google Cloud NetApp Volumes 、Equinix のNetApp Private Storage 上の VMware ワークロードをサポートしていますが、具体的な機能はサービス プロバイダーや利用可能なネットワーク接続によって異なる場合があります。
 
 本書の発行時点では、ハイパースケーラ環境は従来のNFS v3データストアに限定されているため、VVOLは、オンプレミスのONTAP システム、または世界中のネットアップパートナーやサービスプロバイダがホストするオンプレミスシステムのすべての機能を提供するクラウド接続システムでのみ使用できます。
 

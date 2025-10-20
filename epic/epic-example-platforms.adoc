@@ -13,4 +13,4 @@ Epic ODBデータベース、ジャーナル、アプリケーションのワー
 
 NetAppでは、NVMe/FCの使用もサポートされ（対応するAIXおよびRHELオペレーティングシステムのバージョンがある場合）、パフォーマンスが向上します。FCPとNVMe/FCは同じファブリックに共存できます。
 
-NetAppをご利用のお客様は、すべてのEpicワークロードをAzureクラウドで実行することに成功しました。AWSはEpicワークロードを実行することもできます。NetApp Cloud Volumes ONTAPとNetApp Cloud Volumes Servicesにより、NetAppは、クラウドでEpicを効果的に実行するために必要なエンタープライズクラスの機能とパフォーマンスを提供します。NetAppのクラウドオプションは、iSCSI経由のブロックとNFSまたはSMB経由のファイルを提供します。
+NetApp のお客様は、Azure クラウドですべての Epic ワークロードを正常に実行しています。  AWS と Google Cloud でも、Epic ワークロードを実行できます。  NetApp は、クラウドで Epic を効果的に実行するために必要なエンタープライズ クラスの機能とパフォーマンスを提供します。  NetAppクラウド オプションは、iSCSI 経由のブロックと、NFS または SMB 経由のファイルを提供します。

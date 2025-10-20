@@ -49,4 +49,8 @@ image:vsphere_ontap_image1.png["vSphere向けONTAPツール"]
 
 == Premiumソフトウェアオプション
 
-NetAppからは、次のプレミアム ソフトウェア製品が提供されています。これらはONTAP One ライセンスには含まれていないため、別途購入する必要があります。* https://www.netapp.com/data-services/disaster-recovery/["NetApp Disaster Recovery(DR)"] VMware vSphere 用。これは、VMware 環境の災害復旧とバックアップを提供するクラウドベースのサービスです。SnapCenterの有無にかかわらず使用でき、SAN または NAS を使用したオンプレミス間の DR、および NFS を使用したオンプレミスとクラウド間の DR (サポートされている場合) をサポートします。* https://www.netapp.com/data-infrastructure-insights/["Data Infrastructure Insights（DII）"]。これは、VMware 環境の監視と分析を提供するクラウドベースのサービスです。異機種ストレージ環境における他のストレージ ベンダー、複数のスイッチ ベンダー、およびその他のハイパーバイザーをサポートします。DII は、VMware 環境のパフォーマンス、容量、健全性に関する完全なエンドツーエンドの分析情報を提供します。
+NetAppからは、次のプレミアム ソフトウェア製品が提供されています。これらはONTAP One ライセンスには含まれていないため、別途購入する必要があります。
+
+* https://www.netapp.com/data-services/disaster-recovery/["NetApp Disaster Recovery(DR)"]VMware vSphere 用。これは、VMware 環境の災害復旧とバックアップを提供するクラウドベースのサービスです。SnapCenterの有無にかかわらず使用でき、SAN または NAS を使用したオンプレミス間の DR、および NFS を使用したオンプレミスとクラウド間の DR (サポートされている場合) をサポートします。
+* https://www.netapp.com/data-infrastructure-insights/["Data Infrastructure Insights（DII）"]。これは、VMware 環境の監視と分析を提供するクラウドベースのサービスです。異機種ストレージ環境における他のストレージ ベンダー、複数のスイッチ ベンダー、およびその他のハイパーバイザーをサポートします。DII は、VMware 環境のパフォーマンス、容量、健全性に関する完全なエンドツーエンドの分析情報を提供します。
+
