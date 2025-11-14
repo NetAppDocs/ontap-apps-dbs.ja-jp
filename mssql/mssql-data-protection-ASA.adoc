@@ -44,6 +44,3 @@ SQL Server 2022では、MicrosoftがT-SQLスナップショットを導入しま
 
 
 TIP: * NetAppでは* SnapCenterを使用してSnapshotコピーを作成することを推奨しています。前述のT-SQL方式も機能しますが、SnapCenterでは、バックアップ、リストア、クローニングのプロセスを完全に自動化できます。また、検出を実行して、正しいSnapshotが作成されていることを確認します。
-
-
-NOTE: SnapCenterは、SQL ServerデータベースがVMware仮想環境で実行されている仮想ディスクでホストされている場合に使用します。データベースがベアメタル物理サーバまたはゲスト接続SCSIでホストされている場合は、T-SQL snapshotコマンドを使用してデータベースをバックアップします。

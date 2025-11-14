@@ -5662,7 +5662,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="a6612611980ab8001eb37d9b0d21fc8b" category="list-text">新しいbackup groupコマンドとbackup serverコマンドを使用して、ストレージユニット上の複数のデータベースのスナップショットを同時に実行します。</block>
   <block id="0dedd2c3e15900b4f533838e17976dab" category="list-text">データベースワークロードが複数のストレージユニットにまたがっている場合は、整合グループを作成して管理タスクを簡易化します。整合グループは、単一ユニットとして管理されるストレージユニットの集まりです。</block>
   <block id="7f9d52f3748a3a0f2854076ed4952d80" category="admonition">* NetAppでは* SnapCenterを使用してSnapshotコピーを作成することを推奨しています。前述のT-SQL方式も機能しますが、SnapCenterでは、バックアップ、リストア、クローニングのプロセスを完全に自動化できます。また、検出を実行して、正しいSnapshotが作成されていることを確認します。</block>
-  <block id="e158a020500bd25736fbcb79dbd57ef0" category="admonition">SnapCenterは、SQL ServerデータベースがVMware仮想環境で実行されている仮想ディスクでホストされている場合に使用します。データベースがベアメタル物理サーバまたはゲスト接続SCSIでホストされている場合は、T-SQL snapshotコマンドを使用してデータベースをバックアップします。</block>
   <block id="19f005706f432809f0c867f9d97c05b0" category="admonition">* NetAppでは* SnapCenterを使用してSnapshotコピーを作成することを推奨しています。前述のT-SQL方式も機能しますが、SnapCenterでは、バックアップ、リストア、クローニングのプロセスを完全に自動化できます。また、検出を実行して、正しいSnapshotが作成されていることを確認します。事前設定は必要ありません。</block>
   <block id="88db39456c39e1de4d937d721ec1f2fc" category="doc">データベースファイルとファイルグループ</block>
   <block id="2bcb2e2e60d655aca12a6062bc99f69c" category="section-title">データベースインスタンスファイルの初期化</block>
@@ -6095,4 +6094,5 @@ SOAP over HTTPS接続に使用</block>
   <block id="2ee606af5da3062695cabb75a160eb48" category="inline-link">Equinix Metal 上のNetAppストレージ</block>
   <block id="fea612aa54d66a179c5538c5cd1b8525" category="paragraph">VLSR 展開をONTAP の高度なデータ管理機能と統合すると、ローカル ストレージ オプションと比較して、スケールとパフォーマンスが大幅に向上します。しかし、それ以上に、ハイブリッド クラウドの柔軟性がもたらされます。ハイブリッド クラウドでは、 FabricPoolを使用して、高性能アレイから使用されていないデータ ブロックを優先ハイパースケーラー ( NetApp StorageGRIDなどのオンプレミスの S3 ストアなど) に階層化することでコストを節約できます。また、ソフトウェア定義のONTAP SelectまたはクラウドベースのDRを備えたエッジベースのシステムにもSnapMirrorを使用できます。<block ref="48f4ab00daadfbd5f3a95d2ba27ed047" category="inline-link-rx"></block>、またはその他のホストされたONTAPサービス。</block>
   <block id="0fc9a0e7b30259b88ee28dc36905dc46" category="paragraph">災害復旧 (DR) は、災害発生時にデータとアプリケーションを保護するための包括的なソリューションを提供するクラウドベースのサービスです。自動フェイルオーバーとフェイルバック、複数のポイントインタイムリカバリポイント、アプリケーション整合性のある災害復旧、オンプレミスとクラウドベースの両方のONTAPシステムのサポートなど、さまざまな機能を提供します。NetApp Disaster Recovery は、 ONTAPおよび VMware vSphere 環境とシームレスに連携するように設計されており、災害復旧のための統合ソリューションを提供します。</block>
+  <block id="b49008ff3ed6386e7b79c895a99dfda0" category="paragraph">調停者は実際にはタイブレーカーではありませんが、実質的にはそれがその機能を提供します。メディエーターは、クラスター ノードの状態を判断するのに役立ち、サイト障害が発生した場合の自動切り替えプロセスを支援します。Mediator はいかなる状況でもデータを転送しません。</block>
 </blocks>
