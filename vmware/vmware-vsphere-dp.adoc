@@ -32,7 +32,7 @@ NFSデータストアの場合は、.snapshotsディレクトリを参照する�
 
 VMFSデータストアの場合は、必要なSnapshotに基づいてデータストアのFlexCloneを作成できます。これにより、Snapshotに基づく新しいデータストアを作成し、テストや開発に使用できます。FlexCloneは、Snapshotの作成後に行われた変更に対してのみスペースを消費するため、スペース効率に優れた方法でデータストアのコピーを作成できます。FlexCloneを作成したら、通常のデータストアと同様に、LUNまたはネームスペースをESXiホストにマッピングできます。これにより、特定のVMファイルをリストアできるだけでなく、本番環境のパフォーマンスに影響を与えることなく、本番データに基づいてテスト環境や開発環境を迅速に作成できます。
 
-スナップショットの詳細については、ONTAPのドキュメントを参照してください。詳細については、次のリンクを参照してください。https://docs.netapp.com/us-en/ontap/data-protection/manage-local-snapshot-copies-concept.html["ONTAPローカルSnapshotコピー"^] https://docs.netapp.com/us-en/ontap/data-protection/manage-snapmirror-replication.html["ONTAP SnapMirrorレプリケーション"^]
+スナップショットの詳細については、 ONTAP のドキュメントを参照してください。詳細については、次のリンクをご覧ください。 https://docs.netapp.com/us-en/ontap/data-protection/manage-local-snapshot-copies-concept.html["ONTAPローカルSnapshotコピー"^] https://docs.netapp.com/us-en/ontap/data-protection/snapmirror-replication-workflow-concept.html["ONTAP SnapMirrorレプリケーションワークフロー"^]
 
 
 

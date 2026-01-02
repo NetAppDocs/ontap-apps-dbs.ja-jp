@@ -23,31 +23,31 @@ vVolデータストアのプロビジョニングはいくつかの手順で行�
 
 すでにONTAPツールを使用して、既存のVMFSまたは従来のNFSベースのストレージの管理、自動化、レポート作成を行っている場合は、導入プロセスの最初の2つの手順を省略できます。ONTAPツールの導入と設定については、この完全版を参照することもできますlink:vmware-vvols-checklist.html["チェックリスト"]。
 
-. Storage Virtual Machine（SVM）とそのプロトコル設定を作成します。ASA R2システムでは通常、データサービス用のSVMが1つしかないため、この処理は必要ない場合があります。[NVMe/FC]（ONTAP tools 9.13のみ）、[NFSv4.1]、[iSCSI]、[FCP]のいずれか、またはそれらのオプションを組み合わせて選択します。NVMe/TCPおよびNVMe/FCは、ONTAP tools 10.3以降を使用する従来のVMFSデータストアにも使用できます。ONTAPのSystem Managerウィザードまたはクラスタシェルコマンドラインを使用できます。
+. ストレージ仮想マシン (SVM) とそのプロトコル構成を作成します。ASA r2 システムでは通常、データ サービス用の単一の SVM が既に存在するため、これは必要ありません。NVMe/FC (ONTAPツール 9.13 のみ)、NFSv3、NFSv4.1、iSCSI、FCP、またはこれらのオプションの組み合わせを選択します。NVMe/TCP および NVMe/FC は、 ONTAPツール 10.3 以降を使用した従来の VMFS データストアにも使用できます。ONTAP System Manager ウィザードまたはクラスタ シェル コマンド ラインのいずれかを使用できます。
 +
 ** https://docs.netapp.com/us-en/ontap/disks-aggregates/assign-aggregates-svms-task.html["ローカル階層（アグリゲート）をSVMに割り当て"]ASA R2以外のすべてのシステム
 ** スイッチ/ファブリック接続ごとにノードごとに少なくとも1つのLIFが必要です。FCP、iSCSI、またはNVMeベースのプロトコルを使用する場合は、ノードごとに2つ以上を作成することを推奨します。NFSベースのVVOLにはノードごとに1つのLIFで十分ですが、このLIFはLACP ifgroupで保護する必要があります。詳細については、およびを https://docs.netapp.com/us-en/ontap/networking/combine_physical_ports_to_create_interface_groups.html["物理ポートを組み合わせてインターフェイスグループを作成"]参照して https://docs.netapp.com/us-en/ontap/networking/configure_lifs_cluster_administrators_only_overview.html["LIFの設定の概要"]ください。
-** テナントvCenterでSVMを対象としたクレデンシャルを使用する場合は、SVMごとに少なくとも1つの管理LIFが必要です。
+** テナント vCenter に SVM スコープの認証情報を使用する場合は、SVM ごとに少なくとも 1 つの管理 LIF が必要です。
 ** SnapMirrorを使用する場合は、ソースとターゲットを確認して https://docs.netapp.com/us-en/ontap/peering/["ONTAPクラスタとSVMのピア関係が設定されている"]ください。
-** ASA R2以外のシステムでは、この時点でボリュームを作成できますが、ONTAPツールの_Provision Datastore_wizardで作成することを推奨します。ただし、VMware Site Recovery ManagerおよびONTAP tools 9.13でvVolレプリケーションを使用する場合は例外です。この方法を使用すると、既存のSnapMirror関係が設定された既存のFlexVol を使用した方が簡単です。QoSはSPBMとONTAP ツールで管理するため、VVOLに使用するボリュームでは有効にしないでください。
+** ASA r2 以外のシステムでは、この時点でボリュームを作成できますが、 ONTAPツールの _Provision Datastore_ ウィザードを使用してボリュームを作成するのがベスト プラクティスです。このルールの唯一の例外は、VMware Site Recovery Manager およびONTAPツール 9.13 でvVolsレプリケーションを使用する予定の場合です。これは、既存のSnapMirror関係を持つ既存のFlexVolボリュームを使用すると簡単に設定できます。vVolsに使用されるボリュームでは QoS を有効にしないように注意してください。これは、SPBM およびONTAPツールによって管理されることが意図されています。
 
 
 . https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/deploy/ontap-tools-deployment.html["ONTAP Tools for VMware vSphereの導入"]NetAppサポートサイトからダウンロードしたOVAを使用します。
 +
-** ONTAP tools 10.0以降では、アプライアンスごとに複数のvCenter Serverがサポートされるため、vCenterごとに1つのONTAP toolsアプライアンスを導入する必要がなくなりました。
+** ONTAPツール 10.0 以降では、アプライアンスごとに複数の vCenter サーバーがサポートされるため、vCenter ごとに 1 つのONTAPツール アプライアンスを展開する必要がなくなりました。
 +
-*** 複数のvCenterを1つのONTAP toolsインスタンスに接続する場合は、CA署名証明書を作成してインストールする必要があります。手順については、を参照してください https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/certificate-manage.html["証明書の管理"]。
+*** 複数の vCenter を単一のONTAPツール インスタンスに接続する場合は、CA 署名付き証明書を作成してインストールする必要があります。参照 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/certificate-manage.html["証明書の管理"] 手順については。
 
 
-** ONTAP toolsは10.3から導入され、VVOL以外のほとんどのワークロードに適した、シングルノードのスモールタイプアプライアンスとして導入されます。
+** 10.3 以降、 ONTAPツールは、ほとんどの非 vVols ワークロードに適した単一ノードの小型アプライアンスとして導入されるようになりました。
 
 
 
 
 [TIP]
 ====
-* すべての本番ワークロードに対して、3ノードの高可用性（HA）構成で10.3以降を使用することを推奨します https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/edit-appliance-settings.html["スケールアウトONTAPツール"]。ラボやテストの目的では、シングルノード環境を使用できます。
-* 本番環境のVVOLでは、すべての単一点障害（Single Point of Failure）を排除することを推奨します。非アフィニティルールを作成して、ONTAP tools VMが同じホストで一緒に実行されないようにします。初期導入後は、Storage vMotionを使用してONTAP tools VMを別 々 のデータストアに配置することも推奨されます。詳細については、またはを https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-resource-management-8-0/using-drs-clusters-to-manage-resources/create-a-vm-vm-affinity-rule.html["VM-VMアフィニティルールの作成"]参照してください https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-resource-management-8-0/using-drs-clusters-to-manage-resources/using-affinity-rules-without-vsphere-drs.html["vSphere DRSを使用しないアフィニティルールの使用"]。また、頻繁なバックアップをスケジュールする必要があります https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/enable-backup.html#create-backup-and-download-the-backup-file["組み込みの構成バックアップユーティリティを使用する"]。
+* 推奨されるベストプラクティスは https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/edit-appliance-settings.html["スケールアウトONTAPツール"] 10.3 以降では、すべての本番ワークロードに対して 3 ノードの高可用性 (HA) 構成を使用できます。ラボやテストの目的では、単一ノードの展開を使用できます。
+* 実稼働環境でのvVols の使用に推奨されるベスト プラクティスは、単一障害点を排除することです。ONTAPツール VM が同じホスト上で一緒に実行されないように、アンチアフィニティ ルールを作成します。初期導入後は、ストレージ vMotion を使用してONTAPツール VM を別のデータストアに配置することもお勧めします。詳細はこちら https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-resource-management-8-0/using-drs-clusters-to-manage-resources/using-affinity-rules-without-vsphere-drs.html["vSphere DRSを使用しないアフィニティルールの使用"] または https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-resource-management-8-0/using-drs-clusters-to-manage-resources/create-a-vm-vm-affinity-rule.html["VM-VMアフィニティルールの作成"]。また、頻繁にバックアップをスケジュールし、 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/backup-settings.html["組み込みの構成バックアップユーティリティを使用する"]。
 
 
 ====
@@ -60,7 +60,7 @@ vVolデータストアのプロビジョニングはいくつかの手順で行�
 *** ONTAP Tools Manager UIにログインします。
 *** https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/add-storage-backend.html["ストレージクラスタのオンボード"]
 *** https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/associate-storage-backend.html["ストレージバックエンドとvCenter Serverインスタンスの関連付け"]
-*** 特定のSVMクレデンシャルをvCenter管理者に指定してください。vCenter管理者は、そのSVMをvCenterのONTAP tools storage backendsメニューにストレージバックエンドとして追加します。
+*** 特定の SVM 認証情報を vCenter 管理者に提供すると、管理者は vCenter のONTAPツールのストレージ バックエンド メニューで SVM をストレージ バックエンドとして追加します。
 
 
 
@@ -70,13 +70,13 @@ vVolデータストアのプロビジョニングはいくつかの手順で行�
 [TIP]
 ====
 * ストレージアカウント用のRBACロールを作成することを推奨します。
-* ONTAP toolsには、ONTAP toolsのストレージアカウントに必要なロール権限を含むJSONファイルが含まれています。JSONファイルをONTAP System Managerにアップロードすると、RBACロールとユーザを簡単に作成できます。
+* ONTAPツールには、 ONTAPツール ストレージ アカウントに必要なロール権限を含む JSON ファイルが含まれています。JSON ファイルをONTAP System Manager にアップロードすると、RBAC ロールとユーザーの作成が簡素化されます。
 * ONTAP RBACロールの詳細については、を参照してください https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/configure-user-role-and-privileges.html#svm-aggregate-mapping-requirements["ONTAPユーザのロールと権限の設定"]。
 
 
 ====
 
-NOTE: ONTAP tools Manager UIでクラスタ全体をオンボードする必要があるのは、VVOLに使用されるAPIの多くがクラスタレベルでしか使用できないためです。
+NOTE: クラスタ全体をONTAPツール マネージャ UI にオンボードする必要がある理由は、 vVolsに使用される API の多くがクラスタ レベルでのみ使用できるためです。
 
 
 
@@ -107,7 +107,7 @@ image:vvols-deploy-4.png["role=\"thumb\"\"データストアのプロビジョ�
 
 * それは簡単です!
 +
-** ONTAP tools 10.3（ONTAP FAS、AFF、ASA以前のASA R2を使用）
+** ONTAPツール 10.3 とONTAP FAS、 AFF 、およびASA r2 より前のASA 。
 
 
 * プロトコルを選択してください
@@ -120,7 +120,7 @@ image:vvols-deploy-5.png["role=\"thumb\"\"データストアのプロビジョ�
 
 image:vvols-deploy-5a.png["role=\"thumb\"\"データストアのプロビジョニングウィザード\"、300"]
 
-* [_add new volumes_or_use existing volume_]をクリックし、属性を指定します。ONTAP tools 10.3では、複数のボリュームを同時に作成するように要求できます。複数のボリュームを手動で追加して、ONTAPクラスタ全体に分散させることもできます。[次へ]をクリックします。
+* [_新しいボリュームを追加_] または [_既存のボリュームを使用_] をクリックして、属性を指定します。ONTAPツール 10.3 では、複数のボリュームを同時に作成するように要求できることに注意してください。また、複数のボリュームを手動で追加して、 ONTAPクラスタ全体でバランスをとることもできます。「次へ」をクリック
 
 
 image:vvols-deploy-6.png["role=\"thumb\"\"データストアのプロビジョニングウィザード\"、300"]
@@ -150,7 +150,7 @@ image:vvols-deploy-9.png["role=\"thumb\"\"データストアのプロビジョ�
 
 == ポリシーによるVMの管理
 
-ポリシーベースの管理でストレージのプロビジョニングを自動化するには、目的のストレージ機能に対応するVMストレージポリシーを作成する必要があります。
+ポリシーベースの管理を使用してストレージ プロビジョニングを自動化するには、必要なストレージ機能にマップする VM ストレージ ポリシーを作成する必要があります。
 
 
 NOTE: ONTAP tools 10.0以降では、以前のバージョンのようなストレージ機能プロファイルは使用されなくなりました。代わりに、ストレージ機能はVMストレージポリシー自体で直接定義されます。
@@ -159,7 +159,7 @@ NOTE: ONTAP tools 10.0以降では、以前のバージョンのようなスト�
 
 === 仮想マシンストレージポリシーを作成しています
 
-仮想マシンストレージポリシーは、Storage I/O ControlやvSphere Encryptionなどのオプション機能を管理するためにvSphereで使用されます。また、VVOLでも使用され、特定のストレージ機能をVMに適用します。ストレージタイプとして「NetApp .clustered.Data.VP.vVol ONTAP」を使用してください。ONTAP tools VASA Providerを使用した場合の例については、link：vmware-vvols-ontap.html #ベストプラクティス[ NFS v3経由のVVOLを使用したネットワーク設定例]を参照してください。「NetApp vVol .clustered.Data.VP.VASA10 ONTAP」ストレージのルールは、vVolベースでないデータストアで使用します。
+VM ストレージ ポリシーは、vSphere でストレージ I/O コントロールや vSphere 暗号化などのオプション機能を管理するために使用されます。また、 vVolsと組み合わせて使用​​して、VM に特定のストレージ機能を適用することもできます。「NetApp.clustered.Data. ONTAP .VP.vvol」ストレージ タイプを使用します。ONTAPツール VASA Provider を使用した例については、link:vmware-vvols-ontap.html#Best Practices[NFS v3 経由のvVolsを使用したネットワーク構成の例] を参照してください。「 NetApp.clustered.Data. ONTAP.VP.VASA10」ストレージのルールは、非 vVols ベースのデータストアで使用されます。
 
 作成したストレージポリシーは、新しいVMのプロビジョニングに使用できます。
 
@@ -171,12 +171,12 @@ image:vmware-vvols-deploy-vmsp-01.png["role=\"thumb\"\" ONTAP tools VASA Provide
 
 ONTAP toolsは、独自の分散配置アルゴリズムを使用して、統合または従来のASAシステムを使用する最適なFlexVol volume、またはASA R2システムを使用するストレージアベイラビリティゾーン（SAZ）をvVolデータストア内に配置します。配置は、元のストレージとVMストレージポリシーの照合に基づいて行われます。これにより、データストアとバッキングストレージが、指定されたパフォーマンス要件を確実に満たすことができます。
 
-最小IOPSや最大IOPSなどのパフォーマンス機能を変更するには、特定の構成に注意する必要があります。
+最小 IOPS や最大 IOPS などのパフォーマンス機能を変更するには、特定の構成に注意する必要があります。
 
 * *最小IOPSと最大IOPS *はVMポリシーで指定できます。
 +
-** ポリシー内のIOPSを変更しても、そのIOPSを使用するVMにVMポリシーが再適用されるまで、VVOLのQoSは変更されません。または、目的のIOPSを指定して新しいポリシーを作成し、ターゲットVMに適用することもできます。一般的には、サービス階層ごとに個別のVMストレージポリシーを定義し、VMのVMストレージポリシーを変更することを推奨します。
-** ASA、ASA R2、AFF、FASの各パーソナリティでIOPS設定が異なります。[最小]と[最大]のどちらもオールフラッシュシステムで使用できますが、AFF以外のシステムで使用できるのは[最大IOPS]の設定のみです。
+** ポリシー内の IOPS を変更しても、それを使用する VM に VM ポリシーが再適用されるまで、 vVolsの QoS は変更されません。または、必要な IOPS で新しいポリシーを作成し、それをターゲット VM に適用することもできます。一般的には、異なるサービス層ごとに個別の VM ストレージ ポリシーを定義し、VM 上の VM ストレージ ポリシーを変更することが推奨されます。
+** ASA、 ASA r2、 AFF、およびFASパーソナリティには異なる IOP 設定があります。すべてのフラッシュ システムでは Min と Max の両方が使用できますが、 AFF以外のシステムでは Max IOP 設定のみを使用できます。
 
 
 * ONTAP toolsは、現在サポートされているバージョンのONTAP に対して、共有されていないQoSポリシーを個別に作成します。そのため、個 々 のVMDKにはそれぞれ独自のIOPSが割り当てられます。

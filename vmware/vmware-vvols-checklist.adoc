@@ -103,6 +103,6 @@ summary: ONTAP tools 10のインストールチェックリスト
 * HAを使用している場合は、Storage vMotionノード2と3を別 々 のデータストアに接続します（オプションですが推奨）。
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/certificate-manage.html["証明書の管理を使用する"]ONTAP tools Managerで、必要なCA署名証明書をインストールします。
 * SRM / VLSRに対してSRAを有効にして従来のデータストアを保護した場合は、 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/protect/configure-on-srm-appliance.html["VMware Live Site RecoveryアプライアンスでのSRAの設定"]。
-* のネイティブバックアップを設定し https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/enable-backup.html["ほぼゼロRPO"]ます。
+* ネイティブバックアップを構成する https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/backup-settings.html["ほぼゼロRPO"]。
 * 他のストレージメディアへの定期バックアップを設定します。
 
