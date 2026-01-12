@@ -1,0 +1,34 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-asar2-storage-san-config-asru.html 
+keywords: ontap, thin provisioning, oracle, ASRU, ASA r2 
+summary: ASA r2 上のONTAPゼロブロック検出機能を備えた ASM Reclamation Utility 
+searchtitle: 'ASA r2 上のONTAPを使用した ASM Reclamation Utility (ASRU)' 
+---
+= ASM 再利用ユーティリティ (ASRU)
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ONTAP on ASA r2 は、インライン圧縮が有効になっている場合、LUN (ストレージ ユニット) に書き込まれたゼロ化されたブロックを効率的に削除します。Oracle ASM Reclamation Utility (ASRU) などのユーティリティは、未使用の ASM エクステントにゼロを書き込むことによって機能します。
+
+これにより、DBA はデータが削除された後にストレージ アレイ上のスペースを再利用できるようになります。ONTAP はゼロをインターセプトし、LUN からスペースの割り当てを解除します。ストレージ システム内に実際のデータが書き込まれていないため、再利用プロセスは非常に高速です。
+
+データベースに関しては、ASMディスクグループには0が含まれているため、LUNのこれらの領域を読み取ると0のストリームが生成されますが、ONTAPはドライブに0を格納しません。代わりに、メタデータが単純に変更され、LUNの初期化された領域がデータの空として内部的にマークされます。
+
+同様の理由から、ゼロのブロックは実際にはストレージアレイ内で書き込みとして処理されないため、初期化されたデータを使用したパフォーマンステストは無効です。
+
+ASA r2 ONTAPにおける ASRU の主な考慮事項:
+
+* ASA r2 はブロックのみであるため、SAN ワークロードのAFF/ FASと同じように動作します。
+* SAZ 内でプロビジョニングされた LUN および NVMe 名前空間に環境。
+* FlexVolボリュームは存在しませんが、ゼロブロックの再利用動作は同じです。
+
+
+
+NOTE: ASRUを使用する場合は、Oracleが推奨するすべてのパッチがインストールされていることを確認してください。

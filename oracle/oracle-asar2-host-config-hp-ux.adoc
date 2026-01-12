@@ -1,0 +1,50 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-asar2-host-config-hp-ux.html 
+keywords: oracle, database, ASA r2, ontap, hp-ux 
+summary: ASA r2 上の HP-UX を使用した Oracle データベース 
+searchtitle: ASA r2 上の HP-UX を使用した Oracle データベース 
+---
+= HP-UX
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ASA r2 ONTAPを搭載した HP-UX 上の Oracle データベースの構成トピック。
+
+[NOTE]
+====
+次の条件を満たす場合、HP-UX は Oracle データベースのホスティング用にNetApp ASA r2 でサポートされます。
+
+* ONTAPバージョンは 9.16.x 以降です。
+* SAN プロトコル (FC/iSCSI/NVMe) を使用します。NAS はASA r2 ではサポートされていません。
+* HP-UX 固有のマウントおよび I/O チューニングのベスト プラクティスを適用します。
+
+
+====
+
+
+== HP-UX VxFSマウントオプション
+
+Oracleバイナリをホストするファイルシステムには、次のマウントオプションを使用します。
+
+....
+delaylog,nodatainlog
+....
+データファイル、Redoログ、アーカイブログ、制御ファイルが格納されているファイルシステムで、HP-UXのバージョンが同時I/Oをサポートしていない場合は、次のマウントオプションを使用します。
+
+....
+nodatainlog,mincache=direct,convosync=direct
+....
+同時I/Oがサポートされている場合（VxFS 5.0.1以降、またはServiceGuard Storage Management Suiteを使用している場合）は、データファイル、Redoログ、アーカイブログ、および制御ファイルを格納しているファイルシステムで次のマウントオプションを使用します。
+
+....
+delaylog,cio
+....
+
+NOTE: パラメータ `db_file_multiblock_read_count` VxFS環境では特に重要です。Oracleでは、特に指示がないかぎり、Oracle 10g R1以降ではこのパラメータを未設定のままにすることを推奨しています。Oracleの8KBブロックサイズの場合、デフォルトは128です。このパラメータの値が強制的に16以下になる場合は、 `convosync=direct` シーケンシャルI/Oのパフォーマンスが低下する可能性があるため、マウントオプションを使用します。この手順は、パフォーマンスの他の側面に損傷を与えるため、 `db_file_multiblock_read_count` デフォルト値から変更する必要があります。

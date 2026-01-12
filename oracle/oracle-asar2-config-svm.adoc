@@ -1,0 +1,45 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-asar2-config-svm.html 
+keywords: svm, ASA r2, oracle 
+summary: ASA r2 を使用した Oracle データベースの SVM プロビジョニング 
+searchtitle: Oracle データベースとASA r2 を使用したスト​​レージ仮想マシン 
+---
+= Storage Virtual Machine
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ASA r2 システム上の Oracle データベース ストレージ管理も、 ONTAP CLI では vserver と呼ばれるストレージ仮想マシン (SVM) に集中化されています。
+
+SVM は、VMware ESXサーバ上のゲスト VM と同様に、 ONTAPにおけるストレージ プロビジョニングとセキュリティの基本単位です。ONTAPがASA r2 に初めてインストールされると、SVM が作成されるまでデータ提供機能はありません。SVM は、SAN 環境のパーソナリティとデータ サービスを定義します。
+
+ASA r2 システムは、ブロック プロトコル (FC、iSCSI、NVMe/FC、NVMe/TCP) をサポートするように合理化され、NAS 関連の機能が削除された SAN 専用のONTAPパーソナリティを使用します。これにより管理が簡素化され、すべての SVM 構成が SAN ワークロードに合わせて最適化されます。AFF/ FASシステムとは異なり、 ASA r2 では、ホーム ディレクトリや NFS 共有などの NAS サービスのオプションは公開されません。
+
+クラスタが作成されると、 ASA r2 は SAN プロトコルが有効になっている svm1 という名前のデフォルトのデータ SVM を自動的にプロビジョニングします。この SVM は、プロトコル サービスを手動で構成する必要なく、ブロック ストレージ操作に対応しています。デフォルトでは、この SVM の IP データ LIF は iSCSI および NVMe/TCP プロトコルをサポートし、default-data-blocks サービス ポリシーを使用するため、SAN ワークロードの初期セットアップが簡素化されます。管理者は、後でパフォーマンス、セキュリティ、またはマルチテナントの要件に基づいて追加の SVM を作成したり、LIF 構成をカスタマイズしたりできます。
+
+
+NOTE: SAN プロトコルの論理インターフェイス (LIF) は、パフォーマンスと可用性の要件に基づいて設計する必要があります。ASA r2 は iSCSI、FC、および NVMe LIF をサポートしていますが、 ASA r2 は NVMe および SCSI ホストに共有ネットワークを使用するため、自動 iSCSI LIF フェイルオーバーはデフォルトでは有効になっていないことに注意してください。自動フェイルオーバーを有効にするには、 https://docs.netapp.com/us-en/asa-r2/administer/manage-client-vm-access.html#create-a-lif-network-interface["iSCSI専用LIF"]。
+
+
+
+== SVM
+
+他のONTAPプラットフォームと同様に、作成する SVM の数に関する公式のベスト プラクティスはなく、管理とセキュリティの要件に応じて決定されます。
+
+ほとんどのお客様は、日常業務用に単一のプライマリ SVM を運用し、次のような特別なニーズに合わせて追加の SVM を作成します。
+
+* 専門チームによって管理される重要なビジネスデータベース専用のSVM
+* 委任された管理制御を持つ開発グループ用の SVM
+* 制限された管理アクセスを必要とする機密データ用の SVM
+
+
+マルチテナント環境では、各テナントに専用の SVM を割り当てることができます。クラスタ、HA ペア、ノードあたりの SVM および LIF の数の制限は、使用されているプロトコル、ノード モデル、およびONTAPのバージョンによって異なります。ご相談ください link:https://hwu.netapp.com/["NetApp Hardware Universe の略"^] これらの制限については。
+
+
+NOTE: ASA r2 は、 ONTAP 9.18.1 以降、クラスタあたりおよび HA ペアあたり最大 256 個の SVM をサポートします (以前のリリースでは 32 個でした)。

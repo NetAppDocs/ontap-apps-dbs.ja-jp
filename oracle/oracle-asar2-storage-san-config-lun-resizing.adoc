@@ -1,0 +1,41 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-asar2-storage-san-config-lun-resizing.html 
+keywords: SAN, ASM, LVM, oracle, LUN, ASA r2 
+summary: ASA r2 上の Oracle データベースでの LUN および LVM のサイズ変更 
+searchtitle: Oracle データベースの LUN のサイズ変更とASA r2 を使用した LVM のサイズ変更 
+---
+= LUNのサイズ変更とLVMのサイズ変更
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+SAN ベースのファイル システムまたは Oracle ASMディスク グループがASA r2 の容量制限に達した場合、使用可能なスペースを増やすには 2 つのオプションがあります。
+
+* 既存のLUN（ストレージユニット）のサイズを増やす
+* 既存のASMディスク グループまたはLVMボリュームグループに新しいLUNを追加し、含まれる論理ボリュームを拡張します。
+
+
+LUN のサイズ変更はASA r2 でサポートされていますが、通常は Oracle ASM などの論理ボリューム マネージャ (LVM) を使用する方が適切です。LVM が存在する主な理由の 1 つは、LUN のサイズ変更を頻繁に行う必要性を回避することです。LVM を使用すると、複数の LUN が仮想ストレージ プールに結合されます。このプールから切り出された論理ボリュームは、基盤となるストレージ構成に影響を与えることなく簡単にサイズを変更できます。
+
+LVM または ASM を使用することによる追加の利点は次のとおりです。
+
+* パフォーマンスの最適化: 複数の LUN に I/O を分散し、ホットスポットを削減します。
+* 柔軟性: 既存のワークロードを中断することなく新しい LUN を追加します。
+* 透過的な移行: ASM または LVM は、ホストのダウンタイムなしで、バランス調整や階層化のためにエクステントを新しい LUN に再配置できます。
+
+
+[NOTE]
+====
+ASA r2 の主な考慮事項:
+
+* LUN のサイズ変更は、ストレージ可用性ゾーン (SAZ) の容量を使用して、ストレージ VM (SVM) 内のストレージ ユニット レベルで実行されます。
+* Oracle の場合、ストライプ化と並列性を維持するために、既存の LUN のサイズを変更するのではなく、LUN を ASM ディスク グループに追加することがベスト プラクティスです。
+
+
+====

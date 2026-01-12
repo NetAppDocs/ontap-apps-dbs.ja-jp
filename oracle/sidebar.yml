@@ -4,7 +4,8 @@ title: Oracle データベース
 entries:
 - title: 概要
   url: "/oracle/oracle-overview.html"
-- title: ONTAP構成
+- title: AFF/ FASシステム上のONTAP構成
+  pdf-filename: Oracle DatabaseのONTAP構成
   entries:
   - title: RAID の場合
     url: "/oracle/oracle-ontap-config-raid.html"
@@ -20,7 +21,24 @@ entries:
     url: "/oracle/oracle-ontap-config-thin-provisioning.html"
   - title: フェイルオーバーとスイッチオーバー
     url: "/oracle/oracle-ontap-config-failover.html"
-- title: データベース設定
+- title: ASA r2 システムでのONTAP構成
+  pdf-filename: ASA r2 システムを使用した Oracle データベースのONTAP構成
+  entries:
+  - title: RAID の場合
+    url: "/oracle/oracle-asar2-config-raid.html"
+  - title: 容量制限
+    url: "/oracle/oracle-asar2-config-capacity-limits.html"
+  - title: Storage Virtual Machine
+    url: "/oracle/oracle-asar2-config-svm.html"
+  - title: サービス品質（ QoS ）
+    url: "/oracle/oracle-asar2-config-qos.html"
+  - title: 効率性
+    url: "/oracle/oracle-asar2-config-efficiency.html"
+  - title: シンプロビジョニング
+    url: "/oracle/oracle-asar2-config-thin-provisioning.html"
+  - title: フェイルオーバー
+    url: "/oracle/oracle-asar2-config-failover.html"
+- title: AFF/ FASシステムによるデータベース構成
   pdf-filename: Oracle Database用のデータベース構成
   entries:
   - title: データファイルとRedoブロックのサイズ
@@ -31,7 +49,18 @@ entries:
     url: "/oracle/oracle-app-config-filesystemio_options.html"
   - title: Oracle RAC
     url: "/oracle/oracle-app-config-rac.html"
-- title: ホストの設定
+- title: ASA r2 システムによるデータベース構成
+  pdf-filename: ASA r2 システムでの Oracle データベースのデータベース構成
+  entries:
+  - title: データファイルとRedoブロックのサイズ
+    url: "/oracle/oracle-asar2-app-config-block-sizes.html"
+  - title: db_file_multiblock_read_count
+    url: "/oracle/oracle-asar2-app-config-mbr.html"
+  - title: ファイルシステムオプション
+    url: "/oracle/oracle-asar2-app-config-filesystemio_options.html"
+  - title: Oracle RAC
+    url: "/oracle/oracle-asar2-app-config-rac.html"
+- title: AFF/ FASシステムを使用したホスト構成
   pdf-filename: Oracle Database用のホストの設定
   entries:
   - title: AIX の場合
@@ -46,7 +75,22 @@ entries:
     url: "/oracle/oracle-host-config-windows.html"
   - title: Solaris の場合
     url: "/oracle/oracle-host-config-solaris.html"
-- title: ネットワーク構成：
+- title: ASA r2 システムによるホスト構成
+  pdf-filename: ASA r2 システムを使用した Oracle データベースのホスト構成
+  entries:
+  - title: AIX の場合
+    url: "/oracle/oracle-asar2-host-config-aix.html"
+  - title: HP-UX
+    url: "/oracle/oracle-asar2-host-config-hp-ux.html"
+  - title: Linux の場合
+    url: "/oracle/oracle-asar2-host-config-linux.html"
+  - title: ASMlibおよびAFDを使用したLinux
+    url: "/oracle/oracle-asar2-host-config-asmlib-afd.html"
+  - title: Microsoft Windows の場合
+    url: "/oracle/oracle-asar2-host-config-windows.html"
+  - title: Solaris の場合
+    url: "/oracle/oracle-asar2-host-config-solaris.html"
+- title: AFF/ FASシステム上のネットワーク構成
   pdf-filename: Oracle Database用のネットワーク構成
   entries:
   - title: 論理インターフェイス
@@ -57,7 +101,18 @@ entries:
     url: "/oracle/oracle-network-config-fc.html"
   - title: 直接接続ネットワーク
     url: "/oracle/oracle-network-config-direct-connect.html"
-- title: ストレージ構成
+- title: ASA r2 システム上のネットワーク構成
+  pdf-filename: ASA r2 システムを使用した Oracle データベースのネットワーク構成
+  entries:
+  - title: 論理インターフェイス
+    url: "/oracle/oracle-asar2-network-config-lifs.html"
+  - title: イーサネット構成
+    url: "/oracle/oracle-asar2-network-config-ethernet.html"
+  - title: FC SAN構成
+    url: "/oracle/oracle-asar2-network-config-fc.html"
+  - title: 直接接続ネットワーク
+    url: "/oracle/oracle-asar2-network-config-direct-connect.html"
+- title: AFF / FASシステムでのストレージ構成
   pdf-filename: Oracle Database用のストレージ構成
   entries:
   - title: FC SAN
@@ -88,6 +143,25 @@ entries:
     url: "/oracle/oracle-dp-nvfail.html"
   - title: ASM再生ユーティリティ
     url: "/oracle/oracle-storage-san-config-asmru.html"
+- title: ASA R2システムでのストレージ構成
+  pdf-filename: ASA r2 システムを使用した Oracle データベースのストレージ構成
+  entries:
+  - title: FC SAN
+    entries:
+    - title: LUNアライメント
+      url: "/oracle/oracle-asar2-storage-san-config-lun-alignment.html"
+    - title: LUNの数とサイズ
+      url: "/oracle/oracle-asar2-storage-san-config-lun-sizing.html"
+    - title: LUNノハイチ
+      url: "/oracle/oracle-asar2-storage-san-config-lun-placement.html"
+    - title: LUNのサイズ変更
+      url: "/oracle/oracle-asar2-storage-san-config-lun-resizing.html"
+    - title: LVMストライピング
+      url: "/oracle/oracle-asar2-storage-san-config-lvm-striping.html"
+  - title: OracleとNVFAIL
+    url: "/oracle/oracle-asar2-dp-nvfail.html"
+  - title: ASM再生ユーティリティ
+    url: "/oracle/oracle-asar2-storage-san-config-asru.html"
 - title: 仮想化
   url: "/oracle/oracle-virtualization-introduction.html"
 - title: 階層化

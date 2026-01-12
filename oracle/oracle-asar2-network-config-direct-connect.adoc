@@ -1,0 +1,30 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-asar2-network-config-direct-connect.html 
+keywords: direct-connect, oracle, ASA r2 
+summary: Oracle データベースとASA r2 を使用したONTAP の直接接続 
+searchtitle: Oracle データベースとASA r2 を使用したONTAP の直接接続 
+---
+= 直接接続ネットワーク
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ストレージ管理者は、構成からネットワークスイッチを削除してインフラを簡易化したいと考える場合があります。これは一部のシナリオでサポートされます。
+
+
+
+== iSCSIとNVMe/TCP
+
+iSCSI または NVMe/TCP を使用するホストは、 ASA r2 ストレージ システムに直接接続して正常に動作できます。理由はパスです。2 つの異なるストレージ コントローラーに直接接続すると、データ フローに 2 つの独立したパスが作成されます。マルチパスが正しく構成されている場合、パス、ポート、またはコントローラが失われても、他のパスが使用できなくなることはありません。
+
+
+
+== FC直接接続
+
+FC プロトコルを使用してホストをASA r2 ストレージ システムに直接接続することはできません。理由はAFF/ FASシステムの場合と同じで、NPIV を使用するためです。FC ネットワークへのONTAP FC ポートを識別する WWN は、NPIV と呼ばれる仮想化のタイプを使用します。ONTAPシステムに接続されているすべてのデバイスは、NPIV WWN を認識できる必要があります。現在、NPIV ターゲットをサポートできるホストにインストールできる HBA を提供している HBA ベンダーは存在しません。

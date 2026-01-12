@@ -1,0 +1,24 @@
+---
+sidebar: sidebar 
+permalink: oracle/oracle-asar2-host-config-windows.html 
+keywords: oracle, database, ASA r2, ontap, windows 
+summary: ASA r2 上の Microsoft Windows と Oracle データベース 
+searchtitle: ASA r2 上の Microsoft Windows と Oracle データベース 
+---
+= Microsoft Windows の場合
+:hardbreaks:
+:allow-uri-read: 
+:nofooter: 
+:icons: font
+:linkattrs: 
+:imagesdir: ../media/
+
+
+[role="lead"]
+ASA r2 ONTAPを使用した Microsoft Windows 上の Oracle データベースの構成トピック。
+
+
+
+== SAN
+
+圧縮効率を最適化するには、NTFSファイルシステムで8K以上の割り当て単位を使用するようにしてください。一般にデフォルトである4Kの割り当て単位を使用すると、圧縮効率が低下します。
