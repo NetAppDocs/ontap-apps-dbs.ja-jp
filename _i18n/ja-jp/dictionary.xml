@@ -4207,8 +4207,6 @@ cluster：：&gt; set -privilege diagnostic</block>
   <block id="4cd2d5d8d873ad1f707d88334324153a" category="paragraph">ただし、これらの例では、ボリュームとLUNの比率が1：1である必要はありません。その目標は'関連するLUNをボリューム内に共存させることで'管理性を最適化することです</block>
   <block id="a9fd7be1f3363701ad1b35b16af02c9e" category="paragraph">たとえばコンテナ化では、LUNとボリュームの比率を1：1にすることが理にかなっています。コンテナ化では、各LUNは実際には単一のワークロードに相当し、それぞれを個別に管理する必要があります。このような場合、1:1の比率が最適な場合があります。</block>
   <block id="64e5a77897fe6326f14436eaaaf5432b" category="section-title">空きスペースとLVMスペースの割り当て</block>
-  <block id="702db8f3db66a0eec35817fe5d2e4544" category="inline-link-macro">ASMRU</block>
-  <block id="096ca5ad0b3774fee4699e2da1bfa884" category="paragraph">ファイルシステム環境でアクティブなLUNをシンプロビジョニングした場合、データが削除されるにつれて効率が低下する可能性があります。削除されたデータがゼロで上書きされない限り（ <block ref="5b58c4ec517e475a59d0a785f87cabdc" category="inline-link-macro-rx"></block> または、スペースがTRIM/UNMAPスペース再生で解放されると、「消去された」データは、ファイルシステム内の割り当てられていないスペースをますます占有します。さらに、データファイルは作成時にフルサイズに初期化されるため、アクティブなLUNのシンプロビジョニングは多くのデータベース環境ではあまり使用されません。</block>
   <block id="ceb8ec6ec593174c2c6f33be2ca966eb" category="summary">OracleとONTAPのボリュームとLUNの配置</block>
   <block id="0724b56ced27e0a66fb4692a57fb1436" category="doc">OracleデータベースのLUN配置</block>
   <block id="f595bf3bf71ab0c91a5503ba4efb8ea4" category="paragraph">ONTAPボリューム内でのデータベースLUNの最適な配置は、主に、さまざまなONTAP機能の使用方法によって異なります。</block>
@@ -6398,4 +6396,5 @@ SOAP over HTTPS接続に使用</block>
   <block id="d9c561cf68fdc77bb1da849869a07f1c" category="sidebar">ASA r2 システム上のネットワーク構成</block>
   <block id="38e7ae928dc580caab650dc5df5d2fc1" category="sidebar">ASA r2 システムを使用した Oracle データベースのネットワーク構成</block>
   <block id="8637dea0297332b772f83909e4341446" category="sidebar">ASA r2 システムを使用した Oracle データベースのストレージ構成</block>
+  <block id="bf9da0db0cba95abeb9d604e28d6fae5" category="paragraph">ファイル システム環境におけるアクティブ LUN のシン プロビジョニングの効率は、データが削除されるにつれて時間の経過とともに失われる可能性があります。削除されたデータがゼロで上書きされるか (link:oracle-storage-san-config-asm ru.html[ASMRU] も参照)、TRIM/UNMAP スペース再利用によってスペースが解放されない限り、「消去された」データはファイル システム内の未割り当ての空白をどんどん占有することになります。さらに、データファイルは作成時にフルサイズに初期化されるため、アクティブ LUN のシン プロビジョニングの使用は多くのデータベース環境で制限されます。</block>
 </blocks>
