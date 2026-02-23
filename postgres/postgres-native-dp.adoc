@@ -5,7 +5,7 @@ keywords: PostgreSQL,database,postgres
 summary: PostgreSQLのデータ保護 
 searchtitle: PostgreSQL標準のデータ保護 
 ---
-= ネイティブのDdta保護
+= 標準搭載のデータ保護
 :hardbreaks:
 :allow-uri-read: 
 :nofooter: 
