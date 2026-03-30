@@ -2,7 +2,7 @@
 section: vmware
 title: VMware
 entries:
-- title: ONTAP を使用した VMware vSphere
+- title: VMware vSphereとONTAPのベストプラクティスガイド
   entries:
   - title: 概要
     url: "/vmware/vmware-vsphere-overview.html"
@@ -24,6 +24,8 @@ entries:
       url: "/vmware/vmware-vsphere-datastores-nfs.html"
     - title: FlexGroup ボリューム
       url: "/vmware/vmware-vsphere-datastores-fg.html"
+    - title: VMwareデータストア向けFabricPool
+      url: "/vmware/vmware-vsphere-datastores-fp.html"
   - title: ネットワーク構成：
     url: "/vmware/vmware-vsphere-network.html"
   - title: クローニング
