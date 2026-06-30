@@ -1,7 +1,7 @@
 ---
 sidebar: sidebar 
 permalink: vmware/vmware-vsphere-datastores-san.html 
-keywords: vSphere, datastore, VMFS, FC, FCoE, NVMe/FC, iSCSI, NFS, vVols 
+keywords: vSphere, datastore, VMFS, FC, FCoE, NVMe-FC, iSCSI, NFS, vVols 
 summary: このページでは、VMware vSphere環境にONTAPストレージ解決策を実装するためのベストプラクティスについて説明します。 
 ---
 = SAN （ FC 、 FCoE 、 NVMe/FC 、 iSCSI ）、 RDM

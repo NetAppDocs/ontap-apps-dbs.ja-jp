@@ -85,7 +85,7 @@ ONTAP LUNを使用すると、LUNを含むFlexVolボリュームまたは個 々
 VVolコンテナのストレージ機能プロファイルを作成するときは、パフォーマンス機能で最大IOPSと最小IOPSの値を指定し、このSCPをVMのストレージポリシーで参照します。このポリシーは VM を作成するときに使用するか、ポリシーを既存の VM に適用します。
 
 
-NOTE: VVOLを使用するには、VASA Provider for ONTAPとして機能するONTAP Tools for VMware vSphereを使用する必要があります。VVOLのベストプラクティスについては、を参照してlink:/vmware/vmware-vvols-overview.html["VMware vSphere Virtual Volume（VVOL）とONTAP"]ください。
+NOTE: vVolsでは、ONTAP の VASA Provider として機能する ONTAP tools for VMware vSphere を使用する必要があります。vVols のベストプラクティスについては、link:vmware-vvols-overview.html["VMware vSphere Virtual Volume（VVOL）とONTAP"]を参照してください。
 
 
 

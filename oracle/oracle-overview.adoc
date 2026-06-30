@@ -2,7 +2,7 @@
 sidebar: sidebar 
 permalink: oracle/oracle-overview.html 
 keywords: oracle, database, ontap, TR-3633 
-summary: ONTAPはOracleデータベース向けに設計されています。その方法をご確認ください。 
+summary: ONTAPはOracleデータベース向けに設計されています。 
 ---
 = ONTAP上のOracleデータベース
 :allow-uri-read: 
