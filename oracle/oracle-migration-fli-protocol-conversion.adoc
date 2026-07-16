@@ -23,6 +23,7 @@ LUNへのアクセスに使用するプロトコルの変更は、一般的な�
 
 
 
+[[install-iscsi-initiator]]
 == iSCSIイニシエータのインストール
 
 ほとんどのオペレーティングシステムには、デフォルトでソフトウェアiSCSIイニシエータが含まれていますが、含まれていない場合は簡単にインストールできます。
@@ -81,6 +82,7 @@ Complete!
 ....
 
 
+[[identify-iscsi-initiator-name]]
 == iSCSIイニシエータ名の識別
 
 インストールプロセス中に一意のiSCSIイニシエータ名が生成されます。Linuxの場合は、 `/etc/iscsi/initiatorname.iscsi` ファイル。この名前は、IP SAN上のホストを識別するために使用されます。
@@ -91,6 +93,7 @@ InitiatorName=iqn.1992-05.com.redhat:497bd66ca0
 ....
 
 
+[[create-new-initiator-group]]
 == 新しいイニシエータグループを作成する
 
 イニシエータグループ（igroup）は、ONTAP LUNマスキングアーキテクチャの一部です。新しく作成したLUNには、ホストに最初にアクセスを許可しないかぎりアクセスできません。そのためには、アクセスが必要なFC WWNまたはiSCSIイニシエータ名のいずれかをリストするigroupを作成します。
@@ -102,12 +105,14 @@ Cluster01::*> igroup create -igroup linuxiscsi -protocol iscsi -ostype linux -in
 ....
 
 
+[[shut-down-environment]]
 == 環境をシャットダウンする
 
 LUNプロトコルを変更する前に、LUNを完全に休止する必要があります。変換するLUNのいずれかのデータベースをシャットダウンし、ファイルシステムをディスマウントし、ボリュームグループを非アクティブ化する必要があります。ASMを使用する場合は、ASMディスクグループがディスマウントされていることを確認し、すべてのグリッドサービスをシャットダウンします。
 
 
 
+[[unmap-luns-from-fc-network]]
 == FCネットワークからのLUNのマッピング解除
 
 LUNが完全に休止されたら、元のFC igroupからマッピングを削除します。
@@ -121,6 +126,7 @@ Cluster01::*> lun unmap -vserver vserver1 -path /vol/new_lvm/LUN9 -igroup linuxh
 ....
 
 
+[[remap-luns-to-ip-network]]
 == IPネットワークへのLUNの再マッピング
 
 新しいiSCSIベースのイニシエータグループに各LUNへのアクセスを許可します。
@@ -135,6 +141,7 @@ Cluster01::*>
 ....
 
 
+[[discover-iscsi-targets]]
 == iSCSIターゲットの検出
 
 iSCSI検出には2つのフェーズがあります。1つ目はターゲットの検出です。これは、LUNの検出とは異なります。。 `iscsiadm` 次のコマンドは、 `-p argument` およびには、iSCSIサービスを提供するすべてのIPアドレスとポートのリストが格納されます。この場合、デフォルトポート3260にiSCSIサービスを持つIPアドレスが4つあります。
@@ -151,6 +158,7 @@ NOTE: いずれかのターゲットIPアドレスに到達できない場合、
 ....
 
 
+[[discover-iscsi-luns]]
 == iSCSI LUNの検出
 
 iSCSIターゲットが検出されたら、iSCSIサービスを再起動して使用可能なiSCSI LUNを検出し、マルチパスやASMlibデバイスなどの関連デバイスを構築します。
@@ -161,6 +169,7 @@ Redirecting to /bin/systemctl restart  iscsi.service
 ....
 
 
+[[restart-environment]]
 == 環境の再起動
 
 ボリュームグループの再アクティブ化、ファイルシステムの再マウント、RACサービスの再起動などを実行して、環境を再起動します。予防措置としてNetApp、変換プロセスの完了後にサーバを再起動して、すべての構成ファイルが正しいことと古いデバイスがすべて削除されることを確認することをお勧めします。

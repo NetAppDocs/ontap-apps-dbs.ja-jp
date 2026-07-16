@@ -25,6 +25,7 @@ ONTAP Tools for VMware vSphereを使用したソフトウェアエンジニア�
 
 
 
+[[product-security-features]]
 == 製品のセキュリティ機能
 
 ONTAP Tools for VMware vSphereの各リリースには、次のセキュリティ機能が含まれています。

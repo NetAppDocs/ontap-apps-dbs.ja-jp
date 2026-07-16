@@ -18,6 +18,7 @@ summary: vMSC設計および実装ガイドライン
 
 
 
+[[netapp-storage-configuration]]
 == NetAppストレージ構成
 
 NetApp MetroClusterのセットアップ手順については、を参照してください https://docs.netapp.com/us-en/ontap-metrocluster/["MetroCluster のドキュメント"]。SnapMirror Active Sync（SMA）の手順については、を参照してください https://docs.netapp.com/us-en/ontap/smbc/index.html["SnapMirror のビジネス継続性機能の概要"]。
@@ -30,16 +31,19 @@ SnapMirrorアクティブ同期を使用するvMSC構成の管理は、MetroClus
 
 
 
+[[using-the-ontap-tools-vcenter-plugin-for-snapmirror-active-sync]]
 == SnapMirror Active Sync用ONTAPツールvCenterプラグインの使用
 
 ONTAP tools vCenterプラグインを使用すると、vMSCのSnapMirrorアクティブ同期をシンプルかつ直感的に設定できます。ONTAP tools vCenterプラグインを使用して、2つのONTAPクラスタ間にSnapMirrorのアクティブな同期関係を作成および管理できます。このプラグインは、これらの関係を効率的に確立および管理するための使いやすいインターフェイスを提供します。ONTAP tools vCenterプラグインの詳細については、を参照 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["VMware vSphere 用の ONTAP ツール"]するか、にジャンプし https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/protect-cluster.html["ホストクラスタの保護を使用した保護"]ます。
 
 
 
+[[vmware-vsphere-configuration]]
 == VMware vSphereの設定
 
 
 
+[[create-a-vsphere-ha-cluster]]
 === vSphere HAクラスタの作成
 
 vSphere HAクラスタの作成は複数の手順で構成されます。詳細については、を参照してください。 https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-esxi-management/GUID-F7818000-26E3-4E2A-93D2-FCDCE7114508.html["docs.vmware.comのvSphere Clientでクラスタを作成および構成する方法"]。つまり、最初に空のクラスタを作成してから、vCenterを使用してホストを追加し、クラスタのvSphere HAなどの設定を指定する必要があります。
@@ -125,6 +129,7 @@ image::../media/vmsc_3_5.png[vmsc 3 5,624,336]
 |===
 
 
+[[configure-datastores-for-heartbeating]]
 === ハートビート用のデータストアの設定
 
 vSphere HAでは、管理ネットワークに障害が発生した場合、データストアを使用してホストと仮想マシンを監視します。vCenterでのハートビートデータストアの選択方法を設定できます。ハートビート用のデータストアを設定するには、次の手順を実行します。
@@ -137,6 +142,7 @@ image::../media/vmsc_3_6.png[概要が自動的に生成されたコンピュー
 
 
 
+[[configure-advanced-options]]
 === 詳細オプションの設定
 
 HAクラスタ内のホストがネットワークまたはクラスタ内の他のホストに接続できなくなると、分離イベントが発生します。デフォルトでは、vSphere HAは管理ネットワークのデフォルトゲートウェイをデフォルトの分離アドレスとして使用します。ただし、ホストがpingを実行するための追加の隔離アドレスを指定して、隔離応答をトリガーするかどうかを判断することができます。pingを実行できる隔離IPをサイトごとに1つずつ追加します。ゲートウェイIPは使用しないでください。使用するvSphere HAの詳細設定はdas.isolationaddressです。この目的には、ONTAPまたはメディエーターのIPアドレスを使用できます。
@@ -162,6 +168,7 @@ NetApp MetroCluster向けVMware DRSアフィニティ
 ====
 
 
+[[create-drs-host-groups]]
 === DRSホストグループの作成
 
 サイトAとサイトBに固有のDRSホストグループを作成するには、次の手順を実行します。
@@ -178,6 +185,7 @@ NetApp MetroCluster向けVMware DRSアフィニティ
 
 
 
+[[create-drs-vm-groups]]
 === DRS VMグループの作成
 
 サイトAとサイトBに固有のDRS VMグループを作成するには、次の手順を実行します。
@@ -196,6 +204,7 @@ NetApp MetroCluster向けVMware DRSアフィニティ
 
 
 
+[[create-vm-host-rules]]
 === VMホストルールの作成
 
 サイトAとサイトBに固有のDRSアフィニティルールを作成するには、次の手順を実行します。
@@ -218,6 +227,7 @@ image::../media/vmsc_3_8.png[概要が自動的に生成されたコンピュー
 
 
 
+[[create-datastore-clusters-if-needed]]
 == 必要に応じてデータストアクラスタを作成
 
 各サイトのデータストアクラスタを設定するには、次の手順を実行します。
@@ -254,6 +264,7 @@ image::../media/vmsc_3_12.png[データストア,624,134]
 
 
 
+[[vcenter-server-availability]]
 === vCenter Serverの可用性
 
 vCenter Server Appliance（VCSA）はvCenter HAで保護する必要があります。vCenter HAでは、アクティブ/パッシブHAペアに2つのVCSAを導入できます。障害ドメインごとに1つ。vCenter HAの詳細については、 https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-availability/GUID-4A626993-A829-495C-9659-F64BA8B560BD.html["docs.vmware.com"]。

@@ -24,6 +24,7 @@ image:vmware-vsphere-datastores-fp-1.png["alt=FabricPoolを使用したハイパ
 
 
 
+[[compute-and-virtual-disk-layers]]
 == コンピューティング層と仮想ディスク層
 
 ゲスト オペレーティング システムは、VMDK、QCOW2、VHDX などの仮想ディスク フォーマット上で動作し、アプリケーションやユーザーがアクセスできるコンピューティング層とブロック デバイス層を作成します。
@@ -35,6 +36,7 @@ TIP: link:https://www.netapp.com/pdf.html?item=/media/17239-tr-4598.pdf["FabricP
 
 
 
+[[hypervisor-role]]
 == ハイパーバイザーの役割
 
 ハイパーバイザーは、実行中の仮想マシンと、CPU、メモリ、ストレージなどの物理リソースとの間の仲介役を務めます。NASのユースケースでは、ハイパーバイザーがNAS共有をマウントし、仮想ディスクファイルをブロックデバイスとして仮想マシンに提示します。
@@ -47,6 +49,7 @@ NAS ファイル システム パスは、NFS または SMB プロトコルを�
 
 
 
+[[fabricpool-tiering-integration]]
 == FabricPool階層化統合
 
 FabricPoolは、ハイパフォーマンスなローカルストレージと低コストのクラウドオブジェクト階層の間でデータ配置をインテリジェントに管理します。
@@ -57,6 +60,7 @@ ONTAPのFabricPool統合により、ローカル読み取りのパフォーマ�
 
 
 
+[[storage-efficiency-and-management]]
 == ストレージの効率性と管理
 
 FabricPoolを有効にする前に、その仕組みを理解することが重要です。適切な構成を行うことで、適切なデータを適切な階層に保存し、パフォーマンスの向上、リスクの低減、TCOの最適化を実現できます。

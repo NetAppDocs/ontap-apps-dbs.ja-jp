@@ -19,6 +19,7 @@ SnapCenterでは、Windowsホスト内のすべてのデータベース、イン
 
 
 
+[[protecting-databases-in-always-on-availability-group]]
 == Always-On可用性グループのデータベースの保護
 
 可用性グループ内のデータベースは、複数の方法で保護できます。
@@ -35,6 +36,7 @@ TIP: * NetAppでは、可用性レベルのバックアップを使用して、N
 
 
 
+[[configuring-log-backup-in-snapcenter]]
 == SnapCenterでのログバックアップの設定
 
 可用性グループをスタンドアロンSQL Serverセットアップでセットアップする場合は、Windowsサーバフェイルオーバークラスタの各ノードに専用ディスクをマウントする必要があります。トランザクションログバックアップを保存するログディレクトリを設定するには、専用ディスクを使用する必要があります。
@@ -43,6 +45,7 @@ SQL Serverフェイルオーバークラスタで可用性グループが設定�
 
 
 
+[[restoring-database-in-availability-group-setup-with-snapcenter]]
 == SnapCenterを使用した可用性グループセットアップでのデータベースのリストア
 
 * SnapCenterには再シードオプションがあり、セカンダリレプリカにある最新のSnapshotからデータベースを自動的にリカバリできます。再シード処理を実行すると、データベースバックアップが自動的にリストアされて可用性グループに追加されます。

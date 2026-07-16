@@ -150,6 +150,7 @@ ONTAP ツールでは、 ONTAP FlexVol および LUN の作成時に特定のデ
 |===
 
 
+[[multipath-settings-for-performance]]
 == ハフオマンスノマルチハスセツテイ
 
 現在使用可能なONTAPツールでは設定されていませんが、NetAppでは次の設定オプションを推奨しています。
@@ -160,6 +161,7 @@ ONTAP ツールでは、 ONTAP FlexVol および LUN の作成時に特定のデ
 
 
 
+[[additional-documentation]]
 == その他のドキュメント
 
 vSphere 7を使用するFCPおよびiSCSIについては、を参照してくださいlink:https://docs.netapp.com/us-en/ontap-sanhost/hu_vsphere_7.html["VMware vSphere 7.xとONTAPの併用"^]。vSphere 8を使用するFCPおよびiSCSIについては、を参照してください。詳細についてはlink:https://docs.netapp.com/us-en/ontap-sanhost/hu_vsphere_8.html["VMware vSphere 8.xとONTAPの併用"^]、vSphere 7を使用するNVMe-oFについては、を参照してください。詳細についてはlink:https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_7.html["NVMe-oFの詳細については、「NVMe-oFホスト構成（ESXi 7.x with ONTAP）」を参照してください。"^]、を参照してください。link:https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_8.html["NVMe-oFの詳細については、「NVMe-oFホスト構成（ESXi 8.x with ONTAP）」を参照してください。"^]

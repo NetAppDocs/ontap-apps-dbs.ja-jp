@@ -19,6 +19,7 @@ FabricPoolの階層化がOracleやその他のデータベースに与える影�
 
 
 
+[[architecture]]
 == アーキテクチャ
 
 FabricPoolは、ブロックをホットまたはクールに分類し、最も適切なストレージ階層に配置する階層化テクノロジです。ほとんどの場合、パフォーマンス階層はSSDストレージに配置され、ホットデータブロックをホストします。大容量階層はオブジェクトストアに配置され、クールデータブロックをホストします。サポートされるオブジェクトストレージには、NetApp StorageGRID、ONTAP S3、Microsoft Azure Blobストレージ、Alibaba Cloud Object Storageサービス、IBM Cloud Object Storage、Google Cloudストレージ、Amazon AWS S3などがあります。
@@ -29,6 +30,7 @@ image:../media/oracle-fp_image1.png["FabricPool による階層化"]
 
 
 
+[[object-store-providers]]
 == オブジェクトストレージプロバイダ
 
 オブジェクトストレージプロトコルでは、単純なHTTP要求またはHTTPS要求を使用して大量のデータオブジェクトを格納します。ONTAPからのデータアクセスは要求の迅速な処理に依存するため、オブジェクトストレージへのアクセスは信頼できるものでなければなりません。オプションには、Amazon S3の[Standard and InFrequent Access]オプション、Microsoft Azure Hot and Cool Blob Storage、IBM Cloud、Google Cloudなどがあります。Amazon GlacierやAmazon Archiveなどのアーカイブオプションはサポートされていません。データの読み出しに要する時間がホストのオペレーティングシステムやアプリケーションの許容範囲を超える可能性があるためです。
@@ -39,12 +41,14 @@ NetApp StorageGRIDもサポートされており、最適なエンタープラ�
 
 
 
+[[data-and-metadata]]
 == データとメタデータ
 
 ここで「data」という用語は、メタデータではなく実際のデータブロックを環境することに注意してください。データブロックのみが階層化され、メタデータはパフォーマンス階層に残ります。また、あるブロックのステータス（hotまたはcool）が影響を受けるのは、実際のデータブロックを読み取った場合のみです。ファイルの名前、タイムスタンプ、所有権のメタデータを読み取っても、基盤となるデータブロックの場所には影響しません。
 
 
 
+[[backups]]
 == バックアップ
 
 FabricPoolはストレージの設置面積を大幅に削減できますが、それだけではバックアップ解決策ではありません。NetApp WAFLメタデータは常に高パフォーマンス階層に残ります。大容量階層にはWAFLメタデータが含まれていないため、大容量階層のデータを使用して新しい環境を作成することはできません。

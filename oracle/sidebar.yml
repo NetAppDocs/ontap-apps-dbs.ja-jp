@@ -133,8 +133,8 @@ entries:
       url: "/oracle/oracle-dp-snaprestore.html"
     - title: Snapshotベースのオンラインバックアップ
       url: "/oracle/oracle-dp-online-backup.html"
-    - title: ストレージSnapshotで最適化されたバックアップ
-      url: "/oracle/oracle-dp-storage-snapshot-optimized-backups.html"
+    - title: スナップショットなしの自動復元
+      url: "/oracle/oracle-dp-automatic-recovery.html"
     - title: SnapCenterおよびその他のツール
       url: "/oracle/oracle-dp-backup-tools.html"
 - title: Oracleのディザスタリカバリ

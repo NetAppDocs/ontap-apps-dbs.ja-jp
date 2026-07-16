@@ -17,6 +17,7 @@ Write Anwhereファイルレイアウト（WAFL）は書き込み専用のファ
 
 
 
+[[flexclone]]
 == FlexClone
 
 NetApp ONTAP FlexCloneボリュームは、既存のボリュームのクローン、または既存のボリュームのSnapshotです。それ以外の場合はONTAPボリュームであり、クローニング、Snapshotによる保護、QoSポリシーによる設定が可能です。

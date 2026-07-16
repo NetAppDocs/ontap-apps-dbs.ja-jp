@@ -17,12 +17,14 @@ NetAppは、SLMが推奨するAQoSポリシーを受け入れることで、下�
 
 
 
+[[four-node-architecture]]
 == 4ノードアーキテクチャ
 
 image:epic-4node.png["Epic 4ノードアーキテクチャ"]
 
 
 
+[[four-node-workload-placement]]
 == 4ノードのワークロードの配置
 
 image:epic-4node-design.png["Epicの4ノード配置"]

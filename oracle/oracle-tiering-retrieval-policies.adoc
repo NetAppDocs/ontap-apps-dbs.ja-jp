@@ -19,6 +19,7 @@ searchtitle: OracleデータベースとFabricPoolの読み出しポリシー
 
 
 
+[[default]]
 == デフォルト
 
 すべてのFabricPoolボリュームの初期設定は `default`これは、動作が「cloud-retrieval-policy」によって制御されることを意味します。'正確な動作は、使用する階層化ポリシーによって異なります。
@@ -31,6 +32,7 @@ searchtitle: OracleデータベースとFabricPoolの読み出しポリシー
 
 
 
+[[on-read]]
 == オンリード
 
 設定 `cloud-retrieval-policy` をオンリードに設定するとデフォルトの動作が無効になるため、階層化されたデータが読み取られた場合、そのデータはパフォーマンス階層に返されます。
@@ -41,6 +43,7 @@ searchtitle: OracleデータベースとFabricPoolの読み出しポリシー
 
 
 
+[[promote]]
 == プロモート
 
 昇格ポリシーの動作は階層化ポリシーによって異なります。階層化ポリシーがの場合 `auto`をクリックし、 `cloud-retrieval-policy `to `promote` 次回の階層化スキャンで大容量階層のすべてのブロックを戻します。
@@ -51,6 +54,7 @@ searchtitle: OracleデータベースとFabricPoolの読み出しポリシー
 
 
 
+[[never]]
 == なし
 
 大容量階層からブロックを取得しないでください。

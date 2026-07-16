@@ -42,6 +42,7 @@ Windows ServerとONTAPを併用すれば、大規模な環境でも運用でき�
 
 
 
+[[intended-audience]]
 == 対象読者
 
 本ドキュメントは、Windows Server向けのNetAppストレージソリューションを設計するシステムアーキテクトおよびストレージアーキテクトを対象としています。

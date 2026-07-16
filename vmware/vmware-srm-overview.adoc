@@ -27,6 +27,7 @@ NOTE: このドキュメントは、以前に公開された技術レポート_T
 
 
 
+[[why-use-ontap-with-vlsr-or-srm]]
 == VLSRまたはSRMでONTAPを使用する理由
 
 ONTAPを搭載したNetAppデータ管理プラットフォームは、VLSR で最も広く採用されているストレージ ソリューションの 1 つです。理由はたくさんあります。業界をリードするストレージ効率、マルチテナント、サービス品質の制御、スペース効率の高いスナップショットによるデータ保護、 SnapMirrorによるレプリケーションを提供する、安全で高性能な統合プロトコル (NAS と SAN の組み合わせ) のデータ管理プラットフォームです。これらすべては、ネイティブのハイブリッド マルチクラウド統合を活用して VMware ワークロードを保護し、豊富な自動化およびオーケストレーション ツールを簡単に利用できるようにします。
@@ -37,6 +38,7 @@ ONTAPを搭載したNetAppデータ管理プラットフォームは、VLSR で�
 
 
 
+[[how-vlsr-leverages-ontap-9]]
 == VLSR での ONTAP 9 の活用方法
 
 VLSR は、 ONTAP システムの高度なデータ管理テクノロジを活用して、 3 つの主要コンポーネントで構成される仮想アプライアンスである VMware vSphere 用 ONTAP ツールと統合します。
@@ -59,6 +61,7 @@ NOTE: ONTAPシステムではSnapMirrorレプリケーション用に同じク�
 
 
 
+[[vlsr-with-ontap-and-other-use-cases-hybrid-cloud-and-migration]]
 == VLSR と ONTAP などのユースケース：ハイブリッドクラウドと移行
 
 VLSR 展開をONTAP の高度なデータ管理機能と統合すると、ローカル ストレージ オプションと比較して、スケールとパフォーマンスが大幅に向上します。しかし、それ以上に、ハイブリッド クラウドの柔軟性がもたらされます。ハイブリッド クラウドでは、 FabricPoolを使用して、高性能アレイから使用されていないデータ ブロックを優先ハイパースケーラー ( NetApp StorageGRIDなどのオンプレミスの S3 ストアなど) に階層化することでコストを節約できます。また、ソフトウェア定義のONTAP SelectまたはクラウドベースのDRを備えたエッジベースのシステムにもSnapMirrorを使用できます。 https://www.equinix.com/partners/netapp["Equinix Metal 上のNetAppストレージ"^]、またはその他のホストされたONTAPサービス。

@@ -26,6 +26,7 @@ NetApp SnapCenter Plug-in for VMware vSphereのソフトウェアエンジニア
 
 
 
+[[product-security-features]]
 == 製品のセキュリティ機能
 
 NetApp SnapCenter Plug-in for VMware vSphereの各リリースには、次のセキュリティ機能が含まれています。

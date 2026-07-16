@@ -13,6 +13,7 @@ LUNのマウント、ボリュームグループと論理ボリュームの作�
 
 
 
+[[file-system-and-mount-options]]
 == ファイルシステムとマウントオプション
 
 LUNを作成してマッピングし、ゾーニングが完了したら、次の手順に従ってサーバにストレージを接続します。
@@ -22,6 +23,7 @@ NOTE: この例では、DBに1、024GBのLUNを8個、ジャーナルに1、024G
 
 
 
+[[asynchronous-io]]
 == 非同期I/O
 
 『Epic SAN Considerations』ホワイトペーパーおよび『Storage Configuration Quick Reference』には、ホストを設定してストレージに接続する方法の詳細が記載されています。このセクションでは、Red Hat Enterprise Linuxホストのセットアップ方法を確認します。AIXの詳細については、参照ドキュメントを参照してください。

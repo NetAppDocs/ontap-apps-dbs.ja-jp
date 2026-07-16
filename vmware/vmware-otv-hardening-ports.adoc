@@ -18,6 +18,7 @@ summary: ONTAP tools for VMware vSphere、TCPポートおよびプロトコル�
 
 
 
+[[inbound-and-outbound-ports-required-for-otv]]
 == OTVに必要なインバウンドおよびアウトバウンドポート
 
 次の表に、ONTAP toolsが適切に機能するために必要なインバウンドポートとアウトバウンドポートを示します。表に記載されているポートだけがリモートマシンからの接続用に開いていることを確認し、他のすべてのポートはリモートマシンからの接続用にブロックする必要があります。これにより、システムのセキュリティと安全性が確保されます。
@@ -66,6 +67,7 @@ SOAP over HTTPS接続に使用
 |===
 
 
+[[controlling-remote-access-to-the-derby-database]]
 == Derbyデータベースへのリモートアクセスの制御
 
 管理者は、次のコマンドを使用してDerbyデータベースにアクセスできます。ONTAP toolsのローカルVMとリモートサーバからアクセスするには、次の手順を実行します。

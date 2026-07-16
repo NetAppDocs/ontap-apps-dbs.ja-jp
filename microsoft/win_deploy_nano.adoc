@@ -18,6 +18,7 @@ Microsoft Windows Nano Serverの導入について説明します。
 
 
 
+[[deployment]]
 == 導入
 
 Nano ServerをHyper-Vホストとして導入するには、次の手順を実行します。
@@ -91,6 +92,7 @@ Invoke-Command -VMName $nanoserver -Credential $nanosecurecred -ArgumentList @($
 
 
 
+[[connect-to-nano-server]]
 == Nanoサーバーへの接続
 
 PowerShellを使用してNano Serverにリモート接続するには、次の手順を実行します。

@@ -18,6 +18,7 @@ searchtitle: Microsoft SQL Serverのメモリ構成
 
 
 
+[[max-server-memory]]
 == 最大サーバメモリ
 
 max server memoryオプションは、SQL Serverインスタンスで使用できるメモリの最大容量を設定します。通常、SQL Serverが実行されている同じサーバで複数のアプリケーションが実行されていて、これらのアプリケーションが正常に機能するのに十分なメモリを確保したい場合に使用されます。
@@ -33,6 +34,7 @@ image:mssql-max-server-memory.png["エラー：グラフィックイメージが
 
 
 
+[[adjusting-minimum-and-maximum-server-memory-using-sql-server-management-studio]]
 === SQL Server Management Studioを使用したサーバの最小メモリと最大メモリの調整
 
 SQL Server Management Studioを使用してサーバの最小メモリまたは最大メモリを調整するには、SQL Serverサービスを再起動する必要があります。次のコードを使用して、Transact SQL（T-SQL）を使用してサーバメモリを調整することもできます。
@@ -48,6 +50,7 @@ RECONFIGURE WITH OVERRIDE
 ....
 
 
+[[nonuniform-memory-access]]
 == 不均一なメモリアクセス
 
 NUMA（Nonuniform Memory Access）は、プロセッサバスの余分な負荷を回避するためのメモリアクセス最適化テクノロジです。
@@ -56,6 +59,7 @@ SQL ServerがインストールされているサーバでNUMAが構成されて
 
 
 
+[[index-create-memory]]
 == インデックス作成メモリ
 
 index create memoryオプションは、通常はデフォルトから変更する必要がないもう1つの詳細オプションです。
@@ -64,6 +68,7 @@ index create memoryオプションは、通常はデフォルトから変更す�
 
 
 
+[[min-memory-per-query]]
 == クエリあたりの最小メモリ
 
 クエリを実行すると、SQL Serverは効率的に実行するために最適なメモリ容量を割り当てようとします。

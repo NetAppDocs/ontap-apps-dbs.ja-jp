@@ -30,6 +30,7 @@ SnapMirrorアクティブ同期（SM-AS）はSnapMirror同期に基づいてい�
 
 
 
+[[sm-as-and-mcc-comparison]]
 == SM-ASとMCCの比較
 
 SM-ASとMetroClusterは全体的な機能が似ていますが、RPO=0レプリケーションの実装方法と管理方法には重要な違いがあります。SnapMirrorの非同期および同期はDR計画の一部としても使用できますが、HAレプリケーションテクノロジとしては設計されていません。

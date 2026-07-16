@@ -17,6 +17,7 @@ summary:
 
 
 
+[[vasa-provider-high-availability]]
 == VASA Providerの高可用性
 
 NetApp VASA Providerは、vCenterプラグイン、REST APIサーバ（旧Virtual Storage Console[VSC]）、およびStorage Replication Adapterとともに仮想アプライアンスの一部として実行されます。VASA Providerを使用できない場合、VVOLを使用するVMは引き続き実行されます。ただし、新しいvVolデータストアを作成することはできず、vVolをvSphereで作成またはバインドすることもできません。vCenterはスワップVVolの作成を要求できないため、VVolを使用するVMの電源をオンにできません。また、vVolを新しいホストにバインドできないため、実行中のVMでvMotionを使用して別のホストに移行することはできません。
@@ -33,6 +34,7 @@ https://kb.netapp.com/mgmt/OTV/Virtual_Storage_Console/How_to_perform_a_VASA_Pro
 
 
 
+[[vvols-replication]]
 == vVolレプリケーション
 
 ONTAP をご利用のお客様の多くは、NetApp SnapMirrorを使用して従来のデータストアをセカンダリストレージシステムにレプリケートし、災害発生時にセカンダリシステムを使用して個 々 のVMやサイト全体をリカバリしています。ほとんどの場合、お客様はこの管理にソフトウェアツールを使用します。たとえば、VMware vSphere用NetApp SnapCenterプラグインなどのバックアップソフトウェア製品や、VMwareのSite Recovery Managerなどのディザスタリカバリ解決策（ONTAPツールのStorage Replication Adapterとともに使用）などです。
@@ -47,12 +49,14 @@ ONTAP tools 9.7.1を使用したSRMの初期リリースでは、FlexVolボリ�
 
 
 
+[[vvols-replication-with-srm]]
 === SRMを使用したvVolレプリケーション
 
 image:vvols-image17.png["SRMを使用したvVolレプリケーション"]
 
 
 
+[[metrocluster-support]]
 == MetroCluster のサポート
 
 ONTAP toolsではMetroCluster のスイッチオーバーはトリガーされませんが、同じvSphere Metro Storage Cluster（vMSC）構成のVVol用NetApp MetroCluster システムではサポートされます。MetroCluster システムのスイッチオーバーは通常の方法で処理されます。
@@ -69,6 +73,7 @@ https://kb.vmware.com/s/article/2031038["_VMware KB 2031038 NetApp MetroCluster 
 
 
 
+[[vvols-backup-overview]]
 == vVolバックアップの概要
 
 ゲスト内バックアップエージェントの使用、VMデータファイルのバックアッププロキシへの接続、VMware VADPなどの定義済みAPIの使用など、VMを保護する方法はいくつかあります。VVOLは同じメカニズムを使用して保護でき、多くのネットアップパートナーがVVOLを含むVMのバックアップをサポートしています。
@@ -81,6 +86,7 @@ vSphere 8.0のサポートは、分離されたローカルプラグインアー
 
 
 
+[[vvols-backup-with-snapcenter-plugin-for-vmware-vsphere]]
 == VMware vSphere用のSnapCenter プラグインを使用したVVolバックアップ
 
 NetApp SnapCenterでは、タグやフォルダに基づいてvVolのリソースグループを作成し、vVolベースのVMに対してONTAPのFlexVolベースのSnapshotを自動的に利用できるようになりました。これにより、環境内で動的にプロビジョニングされたVMを自動的に保護するバックアップ/リカバリサービスを定義できます。
@@ -89,6 +95,7 @@ SnapCenter Plugin for VMware vSphereは、vCenter拡張機能として登録さ�
 
 
 
+[[snapcenter-architecture]]
 === SnapCenter アーキテクチャ
 
 image:snapcenter_arch.png["SnapCenter アーキテクチャ"]
@@ -103,6 +110,7 @@ SnapCenter Plug-in for VMware vSphere REST API については、を参照して
 
 
 
+[[best-practices]]
 === ベストプラクティス
 
 SnapCenter 環境を最大限に活用するには、次のベストプラクティスを参考にしてください。
@@ -153,12 +161,14 @@ SnapCenter 環境を最大限に活用するには、次のベストプラクテ
 |===
 
 
+[[resource-group-notification-options]]
 === リソースグループの通知オプション
 
 image:vvols-image19.png["リソースグループの通知オプション"]
 
 
 
+[[get-started-with-scv-using-these-documents]]
 === これらのドキュメントを使用して、SCVの使用を開始します
 
 https://docs.netapp.com/us-en/sc-plugin-vmware-vsphere/index.html["SnapCenter Plug-in for VMware vSphere について説明します"]

@@ -15,12 +15,14 @@ summary: Epic 8ノードアーキテクチャ
 
 
 
+[[eight-node-architecture]]
 == 8ノードアーキテクチャ
 
 image:epic-8node.png["Epic 4ノードアーキテクチャ"]
 
 
 
+[[eight-node-workload-placement]]
 == 8ノードのワークロードの配置
 
 image:epic-8node-design.png["Epicの8ノード配置"]

@@ -18,12 +18,14 @@ summary: ONTAP toolsでの機能、制限、VVOLのサポート。
 
 
 
+[[latest-versions-of-vsphere-and-site-recovery-manager]]
 == vSphere および Site Recovery Manager の最新バージョン
 
 ネットアップは、約 20 年にわたり VMware との緊密なパートナーシップを共有し、できるだけ早く最新リリースのサポートを提供するよう努めています。ソフトウェアの認定された最新の組み合わせについては、必ずNetAppを確認してください https://mysupport.netapp.com/matrix/imt.jsp?components=84943;&solution=1777&isHWU&src=IMT["Interoperability Matrix Tool （ IMT ）"^]。
 
 
 
+[[support-for-ipv6]]
 == IPv6 のサポート
 
 IPv6 が次の制限付きでサポートされるようになりました。
@@ -34,6 +36,7 @@ IPv6 が次の制限付きでサポートされるようになりました。
 
 
 
+[[greater-scale]]
 == 拡張性の向上
 
 ONTAP tools 10.4 SRAで、VLSR/SRMの最大スケールをサポートできるようになりました。
@@ -48,12 +51,14 @@ ONTAP tools 10.4 SRAで、VLSR/SRMの最大スケールをサポートできる�
 
 
 
+[[synchronous-replication]]
 == 同期レプリケーション
 
 待望の新機能として、 ONTAP 9.5 以降を搭載した SnapMirror Synchronous （ SM-S ）があります。この機能は、ミッションクリティカルなアプリケーションに対して、ボリュームレベルで RPO ゼロのデータレプリケーション解決策を提供します。SM-S には、 ONTAP ツール 9.8 以降が必要です。
 
 
 
+[[rest-api-support]]
 == REST API をサポート
 
 SRA サーバの設定を REST API で管理できるようになりました。自動化ワークフローの構築を支援するSwagger UIが追加されました。ONTAP toolsアプライアンスのにあります。 `https://<appliance>:8443/`

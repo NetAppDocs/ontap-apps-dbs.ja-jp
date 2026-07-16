@@ -20,6 +20,7 @@ ONTAP for vSphereを使用する主なメリットは、仮想マシン（VM）�
 
 
 
+[[netapp-ontap-volume-snapshots]]
 == NetApp ONTAPホリユウムノSnapshot
 
 Snapshotを使用すると、パフォーマンスに影響を与えずにVMやデータストアのコピーをすばやく作成でき、SnapMirrorを使用してセカンダリシステムに送信することで、オフサイトでの長期的なデータ保護を実現できます。このアプローチでは、変更された情報のみを格納することで、ストレージスペースとネットワーク帯域幅を最小限に抑えます。
@@ -36,6 +37,7 @@ VMFSデータストアの場合は、必要なSnapshotに基づいてデータ�
 
 
 
+[[snapcenter-plug-in-for-vmware-vsphere]]
 == VMware vSphere向けSnapCenterプラグイン
 
 SnapCenter では、複数のジョブに適用可能なバックアップポリシーを作成できます。これらのポリシーでは、スケジュール、保持、レプリケーションなどの機能を定義できます。VMwareスナップショットを作成する前にI/Oを休止するハイパーバイザーの機能を活用して、VMと整合性のあるスナップショットをオプションで選択できます。ただし、 VMware スナップショットはパフォーマンスへの影響があるため、ゲストファイルシステムを休止する必要がないかぎり、一般には推奨されません。代わりに、スナップショットを使用して一般的な保護を行い、SnapCenterアプリケーションプラグインなどのアプリケーションツールを使用してSQL ServerやOracleなどのトランザクションデータを保護します。
@@ -50,6 +52,7 @@ image:vsphere_ontap_image4.png["SnapCenter導入"]
 
 
 
+[[ontap-tools-for-vmware-vsphere-with-vmware-live-site-recovery]]
 == VMware vSphere向けONTAPツールとVMware Live Site Recovery
 
 ONTAP Tools for VMware vSphere（OT4VS）は、VMware vSphereとNetApp ONTAPをシームレスに統合するための無償プラグインです。vSphere Web ClientからONTAPストレージを直接管理できるため、ストレージのプロビジョニング、レプリケーションの管理、パフォーマンスの監視などのタスクを簡単に実行できます。
@@ -58,12 +61,14 @@ ONTAP Tools for VMware vSphere（OT4VS）は、VMware vSphereとNetApp ONTAPを�
 
 
 
+[[netapp-disaster-recovery]]
 == NetApp Disaster Recovery
 
 災害復旧 (DR) は、災害発生時にデータとアプリケーションを保護するための包括的なソリューションを提供するクラウドベースのサービスです。自動フェイルオーバーとフェイルバック、複数のポイントインタイムリカバリポイント、アプリケーション整合性のある災害復旧、オンプレミスとクラウドベースの両方のONTAPシステムのサポートなど、さまざまな機能を提供します。NetApp Disaster Recovery は、 ONTAPおよび VMware vSphere 環境とシームレスに連携するように設計されており、災害復旧のための統合ソリューションを提供します。
 
 
 
+[[vsphere-metro-storage-cluster-vmsc-with-netapp-metrocluster-and-snapmirror-active-sync]]
 == vSphere Metro Storage Cluster（vMSC）とNetApp MetroClusterおよびSnapMirrorのアクティブな同期
 
 最後に、最高レベルのデータ保護を実現するために、NetApp MetroClusterを使用したVMware vSphere Metro Storage Cluster（vMSC）構成を検討してください。vMSCは、同期レプリケーションを使用するVMware認定のNetAppサポートソリューションです。高可用性クラスタと同じメリットを提供しながら、別 々 のサイトに分散してサイト障害から保護します。NetApp SnapMirrorアクティブ同期（ASAおよびAFFを使用）、およびAFFを使用したMetroClusterでは、同期レプリケーションのコスト効率に優れた構成が提供され、単一のストレージコンポーネント障害からの透過的なリカバリ、SnapMirrorアクティブ同期の場合の透過的なリカバリ、またはMetroClusterを使用したサイト障害発生時の単一コマンドによるリカバリが可能です。vMSCの詳細については、を参照してください。 https://www.netapp.com/pdf.html?item=/media/19773-tr-4128.pdf["TR-4128"^]

@@ -18,6 +18,7 @@ searchtitle: SnapCenterおよびT-SQLコマンドを使用したONTAP上のMicro
 
 
 
+[[snapcenter]]
 == SnapCenter
 
 SnapCenterは、エンタープライズアプリケーション向けのNetAppデータ保護ソフトウェアです。SnapCenter Plug-in for SQL Serverや、SnapCenter Plug-in for Microsoft Windowsで管理されるOS処理を使用して、SQL Serverデータベースを迅速かつ簡単に保護できます。
@@ -30,6 +31,7 @@ SQL Server Plug-in for SnapCenterの詳細については、を参照してく�
 
 
 
+[[protecting-database-using-t-sql-snapshots]]
 == T-SQLスナップショットを使用したデータベースの保護
 
 SQL Server 2022では、MicrosoftがT-SQLスナップショットを導入しました。これにより、バックアップ処理のスクリプト作成と自動化を行うことができます。フルサイズのコピーを実行する代わりに、Snapshot用にデータベースを準備できます。データベースのバックアップ準備が完了したら、ONTAP REST APIを使用してSnapshotを作成できます。

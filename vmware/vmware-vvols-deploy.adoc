@@ -19,6 +19,7 @@ vVolデータストアのプロビジョニングはいくつかの手順で行�
 
 
 
+[[preparing-to-create-vvols-datastores-with-ontap-tools]]
 == ONTAP toolsを使用してvVolデータストアを作成するための準備
 
 すでにONTAPツールを使用して、既存のVMFSまたは従来のNFSベースのストレージの管理、自動化、レポート作成を行っている場合は、導入プロセスの最初の2つの手順を省略できます。ONTAPツールの導入と設定については、この完全版を参照することもできますlink:vmware-vvols-checklist.html["チェックリスト"]。
@@ -80,6 +81,7 @@ NOTE: クラスタ全体をONTAPツール マネージャ UI にオンボード�
 
 
 
+[[creating-vvols-datastores-with-ontap-tools]]
 == ONTAP toolsを使用したvVolデータストアの作成
 
 ONTAP データストアを作成するホスト、クラスタ、またはデータセンターを右クリックし、_vVol tools>>_Provision Datastore_を選択します。
@@ -142,12 +144,14 @@ image:vvols-deploy-9.png["role=\"thumb\"\"データストアのプロビジョ�
 
 
 
+[[migrating-vms-from-traditional-datastores-to-vvols]]
 == 従来のデータストアからVVOLへのVMの移行
 
 従来のデータストアからvVolデータストアへのVMの移行は、従来のデータストア間でVMを移動するだけです。VMを選択し、[Actions]リストから[Migrate]を選択し、移行タイプとして[_change storage only_]を選択します。プロンプトが表示されたら、vVolデータストアに一致するVMストレージポリシーを選択します。移行コピー処理は、vSphere 6.0以降でSAN VMFSをvVolに移行する場合はオフロードできますが、NAS VMDKからvVolにはオフロードできません。
 
 
 
+[[managing-vms-with-policies]]
 == ポリシーによるVMの管理
 
 ポリシーベースの管理を使用してストレージ プロビジョニングを自動化するには、必要なストレージ機能にマップする VM ストレージ ポリシーを作成する必要があります。
@@ -157,6 +161,7 @@ NOTE: ONTAP tools 10.0以降では、以前のバージョンのようなスト�
 
 
 
+[[creating-vm-storage-policies]]
 === 仮想マシンストレージポリシーを作成しています
 
 VM ストレージ ポリシーは、vSphere でストレージ I/O コントロールや vSphere 暗号化などのオプション機能を管理するために使用されます。また、 vVolsと組み合わせて使用​​して、VM に特定のストレージ機能を適用することもできます。「NetApp.clustered.Data. ONTAP .VP.vvol」ストレージ タイプを使用します。ONTAPツール VASA Provider を使用した例については、link:vmware-vvols-ontap.html#Best Practices[NFS v3 経由のvVolsを使用したネットワーク構成の例] を参照してください。「 NetApp.clustered.Data. ONTAP.VP.VASA10」ストレージのルールは、非 vVols ベースのデータストアで使用されます。

@@ -14,6 +14,7 @@ ONTAPを使用したIBM AIX上のOracleデータベースの構成に関する�
 
 
 
+[[concurrent-io]]
 == 同時I/O
 
 IBM AIXで最適なパフォーマンスを実現するには、同時I/Oを使用する必要があります。AIXはシリアル化されたアトミックなI/Oを実行するため、大量のオーバーヘッドが発生するため、同時I/Oがないとパフォーマンスが制限される可能性があります。
@@ -35,6 +36,7 @@ IBM AIXで最適なパフォーマンスを実現するには、同時I/Oを使�
 ====
 
 
+[[aix-nfs-mount-options]]
 == AIX NFSのマウントオプション
 
 次の表に、OracleシングルインスタンスデータベースのAIX NFSマウントオプションを示します。
@@ -93,6 +95,7 @@ nointr`
 
 
 
+[[aix-jfsjfs2-mount-options]]
 == AIX JFS / JFS2のマウントオプション
 
 次の表に、AIX JFS / JFS2のマウントオプションを示します。

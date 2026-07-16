@@ -18,6 +18,7 @@ summary: ONTAP では、 Storage Virtual Machine （ SVM ）の概念を採用�
 
 
 
+[[use-the-latest-version-of-ontap-tools-10]]
 == 最新バージョンのONTAP toolsを使用する10
 
 ONTAP tools 10では、以前のバージョンに比べて次の点が大幅に改善されています。
@@ -33,6 +34,7 @@ ONTAP tools 10では、以前のバージョンに比べて次の点が大幅に
 
 
 
+[[svm-layout-and-segmentation-for-smt]]
 == SMT の SVM のレイアウトとセグメント化
 
 ONTAP では、 Storage Virtual Machine （ SVM ）の概念を採用して、セキュアなマルチテナント環境で厳密にセグメント化します。ある SVM の SVM ユーザは、別の SVM のリソースにアクセスしたりリソースを管理したりすることはできませんこれにより、 ONTAP テクノロジを活用できます。ビジネスユニットごとに別々の SVM を作成して、同じクラスタ上で独自の SRM ワークフローを管理することで、全体的なストレージ効率を高めることができます。
@@ -41,6 +43,7 @@ SVM を対象としたアカウントと SVM 管理 LIF を使用して ONTAP �
 
 
 
+[[best-practices-for-managing-ontap-9-systems]]
 == ONTAP 9 システムの管理に関するベストプラクティス
 
 前述したように、クラスタまたは SVM を対象としたクレデンシャルと管理 LIF を使用して ONTAP クラスタを管理できます。パフォーマンスを最適化するには、VVOLを使用しないときは常にSVMを対象としたクレデンシャルの使用を検討してください。ただし、その場合は、いくつかの要件について確認しておく必要があります。また、機能の一部は失われます。

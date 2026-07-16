@@ -4,6 +4,7 @@
 
 
 
+[[site-failure-protection-nvram-and-metrocluster]]
 == サイト障害からの保護：NVRAMとMetroCluster
 
 MetroClusterは、次の方法でNVRAMデータ保護を拡張します。
@@ -15,6 +16,7 @@ MetroClusterは、次の方法でNVRAMデータ保護を拡張します。
 
 
 
+[[site-and-shelf-failure-protection-syncmirror-and-plexes]]
 == サイトおよびシェルフ障害からの保護：SyncMirrorとプレックス
 
 SyncMirrorは、RAID DPやRAID-TECを強化するミラーリングテクノロジですが、これに代わるものではありません。2つの独立したRAIDグループの内容をミラーリングします。論理構成は次のとおりです。
@@ -32,6 +34,7 @@ SyncMirrorは通常、MetroClusterシステムにリモートミラーリング�
 
 
 
+[[redundancy-failure-nvfail]]
 == 冗長性エラー：NVFAIL
 
 前述したように、書き込みの確認応答は、少なくとも1台の他のコントローラでローカルのNVRAMとNVRAMに記録されるまで返されません。このアプローチにより、ハードウェア障害や停電が発生しても、転送中のI/Oが失われることはありません。ローカルのNVRAMに障害が発生したり、他のノードへの接続に障害が発生したりすると、データはミラーリングされなくなります。
@@ -50,6 +53,7 @@ SyncMirrorは通常、MetroClusterシステムにリモートミラーリング�
 
 
 
+[[ha-pairs-and-metrocluster]]
 === HAペアとMetroCluster
 
 MetroClusterには、2ノードとHAペアの2つの構成があります。2ノード構成の動作は、NVRAMに関してはHAペアと同じです。突然の障害が発生した場合、パートナーノードはNVRAMデータを再生してドライブの整合性を確保し、確認済みの書き込みが失われていないことを確認できます。
@@ -60,12 +64,14 @@ MetroClusterの重要な側面の1つは、通常の運用状態ではリモー�
 
 
 
+[[switchover-and-switchback]]
 == スイッチオーバーとスイッチバック
 
 スイッチオーバーとスイッチバックという用語は、MetroCluster構成のリモートコントローラ間でボリュームを移行するプロセスを指します。このプロセスでは、リモートノードのみが環境されます。4ボリューム構成でMetroClusterを使用する場合のローカルノードのフェイルオーバーは、前述したテイクオーバーとギブバックのプロセスと同じです。
 
 
 
+[[planned-switchover-and-switchback]]
 === 計画的スイッチオーバーとスイッチバック
 
 計画的スイッチオーバーまたはスイッチバックは、ノード間のテイクオーバーやギブバックと似ています。このプロセスには複数の手順があり、数分かかるように見える場合もありますが、実際には、ストレージリソースとネットワークリソースを複数のフェーズで正常に移行します。完全なコマンドの実行に必要な時間よりもはるかに短時間で制御転送が行われる瞬間。
@@ -74,6 +80,7 @@ MetroClusterの重要な側面の1つは、通常の運用状態ではリモー�
 
 
 
+[[syncmirror-timeouts]]
 === SyncMirrorタイムアウト
 
 SyncMirrorは、シェルフ障害から保護するONTAPのミラーリングテクノロジです。シェルフが離れた場所に配置されている場合は、リモートデータ保護が実現します。
@@ -88,6 +95,7 @@ SyncMirrorは、タイムアウトの柔軟性を備えた同期ミラーリン�
 
 
 
+[[automatic-unattended-switchover-with-fabric-attached-metrocluster]]
 === ファブリック接続MetroClusterによる自動無人スイッチオーバー
 
 Automatic Unattended Switchover（AUSO；自動無人スイッチオーバー）は、クロスサイトHAの形式を提供するファブリック接続MetroClusterの機能です。前述したように、MetroClusterには2つのタイプ（各サイトに1台のコントローラを配置する場合と、各サイトに1台のHAペアを配置する場合）があります。HAオプションの主な利点は、コントローラの計画的シャットダウンと計画外シャットダウンのどちらでもすべてのI/Oをローカルで処理できることです。シングルノードオプションのメリットは、コスト、複雑さ、インフラの削減です。
@@ -104,6 +112,7 @@ MetroClusterシステムで自動スイッチオーバーを安全に実行で�
 
 
 
+[[metrocluster-tiebreaker-with-fabric-attached-metrocluster]]
 === ファブリック接続MetroClusterを使用したMetroCluster Tiebreaker
 
 このlink:https://docs.netapp.com/us-en/ontap-metrocluster/install-ip/task_sw_config_configure_mediator.html["NetApp MetroCluster Tiebreaker"^]ソフトウェアを第3のサイトで実行すると、MetroCluster環境の健全性を監視し、通知を送信できます。また、災害時にオプションでスイッチオーバーを強制的に実行することもできます。Tiebreakerの詳細についてはを参照してlink:http://mysupport.netapp.com["NetApp Support Site"^]ください。MetroCluster Tiebreakerの主な目的はサイトの損失を検出することです。また、サイトの損失と接続の損失を区別する必要があります。たとえば、Tiebreakerがプライマリサイトに到達できなかったためにスイッチオーバーが発生しないようにします。そのため、Tiebreakerはリモートサイトがプライマリサイトに接続する能力も監視します。
@@ -130,6 +139,7 @@ CAUTION: MCTBソフトウェアは、強制的なスイッチオーバー時に�
 
 
 
+[[ontap-mediator-with-metrocluster-ip]]
 === MetroCluster IPを使用したONTAPメディエーター
 
 ONTAPメディエーターは、MetroCluster IPおよびその他の特定のONTAPソリューションで使用されます。これは、前述のMetroCluster Tiebreakerソフトウェアと同様に従来のTiebreakerサービスとして機能しますが、重要な機能を実行する自動無人スイッチオーバーも含まれています。
@@ -140,6 +150,7 @@ ONTAPメディエーターは、MetroCluster IPおよびその他の特定のONT
 
 
 
+[[virtual-third-site-with-clusterlion]]
 === ClusterLionを使用した3番目の仮想サイト
 
 ClusterLionは、仮想の第3サイトとして機能する高度なMetroCluster監視アプライアンスです。このアプローチにより、完全に自動化されたスイッチオーバー機能により、MetroClusterを2サイト構成で安全に導入できます。さらに、ClusterLionでは、追加のネットワークレベル監視を実行し、スイッチオーバー後の処理を実行できます。完全なドキュメントはProLionから入手できます。

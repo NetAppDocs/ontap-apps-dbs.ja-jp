@@ -18,6 +18,7 @@ summary: 『Security Hardening Guide for ONTAP tools for VMware vSphere』で、
 
 
 
+[[virtual-appliance]]
 == *仮想アプライアンス*
 
 NTPサーバは、仮想アプライアンスのメンテナンスコンソールから設定できます。  ユーザは、_System Configuration_=>_ Add new NTP Server_optionでNTPサーバの詳細を追加できます。
@@ -26,6 +27,7 @@ NTPサーバは、仮想アプライアンスのメンテナンスコンソー�
 
 
 
+[[debian]]
 == * Debian *
 
 Debianでは、ユーザは/etc/ntp.confファイルにアクセスしてNTPサーバの詳細を確認できます。

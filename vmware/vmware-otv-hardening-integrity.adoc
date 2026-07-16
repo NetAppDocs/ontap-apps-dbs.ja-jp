@@ -24,6 +24,7 @@ ONTAP toolsインストールパッケージの整合性を検証するには、
 
 
 
+[[verifying-the-signature-of-the-ontap-tools-ova]]
 == ONTAP tools OVAの署名の確認
 
 vAppインストールパッケージはtarball形式で提供されます。このtarballには、仮想アプライアンスの中間証明書とルート証明書、READMEファイル、OVAパッケージが含まれています。READMEファイルには、vApp OVAパッケージの整合性を検証する方法が記載されています。
@@ -32,6 +33,7 @@ vAppインストールパッケージはtarball形式で提供されます。こ
 
 
 
+[[uploading-the-trusted-root-certificate-to-vcenter]]
 === 信頼されたルート証明書のvCenterへのアップロード
 
 . VMware vSphere ClientでvCenter Serverにログインします。
@@ -49,6 +51,7 @@ image:vmware-otv-hardening-trusted-publisher.png["信頼できる証明書"]
 
 
 
+[[verifying-the-signature-of-the-ontap-tools-iso-and-sra-tar-gz]]
 == ONTAP tools ISOおよびSRA tar.gzの署名の確認
 
 NetAppは、製品ダウンロードページでコード署名証明書をお客様と共有し、OTV-ISOおよびsra.tgzの製品zipファイルも提供しています。

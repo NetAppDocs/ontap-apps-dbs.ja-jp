@@ -20,6 +20,7 @@ NetAppには、従来のONTAPシステムとASAシステムの両方と互換性
 
 
 
+[[ontap-tools-for-vmware-vsphere]]
 == VMware vSphere 用の ONTAP ツール
 
 https://mysupport.netapp.com/site/products/all/details/otv10/docs-tab["VMware vSphere 用の ONTAP ツール"]は、ONTAPストレージとvSphereを併用するための一連のツールです。vCenter プラグインは、以前 Virtual Storage Console （ VSC ）と呼ばれていたもので、 SAN と NAS のどちらを使用している場合でも、ストレージ管理と効率化機能の簡易化、可用性の向上、ストレージコストと運用オーバーヘッドの削減を実現します。データストアのプロビジョニングのベストプラクティスを使用して、 NFS 環境およびブロックストレージ環境用の ESXi ホスト設定を最適化します。これらすべてのメリットについて、NetAppでは、ONTAPを実行しているシステムでvSphereを使用する際のベストプラクティスとして、これらのONTAPツールの使用を推奨しています。サーバアプライアンス、vCenter、VASA Provider、Storage Replication Adapter向けのUI拡張機能が含まれています。ONTAP ツールのほぼすべてを、最新の自動化ツールで利用できるシンプルなREST APIを使用して自動化できます。
@@ -35,18 +36,21 @@ image:vsphere_ontap_image1.png["vSphere向けONTAPツール"]
 
 
 
+[[snapcenter-plug-in-for-vmware-vsphere]]
 == VMware vSphere向けSnapCenterプラグイン
 
 その https://mysupport.netapp.com/site/products/all/details/scv/docs-tab["VMware vSphere向けSnapCenterプラグイン"] は、仮想マシン (VM) とデータストアのバックアップと復元を管理できる vCenter Server のプラグインです。複数のONTAPシステムにわたる VM およびデータストアのバックアップ、リストア、クローンを管理するための単一のインターフェイスを提供します。SnapCenter は、 SnapMirrorを使用してセカンダリ サイトへのレプリケーションとセカンダリ サイトからのリカバリをサポートします。最新バージョンでは、クラウド (S3) へのSnapMirror 、改ざん防止スナップショット、 SnapLock、 SnapMirrorアクティブ同期もサポートされています。VMware vSphere 用のSnapCenterプラグインは、 SnapCenterアプリケーション プラグインと統合して、アプリケーション整合性のあるバックアップを提供できます。
 
 
 
+[[nfs-plug-in-for-vmware-vaai]]
 == NFS Plug-in for VMware VAAI のこと
 
 は、 https://mysupport.netapp.com/site/products/all/details/nfsplugin-vmware-vaai/about-tab["NetApp NFS Plug-in for VMware VAAI"]ESXiホストがONTAP上のNFSデータストアでVAAI機能を使用できるようにするプラグインです。クローン処理、シック仮想ディスクファイルのスペースリザベーション、およびスナップショットオフロードのコピーオフロードをサポートします。コピー処理をストレージにオフロードしても、完了までの時間が必ずしも短縮されるとは限りませんが、ネットワーク帯域幅の要件が軽減され、CPUサイクル、バッファ、キューなどのホストリソースがオフロードされます。VMware vSphere用のONTAP ツールを使用して、ESXiホストまたはサポートされている場合はvSphere Lifecycle Manager（VLCM）にプラグインをインストールできます。
 
 
 
+[[premium-software-options]]
 == Premiumソフトウェアオプション
 
 NetAppからは、次のプレミアム ソフトウェア製品が提供されています。これらはONTAP One ライセンスには含まれていないため、別途購入する必要があります。

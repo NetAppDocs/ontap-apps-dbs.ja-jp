@@ -18,6 +18,7 @@ SQL Serverのパフォーマンスは、CPUとコアの構成にさまざまな�
 
 
 
+[[hyper-threading]]
 == ハイパースレッディング
 
 ハイパースレッディングとは、同時マルチスレッド（SMT）の実装のことで、x86プロセッサで実行される計算の並列化を改善します。SMTはIntelプロセッサとAMDプロセッサの両方で使用できます。
@@ -28,6 +29,7 @@ SQL Serverのパフォーマンスは、CPUとコアの構成にさまざまな�
 
 
 
+[[cores-and-licensing]]
 == コアとライセンス
 
 SQL Serverのライセンスには2つのオプションがあります。1つ目はサーバ+クライアントアクセスライセンス（CAL）モデルと呼ばれ、2つ目はプロセッサごとのコアモデルです。SQL Serverで利用可能なすべての製品機能には、サーバ+ CAL戦略でアクセスできますが、ソケットあたりのCPUコア数はハードウェアで20に制限されています。ソケットあたり20個以上のCPUコアを搭載したサーバ用のSQL Server Enterprise Edition+CALがある場合でも、アプリケーションはそのインスタンスですべてのコアを一度に使用することはできません。
@@ -40,6 +42,7 @@ image:../media/mssql-hyperthreading.png["SQL Serverのログメッセージ"]
 
 
 
+[[cpu-affinity]]
 == CPUアフィニティ
 
 パフォーマンスの問題が発生しない限り、プロセッサアフィニティのデフォルトを変更する必要はありませんが、その内容と動作を理解する価値はあります。
@@ -56,6 +59,7 @@ SQL Serverは、オペレーティングシステムで使用可能なすべて�
 
 
 
+[[max-degree-of-parallelism-maxdop]]
 == 並列処理の最大次数(MAXDOP)
 
 デフォルトでは、プロセッサ単位のコアライセンスが選択されている場合、SQL Serverはクエリの実行中に使用可能なすべてのCPUを使用します。
@@ -67,6 +71,7 @@ TIP: * NetAppでは、データウェアハウスなどのDSSの場合、50か�
 
 
 
+[[max-worker-threads]]
 == ワーカースレッドの最大数
 
 最大ワーカースレッド数オプションは、多数のクライアントがSQL Serverに接続されている場合にパフォーマンスを最適化するのに役立ちます。
@@ -81,6 +86,7 @@ image:../media/mssql-max-worker-threads.png["ワーカースレッドの最大�
 
 
 
+[[configuring-max-worker-threads-using-sql-server-management-studio]]
 === SQL Server Management Studioを使用した最大ワーカースレッド数の設定。
 
 次に、T-SQLを使用してmax work threadsオプションを設定する例を示します。

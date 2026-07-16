@@ -32,6 +32,7 @@ rw,hard,nointr,bg,vers=[3|4],proto=tcp,rsize=65536,wsize=65536
 
 
 
+[[nfs-transfer-sizes]]
 == NFSテンソウサイス
 
 ONTAPでは、デフォルトでNFS I/Oサイズが64Kに制限されています。
@@ -59,6 +60,7 @@ rw,hard,nointr,bg,vers=[3|4],proto=tcp,rsize=262144,wsize=262144
 ....
 
 
+[[nfsv3-tcp-slot-tables]]
 == NFSv3 TCPスロットテーブル
 
 LinuxでNFSv3を使用する場合は、TCPスロットテーブルを適切に設定することが重要です。

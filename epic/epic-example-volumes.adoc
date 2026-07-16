@@ -16,6 +16,7 @@ NOTE: NVEライセンスがあり、オンボードまたは外部のキー管�
 
 
 
+[[autodelete-snapshots]]
 == Snapshotの自動削除
 
 Snapshotの自動削除は、次の手順で行います。 https://docs.netapp.com/us-en/ontap-cli-9141//volume-snapshot-autodelete-modify.html[]

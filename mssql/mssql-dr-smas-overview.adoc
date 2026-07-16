@@ -22,6 +22,7 @@ SQL Serverホストは、ファイバチャネル（FC）LUNまたはiSCSI LUN�
 
 
 
+[[architecture-of-snapmirror-active-sync-with-symmetric-activeactive]]
 == 対称アクティブ/アクティブ構成のSnapMirrorアクティブ同期アーキテクチャ
 
 image:../media/mssql-smas-architecture.png["SnapMirror Active Syncアーキテクチャ"]

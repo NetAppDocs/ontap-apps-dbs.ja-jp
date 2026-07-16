@@ -29,6 +29,7 @@ ONTAPを実行するNetAppストレージコントローラは、Windows Server�
 
 
 
+[[ontap-data-management]]
 == ONTAPデータ管理
 
 ONTAPは、NetAppストレージコントローラ上で実行される管理ソフトウェアです。NetAppストレージコントローラはノードと呼ばれ、プロセッサ、RAM、NVRAMを搭載したハードウェアデバイスです。ノードは、SATA、SAS、SSDのディスクドライブ、またはそれらのドライブの組み合わせに接続できます。
@@ -41,6 +42,7 @@ image:win_image1.png["Windows Server環境でのNetAppストレージの導入�
 
 
 
+[[storage-virtual-machines]]
 == Storage Virtual Machine
 
 ONTAP SVMは、1つ以上の論理インターフェイス（LIF）からLUNやNASネームスペースへのデータアクセスを提供する論理ストレージサーバです。したがって、SVMはストレージセグメント化の基本単位であり、ONTAPでセキュアマルチテナンシーを実現します。各SVMは、物理アグリゲートからプロビジョニングされた専用のストレージボリュームと、物理イーサネットネットワークまたはFCターゲットポートに割り当てられた論理インターフェイス（LIF）で構成されます。
@@ -51,6 +53,7 @@ image:win_image2.png["ONTAP Storage Virtual Machine、幅= 572、高さ= 443"]
 
 
 
+[[provisioning-netapp-storage-for-windows-server]]
 == Windows Server用のNetAppストレージのプロビジョニング
 
 ストレージは、SAN環境とNAS環境の両方でWindows Serverにプロビジョニングできます。SAN環境では、ストレージはNetApp上のLUNのディスクとしてブロックストレージとして提供されます。NAS環境では、ストレージはファイルストレージとしてNetAppボリューム上のCIFS/SMB共有として提供されます。これらのディスクと共有は、次のようにWindows Serverに適用できます。
@@ -64,6 +67,7 @@ image:win_image2.png["ONTAP Storage Virtual Machine、幅= 572、高さ= 443"]
 
 
 
+[[managing-netapp-storage]]
 == NetAppストレージの管理
 
 Windows Server 2016からNetAppストレージに接続、構成、および管理するには、次のいずれかの方法を使用します。
@@ -75,12 +79,14 @@ Windows Server 2016からNetAppストレージに接続、構成、および管�
 
 
 
+[[netapp-powershell-toolkit]]
 == NetApp PowerShellツールキット
 
 NetApp PowerShell Toolkit（PSTK）は、ONTAPをエンドツーエンドで自動化し、ストレージ管理を可能にするPowerShellモジュールです。ONTAPモジュールには2、000を超えるコマンドレットが含まれており、NetApp AFF、FAS、コモディティハードウェア、クラウドリソースの管理に役立ちます。
 
 
 
+[[things-to-remember]]
 === 覚えておくべきこと
 
 * NetAppでは、Windows Serverストレージスペースはサポートされていません。ストレージスペースはJBOD（単なるディスクの束）にのみ使用され、どのタイプのRAID（直接接続ストレージ[DAS]またはSAN）でも機能しません。
@@ -91,6 +97,7 @@ NetApp PowerShell Toolkit（PSTK）は、ONTAPをエンドツーエンドで自�
 
 
 
+[[further-reading]]
 === さらに読みます
 
 * NetApp PowerShell Toolkitの詳細については、 https://mysupport.netapp.com/site/tools/tool-eula/ontap-powershell-toolkit["NetApp Support Site"]。
@@ -99,6 +106,7 @@ NetApp PowerShell Toolkit（PSTK）は、ONTAPをエンドツーエンドで自�
 
 
 
+[[networking-best-practices]]
 == ネットワークのベストプラクティス
 
 イーサネットネットワークは、次のグループに大きく分けることができます。
@@ -113,6 +121,7 @@ NetApp PowerShell Toolkit（PSTK）は、ONTAPをエンドツーエンドで自�
 
 
 
+[[best-practices]]
 === ベストプラクティス
 
 * NetAppでは、ネットワークの分離とパフォーマンスを確保するために、上記の機能ごとに専用の物理ポートを用意することを推奨しています。

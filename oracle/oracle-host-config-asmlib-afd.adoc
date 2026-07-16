@@ -14,6 +14,7 @@ AFDとASMlibを使用するLinux OSに固有の設定トピック
 
 
 
+[[asmlib-block-sizes]]
 == ASMlibブロックサイズ
 
 ASMlibは、オプションのASM管理ライブラリおよび関連ユーティリティです。その主な価値は、LUNまたはNFSベースのファイルにASMリソースとして人間が判読可能なラベルを付けることです。
@@ -33,12 +34,14 @@ ASMlibにパッチを適用できない場合は、ASMlibを構成から削除�
 
 
 
+[[asm-filter-drive-afd-block-sizes]]
 == ASMフィルタドライブ（AFD）のブロックサイズ
 
 AFDは、ASMlibに代わるオプションのASM管理ライブラリです。ストレージの観点から見ると、ASMlibはASMlibに非常に似ていますが、Oracle以外のI/Oをブロックして、データが破損する可能性のあるユーザーまたはアプリケーションのエラーの可能性を減らすなどの追加機能が含まれています。
 
 
 
+[[device-block-sizes]]
 === デバイスのブロックサイズ
 
 ASMlibと同様に、AFDもLUNパラメータLogical Blocks Per Physical Block Exponent（LBPPBE）を読み取り、デフォルトでは論理ブロックサイズではなく物理ブロックサイズを使用します。
@@ -49,6 +52,7 @@ ASMデバイスがすでに512バイトのブロックデバイスとしてフ�
 
 
 
+[[multipath-transfer-sizes]]
 === マルチハステンソウサイス
 
 最近のLinuxカーネルの変更では、マルチパスデバイスに送信されるI/Oサイズ制限が適用されますが、AFDではこれらの制限が適用されません。その後I/Oが拒否され、LUNパスがオフラインになります。その結果、Oracle Gridのインストール、ASMの設定、データベースの作成ができなくなります。

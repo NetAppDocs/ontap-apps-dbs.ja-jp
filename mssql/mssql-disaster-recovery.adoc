@@ -20,12 +20,14 @@ SQL Server Always-On可用性グループレプリケーション機能は優れ
 
 
 
+[[snapmirror]]
 == SnapMirror
 
 SnapMirrorテクノロジーは、LANおよびWAN経由でデータを複製するための高速で柔軟なエンタープライズソリューションを提供します。最初のミラーリングの作成後は、変更されたデータブロックのみがデスティネーションに転送されるため、必要なネットワーク帯域幅が大幅に削減されますSnapMirror。同期モードまたは非同期モードのいずれかで設定できます。
 
 
 
+[[netapp-metrocluster-and-snapmirror-active-sync]]
 == NetApp MetroClusterとSnapMirrorのアクティブな同期
 
 多くのお客様にとって、DRに必要なのはデータのリモートコピーだけではなく、そのデータを迅速に活用できることです。NetAppは、このニーズに対応する2つのテクノロジを提供します。MetroClusterとSnapMirrorのアクティブ同期です。
@@ -36,6 +38,7 @@ SnapMirrorアクティブ同期はSnapMirror Synchronousに基づいています
 
 
 
+[[sm-as-and-mcc-comparison]]
 == SM-ASとMCCの比較
 
 SM-ASとMetroClusterは全体的な機能が似ていますが、RPO=0レプリケーションの実装方法と管理方法には重要な違いがあります。SnapMirrorの非同期および同期はDR計画の一部としても使用できますが、HAレプリケーションテクノロジとしては設計されていません。

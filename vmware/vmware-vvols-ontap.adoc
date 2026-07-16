@@ -20,6 +20,7 @@ ONTAPツールには、vCenter UI拡張機能、REST APIサービス、VMware Si
 
 
 
+[[products-and-documentation]]
 == 製品およびドキュメント
 
 ONTAP Oneライセンスには、ONTAPシステムでVVOLを使用するために必要なすべてのライセンスが含まれています。追加で必要なのは、VASA Providerとして機能する無料のONTAP tools OVAだけです。VVOL環境では、VASA Providerソフトウェアによってアレイの機能がポリシーベースの属性に変換され、VASA APIを介して利用できるようになります。vSphere管理者は、機能がバックグラウンドでどのように管理されているかを知る必要はありません。これにより、割り当てられたストレージ容量がポリシーに基づいて動的に消費されるため、従来のデータストアを手動で作成したり、個 々 のストレージ消費率を管理したりする必要がなくなります。要するに、VVOLは、エンタープライズストレージの管理に伴う複雑さをすべて解消し、vSphere管理者から抽象化されて仮想化レイヤに注力できるようにします。
@@ -30,12 +31,14 @@ VMware Cloud FoundationとvSANを使用しているお客様の場合、vVolは�
 
 
 
+[[ontap-tools-vasa-provider-architecture-when-using-iscsi-or-fcp-with-unified-systems]]
 === ユニファイドシステムでiSCSIまたはFCPを使用する場合のONTAP tools VASA Providerのアーキテクチャ
 
 image:vvols-image5.png["ONTAP tools VASA Providerのアーキテクチャ、240"]
 
 
 
+[[product-installation]]
 === 製品のインストール
 
 新規インストールの場合は、仮想アプライアンスをvSphere環境に導入します。導入が完了したら、Manager UIにログインするか、REST APIを使用して、導入環境、vCenterのオンボード（プラグインがvCenterに登録されます）、ストレージシステムのオンボード、vCenterとのストレージシステムの関連付けを行うことができます。ONTAP tools Manager UIでストレージシステムをオンボーディングし、vCenterとクラスタを関連付ける必要があるのは、専用のSVMでセキュアマルチテナンシーを使用する場合だけです。そうでない場合は、ONTAP tools vCenter UI拡張機能で目的のストレージクラスタをオンボーディングするか、REST APIを使用してオンボーディングできます。
@@ -53,6 +56,7 @@ ONTAP toolsのインプレースアップグレードは、NetAppサポートサ
 
 
 
+[[product-documentation]]
 === 製品ドキュメント
 
 ONTAP ツールの導入に役立つ次のドキュメントを参照してください。
@@ -90,12 +94,14 @@ https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["ONTAP To
 
 
 
+[[vasa-provider-dashboard]]
 === VASA Providerダッシュボード
 
 VASA Providerには、個 々 のvVol VMのパフォーマンスと容量の情報が表示されたダッシュボードがあります。レイテンシ、IOPS、スループットなど、VVOLファイルおよびLUNに関する情報はONTAPから直接取得されます。現在サポートされているすべてのバージョンのONTAP 9を使用すると、デフォルトで有効になります。初期設定後、ダッシュボードにデータが読み込まれるまでに最大30分かかることがあります。
 
 
 
+[[other-best-practices]]
 == その他のベストプラクティス
 
 vSphereでONTAP vVolを使用するのは簡単で、公開されているvSphereのメソッドに従います（使用しているバージョンのESXiに対応するVMwareのドキュメントの「vSphere Storage」の「Working with Virtual Volumes」を参照してください）。ここでは、ONTAP と併せて考慮すべき追加のプラクティスをいくつか紹介します。

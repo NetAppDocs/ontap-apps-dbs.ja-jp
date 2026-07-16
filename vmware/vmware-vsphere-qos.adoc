@@ -18,6 +18,7 @@ summary: SnapCenter では、複数のジョブに適用可能なバックアッ
 
 
 
+[[ontap-qos-policy-support]]
 == ONTAP QoSポリシーのサポート
 
 ONTAPを実行しているシステムでは、ストレージQoS機能を使用して、ファイル、LUN、ボリューム、SVM全体などのさまざまなストレージオブジェクトのスループットをMBpsやIOPS（1秒あたりのI/O数）で制限できます。
@@ -42,6 +43,7 @@ VMFS と RDM 、 ONTAP SVM （ SVM として表示）、 LUN パス、シリア�
 
 
 
+[[non-vvols-nfs-datastores]]
 == VVOL以外のNFSデータストア
 
 ONTAP QoSポリシーは、データストア全体またはデータストア内の個 々 のVMDKファイルに適用できます。ただし、従来の（VVOL以外の）NFSデータストア上のすべてのVMが、特定のホストの共通のI/Oキューを共有していることを理解しておくことが重要です。ONTAP QoSポリシーで調整されているVMがある場合、実際にはそのホストでは、そのデータストアのすべてのI/Oが調整されているように見えます。
@@ -72,12 +74,14 @@ FlexGroup データストアでは、 ONTAP ツールを VMware vSphere 9.8 以�
 
 
 
+[[vmfs-datastores]]
 == VMFSテタストア
 
 ONTAP LUNを使用すると、LUNを含むFlexVolボリュームまたは個 々 のLUNにQoSポリシーを適用できますが、ONTAPではVMFSファイルシステムが認識されないため、個 々 のVMDKファイルには適用できません。
 
 
 
+[[vvols-datastores]]
 == vVolテエタストア
 
 最小/最大QoSは、Storage Policy-Based ManagementとVVOLを使用することで、他のVMやVMDKに影響を与えることなく、個 々 のVMやVMDKに簡単に設定できます。
@@ -89,6 +93,7 @@ NOTE: vVolsでは、ONTAP の VASA Provider として機能する ONTAP tools fo
 
 
 
+[[ontap-qos-and-vmware-sioc]]
 == ONTAP の QoS と VMware の SIOC
 
 ONTAP QoSとVMware vSphere Storage I/O Control（SIOC）は、vSphere管理者とストレージ管理者が連携して使用し、ONTAPを実行するシステムでホストされているvSphere VMのパフォーマンスを管理できる、相互に補完するテクノロジです。各ツールには、次の表に示すようにそれぞれの長所があります。VMware vCenter と ONTAP ではスコープが異なるため、一部のオブジェクトは一方のシステムで認識および管理でき、もう一方のシステムではできません。
@@ -128,6 +133,7 @@ ONTAP QoSとVMware vSphere Storage I/O Control（SIOC）は、vSphere管理者�
 |===
 
 
+[[vmware-storage-distributed-resource-scheduler]]
 == VMware Storage Distributed Resource Scheduler の略
 
 VMware Storage Distributed Resource Scheduler （ SDRS ）は、現在の I/O レイテンシとスペース使用量に基づいて VM をストレージに配置する vSphere の機能です。その後、 VM や VMDK の配置先として最適なデータストアをデータストアクラスタ内から選択し、システムを停止することなくデータストアクラスタ（ポッドとも呼ばれます）内のデータストア間で VM や VMDK を移動します。データストアクラスタは、類似するデータストアをvSphere管理者から見た単一の消費単位に集約したものです。
@@ -148,6 +154,7 @@ SDRS に関するその他の ONTAP のベストプラクティスは、次の�
 
 
 
+[[storage-policy-based-management-and-vvols]]
 == ストレージポリシーベースの管理とVVOL
 
 VMware vSphere APIs for Storage Awareness（VASA）を使用すると、ストレージ管理者は適切に定義された機能を使用してデータストアを簡単に設定でき、VM管理者は必要なときにいつでもそれらのデータストアを使用してVMをプロビジョニングできます。このアプローチを見て、仮想化ストレージの運用を合理化し、単純な作業の多くを回避する方法を確認することをお勧めします。

@@ -1457,106 +1457,11 @@ REDO ログ</block>
   <block id="3dee93bd9bc9b8b50dcdd2066a86009f" category="list-text">データベースの起動</block>
   <block id="620515885465a26daea6cc6441403e34" category="paragraph">このアプローチの主な要件は、リモートサイトでOSを実行することです。Oracleバイナリを使用して事前に設定する必要があります。つまり、Oracleのパッチ適用などのタスクをプライマリサイトとスタンバイサイトで実行する必要があります。また、災害が発生した場合は、Oracleバイナリをリモートサイトにミラーリングしてマウントすることもできます。</block>
   <block id="edb5332feef69c0aa60ea10ed5d31a9f" category="list-text">データベースを手動で起動するか、データベースを自動的に起動するように仮想マシンを設定します。たとえば、ESXクラスタが複数のサイトにまたがっている場合があります。災害が発生した場合は、スイッチオーバー後にディザスタリカバリサイトで仮想マシンをオンラインにすることができます。災害発生時に仮想データベースサーバをホストするデータストアが使用されていないかぎり、<block ref="3b93661df04b698b1340ff2da3238d16" prefix=" " category="inline-code"></block> 関連付けられているボリューム。</block>
-  <block id="64bba30b717cb45555458da4fed880a1" category="paragraph">ほぼすべてのアプリケーションでデータレプリケーションが必要です。</block>
-  <block id="25fb1fa02f326334533a22c105ad3e69" category="paragraph">最も基本的なレベルでは、レプリケーションとは、オフサイトに保管されたテープ上のコピー、またはスタンバイロケーションへのアプリケーションレベルのレプリケーションを意味します。ディザスタリカバリとは、サービスが壊滅的に失われた場合に、これらのレプリカコピーを使用してサービスをオンラインにすることです。</block>
-  <block id="eab6cb3a1168ef2311865e6155b8272c" category="paragraph">ONTAPには、ストレージアレイ内でネイティブにさまざまな要件に対応するための複数のレプリケーションオプションが用意されており、あらゆるニーズに対応します。これらのオプションには、同じプラットフォームでディザスタリカバリと高可用性の両方を実現する、完全に自動化された同期解決策まで、リモートサイトへのシンプルなバックアップレプリケーションが含まれます。</block>
-  <block id="32df0c1cabf839652741a56bdaac7def" category="paragraph">アプリケーションに適用される主要なONTAPレプリケーションテクノロジは、NetAppのSnapMirrorテクノロジとNetApp SyncMirrorテクノロジです。これらはアドオン製品ではなく、ONTAPに完全に統合され、ライセンスキーを追加するだけでアクティブ化されます。また、ストレージレベルのレプリケーションだけが選択肢ではありません。Oracle DataGuardなどのアプリケーションレベルのレプリケーションを、ONTAPに基づくデータ保護戦略に統合することもできます。</block>
-  <block id="a2259fa074bae962e46ca7fc7aa31be1" category="paragraph">適切な選択は、特定のレプリケーション、リカバリ、保持の要件によって異なります。</block>
-  <block id="0d3b37ff5855bf299f3c4a154373c1e2" category="section-title">ONTAP SnapMirror</block>
-  <block id="296e89e943f5160d338484b3b705a44e" category="paragraph">SnapMirrorは、NetAppの非同期レプリケーション解決策です。データベースやその関連アプリケーションなど、複雑で動的な大規模データセットの保護に最適です。主な値は次のとおりです。</block>
-  <block id="d9f36dae2818ace926c4259271530724" category="list-text">*管理性。* SnapMirrorは、ストレージソフトウェアに標準で組み込まれているため、設定と管理が容易です。アドオン製品は必要ありません。レプリケーション関係は数分で確立でき、ストレージシステム上で直接管理できます。</block>
-  <block id="8f761eff026903aa0140319f597d1fb0" category="list-text">*シンプルさ。*レプリケーションはボリュームに基づいています。FlexVolボリュームはLUNまたはファイルのコンテナであり、単一の整合グループとしてレプリケートされます。</block>
-  <block id="8b737d6a9db3de6436966db508cb51d4" category="list-text">*効率性。*最初のレプリケーション関係が確立されると、変更のみがレプリケートされます。さらに、重複排除や圧縮などの効率化機能が維持されるため、リモートサイトに転送するデータ量がさらに削減されます。</block>
-  <block id="0783dadb67ff77ed26bbfc5d80fa0cbd" category="list-text">*柔軟性。*ミラーを一時的に切断して災害復旧手順をテストできるため、完全な再ミラーリングを必要とせずにミラーリングを簡単に再確立できます。ミラーを同期状態に戻すには、変更されたデータのみを適用する必要があります。ミラーリングを反転することで、災害が終了して元のサイトが稼働状態に戻ったあとに迅速に再同期することもできます。最後に、レプリケートされたデータの読み取り/書き込みクローンをテストと開発に使用できます。</block>
-  <block id="8a00f09d8937e890f2cfb4d7acf72733" category="paragraph">ONTAPにはさまざまなレプリケーションテクノロジが用意されていますが、最も柔軟性に優れたのは、ボリューム間の非同期ミラーリングオプションであるSnapMirrorです。</block>
-  <block id="80c8fae3d0b5dd100cc984d9ba3eced7" category="paragraph">前述したように、FlexVolボリュームは、SnapshotベースのバックアップとSnapRestoreベースのリカバリの基本的な管理単位です。FlexVolボリュームは、SnapMirrorベースのレプリケーションの基本単位でもあります。最初に、ソースボリュームからデスティネーションボリュームへのベースラインミラーを確立します。このミラー関係を初期化すると、以降のすべての処理は変更されたデータのみのレプリケーションに基づいて行われます。</block>
-  <block id="c1020b1755f65f23643158ce6a4d22cc" category="paragraph">リカバリの観点から見ると、SnapMirrorの主な価値は次のとおりです。</block>
-  <block id="50bde20b37cd4d57fbff2b95f2f8ec97" category="list-text">SnapMirrorの操作は理解しやすく、簡単に自動化できます。</block>
-  <block id="66162be45733f65fee4abb22e989eb78" category="list-text">SnapMirrorレプリカを単純に更新するには、差分の変更のみをレプリケートする必要があるため、帯域幅の需要が減り、更新頻度が向上します。</block>
-  <block id="a3b4fbe416387a4991ccaa8b325a68be" category="list-text">SnapMirrorは非常にきめ細かな機能です。シンプルなボリューム間の関係に基づいているため、独立して管理される数百個のレプリカやレプリケーション間隔を作成できます。レプリケーションを万能である必要はありません。</block>
-  <block id="4e3785883ef3ccad9938d7e35e493057" category="list-text">変更だけに基づいて関係を更新する機能を維持しながら、ミラーリングの方向を簡単に反転できます。これにより、電源障害などの災害後にプライマリサイトが復旧したあとに、迅速なフェイルバック機能が提供されます。変更のみをソースに同期化する必要があります。</block>
-  <block id="8b8325381cf528eff12c1e678a3112f9" category="list-text">ミラーは簡単に破損し、効率的に再同期することで、ディザスタリカバリ手順のリハーサルを行うことができます。</block>
-  <block id="b1f45b7d95bfc815351fb649fa94b671" category="list-text">SnapMirrorはフルブロックレベルのレプリケーションモードで動作し、ボリューム内のデータだけでなくSnapshotもレプリケートします。この機能は、ディザスタリカバリサイトにデータのコピーと完全なバックアップセットの両方を提供します。</block>
-  <block id="ffafd9ae31dee51209961eb2453ac806" category="paragraph">SnapMirrorはバージョンに依存しないモードで動作するため、特定のSnapshotをレプリケートでき、プライマリサイトとセカンダリサイトで異なる保持期間を設定できます。</block>
-  <block id="974658d7ac018cb945e78365b0a760fb" category="section-title">SnapMirror Synchronous</block>
-  <block id="ffbf9d0ce29a631b6eae8b22c41ec95e" category="paragraph">SnapMirror Synchronous（SM-S）は、RPO=0の同期レプリケーションを提供するSnapMirrorの機能拡張です。同期ミラーリングが必要なデータの一部しかないストレージアーキテクチャでよく使用されます。</block>
-  <block id="e8a45c4c0391895df78421904703c933" category="paragraph">SM-Sは、SyncとStrictSyncの2つのわずかに異なるモードで動作できます。</block>
-  <block id="15a4e16195fb9d30c5df0e11df5c2166" category="paragraph">同期モードでは、確認される前に変更がレプリケートされます。これにより、レプリケーションが稼働しているかぎり、RPOはゼロになります。変更を複製できない場合、SM-Sは同期モードを終了し、操作を続行できます。これにより、通常の状況ではRPO=0になりますが、レプリケーション先が使用できない場合にデータプロセスが完全に停止することはありません。</block>
-  <block id="115455025d4664c0dd6deaaf3c1fc93c" category="paragraph">StrictSyncはRPO = 0を保証します。変更のレプリケートに失敗するとI/Oエラーが発生し、通常はアプリケーションがシャットダウンします。</block>
-  <block id="1b1ea0d1ad6e5cfb06253a14fcdcfe71" category="inline-link">TR-4733</block>
-  <block id="9ccd61d6efc86cc37743fdff385832e8" category="paragraph">SM-Sの詳細については、を参照してください。<block ref="4459b84726c651a8047a6486e87e48fb" category="inline-link-rx"></block> ONTAPの公式ドキュメントを参照してください。ONTAPの新しいバージョンでは、機能が継続的に追加されています。</block>
   <block id="6165c4352e1504dbaeef34d0cc50c187" category="section-title">整合グループ</block>
-  <block id="0651e813e385dbd62a9bca9baee23c6c" category="paragraph">ONTAPでは整合グループSnapshotを作成できます。9.13.1以降では、ONTAPでボリュームのグループを整合グループとしてレプリケートできます（ONTAP用語のボリュームはLUNではなく、1つ以上のファイルまたはLUNで構成される管理コンテナです）。</block>
-  <block id="455c7758003d6ebd974e8858f5ef1d7d" category="paragraph">その結果、複数ボリュームのデータセットをレプリケートして、すべてのボリュームの整合性を確保できます。特に、アプリケーションやデータベースのリカバリを追加することなく、ミラーを解除してDR処理を実行できます。</block>
-  <block id="c44a2da164b7b770fce6338a987670ee" category="section-title">MetroClusterとSyncMirror</block>
-  <block id="b1a1cfbf3988d8abdfdedaabc1742ae9" category="paragraph">MetroClusterは、大規模なミッションクリティカルなワークロードを対象とした同期レプリケーション解決策でもあります。レプリケーションはSyncMirrorに基づいています。最も単純なレイヤでは、SyncMirrorは2つの異なる場所にRAID保護データの完全なセットを作成します。データセンター内の隣接する部屋に配置することも、数キロメートル離れた場所に配置することもできます。</block>
-  <block id="89b8adf28db7abb0febecafdca5871ad" category="paragraph">SyncMirrorはONTAPと完全に統合されており、RAIDレベルのすぐ上で動作します。そのため、Snapshotコピー、SnapRestore、NetApp FlexCloneなど、ONTAPの通常の機能はすべてシームレスに動作します。これはONTAPであり、同期データミラーリングの追加レイヤが含まれているだけです。</block>
-  <block id="75c677fa68f5d15c17efbf6fd1fe1765" category="paragraph">SyncMirrorデータを管理するONTAPコントローラの集まりをNetApp MetroCluster構成と呼びます。MetroClusterの主な目的は、一般的な障害やディザスタリカバリのさまざまな障害シナリオにおいて、同期ミラーリングされたデータへの高可用性アクセスを提供することです。</block>
-  <block id="af845652f0234e1f71bc37e241ab63dc" category="paragraph">MetroClusterとSyncMirrorを使用したデータ保護の主な価値は次のとおりです。</block>
-  <block id="9ab80c5e33e343c3415c21be433c4447" category="list-text">通常運用時には、SyncMirrorは複数のサイト間の同期ミラーリングを保証します。書き込み処理は、両方のサイトの不揮発性メディアに存在するまで確認応答されません。</block>
-  <block id="680ccf94624c9f922ed236c8cc0c1af2" category="list-text">サイト間の接続に障害が発生すると、SyncMirrorは自動的に非同期モードに切り替わり、接続が回復するまでプライマリサイトがデータを提供し続けます。リストア時には、プライマリサイトに蓄積された変更を効率的に更新することで、迅速な再同期を実現します。完全な再初期化は必要ありません。</block>
-  <block id="c18ec55908c635b68abe8c6edbf6476e" category="paragraph">SnapMirrorは、SyncMirrorベースのシステムとも完全に互換性があります。たとえば、プライマリデータベースが2つの地理的なサイトに分散したMetroClusterクラスタで実行されているとします。このデータベースは、長期アーカイブやDevOps環境でのクローン作成のために、バックアップを第3のサイトにレプリケートすることもできます。</block>
-  <block id="3a8111f0b903472ec78531619bf984f6" category="paragraph">Oracleデータベースのレプリケーション手順は、基本的にバックアップ手順と同じです。主な要件は、リカバリ可能なバックアップを構成するSnapshotをリモートストレージシステムにレプリケートする必要があることです。</block>
-  <block id="c62b3abab4fdbaf8f0a84e8c3559b5fd" category="paragraph">ローカルデータ保護に関するドキュメントで前述したように、ホットバックアッププロセスを使用するか、Snapshotで最適化されたバックアップを利用して、リカバリ可能なバックアップを作成できます。</block>
-  <block id="3d8f8c6a5c90bcd85a22fbd17390a864" category="inline-link-macro">データレイアウト</block>
-  <block id="f3f227cc5c07a040d61c36679053a58a" category="paragraph">データファイルが専用ボリュームにカプセル化されているとしたら、次の問題はREDOログ、アーカイブログ、制御ファイルをどのように管理するかです。最も簡単なアプローチは、これらすべてのデータタイプを1つのボリュームに配置することです。その利点は、レプリケートされたREDOログ、アーカイブログ、制御ファイルが完全に同期されることです。不完全リカバリやバックアップ制御ファイルを使用する必要はありませんが、他のリカバリシナリオでバックアップ制御ファイルを作成するスクリプトも作成することを推奨します。</block>
-  <block id="927992cbeccc8211e382c97e81514ef9" category="section-title">2ボリュームのレイアウト</block>
-  <block id="fe1cf96940a710dc95fd30bbb7533b52" category="paragraph">最も単純なレイアウトを次の図に示します。</block>
-  <block id="57f1db4bdf2ce49a98f375d8393f02bf" category="paragraph">これが最も一般的なアプローチです。DBAから見ると、Redoログとアーカイブログのすべてのコピーを同じボリュームに配置するのは珍しいことです。ただし、ファイルとLUNがすべて基盤となる同じドライブセットに配置されている場合、分離によって保護が強化されるわけではありません。</block>
-  <block id="bc46e4831ef5654d084e456c4c544a42" category="section-title">3ボリュームのレイアウト</block>
-  <block id="f6e969769d9d166122489505d676769b" category="paragraph">データ保護に関する懸念や、RedoログのI/Oをコントローラ間で分散する必要があるために、Redoログを分離する必要がある場合があります。その場合、次の図に示す3つのボリュームからなるレイアウトがレプリケーションに使用されますが、不完全リカバリを実行したり、バックアップ制御ファイルに依存したりする必要はありません。</block>
-  <block id="4957c2feaa2cb72d80a0ab65228ad43f" category="paragraph">これにより、ソース上の独立したスピンドルとコントローラのセットにまたがるREDOログと制御ファイルのストライピングが可能になります。ただし、アーカイブログ、制御ファイルおよびREDOログのセットは、アーカイブログと同期された状態でレプリケートできます。</block>
-  <block id="39128da64bc55500b4b11391aa54a011" category="paragraph">このモデルでは、RedoログBボリュームはレプリケートされません。</block>
-  <block id="c0ce858e99375deac8274c96b7e5d0ee" category="section-title">ディザスタリカバリの手順—ホットバックアップ</block>
-  <block id="6993729228512b7e23e3ff3ec9099f33" category="paragraph">ホットバックアップを使用してディザスタリカバリを実行するには、次の基本的な手順を使用します。</block>
   <block id="ee68e5b99222bbc29a480fcb0d1d6ee2" category="section-title">前提条件</block>
-  <block id="41bde9c586a860264c425700c48bd375" category="list-text">Oracleバイナリはディザスタリカバリサーバにインストールされます。</block>
-  <block id="cebf7cec81152da2cadffd580d81937f" category="list-text">データベースインスタンスは、<block ref="2c0b0433aa1c96a2be6f40d9e71bc6af" prefix=" " category="inline-code"></block>。</block>
-  <block id="17f8e5eda67237f2ca94c7dcce3e4022" category="list-text">。<block ref="76a2173be6393254e72ffa4d6df1030a" prefix=" " category="inline-code"></block> および<block ref="6b2f852f7f63f2e5d4be597bbca97bb6" prefix=" " category="inline-code"></block> または<block ref="1737629d60b511cf45957529a8f046e2" prefix=" " category="inline-code"></block> インスタンスの場合、<block ref="45c7302d9c2e8745b3a2bff0f992b6df" prefix=" " category="inline-code"></block> ディレクトリ。。</block>
   <block id="645a84975202e30700b572b49a5ee29d" category="section-title">ディザスタリカバリ</block>
-  <block id="25d18766964d7515e1f5acd893094f6e" category="list-text">データファイルと共通ログボリュームのミラーを解除します。</block>
-  <block id="8fc655e4752d521563db3bfa138ba62e" category="list-text">データファイルボリュームを、データファイルの最新のホットバックアップSnapshotにリストアします。</block>
-  <block id="68a9c75816a16f6d4f7572fe287961bf" category="list-text">SANを使用する場合は、ボリュームグループをアクティブ化するか、ファイルシステムをマウントします。</block>
   <block id="312007510a0f0dc7878d4ed6a7a01554" category="list-text">アーカイブログを目的のポイントまで再生します。</block>
   <block id="e54b793d8bfa83bbb1bd965992c3474e" category="list-text">完全なリカバリが必要な場合は、現在のREDOログを再生します。</block>
-  <block id="72e5734d53581f86093de5c97d8a3a24" category="paragraph">NFSを使用すると、データファイルとログファイル用のNFSファイルシステムをディザスタリカバリサーバにいつでもマウントできるため、手順が大幅に簡易化されます。ミラーが切断されると読み取り/書き込みになります。</block>
-  <block id="de4735bc5bbfdcae3d690313c739ad67" category="section-title">ディザスタリカバリの手順—スナップショットに最適化されたバックアップ</block>
-  <block id="6b2b8ef11e5ded8a083372ba49d488d2" category="paragraph">スナップショット用に最適化されたバックアップからのリカバリは、ホットバックアップリカバリ手順とほぼ同じですが、次の点が異なります。</block>
-  <block id="af1e49e7bc2b25ce36bd93df09433fb4" category="list-text">データファイルボリュームを、現在のログボリュームレプリカの前に作成されたSnapshotにリストアします。</block>
-  <block id="5e09669c98226c5d3a748f7e0f0333ad" category="paragraph">これらの違いにより、データベースがホットバックアップモードのときにソースでSnapshotが正しく作成されたことを確認する必要がないため、全体的なリカバリ手順が簡易化されます。ディザスタリカバリ手順は、ディザスタリカバリサイトのSnapshotのタイムスタンプに基づいています。スナップショット作成時のデータベースの状態は重要ではありません。</block>
-  <block id="81d6beef7eaf28bbce692d4b59888f3e" category="section-title">ホットバックアップSnapshotによるディザスタリカバリ</block>
-  <block id="dc711b77f0d6a9c9ccf88b424509440a" category="paragraph">これは、ホットバックアップSnapshotのレプリケーションに基づくディザスタリカバリ戦略の一例です。また、シンプルで拡張性に優れたローカルバックアップ戦略の一例としても機能します。</block>
-  <block id="edaef18e1c956b9284405fd664c4ca4a" category="paragraph">この例のデータベースは、基本的な2ボリュームアーキテクチャに配置されています。<block ref="f006bf17b06c884c47190c4225d3215a" prefix=" " category="inline-code"></block> データファイル、および<block ref="894db1fc1592356880976f1b92c3e6a2" prefix=" " category="inline-code"></block> は、REDOログ、アーカイブログ、および制御ファイルの組み合わせに使用されます。</block>
-  <block id="fc0e7b6cd7cd15929987b1429d1c3a7e" category="paragraph">2つのスケジュールが必要です。1つは夜間のデータファイルバックアップ用、もう1つはログファイルバックアップ用です。これらはそれぞれ深夜と15分と呼ばれます。</block>
-  <block id="44c0956347a70c78d2124c1041321049" category="paragraph">これらのスケジュールは、Snapshotポリシー内で使用されます。<block ref="44dc83cda2d6b3ce99cc25803e824061" prefix=" " category="inline-code"></block> および<block ref="9b055600529d69c4ae0d2a9408dc7aa3" prefix=" " category="inline-code"></block>を参照してください。</block>
-  <block id="180e86b8e3c5049779c98c2c1006bb15" category="paragraph">最後に、これらのSnapshotポリシーがボリュームに適用されます。</block>
-  <block id="2887f2c14c7efbc97d53ac2f914c5657" category="paragraph">ボリュームのバックアップスケジュールを定義します。データファイルのSnapshotは午前0時に作成され、60日間保持されます。ログボリュームには、15分間隔で作成された72個のSnapshotが含まれています。これにより、最大で18時間がカバーされます。</block>
-  <block id="e1e5ef0e7100311d950b4ffebe040670" category="paragraph">次に、データファイルのSnapshotの作成時にデータベースがホットバックアップモードになっていることを確認します。そのためには、指定したSIDでバックアップモードを開始および停止するいくつかの基本的な引数を受け入れる小さなスクリプトを使用します。</block>
-  <block id="683cdd7abd993faf3ace355cd6870b6f" category="paragraph">この手順では、午前0時のSnapshotを囲む4分間の間に、データベースがホットバックアップモードになります。</block>
-  <block id="ccff7eb3ad0059a184886709c87f4889" category="paragraph">ディザスタリカバリサイトへのレプリケーションは次のように設定されます。</block>
-  <block id="42d3752a745fb0cdae528f6cc425b569" category="paragraph">ログボリュームのデスティネーションは15分ごとに更新されます。これにより、RPOは約15分になります。正確な更新間隔は、更新中に転送する必要があるデータの合計量によって少し異なります。</block>
-  <block id="e272424001d72919ad498e0e9d3c2cc4" category="paragraph">データファイルのボリュームデスティネーションは6時間ごとに更新されます。これはRPOやRTOには影響しません。ディザスタリカバリが必要な場合は、まずデータファイルボリュームをホットバックアップSnapshotにリストアします。更新間隔を短くする目的は、このボリュームの転送速度をスムーズにすることです。更新が1日に1回スケジュールされている場合は、その日に蓄積されたすべての変更を一度に転送する必要があります。更新頻度が高くなると、変更は1日のうちに徐 々 にレプリケートされます。</block>
-  <block id="ce176ff569d716c1fa73d0754aba684b" category="paragraph">災害が発生した場合は、最初に両方のボリュームのミラーを解除します。</block>
-  <block id="4b9cdb6e2096c0828aeccd2ee5eecf42" category="paragraph">これで'レプリカは読み取り/書き込み可能になります次に、ログボリュームのタイムスタンプを確認します。</block>
-  <block id="b4d461e48f5be5d08f677045d11e8200" category="paragraph">ログボリュームの最新のコピーは3月14日13：30：00です。</block>
-  <block id="96f75a4b63f4377efdf64d571d71caec" category="paragraph">次に、ログボリュームの状態の直前に作成されたホットバックアップSnapshotを特定します。これは、ログ再生プロセスでは、すべてのアーカイブログがホットバックアップモードで作成される必要があるためです。したがって、ログボリュームレプリカはホットバックアップイメージよりも古いものである必要があります。そうしないと、必要なログが含まれません。</block>
-  <block id="d358e4eb10a2f4e0b591e16941d7782c" category="paragraph">最後に作成されたSnapshotは<block ref="c001e27abf0e66d13790bb8a7e00da54" prefix=" " category="inline-code"></block>。データファイルの最新のホットバックアップイメージで、次のようにリストアされます。</block>
-  <block id="d2037035a976c9be71cf6f372300c8c3" category="paragraph">この段階で、データベースをリカバリする準備が整いました。SAN環境の場合は、次の手順として、簡単に自動化できるボリュームグループのアクティブ化とファイルシステムのマウントを行います。この例ではNFSを使用しているため、ファイルシステムはすでにマウントされており、読み取り/書き込み可能になっています。ミラーが破損した瞬間にマウントやアクティブ化を行う必要はありません。</block>
-  <block id="2edce22eade45b42bc6b2665057fa082" category="paragraph">これで、データベースを任意の時点にリカバリすることも、レプリケートされたREDOログのコピーに基づいてデータベースを完全にリカバリすることもできます。この例は、アーカイブログ、制御ファイル、およびREDOログを組み合わせたボリュームの値を示しています。バックアップ制御ファイルやリセットログファイルに依存する必要がないため、リカバリプロセスが大幅に簡易化されます。</block>
-  <block id="51f74a82c7125b3b288755b6668091b1" category="section-title">Snapshotに最適化されたバックアップによるディザスタリカバリ</block>
-  <block id="3680a4757ddad43934237ab6a0ca955c" category="paragraph">Snapshotで最適化されたバックアップを使用したディザスタリカバリ手順は、ホットバックアップディザスタリカバリ手順とほぼ同じです。ホットバックアップSnapshot手順と同様に、ディザスタリカバリ用にバックアップをレプリケートするローカルバックアップアーキテクチャの拡張機能でもあります。次の例は、詳細な設定とリカバリ手順を示しています。この例では、ホットバックアップとSnapshotで最適化されたバックアップの主な違いも示しています。</block>
-  <block id="330dadae5e2585726f41ed1f90e88f9f" category="paragraph">この例のデータベースは、基本的な2ボリュームアーキテクチャに配置されています。<block ref="f006bf17b06c884c47190c4225d3215a" prefix=" " category="inline-code"></block> データファイルが格納されています。<block ref="894db1fc1592356880976f1b92c3e6a2" prefix=" " category="inline-code"></block> は、REDOログ、アーカイブログ、および制御ファイルの組み合わせに使用されます。</block>
-  <block id="1669f47e046ce7e069e9d143f42e025d" category="paragraph">2つのスケジュールが必要です。1つは夜間のデータファイルバックアップ用、もう1つはログファイルバックアップ用です。これらはそれぞれ深夜と15分と呼ばれます。</block>
-  <block id="ef4adcab3e9bd572d0670f9f2073c311" category="paragraph">これにより、ボリュームの最終的なバックアップスケジュールが制御されます。Snapshotは午前0時に作成され、60日間保持されます。ログボリュームには、15分間隔で作成された72個のSnapshotが含まれており、合計で18時間になります。</block>
-  <block id="f9d5149b630a43ff5996adc26c6e1f08" category="paragraph">ログボリュームのデスティネーションは15分ごとに更新されます。これにより、RPOは約15分になります。正確な更新間隔は、更新中に転送する必要があるデータの合計量によって多少異なります。</block>
-  <block id="992398ebd9e9f825f0aa4415519abdba" category="paragraph">データファイルのボリュームデスティネーションは6時間ごとに更新されます。これはRPOやRTOには影響しません。ディザスタリカバリが必要な場合は、まずデータファイルボリュームをホットバックアップSnapshotにリストアする必要があります。更新間隔を短くする目的は、このボリュームの転送速度をスムーズにすることです。更新が1日に1回スケジュールされている場合は、その日に蓄積されたすべての変更を一度に転送する必要があります。更新頻度が高くなると、変更は1日のうちに徐 々 にレプリケートされます。</block>
-  <block id="9e85b8590ac2f9ff5ebc8d1def51ae82" category="paragraph">災害が発生した場合は、最初にすべてのボリュームのミラーを解除します。</block>
-  <block id="fd2834dcadb39f00eb897fdcdc07a03d" category="paragraph">ログボリュームの最新のコピーは3月14日13：30です。次に、ログボリュームの状態の直前に作成されたデータファイルのSnapshotを特定します。これは、ログ再生プロセスでは、Snapshotの直前から目的のリカバリポイントまでのすべてのアーカイブログが必要になるためです。</block>
-  <block id="810e47566b9cd5aa3b28e6514ec95735" category="paragraph">最後に作成されたSnapshotは<block ref="c001e27abf0e66d13790bb8a7e00da54" prefix=" " category="inline-code"></block>。このSnapshotをリストアします。</block>
-  <block id="87d83a0406ac6622efcdf91c42784ecd" category="paragraph">これで、データベースをリカバリする準備が整いました。SAN環境の場合は、ボリュームグループをアクティブ化してファイルシステムをマウントすると、プロセスが簡単に自動化されます。ただし、この例ではNFSを使用しているため、ファイルシステムはすでにマウントされて読み書き可能になり、ミラーが破損した瞬間にマウントやアクティブ化を行う必要はありません。</block>
-  <block id="7a2e97f17454be76b7e522ce612ff961" category="paragraph">これで、データベースを任意の時点にリカバリすることも、レプリケートされたREDOログのコピーに基づいてデータベースを完全にリカバリすることもできます。この例は、アーカイブログ、制御ファイル、およびREDOログを組み合わせたボリュームの値を示しています。バックアップ制御ファイルやリセットログファイルに依存する必要がないため、リカバリプロセスが大幅に簡易化されます。</block>
-  <block id="5eda890cc07e4b7cd409730d8af8ddc3" category="paragraph">整合グループのレプリケーションは、SnapMirrorを使用して単一ボリュームのレプリケーションをスケジュール設定するだけで簡単に実行できます。これには、データファイル、制御ファイル、アーカイブログ、REDOログが含まれます。SnapMirrorの更新を行うたびに、デスティネーションサイトにデータベースの新しいコピーが作成され、ミラーを解除することで整合性があり、アクティブ化できる状態になります。</block>
-  <block id="f96b125d1bacc785389957041be148e9" category="paragraph">ブロックレベルのレプリケーションモードでSnapMirrorとともに使用する場合、この戦略のもう1つの利点は、ソースストレージシステム上のすべてのSnapshotの完全なレプリケーションです。ディザスタリカバリコピーに加えて、バックアップ全体がレプリケートされます。</block>
   <block id="77fda44088666155052f9d4224878cbc" category="summary">Oracleアーカイブログの階層化</block>
   <block id="8625af69ad0b5f76799d87df777e3c86" category="paragraph">FabricPoolの最も重要な用途は、データベーストランザクションログなどの既知のコールドデータの効率化です。</block>
   <block id="a98d546484d238b37b7e2584ae8d399d" category="summary">Oracleバックアップの階層化</block>
@@ -1805,11 +1710,6 @@ REDO ログ</block>
   <block id="50a7086972cada154c8164dc1c6b3539" category="list-text">バックアップモードで作成されたデータファイルのSnapshot</block>
   <block id="c72d009669a638aab75c21a28a2101de" category="list-text">データファイルがホットバックアップモードのときに生成されたアーカイブログ</block>
   <block id="b8de4b1201e5595bc3de878f2bf59d9b" category="paragraph">リカバリ中、データベースはデータファイルからメタデータを読み取り、リカバリに必要なアーカイブログを選択します。</block>
-  <block id="66ee0a6fd90f3cfab8320e1de1341cbd" category="paragraph">ストレージSnapshotを最適化したリカバリでは、同じ結果を達成するために必要なデータセットがわずかに異なります。</block>
-  <block id="6030a1d9761fca3806ef0a0329438071" category="list-text">データファイルのSnapshot、およびSnapshotが作成された時刻を識別する方法</block>
-  <block id="4e822d4c19600b654f176d335c158829" category="list-text">最新のデータファイルチェックポイントの時刻からSnapshotの正確な時刻までのログをアーカイブします。</block>
-  <block id="604432b50055c69f34df17a8ed5befb5" category="paragraph">リカバリ中、データベースはデータファイルからメタデータを読み取り、必要な最も古いアーカイブログを特定します。フルリカバリまたはポイントインタイムリカバリを実行できます。ポイントインタイムリカバリを実行する場合は、データファイルのSnapshotの時刻を把握することが重要です。指定したリカバリポイントは、Snapshotの作成時刻以降である必要があります。NetAppでは、クロックの変動を考慮して、スナップショット時間に少なくとも数分を追加することを推奨しています。</block>
-  <block id="08bfe39c49a2dc07b08bd2ccd77d8281" category="paragraph">詳細については、Oracle 12cの各種ドキュメントで「Recovery Using Storage Snapshot Optimization」のトピックを参照してください。また、Oracleサードパーティ製スナップショットのサポートについては、OracleのドキュメントID Doc ID 604683.1を参照してください。</block>
   <block id="d22a890163762fcf7a4cb7605c29b7e6" category="section-title">データレイアウト</block>
   <block id="12eb3ceede91a01c74368e0fab03dbe4" category="section-title">ローカルリカバリ手順—NFS</block>
   <block id="e1a03fcc478ae212f07b5044b11ff369" category="paragraph">この手順は、手動で実行することも、SnapCenterなどのアプリケーションを使用して実行することもできます。基本的な手順は次のとおりです。</block>
@@ -1819,14 +1719,6 @@ REDO ログ</block>
   <block id="4e3110543ebf2a771c16b3b2101f1f88" category="list-text">データファイルをホストしているディスクグループを休止します。手順は、選択した論理ボリュームマネージャによって異なります。ASMでは、このプロセスでディスクグループをディスマウントする必要があります。Linuxでは、ファイルシステムをディスマウントし、論理ボリュームとボリュームグループを非アクティブ化する必要があります。目的は、リストア対象のターゲットボリュームグループに対するすべての更新を停止することです。</block>
   <block id="1d0ecd206531f96737f8e8002be4a047" category="list-text">目的のリストアポイントの直前に、データファイルディスクグループをSnapshotにリストアします。</block>
   <block id="946fe41f610ab658e270a1844c992bcc" category="list-text">新しくリストアしたディスクグループを再アクティブ化します。</block>
-  <block id="3fd5b2a08b3d7c4db29da8590ef6013f" category="section-title">フルリカバリの例</block>
-  <block id="31679daa394b7091acfd728d940b7322" category="paragraph">データファイルが破損または破壊されており、完全なリカバリが必要であると仮定します。そのための手順は次のとおりです。</block>
-  <block id="aa09ca247daac25fc18c2633124ca9b6" category="section-title">ポイントインタイムリカバリの例</block>
-  <block id="935ff627038d1f5001220c8df7f0e1b9" category="paragraph">リカバリ手順全体は1つのコマンドで実行できます。<block ref="3df448f0a5ec82cac76d91ba14c0fa1d" prefix=" " category="inline-code"></block>。</block>
-  <block id="dcd27cf8b8ceae2cd84c898d3c1b9fdb" category="paragraph">ポイントインタイムリカバリが必要な場合は、Snapshotのタイムスタンプがわかっている必要があり、次のように特定できます。</block>
-  <block id="17108ef3ad2e1e613b844beb5f2c6d29" category="paragraph">Snapshotの作成時間は3月9日と10：10：06と表示されます。安全のために、Snapshotの時刻に1分が追加されます。</block>
-  <block id="904b0a17b003c70e398ea85996f0f9ba" category="paragraph">リカバリが開始されました。スナップショット時間は記録された時間の1分後の10：11：00、目標復旧時間は10：44と指定されています。次に、sqlplusは目的のリカバリ時間（10：44）に到達するために必要なアーカイブログを要求します。</block>
-  <block id="91f99c5ad04365fb4d00e509963e2a0c" category="admonition">Snapshotを使用してデータベースを完全にリカバリするには、<block ref="3df448f0a5ec82cac76d91ba14c0fa1d" prefix=" " category="inline-code"></block> コマンドには特定のライセンスは不要ですが、を使用してポイントインタイムリカバリを実行できます。<block ref="72104026d9850e8c478c23b2e2e4e8e9" prefix=" " category="inline-code"></block> Oracle Advanced Compressionのライセンスが必要です。</block>
   <block id="9173402b63dc5f55506a692258f185e8" category="doc">SnapCenterおよびその他のツール</block>
   <block id="5459c1727c923baa303ff472498dbe97" category="paragraph">これらのコア機能をONTAPに直接簡単に設定して要件を満たす場合もありますが、より複雑なニーズにはオーケストレーションレイヤが必要です。</block>
   <block id="aeeb3212c35c26d321183e81d4926e57" category="paragraph">SnapCenterは、NetAppの主力データ保護製品です。データベースバックアップの実行方法という点ではSnapManager製品に似ていますが、NetAppストレージシステム上のデータ保護管理を単一コンソールで管理できるように一から構築されています。</block>
@@ -2897,8 +2789,6 @@ SOAP over https 接続に使用されます</block>
   <block id="87f823f4f3b4258445d5af029afe5ad9" category="paragraph"><block ref="87f823f4f3b4258445d5af029afe5ad9" category="inline-image-macro-rx" type="image"></block></block>
   <block id="9213fe9d391179276ff6c03552486255" category="paragraph"><block ref="9213fe9d391179276ff6c03552486255" category="inline-image-macro-rx" type="image"></block></block>
   <block id="3105b4c0642b9710179c18edcf8e8718" category="paragraph"><block ref="3105b4c0642b9710179c18edcf8e8718" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="1a43000eb9893bff7ab7b1ce1d3fd6a8" category="paragraph"><block ref="1a43000eb9893bff7ab7b1ce1d3fd6a8" category="inline-image-macro-rx" type="image"></block></block>
-  <block id="4b7a8562c98b8c652bdfb6aa79788222" category="paragraph"><block ref="4b7a8562c98b8c652bdfb6aa79788222" category="inline-image-macro-rx" type="image"></block></block>
   <block id="acce752526553bfa73c92799accd9cb8" category="summary">Oracleのデータ保護の概要</block>
   <block id="deb8cb7644231cae002f5f37c725b86f" category="paragraph">長距離の移行では、通常、ログ配布プロセスなど、より創造的なアプローチが必要になります。詳細については、を参照してください。 <block ref="86efe12ea0d3a769a4b7cfc2b6362f49" category="inline-link-macro-rx"></block>。長距離IPネットワークでは、LANやSANの速度に近い場所で帯域幅が使用されることはほとんどありません。あるケースでは、アーカイブログの生成頻度が非常に高い220TBデータベースの長距離移行をNetAppが支援しました。データ転送のために選択されたアプローチは、可能な限り最大の帯域幅を提供するため、テープの毎日の出荷でした。</block>
   <block id="911e63244fc82405263306a64e535c69" category="paragraph">zpoolは、の手順を実行したあとに作成する必要があります。 <block ref="e8673fdb712a2edcdf56742c7eec0045" category="inline-link-macro-rx"></block> が実行されます。手順を正しく実行しないと、I/Oのアライメントが原因でパフォーマンスが大幅に低下する可能性があります。ONTAPのパフォーマンスを最適化するには、I/Oがドライブの4Kの境界にアライメントされている必要があります。zpoolに作成されるファイルシステムは、というパラメータで制御される実効ブロックサイズを使用します。<block ref="81df978a8e3da4bee74b135548f390f3" prefix=" " category="inline-code"></block>（コマンドを実行すると表示できます）<block ref="1615297782a0dff59b20451e2ca97ea7" prefix=" " category="inline-code"></block>。</block>
@@ -3254,7 +3144,6 @@ SOAP over https 接続に使用されます</block>
   <block id="190d2bad1c6e231bc18c33e002e663c7" category="summary">Oracleデータベースと直接接続のONTAP接続</block>
   <block id="4a3f422632f7d08bf0e6c05affea24e4" category="summary">OracleデータベースとSyncMirror</block>
   <block id="5bbdf1e19bb3f7b70de51a3764fc5f19" category="doc">Oracle DatabaseストレージのSnapshotによる最適化されたバックアップ</block>
-  <block id="a962af081661ee46d4ef879de33c841e" category="paragraph">Oracle 12cがリリースされた時点では、データベースをホットバックアップモードにする必要がないため、Snapshotベースのバックアップとリカバリはさらにシンプルになりました。そのため、Snapshotベースのバックアップをストレージシステム上で直接スケジュール設定しても、完全なリカバリやポイントインタイムリカバリを引き続き実行できます。</block>
   <block id="fdf9dde4dc297fff7ac7b3c1458b0dad" category="doc">OracleデータベースでのLVMストライピング</block>
   <block id="d3c8171a7167ce43c547aac8fdd86cfb" category="doc">Oracleデータファイルの移行</block>
   <block id="9718528cb14225785c79e3afc4152efc" category="doc">OracleデータベースのLUNのサイジングと数</block>
@@ -3283,7 +3172,6 @@ SOAP over https 接続に使用されます</block>
   <block id="490e2f530e53cf85f8ce9b052a8336ec" category="paragraph">NVFailはONTAPの一般的なデータ整合性機能で、データベースを使用してデータ整合性を最大限に保護するように設計されています。</block>
   <block id="f2cf6b943d224a732c92223538580ee9" category="doc">MetroCluster上のOracle単一インスタンス</block>
   <block id="ea1d91c32fcf0f4a1090fd0da341c014" category="paragraph">他のストレージディザスタリカバリソリューションとは異なり、SnapMirrorアクティブ同期は非対称プラットフォームの柔軟性を提供します。各サイトのハードウェアが同一である必要はありません。この機能を使用すると、SnapMirrorアクティブ同期をサポートするために使用するハードウェアのサイズを適正化できます。リモートストレージシステムは、本番環境のワークロードを完全にサポートする必要がある場合はプライマリサイトと同一にすることができますが、災害によってI/Oが減少した場合は、リモートサイトの小規模システムよりも対費用効果が高くなります。</block>
-  <block id="3873b13983c66ae61dd877b0443a3828" category="summary">Oracleデータベースと整合グループのディザスタリカバリ</block>
   <block id="ede2d3fcaec1bb9dcda5a75c90f37368" category="summary">ONTAP上のOracleデータベースで可用性を最大限に向上</block>
   <block id="9688c9c1c1d15e2f91a3a5b8e5f14bd4" category="doc">ONTAPによるOracleデータベースの可用性</block>
   <block id="44e95a6c3878f189a550b4c0314d3b33" category="paragraph">NetAppは、最もミッションクリティカルなデータがデータベースに含まれていることを認識しています。</block>
@@ -3319,15 +3207,12 @@ SOAP over https 接続に使用されます</block>
   <block id="45df37151f6a0fd8a3b55d0423459f82" category="doc">OracleデータベースI/OのLUNアライメント</block>
   <block id="857a8adc9eda2d9e197a52323daca558" category="doc">Oracle Database FabricPoolの階層化の概要</block>
   <block id="fd73b1ca3b942a1514078a7e59c7433b" category="summary">Oracleデータベースと古いNFSv3ロック</block>
-  <block id="102aeb54bf1a69403672f53090c52878" category="summary">ログ配布によるOracleデータベースDR</block>
   <block id="d470f5db851ef84aaa776600805af48b" category="summary">Oracleデータベース仮想化の概要</block>
   <block id="b8fc1174bb3f1c65475334182829f75e" category="doc">Oracleデータベースの仮想化</block>
   <block id="b1b3f70e4333a9dbda75a98ceb78db39" category="summary">MetroCluster物理アーキテクチャとOracleデータベース</block>
   <block id="250bce9fbefc7872908d9c2708fc753b" category="doc">Oracleデータベースバックアップの階層化</block>
   <block id="4fbe2d000cdf5390ca980149d98eec4d" category="summary">Oracleデータベースの移行計画</block>
   <block id="d11e22f56fe0c9dd85597038a25cd80d" category="doc">Oracleデータベースとストレージ容量の管理</block>
-  <block id="1234e92308935cf0a5a22541f312c541" category="summary">SnapMirrorとSyncMirrorを使用したOracleデータベース</block>
-  <block id="a4cdac841b6453db2f51ce52a1303209" category="paragraph">SnapMirrorレプリケーションとCG SnapMirror関係の解除によってボリューム間の整合性が維持され、SnapMirror SynchronousとSnapMirror Active Syncの両方でコンスティチュエントボリューム間の整合性が維持されます。</block>
   <block id="454ff7e5f4a8d37cf6b16b804deca2b6" category="summary">Oracleデータベースのブロックサイズ</block>
   <block id="eed7df980a6ae17f8e0fecdecf0e25f4" category="doc">Oracle移行手順のサンプルスクリプト</block>
   <block id="fac6d6b61dd6bd3ee73d5b425bc5a3b7" category="doc">Oracleデータベースのシンプロビジョニング</block>
@@ -6034,12 +5919,9 @@ SOAP over HTTPS接続に使用</block>
   <block id="f60ff004e852f49b2838c63fb209b633" category="section-title">AFF Snapshotリザーブ</block>
   <block id="fe9c8793781de60c81315ec829dc8f84" category="paragraph">AFF SAN環境でOracleデータを含む各ボリュームについては、<block ref="9ca25b30dcc119f9115aad6d85fd12ce" prefix=" " category="inline-code"></block>をゼロに設定する必要があります。LUN環境でSnapshotリザーブ用のスペースを確保しても役に立たないためです。fractional reserveが100に設定されている場合、LUNを含むボリュームのSnapshotには、Snapshotリザーブを除いて、すべてのデータの100%の変更を吸収するのに十分な空きスペースがボリューム内に必要です。fractional reserveをより低い値に設定すると、それに応じて必要な空きスペースは少なくなりますが、Snapshotリザーブは常に除外されます。つまり、LUN環境ではSnapshotリザーブのスペースが無駄になります。</block>
   <block id="59aebe92fc551de46ca0794f934e5bc8" category="admonition">SnapshotリザーブはASAストレージには適用されません。</block>
-  <block id="1254f51b373ccd41bf685ec87bc5d68e" category="paragraph">最もシンプルなレイアウトは、データファイルを専用のボリューム、LUN、またはNVMeネームスペースに分離することです。ストレージ リソースは、他のファイル タイプによって汚染されていない状態である必要があります。これは、重要なREDOログ、コントロール ファイル、またはアーカイブ ログを破壊することなく、SnapRestore処理によってデータファイルを迅速にリストアできるようにするためです。</block>
   <block id="097daca3ca12238584b696f8c73fa814" category="paragraph">ASAにはボリュームレベルの抽象化は備えていません。代わりに、整合性グループを使用します。多くの場合、単一のLUNまたはNVMeネームスペースで、データベースの管理およびパフォーマンス要件を満たすことができます。複数のLUNまたはネームスペースが必要な場合は、追加のリソースを追加して整合性グループとして結合し、それをデータファイルコンテナにすることができます。</block>
   <block id="241ce9f30b2db1015f51f67701e797f5" category="list-text">データファイルボリューム、LUN、またはネームスペースを、目的の復元ポイントの直前のSnapshotに復元します。</block>
   <block id="a3cf048feddbd56987ac89a2e785cc40" category="paragraph">この手順は、目的のアーカイブ ログがまだアクティブ ファイル システムに存在することを前提としています。そうでない場合は、アーカイブログLUNをオフラインにしてリストアを実行することで、アーカイブログを復元する必要があります。これは、アーカイブログを専用のボリューム、LUN、または名前空間に分割することが有効な例の一つです。アーカイブログがリドゥログと同じボリュームグループを共有している場合、最終的に記録されたトランザクションが失われるのを避けるため、LUN全体の復元を行う前にリドゥログを別の場所にコピーする必要があります。</block>
-  <block id="8d2c1d4edd3fbf01c94b8a7e49de1e9d" category="paragraph">データベースが複数のボリュームにまたがる必要がある場合は、整合性グループSnapshot（CG Snapshot）が必要です。</block>
-  <block id="df4fb0525f0cefd87855853a356c7676" category="paragraph">最も重要な要件は、データファイルを1つまたは複数の専用コンテナに分離することです。これは、すべてのデータファイルを単一のLUN/ネームスペースに配置する、単一のAFF NFSボリューム内に配置する、またはマルチボリュームやマルチLUN/ネームスペースのONTAP整合性グループに配置するなど、いくつかの方法で実行できます。重要なのは、データファイルが他のファイルタイプによって汚染されていないことです。その理由は、データファイルのレプリケーションが、アーカイブログなどの他のデータタイプのレプリケーションとは完全に独立していることを保証するためです。ファイル レイアウトに関する追加情報、およびストレージ レイアウトがSnapshotに対応していることを保証するための重要な詳細については、<block ref="c87a7212960b8cc2aca49adb1795e291" category="inline-link-macro-rx"></block>を参照してください。</block>
   <block id="6080ea352d8f3c275b55f666b09073b5" category="paragraph">（a）DNFSが有効で、（b）ソースNFS共有が単一のサーバに複数回マウントされ、（c）ネストされたNFSマウントがある場合、<block ref="4740c034d97ca90a96b8050082816605" prefix=" " category="inline-code"></block>と呼ばれる追加のマウントオプションが必要です。この構成は、主にSAPアプリケーションをサポートする環境で見られます。たとえば、NetAppシステム上の単一のNFS共有に、<block ref="9f9f4ccb1fc3afcbfe0cc3f5eac4332c" prefix=" " category="inline-code"></block>にあるディレクトリと<block ref="ac2f9bbcd397d8f6b39e6713658051ea" prefix=" " category="inline-code"></block>にある2つ目のディレクトリがあるとします。<block ref="9f9f4ccb1fc3afcbfe0cc3f5eac4332c" prefix=" " category="inline-code"></block>が<block ref="9ad16912cc0ba54a259b1a15d233c264" prefix=" " category="inline-code"></block>にマウントされ、<block ref="ac2f9bbcd397d8f6b39e6713658051ea" prefix=" " category="inline-code"></block>が<block ref="1da707b60c3b55bd01cb7df7c171a368" prefix=" " category="inline-code"></block>にマウントされている場合、同じソースから発生するネストされたNFSマウントになります。</block>
   <block id="936d46e56a7c836060ae638ad30b113a" category="paragraph">OSは、<block ref="9ad16912cc0ba54a259b1a15d233c264" prefix=" " category="inline-code"></block>と<block ref="1da707b60c3b55bd01cb7df7c171a368" prefix=" " category="inline-code"></block>が同じソース ファイル システムである同じNFS共有に存在することを検出できます。その後、OSはデータへのアクセスに同じデバイス ハンドルを使用します。これにより、OSキャッシングやその他の特定の処理の利用が向上しますが、DNFSと干渉します。DNFSが<block ref="1da707b60c3b55bd01cb7df7c171a368" prefix=" " category="inline-code"></block>上の<block ref="1737629d60b511cf45957529a8f046e2" prefix=" " category="inline-code"></block>などのファイルにアクセスする必要がある場合、誤ってデータへの間違ったパスを使用しようとする可能性があります。その結果、I/O処理が失敗します。これらの構成では、そのホスト上の別のNFSファイル システムとソースNFS共有を共有するすべてのNFSファイル システムに、<block ref="4740c034d97ca90a96b8050082816605" prefix=" " category="inline-code"></block>マウント オプションを追加します。これにより、Linux OSは強制的にそのファイル システムに独立したデバイス ハンドルを割り当てます。</block>
   <block id="cdcac9f87f34f858fd0a5ffe221c47b8" category="inline-link-macro">WAFLアライメント</block>
@@ -6051,8 +5933,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="0353522b39b87d54d40d3f09ec668851" category="sidebar">ONTAP の設定</block>
   <block id="92d9160e034a5ffdafcb6f34b87a7fa6" category="sidebar">Snapshotのリストア</block>
   <block id="9ca158578d233f36b039facfcb88d879" category="doc">ファイバーチャネル</block>
-  <block id="eebca0389103d44f2d15d0b6a33ec5a9" category="paragraph">ONTAP 9.19.1 以降、従来型の FC-SAN（SCSI）と一部のストレージシステム FC アダプタを使用した NVMe/FC の両方で、ダイレクト接続 FC がサポートされています。HBA は標準的なポイントツーポイント FC 接続を確立します。</block>
-  <block id="87c40288a73474a81b2b8b85307fd7d0" category="paragraph">ONTAP 9.19.1 より前のバージョンでは、ONTAP ストレージシステムには NPIV が必要です。つまり、ストレージシステムは NPIV をサポートする FC スイッチに接続されている必要があります。</block>
   <block id="117d9103535316f62b4aba303e9d113e" category="paragraph">2 番目の OS NIC は 192.168.1.2 として構成でき、フェイルオーバーした 192.168.1.50 アドレスと通信できますが、ローカル ルーティング テーブルはデフォルトで 1 つのアドレス*のみ*を使用して 192.168.1.0/24 サブネットと通信します。システム管理者は、ネットワーク接続の障害を検出し、ローカル ルーティング テーブルを変更したり、インターフェースを起動／停止したりするスクリプト フレームワークを作成できます。具体的な手順は、使用している OS によって異なります。</block>
   <block id="884376946142a1edfd44782ed2b90052" category="paragraph">複製は、<block ref="af0a7d0728225b25f051458c13edf1a0" category="inline-link-macro-rx"></block>のセクションで説明されているプロセスと同様です。</block>
   <block id="b2a583397e41667a32b128529c22c7c3" category="section-title">AFFアグリゲート</block>
@@ -6066,4 +5946,23 @@ SOAP over HTTPS接続に使用</block>
   <block id="6e97cf67ec5979ab5828852639efa208" category="sidebar">Microsoft SQL Server のストレージ構成</block>
   <block id="d567144e8d8c4fac6bbff40a38b68b9f" category="sidebar">均一ネットワーク アクセス</block>
   <block id="18e1907532a0fa2fdaa4b2028bf6cf88" category="sidebar">不均一ネットワーク アクセス</block>
+  <block id="b084c614417a42c3fb95ffb418dc1305" category="paragraph">ONTAP 9.19.1 以降、従来型の FC-SAN（SCSI）と一部のストレージシステム FC アダプタを使用した NVMe/FC の両方で、ダイレクト接続 FC がサポートされています。HBA は標準的なポイントツーポイント FC 接続を確立します。ONTAP 9.19.1 より前のバージョンでは、ONTAP ストレージシステムには NPIV が必要です。つまり、ストレージシステムは NPIV をサポートする FC スイッチに接続されている必要があります。</block>
+  <block id="f65ae703492f992975993544f5dd4e64" category="summary">バックアップモードなしのOracle自動リカバリ。</block>
+  <block id="fc292db0114790e7f34fe78fc7d8c5d8" category="doc">バックアップモードなしのOracle自動リカバリ</block>
+  <block id="c7bc1ef8c337d6a3c8bb4a05d089b769" category="paragraph">Oracle 12c がリリースされたとき、データベースをホット バックアップモードに切り替える必要がなくなったため、スナップショットベースのバックアップとリカバリがさらに簡単になりました。その結果、スナップショットベースのバックアップをストレージシステム上で直接スケジュール設定することが可能になりました。</block>
+  <block id="5e04d2d9eb904b2617e3247f083921b5" category="paragraph">バックアップモードを使用しない自動復旧では、同じ結果を得るために若干異なるデータセットが必要になります：</block>
+  <block id="58a5b096427af9d4d58dbaf800c39353" category="list-text">データファイルのスナップショット。</block>
+  <block id="0f33dd0e540e8f93f690cad587ba035c" category="list-text">同期されたアーカイブログ、制御ファイル、およびリドゥログのセット。アーカイブログには、データファイルのスナップショットが作成された時点からのすべてのレコードを含める必要があるため、積極的なログの削除には注意してください。</block>
+  <block id="594b019cc44eb4c884388b833d7510dc" category="paragraph">復旧処理中、データベースはデータファイルからメタデータを読み取り、必要なログレコードを特定し、記録されたすべてのトランザクションを再生します。</block>
+  <block id="9b9935ad5969c28de13381a2e512b47c" category="section-title">注：</block>
+  <block id="64effece8f8fdc7ec22053944731466d" category="paragraph">このアプローチはポイントインタイムリカバリに近似できますが、詳細度は限られています。例えば、バックアップモードのデータファイルから開始した場合、データベースを任意のトランザクションまでロールフォワードすることができます。</block>
+  <block id="613d39aee0d806ff00a0db510dd469d1" category="paragraph">バックアップモードを使用せずに自動復旧方式を使用する場合は、データベースをログスナップショットの時点まで復旧する必要があります。通常の状況では、元のアーカイブログ、リドゥログ、および制御ファイルはアクティブなファイルシステムに残っているため、RPO は依然としてゼロになります。アクティブなファイルシステム内のすべてのデータが失われ、スナップショットからのみ復旧を行う必要がある場合、RPO は 1 時間となります。</block>
+  <block id="0601499a184b8a1e3fa9ca7282b4eeb4" category="paragraph">== データレイアウト 最もシンプルなレイアウトは、データファイルを専用のボリューム、LUN、またはNVMe名前空間に分離することです。ストレージリソースは、他のファイルタイプによって汚染されていないものでなければなりません。これは、重要なREDOログ、制御ファイル、またはアーカイブログを破壊することなく、SnapRestore操作によってデータファイルを迅速に復元できるようにするためです。</block>
+  <block id="b57416fe4f383261f33cb82b40542798" category="paragraph">== ローカル復旧手順 - NFS 基本的な手順は次のとおりです：</block>
+  <block id="3eccd40648788f9b4313a1311d74bef5" category="list-text">実行<block ref="9a2e8b0856a3edcc37ed4d7d88a28a9b" prefix=" " category="inline-code"></block></block>
+  <block id="e99d63c556c7ca94f984300ca82dd3e4" category="paragraph">== ローカル復旧手順 - SAN 基本的な手順は次のとおりです：</block>
+  <block id="ddfa498c53583ed2d2af38e4925ed34b" category="paragraph">== 完全復旧の例 データファイルが破損または破壊され、完全復旧が必要であると仮定します。その手順は以下のとおりです：</block>
+  <block id="e3471495b791c74dadc31bb77a66a74c" category="paragraph">Oracle Snapshot Optimized Backups は、データベースをホット バックアップモードに切り替えることなく、スナップショットを使用してリカバリを実行できるポイントインタイムリカバリの方法です。</block>
+  <block id="85ab689d474b14164558afa9923be42b" category="paragraph">ユーザーはバックアップモードを使用せずにスナップショットから復元することもできますが、完全な復元は RECOVERY AUTOMATIC を使用した場合のみサポートされます。スナップショットの作成時刻を示すために SNAPSHOT TIME 方式を使用した不完全なリカバリ。</block>
+  <block id="17e12dfc833834d5b2e478641ef811d3" category="sidebar">スナップショットなしの自動復元</block>
 </blocks>

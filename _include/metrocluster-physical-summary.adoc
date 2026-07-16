@@ -4,6 +4,7 @@
 
 
 
+[[metrocluster-is-avialable-in-3-different-configurations]]
 == MetroClusterは3種類の構成で使用できます。
 
 * IPセツソクノHAヘア
@@ -16,6 +17,7 @@ NOTE: 「接続」という用語は、サイト間レプリケーションに�
 
 
 
+[[metrocluster-ip]]
 == MetroCluster IP の略
 
 HAペアMetroCluster IP構成では、サイトごとに2ノードまたは4ノードを使用します。この設定オプションを使用すると、2ノードオプションに比べて複雑さとコストが増加しますが、サイト内の冗長性という重要なメリットがあります。単純なコントローラ障害では、WAN経由のデータアクセスは必要ありません。データアクセスは、代替ローカルコントローラを介してローカルのままです。
@@ -30,6 +32,7 @@ image:../media/mccip.png["MetroCluster IPアーキテクチャ"]
 
 
 
+[[ha-pair-fc-san-attached-metrocluster]]
 == HAペアFC SAN接続MetroCluster
 
 HAペアMetroCluster FC構成では、サイトごとに2ノードまたは4ノードを使用します。この設定オプションを使用すると、2ノードオプションに比べて複雑さとコストが増加しますが、サイト内の冗長性という重要なメリットがあります。単純なコントローラ障害では、WAN経由のデータアクセスは必要ありません。データアクセスは、代替ローカルコントローラを介してローカルのままです。
@@ -45,6 +48,7 @@ image:../media/mcc-4-node.png["4ノードMetroCluster"]
 
 
 
+[[two-node-fc-san-attached-metrocluster]]
 == 2ノードFC SAN接続MetroCluster
 
 2ノードMetroCluster構成では、サイトごとに1つのノードのみが使用されます。設定とメンテナンスが必要なコンポーネントが少ないため、HAペアオプションよりもシンプルな設計になっています。また、ケーブル配線やFCスイッチの点でインフラストラクチャの必要性も軽減されています。最後に、コストを削減します。
@@ -55,6 +59,7 @@ image:../media/mcc-2-node.png["2ノードMetroCluster"]
 
 
 
+[[metrocluster-resiliency-features]]
 == MetroClusterの耐障害性機能
 
 MetroCluster 解決策 には単一点障害（Single Point of Failure）はありません。

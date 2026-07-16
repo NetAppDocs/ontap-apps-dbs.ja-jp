@@ -18,6 +18,7 @@ summary: この付録では、高可用性Hyper-VクラスタをNetAppストレ�
 
 
 
+[[prerequisites]]
 == 前提条件
 
 * 2台以上のHyper-Vサーバが相互に接続されている。
@@ -30,6 +31,7 @@ summary: この付録では、高可用性Hyper-VクラスタをNetAppストレ�
 
 
 
+[[deployment]]
 == 導入
 
 . いずれかのWindows Hyper-Vサーバに管理者グループのメンバーとしてログインします。

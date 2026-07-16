@@ -8,6 +8,7 @@
 
 
 
+[[aff-ssd-aggregates-and-asa-storage-availability-zones]]
 == AFF SSDアグリゲートとASA Storage Availability Zones
 
 
@@ -17,6 +18,7 @@ TIP: * NetAppでは*最低10%の空き容量を推奨しています。これに
 
 
 
+[[hdd-aggregates-including-flash-pool-aggregates]]
 == HDDアグリゲート（Flash Poolアグリゲートを含む）
 
 

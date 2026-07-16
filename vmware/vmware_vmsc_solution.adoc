@@ -18,6 +18,7 @@ vCenter Server Appliance (VCSA) は、管理者が ESXi クラスターを効果
 
 
 
+[[vsphere-high-availability]]
 == vSphereの高可用性
 
 VMwareのクラスタテクノロジは、ESXiサーバを仮想マシン用の共有リソースプールにグループ化し、vSphere High Availability（HA；高可用性）を提供します。vSphere HAは、仮想マシンで実行されるアプリケーションに使いやすく高可用性を提供します。クラスタでHA機能を有効にすると、いずれかのESXiホストが応答しなくなったり分離されたりした場合に、各ESXiサーバが他のホストとの通信を維持します。 HAクラスタは、そのESXiホストで実行されていた仮想マシンのリカバリを、クラスタ内の残りのホスト間でネゴシエートできます。ゲストOSに障害が発生した場合、vSphere HAは影響を受ける仮想マシンを同じ物理サーバ上で再起動できます。vSphere HAを使用すると、計画的ダウンタイムの削減、計画外ダウンタイムの防止、およびシステム停止からの迅速なリカバリが可能になります。
@@ -30,6 +31,7 @@ VMware vSphereはNetApp MetroClusterまたはSnapMirrorのアクティブ同期�
 
 
 
+[[host-failure-detection]]
 == ホスト障害の検出
 
 HA クラスターが作成されるとすぐに、クラスター内のすべてのホストが選出に参加し、ホストの 1 つがマスターになります。各スレーブはマスターに対してネットワーク ハートビートを実行し、マスターはすべてのスレーブ ホストに対してネットワーク ハートビートを実行します。vSphere HA クラスタのマスター ホストは、スレーブ ホストの障害を検出する役割を担います。
@@ -52,6 +54,7 @@ NetAppでは、隔離アドレスを少なくとも2つ追加し、各アドレ�
 ====
 
 
+[[host-isolation-response]]
 == ホスト隔離時の対応
 
 隔離対応は、vSphere HA クラスタ内のホストが管理ネットワーク接続を失ったが実行を継続している場合に仮想マシンでトリガーされるアクションを決定する vSphere HA の設定です。この設定には、「無効」、「VM をシャットダウンして再起動する」、「VM の電源をオフにして再起動する」の 3 つのオプションがあります。
@@ -69,12 +72,14 @@ NetAppでは、[Host Isolation Response]を[Disabled]に設定することを推
 
 
 
+[[vm-component-protection-vmcp]]
 == VMコンポーネント保護（VMCP）
 
 vSphere 6で強化されたHA関連機能の1つにVMCPがあります。VMCPは、ブロック（FC、iSCSI、FCoE）とファイルストレージ（NFS）のAll Paths Down（APD）状態とPermanent Device Loss（PDL）状態からの保護を強化します。
 
 
 
+[[permanent-device-loss-pdl]]
 === Permanent Device Loss（PDL）
 
 PDL は、ストレージ デバイスが恒久的に故障した場合、または管理上削除されて復旧が期待されない場合に発生する状態です。NetAppストレージ アレイは、デバイスが永久に失われたことを宣言する SCSI センス コードを ESXi に発行します。vSphere HA の「障害条件と VM 応答」セクションでは、PDL 条件が検出された後の応答を設定できます。
@@ -86,6 +91,7 @@ NetApp、「PDL を含むデータストアの応答」を「*VM の電源をオ
 ====
 
 
+[[all-paths-down-apd]]
 === すべてのパスがダウン（APD）
 
 APD は、ストレージ デバイスがホストにアクセスできなくなり、アレイへのパスが利用できなくなるときに発生する状態です。ESXi はこれをデバイスの一時的な問題と見なし、デバイスが再び利用可能になると予想しています。
@@ -103,12 +109,14 @@ APD状態が検出されると、タイマーが開始されます。140秒後�
 ====
 
 
+[[vmware-drs-implementation-for-netapp-snapmirror-active-sync]]
 == NetApp SnapMirror Active SyncのためのVMware DRSの実装
 
 VMware DRSは、クラスタ内のホストリソースを集約する機能で、主に仮想インフラストラクチャ内のクラスタ内での負荷分散に使用されます。VMware DRSは、クラスタ内でロードバランシングを実行するために、主にCPUリソースとメモリリソースを計算します。vSphereはストレッチクラスタリングを認識しないため、両方のサイトのすべてのホストをロードバランシングの対象とします。
 
 
 
+[[vmware-drs-implementation-for-netapp-metrocluster]]
 == NetApp MetroCluster向けVMware DRSの実装
 
  To avoid cross-site traffic, NetApp recommends configuring DRS affinity rules to manage a logical separation of VMs. This will ensure that, unless there is a complete site failure, HA and DRS will only use local hosts.
@@ -128,6 +136,7 @@ image::../media/vmsc_2_2.png[VMホストグループとアフィニティルー�
 
 
 
+[[best-practice]]
 === _ベストプラクティス_
 
 NetAppでは、障害が発生した場合にvSphere HAによって違反されるため、「must」ルールではなく「should」ルールを実装することを推奨しています。「must」ルールを使用すると、サービスが停止する可能性があります。
@@ -136,6 +145,7 @@ NetAppでは、障害が発生した場合にvSphere HAによって違反され�
 
 
 
+[[vmware-storage-drs-implementation-with-netapp-metrocluster]]
 == NetApp MetroClusterでのVMware Storage DRSの実装
 
 VMware Storage DRS機能を使用すると、データストアを1つのユニットに集約し、Storage I/O Control（SIOC）のしきい値を超えた場合に仮想マシンディスクのバランスを調整できます。

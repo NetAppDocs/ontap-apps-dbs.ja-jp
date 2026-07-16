@@ -16,6 +16,7 @@ searchtitle: SnapMirrorアクティブ同期を使用したOracle拡張RAC
 
 
 
+[[replication]]
 == レプリケーション
 
 SnapMirrorアクティブ同期のRAC機能を理解するには、ストレージをミラーリングされたストレージでホストされている単一のLUNセットとして表示することが重要です。例：
@@ -26,12 +27,14 @@ image:smas-oracle-logical.png["Oracle論理アクセス"]
 
 
 
+[[storage-configuration]]
 == ストレージ構成
 
 この構成例では、ASMディスクは、エンタープライズストレージの単一サイトRAC構成と同じように設定されています。ストレージシステムはデータ保護を提供するため、ASM外部冗長性が使用されます。
 
 
 
+[[uniform-vs-nonuninform-access]]
 == ユニフォームアクセスと非インフォームアクセス
 
 SnapMirrorアクティブ同期上のOracle RACで最も重要な考慮事項は、均一アクセスと非均一アクセスのどちらを使用するかです。
@@ -42,6 +45,7 @@ SnapMirrorアクティブ同期上のOracle RACで最も重要な考慮事項は
 
 
 
+[[nonuniform-access]]
 == 不均一なアクセス
 
 アクセスが一様でない場合、SANの観点からはより簡単に設定できます。
@@ -52,6 +56,7 @@ image:smas-oracle-rac-nonuniform.png["Oracle RACの不均一アクセス"]
 
 
 
+[[uniform-access]]
 == 均一なアクセス
 
 アクセスを統一するには、SANをサイト間に拡張する必要があります。主なメリットは、ストレージシステムが停止してもデータベースインスタンスが失われないことです。その結果、現在使用されているパスがマルチパスに変更されます。
@@ -63,6 +68,7 @@ NOTE: 次の図には、単純なコントローラ障害時に使用される�
 
 
 
+[[aff-with-proximity-settings]]
 === 近接設定を使用したAFF
 
 サイト間のレイテンシが大きい場合は、ホストとの近接設定を使用してAFFシステムを設定できます。これにより、各ストレージシステムはどのホストがローカルでどのホストがリモートであるかを認識し、パスの優先順位を適切に割り当てることができます。
@@ -73,6 +79,7 @@ image:smas-oracle-rac-uniform-prox.png["アクセスが統一されたRAC"]
 
 
 
+[[asa-aff-without-proximity-settings]]
 === 近接設定なしのASA / AFF
 
 サイト間のレイテンシがそれほど高くない場合は、ホストとの近接を設定せずにAFFシステムを構成するか、ASAを使用できます。

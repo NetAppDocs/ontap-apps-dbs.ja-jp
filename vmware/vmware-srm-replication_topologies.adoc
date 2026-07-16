@@ -32,6 +32,7 @@ ONTAP 9 では、クラスタの物理コンポーネントはクラスタ管理
 |===
 
 
+[[supported-snapmirror-layouts]]
 == サポートされる SnapMirror レイアウト
 
 次の図は、 VLSR と SRA でサポートされる SnapMirror 関係のレイアウトシナリオを示しています。レプリケートされたボリューム内の各 VM は、各サイトの 1 つの VLSR アレイ（ SVM ）上のデータのみを所有します。
@@ -46,6 +47,7 @@ image:vsrm-ontap9_image10.png["SnapMirror関係のレイアウト"]
 
 
 
+[[vmfs-support-with-snapmirror-active-sync]]
 == SnapMirror Active Sync による VMFS サポート
 
 ONTAPツール 10.3 以降では、 SnapMirror Active Sync (SMAs) を使用した VMFS データストアの保護もサポートされています。これにより、比較的近接する 2 つのデータセンター (障害ドメインと呼ばれる) 間でのビジネス継続性のための透過的なフェイルオーバーが可能になります。その後、 ONTAPツール SRA と VLSR を介してSnapMirror非同期を使用して、長距離災害復旧を調整できます。
@@ -60,6 +62,7 @@ image:https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-104/media/fan-out
 
 
 
+[[supported-array-manager-layouts]]
 == サポートされている Array Manager レイアウト
 
 次のスクリーンショットに示すように、 VLSR でアレイベースレプリケーション（ ABR ）を使用すると、保護グループは単一のアレイペアに分離されます。このシナリオでは、 `SVM1` `SVM2`リカバリサイトでと `SVM4`のピア関係が設定されて `SVM3`います。ただし、保護グループを作成するときに選択できるアレイペアは 2 つのうちの 1 つだけです。
@@ -68,6 +71,7 @@ image:vsrm-ontap9_image11.png["アレイペア"]
 
 
 
+[[unsupported-layouts]]
 == サポートされないレイアウトです
 
 サポート対象外の構成では、個々の VM が所有する複数の SVM にデータ（ VMDK または RDM ）があります。次の図の例では、が2つのSVM上にあるため、を `VM1`VLSRで保護するように設定することはできません。 `VM1`
@@ -82,6 +86,7 @@ image:vsrm-ontap9_image14.png["サポートされない構成です"]
 
 
 
+[[snapmirror-cascade]]
 == SnapMirror カスケード
 
 SnapMirror でソースボリュームをデスティネーションボリュームにレプリケートし、そのデスティネーションボリュームを SnapMirror で別のデスティネーションボリュームにレプリケートする SnapMirror 関係のカスケードを、 VLSR ではサポートしていません。次の図に示すシナリオでは、 VLSR を使用してサイト間のフェイルオーバーを実行することはできません。
@@ -90,6 +95,7 @@ image:vsrm-ontap9_image15.png["SnapMirror関係のカスケード"]
 
 
 
+[[snapmirror-and-snapvault]]
 == SnapMirror と SnapVault
 
 NetApp SnapVault ソフトウェアを使用すると、ネットアップストレージシステム間でエンタープライズデータをディスクベースでバックアップできます。SnapVault と SnapMirror は同じ環境内に共存できますが、 VLSR でサポートされているのは、 SnapMirror 関係のフェイルオーバーだけです。
@@ -127,12 +133,14 @@ VSRMがフェイルバックおよびSnapMirror関係の2回目の反転を実�
 
 
 
+[[use-of-qtrees-in-site-recovery-manager-environments]]
 == Site Recovery Manager 環境での qtree の使用
 
 qtreeは、NASのファイルシステムクォータを適用できる特別なディレクトリです。ONTAP 9 では qtree を作成でき、 SnapMirror でレプリケートされたボリュームに配置できます。ただし、のSnapMirrorでは、個 々 のqtreeのレプリケーションやqtreeレベルのレプリケーションは実行できません。すべての SnapMirror レプリケーションは、ボリュームレベルで実行されます。このため、 VLSR で qtree を使用することは推奨されません。
 
 
 
+[[mixed-fc-and-iscsi-environments]]
 == FC と iSCSI の混在環境
 
 サポート対象の SAN プロトコル（ FC 、 FCoE 、 iSCSI ）の場合、 ONTAP 9 は LUN サービスを提供します。 LUN サービスの提供とは、 LUN を作成して、接続されているホストにマッピングする機能です。クラスタは複数のコントローラで構成されるため、個々の LUN へのマルチパス I/O で管理される論理パスが複数あります。ホスト上で Asymmetric Logical Unit Access （ ALUA ；非対称論理ユニットアクセス）が使用されるため、 LUN への最適なパスが選択され、データ転送用にアクティブになります。LUN への最適パスが変わった場合（格納先ボリュームが移動された場合など）、 ONTAP 9 は自動的にこの変更を認識し、システムを停止することなく調整します。最適パスが利用できなくなった場合、 ONTAP は無停止で他の利用可能なパスに切り替えることができます。
