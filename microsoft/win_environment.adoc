@@ -97,15 +97,6 @@ NetApp PowerShell Toolkit（PSTK）は、ONTAPをエンドツーエンドで自�
 
 
 
-[[further-reading]]
-=== さらに読みます
-
-* NetApp PowerShell Toolkitの詳細については、 https://mysupport.netapp.com/site/tools/tool-eula/ontap-powershell-toolkit["NetApp Support Site"]。
-* NetApp PowerShell Toolkitのベストプラクティスについては、を参照してください。 https://www.netapp.com/media/16861-tr-4475.pdf?v=93202073432AM["TR-4475：『NetApp PowerShell Toolkit Best Practices Guide』"]。
-
-
-
-
 [[networking-best-practices]]
 == ネットワークのベストプラクティス
 

@@ -36,7 +36,7 @@ Linux環境では、ドライブデバイス全体に論理ボリュームグル
 
  `sio`や `dd`など、定義されたブロック サイズでI/Oを生成できるユーティリティを使用して、アライメントを確認します。ストレージ システムのI/Oアライメント統計は、 `stats`コマンドで表示できます。詳細については、link:../oracle/oracle-notes-wafl-alignment-verification.html["WAFLアライメントの検証"]を参照してください。
 
-Solaris環境ではアライメントがより複雑になります。を参照してください http://support.netapp.com/documentation/productlibrary/index.html?productID=61343["ONTAP SAN ホスト構成"^] を参照してください。
+Solaris環境におけるアライメントはより複雑です。詳細については、 https://kb.netapp.com/on-prem/ontap/da/SAN/SAN-KBs/How_to_identify_unaligned_IO_on_LUNs["LUN上のアライメントされていないI/Oを識別する方法"]を参照してください。
 
 |===
 | 注意 

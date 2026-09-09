@@ -517,8 +517,6 @@
   <block id="beb3ca55ed0a53a38a2b97540b05d6e4" category="summary">ONTAP上のMicrosoft SQL Server</block>
   <block id="7636ae91f443b605f05bed59d7d57a02" category="doc">Microsoft SQL Serverのディザスタリカバリ</block>
   <block id="18c6a681ea46e1ed394e092461bb53ef" category="list-text">SQL Serverデータを含むボリュームをクラスタ内の複数のノードに分散して、すべてのクラスタノードでSnapMirrorレプリケーションアクティビティを共有できるようにします。この分散により、ノードリソースの使用が最適化されます。</block>
-  <block id="0a01e6837f5c691536f0b6cbdd0232ec" category="inline-link-macro">TR-4015：『SnapMirrorの設定およびベストプラクティスガイド- ONTAP 9』</block>
-  <block id="1cca1a3fad8c6dd7e2dadbd2aa08bf07" category="paragraph">SnapMirrorの詳細については、を参照してください。 <block ref="64b916f792bad525a069a243c092b62e" category="inline-link-macro-rx"></block>。</block>
   <block id="77641f4a3e4406855e878235cbd89b87" category="doc">CPU構成</block>
   <block id="cf0e2551e639758cc3c4d82df655eccd" category="inline-link-macro">SQL Server 2022：最新データプラットフォームを実現</block>
   <block id="809c9e1f6ce0bc82bf42fae361c6f43e" category="paragraph">したがって、すべてのCPUを使用するには、プロセッサ単位のコアライセンスを使用する必要があります。SQL Serverのライセンスの詳細については、を参照してください。 <block ref="457abfaf1083b1cbfc49f2783069c6cd" category="inline-link-macro-rx"></block>。</block>
@@ -1572,8 +1570,6 @@ REDO ログ</block>
   <block id="3e00e4d28b17eedd6f6c2c38233e06a8" category="paragraph">LUNアライメントとは、基盤となるファイルシステムのレイアウトに合わせてI/Oを最適化することです。</block>
   <block id="a6c7e85d51ae3b98197ceb3eafa3686a" category="inline-link-macro">効率性</block>
   <block id="6e2524d5663b2bdc0c7985fa3e57cc55" category="section-title">ミスアライメントノケイコク</block>
-  <block id="79e721357e358d77c4700c25c863fc37" category="inline-link">ONTAP SAN ホスト構成</block>
-  <block id="268b1da3f1ff11d32e385d0223101718" category="paragraph">Solaris環境ではアライメントがより複雑になります。を参照してください<block ref="2d33e0364c07dc165b4079892340d4fe" category="inline-link-rx"></block> を参照してください。</block>
   <block id="6d017248f1e4f0ec7e2cd19d967b6bee" category="cell">Solaris x86環境では、ほとんどの構成に複数のパーティションレイヤがあるため、適切なアライメントにさらに注意してください。Solaris x86パーティションスライスは通常、標準のマスターブートレコードパーティションテーブルの上に存在します。</block>
   <block id="b1230060a0220caf9d68d64b9dd85e6f" category="summary">Oracleを使用したNFS転送サイズ</block>
   <block id="fabe34ed4a5e432f4d1c4f6584956d8d" category="doc">OracleデータベースでのNFS転送サイズ</block>
@@ -2424,7 +2420,6 @@ VAAIを使用しない場合、NFS上のすべてのVMに対してこの設定�
   <block id="883e69a285ae2d5fd23c80cd29285804" category="paragraph">SnapVault は ONTAP 8.2 で一から再構築されました。以前の Data ONTAP 7-Mode で使用されていたユーザは共通点に注意する必要がありましたが、このバージョンの SnapVault では主に拡張機能が追加されています。大きな進歩の 1 つは、 SnapVault 転送時にプライマリデータの Storage Efficiency を維持できることです。</block>
   <block id="9bc21373e0e299579a7ac86dcd4f513d" category="paragraph">アーキテクチャの重要な変更点は、 7-Mode SnapVault の場合と同様に、 ONTAP 9 の SnapVault でも qtree レベルではなくボリュームレベルでレプリケートされる点です。つまり、 SnapVault 関係のソースはボリュームでなければならず、そのボリュームは SnapVault セカンダリシステム上の独自のボリュームにレプリケートされる必要があります。</block>
   <block id="d447048519c85a2fb3bea0790cd109fb" category="paragraph">SnapVaultを使用する環境では、プライマリストレージシステム上に特別な名前のスナップショットが作成されます。実装されている構成に応じて、SnapVaultスケジュールまたはNetApp Active IQ Unified Managerなどのアプリケーションを使用して、名前付きSnapshotをプライマリシステムに作成できます。プライマリシステムで作成された名前付きSnapshotがSnapMirrorデスティネーションにレプリケートされ、そこからSnapVaultデスティネーションに保存されます。</block>
-  <block id="5bc66b9c84b3f7cc0b375e729376b68d" category="inline-link">TR-4015 ：『 SnapMirror Configuration Best Practice Guide for ONTAP 9 』</block>
   <block id="657a41cce55646ab17754ac1427970af" category="paragraph">次の図に、 SnapMirror から SnapVault へのカスケード構成を示します。SnapVault デスティネーションがプライマリサイトの停止の影響を受けない DR サイトまたは第 3 のサイトにある場合、フェイルオーバー後にバックアップを続行できるように環境を再設定できます。</block>
   <block id="63fd1f18d5d53fa97fd05a7fd96090b4" category="section-title">Site Recovery Manager 環境での qtree の使用</block>
   <block id="345cb3f040f9f7f3f1a4261ed260aa79" category="section-title">FC と iSCSI の混在環境</block>
@@ -3445,9 +3440,6 @@ cluster：：&gt; set -privilege diagnostic</block>
   <block id="b37ae3efea13417cff3fdb198db41274" category="list-text">Windows Serverのクラスタ化されたストレージプールは、ONTAPではサポートされていません。</block>
   <block id="436593f3429fec64588705fe44025823" category="list-text">NetAppは、Windows SAN環境でのゲストクラスタリング用に共有仮想ハードディスクフォーマット（VHDX）をサポートしています。</block>
   <block id="a3a862b96d666cb7005617313f703378" category="list-text">Windows Serverでは、iSCSI LUNまたはFC LUNを使用したストレージプールの作成はサポートされていません。</block>
-  <block id="570d38aae09bbf84ba37f9219909a7cb" category="list-text">NetApp PowerShell Toolkitの詳細については、<block ref="12f72d9ce1eab5b7cd58718fecdd145c" category="inline-link-rx"></block>。</block>
-  <block id="699f0a44719fb3de5404046fc6caa8af" category="inline-link">TR-4475：『NetApp PowerShell Toolkit Best Practices Guide』</block>
-  <block id="532d077f114744273b1a7cd2a4794077" category="list-text">NetApp PowerShell Toolkitのベストプラクティスについては、を参照してください。<block ref="87b47631a9123c9d2a382039a9ba503e" category="inline-link-rx"></block>。</block>
   <block id="64f3248fbae79dd41841377bf7dd37c6" category="paragraph">イーサネットネットワークは、次のグループに大きく分けることができます。</block>
   <block id="0047d4a23ffec6d4afe912d0a2598e58" category="list-text">VMのクライアントネットワーク</block>
   <block id="d6cf6da705ce58c7b649fea1cd43c470" category="list-text">1つ以上のストレージネットワーク（ストレージシステムに接続するiSCSIまたはSMB）</block>
@@ -5726,9 +5718,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="fea612aa54d66a179c5538c5cd1b8525" category="paragraph">VLSR 展開をONTAP の高度なデータ管理機能と統合すると、ローカル ストレージ オプションと比較して、スケールとパフォーマンスが大幅に向上します。しかし、それ以上に、ハイブリッド クラウドの柔軟性がもたらされます。ハイブリッド クラウドでは、 FabricPoolを使用して、高性能アレイから使用されていないデータ ブロックを優先ハイパースケーラー ( NetApp StorageGRIDなどのオンプレミスの S3 ストアなど) に階層化することでコストを節約できます。また、ソフトウェア定義のONTAP SelectまたはクラウドベースのDRを備えたエッジベースのシステムにもSnapMirrorを使用できます。<block ref="48f4ab00daadfbd5f3a95d2ba27ed047" category="inline-link-rx"></block>、またはその他のホストされたONTAPサービス。</block>
   <block id="0fc9a0e7b30259b88ee28dc36905dc46" category="paragraph">災害復旧 (DR) は、災害発生時にデータとアプリケーションを保護するための包括的なソリューションを提供するクラウドベースのサービスです。自動フェイルオーバーとフェイルバック、複数のポイントインタイムリカバリポイント、アプリケーション整合性のある災害復旧、オンプレミスとクラウドベースの両方のONTAPシステムのサポートなど、さまざまな機能を提供します。NetApp Disaster Recovery は、 ONTAPおよび VMware vSphere 環境とシームレスに連携するように設計されており、災害復旧のための統合ソリューションを提供します。</block>
   <block id="b49008ff3ed6386e7b79c895a99dfda0" category="paragraph">調停者は実際にはタイブレーカーではありませんが、実質的にはそれがその機能を提供します。メディエーターは、クラスター ノードの状態を判断するのに役立ち、サイト障害が発生した場合の自動切り替えプロセスを支援します。Mediator はいかなる状況でもデータを転送しません。</block>
-  <block id="389aace802a4b9cc02f057be6b44af1e" category="inline-link-macro"><block ref="389aace802a4b9cc02f057be6b44af1e" category="inline-link-rx"></block></block>
-  <block id="3f5aed07b92e68d50c76da775ecd27e7" category="list-text">TR-4015 ONTAP 9 向けSnapMirror構成ベストプラクティスガイド <block ref="2b18a9579e6e53dd966359ed48786df3" category="inline-link-macro-rx"></block></block>
-  <block id="af5901ed678cf3616d5e1dd4457d3301" category="paragraph">ONTAP 9のSnapMirrorとSnapVaultの最新情報については、以下を参照してください。<block ref="f0cb7261aff0b0ca14230d45000a9acc" category="inline-link-rx"></block></block>
   <block id="0aa1117bb089f8873e3b481abb0fc667" category="inline-link">ONTAP SnapMirrorレプリケーションワークフロー</block>
   <block id="c7d6bfcc1002f9443cf062da6e677452" category="paragraph">スナップショットの詳細については、 ONTAP のドキュメントを参照してください。詳細については、次のリンクをご覧ください。 <block ref="8952dffd5c4f20d5268260325aabe39c" category="inline-link-rx"></block> <block ref="929e1122e30b57f1156728cb315c1ee3" category="inline-link-rx"></block></block>
   <block id="fa3baa666422f615ee0c858e2af05bb1" category="list-text">ネイティブバックアップを構成する<block ref="0322cca7da8e1c0c74e3021d8f78b104" category="inline-link-rx"></block>。</block>
@@ -5965,4 +5954,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="e3471495b791c74dadc31bb77a66a74c" category="paragraph">Oracle Snapshot Optimized Backups は、データベースをホット バックアップモードに切り替えることなく、スナップショットを使用してリカバリを実行できるポイントインタイムリカバリの方法です。</block>
   <block id="85ab689d474b14164558afa9923be42b" category="paragraph">ユーザーはバックアップモードを使用せずにスナップショットから復元することもできますが、完全な復元は RECOVERY AUTOMATIC を使用した場合のみサポートされます。スナップショットの作成時刻を示すために SNAPSHOT TIME 方式を使用した不完全なリカバリ。</block>
   <block id="17e12dfc833834d5b2e478641ef811d3" category="sidebar">スナップショットなしの自動復元</block>
+  <block id="74aeb32ca03a9503e64e32a2c6c54887" category="inline-link">LUN上のアライメントされていないI/Oを識別する方法</block>
+  <block id="0e399161325f240b090c8d3dbfd792b1" category="paragraph">Solaris環境におけるアライメントはより複雑です。詳細については、<block ref="55cb74ec239a32e3acdc528f25f2de7c" category="inline-link-rx"></block>を参照してください。</block>
 </blocks>
