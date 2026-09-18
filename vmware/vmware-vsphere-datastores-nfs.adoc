@@ -46,7 +46,7 @@ vSphere で ONTAP NFS を使用する際に推奨されるベストプラクテ�
 ** サポートに必要なESXiのパッチレベルについては、でNFS v4.1のInteroperabilityテーブルに関する注意事項を参照してlink:https://mysupport.netapp.com/matrix/["NetApp Interoperability Matrix Tool で確認できます"^]ください。
 
 
-* link:vmware-vsphere-settings.html["設定"]で説明したように、Kubernetes用のvSphere CSIを使用していない場合は、 https://knowledge.broadcom.com/external/article/386364/reducing-excessive-vsan-cnssync-warnings.html["VMware KB 386364"^]に従ってnewSyncIntervalを設定する必要があります。
+* link:vmware-vsphere-settings.html["設定"]で説明したように、Kubernetes用のvSphere CSIを使用していない場合は、 https://knowledge.broadcom.com/external/article/415074/reducing-or-disabling-excessive-vsan-cns.html["VMware KB 415074"^]に従ってnewSyncIntervalを設定する必要があります。
 * NFSエクスポートポリシールールは、vSphereホストによるアクセスの制御に使用されます。複数のボリューム（データストア）で 1 つのポリシーを使用できます。NFSの場合、ESXiではsys（UNIX）セキュリティ形式が使用され、VMを実行するにはルートマウントオプションが必要です。ONTAP では、このオプションはスーパーユーザと呼ばれます。スーパーユーザオプションを使用する場合は、匿名ユーザ ID を指定する必要はありません。との `-allow-suid`値が異なるエクスポートポリシールールが設定されていると、ONTAP toolsでSVM検出の問題が発生する可能性があることに注意して `-anon`ください。IPアドレスをカンマで区切って指定し、データストアをマウントするvmkernelポートアドレスをスペースなしで指定する必要があります。ポリシールールの例を次に示します。
 +
 ** Access Protocol：nfs（nfs3とnfs4の両方を含む）

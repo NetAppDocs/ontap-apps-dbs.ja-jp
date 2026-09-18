@@ -25,7 +25,7 @@ ONTAP for vSphereを使用する主なメリットは、仮想マシン（VM）�
 
 Snapshotを使用すると、パフォーマンスに影響を与えずにVMやデータストアのコピーをすばやく作成でき、SnapMirrorを使用してセカンダリシステムに送信することで、オフサイトでの長期的なデータ保護を実現できます。このアプローチでは、変更された情報のみを格納することで、ストレージスペースとネットワーク帯域幅を最小限に抑えます。
 
-SnapshotはONTAPの重要な機能であり、データのポイントインタイムコピーを作成できます。スペース効率に優れ、短時間で作成できるため、VMやデータストアの保護に最適です。スナップショットは、バックアップ、リカバリ、テストなど、さまざまな目的に使用できます。これらのスナップショットはVMware（整合性）スナップショットとは異なり、長期的な保護に適しています。VMwareのvCenterで管理されるスナップショットは、パフォーマンスやその他の影響のため、短期的な使用にのみ推奨されます。link:https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/snapshot-limitations.html["Snapshotの制限事項"^]詳細については、を参照してください。
+スナップショットはONTAPの主要な機能であり、データのポイントインタイムコピーを作成することができます。スペース効率に優れており、迅速に作成できるため、VMやデータストアの保護に最適です。スナップショットは、バックアップ、リカバリ、テストなど、さまざまな目的に使用できます。これらのスナップショットはVMware（整合性）スナップショットとは異なり、長期的な保護に適しています。VMwareのvCenter管理スナップショットは、パフォーマンスおよびその他の影響があるため、短期間の使用のみ推奨されます。詳細については、 https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/9-1/vsphere-virtual-machine-administration/managing-virtual-machines/using-snapshots-to-manage-virtual-machines/snapshot-file-names-and-description.html["スナップショットファイルと制限事項"^]を参照してください。
 
 Snapshotはボリュームレベルで作成され、そのボリューム内のすべてのVMとデータストアを保護するために使用できます。つまり、データストア内のすべてのVMを含むデータストア全体のスナップショットを作成できます。
 

@@ -34,7 +34,7 @@ SnapMirrorアクティブ同期を使用するvMSC構成の管理は、MetroClus
 [[using-the-ontap-tools-vcenter-plugin-for-snapmirror-active-sync]]
 == SnapMirror Active Sync用ONTAPツールvCenterプラグインの使用
 
-ONTAP tools vCenterプラグインを使用すると、vMSCのSnapMirrorアクティブ同期をシンプルかつ直感的に設定できます。ONTAP tools vCenterプラグインを使用して、2つのONTAPクラスタ間にSnapMirrorのアクティブな同期関係を作成および管理できます。このプラグインは、これらの関係を効率的に確立および管理するための使いやすいインターフェイスを提供します。ONTAP tools vCenterプラグインの詳細については、を参照 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["VMware vSphere 用の ONTAP ツール"]するか、にジャンプし https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/protect-cluster.html["ホストクラスタの保護を使用した保護"]ます。
+ONTAP ツール vCenter プラグインは、vMSC の SnapMirror アクティブ同期を設定するためのシンプルで直感的な方法を提供します。ONTAP ツール vCenter プラグインを使用して、2 つの ONTAP クラスター間の SnapMirror アクティブ同期関係を作成および管理できます。このプラグインは、これらの関係を効率的に確立および管理するための使いやすいインターフェイスを提供します。ONTAP ツール vCenter プラグインの詳細については、 https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["VMware vSphere 用の ONTAP ツール"]を参照するか、すぐに https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/protect/granular-datastore-protection-concept.html["ONTAP tools における詳細なデータストア保護の適格性基準"]に進んでください。
 
 
 

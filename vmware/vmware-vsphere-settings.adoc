@@ -39,7 +39,7 @@ NetAppは、NFSプロトコルとブロックプロトコルの両方に最適�
 3+| * NFS設定* 
 
 
-| newSyncInterval | vSphere CSI for Kubernetesを使用していない場合は、 https://knowledge.broadcom.com/external/article/386364/reducing-excessive-vsan-cnssync-warnings.html["VMware KB 386364"^] | いいえ 
+| newSyncInterval | Kubernetes に vSphere CSI を使用していない場合は、per https://knowledge.broadcom.com/external/article/415074/reducing-or-disabling-excessive-vsan-cns.html["VMware KB 415074"^] | いいえ 
 
 
 | Net.TcpipHeapSize の場合 | vSphere 6.0 以降： 32 に設定

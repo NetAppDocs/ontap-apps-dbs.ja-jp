@@ -57,5 +57,5 @@ SCSIベースのブロックプロトコル（iSCSI、FC、FCoE）は、LUN ID�
 * ESXiでターゲット認証にチャレンジハンドシェイク認証プロトコル（CHAP）が使用されている場合は、CLIを使用してONTAPでもCHAPを設定する必要があります。 (`vserver iscsi security create`）またはSystem Managerで（[ストレージ]>[SVM]>[SVM設定]>[プロトコル]>[iSCSI]で[イニシエータセキュリティ]を編集します）。
 * LUN と igroup の作成と管理には、 VMware vSphere の ONTAP ツールを使用します。プラグインによってサーバの WWPN が自動的に判別され、適切な igroup が作成されます。また、ベストプラクティスに従って LUN を設定し、正しい igroup にマッピングします。
 * RDMは管理が困難になる可能性があるため、使用には注意が必要です。また、前述したように制限されているパスも使用します。ONTAP LUN は両方をサポートします https://kb.vmware.com/s/article/2009226["物理互換モードと仮想互換モード"^] RDM ：
-* vSphere 7.0 での NVMe/FC の使用については、以下を参照してください https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_7.html["ONTAP NVMe/FC Host Configuration Guide"^] および http://www.netapp.com/us/media/tr-4684.pdf["TR-4684"^]次の図に、 vSphere ホストから ONTAP LUN へのマルチパス接続を示します。
+* NVMe/FC と vSphere 7.0 の使用方法の詳細については、こちら https://docs.netapp.com/us-en/ontap-sanhost/nvme_esxi_7.html["ONTAP NVMe/FC Host Configuration Guide"^]および https://www.netapp.com/pdf.html?item=/media/10681-tr4684.pdf["TR-4684"^]を参照してください。次の図は、vSphere ホストから ONTAP LUN へのマルチパス接続を示しています。
 

@@ -87,7 +87,6 @@ https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/index.html["ONTAP To
 
 ==== データストアの保護と管理
 
-* https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/configure/protect-cluster.html["ONTAPツールとSnapMirror Active Syncを使用したvSphere Metro Storage Cluster（vMSC）の設定"^]
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/protect/enable-storage-replication-adapter.html["仮想マシンの保護"^]SRMを使用
 * https://docs.netapp.com/us-en/ontap-tools-vmware-vsphere-10/manage/reports.html["クラスタ、データストア、仮想マシンの監視"^]
 

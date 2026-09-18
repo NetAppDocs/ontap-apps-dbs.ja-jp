@@ -34,7 +34,7 @@ NetApp MetroClusterは、ネットアップのHA（コントローラフェイ�
 
 2つのサイトにVMware HA / DRSクラスタを作成するために、ESXiホストをvCenter Server Appliance（vCSA）で使用および管理します。vSphere管理ネットワーク、vMotion®ネットワーク、および仮想マシンネットワークは、2つのサイト間の冗長ネットワークを介して接続されます。HA / DRSクラスタを管理するvCenter Serverは両方のサイトのESXiホストに接続でき、vCenter HAを使用して設定する必要があります。
 
-を参照してください https://docs.vmware.com/en/VMware-vSphere/8.0/vsphere-vcenter-esxi-management/GUID-F7818000-26E3-4E2A-93D2-FCDCE7114508.html["vSphere Clientでクラスタを作成および構成する方法"] をクリックしてvCenter HAを設定します。
+ https://techdocs.broadcom.com/us/en/vmware-cis/vsphere/vsphere/8-0/vsphere-availability/creating-and-using-vsphere-ha-clusters/creating-a-vsphere-ha-cluster/create-vsphere-ha-cluster.html["vSphere クライアントで vSphere HA クラスターを作成する"]を参照して、vCenter HAを設定してください。
 
 も参照してください https://www.vmware.com/docs/vmw-vmware-vsphere-metro-storage-cluster-recommended-practices["VMware vSphere Metro Storage Cluster Recommended Practices"]。
 
@@ -45,10 +45,11 @@ NetApp MetroClusterは、ネットアップのHA（コントローラフェイ�
 
 vSphere Metro Storage Cluster (vMSC) は、仮想マシン (VM) とコンテナを障害から保護する認定構成です。これは、ラック、建物、キャンパス、さらには都市などのさまざまな障害ドメインに分散された ESXi ホストのクラスターとともに、ストレッチ ストレージのコンセプトを使用することで実現されます。NetApp MetroClusterおよびSnapMirrorアクティブ同期ストレージ テクノロジは、ホスト クラスタにゼロ復旧ポイント目標 (RPO=0) 保護を提供するために使用されます。vMSC 構成は、物理サイトまたは論理サイト全体に障害が発生した場合でも、データが常に利用可能となるように設計されています。vMSC 構成の一部であるストレージ デバイスは、vMSC 認定プロセスに合格した後に認定される必要があります。サポートされているすべてのストレージデバイスは、 https://compatibilityguide.broadcom.com/["VMwareストレージ互換性ガイド"]。
 
-vSphere Metro Storage Clusterの設計ガイドラインの詳細については、次のドキュメントを参照してください。
+vSphere Metro Storage Cluster のデザインガイドラインの詳細については、以下のソリューションガイドを参照してください。
 
-* https://kb.vmware.com/s/article/2031038["NetApp MetroClusterによるVMware vSphereのサポート"]
-* https://kb.vmware.com/s/article/83370["NetApp SnapMirrorビジネス継続性によるVMware vSphereのサポート"] （SnapMirrorアクティブ同期）
+* https://docs.netapp.com/us-en/netapp-solutions-virtualization/vmware/vmw-vmsc-with-smas.html["VMware vSphere Metro Storage Cluster と SnapMirror アクティブシンク"]
+* https://docs.netapp.com/us-en/netapp-solutions-virtualization/vmware/vmw-vcf-vmsc-mgmt-mcc.html["VCF管理ドメインのMetroClusterを使用したストレッチクラスタの構成"]
+* https://docs.netapp.com/us-en/netapp-solutions-virtualization/vmware/vmw-vcf-vmsc-viwld-mcc.html["MetroCluster を使用した VCF ワークロードドメインのストレッチクラスタの構成"]
 
 
 NetApp MetroClusterは、vSphereで使用する2種類の構成で導入できます。
