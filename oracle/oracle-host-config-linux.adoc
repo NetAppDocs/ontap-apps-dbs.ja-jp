@@ -35,6 +35,24 @@ CAUTION: これらのパラメータを設定しないと、パフォーマン�
 
 
 
+[[linux-nfsv4-x-session-slots]]
+== Linux NFSv4.X セッションスロット
+
+NFSセッションスロットは、NFSv4.XにおけるNFSv3スロットテーブルに相当するものです。デフォルト値は通常64です。180という値は、ONTAPのセッション制限と一致するため最適です。
+
+max_session_slots パラメータの設定例：
+
+....
+# cat /etc/modprobe.d/nfsclient.conf
+ options nfs max_session_slots=180
+....
+起動時にロードされるカーネルモジュールがこのパラメータを使用します。NFSv3のスロットテーブルパラメータとは異なり、動的ではありません。変更を有効にするには、再起動が必要です。
+
+
+CAUTION: これらのパラメータを設定しないと、パフォーマンスに重大な影響を与える可能性があります。linux OSが十分なI/Oを発行していないため、パフォーマンスが著しく制限される可能性があります。
+
+
+
 [[linux-nfs-mount-options]]
 == Linux NFSのマウントオプション
 
@@ -52,7 +70,7 @@ timeo=600,rsize=262144,wsize=262144`
 データファイル
 REDO ログ | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
 timeo=600,rsize=262144,wsize=262144,
-nointr` 
+nointr,[nconnect=]` 
 
 
 | ORACLE_HOME を参照してください | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
@@ -74,7 +92,7 @@ actimeo=0`
 データ・ファイル
 REDO ログ | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
 timeo=600,rsize=262144,wsize=262144,
-nointr,actimeo=0` 
+nointr,actimeo=0,[nconnect=]` 
 
 
 | CRS /投票 | `rw,bg,hard,[vers=3,vers=4.1],proto=tcp,
@@ -105,6 +123,15 @@ nointr,actimeo=0`
 
 
 
+[[nconnect]]
+=== nconnect
+
+nconnectは比較的新しいマウントオプションです。これにより、NFSクライアントは指定されたマウントポイントに対して複数の独立したTCP/IP接続を開き、I/Oを多重化することが可能になります。その結果、インフライトの処理が増加し、特に高帯域幅ネットワークにおいてパフォーマンスが向上します。linuxでサポートされている最大値は16ですが、NetAppは4～8の値を推奨します。その結果、単一インスタンスのパフォーマンスは、単一パス用に構成されたdNFSクライアントと同等のものとなります。dNFSとは異なり、nconnectは複数のIPアドレスとTCP/IPリンクにまたがる多重化構成を行うことはできません。
+
+RACを使用する場合、追加のメタデータトラフィックが発生するため、nconnectはdNFSよりもパフォーマンス オーバーヘッドが大きくなります。詳細については、link:#Linux%20Direct%20NFS%20and Oracle %20AC[Linux Direct NFS and Oracle RAC]を参照してください。
+
+
+
 [[linux-direct-nfs]]
 === Linux Direct NFS
 
@@ -117,9 +144,9 @@ OSは、 `/oracle`と `/oracle/home`が同じソース ファイル システム
 [[linux-direct-nfs-and-oracle-rac]]
 === Linux Direct NFSとOracle RAC
 
-Linux OS上のOracle RACでは、ノード間の一貫性を維持するためにRACで必要となるダイレクトI/Oを強制的に実行する方法がLinuxにないため、DNFSを使用するとパフォーマンスが特別に向上します。Linuxを回避策として使用するには、 `actimeo=0` マウントオプション。OSキャッシュからファイルデータがただちに期限切れになります。このオプションを使用すると、Linux NFSクライアントは属性データを定期的に再読み取りするため、レイテンシが低下し、ストレージコントローラの負荷が増加します。
+DNFSを使用することで、Linux OS上のOracle RACにおいて特別なパフォーマンス上のメリットが得られます。これは、Linuxには直接I/Oを強制する手段がなく、RACではノード間の整合性を保つために直接I/Oが必要となるためです。回避策として、Linuxでは `actimeo=0`マウントオプションを使用する必要があります。これにより、ファイルデータはOSキャッシュから即座に破棄されます。このオプションにより、Linux NFSクライアントは属性データを常に再読み込みすることになり、その結果、レイテンシとストレージコントローラへの負荷が増加します。
 
-DNFSを有効にすると、ホストNFSクライアントがバイパスされ、この被害を回避できます。DNFSを有効にしたところ、RACクラスタのパフォーマンスが大幅に向上し、（特に他のIOPSに関して）ONTAPの負荷が大幅に減少したという報告が複数のお客様から寄せられています。
+DNFSを有効にすると、ホストNFSクライアントをバイパスし、この問題を回避できます。複数のお客様から、DNFSを有効にした際にRACクラスターのパフォーマンスが大幅に向上し、ONTAPの負荷（特に他のIOPSに関して）が大幅に減少したと報告されています。
 
 
 
