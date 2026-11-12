@@ -12,7 +12,7 @@ sidebar:
   entries:
   - title: エンタープライズアプリケーション
     url: "/index.html"
-  - section: Hyper-V
+  - section: hyperv
   - section: mssql
   - section: mysql
   - section: oracle

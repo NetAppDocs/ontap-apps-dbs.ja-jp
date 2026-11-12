@@ -2146,7 +2146,6 @@ FIXED は、 ALUA に対応していない従来の構成用の値で、プロ�
   <block id="0340eb1bcbfc6cd3c62b8a878d8d643b" category="cell">すべての構成で 32 に設定されます。
 この値を設定すると、I/Oエラーの防止に役立ちます</block>
   <block id="891c10448731ad57490b9a932dabfff8" category="inline-link-macro">VMware KB 86331</block>
-  <block id="fb55ee99c04280ac638757869929785d" category="paragraph">ONTAP ツールでは、 ONTAP FlexVol および LUN の作成時に特定のデフォルト設定も指定されます。</block>
   <block id="3f7502a5f109d7a73706aba1c0741a4b" category="cell">* ONTAP ツール*</block>
   <block id="485577e97e8efcd504fc8e8b13e613f1" category="cell">*デフォルト設定*</block>
   <block id="5938fe448c8661febcef3f4e779e3adb" category="cell">Snapshot リザーブ（ -percent-snapshot-space ）</block>
@@ -5577,4 +5576,10 @@ SOAP over HTTPS接続に使用</block>
   <block id="47abdab1773df8a393141d0e86b7caa8" category="paragraph">RACを使用する場合、追加のメタデータトラフィックが発生するため、nconnectはdNFSよりもパフォーマンス オーバーヘッドが大きくなります。詳細については、link:#Linux%20Direct%20NFS%20and Oracle %20AC[Linux Direct NFS and Oracle RAC]を参照してください。</block>
   <block id="b55a97328a5e6525f7af0bd91795aba2" category="paragraph">DNFSを使用することで、Linux OS上のOracle RACにおいて特別なパフォーマンス上のメリットが得られます。これは、Linuxには直接I/Oを強制する手段がなく、RACではノード間の整合性を保つために直接I/Oが必要となるためです。回避策として、Linuxでは<block ref="3504e2b0e7c968444314433be465518d" prefix=" " category="inline-code"></block>マウントオプションを使用する必要があります。これにより、ファイルデータはOSキャッシュから即座に破棄されます。このオプションにより、Linux NFSクライアントは属性データを常に再読み込みすることになり、その結果、レイテンシとストレージコントローラへの負荷が増加します。</block>
   <block id="97481f9423f2fb70412672eaf2f5cc58" category="paragraph">DNFSを有効にすると、ホストNFSクライアントをバイパスし、この問題を回避できます。複数のお客様から、DNFSを有効にした際にRACクラスターのパフォーマンスが大幅に向上し、ONTAPの負荷（特に他のIOPSに関して）が大幅に減少したと報告されています。</block>
+  <block id="4ca739a4c375dae166ab9e971808c0fa" category="admonition">このドキュメントのvSphere Metro Storage Cluster（vMSC）に関するガイダンスは、VMware Cloud Foundation（VCF）およびVMware vSphere Foundation（VVF）に等しく適用されます。VCFとVVFは異なるBroadcomのライセンスモデルですが、vMSCの基盤となるvSphereおよびONTAP ストレージ アーキテクチャは同じです。</block>
+  <block id="db56c9ea1501256141d4d4f48a3557b2" category="paragraph">ONTAPツールは、ONTAP FlexVolボリュームおよびLUNを作成する際に、特定のデフォルト設定も指定します：</block>
+  <block id="6c1653637160162dea70a6bfe153c882" category="cell">有効*</block>
+  <block id="197160e6102f81c8fa379f1887dec52c" category="inline-link-macro">ONTAP toolsは、スペース割り当てが無効になっているLUNを作成します</block>
+  <block id="ca7ad928898c825ced38288874ffee7e" category="inline-link-macro">新しいONTAP MCP：ストレージ運用を最新化するAI</block>
+  <block id="012f4b756ce2d281dd4d8beca347c674" category="paragraph">*不具合COTV-9223により、ONTAP toolsバージョン10.0～10.6P1ではLUNのスペース割り当てが正しく設定されないことに注意してください。詳細については、<block ref="15a14ce716f951c4665e5bd02682f153" category="inline-link-macro-rx"></block>をご覧ください。System Manager、CLI、またはONTAPのREST APIを使用する任意の自動化プラットフォームを使用して、スペース割り当てを有効にする必要があります。また、任意のAIハーネスと組み合わせてNetApp ONTAP MCP Serverを使用することもできます。<block ref="bcc7aa5ee6218a595efbb6cb9554a7e8" category="inline-link-macro-rx"></block></block>
 </blocks>

@@ -22,6 +22,9 @@ vMSCソリューションは、NetApp®MetroCluster™とSnapMirrorアクティ�
 NOTE: このドキュメントは、以前に公開されたテクニカルレポート（TR-4128：『vSphere on NetApp MetroCluster _』）を差し替えます。
 
 
+NOTE: このドキュメントのvSphere Metro Storage Cluster（vMSC）に関するガイダンスは、VMware Cloud Foundation（VCF）およびVMware vSphere Foundation（VVF）に等しく適用されます。VCFとVVFは異なるBroadcomのライセンスモデルですが、vMSCの基盤となるvSphereおよびONTAP ストレージ アーキテクチャは同じです。
+
+
 
 [[continuous-availability-solutions-for-vsphere-environments]]
 == vSphere環境向けの継続的可用性ソリューション

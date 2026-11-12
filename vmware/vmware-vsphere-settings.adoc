@@ -111,7 +111,7 @@ FIXED は、 ALUA に対応していない従来の構成用の値で、プロ�
 
 NOTE: VMware vSphere ESXi 7.0.1およびVMware vSphere ESXi 7.0.2を使用している場合、NFSの詳細設定オプションMaxQueueDepthが意図したとおりに機能しないことがあります。詳細については、を参照link:https://kb.vmware.com/s/article/86331?lang=en_US["VMware KB 86331"]してください。
 
-ONTAP ツールでは、 ONTAP FlexVol および LUN の作成時に特定のデフォルト設定も指定されます。
+ONTAPツールは、ONTAP FlexVolボリュームおよびLUNを作成する際に、特定のデフォルト設定も指定します：
 
 |===
 
@@ -146,8 +146,10 @@ ONTAP ツールでは、 ONTAP FlexVol および LUN の作成時に特定のデ
 | LUN のスペースリザベーション | 無効 
 
 
-| LUN スペースの割り当て | 有効 
+| LUN スペースの割り当て | 有効* 
 |===
+*不具合COTV-9223により、ONTAP toolsバージョン10.0～10.6P1ではLUNのスペース割り当てが正しく設定されないことに注意してください。詳細については、link:https://kb.netapp.com/data-mgmt/OTV/VSC_Kbs/OTV_10.x_creates_iSCSI_LUNs_with_space-allocation_disabled["ONTAP toolsは、スペース割り当てが無効になっているLUNを作成します"]をご覧ください。System Manager、CLI、またはONTAPのREST APIを使用する任意の自動化プラットフォームを使用して、スペース割り当てを有効にする必要があります。また、任意のAIハーネスと組み合わせてNetApp ONTAP MCP Serverを使用することもできます。link:https://community.netapp.com/community/discussion/465968/new-ontap-mcp-ai-that-modernizes-your-storage-operations["新しいONTAP MCP：ストレージ運用を最新化するAI"]
+
 
 
 [[multipath-settings-for-performance]]
