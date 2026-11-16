@@ -240,10 +240,7 @@ image::../media/vmsc_3_8.png[概要が自動的に生成されたコンピュー
 ====
 * ONTAPストレージを使用する場合は、Storage DRSを無効にすることを推奨します。
 
-* Storage DRSは通常、ONTAPストレージシステムでの使用には必要ありません。推奨もされません。
-* ONTAPには、重複排除、圧縮、コンパクションなど、Storage DRSの影響を受ける独自のStorage Efficiency機能が用意されています。
-* ONTAPスナップショットを使用している場合、Storage vMotionによってスナップショットにVMのコピーが残されるため、ストレージ利用率が向上し、VMとそのONTAPスナップショットを追跡するNetApp SnapCenterなどのバックアップアプリケーションに影響が及ぶ可能性があります。
-
++ * Storage DRSは通常、ONTAPストレージシステムでの使用は必要なく、推奨もされません。* ONTAPは、重複排除、圧縮、コンパクションなどの独自のストレージ効率化機能を提供していますが、これらはStorage DRSの影響を受ける可能性があります。* ONTAP Snapshotを使用している場合、Storage vMotionによってSnapshot内にVMのコピーが残され、ストレージ使用率が増加する可能性があります。また、VMとそのONTAP Snapshotを追跡するNetApp SnapCenterなどのバックアップアプリケーションに影響を与える可能性があります。
 
 ====
 image::../media/vmsc_3_9.png[Storage DRS,528,94]

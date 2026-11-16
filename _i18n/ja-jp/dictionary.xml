@@ -4855,7 +4855,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="5888812a5e670c1dc41279a5d93cc502" category="paragraph">* ONTAPストレージを使用する場合は、Storage DRSを無効にすることを推奨します。</block>
   <block id="f58d6a99824e61e497bca94714a3efef" category="list-text">Storage DRSは通常、ONTAPストレージシステムでの使用には必要ありません。推奨もされません。</block>
   <block id="8525b77695e58a3254731f53ce2b2162" category="list-text">ONTAPには、重複排除、圧縮、コンパクションなど、Storage DRSの影響を受ける独自のStorage Efficiency機能が用意されています。</block>
-  <block id="c9a841ce409cdc722c7bdd080f0f88de" category="list-text">ONTAPスナップショットを使用している場合、Storage vMotionによってスナップショットにVMのコピーが残されるため、ストレージ利用率が向上し、VMとそのONTAPスナップショットを追跡するNetApp SnapCenterなどのバックアップアプリケーションに影響が及ぶ可能性があります。</block>
   <block id="e5239709587bb3ebb34629be6c41ac7b" category="paragraph">vMSCソリューションは、NetApp®MetroCluster™とSnapMirrorアクティブ同期（旧称SnapMirrorビジネス継続性（SMBC））の両方でサポートされており、1つ以上の障害ドメインで全体的な停止が発生した場合に高度なビジネス継続性を提供します。さまざまな障害モードへの耐障害性は、どの設定オプションを選択するかによって異なります。</block>
   <block id="1e1566860cb6afbc338f9fba32c4e5e5" category="list-text">対称Active Sync（ONTAP 9.15.1）</block>
   <block id="b9ca5ba97cf75d3dafb51f78e073770a" category="inline-link">ネットアップのドキュメント</block>
@@ -5535,7 +5534,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="594b019cc44eb4c884388b833d7510dc" category="paragraph">復旧処理中、データベースはデータファイルからメタデータを読み取り、必要なログレコードを特定し、記録されたすべてのトランザクションを再生します。</block>
   <block id="9b9935ad5969c28de13381a2e512b47c" category="section-title">注：</block>
   <block id="64effece8f8fdc7ec22053944731466d" category="paragraph">このアプローチはポイントインタイムリカバリに近似できますが、詳細度は限られています。例えば、バックアップモードのデータファイルから開始した場合、データベースを任意のトランザクションまでロールフォワードすることができます。</block>
-  <block id="613d39aee0d806ff00a0db510dd469d1" category="paragraph">バックアップモードを使用せずに自動復旧方式を使用する場合は、データベースをログスナップショットの時点まで復旧する必要があります。通常の状況では、元のアーカイブログ、リドゥログ、および制御ファイルはアクティブなファイルシステムに残っているため、RPO は依然としてゼロになります。アクティブなファイルシステム内のすべてのデータが失われ、スナップショットからのみ復旧を行う必要がある場合、RPO は 1 時間となります。</block>
   <block id="0601499a184b8a1e3fa9ca7282b4eeb4" category="paragraph">== データレイアウト 最もシンプルなレイアウトは、データファイルを専用のボリューム、LUN、またはNVMe名前空間に分離することです。ストレージリソースは、他のファイルタイプによって汚染されていないものでなければなりません。これは、重要なREDOログ、制御ファイル、またはアーカイブログを破壊することなく、SnapRestore操作によってデータファイルを迅速に復元できるようにするためです。</block>
   <block id="b57416fe4f383261f33cb82b40542798" category="paragraph">== ローカル復旧手順 - NFS 基本的な手順は次のとおりです：</block>
   <block id="3eccd40648788f9b4313a1311d74bef5" category="list-text">実行<block ref="9a2e8b0856a3edcc37ed4d7d88a28a9b" prefix=" " category="inline-code"></block></block>
@@ -5582,4 +5580,6 @@ SOAP over HTTPS接続に使用</block>
   <block id="197160e6102f81c8fa379f1887dec52c" category="inline-link-macro">ONTAP toolsは、スペース割り当てが無効になっているLUNを作成します</block>
   <block id="ca7ad928898c825ced38288874ffee7e" category="inline-link-macro">新しいONTAP MCP：ストレージ運用を最新化するAI</block>
   <block id="012f4b756ce2d281dd4d8beca347c674" category="paragraph">*不具合COTV-9223により、ONTAP toolsバージョン10.0～10.6P1ではLUNのスペース割り当てが正しく設定されないことに注意してください。詳細については、<block ref="15a14ce716f951c4665e5bd02682f153" category="inline-link-macro-rx"></block>をご覧ください。System Manager、CLI、またはONTAPのREST APIを使用する任意の自動化プラットフォームを使用して、スペース割り当てを有効にする必要があります。また、任意のAIハーネスと組み合わせてNetApp ONTAP MCP Serverを使用することもできます。<block ref="bcc7aa5ee6218a595efbb6cb9554a7e8" category="inline-link-macro-rx"></block></block>
+  <block id="5c4ab885d5265a3ad786d29eef5b83e5" category="paragraph">+ バックアップモードを使用せずに自動復旧方式を使用する場合は、データベースをログスナップショットの時点まで復旧する必要があります。通常の状況では、元のアーカイブログ、リドゥログ、および制御ファイルはアクティブなファイルシステムに残っているため、RPOは依然としてゼロになります。アクティブなファイルシステム内のすべてのデータが失われ、スナップショットからのみ復旧を行う必要がある場合、RPOは1時間となります。</block>
+  <block id="a8e9713fd19b156ffb6a608fcd52dace" category="paragraph">+ * Storage DRSは通常、ONTAPストレージシステムでの使用は必要なく、推奨もされません。* ONTAPは、重複排除、圧縮、コンパクションなどの独自のストレージ効率化機能を提供していますが、これらはStorage DRSの影響を受ける可能性があります。* ONTAP Snapshotを使用している場合、Storage vMotionによってSnapshot内にVMのコピーが残され、ストレージ使用率が増加する可能性があります。また、VMとそのONTAP Snapshotを追跡するNetApp SnapCenterなどのバックアップアプリケーションに影響を与える可能性があります。</block>
 </blocks>
